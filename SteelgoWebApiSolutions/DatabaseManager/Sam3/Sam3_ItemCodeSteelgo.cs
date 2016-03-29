@@ -14,6 +14,7 @@ namespace DatabaseManager.Sam3
     
     public partial class Sam3_ItemCodeSteelgo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sam3_ItemCodeSteelgo()
         {
             this.Sam3_Rel_ItemCodeSteelgo_Diametro = new HashSet<Sam3_Rel_ItemCodeSteelgo_Diametro>();
@@ -34,8 +35,13 @@ namespace DatabaseManager.Sam3
         public string DescripcionLargaEspanol { get; set; }
         public string DescripcionLargaIngles { get; set; }
     
+<<<<<<< HEAD
         public virtual Sam3_Grupo Sam3_Grupo { get; set; }
         public virtual ICollection<Sam3_Rel_ItemCodeSteelgo_Diametro> Sam3_Rel_ItemCodeSteelgo_Diametro { get; set; }
         public virtual Sam3_CatalogoCedulas Sam3_CatalogoCedulas { get; set; }
+=======
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sam3_Rel_ItemCode_ItemCodeSteelgo> Sam3_Rel_ItemCode_ItemCodeSteelgo { get; set; }
+>>>>>>> Steelgo-InHouse
     }
 }

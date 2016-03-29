@@ -28,7 +28,10 @@ namespace DatabaseManager.Sam3
         public Nullable<int> UsuarioModificacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
     
+<<<<<<< HEAD
         public virtual Sam3_NumeroUnico Sam3_NumeroUnico { get; set; }
+=======
+>>>>>>> Steelgo-InHouse
         public virtual Sam3_NumeroUnicoMovimiento Sam3_NumeroUnicoMovimiento { get; set; }
         public virtual Sam3_OrdenTrabajo Sam3_OrdenTrabajo { get; set; }
         public virtual Sam3_Proyecto Sam3_Proyecto { get; set; }

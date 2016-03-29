@@ -14,6 +14,10 @@ namespace DatabaseManager.Sam3
     
     public partial class Sam3_Despacho
     {
+<<<<<<< HEAD
+=======
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+>>>>>>> Steelgo-InHouse
         public Sam3_Despacho()
         {
             this.Sam3_Rel_Incidencia_Despacho = new HashSet<Sam3_Rel_Incidencia_Despacho>();
@@ -24,20 +28,33 @@ namespace DatabaseManager.Sam3
         public int OrdenTrabajoSpoolID { get; set; }
         public int MaterialSpoolID { get; set; }
         public int NumeroUnicoID { get; set; }
+<<<<<<< HEAD
         public int SalidaInventarioID { get; set; }
         public string Segmento { get; set; }
         public bool EsEquivalente { get; set; }
         public int Cantidad { get; set; }
         public bool Cancelado { get; set; }
         public System.DateTime FechaDespacho { get; set; }
+=======
+        public Nullable<int> SalidaInventarioID { get; set; }
+        public string Segmento { get; set; }
+        public Nullable<bool> EsEquivalente { get; set; }
+        public Nullable<int> Cantidad { get; set; }
+        public Nullable<bool> Cancelado { get; set; }
+        public Nullable<System.DateTime> FechaDespacho { get; set; }
+>>>>>>> Steelgo-InHouse
         public Nullable<int> UsuarioModificacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public bool Activo { get; set; }
         public Nullable<int> DespachadorID { get; set; }
     
+<<<<<<< HEAD
         public virtual Sam3_NumeroUnico Sam3_NumeroUnico { get; set; }
         public virtual Sam3_Proyecto Sam3_Proyecto { get; set; }
         public virtual Sam3_NumeroUnicoMovimiento Sam3_NumeroUnicoMovimiento { get; set; }
+=======
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+>>>>>>> Steelgo-InHouse
         public virtual ICollection<Sam3_Rel_Incidencia_Despacho> Sam3_Rel_Incidencia_Despacho { get; set; }
     }
 }

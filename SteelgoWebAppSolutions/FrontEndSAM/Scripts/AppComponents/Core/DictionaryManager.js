@@ -1,10 +1,88 @@
-﻿_languageOrder = {
+﻿/// <reference path="DictionaryManager.js" />
+_languageOrder = {
     "es-MX": 0,
     "en-US": 1
 }
 
-_dictionary = {    
+_dictionary = {
+    "RequisicionesAsignadasFolio": {
+        "es-MX": "Folio",
+        "en-US": "Folio"
+    },
+    "RequisicionesAsignadasTipoPrueba": {
+        "es-MX": "Tipo Prueba",
+        "en-US": "Type Test"
+    },
+    "RequisicionesAsignadasFecha": {
+        "es-MX": "Fecha",
+        "en-US": "Date"
+    },
+    "RequisicionesAsignadasObservacion": {
+        "es-MX": "Observacion",
+        "en-US": "Observation"
+    },
     //Login Page Labels
+    "DatosIncompletos": {
+        "es-MX": "La informacion debe estar completa",
+        "en-US": "the information should be completed"
+    },
+    "MensajeGuardar": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "MensajeGuardarPiePagina": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+
+    "LinkFabricacion": {
+        "es-MX": "Fabricación",
+        "en-US": "Manufacturing"
+    },
+    "NoExisteJunta": {
+        "es-MX": "No existe Junta",
+        "en-US": "No Board"
+    },
+    "NoExisteSpoolID": {
+        "es-MX": "No existe el spool",
+        "en-US": "No spool"
+    },
+    "NoExistePersistencia": {
+        "es-MX": "No existe la persistencia",
+        "en-US": "No persistence"
+    },
+    "NoExisteCarro": {
+        "es-MX": "No existe carro",
+        "en-US": "No car"
+    },
+    "NoExisteCuadrante": {
+        "es-MX": "No existe cuadrante",
+        "en-US": "No quadrant"
+    },
+    "NoExisteComponente": {
+        "es-MX": "No existe componente",
+        "en-US": "No component"
+    },
+    "CapturaEliminar": {
+        "es-MX": "Estas seguro de eliminar la informacion?",
+        "en-US": "do you want delete the row?"
+    },
+    "mensajeEliminarInspeccionVisualDimensional":{
+        "es-MX": "Estas seguro de eliminar la informacion?",
+        "en-US": "do you want delete the row?"
+    },
+    "RequisicionesAsignadas": {
+        "es-MX": "Requisiciones Asignadas",
+        "en-US": "Assigned Request"
+    },
+    "AsignarRequisicion": {
+        "es-MX": "Asignar Requisición",
+        "en-US": "Set Request"
+    },
+    "ServiciosTecnicosGenerarRequisicion": {
+        "es-MX": "Generar Requisición",
+        "en-US": "Generate Request"
+    },
     "loginLabel0001": {
         "es-MX": "Inicio de Sesión",
         "en-US": "Login"
@@ -4617,9 +4695,15 @@ _dictionary = {
         "es-MX": "Diam1 ('')",
         "en-US": "Diam1 ('')"
     },
+<<<<<<< HEAD
     "ListadoMaterialesItemCode0007": {
         "es-MX": "Diam2 ('')",
         "en-US": "Diam2 ('')"
+=======
+    "GenerarOrdenRecepcion0019": {
+        "es-MX": "Generar Orden de Recepcion, Imprimir Formato y etiquetas de números unicos",
+        "en-US": "Generate order of receipt, print fomat and tags unique numbers"
+>>>>>>> Steelgo-InHouse
     },
     "ListadoMaterialesItemCode0008": {
         "es-MX": "Tipo Material",
@@ -4758,7 +4842,13 @@ _dictionary = {
         "es-MX": "Editar",
         "en-US": "Edit"
     },
+<<<<<<< HEAD
     "Almacenaje0005": {
+=======
+
+    //Detalle Orden Recepcion
+    "DetalleOrdenRecepcion0001": {
+>>>>>>> Steelgo-InHouse
         "es-MX": "Cancelar",
         "en-US": "Cancel"
     },
@@ -4847,9 +4937,16 @@ _dictionary = {
         "es-MX": "Transacciones",
         "en-US": "Dealings"
     },
+<<<<<<< HEAD
     "Despacho0002": {
         "es-MX": "Despacho",
         "en-US": "Dispatch"
+=======
+    //Orden de Alamacenaje
+    "DetalleOrdenAlmacenaje0001": {
+        "es-MX": "Folio Orden de Almacenaje: ",
+        "en-US": "Order storage: "
+>>>>>>> Steelgo-InHouse
     },
     "Despacho0003": {
         "es-MX": "Despachar",
@@ -4903,6 +5000,7 @@ _dictionary = {
         "es-MX": "Número único",
         "en-US": "Unique number"
     },
+<<<<<<< HEAD
     "Despacho0016": {
         "es-MX": "Despacho",
         "en-US": "Dispatch"
@@ -4910,6 +5008,15 @@ _dictionary = {
     "Despacho0017": {
         "es-MX": "Hold",
         "en-US": "Hold"
+=======
+    "DetalleOrdenAlmacenaje0016": {
+        "es-MX": "Número Unico ID",
+        "en-US": "Unique Number ID"
+    },
+    "DetalleOrdenAlmacenaje0017": {
+        "es-MX": "Número Unico",
+        "en-US": "Unique Number"
+>>>>>>> Steelgo-InHouse
     },
     "Despacho0018": {
         "es-MX": "Tiene Despacho",
@@ -4927,9 +5034,16 @@ _dictionary = {
         "es-MX": "Agregar Nuevo",
         "en-US": "Add New"
     },
+<<<<<<< HEAD
     "Despacho0022": {
         "es-MX": "Baston 1",
         "en-US": "Stick 1"
+=======
+    //Listado de Orden de Almacenaje
+    "ListadoOrdenAlmacenaje0001": {
+        "es-MX": "Inicio",
+        "en-US": "Home"
+>>>>>>> Steelgo-InHouse
     },
     "Despacho0023": {
         "es-MX": "Baston",
@@ -5012,6 +5126,7 @@ _dictionary = {
         "es-MX": "Item Code",
         "en-US": "Item Code"
     },
+<<<<<<< HEAD
     "Predespacho0015": {
         "es-MX": "Descripción",
         "en-US": "Description"
@@ -5019,6 +5134,16 @@ _dictionary = {
     "Predespacho0016": {
         "es-MX": "Número único",
         "en-US": "Unique number"
+=======
+    "ListadoOrdenAlmacenaje0022": {
+        "es-MX": "Número Unico",
+        "en-US": "Unique Number"
+    },
+    //Generar Orden Almacenaje
+    "GenerarOrdenAlmacenaje0001": {
+        "es-MX": "Inicio",
+        "en-US": "Home"
+>>>>>>> Steelgo-InHouse
     },
     "Predespacho0017": {
         "es-MX": "Levantar Incidencia",
@@ -5205,6 +5330,7 @@ _dictionary = {
         "es-MX": "Asumir incongruencia.",
         "en-US": "Assume incongruence."
     },
+<<<<<<< HEAD
     "Corte0040": {
         "es-MX": "Dashboard Despacho y Corte",
         "en-US": "Dispatch & Cut Dashboard"
@@ -5216,6 +5342,20 @@ _dictionary = {
     "Corte0042": {
         "es-MX": "Imprimir Picking Ticket",
         "en-US": "Print Picking Ticket"
+=======
+    "GenerarOrdenAlmacenaje0026": {
+        "es-MX": "Número Unico ID",
+        "en-US": "Unique Number ID"
+    },
+    "GenerarOrdenAlmacenaje0027": {
+        "es-MX": "Número Unico",
+        "en-US": "Unique Number"
+    },
+    //Dashboard Recepcion y Almacenaje
+    "DashboardRecepcionAlmacenaje0001": {
+        "es-MX": "Inicio",
+        "en-US": "Home"
+>>>>>>> Steelgo-InHouse
     },
     "Corte0043": {
         "es-MX": "Materiales",
@@ -5402,9 +5542,16 @@ _dictionary = {
         "es-MX": "No. Empleado recibe",
         "en-US": "No. Employee receives"
     },
+<<<<<<< HEAD
     "DashboardDespachoCorte0046": {
         "es-MX": "Fecha entrega",
         "en-US": "Deliver date"
+=======
+    //Listados Recepcion y Almacenaje
+    "ListadoRecepcionAlmacenajeTuberia0001": {
+        "es-MX": "Cliente",
+        "en-US": "Client"
+>>>>>>> Steelgo-InHouse
     },
     "DashboardDespachoCorte0047": {
         "es-MX": "Unidad de Medida",
@@ -6317,8 +6464,13 @@ _dictionary = {
         "en-US": "It redirects to home because logout done"
     },
     "notificationslabel0006": {
+<<<<<<< HEAD
         "es-MX": "Por favor, seleccionar el numero de permiso",
         "en-US": "Please, select the permission number"
+=======
+        "es-MX": "Por favor, seleccionar el número de permiso",
+        "en-US": ""
+>>>>>>> Steelgo-InHouse
     },
     "notificationslabel0007": {
         "es-MX": "Por favor, seleccionar un folio",
@@ -6337,8 +6489,13 @@ _dictionary = {
         "en-US": "At least a signed packing list must be attached to print the departure pass"
     },
     "notificationslabel0011": {
+<<<<<<< HEAD
         "es-MX": "Por favor, seleccionar el numero de permiso",
         "en-US": "Please, select the permission number"
+=======
+        "es-MX": "Por favor, seleccionar el número de permiso",
+        "en-US": ""
+>>>>>>> Steelgo-InHouse
     },
     "notificationslabel0012": {
         "es-MX": "Por favor, seleccionar el tipo de archivo",
@@ -6381,8 +6538,13 @@ _dictionary = {
         "en-US": "Unable to read the file: "
     },
     "notificationslabel0022": {
+<<<<<<< HEAD
         "es-MX": "Los item codes no tienen asignado un numero unico",
         "en-US": "The item codes does not have an assigned unique number"
+=======
+        "es-MX": "Los item codes no tienen asignado un número unico",
+        "en-US": ""
+>>>>>>> Steelgo-InHouse
     },
     "notificationslabel0023": {
         "es-MX": "Por lo menos un packing list firmado debe estar anexado para poder imprimir el pase de salida",
@@ -6505,9 +6667,15 @@ _dictionary = {
         "en-US": "Records have been kept."
     },
     "notificationslabel0053": {
+<<<<<<< HEAD
         "es-MX": "El folio captura packing list no tiene registros para realizar la acción.",
         "en-US": "Folio capture packing list has no records to perform the action."
     }, 
+=======
+        "es-MX": "El folio cuantificacion no tiene registros para realizar la acción.",
+        "en-US": "Folio quantification has no records to perform the action."
+    },
+>>>>>>> Steelgo-InHouse
     "notificationslabel0054": {
         "es-MX": "Favor de seleccionar un Folio de llegada.",
         "en-US": "Please select a Arrival Folio"
@@ -6729,6 +6897,7 @@ _dictionary = {
         "es-MX": "",
         "en-US": ""
     },
+<<<<<<< HEAD
     //KendoUploadLocalization
     "KendoUploadTxt0001": {
         "es-MX": "Cancelar",
@@ -6801,3 +6970,3604 @@ _dictionary = {
         "en-US": "Delete"
     },
 };
+=======
+    //#region Genericos
+
+    "botonBuscar": {
+        "es-MX": "Buscar",
+        "en-US": "Find"
+    },
+    "botonEdtar": {
+        "es-MX": "Editar",
+        "en-US": "Edit"
+    },
+    "botonEdtar2": {
+        "es-MX": "Editar",
+        "en-US": "Edit"
+    },
+    "BotonCerrar1": {
+        "es-MX": "Cerrar",
+        "en-US": "Close"
+    },
+
+    "botonCancelar": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "botonCancelar2": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "botonGuardar": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "botonGuardar2": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "botonGuardar3": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "botonGuardar4": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "botonGuardarYNuevo": {
+        "es-MX": "Guardar y Nuevo",
+        "en-US": "Save and New"
+    },
+    "botonGuardarYNuevo1": {
+        "es-MX": "Guardar y Nuevo",
+        "en-US": "Save and New"
+    },
+    "botonAgregar": {
+        "es-MX": "Agregar",
+        "en-US": "Add"
+    },
+    "botonEnviar": {
+        "es-MX": "Enviar",
+        "en-US": "Send"
+    },
+    "botonEnviar2": {
+        "es-MX": "Enviar",
+        "en-US": "Send"
+    },
+    "botonAplicar": {
+        "es-MX": "Aplicar",
+        "en-US": "Apply"
+    },
+    "botonDescarga": {
+        "es-MX": "Descarga",
+        "en-US": "Discharging"
+    },
+    "MensajeRequisicion": {
+        "es-MX": "Requisición",
+        "en-US": "Requisition"
+    },
+    "MensajeRequisicion1": {
+        "es-MX": "Requisición",
+        "en-US": "Requisition"
+    },
+
+    "FormatoFecha": {
+        "es-MX": "{0: dd/MM/yyyy}",
+        "en-US": "{0: MM/dd/yyyy}"
+    },
+    "FormatoFecha2": {
+        "es-MX": "dd/MM/yyyy",
+        "en-US": "MM/dd/yyyy"
+    },
+    "lblValidacionResultados": {
+        "es-MX": "Validación de Resultados",
+        "en-US": "Validation of Results "
+    },
+    "lblInicio": {
+        "es-MX": "Inicio",
+        "en-US": "Home"
+    },
+    "lblMarcado": {
+        "es-MX": "Marcado",
+        "en-US": "Marked"
+    },
+    "lblOrdenesTrabajo": {
+        "es-MX": "Ordenes Trabajo",
+        "en-US": "Work Order"
+    },
+    "lblEncintado": {
+        "es-MX": "Encintado",
+        "en-US": "Taped"
+    },
+    "lblEtiquetado": {
+        "es-MX": "Etiquetado",
+        "en-US": "Labeled"
+    },
+    "lblEmbarque": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment"
+    },
+    "lblEmbarque2": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment"
+    },
+    "lblCargas": {
+        "es-MX": "Cargas",
+        "en-US": "Shipment"
+    },
+
+    "lblEmpaquetado": {
+        "es-MX": "Empaquetado",
+        "en-US": "Packaging"
+    },
+    "lblConsulta": {
+        "es-MX": "Consulta",
+        "en-US": "Query"
+    },
+    "TipoAgregado": {
+        "es-MX": "Tipo Captura",
+        "en-US": "Capture Type"
+    },
+    "Reporte": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "Listado": {
+        "es-MX": "Junta",
+        "en-US": "Junta"
+    },
+    "lblInspeccion": {
+        "es-MX": "Inspección",
+        "en-US": "Inspection"
+    },
+    "CapturaLlenadoMasivo": {
+        "es-MX": "Llenado masivo",
+        "en-US": "filling mass"
+    },
+    "CapturaLlenadoMasivoTodos": {
+        "es-MX": "Todos",
+        "en-US": "All"
+    },
+    "CapturaLlenadoMasivoVacios": {
+        "es-MX": "Vacios",
+        "en-US": "Empty"
+    },
+    "MensajeAcciones": {
+        "es-MX": "Acciones",
+        "en-US": "Actions"
+    },
+    "botonCancelar1": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "botonAcciones1": {
+        "es-MX": "Acciones",
+        "en-US": "Actions"
+    },
+    "botonAcciones2": {
+        "es-MX": "Acciones",
+        "en-US": "Actions"
+    },
+    "textoEditar": {
+        "es-MX": "Editar",
+        "en-US": "Edit"
+    },
+    "textoGuardar": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "textoCancelar": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    //#region Mensajes
+    "Mensajes_error": {
+        "es-MX": "Mensaje de error: ",
+        "en-US": "Error message: "
+    },
+    "CampoRequerido": {
+        "es-MX": "Favor de validar los campos requeridos ",
+        "en-US": "Please validate required fields "
+    },
+    "OrdenTrabajoNoValida": {
+        "es-MX": "La Orden de trabajo no es valida. ",
+        "en-US": "The work order is not valid."
+    },
+    "ErrorGuardadoGuardarCarro": {
+        "es-MX": "Por favor guarde primero el carro",
+        "en-US": "Plase, save the car first"
+    },
+    "ErrorFechaInicio": {
+        "es-MX": "El Campo 'FECHA INICIO', no tiene el formato correcto'",
+        "en-US": "The field ' DATE START ' , does not have the correct format"
+    },
+    "ErrorGuardarAntesElCarro": {
+        "es-MX": "Por favor guarde primero el carro",
+        "en-US": "Plase, save the car first"
+    },
+    "ErrorFechaFin": {
+        "es-MX": "El Campo 'FECHA FIN', no tiene el formato correcto'",
+        "en-US": "The field ' DATE END ' , does not have the correct format"
+    },
+    "AlertPreguntaSi": {
+        "es-MX": "Si",
+        "en-US": "yes"
+    },
+    "AlertPreguntaNo": {
+        "es-MX": "No",
+        "en-US": "No"
+    },
+    //#endregion
+    //#endregion
+
+    "JuntaSinSeleccionar": {
+        "es-MX": "se necesita una junta",
+        "en-US": "you need a board"
+    },
+
+    //#region menu
+    "menuFabricacion": {
+        "es-MX": "Fabricación",
+        "en-US": "Manufacturing"
+    },
+    "menuArmado": {
+        "es-MX": "Armado",
+        "en-US": "Assembly"
+    },
+    "menuSoldadura": {
+        "es-MX": "Soldadura",
+        "en-US": "Welding"
+    },
+    "menuSoldadur": {
+        "es-MX": "Soldadura",
+        "en-US": "Welding"
+    },
+
+    "menuSoldaduraPie": {
+        "es-MX": "Soldadura",
+        "en-US": "Welding"
+    },
+    "menuInspeccion": {
+        "es-MX": "Inspección",
+        "en-US": "Inspection"
+    },
+    "menuInspeccionDimensional": {
+        "es-MX": "Dimensional",
+        "en-US": "Dimensional"
+    },
+    "menuInspeccionVisualDimensional": {
+        "es-MX": "Visual Dimensional",
+        "en-US": "Visual and Dimensional"
+    },
+    "menuServiciosTecnicos": {
+        "es-MX": "Servicios Técnicos",
+        "en-US": "Technical Services"
+    },
+    "menuServiciosTecnicosAsignarRequisicion": {
+        "es-MX": "Asignar Requisición",
+        "en-US": "Assign Requisition"
+    },
+    "menuServiciosTecnicosCapturaReportePruebas": {
+        "es-MX": "Captura Reporte",
+        "en-US": "Report Capture"
+    },
+    "menuServiciosTecnicosEntregaResultados": {
+        "es-MX": "Entrega de Resultados",
+        "en-US": "Delivering Results"
+    },
+    "menuServiciosTecnicosGenerarRequisicion": {
+        "es-MX": "Generar Requisición",
+        "en-US": "Generate Request"
+    },
+    "menuServiciosTecnicosGenerarImpresion": {
+        "es-MX": "Impresión de Resultados",
+        "en-US": "Printing Results"
+    },
+    "menuServiciosTecnicosGenerarListadoRequisicion": {
+        "es-MX": "Listado de Requisiciones",
+        "en-US": "List of Requisitions"
+    },
+    "menuServiciosTecnicosGenerarRequisicionesAsignadas": {
+        "es-MX": "Requisiciones Asignadas",
+        "en-US": "Assigned Requisitions"
+    },
+    "menuServiciosTecnicosGenerarValidacionResultados": {
+        "es-MX": "Validación de Resultados",
+        "en-US": "Validation of Results "
+    },
+    "menuPintura": {
+        "es-MX": "Pintura",
+        "en-US": "Painting "
+    },
+    "menuPinturaCargaCarro": {
+        "es-MX": "Carga de Carro",
+        "en-US": "Load Carriage"
+    },
+    "menuPinturaCargaCarroTop": {
+        "es-MX": "Carga de Carro",
+        "en-US": "Load Carriage"
+    },
+    "menuPinturaCargaCarroPie": {
+        "es-MX": "Carga de Carro",
+        "en-US": "Load Carriage"
+    },
+    "menuPinturaCargaCarroBack": {
+        "es-MX": "Carga de Carro Backlog",
+        "en-US": "Backlog Load Carriage"
+    },
+    "menuPinturaCargaAvance": {
+        "es-MX": "Avance",
+        "en-US": "Progress"
+    },
+    "menuPinturaDescargaCarro": {
+        "es-MX": "Descarga de Carro",
+        "en-US": "Empty cart"
+    },
+    "menuPinturaCapturaAvanceIntAcabado": {
+        "es-MX": "Intermedio - Acabado",
+        "en-US": "Intermediate - Finishes"
+    },
+    "menuPinturaCapturaAvanceIntAcabadoTop": {
+        "es-MX": "Intermedio - Acabado",
+        "en-US": "Intermediate - Finishes"
+    },
+    "menuPinturaLotesCapturaReporte": {
+        "es-MX": "Captura Reporte",
+        "en-US": "Capture Report "
+    },
+    "botonEmbarque": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment "
+    },
+    "botonEmbarque2": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment "
+    },
+    "menuEmbarque": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment "
+    },
+    "menuEmbarqueEmpaquetado": {
+        "es-MX": "Empaquetado",
+        "en-US": "packaging"
+    },
+    "menuEmbarqueConsulta": {
+        "es-MX": "Consulta",
+        "en-US": "Query "
+    },
+    "menuEmbarqueEncintado": {
+        "es-MX": "Encintado",
+        "en-US": "Taped"
+    },
+    "menuEmbarqueEtiquetado": {
+        "es-MX": "Etiquetado",
+        "en-US": "Labeled"
+    },
+    "menuEmbarqueCargas": {
+        "es-MX": "Cargas",
+        "en-US": "Loads"
+    },
+    "menuEmbarqueEbarque": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment "
+    },
+    "menuEmbarqueListadoEmbarque": {
+        "es-MX": "Listado Embarque",
+        "en-US": "Shipment List "
+    },
+    "menuEmbarqueRevisionEmbarque": {
+        "es-MX": "Revisión Embarque",
+        "en-US": "Shipment Review "
+    },
+    "EmbarqueCargaPlana": {
+        "es-MX": "Cerrar Plana",
+        "en-US": "Close Plate"
+    },
+    "EmbarqueCargaBotonCerrarPlana": {
+        "es-MX": "Cerrar Plana",
+        "en-US": "Close Plate"
+    },
+    "EmbarqueCargaBotonCerrarPlana1": {
+        "es-MX": "Cerrar Plana",
+        "en-US": "Close Plate"
+    },
+    "EmbarqueCargaMensajeErrorPlana": {
+        "es-MX": "Seleccione una placa",
+        "en-US": "Select license plate"
+    },
+    "EmbarqueCargaMensajeErrorProveedor": {
+        "es-MX": "Seleccione un proveedor",
+        "en-US": "Select a provider"
+    },
+    "EmbarqueCargaMensajeErrorPlanaNoCerrada": {
+        "es-MX": "La plana debe estar abierta para poder cerrarla",
+        "en-US": "The flat must be open to close"
+    },
+
+
+    //#endregion
+    //#region Trabajos adicionales
+    "TrabajosAdicionales0002": {
+        "es-MX": "Trabajo Adicional",
+        "en-US": "Aditional Work"
+    },
+    "TrabajosAdicionales0003": {
+        "es-MX": "Nombre corto",
+        "en-US": "Short Name"
+    },
+    "TrabajosAdicionales0004": {
+        "es-MX": "Nombre Extendido",
+        "en-US": "Extend Name"
+    },
+    "TrabajosAdicionales0005": {
+        "es-MX": "Cuenta Contable",
+        "en-US": "Contable Account"
+    },
+    "TrabajosAdicionales0006": {
+        "es-MX": "Signo Informativo",
+        "en-US": "Informational sign"
+    },
+    "TrabajosAdicionales0007": {
+        "es-MX": "Activo",
+        "en-US": "Active"
+    },
+    "TrabajosAdicionales0008": {
+        "es-MX": "Listado Trabajos Adicionales",
+        "en-US": "Aditional Work List"
+    },
+    "TrabajosAdicionales0009": {
+        "es-MX": "Tipo Trabajo Adicional",
+        "en-US": "Aditional Work type"
+    },
+    "TrabajosAdicionales0001": {
+        "es-MX": "Seguro que desea deshabilitar el trabajo adicional?",
+        "en-US": "Are you sure to disable the aditional work"
+    },
+    "TrabajosAdicionales0010": {
+        "es-MX": "Nuevo Trabajo Adicional",
+        "en-US": "New Aditional Work"
+    },
+    //#endregion
+    //#region Obrero
+    "Obrero0002": {
+        "es-MX": "Tipo Obrero",
+        "en-US": "Obrero Type"
+    },
+    "Obrero0003": {
+        "es-MX": "Tipo Obrero Jefe",
+        "en-US": "Chief Obrero Type"
+    },
+    "Obrero0001": {
+        "es-MX": "Tipo Obrero ID",
+        "en-US": "Obrero Type ID"
+    },
+    "Obrero0004": {
+        "es-MX": "Numero Empleado",
+        "en-US": "Employee Number"
+    },
+    "Obrero0005": {
+        "es-MX": "Código",
+        "en-US": "Code"
+    },
+    "Obrero0006": {
+        "es-MX": "Esta seguro de eliminar el obrero?",
+        "en-US": "Are you sure to delete the obrero"
+    },
+    "Obrero0007": {
+        "es-MX": "Nuevo Tipo Obrero",
+        "en-US": "New Obrero Type"
+    },
+    "Obrero0008": {
+        "es-MX": "Nuevo Obrero",
+        "en-US": "New Obrero"
+    },
+    "Obrero0009": {
+        "es-MX": "Patio",
+        "en-US": "Patio"
+    },
+    "Obrero0010": {
+        "es-MX": "Fecha Inicio Labor",
+        "en-US": "Begin Date Work"
+    },
+    "Obrero0011": {
+        "es-MX": "Fecha Fin Labor",
+        "en-US": "End Date Work"
+    },
+    //#endregion
+    //#region Campos Predeterminado
+    "lblIdCampoPredeterminadoID": {
+        "es-MX": "Id Campo Precdeterminado",
+        "en-US": "id Default Field"
+    },
+
+    "lblIdCampoPredeterminadoPagina": {
+        "es-MX": "Página",
+        "en-US": "Page"
+    },
+
+    "lblIdCampoPredeterminadoNombreCampo": {
+        "es-MX": "Nombre del Campo",
+        "en-US": "Field Name"
+    },
+
+    "lblIdCampoPredeterminadoTipoCampo": {
+        "es-MX": "Tipo de Campo",
+        "en-US": "Field Type"
+    },
+
+    "lblIdCampoPredeterminadoValorPorDefecto": {
+        "es-MX": "Valor por Defecto",
+        "en-US": "Default Value"
+    },
+
+    "lblCampoPredeterminadoCancelar": {
+        "es-MX": "",
+        "en-US": ""
+    },
+    //#endregion
+    //#region Tipo Junta
+    "lblTipoJuntaID": {
+        "es-MX": "Tipo Junta",
+        "en-US": "--"
+    },
+    "lblTipoJuntaCodigo": {
+        "es-MX": "Código",
+        "en-US": "Code"
+    },
+    "lblTipoJuntaNombre": {
+        "es-MX": "Nombre",
+        "en-US": "Name"
+    },
+    "lblTipoJuntaCalidad": {
+        "es-MX": "Verificado Por Calidad",
+        "en-US": "Verified By Quality"
+    },
+    "lblTipoJuntaRelleno": {
+        "es-MX": "Permite Terminado Relleno",
+        "en-US": "----"
+    },
+    //#endregion 
+    //#region PQR
+    //#region Grid
+    "lblPQRNombre": {
+        "es-MX": "Nombre",
+        "en-US": "Name"
+    },
+    "lblPQRID": {
+        "es-MX": "PQRID",
+        "en-US": "PQRID"
+    },
+    "lblPQRPREHEAT": {
+        "es-MX": "PREHEAT",
+        "en-US": "PREHEAT"
+    },
+    "lblPQRPWHT": {
+        "es-MX": "PWHT",
+        "en-US": "PWHT"
+    },
+    "lblPQREspesorRelleno": {
+        "es-MX": "Espesor Relleno",
+        "en-US": "Padding density"
+    },
+    "lblPQREspesorRaiz": {
+        "es-MX": "Espesor Raiz",
+        "en-US": "Root Density"
+    },
+    "lblPQRProcesoSoldaduraRelleno": {
+        "es-MX": "Proceso soldadura Relleno",
+        "en-US": "Welding padding process "
+    },
+    "lblPQRProcesoSoldaduraRaiz": {
+        "es-MX": "Proceso soldadura Raiz",
+        "en-US": "Welding root process"
+    },
+    "lblPQRNumeroP": {
+        "es-MX": "Numero P",
+        "en-US": "P number"
+    },
+    "lblPQRGrupoPMaterialBase1": {
+        "es-MX": "Grupo P Material Base 1",
+        "en-US": "P group base material 1"
+    },
+    "lblPQRGrupoPMaterialBase2": {
+        "es-MX": "Grupo P Material Base 2",
+        "en-US": "P group base material 2"
+    },
+    "lblPQRAporte": {
+        "es-MX": "Aporte",
+        "en-US": "filler"
+    },
+    "lblPQRMezcla": {
+        "es-MX": "Mezcla",
+        "en-US": "Mix"
+    },
+    "lblPQRRespaldo": {
+        "es-MX": "Respaldo",
+        "en-US": "Back"
+    },
+    "lblPQRGrupoF": {
+        "es-MX": "Grupo F",
+        "en-US": "F group"
+    },
+    "lblPQRCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    },
+    //#endregion
+    //#region PopUp
+    "lblConfirmaElimanarPQR": {
+        "es-MX": "¿Está seguro de eliminar este PQR?",
+        "en-US": "You Shure delete this PQR?"
+    },
+    "lblValidaEspesorRellenoPQR": {
+        "es-MX": "El Campo 'Espesor Relleno' Solo acepta números decimales",
+        "en-US": "The Field 'Padding thickness ' only accepts decimal numbers"
+    },
+    "lblValidaEspesorRaizPQR": {
+        "es-MX": "El Campo 'Espesor Raiz' Solo acepta números decimales",
+        "en-US": "The Field 'Root thickness ' only accepts decimal numbers"
+    },
+
+    "lblExisteNombrePQR": {
+        "es-MX": "Este PQR ya existe",
+        "en-US": "this PQR is exist"
+    },
+
+    "lblValidaNombre": {
+        "es-MX": "El nombre del PQR ya existe. No se puede agregar",
+        "en-US": "PQR name already exists. You can not add"
+    },
+    //#endregion
+    //#endregion
+    //#region Armado 
+
+    "CapturaMensajeArmadoDatosIncompletos": {
+        "es-MX": "Existen spools incompletos , porfavor borralos o captura la informacion faltante",
+        "en-US": "There are incomplete spools please delete them or capture the missing information"
+    },
+    "CapturaArmadoArmadoSpool": {
+        "es-MX": "Armado",
+        "en-US": "Assembly"
+    },
+    "LabelHeaderArmado": {
+        "es-MX": "Detalle Armado",
+        "en-US": "Armed detail"
+    },
+    "CapturaArmadoHeaderSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "ID spool"
+    },
+    "CapturaArmadoHeaderSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "CapturaArmadoHeaderJunta": {
+        "es-MX": "Junta",
+        "en-US": "Joint"
+    },
+    "CapturaArmadoHeaderMostrar": {
+        "es-MX": "Mostrar",
+        "en-US": "Show"
+    },
+    "CapturaArmadSinCaptura": {
+        "es-MX": "Sin captura",
+        "en-US": "Empty capture"
+    },
+    "CapturaArmadoTodos": {
+        "es-MX": "Todos",
+        "en-US": "All"
+    },
+    "CapturaArmadoTodos2": {
+        "es-MX": "Todos",
+        "en-US": "All"
+    },
+    "CapturaArmadoVacios": {
+        "es-MX": "Vacios",
+        "en-US": "Empty"
+    },
+    "CapturaArmadoHeaderFechaArmado": {
+        "es-MX": "Fecha Armado",
+        "en-US": "Reinforced Date"
+    },
+    "CapturaArmadoHeaderTubero": {
+        "es-MX": "Tubero",
+        "en-US": "Assembler"
+    },
+    "CapturaArmadoHeaderTaller": {
+        "es-MX": "Taller",
+        "en-US": "WorkShop"
+    },
+    "CapturaArmadoHeaderLlenadoMasivo": {
+        "es-MX": "Llenado masivo",
+        "en-US": "filling mass"
+    },
+    "CapturaArmadoHeaderNumeroUnico1": {
+        "es-MX": "Num. Un. 1",
+        "en-US": "Uni. Nu. 1"
+    },
+    "CapturaArmadoHeaderNumeroUnico2": {
+        "es-MX": "Num. Un. 2",
+        "en-US": "Uni. Nu. 2"
+    },
+    "CapturaArmadoHeaderAdicionales": {
+        "es-MX": "Adicionales",
+        "en-US": "Additional"
+    },
+    "CapturaArmadoHeaderDetalle": {
+        "es-MX": "Detalle",
+        "en-US": "Detail"
+    },
+    "CapturaArmadoHeaderDiametro": {
+        "es-MX": "Diam",
+        "en-US": "Diam"
+    },
+    "CapturaArmadoPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de armado?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of armed ?"
+    },
+    "CapturaArmadoMensajeJuntaExistente": {
+        "es-MX": "La junta ya existe",
+        "en-US": "The Joint already exists"
+    },
+    "CapturaArmadoMensajeOrdenTrabajo": {
+        "es-MX": "La Orden de trabajo no es valida.",
+        "en-US": "The work order is not valid."
+    },
+    "CapturaArmadoMensajeGuardadoExitoso": {
+        "es-MX": "Datos guardados correctamente.",
+        "en-US": "Data saved correctly."
+    },
+
+    //#endregion
+    //#region Inspeccion
+
+    "CapturaMensajeGuardadoExitoso": {
+        "es-MX": "Datos guardados correctamente.",
+        "en-US": "Data saved correctly."
+    },
+    "CapturaMensajeGuardadoErroneo": {
+        "es-MX": "No fue posible guardar la informacion.",
+        "en-US": "Could not save the information."
+    },
+    "DimensionalVisualHeaderListaJUnta": {
+        "es-MX": "Juntas",
+        "en-US": "Joint"
+    },
+    "DimensionalVisualHeaderSpoolID": {
+        "es-MX": "SpoolID",
+        "en-US": "SpoolID"
+    },
+    "DimensionalVisualHeaderJunta": {
+        "es-MX": "Junta",
+        "en-US": "Joint"
+    },
+    "DimensionalVisualHeaderResultadoDimesional": {
+        "es-MX": "Resultado dimensional",
+        "en-US": "Dimensional result"
+    },
+    "DimensionalVisualHeaderResultadoVisual": {
+        "es-MX": "Resultado Visual",
+        "en-US": "Visual result"
+    },
+    "DimensionalVisualAporbadoDimensional": {
+        "es-MX": "Aprobado",
+        "en-US": "Approved"
+    },
+    "DimensionalVisualRechazadoDimensional": {
+        "es-MX": "Rechazado",
+        "en-US": "Rejected"
+    },
+    "DimensionalVisualAporbadoVisual": {
+        "es-MX": "Aprobado",
+        "en-US": "Approved"
+    },
+    "DimensionalVisualRechazadoVisual": {
+        "es-MX": "Rechazado",
+        "en-US": "Rejected"
+    },
+    "DimensionalVisualHeaderDefectoDimesional": {
+        "es-MX": "Defecto Dimensional",
+        "en-US": "Dimensional defect"
+    },
+    "DimensionalVisualHeaderDefectoVisual": {
+        "es-MX": "Defecto visual",
+        "en-US": "Visual defect"
+    },
+    "DimensionalVisualHeaderDefecto": {
+        "es-MX": "Defecto",
+        "en-US": "Defect"
+    },
+    "DimensionalVisualHeaderInspectorDimesional": {
+        "es-MX": "Inspector",
+        "en-US": "Checker"
+    },
+    "DimensionalVisualHeaderInspectorVisual": {
+        "es-MX": "Inspector",
+        "en-US": "Checker"
+    },
+    "DimensionalVisualHeaderFechaDimesional": {
+        "es-MX": "Fecha de Inspección",
+        "en-US": "Inspection date"
+    },
+    "DimensionalVisualHeaderFechaVisual": {
+        "es-MX": "Fecha de Inspección",
+        "en-US": "Inspection date"
+    },
+    "DimensionalVisualHeaderTipoJunta": {
+        "es-MX": "Tipo junta",
+        "en-US": "Joint type"
+    },
+    "DimensionalVisualHeaderDiametro": {
+        "es-MX": "Diametro",
+        "en-US": "diameter"
+    },
+    "DimensionalVisualHeadeResultado": {
+        "es-MX": "Resultado",
+        "en-US": "Result"
+    },
+    "DimensionalVisualHeadeTaller": {
+        "es-MX": "Taller",
+        "en-US": "workshop"
+    },
+    "DimensionalVisualHeaderDefecto": {
+        "es-MX": "Defecto",
+        "en-US": "Defect"
+    },
+    "DimensionalVisualNumeroUnico1": {
+        "es-MX": "Único 1",
+        "en-US": "Unique 1"
+    },
+    "DimensionalVisualNumeroUnico2": {
+        "es-MX": "Único 2",
+        "en-US": "Unique 2"
+    },
+    "CapturaInspeccionPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de Inspeccion?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of Inspection?"
+    },
+    "DimensionalVisualInspeccionDimensional": {
+        "es-MX": "Dimensional",
+        "en-US": "Dimensional"
+    },
+    "DimensionalVisualMensajeErrorNumeroUnico2": {
+        "es-MX": "Falta capturar Número unico 2",
+        "en-US": "Foul capture only Number 2"
+    },
+    "DimensionalVisualMensajeErrorNumeroUnico1": {
+        "es-MX": "Falta capturar Número unico 1",
+        "en-US": "Foul capture only Number 1"
+    },
+    "DimensionalVisualMensajeErrorInspector": {
+        "es-MX": "El inspector es requerido",
+        "en-US": "The inspector is required"
+    },
+    "DimensionalVisualMensajeErrorResultado": {
+        "es-MX": "El resultado es requerido",
+        "en-US": "The result is required"
+    },
+    "DimensionalVisualMensajeErrorDefectos": {
+        "es-MX": "Los defectos son requeridos",
+        "en-US": "The defects are required"
+    },
+    "DimensionalVisualMensajeErrorTaller": {
+        "es-MX": "El taller es requerido",
+        "en-US": "The workshop is required"
+    },
+
+    //#endregion
+
+    //#region ServiciosTecnicos
+    "ServiciosTecnicosHeader": {
+        "es-MX": "Servicios Técnicos",
+        "en-US": "Technical Services"
+    },
+
+    "ServiciosTecnicosTipoPrueba": {
+        "es-MX": "Tipo Prueba",
+        "en-US": "Test Type"
+    },
+    "ServiciosTecnicosPrioridad": {
+        "es-MX": "Prioridad",
+        "en-US": "Priority"
+    },
+    "ServiciosTecnicosCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrant"
+    },
+    "ServiciosTecnicosProyecto": {
+        "es-MX": "Proyecto",
+        "en-US": "Proyect"
+    },
+    "ServiciosTecnicosRequisicion": {
+        "es-MX": "Requisición",
+        "en-US": "Requisition"
+    },
+    "ServiciosTecnicosObservacion": {
+        "es-MX": "Observación",
+        "en-US": "Observation"
+    },
+    "ServiciosTecnicosSpoolID": {
+        "es-MX": "SpoolID",
+        "en-US": "SpoolID"
+    },
+    "ServiciosTecnicosJunta": {
+        "es-MX": "Junta",
+        "en-US": "Board"
+    },
+    "ServiciosTecnicosAgregar": {
+        "es-MX": "Agregar",
+        "en-US": "Add"
+    },
+    "ServiciosTecnicosEliminar": {
+        "es-MX": "Eliminar",
+        "en-US": "Delete"
+    },
+
+    //#endregion
+
+
+    //#region  SoldadorCertificacion
+    "SoldadorCertificacionID": {
+        "es-MX": "SoldadorCertificacionID",
+        "en-US": "SoldadorCertificacionID"
+    },
+
+    "SoldadorCertificacionObreroID": {
+        "es-MX": "Obrero ID",
+        "en-US": "Obrero ID"
+    },
+
+    "SoldadorCertificacionCodigoObrero": {
+        "es-MX": "Código Obrero",
+        "en-US": "Workman code"
+    },
+
+    "SoldadorCertificacionPQRID": {
+        "es-MX": "PQR ID",
+        "en-US": "PQR ID"
+    },
+
+    "SoldadorCertificacionNombrePQR": {
+        "es-MX": "Nombre PQR",
+        "en-US": "PQR name"
+    },
+
+    "SoldadorCertificacionFechaInicioCertificado": {
+        "es-MX": "Fecha inicio de certificado",
+        "en-US": "Start date of certificate"
+    },
+
+    "SoldadorCertificacionFechaFinCertificado": {
+        "es-MX": "Fecha fin de certificado",
+        "en-US": "End date of certificate"
+    },
+
+    "SoldadorCertificacionEspesorMinimo": {
+        "es-MX": "Espesor mínimo",
+        "en-US": "Minimum thickness"
+    },
+
+    "SoldadorCertificacionEspesorMaximo": {
+        "es-MX": "Espesor máximo",
+        "en-US": "Maximum thickness"
+    },
+
+    "SoldadorCertificacionPorcentajeJuntasRequiere": {
+        "es-MX": "Porcentaje de juntas que requiere",
+        "en-US": "Percentage of joints requiring"
+    },
+
+    "SoldadorCertificacionCertificadoActivo": {
+        "es-MX": "¿Certificado activo?",
+        "en-US": "Active certificate?"
+    },
+
+    "lblValidaEspesorMaximoSoldadorCertificación": {
+        "es-MX": "El Campo 'ESPESOR MÁXIMO', solo acepta valores numéricos'",
+        "en-US": "The Field 'MAXIUM THICKNESS', accepts only numeric values"
+    },
+
+    "lblValidaEspesorMinimoSoldadorCertificación": {
+        "es-MX": "El Campo 'ESPESOR MINIMO', solo acepta valores numéricos'",
+        "en-US": "The Field 'MINIMUM THICKNESS', accepts only numeric values"
+    },
+
+    "lblValidaPorcentajeJuntasSoldadorCertificación": {
+        "es-MX": "El Campo 'PORCENTAJE DE JUNTAS QUE REQUIERE', solo acepta valores numéricos'",
+        "en-US": "The Field 'PERCENTAGE OF MEETINGS REQUIRED', accepts only numeric values"
+    },
+
+
+
+    //#endregion
+
+    //#region Soldadura
+    "CapturaSoldaduraSoldaduraSpool": {
+        "es-MX": "Soldadura",
+        "en-US": "Welding"
+    },
+    "CapturaSoldaduraTipoJunta": {
+        "es-MX": "Tipo Junta",
+        "en-US": "Joint type"
+    },
+    "CapturaSoldaduraJunta": {
+        "es-MX": "Junta",
+        "en-US": "Joint"
+    },
+    "CapturaSoldaduraCedula": {
+        "es-MX": "Cedula",
+        "en-US": "Cedule"
+    },
+    "CapturaSoldaduraHeaderFechaSoldadura": {
+        "es-MX": "Fecha Soldadura",
+        "en-US": "Welling Date"
+    },
+    "CapturaSoldaduraHeaderTaller": {
+        "es-MX": "Taller",
+        "en-US": "WorkShop"
+    },
+
+    "CapturaSoldaduraHeaderLocalizacion": {
+        "es-MX": "Localización",
+        "en-US": "Location"
+    },
+    "CapturaSoldaduraHeaderAdicionales": {
+        "es-MX": "Trabajos Adicionales",
+        "en-US": "Additional Work"
+    },
+    "CapturaRaizHeaderAdicionales": {
+        "es-MX": "Soldadores Raiz",
+        "en-US": "Root Welders"
+    },
+    "CapturaRellenoHeaderAdicionales": {
+        "es-MX": "Soldadores Relleno",
+        "en-US": "Fill Welders"
+    },
+    "CapturaSoldaduraDetalleJunta": {
+        "es-MX": "Detalle",
+        "en-US": "Detail"
+    },
+    "CapturaSoldaduraMensajeOrdenTrabajo": {
+        "es-MX": "La Orden de trabajo no es valida.",
+        "en-US": "The work order is not valid."
+    },
+    "CapturaSoldaduraMensajeGuardadoExitoso": {
+        "es-MX": "Datos guardados correctamente.",
+        "en-US": "Data saved correctly."
+    },
+    "CapturaSoldaduraMensajeSoldadorExistente": {
+        "es-MX": "El soldador ya existe",
+        "en-US": "welder existent"
+    },
+    "CapturaSoldaduraProcesoRaiz": {
+        "es-MX": "Proceso Raiz",
+        "en-US": "Root process"
+    },
+    "CapturaSoldaduraProcesoRelleno": {
+        "es-MX": "Proceso Relleno",
+        "en-US": "Fill process"
+    },
+    "CapturaSoldaduraMensajeCambioLongitud": {
+        "es-MX": "Ahora tienes ",
+        "en-US": "Now you have "
+    },
+    "CapturaSoldaduraMensajeCambioTrabajosAdicionales": {
+        "es-MX": " trabajos adicionales",
+        "en-US": " additional work"
+    },
+    "CapturaSoldaduraMensajeCambioSoldadoresRelleno": {
+        "es-MX": " soldadores relleno",
+        "en-US": " fill welders"
+    },
+    "CapturaSoldaduraMensajeCambioSoldadoresRaiz": {
+        "es-MX": " soldadores raiz",
+        "en-US": " root welders"
+    },
+    "CapturaSoldaduraHeaderSoldador": {
+        "es-MX": "Soldador",
+        "en-US": "Welder"
+    },
+    "CapturaSoldaduraHeaderObservacion": {
+        "es-MX": "Observación",
+        "en-US": "Observation"
+    },
+    "CapturaSoldaduraHeaderTrabajosAdicionalesAnidado": {
+        "es-MX": "Trabajo",
+        "en-US": "Work"
+    },
+
+    "CapturaSoldaduraPreguntaBorradoCapturaTrabajoAdicional": {
+        "es-MX": "¿Está seguro de cancelar el Trabajo adicional de la captura de soldadura?",
+        "en-US": "Are you sure you want to cancel the additional work of the capture of welding ?"
+    },
+
+    "CapturaSoldaduraPreguntaBorradoCapturaProceso": {
+        "es-MX": "¿Está seguro de cancelar el proceso de la captura de soldadura?",
+        "en-US": "Are you sure you want to cancel the process of the capture of welding ?"
+    },
+
+    "CapturaSoldaduraAgregarPlanchado": {
+        "es-MX": "Aplicar",
+        "en-US": "Apply"
+    },
+
+    "btnGuardarPiePagina": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "CapturaSoldaduraGuardar": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "CapturaSoldaduraGuardar1": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "CapturaSoldaduraCancelar": {
+        "es-MX": "Cancelar",
+        "en-US": "cancel"
+    },
+    "CapturaSoldaduraGuardarNuevo": {
+        "es-MX": "Guardar y Nuevo",
+        "en-US": "Save and New"
+    },
+    "CapturaSoldaduraAcciones": {
+        "es-MX": "Acciones",
+        "en-US": "Actions"
+    },
+    "CapturaSoldaduraInspeccion": {
+        "es-MX": "Inspección",
+        "en-US": "Inspection"
+    },
+    "CapturaSoldaduraInspeccion1": {
+        "es-MX": "Inspección",
+        "en-US": "Inspection"
+    },
+    "CapturaSoldaduraGuardar": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "CapturaSoldaduraGuardar1": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "CapturaSoldaduraCancelar": {
+        "es-MX": "Cancelar",
+        "en-US": "cancel"
+    },
+    "CapturaSoldaduraGuardarNuevo": {
+        "es-MX": "Guardar y Nuevo",
+        "en-US": "Save and New"
+    },
+    "CapturaSoldaduraAcciones": {
+        "es-MX": "Acciones",
+        "en-US": "Actions"
+    },
+    "CapturaSoldaduraInspeccion": {
+        "es-MX": "Inspección",
+        "en-US": "Inspection"
+    },
+    "CapturaSoldaduraInspeccion1": {
+        "es-MX": "Inspección",
+        "en-US": "Inspection"
+    },
+
+    "CapturaSoldaduraMensajeErrorTaller": {
+        "es-MX": "El campo de taller no puede ser vacio",
+        "en-US": "The workshop field is not empty"
+    },
+    "CapturaSoldaduraMensajeErrorProcesoRaiz": {
+        "es-MX": "El campo de proceso soldadura raiz no puede ser vacio",
+        "en-US": "The root welding process field is must not be empty "
+    },
+    "CapturaSoldaduraMensajeErrorProcesoRelleno": {
+        "es-MX": "El campo de proceso soldadura relleno no puede ser vacio",
+        "en-US": "The fill welding process field is must not be empty "
+    },
+    "CapturaSoldaduraMensajePermisoTerminadoRelleno": {
+        "es-MX": "No se permite el terminado de relleno",
+        "en-US": "Fill welding process it's not permissable"
+    },
+    "CapturaSoldaduraMensajePermisoTerminadoRaiz": {
+        "es-MX": "No se permite el terminado de raiz",
+        "en-US": "Root welding process it's not permissable"
+    },
+    //#endregion
+    //#region GenerarRequisicion
+
+    "MensajeJuntasSoldadasReguisicion": {
+        "es-MX": "No hay juntas soldadas",
+        "en-US": "no welded joint"
+    },
+    "MensajeSeleccioneRequisiciones": {
+        "es-MX": "Debe seleccionar al menos 1 item",
+        "en-US": "You must select at least 1 item"
+    },
+    "GenerarRequisicionClasificacion": {
+        "es-MX": "Clasificación",
+        "en-US": "Clasification"
+    },
+    "GenerarRequisicionCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrant"
+    },
+    "GenerarRequisicionPrioridad": {
+        "es-MX": "Prioridad",
+        "en-US": "Priority"
+    },
+    "GenerarRequisicionProyecto": {
+        "es-MX": "Proyecto",
+        "en-US": "Proyect"
+    },
+    "GenerarRequisicionMuestraSinCaptura": {
+        "es-MX": "Sin Captura",
+        "en-US": "Without Capture"
+    },
+    "GenerarRequisicionNumeroControl": {
+        "es-MX": "Spool ID/Junta",
+        "en-US": "Spool ID/Board "
+    },
+    "GenerarRequisicionAsignarRequisicion": {
+        "es-MX": "Asignar Requisición",
+        "en-US": "Assign Requisition"
+    },
+    "GenerarRequisicionAsignarRequisicion2": {
+        "es-MX": "Asignar Requisición",
+        "en-US": "Assign Requisition"
+    },
+    "GenerarRequisicionMensajeJuntaAgregada": {
+        "es-MX": "Junta agregada",
+        "en-US": "Agree Joint"
+    },
+    //#endregion
+    //#region ListadoRequisicion
+    "ListaRequisicionFolio": {
+        "es-MX": "Folio",
+        "en-US": "Folio"
+    },
+    "ListaRequisicionPrueba": {
+        "es-MX": "Prueba",
+        "en-US": "Test"
+    },
+    "ListaRequisicionFecha": {
+        "es-MX": "Fecha",
+        "en-US": "Date"
+    },
+    "ListaRequisicionObservacion": {
+        "es-MX": "Observación",
+        "en-US": "Observation"
+    },
+    "ListaRequisicionVerDetalle": {
+        "es-MX": "Ver Detalle",
+        "en-US": "See Detail"
+    },
+    "botonDetalle": {
+        "es-MX": "Detalle",
+        "en-US": "Detail"
+    }
+    ,
+    "spanAddReguisicion": {
+        "es-MX": "Agregar Requisición",
+        "en-US": "Add requisition"
+    },
+    //#endregion
+
+    //#region ListadoRequisicion
+    "ListadodeRequisicion": {
+        "es-MX": "Listado de Requisiciones",
+        "en-US": "List of Requisitions"
+    },
+    "CapturaHeaderMostrar": {
+        "es-MX": "Mostrar",
+        "en-US": "Show"
+    },
+    "CapturaSinAsinar": {
+        "es-MX": "Sin Asignar",
+        "en-US": "Not assigned"
+    },
+    "CapturaTodos": {
+        "es-MX": "Todos",
+        "en-US": "All"
+    },
+    "EntregaResultadosHeader": {
+        "es-MX": "Entrega de Resultados",
+        "en-US": "Delivering Results"
+    },
+    "AsignarRequisicionEntregaResultados": {
+        "es-MX": "Entrega de Resultados",
+        "en-US": "Delivering Results"
+    },
+    "AsignarRequisicionEntregaResultados2": {
+        "es-MX": "Entrega de Resultados",
+        "en-US": "Delivering Results"
+    },
+    "AsignarRequisicionHeaderProveedor": {
+        "es-MX": "Proveedor",
+        "en-US": "Provider"
+    },
+    "AsignarRequisicionHeaderCantidadJuntas": {
+        "es-MX": "Cantidad Juntas",
+        "en-US": "Total Joint"
+    },
+    "AsignarRequisicionHeaderPrueba": {
+        "es-MX": "Pruebas",
+        "en-US": "Test"
+    },
+    "AsignarRequisicionHeaderHerramientaPruebas": {
+        "es-MX": "Herramientas de prueba",
+        "en-US": "Test tools"
+    },
+    "AsignarRequisicionHeaderTurnoLaboral": {
+        "es-MX": "Turno Laboral",
+        "en-US": "Work shift"
+    },
+
+
+    //#endregion
+
+    "ServiciosTecnicosFolio": {
+        "es-MX": "Folio",
+        "en-US": "Folio"
+    },
+    "ServiciosTecnicosDescripcion": {
+        "es-MX": "Descripción",
+        "en-US": "Description"
+    },
+    "ServiciosTecnicosRECIBIDO": {
+        "es-MX": "Recibido",
+        "en-US": "Received"
+    },
+    "ServiciosTecnicosCondicionesFisicas": {
+        "es-MX": "Condiciones Físicas",
+        "en-US": "Physical conditions"
+    },
+    "ServiciosTecnicosDefectos": {
+        "es-MX": "Defectos",
+        "en-US": "Defects"
+    },
+    //#region ListadoRequisicion
+    "lblImpresionPruebas": {
+        "es-MX": "Impresión de Resultados",
+        "en-US": "Printing Results"
+    },
+    "ImpresionPruebasMostrarTodo": {
+        "es-MX": "Mostrar Todo",
+        "en-US": "Show all"
+    },
+    "ImpresionPruebasNoMostrarTodo": {
+        "es-MX": "No impresos",
+        "en-US": "unprinted"
+    },
+    "ImpresionPruebasNoMostrarTodo": {
+        "es-MX": "No impresos",
+        "en-US": "unprinted"
+    }
+    ,
+    "ImpresionPruebasSpoolJunta": {
+        "es-MX": "SpoolJunta",
+        "en-US": "SpoolJunta"
+    },
+    "ImpresionPruebasCantidadPruebas": {
+        "es-MX": "Cantidad Pruebas",
+        "en-US": "Number of tests"
+    },
+    "ImpresionPruebasTipoPrueba": {
+        "es-MX": "Tipo Pruebas",
+        "en-US": "Type tests"
+    },
+    "ImpresionPruebasNombrePrueba": {
+        "es-MX": "Prueba",
+        "en-US": "Test"
+    },
+    "ImpresionPruebasReporteID": {
+        "es-MX": "Reporte ID",
+        "en-US": "ID Report"
+    },
+    "ImpresionPruebasSeleccionado": {
+        "es-MX": "Agregar",
+        "en-US": "Add"
+    },
+    "botonGenerarReporte": {
+        "es-MX": "GenerarReporte",
+        "en-US": "Create Reporte"
+    },
+    "CapturaMensajeJuntasErroneas": {
+        "es-MX": "No puedes seleccionar 2 o mas reportes distintos para imprimir",
+        "en-US": "You can not select two or more different reports for printing"
+    },
+
+
+    //#endregion
+
+
+    "btnAcciones1": {
+        "es-MX": "Acciones",
+        "en-US": "Actions"
+    },
+
+    "botonCancelar2": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+
+    //#region EmbarqueConsulta
+    "EmbarqueConsultaSpoolID": {
+        "es-MX": "Spool ID ",
+        "en-US": "Spool ID "
+    },
+    "EmbarqueConsultaPaso": {
+        "es-MX": "Paso ",
+        "en-US": "Step "
+    },
+    "EmbarqueConsultaCuadrante": {
+        "es-MX": "Cuadrante ",
+        "en-US": "Quadrant"
+    },
+    "EmbarqueConsultaTraveler": {
+        "es-MX": "Traveler",
+        "en-US": "Traveler"
+    },
+    "EmbarqueConsultaDetalle": {
+        "es-MX": "Detalle",
+        "en-US": "Detail"
+    },
+    "EmbarqueConsultaVer": {
+        "es-MX": "Ver",
+        "en-US": "Show"
+    },
+    "EmbarqueConsultaArea": {
+        "es-MX": "Zona",
+        "en-US": "Zone"
+    },
+    "EmbarqueConsultaLinkShop": {
+        "es-MX": "Link shop",
+        "en-US": "Link shop"
+    },
+    //#endregion
+
+    //#region EmbarqueMarcado
+    "EmbarqueMarcadoBtnCarga": {
+        "es-MX": "Carga",
+        "en-US": "Charge"
+    },
+    "EmbarqueMarcadoMensajeCapturarCinta": {
+        "es-MX": "Debe capturar el color de la cinta si se selecciono que va con cinta",
+        "en-US": "You must capture the color of tape, if was selected to go with tape"
+    },
+    "EmbarqueMarcadoMensajeNoHayRegistrosGuardar": {
+        "es-MX": "No hay registros a guardar",
+        "en-US": "No records to keep"
+    },
+    "EmbarqueMarcadoBtnCarga2": {
+        "es-MX": "Carga",
+        "en-US": "Charge"
+    },
+    "EmbarqueMarcadoImprimirEtiquetaSpool": {
+        "es-MX": "Imprimir etiqueta Spool",
+        "en-US": "Print Spool Label"
+    },
+    "EmbarqueMarcadoImprimirEtiquetaSpool2": {
+        "es-MX": "Imprimir etiqueta Spool",
+        "en-US": "Print Spool Label"
+    },
+    "EmbarqueMarcadoImprimirTravelMasivo": {
+        "es-MX": "Imprimir travel masivo",
+        "en-US": "Print Masive Travel"
+    },
+    "EmbarqueMarcadoImprimirTravelMasivo2": {
+        "es-MX": "Imprimir travel masivo",
+        "en-US": "Print Masive Travel"
+    },
+    "EmbarqueMarcadoArea": {
+        "es-MX": "Zona",
+        "en-US": "Zone"
+    },
+    "EmbarqueMarcadoCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrant"
+    },
+    "EmbarqueMarcadoImpreso": {
+        "es-MX": "Impreso",
+        "en-US": "Printed"
+    },
+    "EmbarqueMarcadoCapturado": {
+        "es-MX": "Con Captura",
+        "en-US": "With Capture"
+    },
+    "EmbarqueMarcadoBtnVer": {
+        "es-MX": "Ver",
+        "en-US": "Show"
+    },
+    "EmbarqueMarcadoRadioSi": {
+        "es-MX": "Sí",
+        "en-US": "Yes"
+    },
+    "EmbarqueMarcadoRadioNo": {
+        "es-MX": "No",
+        "en-US": "No"
+    },
+    "EmbarqueMarcadoRadioSi2": {
+        "es-MX": "Sí",
+        "en-US": "Yes"
+    },
+    "EmbarqueMarcadoRadioNo2": {
+        "es-MX": "No",
+        "en-US": "No"
+    },
+    "EmbarqueMarcadoRadioSi3": {
+        "es-MX": "Sí",
+        "en-US": "Yes"
+    },
+    "EmbarqueMarcadoRadioNo3": {
+        "es-MX": "No",
+        "en-US": "No"
+    },
+    "EmbarqueMarcadoCabeceraSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
+    },
+    "EmbarqueMarcadoCabeceraCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrant"
+    },
+    "EmbarqueMarcadoCabeceraTraveler": {
+        "es-MX": "Traveler",
+        "en-US": "Traveler"
+    },
+    "EmbarqueMarcadoCabeceraEtiquetado": {
+        "es-MX": "Etiquetado",
+        "en-US": "Labeled"
+    },
+    "EmbarqueMarcadoCabeceraConCinta": {
+        "es-MX": "Con Cinta",
+        "en-US": "With Tape"
+    },
+    "EmbarqueMarcadoCabeceraCinta": {
+        "es-MX": "Cinta",
+        "en-US": "Tape"
+    },
+    "EmbarqueMarcadoMensajeGuardadoExitoso": {
+        "es-MX": "Datos guardados correctamente",
+        "en-US": "Save data correctly"
+    },
+    "EmbarqueMarcadoMensajeCuadrante": {
+        "es-MX": "Selecciona el cuadrante",
+        "en-US": "Select a quadrant"
+    },
+    "EmbarqueMarcadoMensajeArea": {
+        "es-MX": "Selecciona el área",
+        "en-US": "Select an area"
+    },
+    //#endregion
+
+    //#region ValidacionResultados
+    "ValidacionResultadosHeader": {
+        "es-MX": "Validación de Resultados",
+        "en-US": "Validation of Results "
+    },
+    "ValidacionResultadosHeader2": {
+        "es-MX": "Validación de Resultados",
+        "en-US": "Validation of Results "
+    },
+    "ValidacionResultadosMensajeCampoRequisicionVacio": {
+        "es-MX": "Ingrese la requisición",
+        "en-US": "Enter the requisition"
+    },
+    "ValidacionResultadosMensajeGuardado": {
+        "es-MX": "Datos guardados correctamente",
+        "en-US": "Save data correctly"
+    },
+    "ValidacionResultadosMensajeEliminarDefecto": {
+        "es-MX": "Esta seguro de eliminar el defecto",
+        "en-US": "Are you sure want to delete the defect"
+    },
+    "ValidacionResultadosMensajeNoHayDatos": {
+        "es-MX": "No hay datos para la requisición",
+        "en-US": "No data fot the requisition"
+    },
+    "ValidacionResultadosCabeceraDatosJunta": {
+        "es-MX": "Datos Junta",
+        "en-US": "Joint Data"
+    },
+    "ValidacionResultadosCabeceraDefectos": {
+        "es-MX": "Defectos",
+        "en-US": "Defects"
+    },
+
+    "ValidacionResultadosCabeceraUbicacion": {
+        "es-MX": "Ubicación",
+        "en-US": "Location"
+    },
+    "ValidacionResultadosCabeceraUbicacion": {
+        "es-MX": "Ubicacion",
+        "en-US": "Location"
+    },
+    "ValidacionResultadosCabeceraConciliacion": {
+        "es-MX": "Conciliación",
+        "en-US": "Conciliation"
+    },
+    "ValidacionResultadosCabeceraRazonesRechazo": {
+        "es-MX": "Razones de rechazo",
+        "en-US": "Reasons for rejection"
+    },
+    "ValidacionResultadosCabeceraComentario": {
+        "es-MX": "Comentario",
+        "en-US": "Comment"
+    },
+    "ValidacionResultadosCabeceraAccion": {
+        "es-MX": "Accion",
+        "en-US": "Action"
+    },
+    "ValidacionResultadosVerOpciones": {
+        "es-MX": "Ver opciones",
+        "en-US": "See options"
+    },
+    "ServiciosDatosJunta": {
+        "es-MX": "Junta",
+        "en-US": "Join"
+    },
+
+    "ValidacionResultadosRequisicion": {
+        "es-MX": "Requisición",
+        "en-US": "Requisition"
+    },
+    "ValidacionResultadosBtnVer": {
+        "es-MX": "Ver",
+        "en-US": "Show"
+    },
+    "ValidacionResultadosBtnImprimirResultados": {
+        "es-MX": "Impresión de Resultados",
+        "en-US": "Printing Results"
+    },
+    "ValidacionResultadosBtnImprimirResultados2": {
+        "es-MX": "Impresión de Resultados",
+        "en-US": "Printing Results"
+    },
+    "ValidacionResultadosEnlaceEditar": {
+        "es-MX": "Editar",
+        "en-US": "Edit"
+    },
+    "ValidacionResultadosCabeceraDefecto": {
+        "es-MX": "Defecto",
+        "en-US": "Defect"
+    },
+    "ValidacionResultadosCabeceraInicio": {
+        "es-MX": "Inicio",
+        "en-US": "Start"
+    },
+    "ValidacionResultadosCabeceraFin": {
+        "es-MX": "Fin",
+        "en-US": "End"
+    },
+    "ValidacionResultadosComboAceptado": {
+        "es-MX": "Aceptado",
+        "en-US": "Accept"
+    },
+    "ValidacionResultadosComboRechazado": {
+        "es-MX": "Rechazado",
+        "en-US": "Reject"
+    },
+    "ValidacionResultadosSpoolJunta": {
+        "es-MX": "Spool Junta: ",
+        "en-US": "Joint Spool: "
+    },
+    //#endregion
+    //#region Embarque
+    "EmbarquePlana": {
+        "es-MX": "Plana",
+        "en-US": "Flat"
+    },
+    "EmbarqueDestino": {
+        "es-MX": "Destino",
+        "en-US": "Destiny"
+    },
+    "EmbarqueProveedor": {
+        "es-MX": "Proveedor",
+        "en-US": "Provider"
+    },
+    "EmbarqueTracto": {
+        "es-MX": "Tracto",
+        "en-US": "Tracto"
+    },
+    "EmbarqueChofer": {
+        "es-MX": "Chofer",
+        "en-US": "Driver"
+    },
+    "EmbarqueMensajeEliminarPlana": {
+        "es-MX": "¿Estas seguro de eliminar la plana?",
+        "en-US": "Are you sure to remove the flat?"
+    },
+    "EmbarqueMensajePlanaExistente": {
+        "es-MX": "La plana ya existe",
+        "en-US": "Flat already exist"
+    },
+    "EmbarqueMensajeAgregaPlanas": {
+        "es-MX": "Agrega una plana al menos para guardar",
+        "en-US": "Add a flat at least to save"
+    },
+    "EmbarqueMensajeMaximoDosPlanas": {
+        "es-MX": "Se pueden insertar maximo dos planas",
+        "en-US": "You can insert maximum two flat"
+    },
+    "EmbarqueMensajeNoEliminarPlanas": {
+        "es-MX": "No se puede eliminar la plana, no esta cerrada",
+        "en-US": "You can´t delete the flat, isn't closed"
+    },
+    "EmbarqueMensajeGuardadoExitoso": {
+        "es-MX": "El embarque se guardo correctamente",
+        "en-US": "The shipment was successfully saved"
+    },
+    "EmbarqueBotonRevisionEmbarque": {
+        "es-MX": "Revisión Embarque",
+        "en-US": "Shipment review"
+    },
+    "EmbarqueBotonRevisionEmbarque2": {
+        "es-MX": "Revisión Embarque",
+        "en-US": "Boarding review"
+    },
+    //#endregion
+
+    //#region Listado Embarque
+    "ListadoEmbarqueBotonImprimir": {
+        "es-MX": "Imprimir",
+        "en-US": "Print"
+    },
+    "ListadoEmbarqueBotonCapturar": {
+        "es-MX": "Capturar",
+        "en-US": "Capture"
+    },
+    "ListadoEmbarqueBotonEnviar": {
+        "es-MX": "Enviar",
+        "en-US": "Send"
+    },
+    "ListadoEmbarqueHeaderEmbarque": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment"
+    },
+    "ListadoEmbarqueHeaderPlana": {
+        "es-MX": "Plana",
+        "en-US": "Flat"
+    },
+    "ListadoEmbarqueHeaderProyecto": {
+        "es-MX": "Proyecto",
+        "en-US": "Project"
+    },
+    "ListadoEmbarqueHeaderPapelesCliente": {
+        "es-MX": "Papeles Cliente",
+        "en-US": "Customer Roles"
+    },
+    "ListadoEmbarqueHeaderPapelesAduana": {
+        "es-MX": "Papeles Aduana",
+        "en-US": "Custom Roles"
+    },
+    "ListadoEmbarqueHeaderSolicitarPermisos": {
+        "es-MX": "Solicitar Permisos",
+        "en-US": "Apply for permits"
+    },
+    "ListadoEmbarqueHeaderAprobadoAduana": {
+        "es-MX": "Aprobado Aduana",
+        "en-US": "Customs Approved"
+    },
+    "ListadoEmbarqueHeaderAprobadoCliente": {
+        "es-MX": "Aprobado Cliente",
+        "en-US": "Customer Approved "
+    },
+    "ListadoEmbarqueEnviados": {
+        "es-MX": "Enviados ",
+        "en-US": "Send "
+    },
+    "ListadoEmbarqueTodos": {
+        "es-MX": "Todos ",
+        "en-US": "All "
+    },
+    "ListadoEmbarqueFecha": {
+        "es-MX": "Fecha",
+        "en-US": "Date"
+    },
+    "ListadoEmbarqueFolio": {
+        "es-MX": "Folio",
+        "en-US": "Folio"
+    },
+    //#endregion
+    //#region CapturaReportePruebas
+    "CapturaReporteHeader": {
+        "es-MX": "Captura Reporte",
+        "en-US": "Report Capture"
+    },
+    "CapturaReportePruebasHeaderSpoolJunta": {
+        "es-MX": "Spool-Junta",
+        "en-US": "Spool-Joint"
+    },
+    "CapturaReportePruebasHeaderNumeroPlacas": {
+        "es-MX": "Número de Placas",
+        "en-US": "Number plates"
+    },
+    "CapturaReportePruebasHeaderTamano": {
+        "es-MX": "Tamaño",
+        "en-US": "Size"
+    },
+    "CapturaReportePruebasHeaderDensidad": {
+        "es-MX": "Densidad",
+        "en-US": "Density"
+    },
+    "CapturaReportePruebasHeaderDetallePruebas": {
+        "es-MX": "Detalle Pruebas",
+        "en-US": "Testing Detail"
+    },
+    "CapturaReportePruebasHeaderUbicacion": {
+        "es-MX": "Ubicación",
+        "en-US": "Location"
+    },
+    "CapturaReportePruebasHeaderResultado": {
+        "es-MX": "Resultado",
+        "en-US": "Result"
+    },
+    "CapturaReportePruebasHeaderDetalleDefectos": {
+        "es-MX": "Detalle Defectos",
+        "en-US": "Defect Detail"
+    },
+    "CapturaReportePruebasHeaderDefecto": {
+        "es-MX": "Defecto",
+        "en-US": "Defect"
+    },
+    "CapturaReportePruebasHeaderInicio": {
+        "es-MX": "Inicio",
+        "en-US": "Begin"
+    },
+    "CapturaReportePruebasHeaderFin": {
+        "es-MX": "Fin",
+        "en-US": "End"
+    },
+    "CapturaReportePruebasTipoPrueba": {
+        "es-MX": "Tipo Prueba:",
+        "en-US": "Testing Type:"
+    },
+    "CapturaReportePruebasRequisicion": {
+        "es-MX": "Requisición:",
+        "en-US": "Requisition:"
+    },
+    "CapturaReportePruebasFuente": {
+        "es-MX": "Fuente",
+        "en-US": "Source"
+    },
+    "CapturaReportePruebasTurno": {
+        "es-MX": "Turno",
+        "en-US": "Inning"
+    },
+    "CapturaReportePruebasMensajeGuardadoExitoso": {
+        "es-MX": "Datos guardados correctamente.",
+        "en-US": "Data saved correctly."
+    },
+    "CapturaReportePruebasMensajeEliminarDefecto": {
+        "es-MX": "Esta seguro de eliminar el defecto",
+        "en-US": "Are you sure want to delete the defect"
+    },
+    "CapturaReportePruebasMensajeErrorPlacas": {
+        "es-MX": "Algunos datos del número de placas no son correctos",
+        "en-US": ""
+    },
+    "CapturaReportePruebasMensajeErrorTamanoDensidad": {
+        "es-MX": "Algunos datos de Tamaño o Densidad no son correctos",
+        "en-US": ""
+    },
+    "CapturaReportePruebasMensajeErrorDefectos": {
+        "es-MX": "Algunos datos de los Defectos no son correctos",
+        "en-US": ""
+    },
+
+    //#endregion
+    //#region carga
+
+
+    "EmbarqueCargaCerrarPlana": {
+        "es-MX": "Cerrar Plana",
+        "en-US": "Close flat"
+    },
+    "EmbarqueCargaCerrarEmbarque": {
+        "es-MX": "Cerrar Embarque",
+        "en-US": "Select an area"
+    },
+    "EmbarqueCargaAutorizarPermiso": {
+        "es-MX": "Autorizar Permiso",
+        "en-US": "authorize Permit"
+    },
+    "EmbarqueCargaImprimirEtiquetaSpool": {
+        "es-MX": "Imprimir Etiqueta Spool",
+        "en-US": "Print Label Spool"
+    },
+    "EmbarqueCargaImprimirTravelMasivo": {
+        "es-MX": "Imprimir Travel Masivo",
+        "en-US": "Print Travel Masico"
+    },
+    "EmbarqueCargaMarcadoMensajeArea": {
+        "es-MX": "Marcado Mensaje Área",
+        "en-US": "Message marked Area"
+    },
+    "EmbarqueCargaSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "EmbarqueCargaPaquete": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    }
+    ,
+    "EmbarqueCargaCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    }
+    ,
+    "EmbarqueCargaAgregar": {
+        "es-MX": "Agregar",
+        "en-US": "Add"
+    }
+    ,
+    "EmbarqueCargaCrearPaquete": {
+        "es-MX": "Crear Paquete",
+        "en-US": "Create Package"
+    },
+    "EmbarqueCargaAgregarAPaquete": {
+        "es-MX": "Agregar a Paquete",
+        "en-US": "Add To Package"
+    }
+    ,
+    "EmbarqueCargaAgregarAPaquetePie": {
+        "es-MX": "Agregar a Paquete",
+        "en-US": "Add To Package"
+    }
+   ,
+    "EmbarqueCargaSelecciona": {
+        "es-MX": "Selecciona una opción",
+        "en-US": "Select a option"
+    }
+    ,
+    "EmbarqueCargaOpcionSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    }
+    ,
+    "EmbarqueCargaOpcionCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    }
+    ,
+    "EmbarqueCargaOpcionPaquete": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    }
+     ,
+    "EmbarqueCargaProveedor": {
+        "es-MX": "Proveedor",
+        "en-US": "Previder"
+    }
+     ,
+    "EmbarqueCargaPLaca": {
+        "es-MX": "Placa",
+        "en-US": "License Plate"
+    }
+      ,
+    "EmbarqueCargaTotalPiezas": {
+        "es-MX": "Total Piezas:",
+        "en-US": "Total pieces:"
+    }
+      ,
+    "EmbarqueCargaToneladasCargadas": {
+        "es-MX": "Toneladas Cargadas:",
+        "en-US": "Tons Loaded:"
+    }
+    ,
+    "EmbarqueCargaInformacionExistente": {
+        "es-MX": "La informacion ya existe",
+        "en-US": "The information already exists"
+    },
+    "EmbarqueCargaSeTieneEmpaquetado": {
+        "es-MX": "No se puede crear el paquete por que ya esta empaquetado el spool.",
+        "en-US": "You can not create the package that is already packaged"
+    },
+    "EmbarqueCargaSeleccionaSpool": {
+        "es-MX": "No tienes agregado ningun spool",
+        "en-US": "You dont have added any spool"
+    },
+    "EmbarqueCargaErrorAgregar": {
+        "es-MX": "No se pueden agregar spools, la plana esta cerrada",
+        "en-US": "Can't add spools, the plain is closed"
+    },
+    "EmbarqueCargaErrorSeleccionarItem": {
+        "es-MX": "Seleccione al menos un item",
+        "en-US": "Select at least one item"
+    },
+    "EmbarqueCargaSeAgregaPaquete": {
+        "es-MX": "No se puede agregar al paquete existen varios paquetes diferentes o no se ha seleccionando algun spool",
+        "en-US": "You can not add to the package you selected more than one package or not selecting spool"
+    },
+    "EmbarqueCargaPopupCuadrante": {
+        "es-MX": "Selecciona un Cuadrante",
+        "en-US": "Select Quadrant"
+    },
+    "EmbarqueCargaTituloPopupCuadrante": {
+        "es-MX": "Selecciona un nuevo Cuadrante",
+        "en-US": "Select new Quadrant"
+    },
+    "EmbarqueCargaTituloPopupPaquete": {
+        "es-MX": "Selecciona un nuevo Paquete",
+        "en-US": "Select new Package"
+    },
+    "EmbarqueCargaActualizarPaquetePopup": {
+        "es-MX": "Actualizar",
+        "en-US": "Update"
+    },
+    "EmbarqueCargaCancelarPopup": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "EmbarqueCargaCuadranteActualizado": {
+        "es-MX": "El cuadrante fue actualizado con exito",
+        "en-US": "The quadrant was updated successfully"
+    },
+    "EmbarqueCargaErrorCuadranteActualizado": {
+        "es-MX": "Existio un error al actualizar el cuadrante",
+        "en-US": "There was an error updating the quadrant"
+    },
+    "EmbarqueCargaActualizarCuadrantePopup": {
+        "es-MX": "Actualizar",
+        "en-US": "Update"
+    },
+    "EmbarqueCargaCancelarPaquetePopup": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "EmbarqueCargaGuardar": {
+        "es-MX": "Embarque guardado exitosamente",
+        "en-US": "Boarding successfully saved"
+    },
+    "EmbarqueCargaErrorGuardar": {
+        "es-MX": "El embarque no se pudo guardar",
+        "en-US": "The shipment could not be saved"
+    },
+    "EmbarqueCargaCerrarPlana": {
+        "es-MX": "Se cerro la plana satisfactoriamente",
+        "en-US": "Successfully closed flat"
+    },
+    "EmbarqueCargaErrorCerrarPlana": {
+        "es-MX": "Existio un problema al cerrar la plana",
+        "en-US": "There was a problem closing the flat"
+    },
+    "EmbarqueCargaHeaderSpool": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
+    },
+    "EmbarqueCargaHeaderConsecutivo": {
+        "es-MX": "Consecutivo",
+        "en-US": "Consecutive"
+    },
+    "EmbarqueCargaHeaderPaquete": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    },
+    "EmbarqueCargaCrearPaquete": {
+        "es-MX": "Paquete creado satisfactoriamente",
+        "en-US": "The Package was created succesful"
+    }
+    ,
+    "EmbarqueCargaErrorCrearPaquete": {
+        "es-MX": "Paquete no fue creado",
+        "en-US": "The Package was not  created succesful"
+    }
+
+    //#endregion
+
+    //#region empaquetado
+    ,
+    "EmbarqueCargaCerrarPlana": {
+        "es-MX": "Cerrar Plana",
+        "en-US": "Close flat"
+    },
+    "EmbarqueEmpaquetadoCerrarEmbarque": {
+        "es-MX": "Cerrar Embarque",
+        "en-US": "Select an area"
+    },
+    "EmbarqueEmpaquetadoAutorizarPermiso": {
+        "es-MX": "Autorizar Permiso",
+        "en-US": "authorize Permit"
+    },
+    "EmbarqueEmpaquetadoImprimirEtiquetaSpool": {
+        "es-MX": "Imprimir Etiqueta Spool",
+        "en-US": "Print Label Spool"
+    },
+    "EmbarqueEmpaquetadoImprimirTravelMasivo": {
+        "es-MX": "Imprimir Travel Masivo",
+        "en-US": "Print Travel Masico"
+    },
+    "EmbarqueEmpaquetadoMarcadoMensajeArea": {
+        "es-MX": "Marcado Mensaje Área",
+        "en-US": "Message marked Area"
+    },
+    "EmbarqueEmpaquetadoSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "EmbarqueEmpaquetadoPaquete": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    }
+    ,
+    "EmbarqueEmpaquetadoCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    }
+    ,
+    "EmbarqueEmpaquetadoAgregar": {
+        "es-MX": "Agregar",
+        "en-US": "Add"
+    }
+    ,
+    "EmbarqueEmpaquetadoCrearPaquete": {
+        "es-MX": "Crear Paquete",
+        "en-US": "Create Package"
+    },
+    "EmbarqueEmpaquetadoAgregarAPaquete": {
+        "es-MX": "Agregar a Paquete",
+        "en-US": "Add To Package"
+    }
+    ,
+    "EmbarqueEmpaquetadoAgregarAPaquetePie": {
+        "es-MX": "Agregar a Paquete",
+        "en-US": "Add To Package"
+    }
+   ,
+    "EmbarqueEmpaquetadoSelecciona": {
+        "es-MX": "Selecciona una opción",
+        "en-US": "Select a option"
+    }
+    ,
+    "EmbarqueEmpaquetadoOpcionSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    }
+    ,
+    "EmbarqueEmpaquetadoOpcionCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    }
+    ,
+    "EmbarqueEmpaquetadoOpcionPaquete": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    }
+     ,
+    "EmbarqueEmpaquetadoProveedor": {
+        "es-MX": "Proveedor",
+        "en-US": "Previder"
+    }
+     ,
+    "EmbarqueEmpaquetadoPLaca": {
+        "es-MX": "Placa",
+        "en-US": "License Plate"
+    }
+      ,
+    "EmbarqueEmpaquetadoTotalPiezas": {
+        "es-MX": "Total Piezas:",
+        "en-US": "Total pieces:"
+    }
+      ,
+    "EmbarqueEmpaquetadoToneladasCargadas": {
+        "es-MX": "Toneladas Cargadas:",
+        "en-US": "Tons Loaded:"
+    }
+    ,
+    "EmbarqueEmpaquetadoInformacionExistente": {
+        "es-MX": "La informacion ya existe",
+        "en-US": "The information already exists"
+    },
+    "EmbarqueEmpaquetadoSeTieneEmpaquetado": {
+        "es-MX": "No se puede crear el paquete por que ya esta empaquetado el spool.",
+        "en-US": "You can not create the package that is already packaged"
+    },
+    "EmbarqueEmpaquetadoSeleccionaSpool": {
+        "es-MX": "No tienes agregado ningun spool",
+        "en-US": "You dont have added any spool"
+    },
+    "EmbarqueEmpaquetadoErrorAgregar": {
+        "es-MX": "No se pueden agregar spools, la plana esta cerrada",
+        "en-US": "Can't add spools, the plain is closed"
+    },
+    "EmbarqueEmpaquetadoErrorSeleccionarItem": {
+        "es-MX": "Seleccione al menos un item",
+        "en-US": "Select at least one item"
+    },
+    "EmbarqueEmpaquetadoSeAgregaPaquete": {
+        "es-MX": "No se puede agregar al paquete existen varios paquetes diferentes o no se ha seleccionando algun spool",
+        "en-US": "You can not add to the package you selected more than one package or not selecting spool"
+    },
+    "EmbarqueEmpaquetadoPopupCuadrante": {
+        "es-MX": "Selecciona un Cuadrante",
+        "en-US": "Select Quadrant"
+    },
+    "EmbarqueEmpaquetadoTituloPopupCuadrante": {
+        "es-MX": "Selecciona un nuevo Cuadrante",
+        "en-US": "Select new Quadrant"
+    },
+    "EmbarqueEmpaquetadoTituloPopupPaquete": {
+        "es-MX": "Selecciona un nuevo Paquete",
+        "en-US": "Select new Package"
+    },
+    "EmbarqueEmpaquetadoActualizarPaquetePopup": {
+        "es-MX": "Actualizar",
+        "en-US": "Update"
+    },
+    "EmbarqueEmpaquetadoCancelarPopup": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "EmbarqueEmpaquetadoCuadranteActualizado": {
+        "es-MX": "El cuadrante fue actualizado con exito",
+        "en-US": "The quadrant was updated successfully"
+    },
+    "EmbarqueEmpaquetadoErrorCuadranteActualizado": {
+        "es-MX": "Existio un error al actualizar el cuadrante",
+        "en-US": "There was an error updating the quadrant"
+    },
+    "EmbarqueEmpaquetadoActualizarCuadrantePopup": {
+        "es-MX": "Actualizar",
+        "en-US": "Update"
+    },
+    "EmbarqueEmpaquetadoCancelarPaquetePopup": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "EmbarqueEmpaquetadoGuardar": {
+        "es-MX": "Embarque guardado exitosamente",
+        "en-US": "Boarding successfully saved"
+    },
+    "EmbarqueEmpaquetadoErrorGuardar": {
+        "es-MX": "El embarque no se pudo guardar",
+        "en-US": "The shipment could not be saved"
+    },
+    "EmbarqueEmpaquetadoCerrarPlana": {
+        "es-MX": "Se cerro la plana satisfactoriamente",
+        "en-US": "Successfully closed flat"
+    },
+    "EmbarqueEmpaquetadoErrorCerrarPlana": {
+        "es-MX": "Existio un problema al cerrar la plana",
+        "en-US": "There was a problem closing the flat"
+    },
+    "EmbarqueEmpaquetadoHeaderSpool": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
+    },
+    "EmbarqueEmpaquetadoHeaderConsecutivo": {
+        "es-MX": "Consecutivo",
+        "en-US": "Consecutive"
+    },
+    "EmbarqueEmpaquetadoHeaderPaquete": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    },
+    "EmbarqueEmpaquetadoCrearPaquete": {
+        "es-MX": "Paquete creado satisfactoriamente",
+        "en-US": "The Package was created succesful"
+    }
+    ,
+    "EmbarqueEmpaquetadoErrorCrearPaquete": {
+        "es-MX": "Paquete no fue creado",
+        "en-US": "The Package was not  created succesful"
+    }
+
+    //#endregion
+    //#region revisionEmbarque
+
+    ,
+    "labelEmbarqueRevisionEmbarqueNumeroDeEmbarque": {
+        "es-MX": "Número de Embarque",
+        "en-US": "Number of lading"
+    },
+    "spanRevisionEmbarqueBuscar": {
+        "es-MX": "Buscar",
+        "en-US": "Search"
+    },
+    "RevisionEmbarqueSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "RevisionEmbarquePaquete": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    },
+    "RevisionEmbarqueCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    },
+    "RevisionEmbarqueAgregar": {
+        "es-MX": "Agregar",
+        "en-US": "Add"
+    },
+    "RevisionEmbarqueGridHeaderSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
+    },
+    "RevisionEmbarqueGridHeaderPaqueteID": {
+        "es-MX": "Paquete",
+        "en-US": "Package"
+    },
+    "RevisionEmbarqueGridHeaderLLego": {
+        "es-MX": "¿LLego?",
+        "en-US": "Arrive?"
+    },
+    "RevisionEmbarqueGridHeaderLlegoConComentarios": {
+        "es-MX": "¿LLego con comentarios?",
+        "en-US": "Arrived with comments?"
+    },
+    "RevisionEmbarqueGridHeaderNoLLego": {
+        "es-MX": "¿No llego?",
+        "en-US": "Dont Arrive?"
+    },
+    "RevisionEmbarqueGridHeaderComentario": {
+        "es-MX": "Comentario",
+        "en-US": "Comment"
+    }
+     ,
+    "RevisionEmbarqueOpcionSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    }
+    ,
+    "RevisionEmbarqueOpcionPaquete": {
+        "es-MX": "Paquete ",
+        "en-US": "Package "
+    }
+    ,
+    "RevisionEmbarqueOpcionCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    }
+    ,
+    "EmbarqueRevisionNoSeleccionaOpcion": {
+        "es-MX": "Seleccionar al menos un spool con alguna opción : Llego, Llego con comentario, No Llego.",
+        "en-US": "Selecting at least one spool with an option: Arrived, Arrived with comment, Didnt Arrive "
+    }
+    ,
+    "EmbarqueRevisionGuardar": {
+        "es-MX": "Se guardo correctamente",
+        "en-US": "saved successfully "
+    },
+    "EmbarqueRevisionErrorGuardar": {
+        "es-MX": "No se guardo correctamente",
+        "en-US": "error saving the information "
+    }
+
+    //#endregion
+
+
+    //#region PinturaCarga
+    ,
+    "PinturaCargaAgregarNuevoCarro": {
+        "es-MX": "Agregar nuevo carro",
+        "en-US": "Add new car"
+    },
+    "PinturaCargaSeleccionaSpool": {
+        "es-MX": "Por favor selecciona un spool",
+        "en-US": "Select a spool please"
+    },
+    "PinturaCargaNoHaySpoolsEnElCarro": {
+        "es-MX": "No hay spools en el carro",
+        "en-US": "There aren't any spool in the car"
+    },
+    "PinturaCargaSeleccionaCodigo": {
+        "es-MX": "Por favor selecciona un código",
+        "en-US": "Select a code please"
+    },
+    "PinturaCargaEditar": {
+        "es-MX": "Editar",
+        "en-US": "Edit"
+    },
+    "PinturaCargaCarro": {
+        "es-MX": "Carro",
+        "en-US": "Car"
+    },
+    "PinturaCargaM2": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    },
+    "PinturaCargaToneladas": {
+        "es-MX": "Toneladas",
+        "en-US": "Tons"
+    },
+    "PinturaCargaSpoolID": {
+        "es-MX": "SpoolID",
+        "en-US": "SpoolID"
+    },
+    "PinturaCargaCodigo": {
+        "es-MX": "Codigo",
+        "en-US": "Code"
+    },
+    "PinturaCargaAgregar": {
+        "es-MX": "Agregar",
+        "en-US": "Add"
+    }
+    ,
+    "PinturaCargaSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    }
+    ,
+    "PinturaCargaSistemaPintura": {
+        "es-MX": "Pintura",
+        "en-US": "Paint"
+    }
+    ,
+    "PinturaCargaArea": {
+        "es-MX": "Área",
+        "en-US": "Area"
+    }
+    ,
+    "PinturaCargaPeso": {
+        "es-MX": "Toneladas",
+        "en-US": "Tons"
+    },
+    "PinturaCargaSpoolNoEncontrado": {
+        "es-MX": "El spool fue embarcado",
+        "en-US": "the spool  was embarked"
+    }
+    ,
+    "PinturaCargaSpoolToneladaSuperiorPermididoCarro": {
+        "es-MX": "Las toneladas son mayores a las permitidas por el Carro",
+        "en-US": "Tons are greater than allowed by truck"
+    }
+    ,
+    "PinturaCargaSpoolAreaSuperiorPermididoCarro": {
+        "es-MX": "El área es superior al permitido por el carro",
+        "en-US": "The area is greater than allowed by the car"
+    }
+     ,
+    "PinturaGuardarGuardar": {
+        "es-MX": "Se guardo la informacion correctamente",
+        "en-US": "saved information"
+    }
+     ,
+    "PinturaCerrarCarro": {
+        "es-MX": "Se cerró el carro correctamente",
+        "en-US": "Cart closed successfuly"
+    },
+    "PinturaGuardarErrorGuardar": {
+        "es-MX": "No se guardo la informacion",
+        "en-US": "no information was saved"
+    },
+    "PinturaBotonCapturaAvanceTop": {
+        "es-MX": "Avance",
+        "en-US": "Progress"
+    },
+    "PinturaBotonCapturaAvancePie": {
+        "es-MX": "Avance",
+        "en-US": "Progress"
+    },
+    "PinturaBotonCerrarCarro1": {
+        "es-MX": "Cerrar carro",
+        "en-US": "Close cart"
+    },
+    "PinturaBotonCerrarCarro2": {
+        "es-MX": "Cerrar carro",
+        "en-US": "Close cart"
+    },
+    "PinturaHeaderCargaCarro": {
+        "es-MX": "Carga de Carro",
+        "en-US": "Load Carriage"
+    },
+    "PinturaHeaderCargaCarroBacklog": {
+        "es-MX": "Carga de Carro Backlog",
+        "en-US": "Backlog Load Carriage"
+    },
+    "PinturaHeaderCargaCarroPintura": {
+        "es-MX": "Pintura",
+        "en-US": "Paint"
+    },
+    "PinturaHeaderDescargaCarroPintura": {
+        "es-MX": "Descarga de Carro",
+        "en-US": "Empty cart"
+    },
+    "PinturaHeaderLotesCapturaReporte": {
+        "es-MX": "Lotes Captura Reporte",
+        "en-US": "Batch Capture Report"
+    },
+    "PinturaCargaCarroEscritorio": {
+        "es-MX": "Escritorio",
+        "en-US": "Desktop"
+    },
+    "PinturaCargaCarroPatio": {
+        "es-MX": "Patio",
+        "en-US": "Areway"
+    },
+    "PinturaCargaCarroEscritorio2": {
+        "es-MX": "Escritorio",
+        "en-US": "Desktop"
+    },
+    "PinturaCargaCarroPatio2": {
+        "es-MX": "Patio",
+        "en-US": "Areway"
+    },
+    "PinturaSeleccionarCarro": {
+        "es-MX": "Por favor seleccione un carro",
+        "en-US": "Select a car please"
+    },
+
+    //#endregion
+
+    //#region PinturaCargaBackLog
+    "PinturaCargaBackLogCarro": {
+        "es-MX": "Carro",
+        "en-US": "Car"
+    },
+    "PinturaCargaBackLogOrdenImportancia": {
+        "es-MX": "Orden Importancia",
+        "en-US": "Importance Order"
+    },
+    "PinturaCargaBackLogSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "PinturaCargaBackLogSistemaPintura": {
+        "es-MX": "Sistema Pintura",
+        "en-US": "Paint System"
+    },
+    "PinturaCargaBackLogColor": {
+        "es-MX": "Color",
+        "en-US": "Color"
+    },
+    "PinturaCargaBackLogQuadrant": {
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrant"
+    },
+    "PinturaCargaBackLogM2": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    },
+    "PinturaCargaBackLogPeso": {
+        "es-MX": "Peso",
+        "en-US": "Weight"
+    },
+    "PinturaCargaBackLogProyecto": {
+        "es-MX": "Proyecto",
+        "en-US": "Project"
+    },
+    "PinturaCargaBackLogSeleccionado": {
+        "es-MX": "Seleccionado",
+        "en-US": "Selected"
+    },
+    "PinturaCargaBackLogBtnSubirCarro": {
+        "es-MX": "Subir a carro",
+        "en-US": "Upload to car"
+    },
+    "PinturaCargaBackLogMensajeGuardadoExitoso": {
+        "es-MX": "Se subio al carro correctamente",
+        "en-US": "uploaded to car correctly"
+    },
+    "PinturaCargaBackLogMensajeSeleccionaSpool": {
+        "es-MX": "Selecciona al menos un spool",
+        "en-US": "Select at least one Spool"
+    },
+    "PinturaCargaBackLogMensajeErrorServicioPintura": {
+        "es-MX": "El servicio de pintura debe ser el mismo para los spools",
+        "en-US": "The paint service should be equals for all spools"
+    },
+    //#endregion
+    //#region PinturaCarga
+
+    "PinturaDescargaCarro": {
+        "es-MX": "Carro",
+        "en-US": "Car"
+    }
+    ,
+    "PinturaDescargaCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "no information was saved"
+    }
+    ,
+    "PinturaDescargaSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    }
+    ,
+    "PinturaDescargaArea": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    }
+    ,
+    "PinturaDescargaCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "quadrant"
+    }
+    ,
+    "PinturaDescargaDescarga": {
+        "es-MX": "Descarga",
+        "en-US": "Download"
+    }
+    ,
+    "PinturaGuardarDescarga": {
+        "es-MX": "Se actualizo correctamente los spools",
+        "en-US": "updated was done sucesfull"
+    }
+    ,
+    "PinturaGuardarErrorDesGuardar": {
+        "es-MX": "Hay un error en la actualizacion de la informacion",
+        "en-US": "no information was saved"
+    },
+    "DescargarCarroEnCuadrante": {
+        "es-MX": "Cuadrante de descarga",
+        "en-US": "Quadrant of discharge"
+    },
+    //#endregion
+
+    //#region PinturaCarga
+    "PinturaGuardarNuevoCarro": {
+        "es-MX": "El carro fue creado satisfactoriamente",
+        "en-US": "The carr was created sucessfull"
+    },
+    "PinturaErrorGuardarNuevoCarro": {
+        "es-MX": "¿Cuantas veces puede ser ocupado el carro?",
+        "en-US": "how many times the car can be used?"
+    },
+    "labelNumeroVeces": {
+        "es-MX": "¿Cuantas veces puede ser ocupado el carro?",
+        "en-US": "how many times the car can be used?"
+    },
+    "labelPesoMaximo": {
+        "es-MX": "Peso Maximo",
+        "en-US": "Maximum weight"
+    },
+    "labelArea": {
+        "es-MX": "Área",
+        "en-US": "Area"
+    },
+    "CrearNuevoCarro": {
+        "es-MX": "Crear nuevo carro",
+        "en-US": "Create new car"
+    },
+    "labelNuevoMedioTransporte": {
+        "es-MX": "Nombre",
+        "en-US": "Name"
+    },
+    "labelClasificion": {
+        "es-MX": "Clasificación",
+        "en-US": "Classification"
+    },
+    "labelPersisitencia": {
+        "es-MX": "Persistencia",
+        "en-US": "Persistence"
+    },
+    "lblCapturaAvance": {
+        "es-MX": "Avance",
+        "en-US": "Progress"
+    },
+    "lblGrupoEmbarque": {
+        "es-MX": "Grupo Embarque",
+        "en-US": "Shipment Group"
+    },
+    "lblAutorizacionPeticion": {
+        "es-MX": "Autorización Petición",
+        "en-US": "Request Authorizatión"
+    },
+    "CapturaAvanceSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "CapturaAvanceSistemaPintura": {
+        "es-MX": "Sistema Pintura",
+        "en-US": "Paint System"
+    },
+    "CapturaAvanceColor": {
+        "es-MX": "Color",
+        "en-US": "Color"
+    },
+    "CapturaAvanceShotBlastero": {
+        "es-MX": "Shotblastero",
+        "en-US": "Shotblastero"
+    },
+    "CapturaAvancePintor": {
+        "es-MX": "Pintor",
+        "en-US": "Painter"
+    },
+    "CapturaAvanceM2": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    },
+    "CapturaAvanceDescargar": {
+        "es-MX": "Descargar",
+        "en-US": "Discharge"
+    },
+    "CapturaAvanceCarro": {
+        "es-MX": "Carro",
+        "en-US": "Car"
+    },
+    "CapturaAvanceFechaShotblast": {
+        "es-MX": "Fecha ShotBlast",
+        "en-US": "ShotBlast Date"
+    },
+    "CapturaAvanceFechaPrimario": {
+        "es-MX": "Fecha Primario",
+        "en-US": "Primary Date"
+    },
+    "CapturaAvanceComponente": {
+        "es-MX": "Componente",
+        "en-US": "Component"
+    },
+    "CapturaAvanceGuardadoCorrecto": {
+        "es-MX": "Datos guardados correctamente",
+        "en-US": "Save data correctly"
+    },
+    "CapturaAvancebtnDescargaCarro": {
+        "es-MX": "Descarga Carro",
+        "en-US": "Car Discharge"
+    },
+    "CapturaAvancebtnDescargaCarro2": {
+        "es-MX": "Descarga Carro",
+        "en-US": "Car Discharge"
+    },
+
+    "CapturaAvanceCuadrante": {
+        "es-MX": "Cuadrante de descarga",
+        "en-US": "Quadrant of discharge"
+    },
+
+    "CapturaAvancePintoresShotblastExistentes": {
+        "es-MX": "Pintores shotblast existentes:",
+        "en-US": "Existing shotblast painters:"
+    },
+    "CapturaAvancePintoresPrimariosExistentes": {
+        "es-MX": "Pintores primarios existentes:",
+        "en-US": "Existing primary painters:"
+    },
+    "PinturaGuardarErrorComponente": {
+        "es-MX": "Seleccione un componente",
+        "en-US": "Select a component"
+    },
+    //#endregion
+
+    //#endregion
+
+    //#region LotesCapturaReporte
+    "BtnLotesCapturaConsultaEmbarque": {
+        "es-MX": "Consulta Embarque",
+        "en-US": "Query Shipment"
+    },
+    "BtnLotesCapturaConsultaEmbarque1": {
+        "es-MX": "Consulta Embarque",
+        "en-US": "Query Shipment"
+    },
+    "LotesCapturaReporteSistema": {
+        "es-MX": "Sistema Pintura",
+        "en-US": "Paint system"
+    }
+    ,
+    "LotesCapturaReporteLote": {
+        "es-MX": "Lote",
+        "en-US": "Lot"
+    }
+    ,
+    "LotesCapturaReporteBuscar": {
+        "es-MX": "Buscar",
+        "en-US": "Search"
+    }
+    ,
+    "PinturaLotesCapturaReporteNombreSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    }
+    ,
+    "PinturaLotesCapturaReporteSistemaPintura": {
+        "es-MX": "Sistema Pintura",
+        "en-US": "Paint System"
+    }
+    ,
+    "PinturaLotesCapturaReporteColor": {
+        "es-MX": "Color",
+        "en-US": "color"
+    }
+        ,
+    "PinturaLotesCapturaReporteNombreCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrant"
+    }
+        ,
+    "PinturaLotesCapturaReporteCapturaPrueba": {
+        "es-MX": "¿Se realizo alguna prueba?",
+        "en-US": "did you make any proof?"
+    },
+    "CapturaAvanceTitulo": {
+        "es-MX": "Alerta!!!",
+        "en-US": "Warning!!!"
+    },
+    "InpeccionDimensionalErrorInspectorMensaje": {
+        "es-MX": "El inspector es obligatorio",
+        "en-US": "The inspector is mandatory"
+    },
+    "InpeccionVisualEnlaceInspeccion": {
+        "es-MX": "Visual Dimensional",
+        "en-US": "Visual and Dimensional"
+    },
+    "InpeccionVisualHeaderVisual": {
+        "es-MX": "Inspección Visual ",
+        "en-US": "Visual Inspection"
+    },
+    "InpeccionVisualHeaderDimensional": {
+        "es-MX": "Inspección Dimensional ",
+        "en-US": " Dimensional Inspection"
+    },
+
+    //#region CapturaAvanceIntAcabado
+
+
+    "lblCapturaAvanceIntAcabadoInicio": {
+        "es-MX": "Inicio",
+        "en-US": "Home"
+    },
+    "lblPintura": {
+        "es-MX": "Pintura",
+        "en-US": "Paint"
+    },
+    "lblCapturaAvanceIntAcabado": {
+        "es-MX": "Captura Avance",
+        "en-US": "Capture Progress"
+    },
+    "lblGuardar": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "lblGuardarYNuevo": {
+        "es-MX": "Guardar y Nuevo",
+        "en-US": "Save and New"
+    },
+    "lblCancelar": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "lblCapturaDePruebas": {
+        "es-MX": "Captura de Pruebas",
+        "en-US": "Capturing Test"
+    },
+    "lblCapturaDePruebasPie": {
+        "es-MX": "Captura de Pruebas",
+        "en-US": "Capturing Test"
+    },
+    "lblCuadrante": {
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrants"
+    },
+    "lblPaso": {
+        "es-MX": "Paso",
+        "en-US": "Footprint"
+    },
+    "lblPasoIntermedio": {
+        "es-MX": "Intermedio",
+        "en-US": "Medium"
+    },
+    "lblPasoAcabado": {
+        "es-MX": "Acabado",
+        "en-US": "Finishes"
+    },
+    "lblMostrar": {
+        "es-MX": "Mostrar",
+        "en-US": "Show"
+    },
+    "lblCapturaAvanceIntAcabadoColor": {
+        "es-MX": "Color",
+        "en-US": "Color"
+    },
+    "lblCapturaAvanceIntAcabadoFecha": {
+        "es-MX": "Fecha",
+        "en-US": "Date"
+    },
+    "lblCapturaAvanceIntAcabadoPintor": {
+        "es-MX": "Pintor",
+        "en-US": "Painter"
+    },
+    "lblCapturaAvanceIntAcabadoLote": {
+        "es-MX": "Lote",
+        "en-US": "Lot"
+    },
+    "lblCapturaAvanceIntAcabadoSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "ID spool"
+    },
+    "CapturaAvanceIntAcabadoHeaderSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "CapturaAvanceIntAcabadoHeaderSistemaPintura": {
+        "es-MX": "Sistema pintura",
+        "en-US": "Paint System"
+    },
+    "CapturaAvanceIntAcabadoHeaderColor": {
+        "es-MX": "Color",
+        "en-US": "Color"
+    },
+    "CapturaAvanceIntAcabadoHeaderMetros2": {
+        "es-MX": "Metros2",
+        "en-US": "Meters2"
+    },
+    "CapturaAvanceIntAcabadoHeaderLote": {
+        "es-MX": "Lote",
+        "en-US": "Lot"
+    },
+    "CapturaAvanceIntAcabadoHeaderPinturaComponenteComposicion": {
+        "es-MX": "Componente",
+        "en-US": "Component"
+    },
+    "CapturaAvanceIntAcabadoHeaderPintor": {
+        "es-MX": "Pintor",
+        "en-US": "Painter"
+    },
+
+    "CapturaAvanceIntAcabadoHeaderFechaPintura": {
+        "es-MX": "Fecha Pintura",
+        "en-US": "Painting Date"
+    },
+
+    "CapturaAvanceIntAcabadoPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de pintura?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of painting ?"
+    },
+
+    "CapturaAvanceIntAcabadoPintores": {
+        "es-MX": "Pintores",
+        "en-US": "Painters"
+    },
+
+    "CapturaAvanceIntAcabadoMensajeGuardadoExitoso": {
+        "es-MX": "Datos guardados correctamente.",
+        "en-US": "Data saved correctly."
+    },
+
+    "CapturaAvanceIntAcabadoMensajeErrorGuardadoColores": {
+        "es-MX": "Seleccione un color para cada spool.",
+        "en-US": "Set a color per spool."
+    },
+    "CapturaAvanceIntAcabadoMensajeErrorGuardado": {
+        "es-MX": "Error al guardar",
+        "en-US": "Error"
+    },
+    "CapturaAvanceIntAcabadoMensajePreguntaGuardado": {
+        "es-MX": "Sólo se guardarán los registros que estén completos. ¿Desea continuar?",
+        "en-US": "Only will be saved complete fields. Continue anyway?"
+    },
+    "CapturaAvanceIntAcabadoMensajeErrorGuardadoComponente": {
+        "es-MX": "Seleccione un componente para cada spool.",
+        "en-US": "Set a component per spool."
+    },
+    "lblCapturaAvanceIntAcabadoPinturaComponenteComposicion": {
+        "es-MX": "Componente.",
+        "en-US": "Component"
+    },
+    "lblCapturaAvanceIntAcabadoSistemaPintura": {
+        "es-MX": "Sistema Pintura",
+        "en-US": "Paint System"
+    },
+    "CapturaAvanceIntAcabadoHeaderLlenadoMasivo": {
+        "es-MX": "Llenado masivo",
+        "en-US": "Filling mass"
+    },
+    "CapturaAvanceIntAcabadoPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de pintura?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of paint ?"
+
+    },
+    "ErrorCapturaAvanceIntAcabadoSeleccionarCuadrante": {
+        "es-MX": "Por favor seleccione un cuadrante",
+        "en-US": "Select a quadrant, please"
+
+    },
+    "WarningTitle": {
+        "es-MX": "Advertencia",
+        "en-US": "Warning"
+    },
+    //#endregion
+    "lblCapturaAvanceIntAcabado": {
+        "es-MX": "Captura Avance Intermedio Acabado",
+        "en-US": "Capture Progress Intermediate Finishes"
+    },
+    "lblCapturaAvanceIntAcabado2": {
+        "es-MX": "Captura Avance Intermedio Acabado",
+        "en-US": "Capture Progress Intermediate Finishes"
+    },
+    "AlertaExitosa": {
+        "es-MX": "Acción realizada con éxito",
+        "en-US": "Action completed successfully"
+    },
+    "AlertaAdvertencia": {
+        "es-MX": "Advertencia",
+        "en-US": "Warning"
+    },
+    "AlertaError": {
+        "es-MX": "Error!",
+        "en-US": "Error!"
+    },
+    "AdverteciaExcepcionGuardado": {
+        "es-MX": "No hay cambios por guardar",
+        "en-US": "There aren´t any change"
+    },
+    "lblGuardarFooter": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "lblGuardarYNuevoFooter": {
+        "es-MX": "Guardar y Nuevo",
+        "en-US": "Save and New"
+    },
+    "lblCancelarFooter": {
+        "es-MX": "Cancelar",
+        "en-US": "Cancel"
+    },
+    "lblCapturaDePruebasFooter": {
+        "es-MX": "Captura de Pruebas",
+        "en-US": "Capturing Test"
+    },
+    "lblListadoEmbarque": {
+        "es-MX": "Listado Embarque",
+        "en-US": "Shipment list"
+    },
+    "lblListadoEmbarque2": {
+        "es-MX": "Listado Embarque",
+        "en-US": "Shipment list"
+    },
+    "ListadoEmbarqueMensajeFaltaFolioAduana": {
+        "es-MX": "Falta el folio de aprobacion de aduana",
+        "en-US": "Missing customs approval Folio"
+    },
+    "ListadoEmbarqueMensajeErrorFormatoFecha": {
+        "es-MX": "La fecha no tiene el formato correcto",
+        "en-US": "The date does not have the correct format"
+    },
+    "ListadoEmbarqueMensajeFaltaSolicitudPermisos": {
+        "es-MX": "Falta el folio de solicitud de permisos",
+        "en-US": "No folio of permission solicitude"
+    },
+    "ListadoEmbarqueMensajeFaltaFolioCliente": {
+        "es-MX": "Falta el folio de aprobacion por el cliente",
+        "en-US": "No Folio of approval by the client"
+    },
+    "ListadoEmbarqueMensajeRequierePermisoAduana": {
+        "es-MX": "No se puede enviar, por que requiere permiso de aduana",
+        "en-US": "It can not be sent, customs requires permission"
+    },
+    "ListadoEmbarqueMensajePlanaEnviada": {
+        "es-MX": "La plana ya fue enviada",
+        "en-US": "The flat was sent"
+    },
+
+    //#region "PlaneacionYControl"
+
+    "menuPlaneacionYControl": {
+        "es-MX": "Planeación y Control",
+        "en-US": "Planning and Control"
+    },
+    "menuEmisionOrdenTrabajo": {
+        "es-MX": "Emisión OT",
+        "en-US": "WO Emission"
+    },
+    "menuCiclos": {
+        "es-MX": "Ciclos",
+        "en-US": "Cycles"
+    },
+    "menuPeticionMontaje": {
+        "es-MX": "Petición Montaje",
+        "en-US": "Assembly Request"
+    },
+    "menuGrupoEmbarque": {
+        "es-MX": "Grupo Embarque",
+        "en-US": "Shipment Group"
+    },
+    "menuAutorizacionPeticion": {
+        "es-MX": "Autorización de Petición",
+        "en-US": "Request Authorization"
+    },
+
+    "menuCapacidad": {
+        "es-MX": "Capacidad",
+        "en-US": "Capacity"
+    },
+
+    "errorNoExisteProyecto": {
+        "es-MX": "No existe el proyecto",
+        "en-US": "Project doesn´t exist"
+    },
+    "errorNoExistePatio": {
+        "es-MX": "No existe patio",
+        "en-US": "Areway doesn´t exist"
+    },
+    "errorSeleccionePatio": {
+        "es-MX": "Por favor seleccione patio",
+        "en-US": "Select an areway please"
+    },
+    "spanEmisionProyectar": {
+        "es-MX": "Proyectar",
+        "en-US": "To project"
+    }, 
+    "spanEmisionEmitir": {
+        "es-MX": "Emitir",
+        "en-US": "issue"
+    }, 
+    "spanEmisionEmitirx": {
+        "es-MX": "Emitir",
+        "en-US": "issue"
+    },
+    "divEmisionTotalProyecciones": {
+        "es-MX": "Totalizado de las proyecciones",
+        "en-US": "Tote projections"
+    },
+
+    "divEmisionCapacidad": {
+        "es-MX": "Capacidad",
+        "en-US": "Capacity"
+    },
+
+    "spanEmisionCapacidadAuto": {
+        "es-MX": "Auto",
+        "en-US": "Automatic"
+    },
+
+
+    "spanEmisionCapacidadAutoMan": {
+        "es-MX": "Auto-Man",
+        "en-US": "Automatic - Manual"
+    },
+
+
+    "spanEmisionCapacidadMan": {
+        "es-MX": "Man",
+        "en-US": "Manual"
+    }, 
+    "divEmisionProyecciones": {
+        "es-MX": "Proyecciones",
+        "en-US": "Projections"
+    },
+
+
+    "lblEmisionNuevaProyeccion": {
+        "es-MX": "Escriba la nueva proyección",
+        "en-US": "Enter the new projection"
+    },
+
+    "lblEmisionSelNuevaProyeccion": {
+        "es-MX": "Seleccione la proyección",
+        "en-US": "Select the projection"
+    },
+
+    "spanPreguntaCrearProyeccion": {
+        "es-MX": "¿Deseas crear una proyección o proyectar en una existente?",
+        "en-US": "Want to create a projection or an existing project?"
+    },
+
+    "spanEmisionCrear": {
+        "es-MX": "Crear",
+        "en-US": "Create"
+    },
+
+
+
+    "lblEmisionEscribaOrdenTrabajo": {
+        "es-MX": "Escriba la nueva Orden de Trabajo",
+        "en-US": "Enter the new Work Order"
+    },
+
+    "spanEmitirOrdenTrabajo": {
+        "es-MX": "Emitir Orden de Trabajo",
+        "en-US": "Issue Work Order"
+    },
+
+
+    "lblSeleccionOrdenTrabajo": {
+        "es-MX": "Seleccione la Orden de Trabajo",
+        "en-US": "Select Work Order"
+    },
+
+    "spanPreguntaCrearOrdenTrabajo": {
+        "es-MX": "¿Deseas crear una Orden de Trabajo o emitir en una Orden de Trabajo existente?",
+        "en-US": "Want to create a work order or issue in an existing work order?"
+    },
+
+    "GridStackProducto": {
+        "es-MX": "Producto",
+        "en-US": "Product"
+    },
+
+    "GridstackFibeline": {
+        "es-MX": "FibeLine",
+        "en-US": "Fibeline"
+    },
+
+    "GridstackSpools": {
+        "es-MX": "Spools",
+        "en-US": "Spools"
+    },
+
+
+    "GridstackKgs": {
+        "es-MX": "Kgs",
+        "en-US": "Kgs"
+    },
+
+    "GridstackM2": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    },
+
+    "botonPlanchar": {
+        "es-MX": "Aplicar",
+        "en-US": "Apply"
+    },
+
+    "GridstackBoards": {
+        "es-MX": "Juntas",
+        "en-US": "Boards"
+    },
+
+    "GridstackPqs": {
+        "es-MX": "Pqs",
+        "en-US": "Pqs"
+    },
+
+    "CapturaMensajeArmadoPlancharTodos": {
+        "es-MX": "¿Esta seguro de reemplazar todos los datos?",
+        "en-US": "Are you sure to replace all data"
+    },
+
+
+    "GridstackFamilia": {
+        "es-MX": "Familia",
+        "en-US": "Family"
+    },
+
+    "GridstackAcero": {
+        "es-MX": "Acero",
+        "en-US": "Steel"
+    },
+
+    "ProyeccionBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la proyección?",
+        "en-US": "Are you sure you want to cancel the detail of the projection?"
+    },
+    "ProyeccionPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de borrar la proyeccion?",
+        "en-US": "Are you sure you want to erase the projection?"
+    },
+    "AdvertenciaSeleccioneSpool": {
+        "es-MX": "Por favor seleccione un spool",
+        "en-US": "Select a spool please"
+    },
+    "AdvertenciaNoExistenProyecciones": {
+        "es-MX": "Aún no se han creado proyecciones",
+        "en-US": "Have not been created projections yet"
+    },
+    "AdvertenciaExisteProyeccion": {
+        "es-MX": "Ya existe la proyección",
+        "en-US": "The projection already exists"
+    },
+    "AdvertenciaNombreProyeccion": {
+        "es-MX": "Escriba el nombre de la proyección",
+        "en-US": "Write projection name"
+    },
+    "AdvertenciaElegirTaller": {
+        "es-MX": "Por favor seleccione un taller",
+        "en-US": "Select a workshop please"
+    },
+
+    //
+    //EntregaResultadosHeader
+    "GridstackHeaderPlaneacionControl": {
+        "es-MX": "Planeacion y Control",
+        "en-US": "Planning and control"
+    },
+    //#endregion "PlaneacionYControl"
+
+    //Mediciones climaticas
+
+    "ErrorCapturaMediciones": {
+        "es-MX": "Faltan Capturar Datos",
+        "en-US": "Missing Data Capture"
+    },
+
+    "lblMedicionesPatioID": {
+        "es-MX": "Patio: ",
+        "en-US": "Yard: "
+    },
+
+
+    "lblMedicionesProyectoID": {
+        "es-MX": "Proyecto: ",
+        "en-US": "Proyect: "
+    },
+
+    "lblMedicionesZonas": {
+        "es-MX": "Zona: ",
+        "en-US": "Zone: "
+    },
+
+    "lblMedicionesTempAmbiente": {
+        "es-MX": "Temp Ambiente °C:  ",
+        "en-US": "Room Temp:  °C:"
+    },
+
+    "lblMedicionesHumedad": {
+        "es-MX": "Humedad:  ",
+        "en-US": "Humidity: "
+    },
+
+    "lblMedicionesPuntoRocio": {
+        "es-MX": "Punto Rocio: ",
+        "en-US": "Dewpoint: "
+    },
+
+
+    "lblMedicionesCampoX": {
+        "es-MX": "Campo X: ",
+        "en-US": "Field X: "
+    },
+
+    "lblMedicionesfechaToma": {
+        "es-MX": "Fecha de Toma: ",
+        "en-US": "shooting date  : "
+    },
+
+    "lblEquipoToma": {
+        "es-MX": "Equipo de Toma: ",
+        "en-US": "Team Takes"
+    },
+
+    "lblMedicionesHoraToma": {
+        "es-MX": "Hora Toma: ",
+        "en-US": "Time Take: "
+    },
+    //#region "Peticion Montaje"
+    "PeticionMotajeBtnGrupoEmbarque": {
+        "es-MX": "Grupo de Embarque",
+        "en-US": "Shipment Group"
+    },
+    "PeticionMotajeBtnGrupoEmbarque2": {
+        "es-MX": "Grupo de Embarque",
+        "en-US": "Shipment Group"
+    },
+    "PeticionMotajeBtnExplorar": {
+        "es-MX": "Explorar",
+        "en-US": "Search"
+    },
+    "PeticionMotajelblProyecto": {
+        "es-MX": "Proyecto",
+        "en-US": "Project"
+    },
+    "PeticionMotajelblFechaDeseable": {
+        "es-MX": "Fecha Deseable",
+        "en-US": "Desirable Date"
+    },
+    "PeticionMotajelblNombre": {
+        "es-MX": "Nombre",
+        "en-US": "Name"
+    },
+    "PeticionMotajelblCargarCsv": {
+        "es-MX": "Cargar CSV",
+        "en-US": "Upload CSV"
+    },
+    "PeticionMotajeHeaderSpool": {
+        "es-MX": "Spool",
+        "en-US": "Spool"
+    },
+    "PeticionMotajeHeaderSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
+    },
+    "PeticionMotajeHeaderGrupoEmbarque": {
+        "es-MX": "Grupo de Embarque",
+        "en-US": "Shipment Group"
+    },
+    "PeticionMotajeHeaderEmitido": {
+        "es-MX": "Emitido",
+        "en-US": "Issued"
+    },
+    "PeticionMotajeHeaderJunta": {
+        "es-MX": "Junta",
+        "en-US": "Joint"
+    },
+    "PeticionMotajeHeaderM2": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    },
+    "PeticionMotajeHeaderPeqs": {
+        "es-MX": "Peqs",
+        "en-US": "Peqs"
+    },
+    "PeticionMotajeHeaderKg": {
+        "es-MX": "Kg",
+        "en-US": "Kg"
+    },
+    "PeticionMotajeHeaderArea": {
+        "es-MX": "Área",
+        "en-US": "Area"
+    },
+    "PeticionMotajeHeaderTipoMateriales": {
+        "es-MX": "Tipo Materiales",
+        "en-US": "Material Type"
+    },
+    "PeticionMotajeHeaderPeticion": {
+        "es-MX": "Petición",
+        "en-US": "Request"
+    },
+    "PeticionMotajeHeaderFechaPeticion": {
+        "es-MX": "Fecha Petición",
+        "en-US": "Request Date"
+    },
+    //#endregion
+    //#region "Peticiones"
+    
+    "PeticionGrupoEmbarque": {
+        "es-MX": "Grupo Embarque",
+        "en-US": "Shipment Group"
+    },
+    "PeticionlblPeticion": {
+        "es-MX": "Petición",
+        "en-US": "Request"
+    },
+    "PeticionHeaderResolucion": {
+        "es-MX": "Resolución",
+        "en-US": "Resolution"
+    },
+    "PeticionHeaderNombre": {
+        "es-MX": "Nombre",
+        "en-US": "Name"
+    },
+    "PeticionHeaderSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
+    },
+    "PeticionHeaderPaso": {
+        "es-MX": "Paso",
+        "en-US": "Step"
+    },
+    "PeticionHeaderCiclo": {
+        "es-MX": "Ciclo",
+        "en-US": "Cycle"
+    },
+    "PeticionHeaderFase": {
+        "es-MX": "Fase",
+        "en-US": "Phase"
+    },
+    "PeticionHeaderKg": {
+        "es-MX": "Kg",
+        "en-US": "Kg"
+    },
+    "PeticionHeaderArea": {
+        "es-MX": "Área",
+        "en-US": "Area"
+    },
+    "PeticionHeaderM2": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    },
+    "PeticionHeaderJuntas": {
+        "es-MX": "Juntas",
+        "en-US": "Joints"
+    },
+    "PeticionHeaderPeqs": {
+        "es-MX": "Peqs",
+        "en-US": "Peqs"
+    },
+    "PeticionHeaderGrupoEmision": {
+        "es-MX": "Grupo Emisión",
+        "en-US": "Emission Group"
+    },
+    "PeticionHeaderEmitido": {
+        "es-MX": "Emitido",
+        "en-US": "Issued"
+    },
+    "PeticionHeaderEmbarque": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment"
+    },
+    "PeticionHeaderFechaPeticion": {
+        "es-MX": "Fecha Petición",
+        "en-US": "Request Date"
+    },
+    "PeticionHeaderTipoMaterial": {
+        "es-MX": "Tipo Material",
+        "en-US": "Material Type"
+    },
+
+    //#endregion
+    //#region "Autorización de Petición"
+
+    "AutorizacionPeticionlblPeticion": {
+        "es-MX": "Petición",
+        "en-US": "Request"
+    },
+    "AutorizacionPeticionHeaderResolucion": {
+        "es-MX": "Resolución",
+        "en-US": "Resolution"
+    },
+    "AutorizacionPeticionHeaderNombre": {
+        "es-MX": "Nombre",
+        "en-US": "Name"
+    },
+    "AutorizacionPeticionHeaderSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
+    },
+    "AutorizacionPeticionHeaderPaso": {
+        "es-MX": "Paso",
+        "en-US": "Step"
+    },
+    "AutorizacionPeticionHeaderCiclo": {
+        "es-MX": "Ciclo",
+        "en-US": "Cycle"
+    },
+    "AutorizacionPeticionHeaderFase": {
+        "es-MX": "Fase",
+        "en-US": "Phase"
+    },
+    "AutorizacionPeticionHeaderGrupoEmision": {
+        "es-MX": "Grupo Emisión",
+        "en-US": "Emission Group"
+    },
+    "AutorizacionPeticionHeaderEmitido": {
+        "es-MX": "Emitido",
+        "en-US": "Issued"
+    },
+    "AutorizacionPeticionHeaderEmbarque": {
+        "es-MX": "Embarque",
+        "en-US": "Shipment"
+    },
+    "AutorizacionPeticionHeaderFechaPeticion": {
+        "es-MX": "Fecha Petición",
+        "en-US": "Request Date"
+    },
+    "AutorizacionPeticionHeaderTipoMaterial": {
+        "es-MX": "Tipo Material",
+        "en-US": "Material Type"
+    },
+    "AutorizacionPeticionHeaderKg": {
+        "es-MX": "Kg",
+        "en-US": "Kg"
+    },
+    "AutorizacionPeticionHeaderArea": {
+        "es-MX": "Área",
+        "en-US": "Area"
+    },
+    "AutorizacionPeticionHeaderM2": {
+        "es-MX": "M2",
+        "en-US": "M2"
+    },
+    "AutorizacionPeticionHeaderJuntas": {
+        "es-MX": "Juntas",
+        "en-US": "Joints"
+    },
+    "AutorizacionPeticionHeaderPeqs": {
+        "es-MX": "Peqs",
+        "en-US": "Peqs"
+    },
+    
+    //#endregion
+    
+    //#region "Autorización de Petición"
+
+    "OrdenesTrabajoHeaderProyeccion": {
+        "es-MX": "Proyección",
+        "en-US": "Projection"
+    },
+    "OrdenesTrabajoHeaderProyecto": {
+        "es-MX": "Proyecto",
+        "en-US": "Project"
+    },
+    "OrdenesTrabajoHeaderOrdenTrabajo": {
+        "es-MX": "Orden de Trabajo",
+        "en-US": "Work Order"
+    },
+    //#endregion
+
+    //#region Capacidad
+    "CapacidadlblSemana": {
+        "es-MX": "Semana",
+        "en-US": "Week"
+    },
+    //#endregion
+}
+//#endregion
+
+
+
+
+>>>>>>> Steelgo-InHouse

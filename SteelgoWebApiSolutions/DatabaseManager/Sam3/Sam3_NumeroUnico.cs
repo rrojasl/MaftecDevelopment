@@ -14,6 +14,7 @@ namespace DatabaseManager.Sam3
     
     public partial class Sam3_NumeroUnico
     {
+<<<<<<< HEAD
         public Sam3_NumeroUnico()
         {
             this.Sam3_NumeroUnicoCorte = new HashSet<Sam3_NumeroUnicoCorte>();
@@ -32,6 +33,8 @@ namespace DatabaseManager.Sam3
             this.Sam3_OrdenTrabajoMaterial3 = new HashSet<Sam3_OrdenTrabajoMaterial>();
         }
     
+=======
+>>>>>>> Steelgo-InHouse
         public int NumeroUnicoID { get; set; }
         public int ProyectoID { get; set; }
         public Nullable<int> ItemCodeID { get; set; }
@@ -45,15 +48,15 @@ namespace DatabaseManager.Sam3
         public string PartidaFactura { get; set; }
         public string OrdenDeCompra { get; set; }
         public string PartidaOrdenDeCompra { get; set; }
-        public decimal Diametro1 { get; set; }
-        public decimal Diametro2 { get; set; }
+        public Nullable<decimal> Diametro1 { get; set; }
+        public Nullable<decimal> Diametro2 { get; set; }
         public string Cedula { get; set; }
         public string NumeroUnicoCliente { get; set; }
-        public bool MarcadoAsme { get; set; }
-        public bool MarcadoGolpe { get; set; }
-        public bool MarcadoPintura { get; set; }
+        public Nullable<bool> MarcadoAsme { get; set; }
+        public Nullable<bool> MarcadoGolpe { get; set; }
+        public Nullable<bool> MarcadoPintura { get; set; }
         public string PruebasHidrostaticas { get; set; }
-        public bool TieneDano { get; set; }
+        public Nullable<bool> TieneDano { get; set; }
         public string Rack { get; set; }
         public string Observaciones { get; set; }
         public string CampoLibreRecepcion1 { get; set; }
@@ -66,13 +69,14 @@ namespace DatabaseManager.Sam3
         public string CampoLibre3 { get; set; }
         public string CampoLibre4 { get; set; }
         public string CampoLibre5 { get; set; }
-        public bool EsVirtual { get; set; }
+        public Nullable<bool> EsVirtual { get; set; }
         public Nullable<int> RecepcionID { get; set; }
         public bool Activo { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public string Prefijo { get; set; }
         public int Consecutivo { get; set; }
+<<<<<<< HEAD
         public string EstatusFisico { get; set; }
         public string EstatusDocumental { get; set; }
         public Nullable<int> TipoUsoID { get; set; }
@@ -105,5 +109,7 @@ namespace DatabaseManager.Sam3
         public virtual ICollection<Sam3_OrdenTrabajoMaterial> Sam3_OrdenTrabajoMaterial3 { get; set; }
         public virtual Sam3_TipoUso Sam3_TipoUso { get; set; }
         public virtual Sam3_MTR Sam3_MTR { get; set; }
+=======
+>>>>>>> Steelgo-InHouse
     }
 }
