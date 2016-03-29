@@ -946,24 +946,15 @@
     <Compile Include="Sam3\Sam3_Bulto.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_CatalogoCedulas.cs">
-=======
     <Compile Include="Sam3\Sam3_CamposPredeterminados.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_CapacidadPorTurno.cs">
->>>>>>> Steelgo-InHouse
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Catalogos.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_Cedula.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-=======
     <Compile Include="Sam3\Sam3_Cat_CamposPredeterminados_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1021,18 +1012,12 @@
     <Compile Include="Sam3\Sam3_CertificacionTipoPrueba.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_Chofer.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_ClasificacionIncidencia.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_Cliente.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-=======
     <Compile Include="Sam3\Sam3_ClasificacionMedioTransporte.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1045,7 +1030,6 @@
     <Compile Include="Sam3\Sam3_Codigo.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_ColaCreacionNumerosUnicos.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1070,28 +1054,18 @@
     <Compile Include="Sam3\Sam3_CorteDetalle.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_CorteSpool.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_DeficitMateriales.cs">
-=======
     <Compile Include="Sam3\Sam3_Cuadrante.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Defecto.cs">
->>>>>>> Steelgo-InHouse
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Despacho.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="Sam3\Sam3_Destino.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_Diametro.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1164,54 +1138,18 @@
     <Compile Include="Sam3\Sam3_Entidad.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_Entrega.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
     <Compile Include="Sam3\Sam3_EquivalenciaAcero.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaCedula.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-=======
-    <Compile Include="Sam3\Sam3_EquivalenciaAcero.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_EquivalenciaColada.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_EquivalenciaCorte.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_EquivalenciaCorteSpool.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
     <Compile Include="Sam3\Sam3_EquivalenciaDespacho.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaDiametro.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaEspesor.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaEstacion.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaEstatusOrden.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaFabArea.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-=======
-    <Compile Include="Sam3\Sam3_EquivalenciaDespacho.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_EquivalenciaFabricante.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1224,36 +1162,12 @@
     <Compile Include="Sam3\Sam3_EquivalenciaItemCode.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_EquivalenciaJuntaSpool.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaMaterialSpool.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-=======
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_EquivalenciaNumeroUnico.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_EquivalenciaNumeroUnicoMovimiento.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_EquivalenciaODT.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaODTJ.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaODTM.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaODTS.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-=======
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_EquivalenciaPatio.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1263,35 +1177,13 @@
     <Compile Include="Sam3\Sam3_EquivalenciaProyecto.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_EquivalenciaSpool.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaTaller.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaTipoCorte.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_EquivalenciaTipoJunta.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Espesor.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Estacion.cs">
-=======
     <Compile Include="Sam3\Sam3_Estatus.cs">
->>>>>>> Steelgo-InHouse
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_EstatusOrden.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_ExtensionDocumento.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_FabArea.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Fabricante.cs">
@@ -1315,20 +1207,10 @@
     <Compile Include="Sam3\Sam3_FolioCuantificacion.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_FolioImpresionDocumental.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_FolioPickingTicket.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Grupo.cs">
-=======
     <Compile Include="Sam3\Sam3_Grupo.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_HerramientasDePrueba.cs">
->>>>>>> Steelgo-InHouse
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Incidencia.cs">
@@ -1352,9 +1234,6 @@
     <Compile Include="Sam3\Sam3_ItemCodeSteelgo.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_JuntaSpool.cs">
-=======
     <Compile Include="Sam3\Sam3_JuntaArmado.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1374,7 +1253,6 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_LotePintura.cs">
->>>>>>> Steelgo-InHouse
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Maquina.cs">
@@ -1393,9 +1271,6 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_MenuGeneral.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_MTR.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Notificacion.cs">
@@ -1437,12 +1312,6 @@
     <Compile Include="Sam3\Sam3_OrdenTrabajo.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sam3\Sam3_OrdenTrabajoJunta.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_OrdenTrabajoMaterial.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
     <Compile Include="Sam3\Sam3_OrdenTrabajoSpool.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1467,9 +1336,6 @@
     <Compile Include="Sam3\Sam3_PinturaNumeroUnico.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_PreDespacho.cs">
-=======
     <Compile Include="Sam3\Sam3_PinturaSpool.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1549,7 +1415,6 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_PQR_Respaldo.cs">
->>>>>>> Steelgo-InHouse
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Preferencia.cs">
@@ -1693,22 +1558,7 @@
     <Compile Include="Sam3\Sam3_Rel_Incidencia_PaseSalida.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sam3\Sam3_Rel_ItemCodeSteelgo_Diametro.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Rel_Itemcode_Colada.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Rel_ItemCode_Diametro.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-=======
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_Rel_ItemCode_ItemCodeSteelgo.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Rel_NumeroUnico_RelFC_RelB.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Rel_OrdenAlmacenaje_NumeroUnico.cs">
@@ -1730,12 +1580,6 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Rel_PermisoAduana_Documento.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Rel_Proyecto_Correo.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sam3\Sam3_Rel_Proyecto_Entidad_Configuracion.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Rel_TiposDocumentos_ExtencionesDocumentos.cs">
@@ -2017,12 +1861,9 @@
     <Compile Include="Sam3\Sam3_TipoDocumento.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="Sam3\Sam3_TipoEstatus.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
->>>>>>> Steelgo-InHouse
     <Compile Include="Sam3\Sam3_TipoIncidencia.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
