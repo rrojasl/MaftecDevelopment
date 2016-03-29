@@ -14,7 +14,10 @@ namespace DatabaseManager.Sam3
     
     public partial class Sam3_TipoIncidencia
     {
+<<<<<<< HEAD
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+>>>>>>> Steelgo-InHouse
         public Sam3_TipoIncidencia()
         {
             this.Sam3_Incidencia = new HashSet<Sam3_Incidencia>();
@@ -26,7 +29,10 @@ namespace DatabaseManager.Sam3
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
     
+<<<<<<< HEAD
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+>>>>>>> Steelgo-InHouse
         public virtual ICollection<Sam3_Incidencia> Sam3_Incidencia { get; set; }
     }
 }

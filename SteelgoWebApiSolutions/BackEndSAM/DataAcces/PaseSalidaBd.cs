@@ -15,6 +15,7 @@ using System.Net;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Globalization;
+using System.Configuration;
 
 namespace BackEndSAM.DataAcces
 {
@@ -116,6 +117,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -126,7 +130,7 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object GenerarPaseSalida(int folioAvisoLlegadaID, Sam3_Usuario usuario)
+        public object GenerarPaseSalida(int folioAvisoLlegadaID, string cuadrillaDescarga, Sam3_Usuario usuario)
         {
             try
             {
@@ -137,6 +141,7 @@ namespace BackEndSAM.DataAcces
                     foliollegadaBd.PaseSalidaEnviado = true;
                     foliollegadaBd.FechaModificacion = DateTime.Now;
                     foliollegadaBd.UsuarioModificacion = usuario.UsuarioID;
+                    foliollegadaBd.CuadrillaDescarga = cuadrillaDescarga;
 
                     Sam3_FolioAvisoEntrada folioEntradaBd = ctx.Sam3_FolioAvisoEntrada.Where(x => x.FolioAvisoLlegadaID == folioAvisoLlegadaID)
                         .AsParallel().SingleOrDefault();
@@ -164,6 +169,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -186,6 +194,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -195,6 +206,188 @@ namespace BackEndSAM.DataAcces
                 return result;
             }
 
+        }
+
+        public List<ListadoIncidencias> ListadoIncidencias(int clienteID, int proyectoID, List<int> proyectos, List<int> patios, List<int> incidenciaIDs,
+            DateTime fechaInicial, DateTime fechaFinal)
+        {
+            try
+            {
+                List<ListadoIncidencias> listado;
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_FolioAvisoLlegada> registros = new List<Sam3_FolioAvisoLlegada>();
+
+                    if (proyectoID > 0)
+                    {
+                        registros = (from fa in ctx.Sam3_FolioAvisoLlegada
+                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on fa.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                     join p in ctx.Sam3_Proyecto on rfp.ProyectoID equals p.ProyectoID
+                                     join pa in ctx.Sam3_Patio on p.PatioID equals pa.PatioID
+                                     join rfps in ctx.Sam3_Rel_FolioAvisoLlegada_PaseSalida_Archivo on fa.FolioAvisoLlegadaID equals rfps.FolioAvisoLlegadaID
+                                     where fa.Activo && rfp.Activo && p.Activo && pa.Activo && rfps.Activo
+                                     && proyectos.Contains(p.ProyectoID)
+                                     && patios.Contains(pa.PatioID)
+                                     && (fa.FechaModificacion >= fechaInicial && fa.FechaModificacion <= fechaFinal)
+                                     && p.ProyectoID == proyectoID
+                                     select fa).AsParallel().Distinct().ToList();
+                    }
+                    else
+                    {
+                        registros = (from fa in ctx.Sam3_FolioAvisoLlegada
+                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on fa.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                     join p in ctx.Sam3_Proyecto on rfp.ProyectoID equals p.ProyectoID
+                                     join pa in ctx.Sam3_Patio on p.PatioID equals pa.PatioID
+                                     join rfps in ctx.Sam3_Rel_FolioAvisoLlegada_PaseSalida_Archivo on fa.FolioAvisoLlegadaID equals rfps.FolioAvisoLlegadaID
+                                     where fa.Activo && rfp.Activo && p.Activo && pa.Activo && rfps.Activo
+                                     && proyectos.Contains(p.ProyectoID)
+                                     && patios.Contains(pa.PatioID)
+                                     && (fa.FechaModificacion >= fechaInicial && fa.FechaModificacion <= fechaFinal)
+                                     select fa).AsParallel().Distinct().ToList();
+                    }
+
+                    if (clienteID > 0)
+                    {
+                        int sam3Cliente = (from c in ctx.Sam3_Cliente
+                                           where c.Activo && c.Sam2ClienteID == clienteID
+                                           select c.ClienteID).AsParallel().SingleOrDefault();
+                        registros = registros.Where(x => x.ClienteID == sam3Cliente).ToList();
+                    }
+
+                    listado = (from r in registros
+                               join rif in ctx.Sam3_Rel_Incidencia_FolioAvisoLlegada on r.FolioAvisoLlegadaID equals rif.FolioAvisoLlegadaID
+                               join inc in ctx.Sam3_Incidencia on rif.IncidenciaID equals inc.IncidenciaID
+                               join clas in ctx.Sam3_ClasificacionIncidencia on inc.ClasificacionID equals clas.ClasificacionIncidenciaID
+                               join ti in ctx.Sam3_TipoIncidencia on inc.TipoIncidenciaID equals ti.TipoIncidenciaID
+                               join us in ctx.Sam3_Usuario on inc.UsuarioID equals us.UsuarioID
+                               where rif.Activo && inc.Activo && clas.Activo && ti.Activo
+                               && incidenciaIDs.Contains(inc.IncidenciaID)
+                               select new ListadoIncidencias
+                               {
+                                   Clasificacion = clas.Nombre,
+                                   Estatus = inc.Estatus,
+                                   FechaRegistro = inc.FechaCreacion.ToString(),
+                                   FolioIncidenciaID = inc.IncidenciaID.ToString(),
+                                   RegistradoPor = us.Nombre + " " + us.ApellidoPaterno,
+                                   TipoIncidencia = ti.Nombre
+                               }).AsParallel().Distinct().ToList();
+
+                    listado.AddRange((from r in registros
+                                      join fe in ctx.Sam3_FolioAvisoEntrada on r.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                      join rif in ctx.Sam3_Rel_Incidencia_FolioAvisoEntrada on fe.FolioAvisoEntradaID equals rif.FolioAvisoEntradaID
+                                      join inc in ctx.Sam3_Incidencia on rif.IncidenciaID equals inc.IncidenciaID
+                                      join clas in ctx.Sam3_ClasificacionIncidencia on inc.ClasificacionID equals clas.ClasificacionIncidenciaID
+                                      join ti in ctx.Sam3_TipoIncidencia on inc.TipoIncidenciaID equals ti.TipoIncidenciaID
+                                      join us in ctx.Sam3_Usuario on inc.UsuarioID equals us.UsuarioID
+                                      where rif.Activo && inc.Activo && clas.Activo && ti.Activo
+                                      && incidenciaIDs.Contains(inc.IncidenciaID)
+                                      select new ListadoIncidencias
+                                      {
+                                          Clasificacion = clas.Nombre,
+                                          Estatus = inc.Estatus,
+                                          FechaRegistro = inc.FechaCreacion.ToString(),
+                                          FolioIncidenciaID = inc.IncidenciaID.ToString(),
+                                          RegistradoPor = us.Nombre + " " + us.ApellidoPaterno,
+                                          TipoIncidencia = ti.Nombre
+                                      }).AsParallel().Distinct().ToList());
+
+
+                }
+
+                listado = listado.GroupBy(x => x.FolioIncidenciaID).Select(x => x.First()).OrderBy(x => x.FolioIncidenciaID).ToList();
+
+                return listado;
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                return null;
+            }
+        }
+
+        public List<Incidencia> ListadoIncidenciasPorFolio(int folioAvisoLlegadaID, Sam3_Usuario usuario)
+        {
+            try
+            {
+                List<Incidencia> listado;
+                bool activaConfigIncidencia = ConfigurationManager.AppSettings["ActivarFolioConfiguracionIncidencias"].ToString() != null
+                    && ConfigurationManager.AppSettings["ActivarFolioConfiguracionIncidencias"].ToString() != "" ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracionIncidencias"].ToString() == "1" ? true : false) : false;
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_FolioAvisoLlegada> registros = new List<Sam3_FolioAvisoLlegada>();
+
+                    listado = (from r in ctx.Sam3_FolioAvisoLlegada
+                               join rif in ctx.Sam3_Rel_Incidencia_FolioAvisoLlegada on r.FolioAvisoLlegadaID equals rif.FolioAvisoLlegadaID
+                               join inc in ctx.Sam3_Incidencia on rif.IncidenciaID equals inc.IncidenciaID
+                               join clas in ctx.Sam3_ClasificacionIncidencia on inc.ClasificacionID equals clas.ClasificacionIncidenciaID
+                               join ti in ctx.Sam3_TipoIncidencia on inc.TipoIncidenciaID equals ti.TipoIncidenciaID
+                               join us in ctx.Sam3_Usuario on inc.UsuarioID equals us.UsuarioID
+                               where rif.Activo && inc.Activo && clas.Activo && ti.Activo
+                               && r.FolioAvisoLlegadaID == folioAvisoLlegadaID
+                               select new Incidencia
+                               {
+                                   FolioIncidenciaID = inc.IncidenciaID, 
+                                   Descripcion = inc.Descripcion,
+                                   NombreIncidencia = activaConfigIncidencia ? (from rpn in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                                                where rpn.Rel_Proyecto_Entidad_Configuracion_ID == inc.Rel_Proyecto_Entidad_Configuracion_ID
+                                                                                select rpn.PreFijoFolioIncidencias + ","
+                                                                                  + rpn.CantidadCerosFolioIncidencias + ","
+                                                                                  + inc.Consecutivo + ","
+                                                                                  + rpn.PostFijoFolioIncidencias).FirstOrDefault().ToString() : inc.IncidenciaID.ToString()
+                               }).AsParallel().Distinct().ToList();
+
+                    listado.AddRange((from r in ctx.Sam3_FolioAvisoLlegada
+                                      join fe in ctx.Sam3_FolioAvisoEntrada on r.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                      join rif in ctx.Sam3_Rel_Incidencia_FolioAvisoEntrada on fe.FolioAvisoEntradaID equals rif.FolioAvisoEntradaID
+                                      join inc in ctx.Sam3_Incidencia on rif.IncidenciaID equals inc.IncidenciaID
+                                      join clas in ctx.Sam3_ClasificacionIncidencia on inc.ClasificacionID equals clas.ClasificacionIncidenciaID
+                                      join ti in ctx.Sam3_TipoIncidencia on inc.TipoIncidenciaID equals ti.TipoIncidenciaID
+                                      join us in ctx.Sam3_Usuario on inc.UsuarioID equals us.UsuarioID
+                                      where rif.Activo && inc.Activo && clas.Activo && ti.Activo
+                                      && r.FolioAvisoLlegadaID == folioAvisoLlegadaID
+                                      select new Incidencia
+                                      {
+                                          FolioIncidenciaID = inc.IncidenciaID,
+                                          Descripcion = inc.Descripcion,
+                                          NombreIncidencia = activaConfigIncidencia ? (from rpn in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                              where rpn.Rel_Proyecto_Entidad_Configuracion_ID == inc.Rel_Proyecto_Entidad_Configuracion_ID
+                                                              select rpn.PreFijoFolioIncidencias + ","
+                                                                + rpn.CantidadCerosFolioIncidencias + ","
+                                                                + inc.Consecutivo + ","
+                                                                + rpn.PostFijoFolioIncidencias).FirstOrDefault().ToString() : inc.IncidenciaID.ToString()
+                                      }).AsParallel().Distinct().ToList());
+
+
+                }
+
+                if (activaConfigIncidencia)
+                {
+                    foreach (Incidencia i in listado)
+                    {
+                        if (i.NombreIncidencia != string.Empty && i.NombreIncidencia != null)
+                        {
+                            string[] elementos = i.NombreIncidencia.Split(',').ToArray();
+                            int digitos = Convert.ToInt32(elementos[1]);
+                            int cons = Convert.ToInt32(elementos[2]);
+                            string formato = "D" + digitos.ToString();
+                            i.NombreIncidencia = elementos[0].Trim() + cons.ToString(formato).ToString().Trim() + elementos[3].Trim();
+                        }
+                    }
+                }
+
+                listado = listado.GroupBy(x => x.FolioIncidenciaID).Select(x => x.First()).OrderBy(x => x.FolioIncidenciaID).ToList();
+
+                return listado;
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                return null;
+            }
         }
     }
 }

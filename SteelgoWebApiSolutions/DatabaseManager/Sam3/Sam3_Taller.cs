@@ -18,6 +18,7 @@ namespace DatabaseManager.Sam3
         public Sam3_Taller()
         {
             this.Sam3_OrdenTrabajo = new HashSet<Sam3_OrdenTrabajo>();
+            this.Sam3_Estacion = new HashSet<Sam3_Estacion>();
         }
     
         public int TallerID { get; set; }
@@ -30,5 +31,6 @@ namespace DatabaseManager.Sam3
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_OrdenTrabajo> Sam3_OrdenTrabajo { get; set; }
         public virtual Sam3_Patio Sam3_Patio { get; set; }
+        public virtual ICollection<Sam3_Estacion> Sam3_Estacion { get; set; }
     }
 }

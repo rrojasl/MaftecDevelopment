@@ -27,6 +27,10 @@ namespace DatabaseManager.Sam3
         public int TipoArchivoID { get; set; }
         public string ContentType { get; set; }
         public string Descripcion { get; set; }
+<<<<<<< HEAD
+        public int EstatusIncidencia { get; set; }
+=======
+>>>>>>> Steelgo-InHouse
     
         public virtual Sam3_Incidencia Sam3_Incidencia { get; set; }
     }

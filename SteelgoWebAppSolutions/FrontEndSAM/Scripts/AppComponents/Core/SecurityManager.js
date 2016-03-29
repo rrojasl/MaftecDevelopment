@@ -28,30 +28,44 @@ function securityManagerToBeExecutedOnDocumentReady() {
 //Method to change the visibility, editability and required attributes of the elements
 function applySecurityPolicy(loadMenu) {
     //Block the screen
-    loadingStart();
+    ////loadingStart();
 
     //If this page its not the login page
     if (Cookies.get("navegacion") != "1") {
 
         //Execute REST Petition to obtain the user access
         $BackEndSAM.perfil.read({}, { token: Cookies.get("token"), paginaID: Cookies.get("navegacion") }).done(function (data) {
-            console.log(data);
+            //console.log(data);
 
             if (loadMenu) {
                 //Retrieve the context menu definition**
                 $contextMenu = {};
 
                 //Retrieve the side menu definition
+                //data.layout.navigation[0].elements.sort(function (a,b) {
+                //    if (a.nivel > b.nivel) return 1
+                //    else if (a.nivel < b.nivel) return -1
+                //    else if (a.padre > b.padre) return 1
+                //    else if (a.padre < b.padre) return -1
+                //    else if (a.acomodo > b.acomodo) return 1
+                //    else if (a.acomodo  < b.acomodo) return -1
+                //})
+                //data.layout.navigation[0].elements.forEach(function (n) { console.log(n) })
                 generateSideMenu(data);
 
                 //Generate Side Menu
                 generateSideMenuDOMElements(0, 0, $(".main-menu"));
 
+                //Validate if i have access to this page
+                //if (!$MenuData[$currentUrl.split("?")[0].replace("/", "").replace("\"", "").replace("\"", "").replace("\n", "").replace("\r", "").toLowerCase()] && !window.opener && $errorURI.split("?")[0].replace("/", "").replace("\"", "").replace("\"", "").replace("\n", "").replace("\r", "").toLowerCase() != $currentUrl.split("?")[0].split("?")[0].replace("/", "").replace("\"", "").replace("\"", "").replace("\n", "").replace("\r", "").toLowerCase()) {
+                //    document.location.href = $errorURI;
+                //}
+
                 //Retrieve the QuickLinks definition**
                 $quickLinks = {};
 
                 //Generate QuickLinks**
-                generateQuickLinks();
+                generateQuickLinks(data.layout.navigation[2].elements);
             }
 
             //Retrieve the obtained data
@@ -64,7 +78,7 @@ function applySecurityPolicy(loadMenu) {
 
             //Apply Security
             applySecurity();
-            loadingStop();
+            ////loadingStop();
             //$("#language").data("kendoDropDownList").trigger("change");
             changeLayoutLabels($("#language").data("kendoDropDownList").value());
             changeLayoutSpans($("#language").data("kendoDropDownList").value());
@@ -73,7 +87,7 @@ function applySecurityPolicy(loadMenu) {
     } else {
         //Apply Security
         applySecurity();
-        loadingStop();
+        ////loadingStop();
         //$("#language").data("kendoDropDownList").trigger("change");
         changeLayoutLabels($("#language").data("kendoDropDownList").value());
         changeLayoutSpans($("#language").data("kendoDropDownList").value());
@@ -93,6 +107,8 @@ function generateReturnOFSecurityCheck(data) {
         returnOfSecurityCheck[keyRetreived.entityName].destroy = keyRetreived.destroy;
         returnOfSecurityCheck[keyRetreived.entityName].detail = keyRetreived.detail;
         returnOfSecurityCheck[keyRetreived.entityName].list = keyRetreived.list;
+        returnOfSecurityCheck[keyRetreived.entityName].createIncidence = keyRetreived.createIncidence;
+        returnOfSecurityCheck[keyRetreived.entityName].solutionincidence = keyRetreived.solutionincidence;
         returnOfSecurityCheck[keyRetreived.entityName].properties = {};
         for (property in keyRetreived.properties) {
             var propertyRetreived = keyRetreived.properties[property];
@@ -109,6 +125,8 @@ function generateReturnOFSecurityCheck(data) {
     returnOfSecurityCheck.Layout.destroy = data.layout.destroy;
     returnOfSecurityCheck.Layout.detail = data.layout.detail;
     returnOfSecurityCheck.Layout.list = data.layout.list;
+    returnOfSecurityCheck.Layout.createIncidence = data.layout.createIncidence;
+    returnOfSecurityCheck.Layout.solutionincidence = data.layout.solutionincidence;
 
     returnOfSecurityCheck.Layout.properties = {};
     returnOfSecurityCheck.Layout.properties.search = {};
@@ -182,12 +200,24 @@ function applySecurityPolicyForEntity(entityDefinition, entitySecurity, security
         if (entitySecurity.hasOwnProperty("destroy")) {
             entityDestroyPermission = entitySecurity["destroy"];
         }
-    }
 
+        if (entitySecurity.hasOwnProperty("createIncidence")) {
+            entitycreateIncidence = entitySecurity["createIncidence"];
+        }
+
+        if (entitySecurity.hasOwnProperty("solutionincidence")) {
+            entitysolutionincidence = entitySecurity["solutionincidence"];
+        }
+    }
+    
     if (entityDefinition.hasOwnProperty("listContainer")) {
         if (entityDefinition["listContainer"].hasOwnProperty("create") && entityDefinition.listContainer["create"] != null && entityDefinition.listContainer["create"].length > 0) {
             if (entityCreationPermission == false) {
-                $(entityDefinition.listContainer["create"]).css("display", "none");
+                if ($(entityDefinition.listContainer["create"]).is("#grid")) {
+                    $(".k-grid-add").addClass("k-state-disabled").removeClass("k-grid-add");
+                } else {
+                    $(entityDefinition.listContainer["create"]).css("display", "none");
+                }
             }
         }
 
@@ -205,9 +235,7 @@ function applySecurityPolicyForEntity(entityDefinition, entitySecurity, security
                     });
                 }
                 if ($(entityDefinition.listContainer["detail"]).is("button")) {
-                    $(entityDefinition.listContainer["detail"]).prop('disabled', true);
-                }
-                else {
+                    //$(entityDefinition.listContainer["detail"]).prop('disabled', true);
                     $(entityDefinition.listContainer["detail"]).css("display", "none");
                 }
                 
@@ -216,7 +244,20 @@ function applySecurityPolicyForEntity(entityDefinition, entitySecurity, security
 
         if (entityDefinition["listContainer"].hasOwnProperty("destroy") && entityDefinition.listContainer["destroy"] != null && entityDefinition.listContainer["destroy"].length > 0) {
             if (entityDestroyPermission == false) {
-                $(entityDefinition.listContainer["destroy"]).css("display", "none");
+               //$(entityDefinition.listContainer["destroy"]).addClass("hidden");
+               $(entityDefinition.listContainer["destroy"]).css("display", "none");
+            }
+        }
+
+        if (entityDefinition["listContainer"].hasOwnProperty("createIncidence") && entityDefinition.listContainer["createIncidence"] != null && entityDefinition.listContainer["createIncidence"].length > 0) {
+            if (entitycreateIncidence == false) {
+                $(entityDefinition.listContainer["createIncidence"]).empty();
+            }
+        }
+
+        if (entityDefinition["listContainer"].hasOwnProperty("solutionincidence") && entityDefinition.listContainer["solutionincidence"] != null && entityDefinition.listContainer["solutionincidence"].length > 0) {
+            if (entitysolutionincidence == false) {
+                $(entityDefinition.listContainer["solutionincidence"]).css("display", "none");
             }
         }
     }
@@ -326,18 +367,24 @@ function authenticate(username, password) {
 
 function createUserSession(username, password) {
     //Create Login
-    loadingStart();
+    //loadingStart();
     $SecurityManager.authentication.create({}, { username: username, password: password }).done(function (data) {
         if (data.IsAuthenicated) {
             Cookies.set("home", false, { path: '/' });
             Cookies.set("user", username, { path: '/' });
-            Cookies.set("token", data.ReturnMessage[0], { path: '/' });
+            Cookies.set("nameUserLogged", data.ReturnMessage[0], { path: '/' });
+            Cookies.set("token", data.ReturnMessage[1], { path: '/' });
             //RedirectToLanding
             document.location.href = $homeURI;
         } else {
+<<<<<<< HEAD
+            //loadingStop();
+            displayError("notificationslabel0095", "", '2');
+=======
             $('#username').css('border-color', "red");
             $('#password').css('border-color', "red");
             loadingStop();
+>>>>>>> Steelgo-InHouse
         }
     });
 }
@@ -353,14 +400,21 @@ function removeUserSession() {
                 validateCredentials();
             }
         });
+    } else {
+        Cookies.set("LogOut", true, { path: "/" });
+        Cookies.remove("user", { path: '/' });
+        Cookies.remove("token", { path: '/' });
+        Cookies.remove("home", { path: '/' });
+        validateCredentials();
     }
 }
 
 function validateCredentials() {
     if (Cookies.get("home") != null && Cookies.get("home") == "false" && Cookies.get("user") != null && Cookies.get("token") != null) {
-        loadingStart();
+        //loadingStart();
         var request = $SecurityManager.authentication.read({ username: Cookies.get("user"), token: Cookies.get("token") });
         request.done(function (data) {
+            //console.out(data);
             if (data.IsAuthenicated) {
                 Cookies.set("home", false, { path: '/' });
             } else {
@@ -370,14 +424,14 @@ function validateCredentials() {
                 displayMessage("notificationslabel0001", "", '2');
                 document.location.href = '/';
             }
-            loadingStop();
+            //loadingStop();
         });
         request.error(function (data) {
             Cookies.remove("user", { path: '/' });
             Cookies.remove("token", { path: '/' });
             displayMessage("notificationslabel0002", "", '2');
             document.location.href = '/';
-            loadingStop();
+            //loadingStop();
         });
         request.fail(function (data) {
             Cookies.remove("user", { path: '/' });
@@ -385,7 +439,7 @@ function validateCredentials() {
             displayMessage("notificationslabel0003", "", '2');
             document.location.href = '/';
 
-            loadingStop();
+            //loadingStop();
         });
 
     } else {
@@ -402,7 +456,9 @@ function validateCredentials() {
         } else if (Cookies.get("navegacion") != null && Cookies.get("navegacion") != "1"
                     && Cookies.get("LogOut") != null) {
             Cookies.remove("LogOut", { path: '/' });
-            displayMessage("notificationslabel0005", "", '2');
+            //displayMessage("notificationslabel0005", "", '2');
+            document.location.href = '/';
+        } else if (Cookies.get("navegacion") != null && Cookies.get("navegacion") != "1" && Cookies.get("token") == null) {
             document.location.href = '/';
         }
     }

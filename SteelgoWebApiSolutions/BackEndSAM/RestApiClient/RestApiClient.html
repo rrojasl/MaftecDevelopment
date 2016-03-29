@@ -118,11 +118,14 @@
         //    console.log(data);
         //});
 
-        //client.add("Patio");
+        var client = new $.RestClient('http://localhost:60960/backendsam/api/');
+        var tokenActual = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc3VhcmlvSUQiOjExMSwiTm9tYnJlVXN1YXJpbyI6ImZhYmlvbGEubW9yYW4iLCJDb250cmFzZW5hSGFzaCI6IlEyZENsV1FGTmpNcDV0OGZyVVJjSjVrR2xnWVg5UklkLzg1RE9pNWluMGR1WTk0Qm9YRksxMzU5TWVEL0QrQnEiLCJQZXJmaWxJRCI6NCwiQmxvcXVlYWRvUG9yQWRtaW5pc3RyYWNpb24iOmZhbHNlLCJBY3Rpdm8iOnRydWUsImV4cCI6MTQ1NTgyMzQyMX0.ihZwlqzzRsTENQ0U197kxsajDAjS8UvMC6RUzbGDISI";
 
-        //client.Patio.read({ token: tokenActual }).done(function (data) {
-        //    console.log(data);
-        //});
+        client.add("Patio");
+
+        client.Patio.read({ esAvisoEntrada: 1, token: tokenActual, paginaID: 4 }).done(function (data) {
+            console.log(data);
+        });
 
         //client.Patio.create({
         //    Nombre: "Patio Pruebas",
@@ -193,7 +196,7 @@
 
         //client.add("Cliente");
 
-        //client.Cliente.read({token: '123456'}).done(function (data) { console.log(data); });
+        //client.Cliente.read({"token": '123456'}).done(function (data) { console.log(data); });
 
         //client.add("PermisoAduana");
         //client.PermisoAduana.read({ folio: 1029 }).done(function (data) { console.log(data) });
@@ -208,7 +211,7 @@
         //client.FolioAvisoEntrada.read({folio: 1010, token: ""}).done(function (data) {console.log(data)});
 
 
-        var client = new $.RestClient('http://localhost:60960/backendsam/api/');
+        //var client = new $.RestClient('http://localhost:60960/backendsam/api/');
 
         //client.add("TipoUso");
         //client.TipoUso.read({ token: "" }).done(function (data) { console.log(data) });
@@ -228,7 +231,7 @@
         //client.add("CargarGridCuantificacion");
         //client.CargarGridCuantificacion.read({ token: "", avisoEntrada: 15, folioCuantificacion: 2/*, bultoID: 1*/ }).done(function (data) { console.log(data) });
 
-        var client = new $.RestClient('http://localhost:60960/backendsam/api/');
+        //var client = new $.RestClient('http://localhost:60960/backendsam/api/');
 
         //var json = [{ "ID": 520 }, { "ID": 70 }, { "ID": 50 }, { "ID": 60 }, { "ID": 566 }];
         //var token = "22sd5fs1g5sd3f1sa5df3sd21f";
@@ -295,7 +298,7 @@
         //client.NumeroUnico.read({}, { "ordenrecepcionID": 6, "Token": "154654df3sd4f36sd54f6s54f" });
 
         //client.add("Colada");
-        //client.Colada.read({}, { "token": "", "id" : 1 }).done(function (data) { console.log(data) });
+        //client.Colada.read({}, { "itemCodeID": "2", "token": "", "id" : 1 }).done(function (data) { console.log(data) });
 
         /*
         var orden = { ProyectoID: "", FolioCuantificacionID: "", ItemCodeID: "", NumeroUnico: "" };
@@ -328,7 +331,7 @@
         //    token: ""
         //}).done(function (data) { console.log(data) });
 
-        var client = new $.RestClient('http://localhost:60960/backendsam/api/');
+        //var client = new $.RestClient('http://localhost:60960/backendsam/api/');
         //client.add("ComplementarRecepcion");
         //client.ComplementarRecepcion.read({}, { "folio": 1010, "token": "" }).done(function (data) { console.log(data) });
      
@@ -352,9 +355,73 @@
 
         //client.add("Listado");
         //client.Listado.read({}, { data: JSON.stringify(listado) }).done(function (data) { console.log(data) });
+        //client.add("ListadoMateriales");
+        //client.ListadoMateriales.read({}, { FolioCuantificacion: 1037, token: "" }).done(function (data) { console.log(data) });
 
-        client.add("ListadoMateriales");
-        client.ListadoMateriales.read({}, { FolioCuantificacion: 1037, token: "" }).done(function (data) { console.log(data) });
+        //client.ListadoMateriales.read({}, { NumeroUnicoID: 2465, TipoGrid: 1, token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("DetalleNumeroUnico");
+        //client.DetalleNumeroUnico.read({}, { NumeroUnicoID: 1501, token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("ListadoMaterialesPorItemCode");
+        //client.ListadoMaterialesPorItemCode.read({}, { proyectoID: "1", token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("Despacho");
+        ////client.AdministracionCatalogos.read({}, { token: "" }).done(function (data) { console.log(data) });
+        //client.Despacho.read({}, { "ordenTrabajoSpoolID": 31769, "token": "131313211331" }).done(function (data) { console.log(data) });
+
+        //client.add("OrdenTrabajoSpool");
+        //client.OrdenTrabajoSpool.read({}, { "proyectoID": 17, "busqueda": "x6", "token": "121331" }).done(function (data) { console.log(data) });
+
+
+        //var listado = { Nombre: "", Propietario: "", Descripcion: "", RequierePermisoAduana: "" }
+        ////listado.PatioID = "2";
+        //listado.Nombre = "Sam 3";
+        //listado.Propietario = "Patio de Sam 3";
+        //listado.Descripcion = "Patio de Sam 3";
+        //listado.RequierePermisoAduana = "true";
+
+        //client.add("AdministracionCatalogos");
+        //client.AdministracionCatalogos.create({}, { data: JSON.stringify(listado), catalogoID: "1", token: "" }).done(function (data) { console.log(data) });
+
+        //var listado = [{ CedulaID: "", Diametro: "8", CedulaA: "", CedulaB: "", CedulaC: "", CedulaIn: "", CedulaMM: "", Espesor: "33.0000" },
+        //    { CedulaID: "", Diametro: "2", CedulaA: "", CedulaB: "", CedulaC: "31#", CedulaIn: "15", CedulaMM: "", Espesor: "33.0000" }];
+       
+        //var listado = { CedulaID: "", Diametro: "", CedulaA: "150", CedulaB: "", CedulaC: "", CedulaIn: "", CedulaMM: "", Espesor: "" };
+         
+        //console.log(JSON.stringify(listado));
+
+        //client.add("CatalogoICSteelgo");
+        //client.CatalogoICSteelgo.read({}, { data: JSON.stringify(listado), token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("Cedulas");
+        //client.Cedulas.read({}, { catalogoID: "11", token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("AsociacionICS");
+        //client.AsociacionICS.read({}, { data: JSON.stringify(listado), token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("AdministracionCatalogos");
+        //client.AdministracionCatalogos.create({}, { data: JSON.stringify(listado), catalogoID: "11", token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("NotificacionDeficit");
+        //client.NotificacionDeficit.read({}, { ordenTrabajoID: 2291, itemCodeID: 21545, token: "" }).done(function (data) { console.log(data) });
+
+        //client.add("RevisionDeficit");
+        //client.RevisionDeficit.read({}, { ordenTrabajo: 4411, token: "" }).done(function (data) { console.log(data) });
+
+        //var client = new $.RestClient('http://localhost:60960/backendsam/api/');
+        //client.add("Despacho");
+        //client.Despacho.read({}, { "materialSpoolID": 509340, "token": "123456789" }).done(
+        //    function (data) { console.log(data) }
+        //    );
+
+        //client.add("PreDespacho");
+        //client.PreDespacho.read({}, { spoolID: 21562, token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc3VhcmlvSUQiOjEsIk5vbWJyZVVzdWFyaW8iOiJzYW1BZG1pbiIsIkNvbnRyYXNlbmFIYXNoIjoic2FtYWRtaW4iLCJQZXJmaWxJRCI6MSwiQmxvcXVlYWRvUG9yQWRtaW5pc3RyYWNpb24iOmZhbHNlLCJBY3Rpdm8iOnRydWUsImV4cCI6MTQ0NTYxMzE3Nn0.lwrTZEJ6mt5O-k9JDJzUlraR60dQWDOXJQoNcR2QQYk" }).done(function (data) { console.log(data) });
+
+        //var client = new $.RestClient('http://localhost:60960/backendsam/api/');
+        //client.add("Reporte");
+        //client.Reporte.read({}, { folio: 3, token: "123456" }).done(function (data) { console.log(data) });
+
 
     </script>
 </body>

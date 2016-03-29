@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "DetalleAvisoLlegada";
-     Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section breadcrumb {
@@ -8,11 +8,14 @@
         <a href="@Url.Action("landing", "Home")"><span id="DetalleAvisoLlegada0050"></span></a>
     </li>
     <li>
-        <a href="@Url.Action("DashboardAvisoLlegada", "AvisoLlegada")"><span id="DetalleAvisoLlegada0087"></span></a>
+        <a href="@Url.Action("DashboardAvisoLlegada", "AvisoLlegada")"><span id="DetalleAvisoLlegada0091"></span></a>
     </li>
     <li>
-        <a href="@Url.Action("ListadoAvisoLlegada", "AvisoLlegada")"><span id="DetalleAvisoLlegada0051"></span></a>
+        <a href="@Url.Action("DashboardAvisoLlegada", "AvisoLlegada")"><span id="DetalleAvisoLlegada0087"></span></a>
     </li>
+    @*<li>
+        <a href="@Url.Action("ListadoAvisoLlegada", "AvisoLlegada")"><span id="DetalleAvisoLlegada0051"></span></a>
+    </li>*@
     <li class="active">
         <a href="@Url.Action("DetalleAvisoLlegada", "AvisoLlegada")"><span id="DetalleAvisoLlegada0052"></span></a>
     </li>
@@ -20,11 +23,11 @@
 
 <div id="formAvisoLlegada" class="form clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <span id="divFolio" class="folioLabel hidden">
                 <span id="DetalleAvisoLlegada0042"></span>
                 <span id="spanFolio"></span>
-                <span id="DetalleAvisoLlegada0053">Status</span>
+                <span id="DetalleAvisoLlegada0053"></span>
                 <span id="DetalleAvisoLlegada0084" class="statusLabel"></span>
                 <span id="DetalleAvisoLlegada0085" class="statusLabel"></span>
                 <span id="DetalleAvisoLlegada0086" class="statusLabel"></span>
@@ -34,27 +37,28 @@
             </span>
             <div class="formNav clearfix">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="button-section editButtonSection">                        
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="button-section editButtonSection">
                             <div class="btn-group save-group">
-                                <button id="Guardar" onclick="javascript:void(0);" type="button" class="btn btn-yellow"><span id="DetalleAvisoLlegada0017"></span></button>
-                                <button id="Editar" onclick="javascript:void(0);" type="button" class="btn btn-yellow" style="display:none"><span id="DetalleAvisoLlegada0082"></span></button>
-                                <button id="dropdown-toggle" type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button id="Guardar" onclick="javascript:void(0);" type="button" class="btn btn-yellow creacion"><span id="DetalleAvisoLlegada0017"></span></button>
+                                <button id="Editar" onclick="javascript:void(0);" type="button" class="btn btn-yellow editar" style="display: none"><span id="DetalleAvisoLlegada0082"></span></button>
+                                <button id="dropdown-toggle" type="button" class="btn btn-yellow dropdown-toggle creacion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caretWhite"></span>
                                 </button>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu creacion">
                                     <li><a href="#" id="GuardarNuevo"><span id="DetalleAvisoLlegada0062"></span></a></li>
-                                    <li><a href="#"><span id="DetalleAvisoLlegada0063"></span></a></li>
+                                    @*<li><a href="#"><span id="DetalleAvisoLlegada0063"></span></a></li>*@
                                 </ul>
                             </div>
                             <a id="Cancelar" class="btn btn-black"><span id="DetalleAvisoLlegada0018"></span></a>
                         </div>
-                        <div id="TramitarPermisoDiv" class="button-section">
+                        <div id="TramitarPermisoDiv" class="button-section enviarpermiso">
                             <a id="TramitarPermiso" href="#" class="btn btn-primary"><span id="DetalleAvisoLlegada0036"></span></a>
                         </div>
-                        <div id="AutorizarPermisoDiv" class="button-section" style="display:none">
+                        <div id="AutorizarPermisoDiv" class="button-section enviarpermiso" style="display: none">
                             <a id="AutorizarPermiso" href="#" class="btn btn-primary"><span id="DetalleAvisoLlegada0089"></span></a>
                         </div>
+
                         <div class="button-section actionButtonSection">
                             <div class="dropdown action-group">
                                 <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
@@ -62,56 +66,54 @@
                                     <span class="caretBlue"></span>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="Acciones">
-                                    <li><a id="RedirectDashboard" ><span id="DetalleAvisoLlegada0065"></span></a></li>
-                                    <li><a><span id="DetalleAvisoLlegada0066"></span></a></li>
-                                    <li><a id="CancelarFolio" href="#"><span id="DetalleAvisoLlegada0083"></span></a></li>
+                                    <li class="listado"><a id="RedirectDashboard"><span id="DetalleAvisoLlegada0065"></span></a></li>
+                                    <li class="incidencia"><a id="IrIncidencia" href="#"><span id="DetalleAvisoLlegada0066"></span></a></li>
+                                    <li><a id="CancelarFolio" href="#" class="cancelar"><span id="DetalleAvisoLlegada0083"></span></a></li>
                                 </ul>
                             </div>
                         </div>
-                        <a id="Imprimir" href="#" class="btn btn-fadeBlue actionButtonSection"></a>
+                        @*<a id="Imprimir" href="#" class="btn btn-fadeBlue actionButtonSection"></a>*@
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-11">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="row">
-                                <div id="TipoAvisoDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
+                                <div id="TipoAvisoDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                     <label id="DetalleAvisoLlegada0074"></label>
                                     <input id="TipoAvisoID" class="" />
                                 </div>
-                                <div id="ClienteDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
-                                    <label id="DetalleAvisoLlegada0067" ></label>
+                                <div id="PatioDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                    <label id="DetalleAvisoLlegada0008"></label>
+                                    <input id="PatioID" class="" />
+                                </div>
+                                <div id="ClienteDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                    <label id="DetalleAvisoLlegada0067"></label>
                                     <input id="ClienteID" />
                                 </div>
-                                <div id="ProyectoDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
+                                <div id="ProyectoDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                     <label id="DetalleAvisoLlegada0001"></label>
                                     <input id="ProyectoID" />
                                 </div>
-                                <div id="FechaRecepcionDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
+                                <div id="FechaRecepcionDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                     <label id="DetalleAvisoLlegada0004"></label>
                                     <input id="FechaRecepcion" />
                                 </div>
-                                <div class="visible-lg col-sm-12 col-md-12 col-lg-12"></div>
-                                <div id="PatioDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
-                                    <label id="DetalleAvisoLlegada0008" ></label>
-                                    <input id="PatioID" class="" />
-                                </div>
-                                <div id="TransportistaDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
+                                <div id="TransportistaDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                     <label id="DetalleAvisoLlegada0003"></label>
                                     <input id="TransportistaID" class="" />
                                 </div>
-                                <div id="ChoferDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
+                                <div id="ChoferDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                     <label id="DetalleAvisoLlegada0009"></label>
                                     <input id="ChoferID" class="" />
                                 </div>
-                                <div id="TractoDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
+                                <div id="TractoDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                     <label id="DetalleAvisoLlegada0055"></label>
                                     <input id="Tracto" class="" />
                                 </div>
-                                <div class="visible-lg col-sm-12 col-md-12 col-lg-12"></div>
-                                <div id="PlanaDiv" class="form-group col-sm-6 col-md-6 col-lg-3">
+                                <div id="PlanaDiv" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                     <label id="DetalleAvisoLlegada0006"></label>
                                     <input id="PlanaID" class="" />
                                 </div>
@@ -122,8 +124,8 @@
             </div>
             <div class="row">
                 <div class="addedSection clearfix">
-                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label id="DetalleAvisoLlegada0010"></label>
                             <div class="row">
                                 <div id="TipoArchivoDiv" class="col-sm-5 col-md-6 col-lg-2">
@@ -135,8 +137,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
-                        <div id="listaArchivosDiv" class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div id="listaArchivosDiv" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <table id="listaArchivos" class="filesTable">
                                 <thead>
                                     <tr>
@@ -152,8 +154,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -165,800 +165,292 @@
 </div>
 
 @*Ventana Modal*@
-    <div id="window">
-        @*Content of the Window*@
-        <div id="modalTransportista" style="display: none">
-            <div class="alert-container">
-                <div class="message">
-                    Mensaje de éxito/error/advertencia
-                </div>
-            </div>
-            <div id="ContactoID_TransportistaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0012"></label>
-                <input id="ContactoID_Transportista" class="" />
-            </div>
-            <div id="Nombre_TransportistaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0013"></label>
-                <input id="Nombre_Transportista" class="" />
-            </div>
-            <div id="Descripcion_TransportistaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0014"></label>
-                <input id="Descripcion_Transportista" class="" />
-            </div>
-            <div id="Direccion_TransportistaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0015"></label>
-                <input id="Direccion_Transportista" class="" />
-            </div>
-            <div id="Telefono_TransportistaDiv" class ="form-group">
-                <label id="DetalleAvisoLlegada0016"></label>
-                <input id="Telefono_Transportista" class="" />
-            </div>
-            <div class="buttonSave">
-                <a id="GuardarTransportista" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0019"></span>
-                </a>
-                <a id="CancelarTransportista" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0076"></span>
-                </a>
-            </div>
-        </div>
-
-        <div id="modalPatio" style="display: none">
-            <div class="alert-container">
-                <div class="message">
-                    Mensaje de éxito/error/advertencia
-                </div>
-            </div>
-            <div id="Nombre_PatioDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0026"></label>
-                <input id="Nombre_Patio" class="" />
-            </div>
-            <div id="Propietario_PatioDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0027"></label>
-                <input id="Propietario_Patio" class="" />
-            </div>
-            <div id="Descripcion_PatioDiv" class ="form-group">
-                <label id="DetalleAvisoLlegada0028"></label>
-                <input id="Descripcion_Patio" class="l" />
-            </div>
-            <div id="RequierePermisoAduana_PatioDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0075" class="checkLabel"></label>
-                <input id="RequierePermisoAduana_Patio" class="l" type="checkbox" />
-            </div>
-            <div class="buttonSave">
-                <a id="GuardarPatio" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0029"></span>
-                </a>
-                <a id="CancelarPatio" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0078"></span>
-                </a>
-            </div>
-        </div>
-
-        <div id="modalChofer" style="display: none">
-            <div class="alert-container">
-                <div class="message">
-                    Mensaje de éxito/error/advertencia
-                </div>
-            </div>
-            <div id="Nombre_ChoferDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0030"></label>
-                <input id="Nombre_Chofer" class="" />
-            </div>
-            <div class="buttonSave">
-                <a id="GuardarChofer" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0031"></span>
-                </a>
-                <a id="CancelarChofer" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0079"></span>
-                </a>
-            </div>
-        </div>
-
-        <div id="modalPlana" style="display: none">
-            <div class="alert-container">
-                <div class="message">
-                    Mensaje de éxito/error/advertencia
-                </div>
-            </div>
-            <div id="TipoVehiculo_PlanaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0068"></label>
-                <input id="TipoVehiculo_Plana" class="" />
-            </div>
-            <div id="CamionID_PlanaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0032"></label>
-                <input id="CamionID_Plana" class="" />
-            </div>
-            <div id="Placas_PlanaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0033"></label>
-                <input id="Placas_Plana" class="" />
-            </div>
-            <div id="Unidad_PlanaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0069"></label>
-                <input id="Unidad_Plana" class="" />
-            </div>
-            <div id="Modelo_PlanaDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0070"></label>
-                <input id="Modelo_Plana" class="" />
-            </div>
-            <div class="buttonSave">
-                <a id="GuardarPlana" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0034"></span>
-                </a>
-                <a id="CancelarPlana" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0080"></span>
-                </a>
-            </div>
-        </div>
-        <div id="modalCamion" style="display: none">
-            <div class="alert-container">
-                <div class="message">
-                    Mensaje de éxito/error/advertencia
-                </div>
-            </div>
-            <div id="TipoVehiculo_CamionDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0071"></label>
-                <input id="TipoVehiculo_Camion" class="" />
-            </div>
-            <div id="TransportistaID_CamionDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0056"></label>
-                <input id="TransportistaID_Camion" class="" />
-            </div>
-            <div id="ChoferID_CamionDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0057"></label>
-                <input id="ChoferID_Camion" class="" />
-            </div>
-            <div id="Placas_CamionDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0058"></label>
-                <input id="Placas_Camion" class="" />
-            </div>
-            <div id="TarjetaCirculacion_CamionDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0059"></label>
-                <input id="TarjetaCirculacion_Camion" class="" />
-            </div>
-            <div id="PolizaSeguroDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0060"></label>
-                <input id="PolizaSeguro" class="" />
-            </div>
-            <div id="Unidad_CamionDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0072"></label>
-                <input id="Unidad_Camion" class="" />
-            </div>
-            <div id="Modelo_CamionDiv" class="form-group">
-                <label id="DetalleAvisoLlegada0073"></label>
-                <input id="Modelo_Camion" class="" />
-            </div>
-            <div class="buttonSave">
-                <a id="GuardarCamion" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0061"></span>
-                </a>
-                <a id="CancelarCamion" href="#" class="btn btn-primary">
-                    <span id="DetalleAvisoLlegada0081"></span>
-                </a>
-            </div>
-        </div>
-    </div>
+<div id="window">
+</div>
 
 <input id="hdPermisoAutorizado" type="hidden" value="false" />
 <input id="hdPermisoTramite" type="hidden" />
 <input id="hdPaseSalida" type="hidden" value="" />
 <input id="hdArchivoAutorizado" type="hidden" value="" />
-
+<input id="hdnCantidadArchivos" type="hidden" value="0" />
+@*<input id="hdnNavegacion" type="hidden" value="" />*@
 <script>
     kendo.ui.Upload.fn._supportsDrop = function () { return false; }
     @section JavascriptGlobalVariables {
-        //your partial views variables
-        var FechaRecepcion;
-        var folio = getUrlParameter("folio", "-1");
-        var _tipoArchivo = 0;
-        var Transportista = [], Proveedor = [], Patio = [],
-            Plana = [], Chofer = [], Contacto = [], Camion = [],
-            CamionEntradaMaterial = {}, TransportistaCamion = [],
-            ChoferCamion = [], TipoVehiculoTracto = [], TipoVehiculoPlana = [],
-            Cliente = {}, TipoAvisos = {}, TipoArchivo = {};
+    //your partial views variables
+    var FechaRecepcion;
+    var folio = getUrlParameter("folio", "-1");
+    var creacionArchivos = 0;
+    var _tipoArchivo = 0;
+    var Transportista = [], Proveedor = [], Patio = [],
+        Plana = [], Chofer = [], Contacto = [],
+        CamionEntradaMaterial = {}, Cliente = {}, TipoAvisos = {},
+        TipoArchivo = {}, Proyecto = {};
+    var _incidenciasURL = "@Url.Action("Incidencias", "Incidencias")";
 
-        var $AvisoLLegadaModel = {
-            listContainer: {
-                create: ".nextStepButtonSection",
-                list: ".actionButtonSection",
-                detail: ".editButtonSection",
-                destroy: ""
+    var $AvisoLLegadaModel = {
+        listContainer: {
+            create: ".creacion",
+            list: ".actionButtonSection",
+            detail: ".editar",
+            destroy: ".cancelar",
+            createIncidence: ".incidencia"
+        },
+        properties: {
+            tipoAviso: {
+                visible: "#TipoAvisoDiv",
+                editable: "#TipoAvisoID",
+                required: "#TipoAvisoID"
             },
-            properties: {
-                tipoAviso: {
-                    visible: "#TipoAvisoDiv",
-                    editable: "#TipoAvisoID",
-                    required: "#TipoAvisoID"
-                },
-                cliente: {
-                    visible: "#ClienteDiv",
-                    editable: "#ClienteID",
-                    required: "#ClienteID"
-                },
-                proyecto: {
-                    visible: "#ProyectoDiv",
-                    editable: "#ProyectoID",
-                    required: "#ProyectoID"
-                },
-                fecharecepcion: {
-                    visible: "#FechaRecepcionDiv",
-                    editable: "#FechaRecepcion",
-                    required: "#FechaRecepcion"
-                },
-                patio: {
-                    visible: "#PatioDiv",
-                    editable: "#PatioID",
-                    required: "#PatioID"
-                },
-                transportista: {
-                    visible: "#TransportistaDiv",
-                    editable: "#TransportistaID",
-                    required: "#TransportistaID"
-                },
-                tracto: {
-                    visible: "#TractoDiv",
-                    editable: "#Tracto",
-                    required: "#Tracto"
-                },
-                plana: {
-                    visible: "#PlanaDiv",
-                    editable: "#PlanaID",
-                    required: "#PlanaID"
-                },
-                chofer: {
-                    visible: "#ChoferDiv",
-                    editable: "#ChoferID",
-                    required: "#ChoferID"
-                },
-                tipoArchivo: {
-                    visible: "#TipoArchivoDiv",
-                    editable: "#TipoArchivo",
-                    required: "#TipoArchivo"
-                },
-                seleccionarArchivo: {
-                    visible: "#filesDiv",
-                    editable: "#files",
-                    required: "#files"
-                },
-                listarArchivos: {
-                    visible: "#listaArchivosDiv",
-                    editable: "#listaArchivos",
-                    required: "#listaArchivos"
-                }
+            cliente: {
+                visible: "#ClienteDiv",
+                editable: "#ClienteID",
+                required: "#ClienteID"
+            },
+            proyecto: {
+                visible: "#ProyectoDiv",
+                editable: "#ProyectoID",
+                required: "#ProyectoID"
+            },
+            fecharecepcion: {
+                visible: "#FechaRecepcionDiv",
+                editable: "#FechaRecepcion",
+                required: "#FechaRecepcion"
+            },
+            patio: {
+                visible: "#PatioDiv",
+                editable: "#PatioID",
+                required: "#PatioID"
+            },
+            transportista: {
+                visible: "#TransportistaDiv",
+                editable: "#TransportistaID",
+                required: "#TransportistaID"
+            },
+            tracto: {
+                visible: "#TractoDiv",
+                editable: "#Tracto",
+                required: "#Tracto"
+            },
+            plana: {
+                visible: "#PlanaDiv",
+                editable: "#PlanaID",
+                required: "#PlanaID"
+            },
+            chofer: {
+                visible: "#ChoferDiv",
+                editable: "#ChoferID",
+                required: "#ChoferID"
+            },
+            tipoArchivo: {
+                visible: "#TipoArchivoDiv",
+                editable: "#TipoArchivo",
+                required: "#TipoArchivo"
+            },
+            seleccionarArchivo: {
+                visible: "#filesDiv",
+                editable: "#files",
+                required: "#files"
+            },
+            listarArchivos: {
+                visible: "#listaArchivosDiv",
+                editable: "#listaArchivos",
+                required: "#listaArchivos"
             }
-        };
+        }
+    };
 
-        var $PermisoAduanaModel = {
-            listContainer: {
-                create: "",
-                list: "",
-                detail: "",
-                destroy: ""
-            },
-            properties: {
-                generar: {
-                    visible: "#TramitarPermisoDiv",
-                    editable: "#TramitarPermiso",
-                    required: "#TramitarPermiso"
-                }
-            }
-        };
-
-        var $PatioModel = {
-            listContainer: {
-                create: "",
-                list: "",
-                detail: "",
-                destroy: ""
-            },
-            properties: {
-                nombre: {
-                    visible: "#Nombre_PatioDiv",
-                    editable: "#Nombre_Patio",
-                    required: "#Nombre_Patio"
-                },
-                propietario: {
-                    visible: "#Propietario_PatioDiv",
-                    editable: "#Propietario_Patio",
-                    required: "#Propietario_Patio"
-                },
-                descripcion: {
-                    visible: "#Descripcion_PatioDiv",
-                    editable: "#Descripcion_Patio",
-                    required: "#Descripcion_Patio"
-                },
-                requierepermiso: {
-                    visible: "#RequierePermisoAduana_PatioDiv",
-                    editable: "#RequierePermisoAduana_Patio",
-                    required: "#RequierePermisoAduana_Patio"
-                }
-            }
-        };
-
-        var $TransportistaModel = {
-            listContainer: {
-                create: "",
-                list: "",
-                detail: "",
-                destroy: ""
-            },
-            properties: {
-                contacto: {
-                    visible: "#ContactoID_TransportistaDiv",
-                    editable: "#ContactoID_Transportista",
-                    required: "#ContactoID_Transportista"
-                },
-                nombre: {
-                    visible: "#Nombre_TransportistaDiv",
-                    editable: "#Nombre_Transportista",
-                    required: "#Nombre_Transportista"
-                },
-                descripcion: {
-                    visible: "#Descripcion_TransportistaDiv",
-                    editable: "#Descripcion_Transportista",
-                    required: "#Descripcion_Transportista"
-                },
-                direccion: {
-                    visible: "#Direccion_TransportistaDiv",
-                    editable: "#Direccion_Transportista",
-                    required: "#Direccion_Transportista"
-                },
-                telefono: {
-                    visible: "#Telefono_TransportistaDiv",
-                    editable: "#Telefono_Transportista",
-                    required: "#Telefono_Transportista"
-                }
-            }
-        };
-
-        var $ChoferModel = {
-            listContainer: {
-                create: "",
-                list: "",
-                detail: "",
-                destroy: ""
-            },
-            properties: {
-                nombre: {
-                    visible: "#Nombre_ChoferDiv",
-                    editable: "#Nombre_Chofer",
-                    required: "#Nombre_Chofer"
-                }
-            }
-        };
-
-        var $TractoModel = {
-            listContainer: {
-                create: "",
-                list: "",
-                detail: "",
-                destroy: ""
-            },
-            properties: {
-                tipoVehiculo: {
-                    visible: "#TipoVehiculo_CamionDiv",
-                    editable: "#TipoVehiculo_Camion",
-                    required: "#TipoVehiculo_Camion"
-                },
-                transportista: {
-                    visible: "#TransportistaID_CamionDiv",
-                    editable: "#TransportistaID_Camion",
-                    required: "#TransportistaID_Camion"
-                },
-                chofer: {
-                    visible: "#ChoferID_CamionDiv",
-                    editable: "#ChoferID_Camion",
-                    required: "#ChoferID_Camion"
-                },
-                placas: {
-                    visible: "#Placas_CamionDiv",
-                    editable: "#Placas_Camion",
-                    required: "#Placas_Camion"
-                },
-                tarjetacirculacion: {
-                    visible: "#TarjetaCirculacion_CamionDiv",
-                    editable: "#TarjetaCirculacion_Camion",
-                    required: "#TarjetaCirculacion_Camion"
-                },
-                poliza: {
-                    visible: "#PolizaSeguroDiv",
-                    editable: "#PolizaSeguro",
-                    required: "#PolizaSeguro"
-                },
-                unidad: {
-                    visible: "#Unidad_CamionDiv",
-                    editable: "#Unidad_Camion",
-                    required: "#Unidad_Camion"
-                },
-                modelo: {
-                    visible: "#Modelo_CamionDiv",
-                    editable: "#Modelo_Camion",
-                    required: "#Modelo_Camion"
-                },
-            }
-        };
-
-        var $PlanaModel = {
-            listContainer: {
-                create: "",
-                list: "",
-                detail: "",
-                destroy: ""
-            },
-            properties: {
-                tipoVehiculo: {
-                    visible: "#TipoVehiculo_PlanaDiv",
-                    editable: "#TipoVehiculo_Plana",
-                    required: "#TipoVehiculo_Plana"
-                },
-                camion: {
-                    visible: "#CamionID_PlanaDiv",
-                    editable: "#CamionID_Plana",
-                    required: "#CamionID_Plana"
-                },
-                placas: {
-                    visible: "#Placas_PlanaDiv",
-                    editable: "#Placas_Plana",
-                    required: "#Placas_Plana"
-                },
-                unidad: {
-                    visible: "#Unidad_PlanaDiv",
-                    editable: "#Unidad_Plana",
-                    required: "#Unidad_Plana"
-                },
-                modelo: {
-                    visible: "#Modelo_PlanaDiv",
-                    editable: "#Modelo_Plana",
-                    required: "#Modelo_Plana"
-                }
-            }
-        };
+    var $PermisoAduanaModel = {
+        listContainer: {
+            create: ".enviarpermiso",
+            list: "",
+            detail: "",
+            destroy: ""
+        },
+        properties: {
+        }
     }
+    };
 
     @section JavascriptGlobalFunctions {
-            //Es la carga inicial de las fechas  para el multilenguaje
-            //Funcion: changeDatePickerDateFormat
-            //Parametros: datePickerOptions
-            //Return:     N/A
-            function changeDatePickerDateFormat(datePickerOptions)
-            {
-                FechaRecepcion.setOptions(datePickerOptions);
-            };
-            
-            //Se carga el resultado JSON en el combo, si llegara a fallar se muestra vacio
-            //Funcion: ControlErroresObjetosComboBox
-            //Parametros: control,  result
-            //Return:     N/A
-            function ControlErroresObjetosComboBox(control,result) {
-                if (Error(result)) {
-                    $("#" + control).data("kendoComboBox").dataSource.data(result);
+
+    function changeLanguageCall() {
+        var options = $("#files").data("kendoUpload").options;
+        $("#filesDiv .k-button.k-upload-button").remove();
+        options.localization = getKendoUploadLocalization($("#language").data("kendoDropDownList").value());
+        $("#filesDiv").append("<input type='file' id='files'>");
+        $("#files").kendoUpload(options);
+        var tmp = {};
+        $("#files").data("kendoUpload").options.async.saveUrl.split("?")[1].split("&").forEach(function (n) { tmp[n.split("=")[0]] = n.split("=")[1] });
+
+        if (folio != -1) {
+            $("#files").data("kendoUpload").disable();
+        }
+
+        var arr = arregloKendoCombobox();
+        modificartextoKendoCombobox(arr, $("#language").data("kendoDropDownList").value());
+    };
+
+    function arregloKendoCombobox() {
+        var arr = new Array($("#PatioID"), $("#ClienteID"), $("#TransportistaID"), $("#ChoferID"), $("#Tracto"), $("#PlanaID"));
+        return arr;
+    };
+    //Es la carga inicial de las fechas  para el multilenguaje
+    //Funcion: changeDatePickerDateFormat
+    //Parametros: datePickerOptions
+    //Return:     N/A
+    function changeDatePickerDateFormat(datePickerOptions) {
+        FechaRecepcion.setOptions(datePickerOptions);
+    };
+
+    //Se carga el resultado JSON en el combo, si llegara a fallar se muestra vacio
+    //Funcion: ControlErroresObjetosComboBox
+    //Parametros: control,  result
+    //Return:     N/A
+    function ControlErroresObjetosComboBox(control, result) {
+        if (Error(result)) {
+            $("#" + control).data("kendoComboBox").dataSource.data(result);
+        } else {
+            $("#" + control).data("kendoComboBox").dataSource.data([]);
+        };
+    };
+    //Se carga el resultado JSON en el combo, si llegara a fallar se muestra vacio
+    //Funcion: ControlErroresObjetosComboBox
+    //Parametros: control,  result
+    //Return:     N/A
+    function ControlErroresObjetosMultiselect(control, result) {
+        if (Error(result)) {
+            $("#" + control).data("kendoMultiSelect").dataSource.data(result);
+        } else {
+            $("#" + control).data("kendoMultiSelect").dataSource.data([]);
+        };
+    };
+
+    function validarRequeridosFormaAvisoLlegadaSubirArchivos() {
+        var bool = true;
+        $("#formAvisoLlegada .security_required").each(function (i, elem) {
+            if (elem.tagName.toLowerCase() != 'label') {
+                if (!$(this).val()) {
+                    bool = false;
+                    $(this).closest("div").find("label").addClass("error");
                 } else {
-                    $("#" + control).data("kendoComboBox").dataSource.data([]);
+                    $(this).closest("div").find("label").removeClass("error");
                 };
             };
-            //Se carga el resultado JSON en el combo, si llegara a fallar se muestra vacio
-            //Funcion: ControlErroresObjetosComboBox
-            //Parametros: control,  result
-            //Return:     N/A
-            function ControlErroresObjetosMultiselect(control, result) {
-                if (Error(result)) {
-                    $("#" + control).data("kendoMultiSelect").dataSource.data(result);
-                } else {
-                    $("#" + control).data("kendoMultiSelect").dataSource.data([]);
-                };
-            };
-            
-            //Se valida si hay requeridos y se agrega la clase de error en la forma aviso de llegada
-            //Funcion: validarRequeridosFormaAvisoLlegada
-            //Parametros:  N/A
-            //Return:     N/A
-            function validarRequeridosFormaAvisoLlegada() {
-                var bool = true;
-                $("#formAvisoLlegada .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
+        });
+        return bool;
+    };
+    //Se valida si hay requeridos y se agrega la clase de error en la forma aviso de llegada
+    //Funcion: validarRequeridosFormaAvisoLlegada
+    //Parametros:  N/A
+    //Return:     N/A
+    function validarRequeridosFormaAvisoLlegada() {
+        var bool = true;
+        $("#formAvisoLlegada .security_required").each(function (i, elem) {
+            if (elem.tagName.toLowerCase() != 'label') {
 
-                        switch ($(elem).attr("id"))
-                        {
-                            case 'ProyectoID':
-                                if ($(elem).attr("id") == 'ProyectoID') {
-                                    if (!$("#ProyectoID").data("kendoMultiSelect").value().length > 0) {
-                                        bool = false;
-                                        $(this).closest("div").find("label").addClass("error");
-                                    } else {
-                                        $(this).closest("div").find("label").removeClass("error");
-                                    };
-                                };
-                                break;
-                            case 'PlanaID':
-                                if ($(elem).attr("id") == 'PlanaID') {
-                                    if (!$("#PlanaID").data("kendoMultiSelect").value().length > 0) {
-                                        bool = false;
-                                        $(this).closest("div").find("label").addClass("error");
-                                    } else {
-                                        $(this).closest("div").find("label").removeClass("error");
-                                    };
-                                };
-                                break;
-                            default:
-                                if (!$(this).val()) {
-                                    bool = false;
-                                    $(this).closest("div").find("label").addClass("error");
-                                } else {
-                                    $(this).closest("div").find("label").removeClass("error");
-                                };
-                                break;
-
-                        };
-                    };
-                });
-                return bool;
-            };
-
-            //Se valida si hay requeridos y se agrega la clase de error en el popup transportista
-            //Funcion: validarRequeridosModalTransportista
-            //Parametros:  N/A
-            //Return:     N/A
-            function validarRequeridosModalTransportista() {
-                var bool = true;
-                $("#modalTransportista .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        if (!$(this).val()) {
-                            bool = false;
-                            $(this).closest("div").find("label").addClass("error");
-                            $(this).closest("div").addClass("clearfix");
-                        } else {
-                            $(this).closest("div").find("label").removeClass("error");
-                            $(this).closest("div").removeClass("clearfix");
-                        };
-                    };
-                });
-                return bool;
-            };
-            //Se valida si hay requeridos y se agrega la clase de error en el popup patio
-            //Funcion: validarRequeridosModalPatio
-            //Parametros:  N/A
-            //Return:     N/A
-            function validarRequeridosModalPatio() {
-                var bool = true;
-                $("#modalPatio .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        if ($(this).attr("id") == "RequierePermisoAduana_Patio") {
-                            if (!$(this).is(':checked')) {
-                                bool = false;
-                                $(this).closest("div").find("label").addClass("error");
-                                $(this).closest("div").addClass("clearfix");
+                switch ($(elem).attr("id")) {
+                    case 'ProyectoID':
+                        if ($(elem).attr("id") == 'ProyectoID') {
+                            if (!$("#ProyectoID").data("kendoMultiSelect").value().length > 0) {
+                                //bool = false;
+                                $("#ProyectoID").data("kendoMultiSelect").value(1);
+                                CargarProyecto(1);
+                                //$(this).closest("div").find("label").addClass("error");
                             } else {
                                 $(this).closest("div").find("label").removeClass("error");
-                                $(this).closest("div").removeClass("clearfix");
-                            }
-                        } else {
-                            if (!$(this).val()) {
-                                bool = false;
-                                $(this).closest("div").find("label").addClass("error");
-                                $(this).closest("div").addClass("clearfix");
-                            } else {
-                                $(this).closest("div").find("label").removeClass("error");
-                                $(this).closest("div").removeClass("clearfix");
                             };
-                        }
-                    };
-                });
-                return bool;
-            };
-            
-            //Se valida si hay requeridos y se agrega la clase de error en el popup plana
-            //Funcion: validarRequeridosModalPlana
-            //Parametros:  N/A
-            //Return:     N/A
-            function validarRequeridosModalPlana() {
-                var bool = true;
-                $("#modalPlana .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
+                        };
+                        break;
+                    case 'PlanaID':
+                        if ($(elem).attr("id") == 'PlanaID') {
+                            if (!$("#PlanaID").data("kendoMultiSelect").value().length > 0) {
+                                bool = false;
+                                $(this).closest("div").find("label").addClass("error");
+                            } else {
+                                $(this).closest("div").find("label").removeClass("error");
+                            };
+                        };
+                        break;
+                    default:
                         if (!$(this).val()) {
                             bool = false;
                             $(this).closest("div").find("label").addClass("error");
-                            $(this).closest("div").addClass("clearfix");
                         } else {
                             $(this).closest("div").find("label").removeClass("error");
-                            $(this).closest("div").removeClass("clearfix");
                         };
-                    };
-                });
-                return bool;
+                        break;
+
+                };
             };
-            //Se valida si hay requeridos y se agrega la clase de error en el popup camion
-            //Funcion: validarRequeridosModalCamion
-            //Parametros:  N/A
-            //Return:     N/A
-            function validarRequeridosModalCamion() {
-                var bool = true;
-                $("#modalCamion .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        if (!$(this).val()) {
-                            bool = false;
-                            $(this).closest("div").find("label").addClass("error");
-                            $(this).closest("div").addClass("clearfix");
-                        } else {
-                            $(this).closest("div").find("label").removeClass("error");
-                            $(this).closest("div").removeClass("clearfix");
-                        };
-                    };
-                });
-                return bool;
+        });
+        bool ? $("#Guardar")[0].disabled=false:$("#Guardar")[0].disabled=true;
+        return bool;
+    };
+
+
+    //Es la carga inicial de todos los controles
+    //Funcion: CargaInicial
+    //Parametros:  N/A
+    //Return:     N/A
+    function CargaInicial() {
+        ocultarStatus();
+
+        FechaRecepcion = new kendo.ui.DatePicker($("#FechaRecepcion"));
+        FechaRecepcion.bind("change",function(){
+            validarRequeridosFormaAvisoLlegada();
+        })
+
+        //**Eventos
+        $("#Guardar").click(function (e) {
+            this.disabled=true;
+            if (validarRequeridosFormaAvisoLlegada()) {
+                GuardarAvisoLlegada(false);
+            } else {
+                displayMessage("notificationslabel0031", "", '1');
+            }
+        });
+
+        $("#GuardarNuevo").click(function (e) {
+            this.disabled=true;
+            if (validarRequeridosFormaAvisoLlegada()) {
+                GuardarAvisoLlegada(true);
+
+            } else {
+                displayMessage("notificationslabel0031", "", 1);
             };
-            //Se valida si hay requeridos y se agrega la clase de error en el popup chofer
-            //Funcion: validarRequeridosModalChofer
-            //Parametros:  N/A
-            //Return:     N/A
-            function validarRequeridosModalChofer() {
-                var bool = true;
-                $("#modalChofer .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        if (!$(this).val()) {
-                            bool = false;
-                            $(this).closest("div").find("label").addClass("error");
-                            $(this).closest("div").addClass("clearfix");
-                        } else {
-                            $(this).closest("div").find("label").removeClass("error");
-                            $(this).closest("div").removeClass("clearfix");
-                        };
-                    };
-                });
-                return bool;
-            };
+        });
 
-            //Al presionar el boton cancelar del popup transportista se retira la clase error *
-            //Funcion: cancelarvalidacionRequeridosModalTransportista
-            //Parametros:  N/A
-            //Return:     N/A
-            function cancelarvalidacionRequeridosModalTransportista() {
-                $("#modalTransportista .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        $(this).closest("div").find("label").removeClass("error");
-                        $(this).closest("div").removeClass("clearfix");
-                    };
-                });
-            };
-            //Al presionar el boton cancelar del popup chofer se retira la clase error *
-            //Funcion: cancelarvalidacionRequeridosModalChofer
-            //Parametros:  N/A
-            //Return:     N/A
-            function cancelarvalidacionRequeridosModalChofer() {
-                $("#modalChofer .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        $(this).closest("div").find("label").removeClass("error");
-                        $(this).closest("div").removeClass("clearfix");
-                    };
-                });              
-            };
-            //Al presionar el boton cancelar del popup camion se retira la clase error *
-            //Funcion: cancelarvalidacionRequeridosModalCamion
-            //Parametros:  N/A
-            //Return:     N/A
-            function cancelarvalidacionRequeridosModalCamion() {
-                $("#modalCamion .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        $(this).closest("div").find("label").removeClass("error");
-                        $(this).closest("div").removeClass("clearfix");
-                    };
-                });
-            };
-            //Al presionar el boton cancelar del popup plana se retira la clase error *
-            //Funcion: cancelarvalidacionRequeridosModalPlana
-            //Parametros:  N/A
-            //Return:     N/A
-            function cancelarvalidacionRequeridosModalPlana() {
-                $("#modalPlana .security_required").each(function (i, elem) {
-                    if (elem.tagName.toLowerCase() != 'label') {
-                        $(this).closest("div").find("label").removeClass("error");
-                        $(this).closest("div").removeClass("clearfix");
-                    };
-                });
-            };
-            //Es la carga inicial de todos los controles
-            //Funcion: CargaInicial
-            //Parametros:  N/A
-            //Return:     N/A
-            function CargaInicial() {
-                ocultarStatus();
+        $("#Editar").click(function (e) {
+            BotonEdicion();
+            ObtenerPatioRequierePermiso();
+        });
 
-                FechaRecepcion = new kendo.ui.DatePicker($("#FechaRecepcion"));
+        $("#Cancelar").click(function (e) {
+            var detalleIdeaUrl = "@Url.Action("ListadoAvisoLLegada", "AvisoLLegada")";
+            window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
+        });
 
+        $("#CancelarFolio").click(function (e) {
+            cancelarFolio();
+        });
 
-                //**Eventos
-                $("#Guardar").click(function (e) {
-                    if(validarRequeridosFormaAvisoLlegada()){
-                        GuardarAvisoLlegada(false);
-                    } else {
-                        displayMessage("notificationslabel0031", "", '1');
-                    }
-                });
+        $("#RedirectDashboard").click(function (e) {
+            var detalleIdeaUrl = "@Url.Action("DashboardAvisoLlegada", "AvisoLLegada")";
+            window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
+        });
 
-                $("#GuardarNuevo").click(function (e) {
-                    if (validarRequeridosFormaAvisoLlegada()) {
-                        GuardarAvisoLlegada(true);
-                       
-                    } else {
-                        displayMessage("notificationslabel0031", "", 1);
-                    };
-                });
-                
-                $("#Editar").click(function (e) {
-                    BotonEdicion();
-                    ObtenerPatioRequierePermiso();
-                    $("#files").data("kendoUpload").enable();
-                });
+        $("#IrIncidencia").click(function () { Incidencias(); });
 
-                $("#Cancelar").click(function (e) {
-                    var detalleIdeaUrl = "@Url.Action("ListadoAvisoLLegada", "AvisoLLegada")";
-                    window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
-                });
-
-                $("#CancelarFolio").click(function (e) {
-                    cancelarFolio();
-                });
-
-                $("#RedirectDashboard").click(function (e) {
-                    var detalleIdeaUrl = "@Url.Action("DashboardAvisoLlegada", "AvisoLLegada")";
-                    window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
-                });
-
-                //**Modales
-                $("#GuardarTransportista").click(function (e) {
-                    if (validarRequeridosModalTransportista()) {
-                        GuardarTransportista();
-                    } else {
-                        displayMessage("notificationslabel0031", "", '1');
-                    };
-                });
-
-                //$("#GuardarProveedor").click(function (e) { GuardarProveedor(); });
-                $("#GuardarPatio").click(function (e) {
-                    if (validarRequeridosModalPatio()) {
-                        GuardarPatio();
-                    } else {
-                        displayMessage("notificationslabel0031", "", '1');
-                    };
-                });
-                $("#GuardarChofer").click(function (e) {
-                    if (validarRequeridosModalChofer()) {
-                        GuardarChofer();
-                    } else {
-                        displayMessage("notificationslabel0031", "", '1');
-                    };
-                });
-                $("#GuardarPlana").click(function (e) {
-                    if (validarRequeridosModalPlana()) {
-                        GuardarPlana();
-                    } else {
-                        displayMessage("notificationslabel0031", "", '1');
-                    };
-                });
-                $("#GuardarCamion").click(function (e) {
-                    if (validarRequeridosModalCamion()) {
-                        GuardarCamion();
-                    } else {
-                        displayMessage("notificationslabel0031", "", '1');
-                    };
-                });
-                //**
-                //Cancelar modales
-                $("#CancelarTransportista").click(function (e) { CancelarTransportista(); });
-                $("#CancelarPatio").click(function (e) { CancelarPatio(); });
-                $("#CancelarChofer").click(function (e) { CancelarChofer(); });
-                $("#CancelarPlana").click(function (e) { CancelarPlana(); });
-                $("#CancelarCamion").click(function (e) { CancelarCamion(); });
-                
-               
-                //Permiso Aduana
-                $("#TramitarPermiso").attr('disabled', 'disabled');
-                $("#TramitarPermiso").click(function () { GenerarPermiso(); });
-                $("#AutorizarPermiso").click(function () {
-                    var detalleIdeaUrl = "@Url.Action("AutorizarPermiso", "AvisoLLegada")";
+        //Permiso Aduana
+        $("#TramitarPermiso").attr('disabled', 'disabled');
+        $("#TramitarPermiso").click(function () { GenerarPermiso(); });
+        $("#AutorizarPermiso").click(function () {
+            var detalleIdeaUrl = "@Url.Action("AutorizarPermiso", "AvisoLLegada")";
                     window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value() + "&folio=" + folio;
                 });
 
-                //Pase Salida
+        //Pase Salida
                 $("#ImprimirPase").click(function () {
                     if ($('#listaArchivosPaseSalida > tbody  > tr').length <= 0) {
                         displayMessage("notificationslabel0010", "", '1');
@@ -966,73 +458,155 @@
                     };
                     $("#hdPaseSalida").val(1);
                     $("#PackingList").kendoUpload({
-                        enabled: false
-                    });               
+                        enabled: false,
+                        localization: getKendoUploadLocalization($("#language").data("kendoDropDownList").value()),
+                    });
                     window.open("@Url.Action("FormatoPaseSalida", "AvisoLlegada")");
                 });
 
-                $("#ClienteID").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "ClienteID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarCliente(dataItem.ClienteID, dataItem.Nombre);
-                    },
-                    change: function (e) {
-                        var value = this.value();
-                        if (!value) {
-                            Cliente = [];
-                        };
-                    },
-                    filter: "contains",
-                });
-                ObtenerCliente();
-
-                $("#TipoAvisoID").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "TipoAvisoID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarTipoAviso(dataItem.TipoAvisoID, dataItem.Nombre);
-                    },
-                    change: function (e) {
-                        var value = this.value();
-                        if (!value) {
-                            TipoAvisos = {};
-                        };
-                    },
-                    filter: "contains",
-                });
-                ObtenerTipoAviso();
-                
                 $("#ProyectoID").kendoMultiSelect({
                     dataTextField: "Nombre",
                     dataValueField: "ProyectoID",
                     filter: "contains",
                 });
-                ObtenerProyectos();
+
+                $("#PatioID").kendoComboBox({
+                    dataTextField: "Nombre",
+                    dataValueField: "PatioID",
+                    select: function (e) {
+                        
+                    },
+                    change: function (e) {
+                        var dataItem = this.dataItem();
+                        var value = this.value();
+                        //if (dataItem.PatioID == 0) {
+                        if (value == 0) {
+                            this.value("");
+                            Cliente = {};
+                            $("#ClienteID").data("kendoComboBox").value("");
+                            $("#ClienteID").data("kendoComboBox").dataSource.data([]);
+                            $("#ProyectoID").data("kendoMultiSelect").value("");
+                            $("#ProyectoID").data("kendoMultiSelect").dataSource.data([]);
+                            VentanaModal(4);
+                            e.preventDefault();
+                        }
+                        else {
+                            dataItem !== undefined ? CargarPatio(dataItem.PatioID, dataItem.Nombre) : CargarPatio("", "");
+
+                            validarRequeridosFormaAvisoLlegada();
+
+                            $("#ClienteID").data("kendoComboBox").value("");
+                            $("#ClienteID").data("kendoComboBox").dataSource.data([]);
+                            $("#ProyectoID").data("kendoMultiSelect").value("");
+                            $("#ProyectoID").data("kendoMultiSelect").dataSource.data([]);
+                            Cliente = {};
+                            if (!value || this.selectedIndex == -1) {
+                                messageindexKendoCombobox(this);
+                                Patio = [];
+                                this.value("");
+                            } else
+                            {
+                                ObtenerCliente();
+                            }
+                        }
+                    },
+                    dataBound: function(e){checkIfOne(this);},
+                    filter: "contains",
+                });
+                ObtenerPatio();
+
+                $("#ClienteID").kendoComboBox({
+                    dataTextField: "Nombre",
+                    dataValueField: "ClienteID",
+                    select: function (e) {
+                        
+                    },
+                    change: function (e) {
+                        var dataItem = this.dataItem();
+                        dataItem!==undefined ? CargarCliente(dataItem.ClienteID, dataItem.Nombre) : CargarCliente("", "");
+                        validarRequeridosFormaAvisoLlegada();
+                        var value = this.value();
+                        if (!value || this.selectedIndex == -1) {
+                            messageindexKendoCombobox(this);
+                            Cliente = [];
+                            this.value("");
+                        } else {
+                            ObtenerProyectos();
+                        };
+                    },
+                    dataBound: function(e){checkIfOne(this);},
+                    filter: "contains",
+                });
+
+                $("#TipoAvisoID").kendoComboBox({
+                    dataTextField: "Nombre",
+                    dataValueField: "TipoAvisoID",
+                    select: function (e) {
+                        
+                    },
+                    change: function (e) {
+                        var dataItem = this.dataItem();
+                        dataItem!==undefined ? CargarTipoAviso(dataItem.TipoAvisoID, dataItem.Nombre):CargarTipoAviso("", "");
+                        validarRequeridosFormaAvisoLlegada();
+                        var value = this.value();
+                        if (!value || this.selectedIndex == -1) {
+                            messageindexKendoCombobox(this);
+                            TipoAvisos = {};
+                            this.value("");
+                        };
+                    },
+                    dataBound: function(e){checkIfOne(this);},
+                    filter: "contains",
+                });
+                ObtenerTipoAviso();
 
                 $("#TransportistaID").kendoComboBox({
                     dataTextField: "Nombre",
                     dataValueField: "TransportistaID",
                     select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        if (dataItem.TransportistaID == 0) {
+                        
+                    },
+                    change: function (e) {
+                        var dataItem = this.dataItem();
+                        var value = this.value();
+                        if (value == 0) {
+                            this.value("");
+                            $("#ChoferID").data("kendoComboBox").value("");
+                            $("#ChoferID").data("kendoComboBox").enable(false);
+                            $("#Tracto").data("kendoComboBox").value("");
+                            $("#Tracto").data("kendoComboBox").dataSource.data([]);
+                            $("#PlanaID").data("kendoMultiSelect").value("");
+                            $("#PlanaID").data("kendoMultiSelect").dataSource.data([]);
                             VentanaModal(1);
                             e.preventDefault();
                         }
-                        ObtenerChofer(dataItem.TransportistaID);
-                        CargarTransportista(dataItem.TransportistaID, dataItem.Nombre);
+                        else{
+                            dataItem!==undefined ? CargarTransportista(dataItem.TransportistaID, dataItem.Nombre):CargarTransportista("", "");
+                            var value = this.value();
+                            $("#Tracto").data("kendoComboBox").value("");
+                            $("#Tracto").data("kendoComboBox").dataSource.data([]);
+                            $("#PlanaID").data("kendoMultiSelect").value("");
+                            $("#PlanaID").data("kendoMultiSelect").dataSource.data([]);
+                            if (!value || this.selectedIndex == -1) {
+                                messageindexKendoCombobox(this);
+                                Transportista = [];
+                                Chofer = [];
+                                CamionEntradaMaterial = {};
+                                this.value("");
+                                $("#ChoferID").data("kendoComboBox").value("");
+                                $("#ChoferID").data("kendoComboBox").enable(false);
+                                $("#Tracto").data("kendoComboBox").value("");
+                                $("#Tracto").data("kendoComboBox").dataSource.data([]);
+                                $("#PlanaID").data("kendoMultiSelect").value("");
+                                $("#PlanaID").data("kendoMultiSelect").dataSource.data([]);
+                            } else {
+                                ObtenerChofer($("#TransportistaID").data("kendoComboBox").value());
+                                ObtenerCamionEntradaMaterial();
+                                ObtenerPlanas();
+                            };
+                        }
                     },
-                    change: function (e) {
-                        var value = this.value();
-                        if (!value) {
-                            Transportista = [];
-                            Chofer = [];
-                            $("#ChoferID").data("kendoComboBox").value("");
-                            $("#ChoferID").data("kendoComboBox").enable(false);
-                        };
-                    },
+                    dataBound: function(e){checkIfOne(this);},
                     filter: "contains",
                 });
                 ObtenerTransportista();
@@ -1044,42 +618,12 @@
                     select: function (e) {
                         var dataItem = this.dataItem(e.item.index());
                         if (dataItem.PlanaID == 0) {
+                            this.value("");
                             VentanaModal(3);
                             e.preventDefault();
-
-                            var combobox = $("#TipoVehiculo_Plana").data("kendoComboBox");
-                            combobox.select(function (dataItem) {
-                                if (dataItem.Nombre == "Plana") {
-                                    CargarTipoVehiculoPlana(dataItem.TipoVehiculoID, dataItem.Nombre);
-                                    return dataItem.Nombre === "Plana";
-                                }
-                            });
                         }
                     }
                 });
-                ObtenerPlanas();
-
-                $("#PatioID").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "PatioID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        if (dataItem.PatioID == 0) {
-                            VentanaModal(4);
-                            e.preventDefault();
-                        }
-                        CargarPatio(dataItem.PatioID, dataItem.Nombre);
-                        ObtenerPatioRequierePermiso();
-                    },
-                    change: function (e) {
-                        var value = this.value();
-                        if (!value) {
-                            Patio = [];
-                        };
-                    },
-                    filter: "contains",
-                });
-                ObtenerPatio();
 
                 $("#ChoferID").kendoComboBox({
                     dataTextField: "Nombre",
@@ -1087,188 +631,166 @@
                     //dataTextField: "Nombre",
                     //dataValueField: "ChoferID",
                     select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        if (dataItem.ChoferID == 0) {
+                    },
+                    change: function (e) {
+                        var dataItem = this.dataItem();
+                        var value = this.value();
+                        if (value == 0) {
+                            this.value("");
                             VentanaModal(5);
                             e.preventDefault();
                         }
-                        CargarChofer(dataItem.ChoferID, dataItem.Nombre);
-
+                        else
+                        {
+                            dataItem!==undefined ? CargarChofer(dataItem.ChoferID, dataItem.Nombre) : CargarChofer("", "");;
+                            //var value = this.value();
+                            if (!value || this.selectedIndex == -1) {
+                                messageindexKendoCombobox(this);
+                                Chofer = [];
+                                this.value("");
+                            };
+                        }
                     },
-                    change: function (e) {
-                        var value = this.value();
-                        if (!value) {
-                            Chofer = [];
-                        };
-                    },
+                    dataBound: function(e){checkIfOne(this);},
                     filter: "contains",
                 });
                 ObtenerChofer(0);
-                //$("#ChoferID").data("kendoComboBox").enable(false);
 
                 $("#TipoArchivo").kendoComboBox({
+                    dataSource: [
+                { Nombre: "Tarjeta de circulación", id: 1 },
+                { Nombre: "Seguro", id: 2 },
+                { Nombre: "Licencia", id: 3 },
+                { Nombre: "Packing List", id: 4 },
+                { Nombre: "Orden de Compra", id: 5 },
+                { Nombre: "Certificados", id: 6 },
+                { Nombre: "Factura o Pedimento", id: 7 },
+                    ],
                     dataTextField: "Nombre",
                     dataValueField: "TipoArchivoID",
                     select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        _tipoArchivo = dataItem.TipoArchivoID;
-                        CargarTipoArchivo(dataItem.TipoArchivoID, dataItem.Nombre);
                     },
+                    change: function (e) {
+                        var dataItem = this.dataItem();
+                        var value = this.value();
+                       
+                        if (this.selectedIndex == -1) {
+                            this.value("");
+                            _tipoArchivo = {};
+                            messageindexKendoCombobox(this);
+                        }
+                        else {
+                            _tipoArchivo = dataItem.Nombre;
+                            dataItem !== undefined ? CargarTipoArchivo(dataItem.TipoArchivoID, dataItem.Nombre) : CargarTipoArchivo("", "");
+                        }
+                    }, index: 8,
                     filter: "contains",
                 });
-                ObtenerTipoArchivo();
-                
+        
+                $("#TipoArchivo").data("kendoComboBox").select(3);
+                CargarTipoArchivo($("#TipoArchivo").data("kendoComboBox").dataItem().id, $("#TipoArchivo").data("kendoComboBox").value());
+                _tipoArchivo = $("#TipoArchivo").data("kendoComboBox").value();
+
+        //ObtenerTipoArchivo();
+
                 $('#files').kendoUpload({
                     async: {
-                        ////VAlida que este tomando todos los parametros por favor
                         saveUrl: $DocumentoAvisoLlegadaUploadFiles + folio + "&tipoArchivoID=" + _tipoArchivo + "&token=" + Cookies.get("token"),
+                        removeUrl:"#",
                         autoUpload: false,
                         withCredentials: false,
                         batch: true
                     },
                     success: function (data) {
-                        HabilitarObtenerDocumentosAvisoLlegada();
+                        if(Error(data)){
+                            validarRequeridosFormaAvisoLlegada();
+                            if (creacionArchivos) {
+                                CargaInicialEdicion(folio);
+                            } else {
+                                HabilitarObtenerDocumentosAvisoLlegadaUploadFile(data);
+                            };
+                        }
                     },
-                    error: function (data) { },
-                    upload: onUpload
+                    select: function (e) {
+                        if (notDotName(e)  && folio == "-1") {
+                            $("<style>")
+                                .prop("type", "text/css")
+                                .html("\
+                                .k-upload-selected {\
+                                    display: none;\
+                                }")
+                                .appendTo("head");
+                        } else {
+                            $("<style>")
+                                .prop("type", "text/css")
+                                .html("\
+                                .k-upload-selected {\
+                                    display: block;\
+                                }")
+                                .appendTo("head");
+                        }
+                    },
+                    upload: onUpload,
+                    localization: getKendoUploadLocalization($("#language").data("kendoDropDownList").value())
                 });
-                $("#files").data("kendoUpload").enable(false);
+
                 $("#files").on('drop', function (event) {
                     event.preventDefault();
                 });
-                //modal transportista
-                $("#ContactoID_Transportista").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "ContactoID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarContacto(dataItem.ContactoID, dataItem.Nombre);
-                    },
-                    filter: "contains",
-                });
-                ObtenerContacto();
 
-                //modal Camion
-                $("#CamionID_Plana").kendoComboBox({
-                    dataTextField: "Placas",
-                    dataValueField: "VehiculoID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarCamion(dataItem.VehiculoID, dataItem.Placas);
-                    },
-                    filter: "contains",
-                });
-                ObtenerCamion();
-
-                $("#TipoVehiculo_Plana").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "TipoVehiculoID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarTipoVehiculoPlana(dataItem.TipoVehiculoID, dataItem.Nombre);
-                    },
-                    change: function (e) {
-                        var value = this.value();
-                        if (!value) {
-                            TipoVehiculoPlana = [];
-                        };
-                    },
-                    filter: "contains",
-                });
-                ObtenerTipoVehiculoPlana();
-
-                $("#TipoVehiculo_Camion").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "TipoVehiculoID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarTipoVehiculoTracto(dataItem.TipoVehiculoID, dataItem.Nombre);
-                    },
-                    change: function (e) {
-                        var value = this.value();
-                        if (!value) {
-                            TipoVehiculoTracto = [];
-                        };
-                    },
-                    filter: "contains",
-                });
-                ObtenerTipoVehiculoTracto();
-
-                //Camion
+        //Camion
                 $("#Tracto").kendoComboBox({
                     dataTextField: "Placas",
                     dataValueField: "VehiculoID",
                     select: function (e) {
-
-                        var dataItem = this.dataItem(e.item.index());
-                        if (dataItem.VehiculoID == 0) {
-                            VentanaModal(6);
-                            e.preventDefault();
-                            var combobox = $("#TipoVehiculo_Camion").data("kendoComboBox");
-                            combobox.select(function (dataItem) {
-                                if (dataItem.Nombre == "Tracto") {
-                                    CargarTipoVehiculoTracto(dataItem.TipoVehiculoID, dataItem.Nombre);
-                                    return dataItem.Nombre === "Tracto";
-                                }
-                            });
-
-                        }
-
-                        CargarCamionEntradaMaterial(dataItem.VehiculoID, dataItem.Placas);
                     },
                     change: function (e) {
+                        var dataItem = this.dataItem();
                         var value = this.value();
-                        if (!value) {
-                            CamionEntradaMaterial = [];
-                        };
+
+                        if (value == 0) {
+                            this.value("");
+                            VentanaModal(6);
+                            e.preventDefault();
+                        }else{
+                            dataItem!==undefined ? CargarCamionEntradaMaterial(dataItem.VehiculoID, dataItem.Placas):CargarCamionEntradaMaterial("", "");
+                        
+                            if (!value || this.selectedIndex == -1) {
+                                messageindexKendoCombobox(this);
+                                CamionEntradaMaterial = [];
+                                this.value("");
+                            };
+                        }
                     },
                     filter: "contains",
+                    dataBound: function(e){checkIfOne(this);},
                 });
-                ObtenerCamionEntradaMaterial();
 
-                $("#TransportistaID_Camion").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "TransportistaID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarTransportistaCamion(dataItem.TransportistaID, dataItem.Nombre);
-                    },
-                    filter: "contains",
-                });
-                ObtenerTransportistaCamion();
-
-                $("#ChoferID_Camion").kendoComboBox({
-                    dataTextField: "Nombre",
-                    dataValueField: "ChoferID",
-                    //dataTextField: "Nombre",
-                    //dataValueField: "ChoferID",
-                    select: function (e) {
-                        var dataItem = this.dataItem(e.item.index());
-                        CargarChoferCamion(dataItem.ChoferID, dataItem.Nombre);
-
-                    },
-                    filter: "contains",
-                });
-                ObtenerChoferCamion();
                 ObtenerFechaDefault();
             };
 
             function onUpload(e) {
+                if (folio == "-1") {
+                    displayMessage("notificationslabel0015", "", '1');
+                    e.preventDefault();
+                };
+
                 if (!$("#TipoArchivo").data("kendoComboBox").value()) {
                     displayMessage("notificationslabel0012", "", '1');
                     e.preventDefault();
-                }
-                $("#files").data("kendoUpload").options.async.saveUrl = $DocumentoAvisoLlegadaUploadFiles + folio + "&tipoArchivoID=" + _tipoArchivo + "&token=" + Cookies.get("token");
+                };
+                $("#files").data("kendoUpload").options.async.saveUrl = $DocumentoAvisoLlegadaUploadFiles + folio + "&tipoArchivoID=" + TipoArchivo.Nombre + "&token=" + Cookies.get("token");
             };
 
-            function GuardarAvisoLlegada(bool)
-            {
+
+            function GuardarAvisoLlegada(bool) {
+
                 //Arreglo Aviso de llegada
                 AvisoLlegada = [];
                 AvisoLlegada[0] = { FolioAvisoLlegadaID: "", Proyectos: "", Transportista: "", FechaRecepcion: "", Plana: "", Patio: "", Chofer: "", Archivos: "", PermisoAduana: "", Tracto: "", Cliente: "", TipoAviso: "", PaseSalidaEnviado: "" };
-                
+
                 _permisoAduana = [];
-                _permisoAduana[0] = { PermisoAutorizado: "", PermisoTramite: "", NumeroPermiso:"", ArchivoAutorizado: "" };
+                _permisoAduana[0] = { PermisoAutorizado: "", PermisoTramite: "", NumeroPermiso: "", ArchivoAutorizado: "" };
 
                 _archivosPackingList = [];
                 _archivosPackingList[0] = { PaseSalidaEnviado: "", Archivos: "" };
@@ -1276,7 +798,7 @@
                 //objeto para los proyectos y documentos.
                 ProyectoIDs = [];
                 PlanaIDs = [];
-                Documentos = [];                
+                Documentos = [];
                 //permiso = [];
                 //DocumentosPackingList = [];
 
@@ -1285,28 +807,38 @@
                 _permisoAduana[0].PermisoAutorizado = false;
                 _permisoAduana[0].PermisoTramite = $("#hdPermisoTramite").val();
 
+                CargarDefaults();
+
                 var proyectos = $("#ProyectoID").data("kendoMultiSelect").value();
                 $.each(proyectos, function (index, value) {
                     ProyectoIDs[index] = { ProyectoID: value };
                 });
 
+                if (!proyectos.length) {
+                    ProyectoIDs[0] = { ProyectoID: Proyecto.ProyectoID };
+                };
+
                 var planas = $("#PlanaID").data("kendoMultiSelect").value();
                 $.each(planas, function (index, value) {
                     PlanaIDs[index] = { PlanaID: value };
                 });
+                //$('#files').getKendoUpload().trigger('upload')
+                //$('#listaArchivos > tbody  > tr').each(function (index, value) {
+                //    if ($(this).find("td:first").length > 0) {
+                //        var id = $(this).attr("id").split(",")[0];
+                //        var archivo = $(this).find("td a").eq(0).html();
+                //        var tipoArchivo = $(this).find("td").eq(1).html();
+                //        var extencion = $(this).attr("id").split(",")[1];
 
-                $('#listaArchivos > tbody  > tr').each(function (index, value) {
-                    if ($(this).find("td:first").length > 0) {
-                        var id = $(this).attr("id").split(",")[0];
-                        var archivo = $(this).find("td a").eq(0).html();
-                        var tipoArchivo = $(this).find("td").eq(1).html();
-                        var extencion = $(this).attr("id").split(",")[1];
+                //        Documentos[index] = { ArchivoID: id, Nombre: archivo, Extension: extencion, TipoArchivo: tipoArchivo };
+                //    };
+                //});
 
-                        Documentos[index] = { ArchivoID: id, Nombre: archivo, Extension: extencion, TipoArchivo: tipoArchivo };
-                    };
-                });
-
-                CargarDefaults();
+                if (!$("#FechaRecepcion").data("kendoDatePicker").value()) {
+                    displayMessage("notificationslabel0082", "", '1');
+                    $("#FechaRecepcionDiv label").addClass("error");
+                    return;
+                };
 
                 var d = new Date($("#FechaRecepcion").data("kendoDatePicker").value());
                 var curr_date = d.getDate();
@@ -1314,55 +846,95 @@
                 var curr_year = d.getFullYear();
                 var horaActual = new Date();
 
+
                 AvisoLlegada[0].FolioAvisoLlegadaID = folio != -1 ? folio : -1;
                 AvisoLlegada[0].Proyectos = ProyectoIDs;
+                if (!Transportista.length) CargarTransportista(1, "");
                 AvisoLlegada[0].Transportista = Transportista;
                 AvisoLlegada[0].FechaRecepcion = curr_year + "-" + curr_month + "-" + curr_date + " " + horaActual.getHours() + ":" + horaActual.getMinutes() + ":" + horaActual.getSeconds();;
                 AvisoLlegada[0].Plana = PlanaIDs;
                 AvisoLlegada[0].Patio = Patio;
                 AvisoLlegada[0].Chofer = Chofer;
-                AvisoLlegada[0].Archivos = Documentos;
+                //AvisoLlegada[0].Archivos = Documentos;
                 AvisoLlegada[0].Tracto = CamionEntradaMaterial;
                 AvisoLlegada[0].Cliente = Cliente;
                 AvisoLlegada[0].TipoAviso = TipoAvisos;
-                
-                loadingStart();
+
+                //loadingStart();
+                creacionArchivos = 0;
 
                 if (folio != -1)//Edición
                 {
                     BotonEdicion();
-                    $AvisoLlegada.AvisoLlegada.update(AvisoLlegada[0], { token: $.cookie("token") }).done(function (data) {
-                        if (Error(data))
-                        {
-                            BotonAlta();
-                            CargaInicialEdicion(folio);
-                            if (bool) {//guardar y nuevo
-                                var detalleIdeaUrl = "@Url.Action("DetalleAvisoLlegada", "AvisoLLegada")";
-                                window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
-                            }
-                        }
-                        loadingStop();
+                    var tienePackinglist = false;
+                    $('#listaArchivos > tbody  > tr').each(function (index, value) {
+                        if ($(this).find("td:first").length > 0 && $(this).find("td").eq(1).html() == "Packing List") {
+                            tienePackinglist = true;
+                        };
                     });
+
+                    if (!tienePackinglist) {
+                        $("#DetalleAvisoLlegada0010").addClass("security_required error");
+                        displayMessage("notificationslabel0031", "", '1');
+                        $("#Guardar")[0].disabled=true;
+                        //loadingStop();
+                        return;
+                    };
+
+                    var uploadtype = $("#TipoArchivo").data('kendoComboBox').value();
+                    var upload = $("#files").data("kendoUpload");
+                    var len = $(".k-upload-files li").length;
+                    //if ((uploadtype != "" || uploadtype != null) && len > 0) {
+                        $AvisoLlegada.AvisoLlegada.update(AvisoLlegada[0], { token: $.cookie("token") }).done(function (data) {
+                            if (Error(data)) {
+                                BotonAlta();
+                                CargaInicialEdicion(folio);
+                                if (bool) {//guardar y nuevo
+                                    var detalleIdeaUrl = "@Url.Action("DetalleAvisoLlegada", "AvisoLLegada")";
+                                    window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
+                                }
+                            }
+                            //loadingStop();
+                        });
+                    //} else {
+                    //    $("#DetalleAvisoLlegada0010").addClass("security_required error");
+                    //    displayMessage("notificationslabel0031", "", '1');
+                    //    //loadingStop();
+                    //}
                 } else //Alta
                 {
-                    $AvisoLlegada.AvisoLlegada.create(AvisoLlegada[0], { token: $.cookie("token") }).done(function (data) {
-                        if (Error(data))
-                        {
-                            folio = data.ReturnMessage[1];
-                            cargarTituloFolio();
-                            BotonAlta();
-                            ocultarStatus();
-                            displayMessage("notificationslabel0013", folio, '0');
-                            $("#DetalleAvisoLlegada0090").show();
-                            CargaInicialEdicion(folio);
-                            if (bool) {//guardar y nuevo
-                                var detalleIdeaUrl = "@Url.Action("DetalleAvisoLlegada", "AvisoLLegada")";
-                                window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
-                            }
-                        }
+                    var uploadtype = $("#TipoArchivo").data('kendoComboBox').value();
+                    var upload = $("#files").data("kendoUpload");
+                    var len = $(".k-upload-files li").length;
 
-                        loadingStop();
-                    });
+                    if ((uploadtype != "" || uploadtype != null) && len > 0) {
+                        $AvisoLlegada.AvisoLlegada.create(AvisoLlegada[0], { token: $.cookie("token") }).done(function (data) {
+                            if (Error(data)) {
+                                folio = data.ReturnMessage[2];
+                                if (len > 0) {
+                                    $(".k-upload-selected").click();
+                                    creacionArchivos = 1;
+                                };
+                                cargarTituloFolio(data.ReturnMessage[1]);
+                                BotonAlta();
+                                ocultarStatus();
+                                displayMessage("notificationslabel0013", '', '0');
+                                $("#DetalleAvisoLlegada0090").show();
+                                if (!creacionArchivos) {
+                                    CargaInicialEdicion(folio);
+                                }
+                                if (bool) {//guardar y nuevo
+                                    var detalleIdeaUrl = "@Url.Action("DetalleAvisoLlegada", "AvisoLLegada")";
+                                    window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
+                                }
+                            }
+                            //loadingStop();
+                        });
+                    } else {
+                        $("#DetalleAvisoLlegada0010").addClass("security_required error");
+                        displayMessage("notificationslabel0031", "", '1');
+                        //loadingStop();
+                    }
                 }
             };
 
@@ -1376,36 +948,42 @@
                                 }
                                 break;
                             case 'ClienteID':
-                                if (!$("#ClienteID").data("kendoComboBox").value().length > 0) {
+                                if (!$("#ClienteID").data("kendoComboBox").value()) {
                                     CargarCliente(1, "");
                                 }
                                 break;
                             case 'PatioID':
-                                if (!$("#PatioID").data("kendoComboBox").value() > 0) {
+                                if (!$("#PatioID").data("kendoComboBox").value()) {
                                     CargarPatio(1, "");
                                 }
                                 break;
                             case 'ChoferID':
-                                if (!$("#ChoferID").data("kendoComboBox").value() > 0) {
+                                if (!$("#ChoferID").data("kendoComboBox").value()) {
                                     CargarChofer(1, "");
                                 }
                                 break;
                             case 'Tracto':
-                                if (!$("#Tracto").data("kendoComboBox").value() > 0) {
+                                if (!$("#Tracto").data("kendoComboBox").value()) {
                                     CargarCamionEntradaMaterial(1, "");
                                 }
                                 break;
                             case 'TransportistaID':
-                                if (!$("#TransportistaID").data("kendoComboBox").value() > 0) {
+                                if (!$("#TransportistaID").data("kendoComboBox").value()) {
                                     CargarTransportista(1, "");
                                 }
+                                break;
+                            case 'ProyectoID':
+                                if (!$("#ProyectoID").data("kendoMultiSelect").value().length > 0) {
+                                    $("#ProyectoID").data("kendoMultiSelect").value(1);
+                                    CargarProyecto(1);
+                                };
                                 break;
                         };
                     };
                 });
             };
-            
-            
+
+
             function BotonEdicion() {
                 $("#dropdown-toggle").show();
                 $("#Editar").css("display", "none");
@@ -1421,6 +999,38 @@
             };
 
             function habilitarControlesPermisoAduana() {
+                if ($("#hdPermisoTramite").val() == "1") {
+                    $("#TramitarPermiso").attr('disabled', 'disabled');
+                    $("#TramitarPermisoDiv").hide();
+                    $("#AutorizarPermisoDiv").show();
+                    $("#AutorizarPermiso").removeAttr('disabled');
+                };
+
+                if ($("#hdPermisoAutorizado").val() == "1") {
+                    $("#TramitarPermiso").attr('disabled', 'disabled');
+                    $("#AutorizarPermiso").attr('disabled', 'disabled');
+                };
+            };
+
+            function HabilitarControlesSubirDocumentos() {
+                $("#dropdown-toggle").show();
+                $("#Editar").css("display", "none");
+                $("#Guardar").css("display", "block");
+
+                $("#TipoAvisoID").data("kendoComboBox").enable();
+                $("#ClienteID").data("kendoComboBox").enable();
+                $("#PatioID").data("kendoComboBox").enable();
+                $("#TransportistaID").data("kendoComboBox").enable();
+                $("#ChoferID").data("kendoComboBox").enable();
+                $("#Tracto").data("kendoComboBox").enable();
+                $("#TipoArchivo").data("kendoComboBox").enable();
+
+                $("#ProyectoID").data("kendoMultiSelect").enable();
+                $("#PlanaID").data("kendoMultiSelect").enable();
+
+                $("#FechaRecepcion").data("kendoDatePicker").enable();
+                $("#files").data("kendoUpload").enable();
+
                 if ($("#hdPermisoTramite").val() == "1") {
                     $("#TramitarPermiso").attr('disabled', 'disabled');
                     $("#TramitarPermisoDiv").hide();
@@ -1480,7 +1090,7 @@
                 $("#files").on('drop', function (event) {
                     event.preventDefault();
                 });
-                
+
                 $("#TramitarPermiso").attr('disabled', 'disabled');
                 if ($("#hdPermisoTramite").val() == "1") {
                     $("#TramitarPermisoDiv").hide();
@@ -1490,51 +1100,51 @@
                 DesahabilitarObtenerDocumentosAvisoLlegada();
             };
 
-            function borrarArchivo(id,fila) {
+            function borrarArchivo(id, fila) {
                 $DocumentoAvisoLlegada.DocumentoAvisoLlegada.destroy({}, { documentoID: id, token: Cookies.get("token") }).done(function (data) {
                     fila.closest("tr").remove();
-                    console.log("Client.DocumentoAvisoLlegada.destroy");
+                    var restar = ($("#hdnCantidadArchivos").val() - 1);
+                    var cantidadarchivos = restar ? restar : 0;
+                    $("#hdnCantidadArchivos").val(cantidadarchivos);
+                    //console.log("Client.DocumentoAvisoLlegada.destroy");
                 });
             };
 
-            function cargarTituloFolio() {
+            function cargarTituloFolio(titulo) {
                 $("#divFolio").removeClass("hidden");
-                $("#spanFolio").html(folio);
+                $("#spanFolio").html(titulo);
             };
 
             function CargaInicialEdicion(id) {
-                cargarTituloFolio();
                 BotonAlta();
-
                 $AvisoLlegada.AvisoLlegada.read({}, { avisollegadaID: id, token: Cookies.get("token") }).done(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     var concat = "";
                     var concatPlanas = "";
-                    loadingStart();
+                    //loadingStart();
                     Error(data);
+
+                    cargarTituloFolio(data.FolioConfiguracion);
 
                     $("#TramitarPermiso").attr('disabled', 'disabled');
                     $("#AutorizarPermiso").attr('disabled', 'disabled');
 
-                    $.each(data.Proyectos, function (index, value) {
-                        concat += "," + value.ProyectoID;
-                        console.log(" concat:" + concat);
-                    });
-
-                    $("#ProyectoID").data("kendoMultiSelect").value(concat.split(","));
-
                     //Se carga el arreglo transportista
-                    if(data.Transportista.length > 0){
+                    if (data.Transportista.length > 0) {
                         CargarTransportista(data.Transportista[0].TransportistaID, data.Transportista[0].Nombre);
                         $("#TransportistaID").data("kendoComboBox").value(data.Transportista[0].Nombre);
                         ObtenerChoferEdicion(data.Transportista[0].TransportistaID);
                         $("#ChoferID").data("kendoComboBox").enable(false);
+                        ObtenerCamionEntradaMaterial();
+                        ObtenerPlanasEdicon(data);
                     }
 
                     if (data.Cliente) {
                         CargarCliente(data.Cliente.ClienteID, data.Cliente.Nombre);
                         $("#ClienteID").data("kendoComboBox").value(data.Cliente.Nombre);
+                        ObtenerCargarProyectos(data);
                     }
+
 
                     if (data.TipoAviso) {
                         CargarTipoAviso(data.TipoAviso.TipoAvisoID, data.TipoAviso.Nombre);
@@ -1573,12 +1183,12 @@
 
                     $.each(data.Plana, function (index, value) {
                         concatPlanas += "," + value.PlanaID;
-                        console.log(" concatPlanas:" + concatPlanas);
+                        //console.log(" concatPlanas:" + concatPlanas);
                     });
                     $("#PlanaID").data("kendoMultiSelect").value(concatPlanas.split(","));
 
                     //Se carga el arreglo Patio
-                    if(data.Patio.length > 0) {
+                    if (data.Patio.length > 0) {
                         CargarPatio(data.Patio[0].PatioID, data.Patio[0].Nombre);
                         $("#PatioID").data("kendoComboBox").value(data.Patio[0].Nombre);
                         if (!data.Patio[0].RequierePermisoAduana) {
@@ -1596,12 +1206,31 @@
                         CargarCamionEntradaMaterial(data.Tracto.VehiculoID, data.Tracto.Placas);
                         $("#Tracto").data("kendoComboBox").value(data.Tracto.Placas);
                     }
+                    var contador = 0;
+                    //if (creacionArchivos) {
+                    //    $("#listaArchivos tbody").empty();
+                    //    $.each(data.Archivos, function (index, value) {
+                    //        contador += 1;
+                    //        $("#listaArchivos tbody").append("<tr id='" + value.ArchivoID + "," + value.Extension + "'><td><a href='" + value.Url + "'>" + value.Nombre + "</a></td><td>" + value.TipoArchivo + "</td><td><a href='#' >" + "<span class='delete disable'></span>" + "</a></td></tr>");
+                    //    });
+                    //    if ($("#hdnCantidadArchivos").val() == contador) {
+                    //        limpiarUploadFiles();
+                    //        displayMessage("notificationslabel0084", '', '2');
+                    //        //HabilitarControlesSubirDocumentos();
+                    //        $("#divFolio").addClass("hidden");
+                    //    } else {
+                    //        $("#hdnCantidadArchivos").val(contador);
+                    //    };
 
-                    $("#listaArchivos tbody").empty();
-                    $.each(data.Archivos, function (index, value) {
-                        $("#listaArchivos tbody").append("<tr id='" + value.ArchivoID + "," + value.Extension + "'><td><a href='" + value.Url + "'>" + value.Nombre + "</a></td><td>" + value.TipoArchivo + "</td><td><a href='#' >" + "<span class='delete disable'></span>" + "</a></td></tr>");
-                    });
+                    //} else {
 
+                        $("#listaArchivos tbody").empty();
+                        $.each(data.Archivos, function (index, value) {
+                            contador += 1;
+                            $("#listaArchivos tbody").append("<tr id='" + value.ArchivoID + "," + value.Extension + "'><td><a href='" + value.Url + "'>" + value.Nombre + "</a></td><td>" + value.TipoArchivo + "</td><td><a href='#' >" + "<span class='delete disable'></span>" + "</a></td></tr>");
+                        });
+                        $("#hdnCantidadArchivos").val(contador);
+                    //}
                     //Permiso Aduana
                     if (data.PermisoAduana.length > 0) {
                         if (data.PermisoAduana[0].PermisoTramite) {
@@ -1621,26 +1250,40 @@
                             $("#hdPermisoAutorizado").val(1);
                             ocultarStatus();
                             $("#DetalleAvisoLlegada0085").show();
+                        }
+                        if (!data.PermisoAduana[0].PermisoTramite && !data.PermisoAduana[0].PermisoAutorizado) {
+                            $("#hdPermisoTramite").val("0");
+                            $("#hdPermisoAutorizado").val("0");
+                            $("#TramitarPermiso").removeAttr('disabled', 'disabled');
+                            $("#AutorizarPermiso").attr('disabled', 'disabled');
+                            $("#TramitarPermisoDiv").show();
+                            $("#AutorizarPermisoDiv").hide();
+                            ObtenerPatioRequierePermiso();
+                        } else {
+                            AsignarPaginaActualCookie();
+                            applySecurityPolicy(false);
                         };
+                    } else {
+                        AsignarPaginaActualCookie();
+                        applySecurityPolicy(false);
                     };
-                    loadingStop();
+                    //loadingStop();
                 });
             };
+            function AsignarPaginaActualCookie() {
+                Cookies.set("navegacion", "4", { path: '/' });
+            }
 
+            function CargarProyecto(id) {
+                Proyecto = {};
+                Proyecto = { ProyectoID: id };
+            };
             function CargarTransportista(id, value) {
                 Transportista = [];
                 _transportista = {};
                 _transportista["TransportistaID"] = id;
                 _transportista["Nombre"] = value;
                 Transportista.push(_transportista);
-            };
-
-            function CargarTransportistaCamion(id, value) {
-                TransportistaCamion = [];
-                _transportista = {};
-                _transportista["TransportistaID"] = id;
-                _transportista["Nombre"] = value;
-                TransportistaCamion.push(_transportista);
             };
 
             function CargarPatio(id, value) {
@@ -1667,14 +1310,6 @@
                 Chofer.push(_chofer);
             };
 
-            function CargarChoferCamion(id, value) {
-                ChoferCamion = [];
-                _chofer = {};
-                _chofer["ChoferID"] = id;
-                _chofer["Nombre"] = value;
-                ChoferCamion.push(_chofer);
-            };
-
             function CargarContacto(id, value) {
                 Contacto = [];
                 _contacto = {};
@@ -1682,31 +1317,7 @@
                 _contacto["Nombre"] = value;
                 Contacto.push(_contacto);
             };
-        
-            function CargarCamion(id, value) {
-                Camion = [];
-                _camion = {};
-                _camion["CamionID"] = id;
-                _camion["Placas"] = value;
-                Camion.push(_camion);
-            };
 
-            function CargarTipoVehiculoTracto(id, value) {
-                TipoVehiculoTracto = [];
-                _tipovehiculo = {};
-                _tipovehiculo["TipoVehiculoID"] = id;
-                _tipovehiculo["Nombre"] = value;
-                TipoVehiculoTracto.push(_tipovehiculo);
-            };
-
-            function CargarTipoVehiculoPlana(id, value) {
-                TipoVehiculoPlana = [];
-                _tipovehiculo = {};
-                _tipovehiculo["TipoVehiculoID"] = id;
-                _tipovehiculo["Nombre"] = value;
-                TipoVehiculoPlana.push(_tipovehiculo);
-            };
-        
             function CargarCliente(id, value) {
                 Cliente = {};
                 Cliente = { ClienteID: id, Nombre: value };
@@ -1716,7 +1327,7 @@
                 TipoAvisos = {};
                 TipoAvisos = { TipoAvisoID: id, Nombre: value };
             };
-            
+
             function CargarCamionEntradaMaterial(id, value) {
                 CamionEntradaMaterial = {};
                 CamionEntradaMaterial = { VehiculoID: id, Placas: value };
@@ -1724,304 +1335,79 @@
 
             function CargarTipoArchivo(id, value) {
                 TipoArchivo = {};
-                TipoArchivo = {TipoArchivoID: id, Nombre: value};
+                TipoArchivo = { TipoArchivoID: id, Nombre: value };
             };
 
             function VentanaModal(id) {
-            
-                var modalTitle = "";
 
+                var modalTitle = "";
+                var content = "";
+                var window = $("#window");
+                var height = "";
+                var iframe = false;
                 switch (id) {
                     case 1:
-                        $("#modalProveedor").hide();
-                        $("#modalPatio").hide();
-                        $("#modalChofer").hide();
-                        $("#modalPlana").hide();
-                        $("#modalCamion").hide();
-                        $("#modalTransportista").show();
+                        content = "@Url.Action("Transportista", "PopUps")";
                         modalTitle = "Transportista";
-                        break;
-                    case 2:
-                        $("#modalTransportista").hide();
-                        $("#modalPatio").hide();
-                        $("#modalChofer").hide();
-                        $("#modalPlana").hide();
-                        $("#modalCamion").hide();
-                        $("#modalProveedor").show();
-                        modalTitle = "Proveedor";
+                        height = "14%";
+                        iframe = true;
                         break;
                     case 3:
-                        $("#modalTransportista").hide();
-                        $("#modalPatio").hide();
-                        $("#modalChofer").hide();
-                        $("#modalProveedor").hide();
-                        $("#modalCamion").hide();
-                        $("#modalPlana").show();
+                        content = "@Url.Action("Plana", "PopUps")";
                         modalTitle = "Plana";
+                        height = "33%";
+                        iframe = true;
                         break;
                     case 4:
-                        $("#modalTransportista").hide();
-                        $("#modalProveedor").hide();
-                        $("#modalChofer").hide();
-                        $("#modalPlana").hide();
-                        $("#modalCamion").hide();
-                        $("#modalPatio").show();
+                        content = "@Url.Action("Patio", "PopUps")";
                         modalTitle = "Patio";
+                        height = "2%";
+                        iframe = true;
                         break;
                     case 5:
-                        $("#modalTransportista").hide();
-                        $("#modalProveedor").hide();
-                        $("#modalPatio").hide();
-                        $("#modalPlana").hide();
-                        $("#modalCamion").hide();
-                        $("#modalChofer").show();
+                        content = "@Url.Action("Chofer", "PopUps")";
                         modalTitle = "Chofer";
+                        height = "135px";
+                        iframe = true;
                         break;
                     case 6:
-                        $("#modalTransportista").hide();
-                        $("#modalProveedor").hide();
-                        $("#modalPatio").hide();
-                        $("#modalPlana").hide();
-                        $("#modalChofer").hide();
-                        $("#modalCamion").show();
+                        content = "@Url.Action("Tracto", "PopUps")";
                         modalTitle = "Tracto";
+                        height = "40%";
+                        iframe = true;
                         break;
                 };
-            
-                var window = $("#window");
-                var win = window.kendoWindow({
+
+                window.kendoWindow({
                     actions: false,
+                    content: content,
                     modal: true,
+                    actions: ["Close"],
                     title: modalTitle,
-                    resizable: false,
+                    resizable: true,
                     visible: false,
                     width: "32.6%",
                     minWidth: 660,
+                    height: height,
+                    iframe: iframe,
                     position: {
                         top: "10%",
                         left: "20%"
-                    }
+                    },
+                    open: onOpen,
+                    refresh: onRefresh
                 }).data("kendoWindow");
+
+                //Se actualiza el tamaño
+                $("#window").data("kendoWindow").setOptions({
+                    width: "32.6%",
+                    height: height,
+                });
+
                 window.data("kendoWindow").title(modalTitle);
                 window.data("kendoWindow").center().open();
             };
-            
 
-            function GuardarTransportista() {
-
-                TransportistaModal = [];
-                TransportistaModal[0] = { ContactoID: "", Nombre: "", Descripcion: "", Direccion: "", Telefono: "" };
-                TransportistaModal[0].ContactoID = Contacto[0].ContactoID;
-                TransportistaModal[0].Nombre = $("#Nombre_Transportista").val();
-                TransportistaModal[0].Descripcion = $("#Descripcion_Transportista").val();
-                TransportistaModal[0].Direccion = $("#Direccion_Transportista").val();
-                TransportistaModal[0].Telefono = $("#Telefono_Transportista").val();
-
-                console.log(TransportistaModal[0]);
-
-                $Transportista.Transportista.create(TransportistaModal[0], { token: Cookies.get("token") }).done(function (data) {
-                    LimpiarModalTransportista();
-                    if (Error(data)) {
-                        $("#window").data("kendoWindow").close();
-                        ObtenerTransportista();
-                        ObtenerTransportistaCamion();
-                    };
-                });
-            };
-       
-            //function GuardarProveedor() {
-            //    ProveedorModal = [];
-            //    ProveedorModal[0] = { ContactoID: "", Nombre: "", Descripcion: "", Direccion: "", Telefono: "" };
-            //    ProveedorModal[0].ContactoID = Contacto[0].ContactoID;
-            //    ProveedorModal[0].Nombre = $("#Nombre_Proveedor").val();
-            //    ProveedorModal[0].Descripcion = $("#Descripcion_Proveedor").val();
-            //    ProveedorModal[0].Direccion = $("#Direccion_Proveedor").val();
-            //    ProveedorModal[0].Telefono = $("#Telefono_Proveedor").val();
-
-            //    console.log(ProveedorModal[0]);
-
-            //    $Proveedor.Proveedor.create(ProveedorModal[0], { token: Cookies.get("token") }).done(function (data) {
-            //        LimpiarModalProveedor();
-            //        $("#window").data("kendoWindow").close();
-            //        ObtenerProveedor();
-            //    });
-            //};
-
-            function GuardarPatio() {
-                PatioModal = [];
-                PatioModal[0] = { Nombre: "", Propietario: "", Descripcion: "", RequierePermisoAduana: "" };
-                PatioModal[0].Nombre = $("#Nombre_Patio").val();
-                PatioModal[0].Propietario = $("#Propietario_Patio").val();
-                PatioModal[0].Descripcion = $("#Descripcion_Patio").val();
-                PatioModal[0].RequierePermisoAduana = $("#RequierePermisoAduana_Patio").is(":checked");
-
-                console.log(PatioModal[0]);
-
-                $Patio.Patio.create(PatioModal[0], { token: Cookies.get("token") }).done(function (data) {
-                    LimpiarModalPatio();
-                    if (Error(data)) {
-                        $("#window").data("kendoWindow").close();
-                        ObtenerPatio();
-                    };
-                });
-            };
-
-            function GuardarChofer() {
-                var transportistaID = Transportista.length > 0 ? Transportista[0].TransportistaID : "-1";
-
-                ChoferModal = [];
-                ChoferModal[0] = { TransportistaID: transportistaID, Nombre: "" };
-                ChoferModal[0].Nombre = $("#Nombre_Chofer").val();
-
-                console.log(JSON.stringify(ChoferModal[0]));
-
-                $Chofer.Chofer.create(ChoferModal[0], { token: Cookies.get("token") }).done(function (data) {
-                    console.log("Client.DummyChofer.create");
-                    LimpiarModalChofer();
-                    if (Error(data)) {
-                        $("#window").data("kendoWindow").close();
-                        ObtenerChofer(transportistaID);
-                    }
-                });
-            };
-
-            function GuardarPlana() {
-                var camionid = Camion.length > 0 ? Camion[0].CamionID : "-1";
-                PlanaModal = [];
-                PlanaModal[0] = { TipoVehiculoID: "", Placas: "", TarjetaCirculacion: "", PolizaSeguro: "", Unidad: "", Modelo: "", VehiculoID: "", ChoferID: "", TransPortistaID: "", TractoID: "" };
-
-                PlanaModal[0].TipoVehiculoID = TipoVehiculoPlana.length > 0 ? TipoVehiculoPlana[0].TipoVehiculoID : "-1";
-                PlanaModal[0].Placas = $("#Placas_Plana").val();
-                PlanaModal[0].TarjetaCirculacion = "";
-                PlanaModal[0].PolizaSeguro = "";
-                PlanaModal[0].Unidad = $("#Unidad_Plana").val();
-                PlanaModal[0].Modelo = $("#Modelo_Plana").val();
-                PlanaModal[0].VehiculoID = "";
-                PlanaModal[0].ChoferID = "";
-                PlanaModal[0].TransPortistaID = "";
-                PlanaModal[0].TractoID = camionid;
-                console.log("camionid: " + camionid);
-
-                $Plana.Plana.create(PlanaModal[0], { token: Cookies.get("token") }).done(function (data) {
-                    LimpiarModalPlana();
-                    if (Error(data)) {
-                        ObtenerPlanas();
-                        $("#window").data("kendoWindow").close();
-                    } 
-                });
-            };
-
-            function GuardarCamion() {
-                var transportistaID = TransportistaCamion.length > 0 ? TransportistaCamion[0].TransportistaID : "-1";
-                var choferid = ChoferCamion.length > 0 ? ChoferCamion[0].ChoferID : "-1";
-
-                CamionModal = [];
-                CamionModal[0] = { TipoVehiculoID: "", Placas: "", TarjetaCirculacion: "", PolizaSeguro: "", Unidad: "", Modelo: "", VehiculoID: "", ChoferID: "", TransportistaID: "", TractoID: "" };
-
-                CamionModal[0].TipoVehiculoID = TipoVehiculoTracto.length > 0 ? TipoVehiculoTracto[0].TipoVehiculoID : "-1";
-                CamionModal[0].Placas = $("#Placas_Camion").val();
-                CamionModal[0].TarjetaCirculacion = $("#TarjetaCirculacion_Camion").val();
-                CamionModal[0].PolizaSeguro = $("#PolizaSeguro").val();
-                CamionModal[0].Unidad = $("#Unidad_Camion").val();
-                CamionModal[0].Modelo = $("#Modelo_Camion").val();
-                CamionModal[0].VehiculoID = "";
-                CamionModal[0].ChoferID = choferid;
-                CamionModal[0].TransportistaID = transportistaID;
-                CamionModal[0].TractoID = "";
-
-                $Camion.Tracto.create(CamionModal[0], { token: Cookies.get("token") }).done(function (data) {
-                    console.log("Client.Camion.create");
-                    LimpiarModalCamion();
-                    if (Error(data)) {
-                        $("#window").data("kendoWindow").close();
-                        ObtenerCamionEntradaMaterial();
-                    };
-                });
-            };
-
-            function CancelarTransportista() {
-                LimpiarModalTransportista();
-                cerrarVentanaModal();
-                cancelarvalidacionRequeridosModalTransportista();
-            };
-
-            function CancelarPatio() {
-                LimpiarModalPatio();
-                cerrarVentanaModal();
-            };
-
-            function CancelarChofer() {
-                LimpiarModalChofer();
-                cerrarVentanaModal();
-                cancelarvalidacionRequeridosModalChofer();
-            };
-
-            function CancelarPlana() {
-                LimpiarModalPlana();
-                cerrarVentanaModal();
-                cancelarvalidacionRequeridosModalPlana();
-            };
-
-            function CancelarCamion() {
-                LimpiarModalCamion();
-                cerrarVentanaModal();
-                cancelarvalidacionRequeridosModalCamion();
-            };
-
-            function cerrarVentanaModal() {
-                $("#window").data("kendoWindow").close();
-            };
-
-            function LimpiarModalTransportista() {
-                $("#ContactoID_Transportista").data("kendoComboBox").value("");
-                $("#Nombre_Transportista").val("");
-                $("#Descripcion_Transportista").val("");
-                $("#Direccion_Transportista").val("");
-                $("#Telefono_Transportista").val("");
-                Contacto = [];
-            };
-
-            function LimpiarModalProveedor() {
-                //$("#ContactoID_Proveedor").data("kendoComboBox").value("");
-                $("#Nombre_Proveedor").val("");
-                $("#Descripcion_Proveedor").val("");
-                $("#Direccion_Proveedor").val("");
-                $("#Telefono_Proveedor").val("");
-                Contacto = [];
-            };
-
-            function LimpiarModalPatio() {
-                $("#Nombre_Patio").val("");
-                $("#Propietario_Patio").val("");
-                $("#Descripcion_Patio").val("");
-                $("#RequierePermisoAduana_Patio").attr("checked", false);
-            };
-
-            function LimpiarModalChofer() {
-                $("#Nombre_Chofer").val("");
-            };
-
-            function LimpiarModalPlana() {
-                $("#CamionID_Plana").data("kendoComboBox").value("");
-                $("#Placas_Plana").val("");
-                $("#Unidad_Plana").val("");
-                $("#Modelo_Plana").val("");
-                Camion = [];
-                TipoVehiculoPlana = [];
-            };
-
-            function LimpiarModalCamion() {
-                $("#TransportistaID_Camion").data("kendoComboBox").value("");
-                $("#ChoferID_Camion").data("kendoComboBox").value("");
-                $("#Placas_Camion").val("");
-                $("#TarjetaCirculacion_Camion").val("");
-                $("#PolizaSeguro").val("");
-                $("#Unidad_Camion").val("");
-                $("#Modelo_Camion").val("");
-                TransportistaCamion = [];
-                ChoferCamion = [];
-                TipoVehiculoTracto = [];
-            };
 
             function GenerarPermiso() {
                 if (folio == -1) {
@@ -2029,11 +1415,11 @@
                     return;
                 };
 
-                loadingStart();
+                //loadingStart();
                 $PermisoTramite.PermisoAduana.read({}, { folio: folio, token: Cookies.get("token") }).done(function (result) {
-                    console.log("$PermisoTramite.PermisoAduana.read");
-                    loadingStop();
-                    if(Error(result)){
+                    //console.log("$PermisoTramite.PermisoAduana.read");
+                    //loadingStop();
+                    if (Error(result)) {
                         $("#hdPermisoTramite").val(1);//Permiso en tramite
                         $("#TramitarPermiso").attr("disabled", "disabled");
                         $("#AutorizarPermisoDiv").show();
@@ -2064,32 +1450,70 @@
                 $("#FechaRecepcion").data("kendoDatePicker").value(fechakendo);
             };
 
+            function ObtenerCargarProyectos(data) {
+                var concat = "";
+                $Proyecto.Proyecto.read({ token: Cookies.get("token") }).done(function (result) {
+                    ControlErroresObjetosMultiselect("ProyectoID", result);
+                    var filters = [];
+                    filters.push({
+                        field: "ClienteID",
+                        operator: "eq",
+                        value: parseInt(Cliente.ClienteID)
+                    });
+                    $("#ProyectoID").data("kendoMultiSelect").dataSource.filter(filters);
+                    $.each(data.Proyectos, function (index, value) {
+                        concat += "," + value.ProyectoID;
+                        //console.log(" concat:" + concat);
+                    });
+                    $("#ProyectoID").data("kendoMultiSelect").value(concat.split(","));
+                });
+            }
             function ObtenerProyectos() {
                 $Proyecto.Proyecto.read({ token: Cookies.get("token") }).done(function (result) {
                     ControlErroresObjetosMultiselect("ProyectoID", result);
+                    var filters = [];
+                    filters.push({
+                        field: "ClienteID",
+                        operator: "eq",
+                        value: parseInt(Cliente.ClienteID)
+                    });
+                    $("#ProyectoID").data("kendoMultiSelect").dataSource.filter(filters);
                 });
             };
 
-            function ObtenerPlanas() {
-                $Plana.Plana.read({ token: Cookies.get("token") }).done(function (result) {
+            function ObtenerPlanasEdicon(data) {
+                var concatPlanas = "";
+                $Plana.Plana.read({ transportistaID: Transportista[0].TransportistaID, paginaID: Cookies.get("navegacion"), idioma: $("#language").data("kendoDropDownList").value(), token: Cookies.get("token") }).done(function (result) {
                     ControlErroresObjetosMultiselect("PlanaID", result);
+                    $.each(data.Plana, function (index, value) {
+                        concatPlanas += "," + value.PlanaID;
+                    });
+                    $("#PlanaID").data("kendoMultiSelect").value(concatPlanas.split(","));
                 });
             };
-
+            function ObtenerPlanas() {
+                if (typeof (Transportista[0]) != undefined && typeof (Transportista[0].TransportistaID) != undefined) {
+                    $Plana.Plana.read({ transportistaID: Transportista[0].TransportistaID, paginaID: Cookies.get("navegacion"), idioma: $("#language").data("kendoDropDownList").value(), token: Cookies.get("token") }).done(function (result) {
+                        ControlErroresObjetosMultiselect("PlanaID", result);
+                    });
+                }
+            };
             function ObtenerTransportista() {
-                $Transportista.Transportista.read({ esAvisoEntrada: 1, token: Cookies.get("token") }).done(function (result) {
+                $Transportista.Transportista.read({ esAvisoEntrada: 1, paginaID: Cookies.get("navegacion"), token: Cookies.get("token") }).done(function (result) {
+                    result = modificarResultTextoKendoCombobox("TransportistaID", result, $("#language").data("kendoDropDownList").value());
                     ControlErroresObjetosComboBox("TransportistaID", result);
                 });
             };
 
             function ObtenerPatio() {
-                $Patio.Patio.read({ esAvisoEntrada: 1, token: Cookies.get("token") }).done(function (result) {
+                $Patio.Patio.read({ esAvisoEntrada: 1, paginaID: Cookies.get("navegacion"), token: Cookies.get("token") }).done(function (result) {
+                    result = modificarResultTextoKendoCombobox("PatioID", result, $("#language").data("kendoDropDownList").value());
                     ControlErroresObjetosComboBox("PatioID", result);
                 });
             };
 
             function ObtenerProveedor() {
-                $Proveedor.Proveedor.read({ esAvisoEntrada: 1, token: Cookies.get("token") }).done(function (result) {
+                $Proveedor.Proveedor.read({ esAvisoEntrada: 1, paginaID: Cookies.get("navegacion"), token: Cookies.get("token") }).done(function (result) {
                     ControlErroresObjetosComboBox("ProveedorID", result);
                 });
             };
@@ -2100,7 +1524,7 @@
                 } else {
                     $("#ChoferID").data("kendoComboBox").enable(true);
                 };
-                $folioEntradaMaterial.Listado.read({ tipoListado: 3, token: Cookies.get("token"), parametroBusqueda: transportistaID }).done(function (result) {
+                $folioEntradaMaterial.Listado.read({ tipoListado: 3, token: Cookies.get("token"), idioma: $("#language").data("kendoDropDownList").value(), paginaID: Cookies.get("navegacion"), parametroBusqueda: transportistaID }).done(function (result) {
                     if (Error(result)) {
                         if (result.length > 0) {
                             $("#ChoferID").data("kendoComboBox").dataSource.data(result);
@@ -2125,7 +1549,7 @@
                     $("#ChoferID").data("kendoComboBox").enable(true);
                 };
 
-                $folioEntradaMaterial.Listado.read({ tipoListado: 3, token: Cookies.get("token"), parametroBusqueda: transportistaID }).done(function (result) {
+                $folioEntradaMaterial.Listado.read({ tipoListado: 3, token: Cookies.get("token"), idioma: $("#language").data("kendoDropDownList").value(), paginaID: Cookies.get("navegacion"), parametroBusqueda: transportistaID }).done(function (result) {
                     $("#ChoferID").data("kendoComboBox").value("");
                     if (Error(result)) {
                         if (result.length > 0) {
@@ -2138,69 +1562,41 @@
                         Chofer = [];
                         $("#ChoferID").data("kendoComboBox").dataSource.data([]);
                     };
-                    
+                    AsignarPaginaActualCookie();
+                    applySecurityPolicy(false);
                 });
             };
 
-            
-            function ObtenerChoferCamion() {
-                $Chofer.Chofer.read({ esAvisoEntrada: 0, token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("ChoferID_Camion", result);
-                });
-            };
-        
-            function ObtenerCamion() {
-                $Camion.Tracto.read({ esAvisoEntrada: 0, token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("CamionID_Plana", result);
-                });
-            };
-
-            function ObtenerTipoVehiculoPlana() {
-                $TipoVehiculo.TipoVehiculo.read({ token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("TipoVehiculo_Plana", result);
-                });
-            };
-
-            function ObtenerTipoVehiculoTracto() {
-                $TipoVehiculo.TipoVehiculo.read({ token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("TipoVehiculo_Camion", result);
-                });
-            };
 
             function ObtenerCamionEntradaMaterial() {
-                $Camion.Tracto.read({ esAvisoEntrada: 1, token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("Tracto", result);
-                });
+                if (typeof (Transportista[0]) != undefined && typeof (Transportista[0].TransportistaID) != undefined) {
+                    $Camion.Tracto.read({ transportistaID: Transportista[0].TransportistaID, esAvisoEntrada: 1, paginaID: Cookies.get("navegacion"), idioma: $("#language").data("kendoDropDownList").value(), token: Cookies.get("token") }).done(function (result) {
+                        ControlErroresObjetosComboBox("Tracto", result);
+                    });
+                }
             };
 
             function ObtenerCliente() {
-                //ObtenerDatosControl("ClienteID");
-                $Cliente.Cliente.read({ token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("ClienteID", result);
-                });
+                if (typeof (Patio[0]) != undefined && typeof (Patio[0].PatioID) != undefined) {
+                    $Cliente.Cliente.read({ token: Cookies.get("token"), patioID: Patio[0].PatioID }).done(function (result) {
+                        ControlErroresObjetosComboBox("ClienteID", result);
+                    });
+                }
             };
-            
+
             function ObtenerTipoAviso() {
                 $TipoAviso.TipoAviso.read({ token: Cookies.get("token") }).done(function (result) {
                     ControlErroresObjetosComboBox("TipoAvisoID", result);
                 });
             };
 
-            function ObtenerContacto() {
-                $Contacto.Contacto.read({ token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("ContactoID_Transportista", result);
-                });
 
-            };
-            function ObtenerTransportistaCamion() {
-                $Transportista.Transportista.read({ esAvisoEntrada: 0, token: Cookies.get("token") }).done(function (result) {
-                    ControlErroresObjetosComboBox("TransportistaID_Camion", result);
-                });
-            };
-            
             function ObtenerTipoArchivo() {
                 $TipoArchivo.TipoArchivo.read({ token: Cookies.get("token") }).done(function (result) {
                     ControlErroresObjetosComboBox("TipoArchivo", result);
+                    $("#TipoArchivo").data("kendoComboBox").select(4);
+                    CargarTipoArchivo($("#TipoArchivo").data("kendoComboBox").value());
+                    _tipoArchivo = $("#TipoArchivo").data("kendoComboBox").value();
                 });
             };
 
@@ -2223,7 +1619,8 @@
                         $("#TramitarPermiso").attr('disabled', 'disabled');
                         $("#AutorizarPermiso").attr('disabled', 'disabled');
                     };
-                    
+                    AsignarPaginaActualCookie();
+                    applySecurityPolicy(false);
                 });
             };
 
@@ -2233,15 +1630,26 @@
                     return;
                 };
 
-                loadingStart();
-                $AvisoLlegada.AvisoLlegada.destroy({}, { folio: folio, token: Cookies.get("token") }).done(function (result) {
-                    Error(result);
-                    loadingStop();
-                    ocultarStatus();
-                    $("#DetalleAvisoLlegada0086").show();
-                    displayMessage("notificationslabel0032", "", '0');
-                    var detalleIdeaUrl = "@Url.Action("ListadoAvisoLLegada", "AvisoLLegada")";
-                    window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
+                $PaseSalida.PaseSalida.read({ folioAvisoLlegadaID: folio, token: Cookies.get("token") }).done(function (result) {
+                    if (Error(result)) {
+                        if (result) {
+                            displayMessage("notificationslabel0080", "", '1');
+
+                        } else {
+                            if (confirm("Estas seguro de cancelar el folio de entrada?")) {
+                                //loadingStart();
+                                $AvisoLlegada.AvisoLlegada.destroy({}, { folio: folio, token: Cookies.get("token") }).done(function (result) {
+                                    Error(result);
+                                    //loadingStop();
+                                    ocultarStatus();
+                                    $("#DetalleAvisoLlegada0086").show();
+                                    displayMessage("notificationslabel0032", "", '0');
+                                    var detalleIdeaUrl = "@Url.Action("ListadoAvisoLLegada", "AvisoLLegada")";
+                                    window.location.href = detalleIdeaUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
+                                });
+                            };
+                        }
+                    }
                 });
             };
 
@@ -2255,7 +1663,7 @@
 
             function DesahabilitarObtenerDocumentosAvisoLlegada() {
                 $DocumentoAvisoLlegada.DocumentoAvisoLlegada.read({ folio: folio, token: Cookies.get("token") }).done(function (result) {
-                    loadingStart();
+                    //loadingStart();
                     if (Error(result)) {
                         if (result.length > 0) {
                             $("#listaArchivos tbody").empty();
@@ -2264,13 +1672,44 @@
                             });
                         }
                     };
-                    loadingStop();
+                    //loadingStop();
+                });
+            };
+
+
+            function HabilitarObtenerDocumentosAvisoLlegadaUploadFile(uploadfile) {
+                $DocumentoAvisoLlegada.DocumentoAvisoLlegada.read({ folio: folio, token: Cookies.get("token") }).done(function (result) {
+                    //loadingStart();
+                    if (Error(result)) {
+                        var contador = 0;
+                        if (result.length > 0) {
+                            $("#listaArchivos tbody").empty();
+                            $.each(result, function (index, value) {
+                                contador += 1;
+                                $("#listaArchivos tbody").append("<tr id='" + value.DocumentoID + "," + value.Extencion + "'><td><a target='_blank' href='" + value.Url + "' >" + value.Nombre + "</a></td><td>" + value.TipoArchivo + "</td><td><a href='#' onclick='borrarArchivo(" + value.DocumentoID + ",$(this));' >" + "<span class='delete'></span>" + "</a></td></tr>");
+                            });
+                            if ($("#hdnCantidadArchivos").val() == contador) {
+                                limpiarUploadFiles();
+                                displayMessage("notificationslabel0084", '', '2');
+                            } else {
+                                $("#hdnCantidadArchivos").val(contador);
+                            }
+                        } else {
+                            if ($("#hdnCantidadArchivos").val() == contador) {
+                                limpiarUploadFiles();
+                                displayMessage("notificationslabel0084", '', '2');
+                            } else {
+                                $("#hdnCantidadArchivos").val(contador);
+                            }
+                        }
+                    };
+                    //loadingStop();
                 });
             };
 
             function HabilitarObtenerDocumentosAvisoLlegada() {
                 $DocumentoAvisoLlegada.DocumentoAvisoLlegada.read({ folio: folio, token: Cookies.get("token") }).done(function (result) {
-                    loadingStart();
+                    //loadingStart();
                     if (Error(result)) {
                         if (result.length > 0) {
                             $("#listaArchivos tbody").empty();
@@ -2279,12 +1718,31 @@
                             });
                         }
                     };
-                    loadingStop();
+                    $("<style>")
+                                .prop("type", "text/css")
+                                .html("\
+                                .k-upload-selected {\
+                                    display: block;\
+                                }")
+                                .appendTo("head");
+                    //loadingStop();
                 });
+            };
+
+            function limpiarUploadFiles() {
+                $(".k-upload-files").remove();
+                $(".k-upload-status").remove();
+                $(".k-upload-selected").remove();
+                $(".k-upload.k-header").addClass("k-upload-empty");
+                $(".k-upload-button").removeClass("k-state-focused");
             };
 
             function DescargarArchivo(a) {
                 window.open(a.innerHTML);
+            };
+
+            function Incidencias() {
+                window.open(_incidenciasURL + "?leng=" + $("#language").data("kendoDropDownList").value() + "&LevantarIncidencia=1&ReferenciaID=" + folio + "&TipoIncidencia=1&Clasificacion=1");
             };
 
             function Error(data) {
@@ -2292,7 +1750,7 @@
                     if (data.ReturnCode != 200) {
                         if (data.ReturnCode == 401) {
                             removeUserSession();
-                            return true;
+                            return false;
                         } else {
                             displayMessage("notificationslabel0008", data.ReturnMessage, '2');
                             return false;
@@ -2304,26 +1762,22 @@
                     return true;
                 }
             };
-            }
+    }
 
-            @section JavascriptDocumentReadyFunctions {
-            //Your partial view document ready function
-            CargaInicial();
+    @section JavascriptDocumentReadyFunctions {
+    //Your partial view document ready function
+    CargaInicial();
 
-            if (folio != -1)
-            {
-                CargaInicialEdicion(folio);
-            }
+    if (folio != -1) {
+        CargaInicialEdicion(folio);
+    }
 
+    // $("#hdnNavegacion").val(Cookies.get("navegacion"));
 
-            $authorizationModel["Permiso Aduana"] = $PermisoAduanaModel;
-            $authorizationModel["Aviso Entrada"] = $AvisoLLegadaModel;
-            $authorizationModel["Patio"] = $PatioModel;
-            $authorizationModel["Transportista"] = $TransportistaModel;
-            $authorizationModel["Chofer"] = $ChoferModel;
-            $authorizationModel["Tracto"] = $TractoModel;
-            $authorizationModel["Plana"] = $PlanaModel;
-            
+    $authorizationModel["Permiso Aduana"] = $PermisoAduanaModel;
+    $authorizationModel["Aviso Entrada"] = $AvisoLLegadaModel;
+    AsignarPaginaActualCookie();
+    applySecurityPolicy(false);
     }
 
     @section JavascriptDocumentReadyHomeCookie {

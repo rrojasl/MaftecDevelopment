@@ -7,9 +7,9 @@
     <li>
         <a href="@Url.Action("landing", "Home")"><span id="ListadoOrdenRecepcion0025"></span></a>
     </li>
-    <li>
+    @*<li>
         <a href="@Url.Action("DashboardRecepcionAlmacenaje", "DashboardRecepcionAlmacenaje")"><span id="ListadoOrdenRecepcion0027"></span></a>
-    </li>
+    </li>*@
     <li class="active">
         <a href="@Url.Action("ListadoOrdenRecepcion", "OrdenRecepcion")"><span id="ListadoOrdenRecepcion0026"></span></a>
     </li>
@@ -17,37 +17,37 @@
 
 <div class="form clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="formNav filtersFields clearfix">
                 <div class="row">
-                    <div class="col-sm-3 col-md-4 col-lg-4 extralongButton">
+                    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4 extralongButton">
                         <div class="button-section">
                             <button id="Nuevo" type="button" class="btn btn-newArrival btn-yellow"><span id="ListadoOrdenRecepcion0001"></span></button>
                         </div>
                     </div>
-                    <div class="col-sm-9 col-md-8 col-lg-8 filter-section">
+                    <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8 filter-section">
                         <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <label id="ListadoOrdenRecepcion0002"></label>
                                 <input id="ClienteID" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <label id="ListadoOrdenRecepcion0003"></label>
                                 <input id="ProyectoID" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <label id="ListadoOrdenRecepcion0004"></label>
                                 <input id="FolioAvisoEntradaID" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <label id="ListadoOrdenRecepcion0005"></label>
                                 <input id="FechaInic" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <label id="ListadoOrdenRecepcion0006"></label>
                                 <input id="FechaFinal" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                                 <label id="ListadoOrdenRecepcion0007"></label>
                                 <input id="PeriodoTiempo" class="" />
                             </div>
@@ -56,7 +56,17 @@
                 </div>
             </div>
         </div>
-        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group col-xs-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 listado">
+            <div class="row">
+                <div id="filterContainer" class="quick-filters col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="clearfix">
+                        <input id="FechaOrdenRecepcion" class="quickFilters general-input" />
+                        <input id="OrdenRecepcion" class="quickFilters general-input" />
+                        <input id="ImprimirOrden" class="quickFilters general-input" disabled />
+                        <input id="ImprimirEtiquetas" class="quickFilters general-input" disabled />
+                    </div>
+                </div>
+            </div>
             <div id="grid"></div>
         </div>
     </div>
@@ -65,17 +75,20 @@
 <script>
     @section JavascriptGlobalVariables 
     {
+        var detailID=0;
     var Cliente = {}, Proyecto = {}, FolioAvisoEntrada = {}, FechaInic, FechaFinal, PeriodoTiempo, resultadoJson;
     var _generarOrdenUrl = "@Url.Action("GenerarOrdenRecepcion", "OrdenRecepcion")";
     var _detalleOrdenUrl = "@Url.Action("DetalleOrdenRecepcion", "OrdenRecepcion")";
     var _formatoEtiquetasUrl = "@Url.Action("FormatoEtiquetas", "OrdenRecepcion")";
+    var _UrlReporte = $UrlReportingServices;
 
     var $ListadoOrdenRecepcionModel = {
         listContainer: {
-            create: "#Nuevo",
-            list: "#grid",
+            create: ".button-section",
+            list: ".listado",
             detail: ".detailLink",
-            destroy: ".k-grid-Cancelar"
+            destroy: ".k-grid-Cancelar",
+            createIncidence: ""
         },
     };
     }
@@ -88,11 +101,44 @@
     };
 
     function changeLanguageCall() {
+        var tmp = removeGrid($("#grid"));
         cargarInicialGrid();
+        $("#grid").data("kendoGrid").dataSource.data(tmp);
         createPeriodoTiempo();
     };
 
     function CargaInicial() {
+        $("#FechaOrdenRecepcion").val("");
+        $("#OrdenRecepcion").val("");
+        $("#ImprimirOrden").val("");
+        $("#ImprimirEtiquetas").val("");
+
+        $("#FechaOrdenRecepcion").keyup(function () {
+            var ds = $("#grid").data("kendoGrid").dataSource;
+            ds.filter([
+                {
+                    "field": "FechaOrdenRecepcion",
+                    "operator": "Contains",
+                    "value": this.value
+                }
+            ]);
+            if(!$("#FechaOrdenRecepcion").val().length){ $("#FechaOrdenRecepcion").parent().children("a.k-state-active").removeClass("k-state-active");}
+            $("#FechaOrdenRecepcion").focus();
+        });
+
+        $("#OrdenRecepcion").keyup(function () {
+            var ds = $("#grid").data("kendoGrid").dataSource;
+            ds.filter([
+                {
+                    "field": "OrdenRecepcion",
+                    "operator": "Contains",
+                    "value": this.value
+                }
+            ]);
+            if(!$("#OrdenRecepcion").val().length){ $("#OrdenRecepcion").parent().children("a.k-state-active").removeClass("k-state-active");}
+            $("#OrdenRecepcion").focus();
+        });
+
         $("#Nuevo").click(function () {
             window.location.href = _generarOrdenUrl + "?leng=" + $("#language").data("kendoDropDownList").value();
         });
@@ -101,14 +147,15 @@
             dataTextField: "Nombre",
             dataValueField: "ClienteID",
             select: function (e) {
-                var dataItem = this.dataItem(e.item.index());
-                CargarCliente(dataItem.ClienteID, dataItem.Nombre);
-
             },
             change: function (e) {
+                var dataItem = this.dataItem();
+                dataItem!==undefined ? CargarCliente(dataItem.ClienteID, dataItem.Nombre):CargarCliente("", "");
                 var value = this.value();
-                if (!value) {
+                if (!value || this.selectedIndex == -1) {
+                    messageindexKendoCombobox(this);
                     Cliente = {};
+                    this.value("");
                 }
                 Filtros();
             },
@@ -120,17 +167,20 @@
             dataTextField: "Nombre",
             dataValueField: "ProyectoID",
             select: function (e) {
-                var dataItem = this.dataItem(e.item.index());
-                CargarProyecto(dataItem.ProyectoID, dataItem.Nombre);
             },
             change: function (e) {
+                var dataItem = this.dataItem();
+                dataItem!==undefined ? CargarProyecto(dataItem.ProyectoID, dataItem.Nombre):CargarProyecto("", "");
                 var value = this.value();
 
-                if (!value) {
+                if (!value || this.selectedIndex == -1) {
+                    messageindexKendoCombobox(this);
                     Proyecto = {};
+                    this.value("");
                 }
                 Filtros();
             },
+            dataBound: function(e){checkIfOne(this);},
             filter: "contains",
         });
 
@@ -138,18 +188,20 @@
 
 
         $("#FolioAvisoEntradaID").kendoComboBox({
-            dataTextField: "id",
-            dataValueField: "value",
+            dataTextField: "value",
+            dataValueField: "id",
             filter: "contains",
             select: function (e) {
-                var dataItem = this.dataItem(e.item.index());
-                CargarFolio(dataItem.id);
             },
             change: function (e) {
+                var dataItem = this.dataItem();
+                dataItem!==undefined ? CargarFolio(dataItem.id):CargarFolio("");
                 var value = this.value();
 
-                if (!value) {
+                if (!value || this.selectedIndex == -1) {
+                    messageindexKendoCombobox(this);
                     FolioAvisoEntrada = {};
+                    this.value("")
                 }
                 Filtros();
             },
@@ -163,27 +215,50 @@
         FechaFinal = new kendo.ui.DatePicker($("#FechaFinal"));
 
         $("#FechaInic").bind("change", function () {
-            Filtros();
+            if (!$("#FechaInic").data("kendoDatePicker").value() && this.value!=="") {
+                $("#FechaInic").css("color","#EB4D50");
+                displayMessage("notificationslabel0082","","2")
+            }else{
+                $("#FechaInic").attr("style","");
+                Filtros();
+            }
         });
 
         $("#FechaFinal").bind("change", function () {
-            Filtros();
+            if (!$("#FechaFinal").data("kendoDatePicker").value() && this.value!=="") {
+                $("#FechaFinal").css("color","#EB4D50");
+                displayMessage("notificationslabel0082","","2")
+            }else{
+                $("#FechaFinal").attr("style","");
+                Filtros();
+            }
         });
 
         ObtenerFechasporDefecto();
         Filtros();
     };
 
+    function getFilterG(){
+        return {
+            FechaOrdenRecepcion: { type: "date" },
+            OrdenRecepcion: { type: "number" },
+            OrdenRecepcionID: {type: "string"}
+        }
+    }
+
     function cargarInicialGrid() {
+
+        $("#FechaOrdenRecepcion").val("");
+        $("#OrdenRecepcion").val("");
+        $("#ImprimirOrden").val("");
+        $("#ImprimirEtiquetas").val("");
+
         var grid = $("#grid").kendoGrid({
             dataSource: {
                 data: resultadoJson,
                 schema: {
                     model: {
-                        fields: {
-                            FechaOrdenRecepcion: { type: "string" },
-                            OrdenRecepcion: { type: "int" }
-                        }
+                        fields: getFilterG(),
                     }
                 },
                 serverPaging: false,
@@ -197,61 +272,74 @@
             autoHeight: true,
             sortable: true,
             scrollable: false,
-            filterable: {
-                extra: false,
-                operators: {
-                    string: {
-                        startswith: "Starts with",
-                        eq: "Is equal to",
-                        neq: "Is not equal to"
-                    }
-                }
-            },
+            filterable: getKendoGridFilterable($("#language").data("kendoDropDownList").value()),
             pageable: {
                 refresh: false,
                 pageSizes: [10, 15, 20],
                 info: false,
                 input: false,
                 numeric: true,
+                buttonCount: 2
             },
             detailInit: detailInit,
             columns: [
-                { field: "FechaOrdenRecepcion", title: _dictionary.ListadoOrdenRecepcion0019[$("#language").data("kendoDropDownList").value()]},
-                { field: "OrdenRecepcion", title: _dictionary.ListadoOrdenRecepcion0020[$("#language").data("kendoDropDownList").value()], template: "<a class='detailLink' onclick='mostrarDetalle(#:OrdenRecepcion#)'>#:OrdenRecepcion#</a>" },
+                { field: "FechaOrdenRecepcion", title: _dictionary.ListadoOrdenRecepcion0019[$("#language").data("kendoDropDownList").value()], format: "{0:dd/MM/yyyy}", },
+                { field: "OrdenRecepcion", title: _dictionary.ListadoOrdenRecepcion0020[$("#language").data("kendoDropDownList").value()], template: "<a class='detailLink' onclick='mostrarDetalle(#:OrdenRecepcionID#)'>#:OrdenRecepcion#</a>" },
                 { command: { text: _dictionary.ListadoOrdenRecepcion0023[$("#language").data("kendoDropDownList").value()], click: ImprimirOrden }, title: " ", width: "99px" },
                 { command: { text: _dictionary.ListadoOrdenRecepcion0029[$("#language").data("kendoDropDownList").value()], click: ImprimirEtiquetas }, title: " ", width: "99px" },
+                { field: "OrdenRecepcionID", title: _dictionary.ListadoOrdenRecepcion0020[$("#language").data("kendoDropDownList").value()], hidden: true}
                 //{ command: { text: _dictionary.ListadoOrdenRecepcion0028[$("#language").data("kendoDropDownList").value()], click: CancelarOrden }, title: " ", width: "99px" }
             ],
             dataBound: function (e) {
-                $(".k-grid input.k-textbox").prop('readonly', true);
-                $(".k-grid td .k-button").text('');
-                $(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
+                checkTH(this);
+                quickHeadFilter(this);
+                //$(".k-grid input.k-textbox").prop('readonly', true);
+                //$(".k-grid td .k-button").text('');
+                //$(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
+
+                //$("th[data-field='FechaOrdenRecepcion']").append($("#FechaOrdenRecepcion"));
+                //$("th[data-field='OrdenRecepcion']").append($("#OrdenRecepcion"));
+
+                //$("#FechaOrdenRecepcion").click(function( event ) {event.stopPropagation();});
+                //$("#OrdenRecepcion").click(function( event ) {event.stopPropagation();});               
             }
         }).getKendoGrid();
     };
 
+    function getDetFields(){
+        return {
+            FolioConfiguracion: { type: "string" },
+            AvisoEntrada: { type: "string" },
+            ItemCode: { type: "string" },
+            Cantidad: { type: "number" },
+        }
+    }
+
     function detailInit(e) {
-        $("<div/>").appendTo(e.detailCell).kendoGrid({
+        $("<div id='detail"+ detailID++ +"'/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
                 data: e.data.Detalle,
                 schema: {
                     model: {
-                        fields: {
-                            ItemCode: { type: "string" },
-                            Cantidad: { type: "int" }
-                        }
+                        fields: getDetFields(),
                     }
                 }
             },
             autoBind: true,
             scrollable: false,
             sortable: false,
+            filterable: getKendoGridFilterable($("#language").data("kendoDropDownList").value()),
             columns: [
-                { field: "AvisoEntrada", title: _dictionary.ListadoOrdenRecepcion0024[$("#language").data("kendoDropDownList").value()], width: "110px", },
+                { field: "FolioConfiguracion", title: _dictionary.ListadoOrdenRecepcion0024[$("#language").data("kendoDropDownList").value()], width: "110px", },
                 { field: "Itemcode", title: _dictionary.ListadoOrdenRecepcion0021[$("#language").data("kendoDropDownList").value()], width: "110px", },
                 { field: "Cantidad", title: _dictionary.ListadoOrdenRecepcion0022[$("#language").data("kendoDropDownList").value()], width: "50px" },
+                { field: "AvisoEntrada", title: _dictionary.ListadoOrdenRecepcion0024[$("#language").data("kendoDropDownList").value()], width: "110px",hidden:true },
                 //{ command: { text: _dictionary.ListadoOrdenRecepcion0028[$("#language").data("kendoDropDownList").value()], click: CancelarItemCode }, title: " ", width: "99px" }
-            ]
+            ],
+            dataBound:function(e){
+                checkTH(this);
+                quickHeadFilter(this);
+            }
         });
     };
 
@@ -279,15 +367,32 @@
         };
     };
 
+    function ArregloPDF(id) {
+        var PDF = { TipoReporte: 1, FolioOrdenRecepcion: id};
+        return PDF;
+    }
+
     function ImprimirEtiquetas(e) {
-        alert("Esta pendiente, se realizara por reporting services");
-        return;
-        //e.preventDefault();
-        //var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
-        //var ordenRecepcionID = dataItem.OrdenRecepcion
-        //window.open(_formatoEtiquetasUrl + "?leng=" + $("#language").data("kendoDropDownList").value() + "&OrdenRecepcionID=" + ordenRecepcionID);
-    };
+        //alert("Esta pendiente ImprimirEtiquetas, se realizara por reporting services");
+        //return;
+        e.preventDefault();
+        var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+        var ordenRecepcionID = dataItem.OrdenRecepcion
+
+        var pdf = ArregloPDF(ordenRecepcionID);
+        downloadPDF($Reporte.Reporte.urlNoId, pdf);
         
+
+        //window.open(_UrlReporte + "?%2fReportes%2fFormato+de+Etiquetas&rs:Command=Render" + "&OrdenRecepcionID=" + ordenRecepcionID + "&rc:Toolbar=false&rs:Format=PDF", '_blank');
+    };
+
+    function downloadPDF(url, pdf) {
+        var link = document.createElement("a");
+        link.href = url + "?data=" + encodeURI(JSON.stringify(pdf)) + "&token=" + Cookies.get("token");
+        link.target = "_blank";
+        displayMessage("notificationslabel0100", "", "2")
+        link.dispatchEvent(new Event("click"));
+    }
     function ObtenerFechasporDefecto() {
         var fechaFinal = new Date();
         var fechainicio = new Date(fechaFinal.getTime() - (7 * 24 * 3600 * 1000));
@@ -317,7 +422,7 @@
         $("#FechaInic").data("kendoDatePicker").value(fechaInicialkendo);
         $("#FechaFinal").data("kendoDatePicker").value(fechaFinalkendo);
     };
-    
+
     function createPeriodoTiempo() {
         $("#PeriodoTiempo").kendoComboBox({
             dataTextField: "Periodo",
@@ -330,17 +435,20 @@
                 { "PeriodoID": "5", "Periodo": _dictionary.ListadoOrdenRecepcion0018[$("#language").data("kendoDropDownList").value()] }
             ],
             select: function (e) {
-                var dataItem = this.dataItem(e.item.index());
-
-                CargarPeriodoTiempo(dataItem.PeriodoID);
             },
             change: function (e) {
+                var dataItem = this.dataItem();
+                dataItem!==undefined ? CargarPeriodoTiempo(dataItem.PeriodoID):CargarPeriodoTiempo("");
                 var value = this.value();
 
-                if (!value) {
+                if (!value || this.selectedIndex == -1) {
+                    messageindexKendoCombobox(this);
                     PeriodoTiempo = [];
+                    this.value("");
                 }
                 ObtenerFechasporPeriodo(value);
+
+                Filtros();
             },
             filter: "contains",
         });
@@ -349,12 +457,34 @@
     function ObtenerFechasporPeriodo(id) {
         var fechaInicio = FechaFinal.value();
         var fechaFin = FechaFinal.value();
-
         if ($("#language").data("kendoDropDownList").value() == "es-MX") {
-            format = "dd/MM/yyyy";
-        } else {
-            format = "MM/dd/yyyy";
+                    format = "dd/MM/yyyy";
+                } else {
+                    format = "MM/dd/yyyy";
         }
+
+
+        if (!fechaInicio) {
+            var todayInicio = new Date();
+            var curr_dateInicio = todayInicio.getDate();
+            var curr_monthInicio = todayInicio.getMonth() + 1;
+            var curr_yearInicio = todayInicio.getFullYear();
+
+            var todayInicial = new Date(curr_yearInicio, curr_monthInicio - 1, curr_dateInicio);
+            fechaInicio = kendo.parseDate(todayInicial, format);
+        }
+
+        if (!fechaFin) {
+            var todayFinal = new Date();
+            var curr_dateFinal = todayFinal.getDate();
+            var curr_monthFinal = todayFinal.getMonth() + 1;
+            var curr_yearFinal = todayFinal.getFullYear();
+
+            var todayFinal = new Date(curr_yearFinal, curr_monthFinal - 1, curr_dateFinal);
+            fechaFin = kendo.parseDate(todayFinal, format);
+        }
+
+        
 
         var curr_date = fechaFin.getDate();
         var curr_month = fechaFin.getMonth() + 1;
@@ -379,6 +509,9 @@
             case 5: //Año
                 fechaInicio.setFullYear(fechaInicio.getFullYear() - 1);
                 break;
+            default:
+                fechaInicio.setDate(fechaInicio.getDate() - 7);
+                break;
         }
 
         var curr_date0 = fechaInicio.getDate();
@@ -397,7 +530,7 @@
         Cliente = {};
         Cliente = { ClienteID: id };
     };
-    
+
     function CargarProyecto(id, value) {
         Proyecto = {};
         Proyecto = { ProyectoID: id, Nombre: value };
@@ -412,7 +545,7 @@
         PeriodoTiempo = {};
         PeriodoTiempo = { PeriodoTiempo: id };
     };
-    
+
     function ControlErroresObjetosComboBox(control, result) {
         if (Error(result)) {
             $("#" + control).data("kendoComboBox").dataSource.data(result);
@@ -446,7 +579,7 @@
     };
 
     function AccionesListado(accion) {
-        loadingStart();
+        //loadingStart();
         var Listado;
         Listado = ArregloListado(accion);
 
@@ -463,19 +596,30 @@
                         $("#grid").data("kendoGrid").dataSource.data([]);
                         $("#grid").data("kendoGrid").dataSource.page(0);
                     };
+                    AsignarPaginaActualCookie();
                     applySecurityPolicy(false);
                 };
             };
-            loadingStop();
+            //loadingStop();
         });
     };
-
+    function AsignarPaginaActualCookie() {
+        Cookies.set("navegacion", "15", { path: '/' });
+    }
     function ArregloListado(accion) {
         var Listado;
         Listado = { FolioAvisoEntradaID: "", ProyectoID: "", ClienteID: "", FechaInicial: "", FechaFinal: "", token: "" };
 
         var d = new Date($("#FechaInic").data("kendoDatePicker").value());
         var d1 = new Date($("#FechaFinal").data("kendoDatePicker").value());
+
+        if (d.getFullYear() == "1969") {
+            d = new Date();
+            d.setDate(d.getDate() - 30);
+        }
+        if (d1.getFullYear() == "1969") {
+            d1 = new Date();
+        }
 
         Listado.FolioAvisoLlegadaID = FolioAvisoEntrada.FolioAvisoEntradaID ? FolioAvisoEntrada.FolioAvisoEntradaID : "";
         Listado.ProyectoID = Proyecto.ProyectoID ? Proyecto.ProyectoID : "";
@@ -487,7 +631,9 @@
     };
 
     function mostrarDetalle(ordenid) {
-        window.location.href = _detalleOrdenUrl + "?leng=" + $("#language").data("kendoDropDownList").value() + "&OrdenRecepcionID=" + ordenid;
+        if ((typeof returnOfSecurityCheck != 'undefined') && (typeof returnOfSecurityCheck["Orden Recepcion"] != 'undefined') && (typeof returnOfSecurityCheck["Orden Recepcion"]["detail"] != 'undefined') && returnOfSecurityCheck["Orden Recepcion"]["detail"]) {
+            window.location.href = _detalleOrdenUrl + "?leng=" + $("#language").data("kendoDropDownList").value() + "&OrdenRecepcionID=" + ordenid;
+        }  
     };
 
     function ImprimirOrden() {
@@ -495,7 +641,7 @@
         //var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
         //var OrdenRecepcion = dataItem.OrdenRecepcion;
         //window.open("http://www.asp.net");
-        alert("Esta pendiente, se realizara por reporting services");
+        alert("Esta pendiente ImprimirOrden, se realizara por reporting services");
         return;
     };
 
@@ -505,7 +651,11 @@
         var curr_year = d.getFullYear();
         var horaActual = new Date();
 
-        return curr_year + "-" + curr_month + "-" + curr_date + " " + horaActual.getHours() + ":" + horaActual.getMinutes() + ":" + horaActual.getSeconds();
+        if (curr_year == "1969") {
+            return null;
+        } else {
+            return curr_year + "-" + curr_month + "-" + curr_date + " " + horaActual.getHours() + ":" + horaActual.getMinutes() + ":" + horaActual.getSeconds();
+        }
     };
 
     function Error(data) {
@@ -513,7 +663,7 @@
             if (data.ReturnCode != 200) {
                 if (data.ReturnCode == 401) {
                     removeUserSession();
-                    return true;
+                    return false;
                 } else {
                     displayMessage("notificationslabel0008", data.ReturnMessage, '2');
                     return false;
@@ -528,7 +678,7 @@
     }
 
     @section JavascriptDocumentReadyFunctions {
-   
+
     CargaInicial();
 
 

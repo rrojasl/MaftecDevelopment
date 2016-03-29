@@ -24,6 +24,9 @@ namespace DatabaseManager.EntidadesPersonalizadas
         public bool list { get; set; }
         public bool detail { get; set; }
         public bool destroy { get; set; }
+        public bool createIncidence { get; set; }
+        public bool solutionincidence { get; set; }
+
         public List<object> properties { get; set; }
         public List<object> navigation { get; set; }
         public Layout()
@@ -48,6 +51,9 @@ namespace DatabaseManager.EntidadesPersonalizadas
         public bool list { get; set; }
         public bool detail { get; set; }
         public bool destroy { get; set; }
+        public bool createIncidence { get; set; }
+        public bool solutionincidence { get; set; }
+
         public List<Properties> properties { get; set; }
 
         public Entidad()
@@ -106,6 +112,7 @@ namespace DatabaseManager.EntidadesPersonalizadas
         public string liga { get; set; }
         public string icono { get; set; }
         public int nivel { get; set; }
+        public int acomodo { get; set; }
     }
 
     public class ContextMenuElement

@@ -6,41 +6,44 @@
     <li>
         <a href="@Url.Action("landing", "Home")"><span id="DashboardLlegadaMaterial0001"></span></a>
     </li>
+    <li>
+        <a href="@Url.Action("DashboardLlegadaMaterial", "EntradaMaterial")"><span id="DashboardLlegadaMaterial0021"></span></a>
+    </li>
     <li class="active">
         <a href="@Url.Action("DashboardLlegadaMaterial", "EntradaMaterial")"><span id="DashboardLlegadaMaterial0002"></span></a>
     </li>
 }
 
 
-<div class="form clearfix col-sm-12 col-md-12 col-lg-12">
+<div class="form clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="formNav filtersFields clearfix">
                 <div class="row">
-                    <div class="col-sm-2 col-md-2 col-lg-1">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-1">
                         <div class="button-section">
                             <button id="Nuevo" type="button" class="btn btn-yellow"><span id="DashboardLlegadaMaterial0014"></span></button>
                         </div>
                     </div>
-                    <div class="col-sm-10 col-md-10 col-lg-10 filter-section">
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 filter-section">
                         <div class="row">
-                            <div class="col-sm-6 col-md-6 col-lg-2">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
                                 <label id="DashboardLlegadaMaterial0004"></label>
                                 <input id="PatioID" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-2">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
                                 <label id="DashboardLlegadaMaterial0003"></label>
                                 <input id="ClienteID" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-2">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
                                 <label id="DashboardLlegadaMaterial0005"></label>
                                 <input id="FechaInicial" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-2">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
                                 <label id="DashboardLlegadaMaterial0006"></label>
                                 <input id="FechaFinal" class="" />
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-2">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
                                 <label id="DashboardLlegadaMaterial0015"></label>
                                 <input id="PeriodoTiempo" class="" />
                             </div>
@@ -49,9 +52,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-                <div class="btn-group col-sm-12 col-md-12 col-lg-12" role="group" arial-label="tabs">
+                <div class="btn-group col-xs-12 col-sm-12 col-md-12 col-lg-12" role="group" arial-label="tabs">
                     
 
                     <button id="btnPorLlegar" class="btn btn-tab btn-dashLlegada">
@@ -81,6 +84,7 @@
     @section JavascriptGlobalVariables {
     var Patio = {}, Cliente = {};
     var FechaInicial, FechaFinal, PeriodoTiempo;
+    var invalidDate=false;
 
     var $LlegadaMaterialModel = {
         listContainer: {
@@ -108,17 +112,18 @@
                 { "PeriodoID": "5", "Periodo": _dictionary.DashboardLlegadaMaterial0020[$("#language").data("kendoDropDownList").value()] }
             ],
             select: function (e) {
-                var dataItem = this.dataItem(e.item.index());
-                console.log("dataItem");
-                console.log(dataItem);
-
-                CargarPeriodoTiempo(dataItem.PeriodoID);
             },
             change: function (e) {
+                var dataItem = this.dataItem(e.item.index());
+                //console.log("dataItem");
+                //console.log(dataItem);
+                dataItem!==undefined ? CargarPeriodoTiempo(dataItem.PeriodoID):CargarPeriodoTiempo("");
                 var value = this.value();
 
-                if (!value) {
+                if (!value || this.selectedIndex == -1) {
+                    messageindexKendoCombobox(this);
                     PeriodoTiempo = [];
+                    this.value("");
                 }
                 ObtenerFechasporPeriodo(value);
 
@@ -151,6 +156,15 @@
 
         var d = new Date($("#FechaInicial").data("kendoDatePicker").value());
         var d1 = new Date($("#FechaFinal").data("kendoDatePicker").value());
+
+        if (d.getFullYear() == "1969") {
+            d = new Date();
+            d.setDate(d.getDate() - 30);
+        }
+        if (d1.getFullYear() == "1969") {
+            d1 = new Date();
+        }
+
         var fechainicial = obtenerFormatoFecha(d);
         var fechafinal = obtenerFormatoFecha(d1);
 
@@ -174,7 +188,7 @@
     }
 
     function ObtenerPatio() {
-        $Patio.Patio.read({ esAvisoEntrada: 0, token: Cookies.get("token") }).done(function (result) {
+        $Patio.Patio.read({ esAvisoEntrada: 0, paginaID: Cookies.get("navegacion"), token: Cookies.get("token") }).done(function (result) {
             ControlErroresObjetosComboBox("PatioID", result);
         });
     };
@@ -223,6 +237,28 @@
             format = "MM/dd/yyyy";
         }
 
+        if (!fechaInicio) {
+            var todayInicio = new Date();
+            var curr_dateInicio = todayInicio.getDate();
+            var curr_monthInicio = todayInicio.getMonth() + 1;
+            var curr_yearInicio = todayInicio.getFullYear();
+
+            var todayInicial = new Date(curr_yearInicio, curr_monthInicio - 1, curr_dateInicio);
+            fechaInicio = kendo.parseDate(todayInicial, format);
+        }
+
+        if (!fechaFin) {
+            var todayFinal = new Date();
+            var curr_dateFinal = todayFinal.getDate();
+            var curr_monthFinal = todayFinal.getMonth() + 1;
+            var curr_yearFinal = todayFinal.getFullYear();
+
+            var todayFinal = new Date(curr_yearFinal, curr_monthFinal - 1, curr_dateFinal);
+            fechaFin = kendo.parseDate(todayFinal, format);
+        }
+
+        
+
         var curr_date = fechaFin.getDate();
         var curr_month = fechaFin.getMonth() + 1;
         var curr_year = fechaFin.getFullYear();
@@ -246,6 +282,9 @@
                 break;
             case 5: //Año
                 fechaInicio.setFullYear(fechaInicio.getFullYear() - 1);
+                break;
+            default:
+                fechaInicio.setDate(fechaInicio.getDate() - 7);
                 break;
         }
 
@@ -285,13 +324,21 @@
         var d = new Date($("#FechaInicial").data("kendoDatePicker").value());
         var d1 = new Date($("#FechaFinal").data("kendoDatePicker").value());
 
+        if (d.getFullYear() == "1969") {
+            d = new Date();
+            d.setDate(d.getDate() - 30);
+        }
+        if (d1.getFullYear() == "1969") {
+            d1 = new Date();
+        }
+
         Listado.PatioId = $("#PatioID").data("kendoComboBox").value();
         Listado.FechaInicial = obtenerFormatoFechaConHora(d);
         Listado.FechaFinal = obtenerFormatoFechaConHora(d1);
         Listado.ClienteID = $("#ClienteID").data("kendoComboBox").value();
         Listado.token = Cookies.get("token");
         Listado.TipoListado = 5;
-        console.log("Cantidades del menu dashboard: " + JSON.stringify(Listado));
+        //console.log("Cantidades del menu dashboard: " + JSON.stringify(Listado));
 
         ObtenerAccionesListado(Listado);
     }
@@ -300,8 +347,11 @@
         var curr_date = d.getDate();
         var curr_month = d.getMonth() + 1;
         var curr_year = d.getFullYear();
-
-        return curr_year + "-" + curr_month + "-" + curr_date;
+        if (curr_year == "1969") {
+            return "";
+        } else {
+            return curr_year + "-" + curr_month + "-" + curr_date;
+        }
     };
 
     function obtenerFormatoFechaConHora(d) {
@@ -310,8 +360,12 @@
         var curr_year = d.getFullYear();
             
         var horaActual = new Date();
-            
-        return curr_year + "-" + curr_month + "-" + curr_date + " " + horaActual.getHours() + ":" + horaActual.getMinutes() + ":" + horaActual.getSeconds();
+
+        if (curr_year == "1969") {
+            return null;
+        } else {
+            return curr_year + "-" + curr_month + "-" + curr_date + " " + horaActual.getHours() + ":" + horaActual.getMinutes() + ":" + horaActual.getSeconds();
+        }
     };
 
     function ControlErroresObjetosComboBox(control, result) {
@@ -341,13 +395,15 @@
         dataTextField: "Nombre",
         dataValueField: "PatioID",
         select: function (e) {
-            var dataItem = this.dataItem(e.item.index());
-            CargarPatio(dataItem.PatioID, dataItem.Nombre);
         },
         change: function (e) {
+            var dataItem = this.dataItem();
+            dataItem!==undefined ? CargarPatio(dataItem.PatioID, dataItem.Nombre):CargarPatio("", "");
             var value = this.value();
-            if (!value) {
+            if (!value || this.selectedIndex == -1) {
+                messageindexKendoCombobox(this);
                 Patio = [];
+                this.value("");
             }
             CantidadesDelMenuDashboard();
         },
@@ -359,16 +415,18 @@
         dataTextField: "Nombre",
         dataValueField: "ClienteID",
         select: function (e) {
-            var dataItem = this.dataItem(e.item.index());
-            console.log("dataItem");
-            console.log(dataItem);
-            CargarCliente(dataItem.ClienteID, dataItem.Nombre);
         },
         change: function (e) {
+            var dataItem = this.dataItem();
+            //console.log("dataItem");
+            //console.log(dataItem);
+            dataItem!==undefined ? CargarCliente(dataItem.ClienteID, dataItem.Nombre):CargarCliente("", "");
             var value = this.value();
 
-            if (!value) {
+            if (!value || this.selectedIndex == -1) {
+                messageindexKendoCombobox(this);
                 Cliente = [];
+                this.value("");
             }
             CantidadesDelMenuDashboard();
         },
@@ -381,13 +439,39 @@
 
     FechaInicial = new kendo.ui.DatePicker($("#FechaInicial"));
     FechaFinal = new kendo.ui.DatePicker($("#FechaFinal"));
-
+    FechaInicial.bind("change",function(e){
+        invalidDate=kendoDateValidation(this,FechaFinal);
+        if(invalidDate){
+            this.close();
+            return false;
+        }
+    })
+    FechaFinal.bind("change",function(e){
+        invalidDate=kendoDateValidation(this);
+        if(invalidDate){
+            this.close();
+            invalidDate=true;
+            return false;
+        }
+    })
     $("#FechaInicial").bind("change", function () {
-        CantidadesDelMenuDashboard();
+        if (!$("#FechaInicial").data("kendoDatePicker").value() && this.value!=="" && !invalidDate) {
+            $("#FechaInicial").css("color","#EB4D50");
+            displayMessage("notificationslabel0082","","2");
+        }else{
+            $("#FechaInicial").attr("style","");
+            CantidadesDelMenuDashboard();
+        }
     });
 
     $("#FechaFinal").bind("change", function () {
-        CantidadesDelMenuDashboard();
+        if (!$("#FechaFinal").data("kendoDatePicker").value() && this.value!=="" && !invalidDate) {
+            $("#FechaFinal").css("color","#EB4D50");
+            displayMessage("notificationslabel0082","","2")
+        }else{
+            $("#FechaFinal").attr("style","");
+            CantidadesDelMenuDashboard();
+        }
     });
 
     ObtenerFechasporDefecto();

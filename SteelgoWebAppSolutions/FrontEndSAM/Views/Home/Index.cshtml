@@ -24,26 +24,46 @@
             }
         }
     };
-}
+    }
 
 @section JavascriptDocumentReadyHomeCookie {
-    Cookies.set("home", true, {path: '/'});
+    Cookies.set("home", true, { path: '/' });
     Cookies.set("navegacion", "1", { path: '/' });
-}
+    }
 
 @section JavascriptDocumentReadyFunctions {
     $authorizationModel.login = $loginModel
+    $(".menuMobile").hide();
 
     $("#loginform").submit(function (event) {
+        $(".NotAuthenticated").addClass("hidden");
         event.preventDefault();
+<<<<<<< HEAD
+        if ($("#username").val() && $("#password").val()) {
+            authenticate($("#username").val(), $("#password").val());
+            $('#username').css('border-color', "red");
+            $('#password').css('border-color', "red");
+            validateCredentials();
+        }
+        else {
+            displayError("notificationslabel0068", "", '2');
+        }
+
+=======
         authenticate($("#username").val(), $("#password").val());
      
         validateCredentials();
+>>>>>>> Steelgo-InHouse
     });
-}
+    }
 </script>
 
 <div class="login">
+    <div class="row">
+        <div class="NotAuthenticated hidden col-xs-12 col-sm-6 col-md-8">
+            <label id="loginLabel0010" class="loginLabel"></label>
+        </div>
+    </div>
     <img src="~/Content/images/Logo_Login.jpg" />
     <form id="loginform" name="loginform">
         <div class="form-title">
@@ -58,7 +78,7 @@
             <input id="password" name="password" type="password" />
         </div>
         <input id="loginLabel0009" type="submit" class="btn btn-yellow" value="Iniciar Sesión" />
-        <a href="#">
+        <a target="_blank" href="http://www.samcontrol.net/RecuperaPassword.aspx" data-login="password">
             <span id="loginLabel0004">¿Olvidaste tu contraseña?</span></a>
     </form>
 </div>
@@ -80,3 +100,20 @@
         </div>
     </div>
 </footer>
+<script>
+    if (isInPopUp()) {
+        alert("Sesión expirada");
+        window.parent.location.href = window.parent.location.origin;
+    }
+
+    window.onresize = screenSize;
+    window.onload = screenSize;
+
+    function screenSize() {
+        if (600 > window.innerHeight) {
+            document.querySelectorAll("footer div.content-wrapper")[0].style.display = "none";
+        } else {
+            document.querySelectorAll("footer div.content-wrapper")[0].style.display = "block";
+        }
+    }
+</script>

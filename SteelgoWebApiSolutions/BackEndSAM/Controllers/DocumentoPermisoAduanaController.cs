@@ -21,7 +21,7 @@ using System.Configuration;
 namespace BackEndSAM.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class DocumentoPermisoAduanaController :ApiController
+    public class DocumentoPermisoAduanaController : ApiController
     {
 
         public object Get(int folio, string token)
@@ -46,7 +46,7 @@ namespace BackEndSAM.Controllers
             }
         }
 
-        public object Post(int folioAvisoLlegada, int NumeroPermiso, string token)
+        public object Post(int folioAvisoLlegada, string NumeroPermiso, string token)
         {
             try
             {
@@ -64,14 +64,13 @@ namespace BackEndSAM.Controllers
 
                     if (httpRequest.Files.Count > 0)
                     {
-
                         var docfiles = new List<string>();
                         HttpPostedFile postedFile;
                         List<DocumentoPosteado> lstArchivos = new List<DocumentoPosteado>();
-                        foreach (string file in httpRequest.Files)
+                        for (int i = 0; i < httpRequest.Files.Count; i++)
                         {
                             Guid docguID = Guid.NewGuid();
-                            postedFile = httpRequest.Files[file];
+                            postedFile = httpRequest.Files[i];
                             string nombreArchivo = "";
                             //verificar si el nombre del archivo es una ruta completa
                             if (postedFile.FileName.Contains("\\"))
@@ -84,9 +83,20 @@ namespace BackEndSAM.Controllers
                                 nombreArchivo = postedFile.FileName;
                             }
 
+                            if (nombreArchivo.Contains(" "))
+                            {
+                                nombreArchivo = nombreArchivo.Replace(' ', '_');
+                            }
+
                             var path = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["urlFisica"] + docguID + "_" + nombreArchivo);
                             string ruta = ConfigurationManager.AppSettings["urlBase"] + docguID + "_" + nombreArchivo;
                             string[] st = nombreArchivo.Split('.');
+
+                            if (st.Length > 2)
+                            {
+                                throw new Exception("El nombre de archivo no puede contener puntos");
+                            }
+
                             string extencion = "." + st[1];
                             lstArchivos.Add(new DocumentoPosteado
                             {
@@ -145,6 +155,29 @@ namespace BackEndSAM.Controllers
                 result.ReturnCode = 500;
                 result.ReturnStatus = false;
                 result.ReturnMessage.Add(ex.Message);
+                result.IsAuthenicated = false;
+                return result;
+            }
+        }
+
+        public object Post(string datos, string token)
+        {
+            string newToken = "";
+            string payload = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                EstatusFolio estatus = serializer.Deserialize<EstatusFolio>(datos);
+                return DocumentosBd.Instance.CambiarEstatusFolio(estatus.FolioAvisoLlegada, estatus.NumeroPermiso, usuario);
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.ReturnMessage.Add(payload);
                 result.IsAuthenicated = false;
                 return result;
             }

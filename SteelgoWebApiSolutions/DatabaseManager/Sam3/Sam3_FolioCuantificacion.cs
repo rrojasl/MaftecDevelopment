@@ -21,6 +21,7 @@ namespace DatabaseManager.Sam3
             this.Sam3_Rel_Incidencia_FolioCuantificacion = new HashSet<Sam3_Rel_Incidencia_FolioCuantificacion>();
             this.Sam3_Rel_FolioCuantificacion_ItemCode = new HashSet<Sam3_Rel_FolioCuantificacion_ItemCode>();
             this.Sam3_Recepcion = new HashSet<Sam3_Recepcion>();
+            this.Sam3_Rel_Incidencia_FolioCuantificacion = new HashSet<Sam3_Rel_Incidencia_FolioCuantificacion>();
         }
     
         public int FolioCuantificacionID { get; set; }
@@ -33,7 +34,10 @@ namespace DatabaseManager.Sam3
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
         public bool Activo { get; set; }
-        public int TipoMaterialID { get; set; }
+        public Nullable<int> TipoMaterialID { get; set; }
+        public Nullable<int> Consecutivo { get; set; }
+        public Nullable<int> Rel_Proyecto_Entidad_Configuracion_ID { get; set; }
+        public Nullable<int> ConsecutivoConfiguracion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Bulto> Sam3_Bulto { get; set; }
@@ -47,5 +51,11 @@ namespace DatabaseManager.Sam3
         public virtual ICollection<Sam3_Rel_FolioCuantificacion_ItemCode> Sam3_Rel_FolioCuantificacion_ItemCode { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Recepcion> Sam3_Recepcion { get; set; }
+<<<<<<< HEAD
+        public virtual Sam3_TipoMaterial Sam3_TipoMaterial { get; set; }
+        public virtual ICollection<Sam3_Rel_Incidencia_FolioCuantificacion> Sam3_Rel_Incidencia_FolioCuantificacion { get; set; }
+        public virtual Sam3_Rel_Proyecto_Entidad_Configuracion Sam3_Rel_Proyecto_Entidad_Configuracion { get; set; }
+=======
+>>>>>>> Steelgo-InHouse
     }
 }

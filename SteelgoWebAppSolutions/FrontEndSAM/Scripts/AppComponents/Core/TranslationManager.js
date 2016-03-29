@@ -98,6 +98,74 @@ function addElementToDictionary(sParam) {
         _dictionary[partsOfElement[0]]["en-US"] = partsOfElement[2];
     }
 }
+<<<<<<< HEAD
+
+//Function to set the right localization ot KendoUpload
+function getKendoUploadLocalization(val) {
+    return {
+        cancel: _dictionary.KendoUploadTxt0001[val],
+        dropFilesHere: _dictionary.KendoUploadTxt0002[val],
+        headerStatusUploaded: _dictionary.KendoUploadTxt0003[val],
+        headerStatusUploading: _dictionary.KendoUploadTxt0004[val],
+        remove: _dictionary.KendoUploadTxt0005[val],
+        retry: _dictionary.KendoUploadTxt0006[val],
+        select: _dictionary.KendoUploadTxt0007[val],
+        statusFailed: _dictionary.KendoUploadTxt0008[val],
+        statusUploaded: _dictionary.KendoUploadTxt0009[val],
+        statusUploading: _dictionary.KendoUploadTxt0010[val]
+    }
+}
+
+function getKendoGridFilterable(val) {
+    return {
+        extra: false,
+        mode: "menu",
+        operators: {
+            string: {
+                startswith: _dictionary.KendoGridFilterable0001[val],
+                eq: _dictionary.KendoGridFilterable0002[val],
+                neq: _dictionary.KendoGridFilterable0003[val],
+            }
+        },
+        cell: {
+            showOperators: false,
+            operator: "contains"
+        }
+    }
+}
+
+//function getKendoGridFilterable(val) {
+//    return {
+//        extra: false,
+//        operators: {
+//            string: {
+//                startswith: _dictionary.KendoGridFilterable0001[val],
+//                eq: _dictionary.KendoGridFilterable0002[val],
+//                neq: _dictionary.KendoGridFilterable0003[val],
+//            }
+//        }
+//    }
+//}
+
+function getKendoGridFilterableComplementoRecepcion(val) {
+    return {
+        extra: false,
+        mode: "menu",
+        operators: {
+            string: {
+                startswith: _dictionary.KendoGridFilterable0001[val],
+                eq: _dictionary.KendoGridFilterable0002[val],
+                neq: _dictionary.KendoGridFilterable0003[val],
+                contains: _dictionary.KendoGridFilterable0004[val],
+            }
+        },
+        cell: {
+            showOperators: false,
+            operator: "contains"
+        }
+    }
+}
+=======
 function changeheaderInputs(language) {
     //var capas = document.getElementById('grid');
     // alert('se recorre el grid');
@@ -126,3 +194,4 @@ function changeheaderInputs(language) {
     }
 
 };
+>>>>>>> Steelgo-InHouse

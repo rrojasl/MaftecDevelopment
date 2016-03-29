@@ -5,25 +5,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Configuration;
+using BackEndSAM.Utilities;
 
 namespace BackEndSAM.DataAcces
 {
     public class GuardarFolioLlegadaCuantificacionBd
     {
-         private static readonly object _mutex = new object();
-         private static GuardarFolioLlegadaCuantificacionBd _instance;
+        private static readonly object _mutex = new object();
+        private static GuardarFolioLlegadaCuantificacionBd _instance;
 
         /// <summary>
         /// constructor privado para implementar el patron Singleton
         /// </summary>
-         private GuardarFolioLlegadaCuantificacionBd()
+        private GuardarFolioLlegadaCuantificacionBd()
         {
         }
 
         /// <summary>
         /// crea una instancia de la clase
         /// </summary>
-         public static GuardarFolioLlegadaCuantificacionBd Instance
+        public static GuardarFolioLlegadaCuantificacionBd Instance
         {
             get
             {
@@ -44,62 +46,224 @@ namespace BackEndSAM.DataAcces
         /// <param name="datosCuantificacion">informacion del folio cuantificacion</param>
         /// <param name="usuario">usuario actual</param>
         /// <returns>folio de cuantificacion creado, proyectos</returns>
-         public object UpdateGuardarFolio(DatosFolioLlegadaCuantificacion datosCuantificacion, Sam3_Usuario usuario)
-         {
-             try
-             {
-                 using (SamContext ctx = new SamContext())
-                 {
-                     int avisoEntradaID = ctx.Sam3_FolioAvisoEntrada.Where(x => x.FolioAvisoLlegadaID == datosCuantificacion.FolioAvisollegadaId && x.Activo).Select(x => x.FolioAvisoEntradaID).AsParallel().First();
+        public object UpdateGuardarFolio(DatosFolioLlegadaCuantificacion datosCuantificacion, Sam3_Usuario usuario)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    using (var ctx_tran = ctx.Database.BeginTransaction())
+                    {
+                        Boolean activarFolioConfiguracionCuantificacion = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracionCuantificacion"]) ? 
+                            (ConfigurationManager.AppSettings["ActivarFolioConfiguracionCuantificacion"].Equals("1") ? true : false) : false;
+                        bool activaConfigFolioLlegada = ConfigurationManager.AppSettings["ActivarFolioConfiguracion"].Equals("1") ? true : false;
+                        
+                        int avisoEntradaID = ctx.Sam3_FolioAvisoEntrada.Where(x => x.FolioAvisoLlegadaID == datosCuantificacion.FolioAvisollegadaId && x.Activo).Select(x => x.FolioAvisoEntradaID).AsParallel().First();
 
-                     Sam3_FolioCuantificacion folioCuantificacion = ctx.Sam3_FolioCuantificacion.Where(x => x.FolioCuantificacionID == datosCuantificacion.FolioCuantificacionID && x.Activo).AsParallel().SingleOrDefault();
-                     if (folioCuantificacion.Estatus != "Terminado" && folioCuantificacion.Estatus != "Cerrado")
-                     {
-                         folioCuantificacion.FolioAvisoEntradaID = avisoEntradaID;
-                         folioCuantificacion.ProyectoID = datosCuantificacion.ProyectoID;
-                         folioCuantificacion.PackingList = datosCuantificacion.PackingList;
-                         folioCuantificacion.TipoUsoID = datosCuantificacion.TipoUso;
-                         folioCuantificacion.Estatus = "En Proceso de Recepción";
-                         folioCuantificacion.FechaModificacion = DateTime.Now;
-                         folioCuantificacion.UsuarioModificacion = usuario.UsuarioID;
-                         folioCuantificacion.Activo = true;
-                         folioCuantificacion.TipoMaterialID = datosCuantificacion.TipoPackingList;
+                        Sam3_FolioCuantificacion folioCuantificacion = ctx.Sam3_FolioCuantificacion
+                            .Where(x => x.FolioCuantificacionID == datosCuantificacion.FolioCuantificacionID && x.Activo).AsParallel().SingleOrDefault();
 
-                         ctx.SaveChanges();
-                     }
-                     if (datosCuantificacion.BultoID > 0)
-                     {
-                         Sam3_Bulto bulto = ctx.Sam3_Bulto.Where(x => x.BultoID == datosCuantificacion.BultoID && x.Activo).AsParallel().SingleOrDefault();
-                         if (folioCuantificacion.Estatus != "Terminado" && folioCuantificacion.Estatus != "Cerrado")
-                         {
-                             bulto.FolioCuantificacionID = datosCuantificacion.FolioCuantificacionID;
-                             bulto.Estatus = "En Proceso de Recepción";
-                             bulto.FechaModificacion = DateTime.Now;
-                             bulto.UsuarioModificacion = usuario.UsuarioID;
-                             bulto.Activo = true;
+                        Sam3_FolioAvisoLlegada folioLlegada = (from fc in ctx.Sam3_FolioCuantificacion
+                                                               join fe in ctx.Sam3_FolioAvisoEntrada on fc.FolioAvisoEntradaID equals fe.FolioAvisoEntradaID
+                                                               join fa in ctx.Sam3_FolioAvisoLlegada on fe.FolioAvisoLlegadaID equals fa.FolioAvisoLlegadaID
+                                                               where fc.Activo && fe.Activo && fa.Activo
+                                                               && fc.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID
+                                                               select fa).AsParallel().FirstOrDefault();
 
-                             ctx.SaveChanges();
-                         }
-                     }
+                        if (folioCuantificacion.Estatus != "Terminado" && folioCuantificacion.Estatus != "Cerrado")
+                        {
+                            folioCuantificacion.Estatus = "En Proceso de Recepción";
+                        }
 
-                     string nombre = (from p in ctx.Sam3_Proyecto
-                                      where p.ProyectoID == folioCuantificacion.ProyectoID && p.Activo
-                                      select p.Nombre).AsParallel().SingleOrDefault();
+                        folioCuantificacion.FolioAvisoEntradaID = avisoEntradaID;
+                        folioCuantificacion.ProyectoID = datosCuantificacion.ProyectoID;
+                        folioCuantificacion.PackingList = datosCuantificacion.PackingList;
+                        folioCuantificacion.TipoUsoID = datosCuantificacion.TipoUso;
+                        folioCuantificacion.FechaModificacion = DateTime.Now;
+                        folioCuantificacion.UsuarioModificacion = usuario.UsuarioID;
+                        folioCuantificacion.Activo = true;
+                        if (datosCuantificacion.TipoPackingList != null)
+                        {
+                            folioCuantificacion.TipoMaterialID = datosCuantificacion.TipoPackingList;
+                        }
+                        ctx.SaveChanges();
 
-                     return new FolioLlegadaCuantificacion { FolioCuantificacionID = folioCuantificacion.FolioCuantificacionID, ProyectoID = folioCuantificacion.ProyectoID, Nombre = nombre };
-                 }
-             }
-             catch (Exception ex)
-             {
-                 TransactionalInformation result = new TransactionalInformation();
-                 result.ReturnMessage.Add(ex.Message);
-                 result.ReturnCode = 500;
-                 result.ReturnStatus = false;
-                 result.IsAuthenicated = true;
+                        //Guardar Orden de Compra y Factura
+                        Sam3_FolioAvisoEntrada folioEntrada = (from ave in ctx.Sam3_FolioAvisoEntrada
+                                                               where ave.Activo && ave.FolioAvisoLlegadaID == datosCuantificacion.FolioAvisollegadaId
+                                                               select ave).AsParallel().SingleOrDefault();
+                        folioEntrada.OrdenCompra = datosCuantificacion.OrdenDeCompra;
+                        folioEntrada.Factura = datosCuantificacion.Factura;
+                        folioEntrada.FechaModificacion = DateTime.Now;
+                        folioEntrada.UsuarioModificacion = usuario.UsuarioID;
 
-                 return result;
-             }
-         }
+                        ctx.SaveChanges();
+
+                        #region Proyectos
+
+                        int cuentaProyectos = (from rel in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
+                                               join fe in ctx.Sam3_FolioAvisoEntrada on rel.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                               join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
+                                               join p in ctx.Sam3_Proyecto on rel.ProyectoID equals p.ProyectoID
+                                               where fc.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID
+                                               select rel.ProyectoID).Count();
+
+                        int folioAvisoLlegada = (from rel in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
+                                                 join fe in ctx.Sam3_FolioAvisoEntrada on rel.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                                 join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
+                                                 join p in ctx.Sam3_Proyecto on rel.ProyectoID equals p.ProyectoID
+                                                 where fc.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID
+                                                 select fe.FolioAvisoLlegadaID.Value).AsParallel().Distinct().SingleOrDefault();
+
+                        if (cuentaProyectos == 1)
+                        {
+                            bool esDefault = (from rel in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
+                                              join fe in ctx.Sam3_FolioAvisoEntrada on rel.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                              join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
+                                              join p in ctx.Sam3_Proyecto on rel.ProyectoID equals p.ProyectoID
+                                              where fc.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID
+                                              && (p.Nombre == "Proyecto Default" || p.Nombre == "")
+                                              select rel).Count() == 1 ? true : false;
+
+
+                            if (esDefault)
+                            {
+                                Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRel = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
+                                nuevaRel.Activo = true;
+                                nuevaRel.FechaModificacion = DateTime.Now;
+                                nuevaRel.FolioAvisoLlegadaID = folioAvisoLlegada;
+                                nuevaRel.ProyectoID = folioCuantificacion.ProyectoID;
+                                nuevaRel.UsuarioModificacion = usuario.UsuarioID;
+
+                                ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRel);
+                                ctx.SaveChanges();
+                            }
+                            else
+                            {
+                                if (!ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Where(x => x.FolioAvisoLlegadaID == folioAvisoLlegada
+                                    && x.ProyectoID == folioCuantificacion.ProyectoID).Any())
+                                {
+                                    Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRel = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
+                                    nuevaRel.Activo = true;
+                                    nuevaRel.FechaModificacion = DateTime.Now;
+                                    nuevaRel.FolioAvisoLlegadaID = folioAvisoLlegada;
+                                    nuevaRel.ProyectoID = folioCuantificacion.ProyectoID;
+                                    nuevaRel.UsuarioModificacion = usuario.UsuarioID;
+
+                                    ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRel);
+                                    ctx.SaveChanges();
+                                }
+                            }
+
+                        }
+                        else
+                        {
+
+                            if (!ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Where(x => x.FolioAvisoLlegadaID == folioAvisoLlegada
+                                    && x.ProyectoID == folioCuantificacion.ProyectoID).Any())
+                            {
+                                Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRel = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
+                                nuevaRel.Activo = true;
+                                nuevaRel.FechaModificacion = DateTime.Now;
+                                nuevaRel.FolioAvisoLlegadaID = folioAvisoLlegada;
+                                nuevaRel.ProyectoID = folioCuantificacion.ProyectoID;
+                                nuevaRel.UsuarioModificacion = usuario.UsuarioID;
+
+                                ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRel);
+                                ctx.SaveChanges();
+                            }
+                        }
+
+                        #endregion
+
+                        if (datosCuantificacion.BultoID > 0)
+                        {
+                            Sam3_Bulto bulto = ctx.Sam3_Bulto.Where(x => x.BultoID == datosCuantificacion.BultoID && x.Activo).AsParallel().SingleOrDefault();
+                            if (folioCuantificacion.Estatus != "Terminado" && folioCuantificacion.Estatus != "Cerrado")
+                            {
+                                bulto.Estatus = "En Proceso de Recepción";
+                            }
+
+                            bulto.FolioCuantificacionID = datosCuantificacion.FolioCuantificacionID;
+                            bulto.FechaModificacion = DateTime.Now;
+                            bulto.UsuarioModificacion = usuario.UsuarioID;
+                            bulto.Activo = true;
+
+                            ctx.SaveChanges();
+                        }
+
+                        string nombre = (from p in ctx.Sam3_Proyecto
+                                         where p.ProyectoID == folioCuantificacion.ProyectoID && p.Activo
+                                         select p.Nombre).AsParallel().SingleOrDefault();
+
+                        ctx_tran.Commit();
+
+                        FolioLlegadaCuantificacion foliollegadacuantificacion= new FolioLlegadaCuantificacion();
+                        foliollegadacuantificacion.FolioCuantificacionID = folioCuantificacion.FolioCuantificacionID;
+                        foliollegadacuantificacion.ProyectoID=folioCuantificacion.ProyectoID;
+                        foliollegadacuantificacion.Nombre = nombre;
+
+                        string NombreFolioAvisoLlegada = (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                          where pc.Proyecto == folioLlegada.ProyectoNombrado
+                                                          && pc.Entidad == folioLlegada.Entidad
+                                                          select pc.PreFijoFolioAvisoLlegada + ","
+                                                          + pc.CantidadCerosFolioAvisoLlegada.ToString() + ","
+                                                          + folioLlegada.Consecutivo + ","
+                                                          + pc.PostFijoFolioAvisoLlegada.Trim()).FirstOrDefault();
+
+                        string NombreFolioCuantificacion = (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                            where pc.Rel_Proyecto_Entidad_Configuracion_ID == folioCuantificacion.Rel_Proyecto_Entidad_Configuracion_ID
+                                                            select pc.PreFijoFolioPackingList + ","
+                                                            + pc.CantidadCerosFolioPackingList.ToString() + ","
+                                                            + folioCuantificacion.ConsecutivoConfiguracion.ToString() + ","
+                                                            + pc.PostFijoFolioPackingList).FirstOrDefault();
+
+                        int FolioAvisoLlegadaID = folioLlegada.FolioAvisoLlegadaID;
+                        int ConsecutivoFolioCuanificacion = folioCuantificacion.Consecutivo.Value;
+                        int ConsecutivoFolioLlegada = folioLlegada.Consecutivo.Value;
+                        foliollegadacuantificacion.FolioConfiguracionCuantificacionID = "";
+
+                        NombreFolioAvisoLlegada = Conversiones.Instance.FormatearCadenasdeElementos(NombreFolioAvisoLlegada);
+                        NombreFolioCuantificacion = Conversiones.Instance.FormatearCadenasdeElementos(NombreFolioCuantificacion);
+
+                        if (activaConfigFolioLlegada && activarFolioConfiguracionCuantificacion)
+                        {
+                            foliollegadacuantificacion.FolioConfiguracionCuantificacionID = NombreFolioAvisoLlegada + "-" + NombreFolioCuantificacion;
+                        }
+
+                        if (activaConfigFolioLlegada && !activarFolioConfiguracionCuantificacion)
+                        {
+                            foliollegadacuantificacion.FolioConfiguracionCuantificacionID = NombreFolioAvisoLlegada + "-" + ConsecutivoFolioCuanificacion;
+                        }
+
+                        if (!activaConfigFolioLlegada && activarFolioConfiguracionCuantificacion)
+                        {
+                            foliollegadacuantificacion.FolioConfiguracionCuantificacionID = FolioAvisoLlegadaID + "-" + NombreFolioCuantificacion;
+                        }
+
+                        if (!activaConfigFolioLlegada && !activarFolioConfiguracionCuantificacion)
+                        {
+                            foliollegadacuantificacion.FolioConfiguracionCuantificacionID = FolioAvisoLlegadaID + "-" + ConsecutivoFolioCuanificacion;
+                        }
+
+                        return foliollegadacuantificacion;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
 
         /// <summary>
         /// Guardar un folio Cuantificacion Nuevo
@@ -107,60 +271,251 @@ namespace BackEndSAM.DataAcces
         /// <param name="datosCuantificacion">informacion del folio cuantificacion</param>
         /// <param name="usuario">usuario actual</param>
         /// <returns>Folio de cuantificacion creados, proyectos</returns>
-         public object CreateGuardarFolio(DatosFolioLlegadaCuantificacion datosCuantificacion, Sam3_Usuario usuario)
-         {
-             try
-             {
-                 using (SamContext ctx = new SamContext())
-                 {
-                     int avisoEntradaID = ctx.Sam3_FolioAvisoEntrada.Where(x => x.FolioAvisoLlegadaID == datosCuantificacion.FolioAvisollegadaId && x.Activo).Select(x=> x.FolioAvisoEntradaID).AsParallel().First();
+        public object CreateGuardarFolio(DatosFolioLlegadaCuantificacion datosCuantificacion, Sam3_Usuario usuario)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    using (var ctx_tran = ctx.Database.BeginTransaction())
+                    {
+                        Boolean activarFolioConfiguracion = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracionCuantificacion"]) 
+                            ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracionCuantificacion"].Equals("1") ? true : false) : false;
+                        bool activaConfigFolioLlegada = ConfigurationManager.AppSettings["ActivarFolioConfiguracion"].Equals("1") ? true : false;
 
-                     Sam3_FolioCuantificacion folioCuantificacion = new Sam3_FolioCuantificacion();
+                        int avisoEntradaID = ctx.Sam3_FolioAvisoEntrada
+                            .Where(x => x.FolioAvisoLlegadaID == datosCuantificacion.FolioAvisollegadaId && x.Activo).Select(x => x.FolioAvisoEntradaID).AsParallel().First();
 
-                     folioCuantificacion.FolioAvisoEntradaID = avisoEntradaID;
-                     folioCuantificacion.ProyectoID = datosCuantificacion.ProyectoID;
-                     folioCuantificacion.PackingList = datosCuantificacion.PackingList;
-                     folioCuantificacion.TipoUsoID = datosCuantificacion.TipoUso;
-                     folioCuantificacion.FechaCreacion = DateTime.Now;
-                     folioCuantificacion.Estatus = "En Proceso de Recepción";
-                     folioCuantificacion.FechaModificacion = DateTime.Now;
-                     folioCuantificacion.UsuarioModificacion = usuario.UsuarioID;
-                     folioCuantificacion.Activo = true;
-                     folioCuantificacion.TipoMaterialID = datosCuantificacion.TipoPackingList;
+                        int? consecutivofc = (from fc in ctx.Sam3_FolioCuantificacion
+                                            where fc.Activo
+                                            && fc.FolioAvisoEntradaID == avisoEntradaID
+                                            select fc.Consecutivo).Max();
 
-                     ctx.Sam3_FolioCuantificacion.Add(folioCuantificacion);
-                     ctx.SaveChanges();
+                        if (consecutivofc == null)
+                        {
+                            consecutivofc = 1;
+                        }
+                        else
+                        {
+                            consecutivofc += 1;
+                        }
 
-                     if (datosCuantificacion.BultoID != null && datosCuantificacion.BultoID != 0 && datosCuantificacion.BultoID != -1)
-                     {
-                         Sam3_Bulto bulto = ctx.Sam3_Bulto.Where(x => x.BultoID == datosCuantificacion.BultoID && x.Activo).AsParallel().SingleOrDefault();
-                         bulto.FolioCuantificacionID = datosCuantificacion.FolioCuantificacionID;
-                         bulto.Estatus = "En Proceso de Recepción";
-                         bulto.FechaModificacion = DateTime.Now;
-                         bulto.UsuarioModificacion = usuario.UsuarioID;
-                         bulto.Activo = true;
+                        Sam3_FolioCuantificacion folioCuantificacion = new Sam3_FolioCuantificacion();
 
-                         ctx.Sam3_Bulto.Add(bulto);
-                         ctx.SaveChanges();
-                     }
+                        folioCuantificacion.FolioAvisoEntradaID = avisoEntradaID;
+                        folioCuantificacion.ProyectoID = datosCuantificacion.ProyectoID;
+                        folioCuantificacion.PackingList = datosCuantificacion.PackingList;
+                        folioCuantificacion.TipoUsoID = datosCuantificacion.TipoUso;
+                        folioCuantificacion.FechaCreacion = DateTime.Now;
+                        folioCuantificacion.Estatus = "En Proceso de Recepción";
+                        folioCuantificacion.FechaModificacion = DateTime.Now;
+                        folioCuantificacion.UsuarioModificacion = usuario.UsuarioID;
+                        folioCuantificacion.Activo = true;
+                        if (datosCuantificacion.TipoPackingList != null)
+                        {
+                            folioCuantificacion.TipoMaterialID = datosCuantificacion.TipoPackingList;
+                        }
+                        folioCuantificacion.Consecutivo = consecutivofc;
 
-                     string nombre = (from p in ctx.Sam3_Proyecto
-                                      where p.ProyectoID == folioCuantificacion.ProyectoID && p.Activo
-                                      select p.Nombre).AsParallel().SingleOrDefault();
+                        ctx.Sam3_FolioCuantificacion.Add(folioCuantificacion);
+                        ctx.SaveChanges();
 
-                     return new FolioLlegadaCuantificacion { FolioCuantificacionID = folioCuantificacion.FolioCuantificacionID, ProyectoID = folioCuantificacion.ProyectoID, Nombre = nombre };
-                 }
-             }
-             catch (Exception ex)
-             {
-                 TransactionalInformation result = new TransactionalInformation();
-                 result.ReturnMessage.Add(ex.Message);
-                 result.ReturnCode = 500;
-                 result.ReturnStatus = false;
-                 result.IsAuthenicated = true;
+                        //Guardar Orden de Compra y Factura
+                        Sam3_FolioAvisoEntrada folioEntrada = (from ave in ctx.Sam3_FolioAvisoEntrada
+                                                               where ave.Activo && ave.FolioAvisoLlegadaID == datosCuantificacion.FolioAvisollegadaId
+                                                               select ave).AsParallel().SingleOrDefault();
+                        folioEntrada.OrdenCompra = datosCuantificacion.OrdenDeCompra;
+                        folioEntrada.Factura = datosCuantificacion.Factura;
+                        folioEntrada.FechaModificacion = DateTime.Now;
+                        folioEntrada.UsuarioModificacion = usuario.UsuarioID;
 
-                 return result;
-             }
-         }
+                        ctx.SaveChanges();
+
+
+                        #region Proyectos
+
+                        int cuentaProyectos = (from rel in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
+                                               join fe in ctx.Sam3_FolioAvisoEntrada on rel.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                               join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
+                                               join p in ctx.Sam3_Proyecto on rel.ProyectoID equals p.ProyectoID
+                                               where fc.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID
+                                               select rel.ProyectoID).Count();
+
+                        int folioAvisoLlegada = (from rel in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
+                                                     join fe in ctx.Sam3_FolioAvisoEntrada on rel.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                                     join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
+                                                     join p in ctx.Sam3_Proyecto on rel.ProyectoID equals p.ProyectoID
+                                                     where fc.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID
+                                                     select fe.FolioAvisoLlegadaID.Value).AsParallel().Distinct().SingleOrDefault();
+
+                        if (cuentaProyectos == 1)
+                        {
+                            bool esDefault = (from rel in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
+                                              join fe in ctx.Sam3_FolioAvisoEntrada on rel.FolioAvisoLlegadaID equals fe.FolioAvisoLlegadaID
+                                              join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
+                                              join p in ctx.Sam3_Proyecto on rel.ProyectoID equals p.ProyectoID
+                                              where fc.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID
+                                              && (p.Nombre == "Proyecto Default" || p.Nombre == "")
+                                              select rel).Count() == 1 ? true : false;
+
+
+                            if (esDefault)
+                            {
+                                Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRel = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
+                                nuevaRel.Activo = true;
+                                nuevaRel.FechaModificacion = DateTime.Now;
+                                nuevaRel.FolioAvisoLlegadaID = folioAvisoLlegada;
+                                nuevaRel.ProyectoID = folioCuantificacion.ProyectoID;
+                                nuevaRel.UsuarioModificacion = usuario.UsuarioID;
+
+                                ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRel);
+                                ctx.SaveChanges();
+                            }
+                            else
+                            {
+                                if (!ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Where(x => x.FolioAvisoLlegadaID == folioAvisoLlegada
+                                    && x.ProyectoID == folioCuantificacion.ProyectoID).Any())
+                                {
+                                    Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRel = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
+                                    nuevaRel.Activo = true;
+                                    nuevaRel.FechaModificacion = DateTime.Now;
+                                    nuevaRel.FolioAvisoLlegadaID = folioAvisoLlegada;
+                                    nuevaRel.ProyectoID = folioCuantificacion.ProyectoID;
+                                    nuevaRel.UsuarioModificacion = usuario.UsuarioID;
+
+                                    ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRel);
+                                    ctx.SaveChanges();
+                                }
+                            }
+
+                        }
+                        else
+                        {
+
+                            if (!ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Where(x => x.FolioAvisoLlegadaID == folioAvisoLlegada
+                                    && x.ProyectoID == folioCuantificacion.ProyectoID).Any())
+                            {
+                                Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRel = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
+                                nuevaRel.Activo = true;
+                                nuevaRel.FechaModificacion = DateTime.Now;
+                                nuevaRel.FolioAvisoLlegadaID = folioAvisoLlegada;
+                                nuevaRel.ProyectoID = folioCuantificacion.ProyectoID;
+                                nuevaRel.UsuarioModificacion = usuario.UsuarioID;
+
+                                ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRel);
+                                ctx.SaveChanges();
+                            }
+                        }
+
+                        #endregion
+
+                        if (datosCuantificacion.BultoID != null && datosCuantificacion.BultoID != 0 && datosCuantificacion.BultoID != -1)
+                        {
+                            Sam3_Bulto bulto = ctx.Sam3_Bulto.Where(x => x.BultoID == datosCuantificacion.BultoID && x.Activo).AsParallel().SingleOrDefault();
+                            bulto.FolioCuantificacionID = datosCuantificacion.FolioCuantificacionID;
+                            bulto.Estatus = "En Proceso de Recepción";
+                            bulto.FechaModificacion = DateTime.Now;
+                            bulto.UsuarioModificacion = usuario.UsuarioID;
+                            bulto.Activo = true;
+
+                            ctx.Sam3_Bulto.Add(bulto);
+                            ctx.SaveChanges();
+                        }
+
+                        string nombre = (from p in ctx.Sam3_Proyecto
+                                         where p.ProyectoID == folioCuantificacion.ProyectoID && p.Activo
+                                         select p.Nombre).AsParallel().SingleOrDefault();
+
+
+                        FolioLlegadaCuantificacion folioLlegadaCuantificacion = new FolioLlegadaCuantificacion();
+                        folioLlegadaCuantificacion.FolioCuantificacionID = folioCuantificacion.FolioCuantificacionID;
+                        folioLlegadaCuantificacion.ProyectoID = folioCuantificacion.ProyectoID;
+                        folioLlegadaCuantificacion.Nombre = nombre;
+
+                        Sam3_Rel_Proyecto_Entidad_Configuracion rel_proyecto_entidad_configuracion = ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                            .Where(x => x.Activo == 1 && x.Proyecto == folioCuantificacion.ProyectoID).FirstOrDefault();
+
+                       
+                        
+                        int consecutivofoliopl = rel_proyecto_entidad_configuracion.ConsecutivoFolioPackingList;
+                        Sam3_FolioCuantificacion folioCuantificacionConsecutivo = ctx.Sam3_FolioCuantificacion
+                            .Where(x => x.FolioCuantificacionID == folioCuantificacion.FolioCuantificacionID).FirstOrDefault();
+                        folioCuantificacionConsecutivo.ConsecutivoConfiguracion = consecutivofoliopl;
+                        folioCuantificacionConsecutivo.Rel_Proyecto_Entidad_Configuracion_ID = rel_proyecto_entidad_configuracion.Rel_Proyecto_Entidad_Configuracion_ID;
+                        ctx.SaveChanges();
+
+
+                        rel_proyecto_entidad_configuracion.ConsecutivoFolioPackingList = consecutivofoliopl + 1;
+                        ctx.SaveChanges();
+
+
+                        Sam3_FolioAvisoLlegada foliollegada = (from fa in ctx.Sam3_FolioAvisoLlegada
+                                                               where fa.Activo && fa.FolioAvisoLlegadaID == datosCuantificacion.FolioAvisollegadaId
+                                                               select fa).AsParallel().SingleOrDefault();
+
+                        string NombreFolioAvisoLlegada = (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                          where pc.Proyecto == foliollegada.ProyectoNombrado
+                                                          && pc.Entidad == foliollegada.Entidad
+                                                          select pc.PreFijoFolioAvisoLlegada + ","
+                                                          + pc.CantidadCerosFolioAvisoLlegada.ToString() + ","
+                                                          + foliollegada.Consecutivo + ","
+                                                          + pc.PostFijoFolioAvisoLlegada.Trim()).FirstOrDefault();
+
+                        string NombreFolioCuantificacion = (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                            where pc.Rel_Proyecto_Entidad_Configuracion_ID == folioCuantificacion.Rel_Proyecto_Entidad_Configuracion_ID
+                                                            select pc.PreFijoFolioPackingList + ","
+                                                            + pc.CantidadCerosFolioPackingList.ToString() + ","
+                                                            + folioCuantificacion.ConsecutivoConfiguracion.ToString() + ","
+                                                            + pc.PostFijoFolioPackingList).FirstOrDefault();
+
+                        int FolioAvisoLlegadaID = foliollegada.FolioAvisoLlegadaID;
+                        int ConsecutivoFolioCuanificacion = folioCuantificacion.Consecutivo.Value;
+                        int ConsecutivoFolioLlegada = foliollegada.Consecutivo.Value;
+                        folioLlegadaCuantificacion.FolioConfiguracionCuantificacionID = "";
+
+                        NombreFolioAvisoLlegada = Conversiones.Instance.FormatearCadenasdeElementos(NombreFolioAvisoLlegada);
+                        NombreFolioCuantificacion = Conversiones.Instance.FormatearCadenasdeElementos(NombreFolioCuantificacion);
+
+                        if (activaConfigFolioLlegada && activarFolioConfiguracion)
+                        {
+                            folioLlegadaCuantificacion.FolioConfiguracionCuantificacionID = NombreFolioAvisoLlegada + "-" + NombreFolioCuantificacion;
+                        }
+
+                        if (activaConfigFolioLlegada && !activarFolioConfiguracion)
+                        {
+                            folioLlegadaCuantificacion.FolioConfiguracionCuantificacionID = NombreFolioAvisoLlegada + "-" + ConsecutivoFolioCuanificacion;
+                        }
+
+                        if (!activaConfigFolioLlegada && activarFolioConfiguracion)
+                        {
+                            folioLlegadaCuantificacion.FolioConfiguracionCuantificacionID = FolioAvisoLlegadaID + "-" + NombreFolioCuantificacion;
+                        }
+
+                        if (!activaConfigFolioLlegada && !activarFolioConfiguracion)
+                        {
+                            folioLlegadaCuantificacion.FolioConfiguracionCuantificacionID = FolioAvisoLlegadaID + "-" + ConsecutivoFolioCuanificacion;
+                        }
+                        
+
+                        ctx_tran.Commit();
+                       
+                        return folioLlegadaCuantificacion;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
     }
 }

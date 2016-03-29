@@ -21,6 +21,7 @@ namespace DatabaseManager.Sam3
             this.Sam3_Corte1 = new HashSet<Sam3_Corte>();
             this.Sam3_CorteDetalle = new HashSet<Sam3_CorteDetalle>();
             this.Sam3_NumeroUnicoCorte = new HashSet<Sam3_NumeroUnicoCorte>();
+            this.Sam3_Despacho = new HashSet<Sam3_Despacho>();
         }
     
         public int NumeroUnicoMovimientoID { get; set; }
@@ -46,5 +47,6 @@ namespace DatabaseManager.Sam3
         public virtual ICollection<Sam3_NumeroUnicoCorte> Sam3_NumeroUnicoCorte { get; set; }
         public virtual Sam3_Proyecto Sam3_Proyecto { get; set; }
         public virtual Sam3_TipoMovimiento Sam3_TipoMovimiento { get; set; }
+        public virtual ICollection<Sam3_Despacho> Sam3_Despacho { get; set; }
     }
 }

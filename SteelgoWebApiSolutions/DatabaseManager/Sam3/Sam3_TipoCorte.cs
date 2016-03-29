@@ -14,6 +14,17 @@ namespace DatabaseManager.Sam3
     
     public partial class Sam3_TipoCorte
     {
+<<<<<<< HEAD
+        public Sam3_TipoCorte()
+        {
+            this.Sam3_NumeroUnico = new HashSet<Sam3_NumeroUnico>();
+            this.Sam3_NumeroUnico1 = new HashSet<Sam3_NumeroUnico>();
+            this.Sam3_CorteSpool = new HashSet<Sam3_CorteSpool>();
+            this.Sam3_CorteSpool1 = new HashSet<Sam3_CorteSpool>();
+        }
+    
+=======
+>>>>>>> Steelgo-InHouse
         public int TipoCorteID { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
@@ -22,5 +33,13 @@ namespace DatabaseManager.Sam3
         public bool Activo { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
+<<<<<<< HEAD
+    
+        public virtual ICollection<Sam3_NumeroUnico> Sam3_NumeroUnico { get; set; }
+        public virtual ICollection<Sam3_NumeroUnico> Sam3_NumeroUnico1 { get; set; }
+        public virtual ICollection<Sam3_CorteSpool> Sam3_CorteSpool { get; set; }
+        public virtual ICollection<Sam3_CorteSpool> Sam3_CorteSpool1 { get; set; }
+=======
+>>>>>>> Steelgo-InHouse
     }
 }

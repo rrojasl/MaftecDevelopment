@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DatabaseManager.Sam3;
+using DatabaseManager.Sam2;
 using DatabaseManager.EntidadesPersonalizadas;
 using BackEndSAM.Utilities;
 using System.Web.Script.Serialization;
@@ -10,6 +11,7 @@ using BackEndSAM.Models;
 using SecurityManager.Api.Models;
 using System.Transactions;
 using System.Globalization;
+using System.Configuration;
 
 namespace BackEndSAM.DataAcces
 {
@@ -97,6 +99,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -107,265 +112,394 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object GenerarNumerosUnicosPorOrdenDeRecepcion(int ordenRecepcionID, Sam3_Usuario usuario, out string error)
+        public object ListadoNumerosUnicosCorte(int proyectoID, string busqueda, Sam3_Usuario usuario)
+        {
+            try
+            {
+                List<ListaComboNumeroUnicoCOrte> listado = new List<ListaComboNumeroUnicoCOrte>();
+                using (SamContext ctx = new SamContext())
+                {
+                    using (Sam2Context ctx2 = new Sam2Context())
+                    {
+
+                        char[] elementosBusqueda = busqueda.ToCharArray();
+                        List<string> buscar = new List<string>();
+                        string temp = "%";
+                        foreach (char i in elementosBusqueda)
+                        {
+                            buscar.Add(i.ToString());
+                            temp += i + "%";
+                        }
+
+                        int sam2_proyectoID = ctx.Sam3_EquivalenciaProyecto.Where(x => x.Sam3_ProyectoID == proyectoID)
+                            .Select(x => x.Sam2_ProyectoID).AsParallel().SingleOrDefault();
+
+                        //Busco los numeros unicos con despachos pendientes en sam 2
+                        List<int> sam2_NumerosUnicos = (from nu in ctx2.NumeroUnico
+                                                        join odtm in ctx2.OrdenTrabajoMaterial on nu.NumeroUnicoID equals odtm.NumeroUnicoCongeladoID
+                                                        join odts in ctx2.OrdenTrabajoSpool on odtm.OrdenTrabajoSpoolID equals odts.OrdenTrabajoSpoolID
+                                                        join it in ctx2.ItemCode on nu.ItemCodeID equals it.ItemCodeID
+                                                        where nu.ProyectoID == sam2_proyectoID
+                                                        && odtm.CorteDetalleID == null && odtm.DespachoID == null
+                                                        && !(from sh in ctx2.SpoolHold
+                                                             where sh.SpoolID == odts.SpoolID
+                                                             && (sh.Confinado || sh.TieneHoldCalidad || sh.TieneHoldIngenieria)
+                                                             select sh).Any()
+                                                        && it.TipoMaterialID == 1
+                                                        && buscar.Any(x => nu.Codigo.Contains(x))
+                                                        && nu.Estatus == "A"
+                                                        select nu.NumeroUnicoID).Distinct().AsParallel().ToList();
+
+                        //ahora buscamos las equivalencias de esos numeros unicos en sam 3
+
+                        List<int> sam3_NumerosUnicos = (from nueq in ctx.Sam3_EquivalenciaNumeroUnico
+                                                        where nueq.Activo
+                                                        && sam2_NumerosUnicos.Contains(nueq.Sam2_NumeroUnicoID)
+                                                        select nueq.Sam3_NumeroUnicoID).Distinct().AsParallel().ToList();
+
+                        listado = (from nu in ctx.Sam3_NumeroUnico
+                                   join nus in ctx.Sam3_NumeroUnicoSegmento on nu.NumeroUnicoID equals nus.NumeroUnicoID
+                                   where nu.Activo && nus.Activo && nu.Estatus == "A"
+                                   && sam3_NumerosUnicos.Contains(nu.NumeroUnicoID)
+                                   select new ListaComboNumeroUnicoCOrte
+                                   {
+                                       NumeroControlID = nu.NumeroUnicoID.ToString(),
+                                       NumeroControl = nu.Prefijo + "-" + nu.Consecutivo + "-" + nus.Segmento
+                                   }).Distinct().AsParallel().ToList();
+
+                        Sam3_ProyectoConfiguracion configuracion = ctx.Sam3_ProyectoConfiguracion.Where(x => x.ProyectoID == proyectoID).AsParallel().SingleOrDefault();
+
+                        foreach (ListaComboNumeroUnicoCOrte lst in listado)
+                        {
+                            string formato = "D" + configuracion.DigitosNumeroUnico.ToString();
+                            string[] elementos = lst.NumeroControl.Split('-').ToArray();
+                            int consecutivo = Convert.ToInt32(elementos[1]);
+                            string codigo = elementos[0] + "-" + consecutivo.ToString(formato) + "-" + elementos[2];
+                            lst.NumeroControl = codigo;
+                        }
+                    }
+                }
+                return listado;
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+        public object DetalleNumeroUnicoCorte(string prefijo, int consecutivo, string segmento, Sam3_Usuario usuario)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-
-                    //traemos los itemcodes de los que se van a generar numeros unicos
-                    List<Sam3_ItemCode> itemCodes = (from r in ctx.Sam3_OrdenRecepcion
-                                                     join rit in ctx.Sam3_Rel_OrdenRecepcion_ItemCode on r.OrdenRecepcionID equals rit.OrdenRecepcionID
-                                                     join it in ctx.Sam3_ItemCode on rit.ItemCodeID equals it.ItemCodeID
-                                                     where r.Activo && rit.Activo && it.Activo
-                                                     && r.OrdenRecepcionID == ordenRecepcionID
-                                                     select it).AsParallel().ToList();
-
-                    Sam3_ProyectoConsecutivo consecutivos;
-                    Sam3_ProyectoConfiguracion configuracion;
-                    int folio = 0;
-                    //generar numeros unicos por cada itemcode
-                    foreach (Sam3_ItemCode item in itemCodes)
-                    {
-                        //traemos la confiduracion del proyecto registrado en el ItemCode
-                        configuracion = ctx.Sam3_ProyectoConfiguracion.Where(x => x.ProyectoID == item.ProyectoID)
-                           .AsParallel().FirstOrDefault();
-
-                        consecutivos = ctx.Sam3_ProyectoConsecutivo.Where(x => x.ProyectoID == item.ProyectoID)
-                           .AsParallel().FirstOrDefault();
-
-                        folio = consecutivos.ConsecutivoNumerounico;
-
-                        Sam3_FolioAvisoEntrada folioEntrada = (from i in ctx.Sam3_ItemCode
-                                                               join rfi in ctx.Sam3_Rel_FolioCuantificacion_ItemCode on i.ItemCodeID equals rfi.ItemCodeID
-                                                               join fc in ctx.Sam3_FolioCuantificacion on rfi.FolioCuantificacionID equals fc.FolioCuantificacionID
-                                                               join fe in ctx.Sam3_FolioAvisoEntrada on fc.FolioAvisoEntradaID equals fe.FolioAvisoEntradaID
-                                                               join fa in ctx.Sam3_FolioAvisoLlegada on fe.FolioAvisoLlegadaID equals fa.FolioAvisoLlegadaID
-                                                               where i.ItemCodeID == item.ItemCodeID
-                                                               select fe).AsParallel().FirstOrDefault();
-
-                        if (folioEntrada == null)
-                        {
-                            folioEntrada = (from i in ctx.Sam3_ItemCode
-                                            join rbi in ctx.Sam3_Rel_Bulto_ItemCode on i.ItemCodeID equals rbi.ItemCodeID
-                                            join b in ctx.Sam3_Bulto on rbi.BultoID equals b.BultoID
-                                            join fc in ctx.Sam3_FolioCuantificacion on b.FolioCuantificacionID equals fc.FolioCuantificacionID
-                                            join fe in ctx.Sam3_FolioAvisoEntrada on fc.FolioAvisoEntradaID equals fe.FolioAvisoEntradaID
-                                            join fa in ctx.Sam3_FolioAvisoLlegada on fe.FolioAvisoLlegadaID equals fa.FolioAvisoLlegadaID
-                                            where i.ItemCodeID == item.ItemCodeID
-                                            select fe).AsParallel().FirstOrDefault();
-                        }
-
-                        if (folioEntrada == null)
-                        {
-                            error = "Se produjo un error al generar Numeros Unicos";
-                            return false;
-                        }
-
-                        //tipo de material
-                        if (item.TipoMaterialID == 1) // tubo
-                        {
-                            folio = folio + 1;
-                            Sam3_NumeroUnico nuevoNU = new Sam3_NumeroUnico();
-                            nuevoNU.Activo = true;
-                            nuevoNU.ColadaID = item.ColadaID > 0 ? item.ColadaID : 1;
-                            nuevoNU.Diametro1 = item.Diametro1 != null ? item.Diametro1.Value : 0;
-                            nuevoNU.Diametro2 = item.Diametro1 != null ? item.Diametro2.Value : 0;
-                            nuevoNU.Estatus = "D"; //
-                            nuevoNU.EsVirtual = false;
-                            nuevoNU.FechaModificacion = DateTime.Now;
-                            nuevoNU.ItemCodeID = item.ItemCodeID;
-                            nuevoNU.UsuarioModificacion = usuario.UsuarioID;
-                            nuevoNU.Prefijo = configuracion.PrefijoNumeroUnico;
-                            nuevoNU.Consecutivo = folio;
-                            nuevoNU.FabricanteID = 1; //se establece como default pues este dato no se proporciona en cuantificacion
-                            nuevoNU.Factura = folioEntrada.Factura;
-                            nuevoNU.OrdenDeCompra = folioEntrada.OrdenCompra;
-                            nuevoNU.ProveedorID = folioEntrada.ProveedorID;
-                            nuevoNU.ProyectoID = item.ProyectoID;
-                            //----------------- por defaulto lo colocare en falso, ya en un ptoceso posterior podra modificarse
-                            nuevoNU.TieneDano = false;
-                            nuevoNU.MarcadoAsme = false;
-                            nuevoNU.MarcadoGolpe = false;
-                            nuevoNU.MarcadoPintura = false;
-                            //--------------------------------------------------------------------------------------------------
-
-                            ctx.Sam3_NumeroUnico.Add(nuevoNU);
-                            ctx.SaveChanges(); // debemos guardar para obtener un nuevo id de numero unico
-
-                            //Generamos el nuevo registro en inventario
-                            Sam3_NumeroUnicoInventario inventario = new Sam3_NumeroUnicoInventario();
-                            inventario.Activo = true;
-                            inventario.CantidadDanada = 0; // en este punto no se conoce la cantidad dañada o si existe esta cantidad
-                            inventario.CantidadRecibida = item.Cantidad.Value;
-                            inventario.EsVirtual = false;
-                            inventario.FechaModificacion = DateTime.Now;
-                            inventario.InventarioFisico = inventario.CantidadRecibida;
-                            inventario.InventarioBuenEstado = inventario.InventarioFisico - inventario.CantidadDanada;
-                            inventario.InventarioCongelado = 0; // en este punto no existen los congelados;
-                            inventario.InventarioDisponibleCruce = inventario.InventarioBuenEstado - inventario.InventarioCongelado;
-                            inventario.InventarioTransferenciaCorte = 0; //en este punto no existe este dato
-                            inventario.NumeroUnicoID = nuevoNU.NumeroUnicoID;
-                            inventario.ProyectoID = nuevoNU.ProyectoID;
-                            inventario.UsuarioModificacion = usuario.UsuarioID;
-
-                            ctx.Sam3_NumeroUnicoInventario.Add(inventario);
-
-                            //Generamos el registro en NumeroUnicoSegmento
-                            Sam3_NumeroUnicoSegmento nuevoSegmento = new Sam3_NumeroUnicoSegmento();
-                            nuevoSegmento.Activo = true;
-                            nuevoSegmento.CantidadDanada = 0;
-                            nuevoSegmento.FechaModificacion = DateTime.Now;
-                            nuevoSegmento.InventarioFisico = item.Cantidad.Value;
-                            nuevoSegmento.InventarioBuenEstado = nuevoSegmento.InventarioFisico - nuevoSegmento.CantidadDanada;
-                            nuevoSegmento.InventarioCongelado = 0;
-                            nuevoSegmento.InventarioDisponibleCruce = nuevoSegmento.InventarioBuenEstado - nuevoSegmento.InventarioCongelado;
-                            nuevoSegmento.InventarioTransferenciaCorte = 0;
-                            nuevoSegmento.NumeroUnicoID = nuevoNU.NumeroUnicoID;
-                            nuevoSegmento.ProyectoID = nuevoNU.ProyectoID;
-                            nuevoSegmento.Segmento = "A";
-                            nuevoSegmento.UsuarioModificacion = usuario.UsuarioID;
-
-                            ctx.Sam3_NumeroUnicoSegmento.Add(nuevoSegmento);
-
-                            //Agregamos el registro de movimiento
-                            Sam3_NumeroUnicoMovimiento movimiento = new Sam3_NumeroUnicoMovimiento();
-                            movimiento.Activo = true;
-                            movimiento.Cantidad = item.Cantidad.Value;
-                            movimiento.Estatus = "A";
-                            movimiento.FechaModificacion = DateTime.Now;
-                            movimiento.FechaMovimiento = DateTime.Now;
-                            movimiento.NumeroUnicoID = nuevoNU.NumeroUnicoID;
-                            movimiento.ProyectoID = nuevoNU.ProyectoID;
-                            movimiento.Referencia = "Recepcion";
-                            movimiento.Segmento = "A";
-                            movimiento.TipoMovimientoID = 1; //este debe ser recepcion
-                            movimiento.UsuarioModificacion = usuario.UsuarioID;
-
-                            consecutivos.ConsecutivoNumerounico = folio;
-                            ctx.Sam3_NumeroUnicoMovimiento.Add(movimiento);
-                            ctx.SaveChanges();
-
-                            //Actualizar el ItemCode para indicar que ya tiene un numero unico
-                            if (ctx.Sam3_Rel_FolioCuantificacion_ItemCode.Where(x => x.ItemCodeID == item.ItemCodeID).Any())
+                    DetalleNumeroUnicoCorte detalle = (from nu in ctx.Sam3_NumeroUnico
+                            join nui in ctx.Sam3_NumeroUnicoInventario on nu.NumeroUnicoID equals nui.NumeroUnicoID
+                            join it in ctx.Sam3_ItemCode on nu.ItemCodeID equals it.ItemCodeID
+                            join pc in ctx.Sam3_ProyectoConfiguracion on nu.ProyectoID equals pc.ProyectoID
+                            where nu.Activo && nui.Activo && it.Activo && pc.Activo
+                            && nu.Prefijo == prefijo
+                            && nu.Consecutivo == consecutivo
+                            select new DetalleNumeroUnicoCorte
                             {
-                                Sam3_Rel_FolioCuantificacion_ItemCode actualizarRelacion = ctx.Sam3_Rel_FolioCuantificacion_ItemCode
-                                    .Where(x => x.ItemCodeID == item.ItemCodeID).AsParallel().SingleOrDefault();
-                                actualizarRelacion.TieneNumerosUnicos = true;
-                                actualizarRelacion.FechaModificacion = DateTime.Now;
-                                actualizarRelacion.UsuarioModificacion = usuario.UsuarioID;
-                                ctx.SaveChanges();
-                            }
+                                Cantidad = nui.InventarioFisico.ToString(),
+                                D1 = nu.Diametro1.ToString(),
+                                ItemCode = it.Codigo,
+                                Tolerancia = pc.ToleranciaCortes.Value.ToString()
+                            }).Distinct().AsParallel().SingleOrDefault();
 
-                            if (ctx.Sam3_Rel_Bulto_ItemCode.Where(x => x.ItemCodeID == item.ItemCodeID).Any())
-                            {
-                                Sam3_Rel_Bulto_ItemCode relacion = ctx.Sam3_Rel_Bulto_ItemCode.Where(x => x.ItemCodeID == item.ItemCodeID).AsParallel().SingleOrDefault();
-                                relacion.TieneNumerosUnicos = true;
-                                relacion.FechaModificacion = DateTime.Now;
-                                relacion.UsuarioModificacion = usuario.UsuarioID;
-                                ctx.SaveChanges();
-                            }
+                    detalle.ListadoCortes = (List<DatosBusquedaODT>)CorteBd.Instance.ListadoGenerarCorte(prefijo, consecutivo, segmento, usuario);
 
-                        }
-                        else //accesorio
-                        {
-                            for (int i = 0; i <= item.Cantidad; i++) // se genera un numero unico por cada pieza recibida de accesorios
-                            {
-                                folio = folio + 1;
-                                Sam3_NumeroUnico nuevoNU = new Sam3_NumeroUnico();
-                                nuevoNU.Activo = true;
-                                nuevoNU.ColadaID = item.ColadaID != null && item.ColadaID > 0 ? item.ColadaID : 1;
-                                nuevoNU.Diametro1 = item.Diametro1 != null ? item.Diametro1.Value : 0;
-                                nuevoNU.Diametro2 = item.Diametro2 != null ? item.Diametro2.Value : 0;
-                                nuevoNU.Estatus = "D";
-                                nuevoNU.EsVirtual = false;
-                                nuevoNU.FechaModificacion = DateTime.Now;
-                                nuevoNU.ItemCodeID = item.ItemCodeID;
-                                nuevoNU.UsuarioModificacion = usuario.UsuarioID;
-                                nuevoNU.Prefijo = configuracion.PrefijoNumeroUnico;
-                                nuevoNU.Consecutivo = folio;
-                                nuevoNU.FabricanteID = 1; //se establece como default pues este dato no se proporciona en cuantificacion
-                                nuevoNU.Factura = folioEntrada.Factura;
-                                nuevoNU.OrdenDeCompra = folioEntrada.OrdenCompra;
-                                nuevoNU.ProveedorID = folioEntrada.ProveedorID;
-                                nuevoNU.ProyectoID = item.ProyectoID;
-                                //----------------- por defaulto lo colocare en falso, ya en un ptoceso posterior podra modificarse
-                                nuevoNU.TieneDano = false;
-                                nuevoNU.MarcadoAsme = false;
-                                nuevoNU.MarcadoGolpe = false;
-                                nuevoNU.MarcadoPintura = false;
-                                //--------------------------------------------------------------------------------------------------
-
-                                ctx.Sam3_NumeroUnico.Add(nuevoNU);
-                                ctx.SaveChanges(); // debemos guardar para obtener un nuevo id de numero unico
-
-                                //Generamos el nuevo registro en inventario
-                                Sam3_NumeroUnicoInventario inventario = new Sam3_NumeroUnicoInventario();
-                                inventario.Activo = true;
-                                inventario.CantidadDanada = 0; // en este punto no se conoce la cantidad dañada o si existe esta cantidad
-                                inventario.CantidadRecibida = 1;
-                                inventario.EsVirtual = false;
-                                inventario.FechaModificacion = DateTime.Now;
-                                inventario.InventarioFisico = inventario.CantidadRecibida;
-                                inventario.InventarioBuenEstado = inventario.InventarioFisico - inventario.CantidadDanada;
-                                inventario.InventarioCongelado = 0; // en este punto no existen los congelados;
-                                inventario.InventarioDisponibleCruce = inventario.InventarioBuenEstado - inventario.InventarioCongelado;
-                                inventario.InventarioTransferenciaCorte = 0; //en este punto no existe este dato
-                                inventario.NumeroUnicoID = nuevoNU.NumeroUnicoID;
-                                inventario.ProyectoID = nuevoNU.ProyectoID;
-                                inventario.UsuarioModificacion = usuario.UsuarioID;
-
-                                ctx.Sam3_NumeroUnicoInventario.Add(inventario);
-
-                                //Agregamos el registro de movimiento
-                                Sam3_NumeroUnicoMovimiento movimiento = new Sam3_NumeroUnicoMovimiento();
-                                movimiento.Activo = true;
-                                movimiento.Cantidad = 1;
-                                movimiento.Estatus = "A";
-                                movimiento.FechaModificacion = DateTime.Now;
-                                movimiento.FechaMovimiento = DateTime.Now;
-                                movimiento.NumeroUnicoID = nuevoNU.NumeroUnicoID;
-                                movimiento.ProyectoID = nuevoNU.ProyectoID;
-                                movimiento.Referencia = "Recepcion";
-                                movimiento.TipoMovimientoID = 1; //este debe ser recepcion
-                                movimiento.UsuarioModificacion = usuario.UsuarioID;
-
-                                ctx.Sam3_NumeroUnicoMovimiento.Add(movimiento);
-                                ctx.SaveChanges();
-                            }// fin for
-                            consecutivos.ConsecutivoNumerounico = folio;
-                            ctx.SaveChanges();
-
-                            //Actualizar el ItemCode para indicar que ya tiene un numero unico
-                            if (ctx.Sam3_Rel_FolioCuantificacion_ItemCode.Where(x => x.ItemCodeID == item.ItemCodeID).Any())
-                            {
-                                Sam3_Rel_FolioCuantificacion_ItemCode actualizarRelacion = ctx.Sam3_Rel_FolioCuantificacion_ItemCode
-                                    .Where(x => x.ItemCodeID == item.ItemCodeID).AsParallel().SingleOrDefault();
-                                actualizarRelacion.TieneNumerosUnicos = true;
-                                actualizarRelacion.FechaModificacion = DateTime.Now;
-                                actualizarRelacion.UsuarioModificacion = usuario.UsuarioID;
-                                ctx.SaveChanges();
-                            }
-
-                            if (ctx.Sam3_Rel_Bulto_ItemCode.Where(x => x.ItemCodeID == item.ItemCodeID).Any())
-                            {
-                                Sam3_Rel_Bulto_ItemCode relacion = ctx.Sam3_Rel_Bulto_ItemCode.Where(x => x.ItemCodeID == item.ItemCodeID).AsParallel().SingleOrDefault();
-                                relacion.TieneNumerosUnicos = true;
-                                relacion.FechaModificacion = DateTime.Now;
-                                relacion.UsuarioModificacion = usuario.UsuarioID;
-                                ctx.SaveChanges();
-                            }
-                        }// else
-                    }// foreach
-                    error = "";
-                    return true;
+                    return detalle; 
                 }
             }
             catch (Exception ex)
             {
-                error = ex.Message;
-                return false;
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+        public object ListadoNumeroUnicoComboGridDespacho(string numeroControl, string etiqueta, string itemcode, int proyectoID, Sam3_Usuario usuario)
+        {
+            try
+            {
+                List<ListaCombos> listado = new List<ListaCombos>();
+                using (SamContext ctx = new SamContext())
+                {
+                    using (Sam2Context ctx2 = new Sam2Context())
+                    {
+                        List<int> sam2_NumerosUnicosIDs = (from odts in ctx2.OrdenTrabajoSpool
+                                                           join odt in ctx2.OrdenTrabajo on odts.OrdenTrabajoID equals odt.OrdenTrabajoID
+                                                           join ms in ctx2.MaterialSpool on odts.SpoolID equals ms.SpoolID
+                                                           join it in ctx2.ItemCode on ms.ItemCodeID equals it.ItemCodeID
+                                                           join nu in ctx2.NumeroUnico on it.ItemCodeID equals nu.ItemCodeID
+                                                           join nui in ctx2.NumeroUnicoInventario on nu.NumeroUnicoID equals nui.NumeroUnicoID
+                                                           where ms.Etiqueta == etiqueta
+                                                           && odts.NumeroControl == numeroControl
+                                                           && it.TipoMaterialID == 2
+                                                           && it.Codigo == itemcode
+                                                           && odt.ProyectoID == proyectoID
+                                                           && ms.Diametro1 == nu.Diametro1
+                                                           && ms.Diametro2 == nu.Diametro2
+                                                           select nu.NumeroUnicoID).Distinct().AsParallel().ToList();
+
+                        listado = (from nu in ctx.Sam3_NumeroUnico
+                                   join nueq in ctx.Sam3_EquivalenciaNumeroUnico on nu.NumeroUnicoID equals nueq.Sam3_NumeroUnicoID
+                                   where nu.Activo && nueq.Activo
+                                   && sam2_NumerosUnicosIDs.Contains(nueq.Sam2_NumeroUnicoID)
+                                   && nu.EstatusFisico == "Aprobado" && nu.EstatusDocumental == "Aprobado"
+                                   select new ListaCombos
+                                   {
+                                       id = nu.NumeroUnicoID.ToString(),
+                                       value = nu.Prefijo + "-" + nu.Consecutivo
+                                   }).Distinct().AsParallel().ToList();
+
+                        foreach (ListaCombos lst in listado)
+                        {
+                            string[] elementos = lst.value.Split('-');
+
+                            int temp = Convert.ToInt32(lst.id);
+
+                            int digitos = (from nu in ctx.Sam3_NumeroUnico
+                                           join p in ctx.Sam3_ProyectoConfiguracion on nu.ProyectoID equals p.ProyectoID
+                                           where nu.Activo && p.Activo
+                                           && nu.NumeroUnicoID == temp
+                                           select p.DigitosNumeroUnico).AsParallel().SingleOrDefault();
+
+                            string formato = "D" + digitos.ToString();
+                            int consecutivo = Convert.ToInt32(elementos[1]);
+
+                            lst.value = elementos[0] + "-" + consecutivo.ToString(formato);
+
+                        }
+                    }
+                }
+                return listado;
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+        public List<ListadoIncidencias> ListadoIncidencias(int clienteID, int proyectoID, List<int> proyectos, List<int> patios, List<int> IDs)
+        {
+            try
+            {
+                Boolean ActivarFolioConfiguracionIncidencias = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracionIncidencias"]) ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracionIncidencias"].Equals("1") ? true : false) : false;
+                List<ListadoIncidencias> listado;
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_NumeroUnico> registros = new List<Sam3_NumeroUnico>();
+
+                    if (proyectoID > 0)
+                    {
+                        registros = (from nu in ctx.Sam3_NumeroUnico
+                                     join p in ctx.Sam3_Proyecto on nu.ProyectoID equals p.ProyectoID
+                                     join pa in ctx.Sam3_Patio on p.PatioID equals pa.PatioID
+                                     where nu.Activo && p.Activo && pa.Activo
+                                     && proyectos.Contains(p.ProyectoID)
+                                     && patios.Contains(pa.PatioID)
+                                     && p.ProyectoID == proyectoID
+                                     && IDs.Contains(nu.NumeroUnicoID)
+                                     select nu).AsParallel().Distinct().ToList();
+                    }
+                    else
+                    {
+                        registros = (from nu in ctx.Sam3_NumeroUnico
+                                     join p in ctx.Sam3_Proyecto on nu.ProyectoID equals p.ProyectoID
+                                     join pa in ctx.Sam3_Patio on p.PatioID equals pa.PatioID
+                                     where nu.Activo && p.Activo && pa.Activo
+                                     && proyectos.Contains(p.ProyectoID)
+                                     && patios.Contains(pa.PatioID)
+                                     && IDs.Contains(nu.NumeroUnicoID)
+                                     select nu).AsParallel().Distinct().ToList();
+                    }
+
+                    if (clienteID > 0)
+                    {
+                        int sam3Cliente = (from c in ctx.Sam3_Cliente
+                                           where c.Activo && c.Sam2ClienteID == clienteID
+                                           select c.ClienteID).AsParallel().SingleOrDefault();
+                        registros = (from r in registros
+                                     join p in ctx.Sam3_Proyecto on r.ProyectoID equals p.ProyectoID
+                                     where p.Activo
+                                     && p.ClienteID == sam3Cliente
+                                     select r).AsParallel().Distinct().ToList();
+                    }
+
+                    listado = (from r in registros
+                               join rin in ctx.Sam3_Rel_Incidencia_NumeroUnico on r.NumeroUnicoID equals rin.NumeroUnicoID
+                               join inc in ctx.Sam3_Incidencia on rin.IncidenciaID equals inc.IncidenciaID
+                               join c in ctx.Sam3_ClasificacionIncidencia on inc.ClasificacionID equals c.ClasificacionIncidenciaID
+                               join tpi in ctx.Sam3_TipoIncidencia on inc.TipoIncidenciaID equals tpi.TipoIncidenciaID
+                               where rin.Activo && inc.Activo && c.Activo && tpi.Activo
+                               select new ListadoIncidencias
+                               {
+                                   Clasificacion = c.Nombre,
+                                   Estatus = inc.Estatus,
+                                   TipoIncidencia = tpi.Nombre,
+                                   RegistradoPor = (from us in ctx.Sam3_Usuario
+                                                    where us.Activo && us.UsuarioID == inc.UsuarioID
+                                                    select us.Nombre + " " + us.ApellidoPaterno).SingleOrDefault(),
+                                   FolioIncidenciaID = inc.IncidenciaID.ToString(),
+                                   FechaRegistro = inc.FechaCreacion.ToString(),
+                                   FolioConfiguracionIncidencia = ActivarFolioConfiguracionIncidencias ? (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                                                                          where  pc.Rel_Proyecto_Entidad_Configuracion_ID==inc.Rel_Proyecto_Entidad_Configuracion_ID
+                                                                                                          select pc.PreFijoFolioIncidencias + ","
+                                                                                                           + pc.CantidadCerosFolioIncidencias.ToString() + ","
+                                                                                                           + inc.Consecutivo.ToString() + ","
+                                                                                                           + pc.PostFijoFolioIncidencias).FirstOrDefault() : inc.IncidenciaID.ToString()
+                               }).AsParallel().Distinct().ToList();
+
+
+                    if (ActivarFolioConfiguracionIncidencias)
+                    {
+                        foreach (ListadoIncidencias item in listado)
+                        {
+                            if (!string.IsNullOrEmpty(item.FolioConfiguracionIncidencia))
+                            {
+                                string[] elemntos = item.FolioConfiguracionIncidencia.Split(',').ToArray();
+                                int digitos = Convert.ToInt32(elemntos[1]);
+                                int consecutivo = Convert.ToInt32(elemntos[2]);
+                                string formato = "D" + digitos.ToString();
+
+                                item.FolioConfiguracionIncidencia = elemntos[0].Trim() + consecutivo.ToString(formato).Trim() + elemntos[3].Trim();
+                            }
+                            else {
+                                item.FolioConfiguracionIncidencia = item.FolioIncidenciaID.ToString();
+                            }
+                        }
+                    }
+                }
+                return listado;
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                return null;
+            }
+        }
+
+        public object EliminarNumeroUnico(int numeroUnicoID, Sam3_Usuario usuario)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    using (var ctx_tran = ctx.Database.BeginTransaction())
+                    {
+                        using (Sam2Context ctx2 = new Sam2Context())
+                        {
+                            using (var ctx2_tran = ctx2.Database.BeginTransaction())
+                            {
+                                int sam2_NumeroUnicoID = (from eq in ctx.Sam3_EquivalenciaNumeroUnico
+                                                          where eq.Activo && eq.Sam3_NumeroUnicoID == numeroUnicoID
+                                                          select eq.Sam2_NumeroUnicoID).AsParallel().SingleOrDefault();
+
+                                NumeroUnico NumeroUnicoSam2 = ctx2.NumeroUnico.Where(x => x.NumeroUnicoID == sam2_NumeroUnicoID).AsParallel().SingleOrDefault();
+
+                                //buscamos si tiene procesos en ODTM
+                                bool tieneProcesos = (from odtm in ctx2.OrdenTrabajoMaterial
+                                                        where odtm.NumeroUnicoCongeladoID == NumeroUnicoSam2.NumeroUnicoID
+                                                        || odtm.NumeroUnicoDespachadoID == NumeroUnicoSam2.NumeroUnicoID
+                                                        || odtm.NumeroUnicoSugeridoID == NumeroUnicoSam2.NumeroUnicoID
+                                                        select odtm).Any();
+
+                                bool tieneInventarioCongelado = (from nui in ctx.Sam3_NumeroUnicoInventario
+                                                                    where nui.NumeroUnicoID == NumeroUnicoSam2.NumeroUnicoID
+                                                                    select nui.InventarioCongelado).AsParallel().SingleOrDefault() > 0 ? true : false;
+
+                                bool tieneInventarioTransferenciaCorte = (from nui in ctx.Sam3_NumeroUnicoInventario
+                                                                          where nui.NumeroUnicoID == NumeroUnicoSam2.NumeroUnicoID
+                                                                          select nui.InventarioTransferenciaCorte).AsParallel().SingleOrDefault() > 0 ? true : false;
+
+                                if (!tieneProcesos && !tieneInventarioCongelado && !tieneInventarioTransferenciaCorte)
+                                {
+                                    //Para eliminar el numero unico de sam 2 solo hay que ponerlo en estatus C
+                                    NumeroUnicoSam2.Estatus = "C";
+                                    NumeroUnicoSam2.FechaModificacion = DateTime.Now;
+                                    ctx2.SaveChanges();
+
+                                    Sam3_NumeroUnico numUnicoS3 = ctx.Sam3_NumeroUnico.Where(x => x.NumeroUnicoID == numeroUnicoID).AsParallel().SingleOrDefault();
+                                    numUnicoS3.Activo = false;
+                                    numUnicoS3.FechaModificacion = DateTime.Now;
+                                    numUnicoS3.UsuarioModificacion = usuario.UsuarioID;
+
+                                    numUnicoS3.Sam3_NumeroUnicoInventario.Activo = false;
+                                    numUnicoS3.Sam3_NumeroUnicoInventario.FechaModificacion = DateTime.Now;
+                                    numUnicoS3.Sam3_NumeroUnicoInventario.UsuarioModificacion = usuario.UsuarioID;
+
+                                    foreach (Sam3_NumeroUnicoSegmento segmento in numUnicoS3.Sam3_NumeroUnicoSegmento)
+                                    {
+                                        segmento.Activo = false;
+                                        segmento.FechaModificacion = DateTime.Now;
+                                        segmento.UsuarioModificacion = usuario.UsuarioID;
+                                    }
+
+                                    ctx.SaveChanges();
+                                }
+                                else
+                                {
+                                    throw new Exception("No se puede Eliminar el Número Único pues tiene algun proceso capturado");
+                                }
+
+                                ctx_tran.Commit();
+                                ctx2_tran.Commit();
+                            }
+                        }
+                    }
+ 
+                }
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add("OK");
+                result.ReturnCode = 200;
+                result.ReturnStatus = true;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
             }
         }
     }

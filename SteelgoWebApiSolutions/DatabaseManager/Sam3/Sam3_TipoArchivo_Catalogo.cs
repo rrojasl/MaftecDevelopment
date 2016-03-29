@@ -14,11 +14,25 @@ namespace DatabaseManager.Sam3
     
     public partial class Sam3_TipoArchivo_Catalogo
     {
+<<<<<<< HEAD
+        public Sam3_TipoArchivo_Catalogo()
+        {
+            this.Sam3_Rel_Catalogos_Documento = new HashSet<Sam3_Rel_Catalogos_Documento>();
+        }
+    
+=======
+>>>>>>> Steelgo-InHouse
         public int TipoArchivoID { get; set; }
         public Nullable<int> CatalogoID { get; set; }
         public string Nombre { get; set; }
         public bool Activo { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
+<<<<<<< HEAD
+    
+        public virtual Sam3_Catalogos Sam3_Catalogos { get; set; }
+        public virtual ICollection<Sam3_Rel_Catalogos_Documento> Sam3_Rel_Catalogos_Documento { get; set; }
+=======
+>>>>>>> Steelgo-InHouse
     }
 }

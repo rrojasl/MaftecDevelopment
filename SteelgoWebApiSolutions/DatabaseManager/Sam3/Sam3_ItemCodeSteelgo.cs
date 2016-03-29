@@ -17,24 +17,31 @@ namespace DatabaseManager.Sam3
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sam3_ItemCodeSteelgo()
         {
-            this.Sam3_Rel_ItemCode_ItemCodeSteelgo = new HashSet<Sam3_Rel_ItemCode_ItemCodeSteelgo>();
+            this.Sam3_Rel_ItemCodeSteelgo_Diametro = new HashSet<Sam3_Rel_ItemCodeSteelgo_Diametro>();
         }
     
         public int ItemCodeSteelgoID { get; set; }
         public string DescripcionEspanol { get; set; }
         public string DescripcionIngles { get; set; }
         public decimal Peso { get; set; }
-        public decimal Diametro1 { get; set; }
-        public decimal Diametro2 { get; set; }
         public int FamiliaAceroID { get; set; }
         public bool Activo { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public int Area { get; set; }
-        public string Cedula { get; set; }
         public string Codigo { get; set; }
+        public Nullable<int> CedulaID { get; set; }
+        public Nullable<int> GrupoID { get; set; }
+        public string DescripcionLargaEspanol { get; set; }
+        public string DescripcionLargaIngles { get; set; }
     
+<<<<<<< HEAD
+        public virtual Sam3_Grupo Sam3_Grupo { get; set; }
+        public virtual ICollection<Sam3_Rel_ItemCodeSteelgo_Diametro> Sam3_Rel_ItemCodeSteelgo_Diametro { get; set; }
+        public virtual Sam3_CatalogoCedulas Sam3_CatalogoCedulas { get; set; }
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_ItemCode_ItemCodeSteelgo> Sam3_Rel_ItemCode_ItemCodeSteelgo { get; set; }
+>>>>>>> Steelgo-InHouse
     }
 }

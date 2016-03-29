@@ -31,6 +31,15 @@ namespace DatabaseManager.Sam3
             this.Sam3_Rel_Usuario_Proyecto = new HashSet<Sam3_Rel_Usuario_Proyecto>();
             this.Sam3_RequisicionNumeroUnico = new HashSet<Sam3_RequisicionNumeroUnico>();
             this.Sam3_Spool = new HashSet<Sam3_Spool>();
+<<<<<<< HEAD
+            this.Sam3_FolioCuantificacion = new HashSet<Sam3_FolioCuantificacion>();
+            this.Sam3_Despacho = new HashSet<Sam3_Despacho>();
+            this.Sam3_PreDespacho = new HashSet<Sam3_PreDespacho>();
+            this.Sam3_FolioAvisoLlegada = new HashSet<Sam3_FolioAvisoLlegada>();
+            this.Sam3_Rel_Proyecto_Correo = new HashSet<Sam3_Rel_Proyecto_Correo>();
+            this.Sam3_Rel_Proyecto_Entidad_Configuracion1 = new HashSet<Sam3_Rel_Proyecto_Entidad_Configuracion>();
+=======
+>>>>>>> Steelgo-InHouse
         }
     
         public int ProyectoID { get; set; }
@@ -78,5 +87,16 @@ namespace DatabaseManager.Sam3
         public virtual ICollection<Sam3_RequisicionNumeroUnico> Sam3_RequisicionNumeroUnico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Spool> Sam3_Spool { get; set; }
+<<<<<<< HEAD
+        public virtual Sam3_ProyectoConsecutivo Sam3_ProyectoConsecutivo { get; set; }
+        public virtual ICollection<Sam3_FolioCuantificacion> Sam3_FolioCuantificacion { get; set; }
+        public virtual ICollection<Sam3_Despacho> Sam3_Despacho { get; set; }
+        public virtual ICollection<Sam3_PreDespacho> Sam3_PreDespacho { get; set; }
+        public virtual Sam3_Rel_Proyecto_Entidad_Configuracion Sam3_Rel_Proyecto_Entidad_Configuracion { get; set; }
+        public virtual ICollection<Sam3_FolioAvisoLlegada> Sam3_FolioAvisoLlegada { get; set; }
+        public virtual ICollection<Sam3_Rel_Proyecto_Correo> Sam3_Rel_Proyecto_Correo { get; set; }
+        public virtual ICollection<Sam3_Rel_Proyecto_Entidad_Configuracion> Sam3_Rel_Proyecto_Entidad_Configuracion1 { get; set; }
+=======
+>>>>>>> Steelgo-InHouse
     }
 }

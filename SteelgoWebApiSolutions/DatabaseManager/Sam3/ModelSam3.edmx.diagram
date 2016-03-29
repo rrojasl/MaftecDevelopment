@@ -4,6 +4,73 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
+      <Diagram DiagramId="1c274ecca0a047e79318b49884820233" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Acero" Width="1.5" PointX="3" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Chofer" Width="1.5" PointX="3" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Cliente" Width="1.5" PointX="3.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Colada" Width="1.5" PointX="5.25" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Color" Width="1.5" PointX="3.75" PointY="50.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Contacto" Width="1.5" PointX="0.75" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Corte" Width="1.5" PointX="21.75" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_CorteDetalle" Width="1.5" PointX="24" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Diametro" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Entidad" Width="1.5" PointX="14.25" PointY="66.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EstatusOrden" Width="1.5" PointX="9" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_ExtensionDocumento" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Fabricante" Width="1.5" PointX="3" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FamiliaAcero" Width="1.5" PointX="0.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FamiliaItemCode" Width="1.5" PointX="15.25" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FamiliaMaterial" Width="1.5" PointX="1.5" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FolioAvisoLlegada" Width="1.5" PointX="7.5" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Incidencia" Width="1.5" PointX="14.25" PointY="52.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_ItemCode" Width="1.5" PointX="11.25" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Maquina" Width="1.5" PointX="21.75" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_MaterialSpool" Width="1.5" PointX="19.5" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_MenuContextual" Width="1.5" PointX="9.75" PointY="60.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_MenuGeneral" Width="1.5" PointX="15.75" PointY="62.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Notificacion" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_NumeroUnico" Width="1.5" PointX="8.25" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_NumeroUnicoCorte" Width="1.5" PointX="16.5" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_NumeroUnicoInventario" Width="1.5" PointX="8.25" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_NumeroUnicoMovimiento" Width="1.5" PointX="16.5" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_NumeroUnicoSegmento" Width="1.5" PointX="16.5" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_OrdenTrabajo" Width="1.5" PointX="11.25" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_OrdenTrabajoSpool" Width="1.5" PointX="19.5" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Pagina" Width="1.5" PointX="9.75" PointY="63.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Patio" Width="1.5" PointX="3.75" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Perfil" Width="1.5" PointX="9.75" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_PermisoAduana" Width="1.5" PointX="9.75" PointY="49" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_PinturaNumeroUnico" Width="1.5" PointX="10.5" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Preferencia" Width="1.5" PointX="15" PointY="70" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Propiedad" Width="1.5" PointX="14.75" PointY="72.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Proveedor" Width="1.5" PointX="3" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Proyecto" Width="1.5" PointX="6" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Recepcion" Width="1.5" PointX="17.5" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Documento_Entidad" Width="1.5" PointX="16.5" PointY="66.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_FolioAvisoLlegada_Proyecto" Width="1.5" PointX="12.75" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_Entidad" Width="1.5" PointX="16.5" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Perfil_MenuContextual" Width="1.5" PointX="12" PointY="57.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Perfil_MenuGeneral" Width="1.5" PointX="18" PointY="49.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Perfil_Propiedad_Pagina" Width="1.5" PointX="17" PointY="59.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Usuario_Preferencia" Width="1.5" PointX="17.25" PointY="56.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Usuario_Proyecto" Width="1.5" PointX="14.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Repositorio" Width="1.5" PointX="14.25" PointY="75.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_RequisicionNumeroUnico" Width="1.5" PointX="8.25" PointY="57.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_RequisicionNumeroUnicoDetalle" Width="1.5" PointX="12.5" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Sesion" Width="1.5" PointX="14.25" PointY="58.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Spool" Width="1.5" PointX="14.25" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Taller" Width="1.5" PointX="9" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoCorte" Width="1.5" PointX="6" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoDocumento" Width="1.5" PointX="14.25" PointY="77.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoMaterial" Width="1.5" PointX="9" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoMovimiento" Width="1.5" PointX="14.25" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoNotificacion" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Transportista" Width="1.5" PointX="3" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_UbicacionFisica" Width="1.5" PointX="14.25" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Usuario" Width="1.5" PointX="12" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Perfil_Entidad_Pagina" Width="1.5" PointX="12" PointY="61.25" IsExpanded="true" />
+=======
       <Diagram DiagramId="5a04ea065c8c426b903db8e2ab990fa1" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="ModelSam3.Sam3_Acero" Width="1.5" PointX="3.75" PointY="94.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ModelSam3.Sam3_Bulto" Width="1.5" PointX="8.5" PointY="7.25" IsExpanded="true" />
@@ -157,6 +224,7 @@
         <EntityTypeShape EntityType="ModelSam3.Sam_OrdenTrabajoSpool" Width="1.5" PointX="28.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ModelSam3.Sam_Proyecto" Width="1.5" PointX="0.75" PointY="28.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ModelSam3.Sam_SpoolHold" Width="1.5" PointX="28.75" PointY="4.75" IsExpanded="true" />
+>>>>>>> Steelgo-InHouse
         <AssociationConnector Association="ModelSam3.FK_Acero_FamiliaAcero" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_Colada_Acero" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK__Sam3_Bult__Folio__762C88DA" ManuallyRouted="false" />
@@ -175,7 +243,10 @@
         <AssociationConnector Association="ModelSam3.FK_Proveedor_Contacto" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_Proyecto_Contacto" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_Transportista_Contacto" ManuallyRouted="false" />
+<<<<<<< HEAD
+=======
         <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Corte__2EFAF1E2" ManuallyRouted="false" />
+>>>>>>> Steelgo-InHouse
         <AssociationConnector Association="ModelSam3.FK_Corte_NumeroUnicoMovimiento_Merma" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_Corte_NumeroUnicoMovimiento_Preparacion" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_Corte_Proyecto" ManuallyRouted="false" />
@@ -314,12 +385,258 @@
         <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Vehic__7132C993" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_RequisicionNumeroUnicoDetalle_RequisicionNumeroUnico" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_Sesion_Usuario" ManuallyRouted="false" />
+<<<<<<< HEAD
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_TiposDocumentos_ExtencionesDocumentos" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_PermisoAduana_Documento" Width="1.5" PointX="12" PointY="66.25" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Chofe__24285DB4" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Patio__2334397B" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Prove__22401542" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Trans__214BF109" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Permi__36470DEF" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_FolioAvisoLlegada_Documento" Width="1.5" PointX="9.75" PointY="67.25" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__4865BE2A" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_FolioAvisoLlegada_PaseSalida_Archivo" Width="1.5" PointX="9.75" PointY="71.25" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__4B422AD5" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_FolioAvisoLlegada_Vehiculo" Width="1.5" PointX="16.875" PointY="27" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Vehiculo_Chofer" Width="1.5" PointX="11.875" PointY="25.25" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Vehiculo_Transportista" Width="1.5" PointX="11.875" PointY="21.875" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoArchivo" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoAviso" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoVehiculo" Width="1.5" PointX="5.375" PointY="7.375" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Vehiculo" Width="1.5" PointX="7.625" PointY="6.5" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Chofe__0777106D" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Vehic__0C3BC58A" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__0A537D18" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Vehic__0B47A151" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Vehic__0682EC34" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Trans__03A67F89" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Vehic__02B25B50" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Vehi__TipoV__7FD5EEA5" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FolioAvisoEntrada" Width="1.5" PointX="9.75" PointY="75.375" />
+        <AssociationConnector Association="ModelSam3.FK_FolioLlegada_FolioAvisoLlegada1" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Prove__16B953FD" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__TipoA__17AD7836" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___TipoA__2042BE37" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___TipoA__222B06A9" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___TipoA__2136E270" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Chof__Trans__3726238F" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Clien__4850AF91" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Patio__4944D3CA" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_ProyectoConsecutivo" Width="1.5" PointX="8.25" PointY="16" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_FolioAvisoEntrada_Documento" Width="1.5" PointX="12" PointY="76.125" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__54B68676" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Proy__Proye__51DA19CB" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_UsuariosNotificaciones" Width="1.5" PointX="17.25" PointY="23.125" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Usua__TipoN__5887175A" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Usua__Usuar__597B3B93" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Bulto" Width="1.5" PointX="21.25" PointY="64.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FolioCuantificacion" Width="1.5" PointX="19" PointY="64.125" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Bulto_ItemCode" Width="1.5" PointX="20.5" PointY="43.125" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_FolioCuantificacion_ItemCode" Width="1.5" PointX="20.5" PointY="47.125" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoUso" Width="1.5" PointX="16.75" PointY="76" />
+        <AssociationConnector Association="ModelSam3.FK__Rel_Bulto__Bulto__77FFC2B3" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Bult__Folio__6F6A7CB2" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Folio__64ECEE3F" />
+        <AssociationConnector Association="ModelSam3.FK__Rel_Folio__Folio__733B0D96" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__Proye__65E11278" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__TipoU__66D536B1" />
+        <AssociationConnector Association="ModelSam3.FK_Sam3_Recepcion_Sam3_FolioCuantificacion" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_ItemCodeSteelgo" Width="1.5" PointX="20.25" PointY="26.875" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_ItemCode_ItemCodeSteelgo" Width="1.5" PointX="22.5" PointY="31.25" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___ItemC__027D5126" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___ItemC__0371755F" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_OrdenRecepcion" Width="1.5" PointX="21.25" PointY="50.5" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_OrdenRecepcion_ItemCode" Width="1.5" PointX="23.5" PointY="42.375" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Orden__0A1E72EE" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_FolioAvisoEntrada_OrdenRecepcion" Width="1.5" PointX="23.5" PointY="64.375" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__0EE3280B" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Orden__0FD74C44" />
+        <AssociationConnector Association="ModelSam3.FK_Sam3_ItemCode_Sam3_Colada" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_ProyectoConfiguracion" Width="1.5" PointX="0.75" PointY="7.75" />
+        <AssociationConnector Association="ModelSam3.FK_Sam3_NumeroUnico_Sam3_NumeroUnico" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_OrdenAlmacenaje" Width="1.5" PointX="8.25" PointY="12.25" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_OrdenAlmacenaje_NumeroUnico" Width="1.5" PointX="10.5" PointY="45.125" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Numer__444B1483" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Orden__4356F04A" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_NumeroUnico" Width="1.5" PointX="23.5" PointY="45.875" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__50B0EB68" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Numer__51A50FA1" />
+        <AssociationConnector Association="ModelSam3.FK_Sam3_NumeroUnicoInventario_Sam3_NumeroUnico" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__TipoM__7B9B496D" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Item__TipoU__7D8391DF" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaAcero" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaColada" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaDespacho" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaFabricante" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaFamiliaAcero" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaFamiliaMaterial" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaItemCode" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaNumeroUnico" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaPatio" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaProveedor" Width="1.5" PointX="12.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaProyecto" Width="1.5" PointX="12.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_ColaCreacionNumerosUnicos" Width="1.5" PointX="23.5" PointY="49.125" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cola__ItemC__78BEDCC2" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cola__Orden__79B300FB" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cola__Usuar__7AA72534" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Despacho" Width="1.5" PointX="24.75" PointY="30.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaCorte" Width="1.5" PointX="10.375" PointY="12.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaNumeroUnicoMovimiento" Width="1.5" PointX="12.375" PointY="12.75" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Desp__Numer__60B24907" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Desp__Proye__5FBE24CE" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Desp__Salid__61A66D40" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Grupo" Width="1.5" PointX="18" PointY="16.125" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Item__Grupo__6E0C4425" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_ClasificacionIncidencia" Width="1.5" PointX="12" PointY="80.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_ComplementoRecepcion" Width="1.5" PointX="19.5" PointY="69.5" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_Corte" Width="1.5" PointX="26" PointY="47.875" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_Despacho" Width="1.5" PointX="27" PointY="44.375" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_FolioAvisoEntrada" Width="1.5" PointX="22.5" PointY="68.5" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_FolioAvisoLlegada" Width="1.5" PointX="23.5" PointY="56.875" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_FolioCuantificacion" Width="1.5" PointX="21.25" PointY="59.25" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_ItemCode" Width="1.5" PointX="19.5" PointY="54" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_OrdenAlmacenaje" Width="1.5" PointX="22.5" PointY="28.125" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_OrdenRecepcion" Width="1.5" PointX="25.5" PointY="53.25" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_PaseSalida" Width="1.5" PointX="22.5" PointY="53.875" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoIncidencia" Width="1.5" PointX="12" PointY="71.125" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Incidencia_Documento" Width="1.5" PointX="16.5" PointY="79.75" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Inci__Clasi__46BD6CDA" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Corte__41F8B7BD" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Despa__3D3402A0" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__1BD30ED5" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__2EE5E349" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__170E59B8" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__2097C3F2" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Folio__255C790F" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Inci__TipoI__42ECDBF6" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Inci__Usuar__43E1002F" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__161A357F" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__1ADEEA9C" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__1FA39FB9" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__246854D6" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__292D09F3" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__2DF1BF10" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__32B6742D" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__377B294A" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__3C3FDE67" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__41049384" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__45C948A1" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___ItemC__33AA9866" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Orden__386F4D83" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Orden__2A212E2C" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Catalogos" Width="1.5" PointX="14.375" PointY="3.625" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Catalogos_Documento" Width="1.5" PointX="18.875" PointY="5.25" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoArchivo_Catalogo" Width="1.5" PointX="16.625" PointY="8.125" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Catal__5F891AA4" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Tipo__Catal__5CACADF9" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___TipoA__607D3EDD" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_DeficitMateriales" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Entrega" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FolioImpresionDocumental" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FolioPickingTicket" Width="1.5" PointX="11.25" PointY="18" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Entr__Folio__0C5BC11B" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Foli__TipoM__05AEC38C" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_PreDespacho" Width="1.5" PointX="22.5" PointY="24.125" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_PreD__Numer__19B5BC39" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_PreD__Proye__1AA9E072" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Proy__TipoU__1C9228E4" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaDiametro" Width="1.5" PointX="5.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_ItemCode_Diametro" Width="1.5" PointX="13.5" PointY="18.5" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_ItemCodeSteelgo_Diametro" Width="1.5" PointX="22.5" PointY="16.625" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Diame__45943E77" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Diame__468862B0" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Diame__4B4D17CD" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Diame__4C413C06" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___ItemC__477C86E9" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___ItemC__4D35603F" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Rel_I__613C58EC" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Rel_I__6324A15E" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Rel_I__6AC5C326" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Rel_I__69D19EED" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Rel_I__6CAE0B98" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Proyecto_Entidad_Configuracion" Width="1.5" PointX="26.5" PointY="56.875" />
+        <AssociationConnector Association="ModelSam3.FK_Rel_Proyecto_Entidad_Configuracion_Sam3_Entidad" />
+        <AssociationConnector Association="ModelSam3.FK_Rel_Proyecto_Entidad_Configuracion_Sam3_Proyecto" />
+        <AssociationConnector Association="ModelSam3.FK_Sam3_FolioAvisoLlegada_Sam3_Entidad" />
+        <AssociationConnector Association="ModelSam3.FK_Sam3_FolioAvisoLlegada_Sam3_Proyecto" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_NumeroUnico_RelFC_RelB" Width="1.5" PointX="26.75" PointY="40.375" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Numer__1D5142F3" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Rel_B__1F398B65" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Rel_F__1E45672C" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Itemcode_Colada" Width="1.5" PointX="25.75" PointY="27.375" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Colad__2E7BCEF5" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___ItemC__2D87AABC" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_CorteSpool" Width="1.5" PointX="25.875" PointY="22.125" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaCorteSpool" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaEstacion" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaEstatusOrden" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaFabArea" Width="1.5" PointX="16.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaJuntaSpool" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaMaterialSpool" Width="1.5" PointX="3.75" PointY="17.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaODT" Width="1.5" PointX="5.75" PointY="17.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaODTJ" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaODTM" Width="1.5" PointX="18.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaODTS" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaSpool" Width="1.5" PointX="2.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaTaller" Width="1.5" PointX="4.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaTipoCorte" Width="1.5" PointX="20.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaTipoJunta" Width="1.5" PointX="20.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Estacion" Width="1.5" PointX="11.625" PointY="84.25" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_FabArea" Width="1.5" PointX="24.625" PointY="60.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_JuntaSpool" Width="1.5" PointX="26.875" PointY="64.5" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_OrdenTrabajoJunta" Width="1.5" PointX="29.125" PointY="49.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_OrdenTrabajoMaterial" Width="1.5" PointX="28.125" PointY="33" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_TipoJunta" Width="1.5" PointX="24.625" PointY="71.625" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cort__ItemC__52B92F6B" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cort__Spool__51C50B32" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cort__TipoC__53AD53A4" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cort__TipoC__54A177DD" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Esta__Talle__587208C1" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Junt__Estac__61074EC2" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Junt__FabAr__5E2AE217" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Junt__Famil__5F1F0650" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Junt__Famil__60132A89" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Junt__Spool__5C4299A5" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Junt__TipoJ__5D36BDDE" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Junta__65CC03DF" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Mater__7AC720C5" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Numer__7BBB44FE" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Numer__7CAF6937" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Numer__7DA38D70" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Numer__7E97B1A9" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Orden__64D7DFA6" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Orden__79D2FC8C" />
+        <AssociationConnector Association="ModelSam3.FK_NumeroUnico_TipoUso" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Rel_Proyecto_Correo" Width="1.5" PointX="8.25" PointY="82.75" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Proye__1F04813B" />
+        <AssociationConnector Association="ModelSam3.FK_FolioCuantificacion_Rel_Proyecto_Entidad_Configuracion" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Orde__Rel_P__21E0EDE6" />
+        <AssociationConnector Association="ModelSam3.FK_Sam3_Incidencia_Rel_Proyecto_Entidad_Configuracion" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaEspesor" Width="1.5" PointX="21.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Espesor" Width="1.5" PointX="21" PointY="72.875" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_Cedula" Width="1.5" PointX="23.375" PointY="1" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_EquivalenciaCedula" Width="1.5" PointX="16.375" PointY="19.75" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Grup__TipoM__5654B625" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_CatalogoCedulas" Width="1.5" PointX="3" PointY="58.625" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Cata__Diame__3E7D2C94" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Item__Cedul__443605EA" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Incid__7108AC61" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Entid__11757BF3" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Proye__108157BA" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Rel___Orden__4AADF94F" />
+        <EntityTypeShape EntityType="ModelSam3.Sam3_MTR" Width="1.5" PointX="19.5" PointY="22.5" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_MTR__Colada__4D8A65FA" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_MTR__ItemCo__4C9641C1" />
+        <AssociationConnector Association="ModelSam3.FK__Sam3_Nume__MTRID__54376389" />
+        </Diagram>
+=======
         <AssociationConnector Association="ModelSam3.FK__Sam3_Usua__TipoN__7CA47C3F" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK_sam3_TrabajoAdicional_sam3_TipoTrabajoAdicional" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK__Sam3_Vehi__TipoV__7E8CC4B1" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK__Sam3_Cola__Usuar__79FD19BE" ManuallyRouted="false" />
         <AssociationConnector Association="ModelSam3.FK__Sam3_Usua__Usuar__7D98A078" ManuallyRouted="false" />
       </Diagram>
+>>>>>>> Steelgo-InHouse
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

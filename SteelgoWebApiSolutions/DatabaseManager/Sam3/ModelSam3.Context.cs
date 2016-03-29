@@ -170,6 +170,82 @@ namespace DatabaseManager.Sam3
         public virtual DbSet<Sam3_ColaCreacionNumerosUnicos> Sam3_ColaCreacionNumerosUnicos { get; set; }
         public virtual DbSet<Sam3_NumeroUnico> Sam3_NumeroUnico { get; set; }
         public virtual DbSet<Sam3_ProyectoConfiguracion> Sam3_ProyectoConfiguracion { get; set; }
+<<<<<<< HEAD
+        public virtual DbSet<Sam3_OrdenAlmacenaje> Sam3_OrdenAlmacenaje { get; set; }
+        public virtual DbSet<Sam3_Rel_OrdenAlmacenaje_NumeroUnico> Sam3_Rel_OrdenAlmacenaje_NumeroUnico { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_NumeroUnico> Sam3_Rel_Incidencia_NumeroUnico { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaAcero> Sam3_EquivalenciaAcero { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaColada> Sam3_EquivalenciaColada { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaDespacho> Sam3_EquivalenciaDespacho { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaFabricante> Sam3_EquivalenciaFabricante { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaFamiliaAcero> Sam3_EquivalenciaFamiliaAcero { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaFamiliaMaterial> Sam3_EquivalenciaFamiliaMaterial { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaItemCode> Sam3_EquivalenciaItemCode { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaNumeroUnico> Sam3_EquivalenciaNumeroUnico { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaPatio> Sam3_EquivalenciaPatio { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaProveedor> Sam3_EquivalenciaProveedor { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaProyecto> Sam3_EquivalenciaProyecto { get; set; }
+        public virtual DbSet<Sam3_ColaCreacionNumerosUnicos> Sam3_ColaCreacionNumerosUnicos { get; set; }
+        public virtual DbSet<Sam3_Despacho> Sam3_Despacho { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaCorte> Sam3_EquivalenciaCorte { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaNumeroUnicoMovimiento> Sam3_EquivalenciaNumeroUnicoMovimiento { get; set; }
+        public virtual DbSet<Sam3_Grupo> Sam3_Grupo { get; set; }
+        public virtual DbSet<Sam3_ClasificacionIncidencia> Sam3_ClasificacionIncidencia { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_ComplementoRecepcion> Sam3_Rel_Incidencia_ComplementoRecepcion { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_Corte> Sam3_Rel_Incidencia_Corte { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_Despacho> Sam3_Rel_Incidencia_Despacho { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_FolioAvisoEntrada> Sam3_Rel_Incidencia_FolioAvisoEntrada { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_FolioAvisoLlegada> Sam3_Rel_Incidencia_FolioAvisoLlegada { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_FolioCuantificacion> Sam3_Rel_Incidencia_FolioCuantificacion { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_ItemCode> Sam3_Rel_Incidencia_ItemCode { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_OrdenAlmacenaje> Sam3_Rel_Incidencia_OrdenAlmacenaje { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_OrdenRecepcion> Sam3_Rel_Incidencia_OrdenRecepcion { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_PaseSalida> Sam3_Rel_Incidencia_PaseSalida { get; set; }
+        public virtual DbSet<Sam3_TipoIncidencia> Sam3_TipoIncidencia { get; set; }
+        public virtual DbSet<Sam3_Rel_Incidencia_Documento> Sam3_Rel_Incidencia_Documento { get; set; }
+        public virtual DbSet<Sam3_Catalogos> Sam3_Catalogos { get; set; }
+        public virtual DbSet<Sam3_Rel_Catalogos_Documento> Sam3_Rel_Catalogos_Documento { get; set; }
+        public virtual DbSet<Sam3_TipoArchivo_Catalogo> Sam3_TipoArchivo_Catalogo { get; set; }
+        public virtual DbSet<Sam3_DeficitMateriales> Sam3_DeficitMateriales { get; set; }
+        public virtual DbSet<Sam3_Entrega> Sam3_Entrega { get; set; }
+        public virtual DbSet<Sam3_FolioImpresionDocumental> Sam3_FolioImpresionDocumental { get; set; }
+        public virtual DbSet<Sam3_FolioPickingTicket> Sam3_FolioPickingTicket { get; set; }
+        public virtual DbSet<Sam3_PreDespacho> Sam3_PreDespacho { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaDiametro> Sam3_EquivalenciaDiametro { get; set; }
+        public virtual DbSet<Sam3_Rel_ItemCode_Diametro> Sam3_Rel_ItemCode_Diametro { get; set; }
+        public virtual DbSet<Sam3_Rel_ItemCodeSteelgo_Diametro> Sam3_Rel_ItemCodeSteelgo_Diametro { get; set; }
+        public virtual DbSet<Sam3_Rel_Proyecto_Entidad_Configuracion> Sam3_Rel_Proyecto_Entidad_Configuracion { get; set; }
+        public virtual DbSet<Sam3_Rel_NumeroUnico_RelFC_RelB> Sam3_Rel_NumeroUnico_RelFC_RelB { get; set; }
+        public virtual DbSet<Sam3_Rel_Itemcode_Colada> Sam3_Rel_Itemcode_Colada { get; set; }
+        public virtual DbSet<Sam3_CorteSpool> Sam3_CorteSpool { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaCorteSpool> Sam3_EquivalenciaCorteSpool { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaEstacion> Sam3_EquivalenciaEstacion { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaEstatusOrden> Sam3_EquivalenciaEstatusOrden { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaFabArea> Sam3_EquivalenciaFabArea { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaJuntaSpool> Sam3_EquivalenciaJuntaSpool { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaMaterialSpool> Sam3_EquivalenciaMaterialSpool { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaODT> Sam3_EquivalenciaODT { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaODTJ> Sam3_EquivalenciaODTJ { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaODTM> Sam3_EquivalenciaODTM { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaODTS> Sam3_EquivalenciaODTS { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaSpool> Sam3_EquivalenciaSpool { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaTaller> Sam3_EquivalenciaTaller { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaTipoCorte> Sam3_EquivalenciaTipoCorte { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaTipoJunta> Sam3_EquivalenciaTipoJunta { get; set; }
+        public virtual DbSet<Sam3_Estacion> Sam3_Estacion { get; set; }
+        public virtual DbSet<Sam3_FabArea> Sam3_FabArea { get; set; }
+        public virtual DbSet<Sam3_JuntaSpool> Sam3_JuntaSpool { get; set; }
+        public virtual DbSet<Sam3_OrdenTrabajoJunta> Sam3_OrdenTrabajoJunta { get; set; }
+        public virtual DbSet<Sam3_OrdenTrabajoMaterial> Sam3_OrdenTrabajoMaterial { get; set; }
+        public virtual DbSet<Sam3_TipoJunta> Sam3_TipoJunta { get; set; }
+        public virtual DbSet<Sam3_Rel_Proyecto_Correo> Sam3_Rel_Proyecto_Correo { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaEspesor> Sam3_EquivalenciaEspesor { get; set; }
+        public virtual DbSet<Sam3_Espesor> Sam3_Espesor { get; set; }
+        public virtual DbSet<Sam3_Cedula> Sam3_Cedula { get; set; }
+        public virtual DbSet<Sam3_EquivalenciaCedula> Sam3_EquivalenciaCedula { get; set; }
+        public virtual DbSet<Sam3_CatalogoCedulas> Sam3_CatalogoCedulas { get; set; }
+        public virtual DbSet<Sam3_MTR> Sam3_MTR { get; set; }
+=======
         public virtual DbSet<Sam3_Rel_Incidencia_Documento> Sam3_Rel_Incidencia_Documento { get; set; }
         public virtual DbSet<Sam3_Rel_Perfil_Entidad_Pagina> Sam3_Rel_Perfil_Entidad_Pagina { get; set; }
         public virtual DbSet<Sam_JuntaSpool> Sam_JuntaSpool { get; set; }
@@ -747,5 +823,6 @@ namespace DatabaseManager.Sam3
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SSP_sam3_TrabajoAdicional_Result>("SSP_sam3_TrabajoAdicional", tIPOParameter, iDParameter, usuarioParameter, tipoTrabajoAdicionalIDParameter, nombreCortoParameter, nombreExtendidoParameter, cuentaContableParameter, signoInformativoParameter);
         }
+>>>>>>> Steelgo-InHouse
     }
 }

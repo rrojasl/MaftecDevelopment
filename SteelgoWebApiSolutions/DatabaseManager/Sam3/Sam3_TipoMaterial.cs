@@ -18,7 +18,12 @@ namespace DatabaseManager.Sam3
         public Sam3_TipoMaterial()
         {
             this.Sam3_FolioCuantificacion = new HashSet<Sam3_FolioCuantificacion>();
+<<<<<<< HEAD
+            this.Sam3_FolioPickingTicket = new HashSet<Sam3_FolioPickingTicket>();
+            this.Sam3_Grupo = new HashSet<Sam3_Grupo>();
+=======
             this.Sam3_ItemCode = new HashSet<Sam3_ItemCode>();
+>>>>>>> Steelgo-InHouse
         }
     
         public int TipoMaterialID { get; set; }
@@ -30,7 +35,12 @@ namespace DatabaseManager.Sam3
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_FolioCuantificacion> Sam3_FolioCuantificacion { get; set; }
+<<<<<<< HEAD
+        public virtual ICollection<Sam3_FolioPickingTicket> Sam3_FolioPickingTicket { get; set; }
+        public virtual ICollection<Sam3_Grupo> Sam3_Grupo { get; set; }
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_ItemCode> Sam3_ItemCode { get; set; }
+>>>>>>> Steelgo-InHouse
     }
 }

@@ -16,10 +16,17 @@ namespace BackEndSAM.Models
         public Nullable<int> FolioAvisoLlegadaID { get; set; }
         public int UserId { get; set; }
         public int TipoArchivoID { get; set; }
-        public int NumeroPermisoAduana { get; set; }
+        public string NumeroPermisoAduana { get; set; }
         public Nullable<int> PermisoAduanaID { get; set; }
         public int FolioAvisoEntradaID { get; set; }
         public string Descripcion { get; set; }
         public string TipoArchivoPaseSalida { get; set; }
+        public Nullable<int> IncidenciaID { get; set; }
+    }
+
+    public class EstatusFolio
+    {
+        public int FolioAvisoLlegada { get; set; }
+        public string NumeroPermiso { get; set; }
     }
 }

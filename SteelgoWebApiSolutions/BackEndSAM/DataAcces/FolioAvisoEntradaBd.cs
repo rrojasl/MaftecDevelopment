@@ -5,6 +5,7 @@ using DatabaseManager.Sam2;
 using DatabaseManager.Sam3;
 using BackEndSAM.Models;
 using SecurityManager.Api.Models;
+using System.Configuration;
 
 namespace BackEndSAM.DataAcces
 {
@@ -66,6 +67,9 @@ namespace BackEndSAM.DataAcces
                     int folioEntradaID = filtros.FolioAvisoEntradaID != string.Empty ? Convert.ToInt32(filtros.FolioAvisoEntradaID) > 0 ?
                         Convert.ToInt32(filtros.FolioAvisoEntradaID) : 0 : 0;
 
+                    Boolean activarFolioConfiguracion = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracion"]) 
+                        ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracion"].Equals("1") ? true : false) : false;
+
                     if (fechaFinal.ToShortDateString() == "1/1/0001")
                     {
                         fechaFinal = DateTime.Now;
@@ -73,9 +77,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     List<Sam3_FolioAvisoEntrada> result = new List<Sam3_FolioAvisoEntrada>();
@@ -102,8 +107,12 @@ namespace BackEndSAM.DataAcces
 
                             if (clienteID > 0)
                             {
+
                                 int temp = Convert.ToInt32(filtros.ClienteID);
-                                result = result.Where(x => x.ClienteID == temp).ToList();
+                                int sam3Cliente = (from c in ctx.Sam3_Cliente
+                                                   where c.Activo && c.Sam2ClienteID == temp
+                                                   select c.ClienteID).AsParallel().SingleOrDefault();
+                                result = result.Where(x => x.ClienteID == sam3Cliente).ToList();
                             }
 
                             if (patioID > 0)
@@ -114,16 +123,54 @@ namespace BackEndSAM.DataAcces
                         }
                     }
 
+                    List<ElementoListadoFolioEntradaMaterial> elementos = new List<ElementoListadoFolioEntradaMaterial>();
+
                     if (result.Count > 0)
                     {
                         if (filtros.PorLlegar)
                         {
-                            result = result.Where(x => x.Estatus == "").ToList();
+                            elementos = (from fa in ctx.Sam3_FolioAvisoLlegada.ToList()
+                                         where fa.Activo
+                                         && !(from fe in ctx.Sam3_FolioAvisoEntrada
+                                              where fe.Activo
+                                              select fe.FolioAvisoLlegadaID).Contains(fa.FolioAvisoLlegadaID)
+                                         && (fa.FechaModificacion >= fechaInicial && fa.FechaModificacion <= fechaFinal)
+                                         select new ElementoListadoFolioEntradaMaterial
+                                         {
+                                             EstatusFolio = fa.Estatus,
+                                             FechaCreación = fa.FechaModificacion.Value.ToString("dd/MM/yyyy"),
+                                             FolioAvisoEntradaID = fa.FolioAvisoLlegadaID.ToString(),
+                                             FolioAvisoLlegadaID = fa.FolioAvisoLlegadaID.ToString(),
+                                             Patio = fa.Sam3_Patio.Nombre,
+                                             FolioConfiguracion = activarFolioConfiguracion ? (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                                                               where pc.Entidad == fa.Entidad && pc.Proyecto == fa.ProyectoNombrado
+                                                                                               select pc.PreFijoFolioAvisoLlegada + ","
+                                                                                                + pc.CantidadCerosFolioAvisoLlegada.ToString() + ","
+                                                                                                + fa.Consecutivo.ToString() + ","
+                                                                                                + pc.PostFijoFolioAvisoLlegada).FirstOrDefault() : fa.FolioAvisoLlegadaID.ToString()
+                                         }).AsParallel().ToList();
+
+                            if (activarFolioConfiguracion)
+                            {
+                                foreach (ElementoListadoFolioEntradaMaterial lst in elementos)
+                                {
+                                    if (lst.FolioConfiguracion != null)
+                                    {
+                                        string[] elemntos = lst.FolioConfiguracion.Split(',').ToArray();
+                                        int digitos = Convert.ToInt32(elemntos[1]);
+                                        int consecutivo = Convert.ToInt32(elemntos[2]);
+                                        string formato = "D" + digitos.ToString();
+
+                                        lst.FolioConfiguracion = elemntos[0].Trim() + consecutivo.ToString(formato).Trim() + elemntos[3].Trim();
+                                    }
+                                }
+                            }
+                            return elementos;
                         }
 
                         if (filtros.PorDescargar)
                         {
-                            result = result.Where(x => x.FolioDescarga <= 0).ToList();
+                            result = result.Where(x => x.FolioDescarga <= 0 && x.Estatus == "En Patio").ToList();
                         }
 
                         if (filtros.PorSalir)
@@ -131,18 +178,37 @@ namespace BackEndSAM.DataAcces
                             result = (from r in result
                                       join f in ctx.Sam3_FolioAvisoLlegada on r.FolioAvisoLlegadaID equals f.FolioAvisoLlegadaID
                                       where r.Activo && f.Activo
-                                      && f.PaseSalidaEnviado == false
+                                      && (f.PaseSalidaEnviado == false || r.Estatus == "Cierre de Folio Por Devolución")
+                                      && r.Estatus != "En Patio"
                                       select r).AsParallel().ToList();
+
                         }
                     }
 
                     result = result.GroupBy(x => x.FolioAvisoEntradaID).Select(x => x.First()).ToList();
 
-                    List<ElementoListadoFolioEntradaMaterial> elementos = new List<ElementoListadoFolioEntradaMaterial>();
-
+                    
                     foreach (Sam3_FolioAvisoEntrada folio in result)
                     {
                         ElementoListadoFolioEntradaMaterial nuevoElemento = new ElementoListadoFolioEntradaMaterial();
+
+                        Sam3_FolioAvisoLlegada folioavisollegada= ctx.Sam3_FolioAvisoLlegada.Where(x=>x.FolioAvisoLlegadaID== folio.FolioAvisoLlegadaID).AsParallel().FirstOrDefault();
+
+                        nuevoElemento.FolioConfiguracion = activarFolioConfiguracion ? (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                                                        where pc.Entidad == folioavisollegada.Entidad && pc.Proyecto == folioavisollegada.ProyectoNombrado
+                                                                                        select pc.PreFijoFolioAvisoLlegada + ","
+                                                                                         + pc.CantidadCerosFolioAvisoLlegada.ToString() + ","
+                                                                                         + folioavisollegada.Consecutivo.ToString() + ","
+                                                                                         + pc.PostFijoFolioAvisoLlegada).FirstOrDefault() : folio.FolioAvisoLlegadaID.ToString();
+                        if (activarFolioConfiguracion)
+                        {
+                            string[] elemntos = nuevoElemento.FolioConfiguracion.Split(',').ToArray();
+                            int digitos = Convert.ToInt32(elemntos[1]);
+                            int consecutivo = Convert.ToInt32(elemntos[2]);
+                            string formato = "D" + digitos.ToString();
+
+                            nuevoElemento.FolioConfiguracion = elemntos[0].Trim() + consecutivo.ToString(formato).Trim() + elemntos[3].Trim();
+                        }
                         nuevoElemento.FolioAvisoEntradaID = folio.FolioAvisoEntradaID.ToString();
                         nuevoElemento.FolioAvisoLlegadaID = folio.FolioAvisoLlegadaID.ToString();
                         nuevoElemento.EstatusFolio = folio.Estatus;
@@ -157,6 +223,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -179,18 +248,56 @@ namespace BackEndSAM.DataAcces
             {
                 using (SamContext ctx = new SamContext())
                 {
+                    Boolean activarFolioConfiguracion = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracion"]) ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracion"].Equals("1") ? true : false) : false;
                     DetalleAvisoEntradaJson detalle = new DetalleAvisoEntradaJson();
                     Sam3_FolioAvisoEntrada registro =  ctx.Sam3_FolioAvisoEntrada.Where(x => x.FolioAvisoLlegadaID == folio).AsParallel().SingleOrDefault();
+                    Sam3_FolioAvisoLlegada FolioAvisoLlegada = ctx.Sam3_FolioAvisoLlegada.Where(x => x.FolioAvisoLlegadaID == folio).AsParallel().SingleOrDefault();
+
+                    //el registro de folio de llegada tiene registrado el id del cliente en sam3
+                    int ClienteFolioAvisoLlegada = FolioAvisoLlegada.ClienteID.GetValueOrDefault();
+                    //obtenemos el id del cliente en sam2
+                    int sam2Cliente = (from c in ctx.Sam3_Cliente
+                                       where c.Activo && c.ClienteID == ClienteFolioAvisoLlegada
+                                       select c.Sam2ClienteID.Value).AsParallel().SingleOrDefault();
+
+                    //Ahora si traemos la informacion del cliente
+                    detalle.Cliente = (Models.Cliente)ClienteBd.Instance.ObtnerElementoClientePorID(sam2Cliente);
+
+                    //devuelvo la lista de proyectos registrados en la relacion de aviso de llegada
+                    detalle.Proyectos = (from r in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
+                                         join f in ctx.Sam3_FolioAvisoLlegada on r.FolioAvisoLlegadaID equals f.FolioAvisoLlegadaID
+                                         join p in ctx.Sam3_Proyecto on r.ProyectoID equals p.ProyectoID
+                                         where r.Activo && f.Activo && p.Activo
+                                         && r.FolioAvisoLlegadaID == folio
+                                         select r.ProyectoID).AsParallel().ToList();
+
+                    detalle.FolioConfiguracion = activarFolioConfiguracion ? (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                                              where pc.Entidad == FolioAvisoLlegada.Entidad && pc.Proyecto == FolioAvisoLlegada.ProyectoNombrado
+                                                                              select pc.PreFijoFolioAvisoLlegada + ","
+                                                                               + pc.CantidadCerosFolioAvisoLlegada.ToString() + ","
+                                                                               + FolioAvisoLlegada.Consecutivo.ToString() + ","
+                                                                               + pc.PostFijoFolioAvisoLlegada).FirstOrDefault() : FolioAvisoLlegada.FolioAvisoLlegadaID.ToString();
+                    if (activarFolioConfiguracion)
+                    {
+                        string[] elemntos = detalle.FolioConfiguracion.Split(',').ToArray();
+                        int digitos = Convert.ToInt32(elemntos[1]);
+                        int consecutivo = Convert.ToInt32(elemntos[2]);
+                        string formato = "D" + digitos.ToString();
+
+                        detalle.FolioConfiguracion = elemntos[0].Trim() + consecutivo.ToString(formato).Trim() + elemntos[3].Trim();
+                    };
+                    detalle.EstatusAv = FolioAvisoLlegada.Estatus;
 
                     if (registro != null)
                     {
-                        detalle.Cliente = (from c in ctx.Sam3_Cliente
-                                           where c.ClienteID == registro.ClienteID
-                                           select new Models.Cliente
-                                           {
-                                               ClienteID = c.ClienteID.ToString(),
-                                               Nombre = c.Nombre
-                                           }).AsParallel().SingleOrDefault();
+
+                        //int ClienteID = registro.ClienteID != null ? registro.ClienteID : ClienteFolioAvisoLlegada;
+
+                        //sam2Cliente = (from c in ctx.Sam3_Cliente
+                        //                   where c.Activo && c.ClienteID == ClienteID
+                        //                   select c.Sam2ClienteID.Value).AsParallel().SingleOrDefault();
+                        //detalle.Cliente = (Models.Cliente)ClienteBd.Instance.ObtnerElementoClientePorID(sam2Cliente);
+
 
                         detalle.Documentos = (from d in ctx.Sam3_Rel_FolioAvisoEntrada_Documento
                                               where d.FolioAvisoEntradaID == registro.FolioAvisoEntradaID && d.Activo
@@ -213,9 +320,10 @@ namespace BackEndSAM.DataAcces
                         detalle.FechaInicioDescarga = registro.FechainicioDescarga;
                         detalle.FolioDescarga = registro.FolioDescarga;
                         detalle.ComboEstatus = registro.ComboEstatus;
+                        detalle.IdentificadorCliente = registro.IdentificadorCliente;
 
                         detalle.Patio = (from p in ctx.Sam3_Patio
-                                         where p.PatioID == registro.PatioID
+                                         where p.Activo && p.PatioID == registro.Sam3_FolioAvisoLlegada.PatioID
                                          select new Models.Patio
                                          {
                                              PatioID = p.PatioID.ToString(),
@@ -230,19 +338,15 @@ namespace BackEndSAM.DataAcces
                                                  Nombre = p.Nombre
                                              }).AsParallel().SingleOrDefault();
 
-                        //devuelvo la lista de proyectos registrados en la relacion de aviso de llegada
-                        detalle.Proyectos = (from r in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto
-                                             join f in ctx.Sam3_FolioAvisoLlegada on r.FolioAvisoLlegadaID equals f.FolioAvisoLlegadaID
-                                             join p in ctx.Sam3_Proyecto on r.ProyectoID equals p.ProyectoID
-                                             where r.Activo && f.Activo && p.Activo
-                                             && r.FolioAvisoLlegadaID == folio
-                                             select r.ProyectoID).AsParallel().ToList();
                     }
                     return detalle;
                 }
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -311,7 +415,10 @@ namespace BackEndSAM.DataAcces
                     nuevo.FechaModificacion = DateTime.Now;
                     nuevo.FolioAvisoLlegadaID = json.FolioAvisollegadaId;
                     nuevo.OrdenCompra = json.OrdenCompra;
-                    nuevo.PatioID = json.PatioID;
+                    nuevo.IdentificadorCliente = json.IdentificadorCliente;
+                    nuevo.PatioID = (from fa in ctx.Sam3_FolioAvisoLlegada
+                                     where fa.Activo && fa.FolioAvisoLlegadaID == json.FolioAvisollegadaId
+                                     select fa.PatioID).AsParallel().SingleOrDefault();
                     nuevo.ProveedorID = json.ProveedorID;
                     nuevo.UsuarioModificacion = usuario.UsuarioID;
                     nuevo.ComboEstatus = json.ComboEstatus;
@@ -340,12 +447,20 @@ namespace BackEndSAM.DataAcces
 
                     ctx.SaveChanges();
 
+                    Sam3_FolioAvisoLlegada FolioAvisoLlegada = ctx.Sam3_FolioAvisoLlegada.Where(x => x.FolioAvisoLlegadaID == json.FolioAvisollegadaId).AsParallel().SingleOrDefault();
+                    FolioAvisoLlegada.ClienteID = cliente.ClienteID;
+                    FolioAvisoLlegada.FechaModificacion = DateTime.Now;
+                    FolioAvisoLlegada.UsuarioModificacion = usuario.UsuarioID;
+                    ctx.SaveChanges();
+
                     if (!(bool)EnviarAvisosBd.Instance.EnviarNotificación(1,
                         string.Format("Se generó un nuevo aviso de Entrada para el folio {0} con fecha {1}",
                         nuevo.FolioAvisoLlegadaID, nuevo.FechaModificacion), usuario))
                     {
                         //Agregar error a la bitacora  PENDIENTE
                     }
+
+                    
 
                     TransactionalInformation result = new TransactionalInformation();
                     result.ReturnMessage.Add("Ok");
@@ -359,6 +474,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -381,52 +499,71 @@ namespace BackEndSAM.DataAcces
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    Sam3_FolioAvisoEntrada registroBd = ctx.Sam3_FolioAvisoEntrada
-                        .Where(x => x.FolioAvisoEntradaID == json.FolioAvisoEntradaID).AsParallel().SingleOrDefault();
-                    registroBd.ClienteID = json.ClienteId;
-                    registroBd.Estatus = json.Estatus;
-                    registroBd.Factura = json.Factura;
-                    registroBd.FechaModificacion = DateTime.Now;
-                    registroBd.FolioAvisoLlegadaID = json.FolioAvisollegadaId;
-                    registroBd.OrdenCompra = json.OrdenCompra;
-                    registroBd.PatioID = json.PatioID;
-                    registroBd.ProveedorID = json.ProveedorID;
-                    registroBd.UsuarioModificacion = usuario.UsuarioID;
-                    registroBd.ComboEstatus = json.ComboEstatus;
-
-                    //verificar y registrar los proyectos
-                    if (json.Proyectos.Count > 0)
+                    using (var ctx_tran = ctx.Database.BeginTransaction())
                     {
-                        foreach (int i in json.Proyectos)
+                        Sam3_FolioAvisoEntrada registroBd = ctx.Sam3_FolioAvisoEntrada
+                            .Where(x => x.FolioAvisoEntradaID == json.FolioAvisoEntradaID).AsParallel().SingleOrDefault();
+                        registroBd.ClienteID = (from c in ctx.Sam3_Cliente
+                                                where c.Activo && c.Sam2ClienteID == json.ClienteId
+                                                select c.ClienteID).AsParallel().SingleOrDefault();
+                        registroBd.Estatus = json.Estatus;
+                        registroBd.Factura = json.Factura;
+                        registroBd.FechaModificacion = DateTime.Now;
+                        registroBd.FolioAvisoLlegadaID = json.FolioAvisollegadaId;
+                        registroBd.OrdenCompra = json.OrdenCompra;
+                        registroBd.IdentificadorCliente = json.IdentificadorCliente;
+                        registroBd.PatioID = json.PatioID;
+                        registroBd.ProveedorID = json.ProveedorID;
+                        registroBd.UsuarioModificacion = usuario.UsuarioID;
+                        registroBd.ComboEstatus = json.ComboEstatus;
+
+                        //verificar y registrar los proyectos
+                        if (json.Proyectos.Count > 0)
                         {
-                            //si no existe registro del proyecto, se crea uno nuevo, de existir el proyecto se deja tal cual esta
-                            if (!ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Where(x => x.FolioAvisoLlegadaID == registroBd.FolioAvisoLlegadaID 
-                                && x.ProyectoID == i).AsParallel().Any())
+                            foreach (int i in json.Proyectos)
                             {
-                                Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRelProyecto = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
-                                nuevaRelProyecto.Activo = true;
-                                nuevaRelProyecto.FechaModificacion = DateTime.Now;
-                                nuevaRelProyecto.FolioAvisoLlegadaID = registroBd.FolioAvisoLlegadaID.Value;
-                                nuevaRelProyecto.ProyectoID = i;
-                                nuevaRelProyecto.UsuarioModificacion = usuario.UsuarioID;
-                                ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRelProyecto);
+                                //si no existe registro del proyecto, se crea uno nuevo, de existir el proyecto se deja tal cual esta
+                                if (!ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Where(x => x.FolioAvisoLlegadaID == registroBd.FolioAvisoLlegadaID
+                                    && x.ProyectoID == i).AsParallel().Any())
+                                {
+                                    Sam3_Rel_FolioAvisoLlegada_Proyecto nuevaRelProyecto = new Sam3_Rel_FolioAvisoLlegada_Proyecto();
+                                    nuevaRelProyecto.Activo = true;
+                                    nuevaRelProyecto.FechaModificacion = DateTime.Now;
+                                    nuevaRelProyecto.FolioAvisoLlegadaID = registroBd.FolioAvisoLlegadaID.Value;
+                                    nuevaRelProyecto.ProyectoID = i;
+                                    nuevaRelProyecto.UsuarioModificacion = usuario.UsuarioID;
+                                    ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto.Add(nuevaRelProyecto);
+                                }
                             }
                         }
+
+                        Sam3_FolioAvisoLlegada FolioAvisoLlegada = ctx.Sam3_FolioAvisoLlegada
+                            .Where(x => x.FolioAvisoLlegadaID == json.FolioAvisollegadaId).AsParallel().SingleOrDefault();
+                        FolioAvisoLlegada.ClienteID = (from c in ctx.Sam3_Cliente
+                                                       where c.Activo && c.Sam2ClienteID == json.ClienteId
+                                                       select c.ClienteID).AsParallel().SingleOrDefault();
+                        FolioAvisoLlegada.FechaModificacion = DateTime.Now;
+                        FolioAvisoLlegada.UsuarioModificacion = usuario.UsuarioID;
+
+
+                        ctx.SaveChanges();
+                        ctx_tran.Commit();
+
+                        TransactionalInformation result = new TransactionalInformation();
+                        result.ReturnMessage.Add("Ok");
+                        result.ReturnCode = 200;
+                        result.ReturnStatus = true;
+                        result.IsAuthenicated = true;
+
+                        return result;
                     }
-
-                    ctx.SaveChanges();
-
-                    TransactionalInformation result = new TransactionalInformation();
-                    result.ReturnMessage.Add("Ok");
-                    result.ReturnCode = 200;
-                    result.ReturnStatus = true;
-                    result.IsAuthenicated = true;
-
-                    return result;
                 }
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -469,6 +606,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -499,6 +639,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -553,6 +696,9 @@ namespace BackEndSAM.DataAcces
             }
             catch (Exception ex)
             {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -560,6 +706,106 @@ namespace BackEndSAM.DataAcces
                 result.IsAuthenicated = true;
 
                 return result;
+            }
+        }
+
+        public List<ListadoIncidencias> ListadoIncidencias(int clienteID, int proyectoID, List<int> proyectos, List<int> patios, List<int> IDs)
+        {
+            try
+            {
+                List<ListadoIncidencias> listado;
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_FolioAvisoEntrada> registros = new List<Sam3_FolioAvisoEntrada>();
+                    Boolean ActivarFolioConfiguracionIncidencias = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracionIncidencias"]) ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracionIncidencias"].Equals("1") ? true : false) : false;
+
+                    if (proyectoID > 0)
+                    {
+                        registros = (from fe in ctx.Sam3_FolioAvisoEntrada
+                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on fe.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                     join p in ctx.Sam3_Proyecto on rfp.ProyectoID equals p.ProyectoID
+                                     join pa in ctx.Sam3_Patio on p.PatioID equals pa.PatioID
+                                     where fe.Activo && rfp.Activo && p.Activo && pa.Activo
+                                     && proyectos.Contains(p.ProyectoID)
+                                     && patios.Contains(pa.PatioID)
+                                     && p.ProyectoID == proyectoID
+                                     && IDs.Contains(fe.FolioAvisoEntradaID)
+                                     select fe).Distinct().AsParallel().ToList();
+                    }
+                    else
+                    {
+                        registros = (from fe in ctx.Sam3_FolioAvisoEntrada
+                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on fe.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                     join p in ctx.Sam3_Proyecto on rfp.ProyectoID equals p.ProyectoID
+                                     join pa in ctx.Sam3_Patio on p.PatioID equals pa.PatioID
+                                     where fe.Activo && rfp.Activo && p.Activo && pa.Activo
+                                     && proyectos.Contains(p.ProyectoID)
+                                     && patios.Contains(pa.PatioID)
+                                     && IDs.Contains(fe.FolioAvisoEntradaID)
+                                     select fe).Distinct().AsParallel().ToList();
+                    }
+
+                    if (clienteID > 0)
+                    {
+                        int sam3ClienteID = (from c in ctx.Sam3_Cliente
+                                             where c.Activo && c.Sam2ClienteID == clienteID
+                                             select c.ClienteID).AsParallel().SingleOrDefault();
+                        registros = registros.Where(x => x.ClienteID == sam3ClienteID).ToList();
+                    }
+
+                    listado = (from r in registros
+                               join rif in ctx.Sam3_Rel_Incidencia_FolioAvisoEntrada on r.FolioAvisoEntradaID equals rif.FolioAvisoEntradaID
+                               join ind in ctx.Sam3_Incidencia on rif.IncidenciaID equals ind.IncidenciaID
+                               join clas in ctx.Sam3_ClasificacionIncidencia on ind.ClasificacionID equals clas.ClasificacionIncidenciaID
+                               join ti in ctx.Sam3_TipoIncidencia on ind.TipoIncidenciaID equals ti.TipoIncidenciaID
+                               join us in ctx.Sam3_Usuario on ind.UsuarioID equals us.UsuarioID
+                               join fe in ctx.Sam3_FolioAvisoEntrada on rif.FolioAvisoEntradaID equals fe.FolioAvisoEntradaID
+                               join fa in ctx.Sam3_FolioAvisoLlegada on fe.FolioAvisoLlegadaID equals fa.FolioAvisoLlegadaID
+                               where r.Activo && rif.Activo && ind.Activo && clas.Activo && ti.Activo
+                               select new ListadoIncidencias
+                               {
+                                   Clasificacion = clas.Nombre,
+                                   Estatus = ind.Estatus,
+                                   FechaRegistro = ind.FechaCreacion.ToString(),
+                                   FolioIncidenciaID = ind.IncidenciaID.ToString(),
+                                   RegistradoPor = us.Nombre + " " + us.ApellidoPaterno,
+                                   TipoIncidencia = ti.Nombre,
+                                   FolioConfiguracionIncidencia = ActivarFolioConfiguracionIncidencias ? (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                                                                          where pc.Rel_Proyecto_Entidad_Configuracion_ID == ind.Rel_Proyecto_Entidad_Configuracion_ID
+                                                                                                          select pc.PreFijoFolioIncidencias + ","
+                                                                                                           + pc.CantidadCerosFolioIncidencias.ToString() + ","
+                                                                                                           + ind.Consecutivo.ToString() + ","
+                                                                                                           + pc.PostFijoFolioIncidencias).FirstOrDefault() : ind.IncidenciaID.ToString()
+                               }).Distinct().AsParallel().ToList();
+
+                    if (ActivarFolioConfiguracionIncidencias)
+                    {
+                        foreach (ListadoIncidencias item in listado)
+                        {
+                            if (!string.IsNullOrEmpty(item.FolioConfiguracionIncidencia))
+                            {
+                                string[] elemntos = item.FolioConfiguracionIncidencia.Split(',').ToArray();
+                                int digitos = Convert.ToInt32(elemntos[1]);
+                                int consecutivo = Convert.ToInt32(elemntos[2]);
+                                string formato = "D" + digitos.ToString();
+
+                                item.FolioConfiguracionIncidencia = elemntos[0].Trim() + consecutivo.ToString(formato).Trim() + elemntos[3].Trim();
+                            }
+                            else {
+                                item.FolioConfiguracionIncidencia = item.FolioIncidenciaID.ToString();
+                            }
+                        }
+                    }
+
+                }
+                return listado;
+            }
+            catch (Exception ex)
+            {
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                LoggerBd.Instance.EscribirLog(ex);
+                //-----------------Agregar mensaje al Log -----------------------------------------------
+                return null;
             }
         }
     }

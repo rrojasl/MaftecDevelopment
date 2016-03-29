@@ -19,6 +19,7 @@ namespace DatabaseManager.Sam3
         {
             this.Sam3_Rel_Incidencia_OrdenAlmacenaje = new HashSet<Sam3_Rel_Incidencia_OrdenAlmacenaje>();
             this.Sam3_Rel_OrdenAlmacenaje_NumeroUnico = new HashSet<Sam3_Rel_OrdenAlmacenaje_NumeroUnico>();
+            this.Sam3_Rel_Incidencia_OrdenAlmacenaje = new HashSet<Sam3_Rel_Incidencia_OrdenAlmacenaje>();
         }
     
         public int OrdenAlmacenajeID { get; set; }
@@ -27,10 +28,14 @@ namespace DatabaseManager.Sam3
         public bool Activo { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
+        public Nullable<int> Rel_Proyecto_Entidad_Configuracion_ID { get; set; }
+        public Nullable<int> Consecutivo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_Incidencia_OrdenAlmacenaje> Sam3_Rel_Incidencia_OrdenAlmacenaje { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_OrdenAlmacenaje_NumeroUnico> Sam3_Rel_OrdenAlmacenaje_NumeroUnico { get; set; }
+        public virtual ICollection<Sam3_Rel_Incidencia_OrdenAlmacenaje> Sam3_Rel_Incidencia_OrdenAlmacenaje { get; set; }
+        public virtual Sam3_Rel_Proyecto_Entidad_Configuracion Sam3_Rel_Proyecto_Entidad_Configuracion { get; set; }
     }
 }

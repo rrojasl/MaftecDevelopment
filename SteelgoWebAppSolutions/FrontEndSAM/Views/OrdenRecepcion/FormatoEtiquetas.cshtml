@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-sm-12 col-md-12 col-lg-12 formatTag">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 formatTag">
     <div class="row">
         <div class="tags-container">
             <div id="divEtiquetas"></div>
@@ -86,7 +86,7 @@
                 if (data.ReturnCode != 200) {
                     if (data.ReturnCode == 401) {
                         removeUserSession();
-                        return true;
+                        return false;
                     } else {
                         displayMessage("notificationslabel0008", data.ReturnMessage, '2');
                         return false;

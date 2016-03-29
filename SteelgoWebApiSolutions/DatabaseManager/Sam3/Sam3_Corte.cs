@@ -19,6 +19,7 @@ namespace DatabaseManager.Sam3
         {
             this.Sam3_Rel_Incidencia_Corte = new HashSet<Sam3_Rel_Incidencia_Corte>();
             this.Sam3_CorteDetalle = new HashSet<Sam3_CorteDetalle>();
+            this.Sam3_Rel_Incidencia_Corte = new HashSet<Sam3_Rel_Incidencia_Corte>();
         }
     
         public int CorteID { get; set; }
@@ -29,18 +30,22 @@ namespace DatabaseManager.Sam3
         public Nullable<int> MermaMovimientoID { get; set; }
         public Nullable<int> PreparacionCorteMovimientoID { get; set; }
         public bool Cancelado { get; set; }
-        public int Rack { get; set; }
+        public string Rack { get; set; }
         public Nullable<int> CortadorID { get; set; }
         public bool Activo { get; set; }
         public Nullable<int> UsuarioModificacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
     
+<<<<<<< HEAD
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_Incidencia_Corte> Sam3_Rel_Incidencia_Corte { get; set; }
+>>>>>>> Steelgo-InHouse
         public virtual Sam3_NumeroUnicoMovimiento Sam3_NumeroUnicoMovimiento { get; set; }
         public virtual Sam3_NumeroUnicoMovimiento Sam3_NumeroUnicoMovimiento1 { get; set; }
         public virtual Sam3_Proyecto Sam3_Proyecto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_CorteDetalle> Sam3_CorteDetalle { get; set; }
+        public virtual ICollection<Sam3_Rel_Incidencia_Corte> Sam3_Rel_Incidencia_Corte { get; set; }
     }
 }

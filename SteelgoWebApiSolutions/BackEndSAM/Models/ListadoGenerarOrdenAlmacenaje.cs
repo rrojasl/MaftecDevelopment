@@ -8,12 +8,14 @@ namespace BackEndSAM.Models
     public class ListadoDetalleOrdenAlmacenaje
     {
         public int ProyectoID { get; set; }
+        public bool Activo { get; set; }
         public List<ListadoGenerarOrdenAlmacenaje> ListadoGenerarOrdenAlmacenaje { get; set; }
-
+        public string FolioConfiguracionOrdenAlmacenaje { get; set; }
     }
     public class ListadoGenerarOrdenAlmacenaje
     {
             public string FolioCuantificacion { get; set; }
+            public string FolioConfiguracionCuantificacion { get; set; }
             public List<ElementoCuantificacionItemCode> ItemCodes { get; set; }
 
             public ListadoGenerarOrdenAlmacenaje()

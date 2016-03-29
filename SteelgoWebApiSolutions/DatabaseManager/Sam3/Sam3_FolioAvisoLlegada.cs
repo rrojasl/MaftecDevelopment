@@ -23,8 +23,14 @@ namespace DatabaseManager.Sam3
             this.Sam3_Rel_FolioAvisoLlegada_PaseSalida_Archivo = new HashSet<Sam3_Rel_FolioAvisoLlegada_PaseSalida_Archivo>();
             this.Sam3_Rel_FolioAvisoLlegada_Proyecto = new HashSet<Sam3_Rel_FolioAvisoLlegada_Proyecto>();
             this.Sam3_Rel_FolioAvisoLlegada_Vehiculo = new HashSet<Sam3_Rel_FolioAvisoLlegada_Vehiculo>();
+<<<<<<< HEAD
+            this.Sam3_FolioAvisoEntrada = new HashSet<Sam3_FolioAvisoEntrada>();
+            this.Sam3_Rel_Incidencia_FolioAvisoLlegada = new HashSet<Sam3_Rel_Incidencia_FolioAvisoLlegada>();
+            this.Sam3_Rel_Incidencia_PaseSalida = new HashSet<Sam3_Rel_Incidencia_PaseSalida>();
+=======
             this.Sam3_Rel_Incidencia_FolioAvisoLlegada = new HashSet<Sam3_Rel_Incidencia_FolioAvisoLlegada>();
             this.Sam3_PermisoAduana = new HashSet<Sam3_PermisoAduana>();
+>>>>>>> Steelgo-InHouse
         }
     
         public int FolioAvisoLlegadaID { get; set; }
@@ -42,6 +48,9 @@ namespace DatabaseManager.Sam3
         public int VehiculoID { get; set; }
         public Nullable<int> ClienteID { get; set; }
         public Nullable<int> TipoAvisoID { get; set; }
+        public int Entidad { get; set; }
+        public int ProyectoNombrado { get; set; }
+        public string CuadrillaDescarga { get; set; }
     
         public virtual Sam3_Chofer Sam3_Chofer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -60,9 +69,18 @@ namespace DatabaseManager.Sam3
         public virtual ICollection<Sam3_Rel_FolioAvisoLlegada_Proyecto> Sam3_Rel_FolioAvisoLlegada_Proyecto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_FolioAvisoLlegada_Vehiculo> Sam3_Rel_FolioAvisoLlegada_Vehiculo { get; set; }
+<<<<<<< HEAD
+        public virtual ICollection<Sam3_FolioAvisoEntrada> Sam3_FolioAvisoEntrada { get; set; }
+        public virtual Sam3_TipoAviso Sam3_TipoAviso { get; set; }
+        public virtual ICollection<Sam3_Rel_Incidencia_FolioAvisoLlegada> Sam3_Rel_Incidencia_FolioAvisoLlegada { get; set; }
+        public virtual ICollection<Sam3_Rel_Incidencia_PaseSalida> Sam3_Rel_Incidencia_PaseSalida { get; set; }
+        public virtual Sam3_Entidad Sam3_Entidad { get; set; }
+        public virtual Sam3_Proyecto Sam3_Proyecto { get; set; }
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_Incidencia_FolioAvisoLlegada> Sam3_Rel_Incidencia_FolioAvisoLlegada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_PermisoAduana> Sam3_PermisoAduana { get; set; }
+>>>>>>> Steelgo-InHouse
     }
 }

@@ -22,6 +22,10 @@ namespace DatabaseManager.Sam3
             this.Sam3_Rel_FolioAvisoEntrada_Documento = new HashSet<Sam3_Rel_FolioAvisoEntrada_Documento>();
             this.Sam3_Rel_FolioAvisoEntrada_OrdenRecepcion = new HashSet<Sam3_Rel_FolioAvisoEntrada_OrdenRecepcion>();
             this.Sam3_Rel_Incidencia_FolioAvisoEntrada = new HashSet<Sam3_Rel_Incidencia_FolioAvisoEntrada>();
+<<<<<<< HEAD
+            this.Sam3_Rel_Incidencia_ComplementoRecepcion = new HashSet<Sam3_Rel_Incidencia_ComplementoRecepcion>();
+=======
+>>>>>>> Steelgo-InHouse
         }
     
         public int FolioAvisoEntradaID { get; set; }
@@ -42,6 +46,7 @@ namespace DatabaseManager.Sam3
         public Nullable<System.DateTime> FechainicioDescarga { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         public string ComboEstatus { get; set; }
+        public string IdentificadorCliente { get; set; }
     
         public virtual Sam3_Cliente Sam3_Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -54,8 +59,13 @@ namespace DatabaseManager.Sam3
         public virtual ICollection<Sam3_Rel_FolioAvisoEntrada_Documento> Sam3_Rel_FolioAvisoEntrada_Documento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_FolioAvisoEntrada_OrdenRecepcion> Sam3_Rel_FolioAvisoEntrada_OrdenRecepcion { get; set; }
+<<<<<<< HEAD
+        public virtual ICollection<Sam3_Rel_Incidencia_FolioAvisoEntrada> Sam3_Rel_Incidencia_FolioAvisoEntrada { get; set; }
+        public virtual ICollection<Sam3_Rel_Incidencia_ComplementoRecepcion> Sam3_Rel_Incidencia_ComplementoRecepcion { get; set; }
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_Incidencia_FolioAvisoEntrada> Sam3_Rel_Incidencia_FolioAvisoEntrada { get; set; }
         public virtual Sam3_FolioAvisoLlegada Sam3_FolioAvisoLlegada { get; set; }
+>>>>>>> Steelgo-InHouse
     }
 }

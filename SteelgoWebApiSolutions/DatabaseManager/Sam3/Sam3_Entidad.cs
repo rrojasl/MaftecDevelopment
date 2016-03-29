@@ -20,6 +20,8 @@ namespace DatabaseManager.Sam3
             this.Sam3_Rel_Perfil_Entidad_Pagina = new HashSet<Sam3_Rel_Perfil_Entidad_Pagina>();
             this.Sam3_Rel_Documento_Entidad = new HashSet<Sam3_Rel_Documento_Entidad>();
             this.Sam3_Rel_Incidencia_Entidad = new HashSet<Sam3_Rel_Incidencia_Entidad>();
+            this.Sam3_FolioAvisoLlegada = new HashSet<Sam3_FolioAvisoLlegada>();
+            this.Sam3_Rel_Proyecto_Entidad_Configuracion1 = new HashSet<Sam3_Rel_Proyecto_Entidad_Configuracion>();
         }
     
         public int EntidadID { get; set; }
@@ -34,5 +36,8 @@ namespace DatabaseManager.Sam3
         public virtual ICollection<Sam3_Rel_Documento_Entidad> Sam3_Rel_Documento_Entidad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_Rel_Incidencia_Entidad> Sam3_Rel_Incidencia_Entidad { get; set; }
+        public virtual Sam3_Rel_Proyecto_Entidad_Configuracion Sam3_Rel_Proyecto_Entidad_Configuracion { get; set; }
+        public virtual ICollection<Sam3_FolioAvisoLlegada> Sam3_FolioAvisoLlegada { get; set; }
+        public virtual ICollection<Sam3_Rel_Proyecto_Entidad_Configuracion> Sam3_Rel_Proyecto_Entidad_Configuracion1 { get; set; }
     }
 }

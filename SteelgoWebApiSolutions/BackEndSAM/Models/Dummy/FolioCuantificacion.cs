@@ -24,12 +24,22 @@ namespace BackEndSAM.Models
         public TipoPackingList TipoPackingList { get; set; }
         public TipoUso TipoUso { get; set; }
         public string PackingList { get; set; }
+        public string OrdenDeCompra { get; set; }
+        public string Factura { get; set; }
     }
 
     public class FolioLlegada1
     {
         public int FolioCuantificacionID { get; set; }
         public int FolioAvisoEntradaID { get; set; }
+        public string FolioConfiguracionCuantificacionID { get; set; }
+        public string NombreFolioAvisoLlegada { get; set; }
+        public string NombreFolioCuantificacion { get; set; }
+        public int FolioAvisoLlegadaID { get; set; }
+        public int ConsecutivoFolioCuanificacion { get; set; }
+        public int ConsecutivoFolioLlegada { get; set; }
+        public int TipoUsoID { get; set; }
+        public string TipoUso { get; set; }
     }
 
     public class FolioEntradaYLlegada
@@ -42,6 +52,7 @@ namespace BackEndSAM.Models
     {
         public string id { get; set; }
         public string Nombre { get; set; }
+        public bool MostrarTipoPackingList { get; set; }
     }
 
     public class TipoUso
