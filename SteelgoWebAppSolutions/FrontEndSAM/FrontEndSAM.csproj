@@ -52,6 +52,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+	<Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -447,6 +451,11 @@
     <None Include="Properties\PublishProfiles\FrontEnd.pubxml" />
     <None Include="Properties\PublishProfiles\samFE.pubxml" />
     <Content Include="Scripts\AppComponents\Armado\Web.config" />
+    <Content Include="Scripts\AppComponents\CapturaPNDMaterial\PruebasMaterial\Ajax.js" />
+    <Content Include="Scripts\AppComponents\CapturaPNDMaterial\PruebasMaterial\Captura.js" />
+    <Content Include="Scripts\AppComponents\CapturaPNDMaterial\PruebasMaterial\Handlers.js" />
+    <Content Include="Scripts\AppComponents\CapturaPNDMaterial\PruebasMaterial\Render.js" />
+    <Content Include="Scripts\AppComponents\CapturaPNDMaterial\PruebasMaterial\Seguridad.js" />
     <Content Include="Scripts\AppComponents\Catalogos\ListadoCamposPredeterminados\Ajax.js" />
     <Content Include="Scripts\AppComponents\Catalogos\ListadoCamposPredeterminados\ListadoCamposPredeterminados.js" />
     <Content Include="Scripts\AppComponents\Catalogos\PQR\Lista\Ajax.js" />
@@ -471,12 +480,50 @@
     <Content Include="Scripts\AppComponents\Inspeccion\Dimensional\Web.config" />
     <Content Include="Scripts\AppComponents\Inspeccion\VisualDimensional\Seguridad.js" />
     <Content Include="Scripts\AppComponents\Inspeccion\VisualDimensional\Web.config" />
+    <Content Include="Scripts\AppComponents\MedicionesClimatologicas\Ajax.js" />
+    <Content Include="Scripts\AppComponents\MedicionesClimatologicas\Captura.js" />
+    <Content Include="Scripts\AppComponents\MedicionesClimatologicas\Handlers.js" />
+    <Content Include="Scripts\AppComponents\MedicionesClimatologicas\Render.js" />
+    <Content Include="Scripts\AppComponents\MedicionesClimatologicas\Seguridad.js" />
     <Content Include="Scripts\AppComponents\Pintura\CapturaAvanceIntAcabado\Web.config" />
     <Content Include="Scripts\AppComponents\Pintura\CapturaAvance\Web.config" />
     <Content Include="Scripts\AppComponents\Pintura\CargaCarroBackLog\Web.config" />
     <Content Include="Scripts\AppComponents\Pintura\CargaCarro\Web.config" />
     <Content Include="Scripts\AppComponents\Pintura\DescargaCarro\Web.config" />
     <Content Include="Scripts\AppComponents\Pintura\LotesCapturaReporte\Web.config" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\AutorizacionPeticion\Ajax.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\AutorizacionPeticion\Captura.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\AutorizacionPeticion\Handler.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\AutorizacionPeticion\Render.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\AutorizacionPeticion\Seguridad.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Capacidad\Ajax.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Capacidad\Captura.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Capacidad\Handlers.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Capacidad\Render.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Ciclos\Ajax.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Ciclos\Captura.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Ciclos\Handler.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Ciclos\Render.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Ciclos\Seguridad.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\DetalleOrdenesTrabajo\Ajax.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\DetalleOrdenesTrabajo\Captura.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\DetalleOrdenesTrabajo\Handler.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\DetalleOrdenesTrabajo\Render.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\DetalleOrdenesTrabajo\Seguridad.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\EmisionOrdenesTrabajo\Ajax.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\EmisionOrdenesTrabajo\Captura.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\EmisionOrdenesTrabajo\Handlers.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\EmisionOrdenesTrabajo\Render.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\EmisionOrdenesTrabajo\Seguridad.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Peticiones\Ajax.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Peticiones\Captura.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Peticiones\Handler.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Peticiones\Render.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\Peticiones\Seguridad.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\PeticionMontaje\Ajax.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\PeticionMontaje\Captura.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\PeticionMontaje\Handlers.js" />
+    <Content Include="Scripts\AppComponents\PlaneacionYControl\PeticionMontaje\Render.js" />
     <Content Include="Scripts\AppComponents\ServiciosTecnicos\AsignarRequisicion\Web.config" />
     <Content Include="Scripts\AppComponents\ServiciosTecnicos\CapturaReportePruebas\Web.config" />
     <Content Include="Scripts\AppComponents\ServiciosTecnicos\EntregaResultados\Web.config" />
@@ -498,6 +545,7 @@
     <Content Include="Scripts\AppComponents\Catalogos\SoldadorCertificacion\PopUp\Web.config" />
     <Content Include="Scripts\AppComponents\Catalogos\Web.config" />
     <Content Include="Scripts\AppComponents\AvisoLlegada\Web.config" />
+    <Content Include="Scripts\AppComponents\MedicionesClimatologicas\Web.config" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\AppComponents\Armado\Ajax.js" />
@@ -646,6 +694,7 @@
     <Content Include="Content\ContextMenu.css" />
     <Content Include="Scripts\Confirm\jquery.confirm.js" />
     <Content Include="Scripts\ContextMenu.js" />
+    <Content Include="Scripts\General\Validate\Grid.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -1145,34 +1194,51 @@
     <Compile Include="Controllers\Almacenaje\AlmacenajeController.cs" />
     <Compile Include="Controllers\Armado\ArmadoController.cs" />
     <Compile Include="Controllers\AvisoLlegada\AvisoLlegadaController.cs" />
+    <Compile Include="Controllers\Busqueda\BusquedaController.cs" />
     <Compile Include="Controllers\Catalogos\ObreroController.cs" />
     <Compile Include="Controllers\Catalogos\ObreroUbicacionController.cs" />
     <Compile Include="Controllers\Catalogos\TipoObreroController.cs" />
     <Compile Include="Controllers\Catalogos\TipoTrabajosAdicionalesController.cs" />
     <Compile Include="Controllers\Catalogos\TrabajosAdicionalesController.cs" />
     <Compile Include="Controllers\ComplementoRecepcion\ComplementoRecepcionController.cs" />
+    <Compile Include="Controllers\ConvertirSpoolAGranel\ConvertirSpoolAGranelController.cs" />
+    <Compile Include="Controllers\Corte\CorteController.cs" />
     <Compile Include="Controllers\Cuantificacion\CuantificacionController.cs" />
+    <Compile Include="Controllers\DashboardDespachoCorte\DashboardDespachoCorteController.cs" />
     <Compile Include="Controllers\DashboardRecepcionAlmacenaje\DashboardRecepcionAlmacenajeController.cs" />
+    <Compile Include="Controllers\Despacho\DespachoController.cs" />
     <Compile Include="Controllers\Embarque\EmbarqueController.cs" />
+    <Compile Include="Controllers\Entrega\EntregaController.cs" />
     <Compile Include="Controllers\Errors\ErrorsController.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Controllers\ImpresionDocumental\ImpresionDocumentalController.cs" />
+    <Compile Include="Controllers\Incidencias\IncidenciasController.cs" />
     <Compile Include="Controllers\Inspeccion\InspeccionController.cs" />
     <Compile Include="Controllers\ListadoMateriales\ListadoMaterialesController.cs" />
     <Compile Include="Controllers\LlegadaMaterial\EntradaMaterialController.cs" />
+    <Compile Include="Controllers\Materiales\MaterialesController.cs" />
+    <Compile Include="Controllers\MedicionesClimatologicas\MedicionesClimatologicasController.cs" />
     <Compile Include="Controllers\OrdenAlmacenaje\OrdenAlmacenajeController.cs" />
     <Compile Include="Controllers\OrdenRecepcion\OrdenRecepcionController.cs" />
     <Compile Include="Controllers\PackingList\PackingListController.cs" />
     <Compile Include="Controllers\Pintura\PinturaController.cs" />
+    <Compile Include="Controllers\PlaneacionYControl\PlaneacionYControlController.cs" />
     <Compile Include="Controllers\popups\AgregarTipoTrabajoAdicionalController.cs" />
     <Compile Include="Controllers\popups\AgregarTrabajoAdicionalController.cs" />
     <Compile Include="Controllers\PQR\PQRController.cs" />
+    <Compile Include="Controllers\PreDespacho\PreDespachoController.cs" />
+    <Compile Include="Controllers\Proxy\ProxyController.cs" />
+    <Compile Include="Controllers\PruebasMaterial\CapturaPNDMaterialController.cs" />
+    <Compile Include="Controllers\Prueba\PruebaController.cs" />
     <Compile Include="Controllers\ServiciosTecnicos\ServiciosTecnicosController.cs" />
     <Compile Include="Controllers\Soldadura\SoldaduraController.cs" />
     <Compile Include="Controllers\Soldadura\WPSController.cs" />
+    <Compile Include="Controllers\Spool\SpoolController.cs" />
     <Compile Include="Controllers\TipoJunta\TipoJuntaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlaneacionYControl\DetalleOrdenesTrabajo\DetalleOrdenesTrabajo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1365,13 +1431,52 @@
     <Content Include="Views\TipoJunta\TipoJunta.cshtml" />
     <Content Include="Views\WPS\WPS.cshtml" />
     <Content Include="Views\WPS\_PopUPWPS.cshtml" />
+    <Content Include="Views\Busqueda\Busqueda.cshtml" />
+    <Content Include="Views\CapturaPNDMaterial\PruebasMaterial.cshtml" />
+    <Content Include="Views\Catalogos\AsociacionItemCodes.cshtml" />
+    <Content Include="Views\Catalogos\ItemCodeSteelGo.cshtml" />
+    <Content Include="Views\Catalogos\ListadoCatalogos.cshtml" />
+    <Content Include="Views\ConvertirSpoolAGranel\ConvertirSpoolAGranel.cshtml" />
+    <Content Include="Views\Corte\Corte.cshtml" />
+    <Content Include="Views\Corte\ListadoCorte.cshtml" />
+    <Content Include="Views\DashboardDespachoCorte\DashboardDespachoCorte.cshtml" />
+    <Content Include="Views\Despacho\Despacho.cshtml" />
+    <Content Include="Views\Entrega\Entrega.cshtml" />
+    <Content Include="Views\ImpresionDocumental\ImpresionDocumental.cshtml" />
+    <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Incidencias\ListadoIncidencias.cshtml" />
+    <Content Include="Views\Materiales\NotificacionDeficit.cshtml" />
+    <Content Include="Views\Materiales\RevisionDeficit.cshtml" />
+    <Content Include="Views\Materiales\RevisionDeficit.cshtml.BAK" />
+    <Content Include="Views\MedicionesClimatologicas\CondicionesClimatologicas.cshtml" />
+    <Content Include="Views\PlaneacionYControl\AutorizacionPeticion.cshtml" />
+    <Content Include="Views\PlaneacionYControl\Capacidad.cshtml" />
+    <Content Include="Views\PlaneacionYControl\Ciclos.cshtml" />
+    <Content Include="Views\PlaneacionYControl\EmisionOT.cshtml" />
+    <Content Include="Views\PlaneacionYControl\OrdenesDeTrabajo.cshtml" />
+    <Content Include="Views\PlaneacionYControl\Peticion.cshtml" />
+    <Content Include="Views\PlaneacionYControl\PeticionMontaje.cshtml" />
+    <Content Include="Views\PopUps\Archivos.cshtml" />
+    <Content Include="Views\PopUps\Chofer.cshtml" />
+    <Content Include="Views\PopUps\Colada.cshtml" />
+    <Content Include="Views\PopUps\ItemCode.cshtml" />
+    <Content Include="Views\PopUps\ItemCodeSteelgo.cshtml" />
+    <Content Include="Views\PopUps\Patio.cshtml" />
+    <Content Include="Views\PopUps\Plana.cshtml" />
+    <Content Include="Views\PopUps\Proveedor.cshtml" />
+    <Content Include="Views\PopUps\TipoUso.cshtml" />
+    <Content Include="Views\PopUps\Tracto.cshtml" />
+    <Content Include="Views\PopUps\Transportista.cshtml" />
+    <Content Include="Views\PreDespacho\PreDespacho.cshtml" />
+    <Content Include="Views\Prueba\Prueba.cshtml" />
+    <Content Include="Views\Spool\ListadoSpoolGranel.cshtml" />
+    <Content Include="Views\Spool\SpoolGranel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
