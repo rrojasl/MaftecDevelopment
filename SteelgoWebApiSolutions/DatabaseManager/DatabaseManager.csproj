@@ -940,6 +940,7 @@
     <Compile Include="Sam3\Sam3_Armado_Get_DetalleTrabajoAdicional_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Armado_Get_MaterialesSpool_Result.cs" />
     <Compile Include="Sam3\Sam3_Bulto.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1372,6 +1373,7 @@
     <Compile Include="Sam3\Sam3_ModoSoldado.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_MTR.cs" />
     <Compile Include="Sam3\Sam3_Notificacion.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1867,6 +1869,7 @@
     <Compile Include="Sam3\Sam3_Soldadura_CertificacionPosicion_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_Get_DetallaTrabajoAdicional_Result.cs" />
     <Compile Include="Sam3\Sam3_Soldadura_Get_DetalleJunta_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -2077,12 +2080,24 @@
     <Compile Include="Sam3\Sam3_WPS.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam_JuntaSpool.cs" />
+    <Compile Include="Sam3\Sam_JuntaWorkstatus.cs" />
+    <Compile Include="Sam3\Sam_MaterialSpool.cs" />
+    <Compile Include="Sam3\Sam_OrdenTrabajo.cs" />
+    <Compile Include="Sam3\Sam_OrdenTrabajoSpool.cs" />
     <Compile Include="Sam3\Sam_Pintura_Get_Clasificacion_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam_Proyecto.cs" />
+    <Compile Include="Sam3\Sam_SpoolHold.cs" />
     <Compile Include="Sam3\SplitInts_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\SSP_sam3_ObreroUbicacion_Result.cs" />
+    <Compile Include="Sam3\SSP_sam3_Obrero_Result.cs" />
+    <Compile Include="Sam3\SSP_sam3_TipoObrero_Result.cs" />
+    <Compile Include="Sam3\SSP_sam3_TipoTrabajoAdicional_Result.cs" />
+    <Compile Include="Sam3\SSP_sam3_TrabajoAdicional_Result.cs" />
     <Compile Include="Sam3\tempInsert.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
