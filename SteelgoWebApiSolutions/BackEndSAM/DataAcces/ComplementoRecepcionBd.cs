@@ -49,7 +49,6 @@ namespace BackEndSAM.DataAcces
                     List<ItemCodeComplemento> listado = new List<ItemCodeComplemento>();
                     //Agregamos items con relacion con Folio Cuantificacion
                     listado.AddRange((from fc in ctx.Sam3_FolioCuantificacion
-<<<<<<< HEAD
                                       join rfi in ctx.Sam3_Rel_FolioCuantificacion_ItemCode on fc.FolioCuantificacionID equals rfi.FolioCuantificacionID
                                       join rel in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB on rfi.Rel_FolioCuantificacion_ItemCode_ID equals rel.Rel_FolioCuantificacion_ItemCode_ID
                                       join nu in ctx.Sam3_NumeroUnico on rel.NumeroUnicoID equals nu.NumeroUnicoID
@@ -114,36 +113,6 @@ namespace BackEndSAM.DataAcces
                                                   where mtr.Activo && mtr.MTRID.ToString() == item.MTRID
                                                   select mtr.CantidadPiezas.ToString()).AsParallel().SingleOrDefault();
                     }
-=======
-                                     join rfi in ctx.Sam3_Rel_FolioCuantificacion_ItemCode on fc.FolioCuantificacionID equals rfi.FolioCuantificacionID
-                                     join it in ctx.Sam3_ItemCode on rfi.ItemCodeID equals it.ItemCodeID
-                                     join nu in ctx.Sam3_NumeroUnico on it.ItemCodeID equals nu.ItemCodeID
-                                     where fc.Activo && rfi.Activo && it.Activo && nu.Activo
-                                     && fc.FolioCuantificacionID == folioCuantificacionID
-                                     && !it.TieneComplementoRecepcion
-                                     select new ItemCodeComplemento
-                                     {
-                                         NumeroUnico = nu.Prefijo + "-" + nu.Consecutivo,
-                                         ItemCode = it.Codigo,
-                                         NumeroUnicoCliente = nu.NumeroUnicoCliente,
-                                         Descripcion = it.DescripcionEspanol,
-                                         Cedula = nu.Cedula,
-                                         TipoAcero = (from fa in ctx.Sam3_FamiliaAcero
-                                                      where fa.Activo && fa.FamiliaAceroID == it.FamiliaAceroID
-                                                      select fa.Nombre).FirstOrDefault(),
-                                         D1 = it.Diametro1.ToString(),
-                                         D2 = it.Diametro2.ToString(),
-                                         ItemCodeID = it.ItemCodeID,
-                                         ProyectoID = it.ProyectoID,
-                                         Cantidad = it.Cantidad,
-                                         MM = it.MM.ToString(),
-                                        // Colada = ctx.Sam3_Colada.NumeroColada,
-                                         EstatusDocumental = it.EstatusDocumental,
-                                         EstatusFisico = it.EstatusFisico,
-                                         TipoUso = it.Sam3_TipoUso.Nombre
-                                     }).AsParallel().Distinct().ToList());
->>>>>>> Steelgo-InHouse
-
                     //agregar items en bulto
                     listado.AddRange((from fc in ctx.Sam3_FolioCuantificacion
                                       join b in ctx.Sam3_Bulto on fc.FolioCuantificacionID equals b.FolioCuantificacionID
@@ -187,7 +156,6 @@ namespace BackEndSAM.DataAcces
                                           D2 = d2.Valor.ToString(),
                                           ItemCodeID = it.ItemCodeID,
                                           ProyectoID = it.ProyectoID,
-<<<<<<< HEAD
                                           Cantidad = (from n in ctx.Sam3_NumeroUnico
                                                       where n.NumeroUnicoID == nu.NumeroUnicoID
                                                       select n).Count(),
@@ -200,14 +168,6 @@ namespace BackEndSAM.DataAcces
                                           RelBID = rel.Rel_Bulto_ItemCode_ID.ToString(),
                                           ColadaOriginal = nu.Sam3_Colada.NumeroColada,
                                           TieneComplementoRecepcion = it.TieneComplementoRecepcion ? "Si" : "No"
-=======
-                                          Cantidad = it.Cantidad,
-                                          MM = it.MM.ToString(),
-                                         // Colada = nu.Sam3_Colada.NumeroColada, 
-                                          EstatusDocumental = it.EstatusDocumental, 
-                                          EstatusFisico = it.EstatusFisico, 
-                                          TipoUso = it.Sam3_TipoUso.Nombre
->>>>>>> Steelgo-InHouse
                                       }
                         ).AsParallel().Distinct().ToList());
 
@@ -304,7 +264,6 @@ namespace BackEndSAM.DataAcces
                 {
                     ItemCodeComplemento item = new ItemCodeComplemento();
                     //Agregamos items con relacion con Folio Cuantificacion
-<<<<<<< HEAD
                     if (relFCID > 0)
                     {
                         item = (from rel in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB
@@ -323,34 +282,6 @@ namespace BackEndSAM.DataAcces
                                     ItemCode = it.Codigo,
                                     NumeroUnicoCliente = nu.NumeroUnicoCliente,
                                     Descripcion = it.DescripcionEspanol,
-=======
-                    item = (from it in ctx.Sam3_ItemCode
-                                      join nu in ctx.Sam3_NumeroUnico on it.ItemCodeID equals nu.ItemCodeID
-                                      where it.Activo && nu.Activo
-                                      && it.ItemCodeID == itemCodeID
-                                      select new ItemCodeComplemento
-                                      {
-                                          NumeroUnico = nu.Prefijo + "-" + nu.Consecutivo,
-                                          ItemCode = it.Codigo,
-                                          NumeroUnicoCliente = nu.NumeroUnicoCliente,
-                                          Descripcion = it.DescripcionEspanol,
-                                          Cedula = nu.Cedula,
-                                          TipoAcero = (from fa in ctx.Sam3_FamiliaAcero
-                                                       where fa.Activo && fa.FamiliaAceroID == it.FamiliaAceroID
-                                                       select fa.Nombre).FirstOrDefault(),
-                                          D1 = it.Diametro1.ToString(),
-                                          D2 = it.Diametro2.ToString(),
-                                          ItemCodeID = it.ItemCodeID,
-                                          ProyectoID = it.ProyectoID,
-                                          Cantidad = it.Cantidad,
-                                          MM = it.MM.ToString(),
-                                         // Colada = nu.Sam3_Colada.NumeroColada,
-                                          EstatusDocumental = it.EstatusDocumental,
-                                          EstatusFisico = it.EstatusFisico,
-                                          TipoUso = it.Sam3_TipoUso.Nombre
-                                      }).AsParallel().SingleOrDefault();
->>>>>>> Steelgo-InHouse
-
                                     TipoAcero = (from rfii in ctx.Sam3_Rel_FolioCuantificacion_ItemCode
                                                  join rdi in ctx.Sam3_Rel_ItemCode_Diametro on rfii.Rel_ItemCode_Diametro_ID equals rid.Rel_ItemCode_Diametro_ID
                                                  join riit in ctx.Sam3_Rel_ItemCode_ItemCodeSteelgo on rdi.Rel_ItemCode_Diametro_ID equals riit.Rel_ItemCode_Diametro_ID

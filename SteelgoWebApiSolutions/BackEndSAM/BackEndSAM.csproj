@@ -48,6 +48,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -62,6 +66,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Cors">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
@@ -128,39 +133,62 @@
     <Content Include="RestApiClient\jquery-2.1.4.js" />
     <Content Include="RestApiClient\jquery.rest.js" />
     <Content Include="RestApiClient\RestApiClient.html" />
+    <None Include="Service References\Sam3Reportes\configuration.svcinfo" />
+    <None Include="Service References\Sam3Reportes\configuration91.svcinfo" />
+    <None Include="Service References\Sam3Reportes\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference1.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministracionCatalogosController.cs" />
+    <Compile Include="Controllers\AlmacenajeController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\ArmadoController.cs" />
+    <Compile Include="Controllers\AsociacionICSController.cs" />
     <Compile Include="Controllers\CambiarEstatusCuantificacionController.cs" />
     <Compile Include="Controllers\CapturasRapidasController.cs" />
     <Compile Include="Controllers\CargaEmbarqueController.cs" />
     <Compile Include="Controllers\CargarGridCuantificacionController.cs" />
+    <Compile Include="Controllers\CatalogoICSteelgoController.cs" />
+    <Compile Include="Controllers\CedulasController.cs" />
+    <Compile Include="Controllers\ClasificacionController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ColadaController.cs" />
     <Compile Include="Controllers\ComplementarRecepcionController.cs" />
     <Compile Include="Controllers\ConsultaController.cs" />
+    <Compile Include="Controllers\ConvertirSpoolAGranelController.cs" />
+    <Compile Include="Controllers\CortadorController.cs" />
+    <Compile Include="Controllers\CorteController.cs" />
     <Compile Include="Controllers\CuadranteController.cs" />
     <Compile Include="Controllers\DefectosController.cs" />
+    <Compile Include="Controllers\DespachoController.cs" />
+    <Compile Include="Controllers\DetalleNumeroUnicoController.cs" />
+    <Compile Include="Controllers\DiametrosController.cs" />
     <Compile Include="Controllers\DocumentoAvisoLlegadaController.cs" />
     <Compile Include="Controllers\DocumentoController.cs" />
     <Compile Include="Controllers\DocumentoFolioAvisoEntradaController.cs" />
+    <Compile Include="Controllers\DocumentoIncidenciaController.cs" />
     <Compile Include="Controllers\DocumentoLlegadaMaterialController.cs" />
     <Compile Include="Controllers\DocumentoPaseSalidaController.cs" />
     <Compile Include="Controllers\DocumentoPermisoAduanaController.cs" />
+    <Compile Include="Controllers\DocumentosCatalogosController.cs" />
     <Compile Include="Controllers\DummyAceroController.cs" />
     <Compile Include="Controllers\DummyAlmacenajeRackController.cs" />
     <Compile Include="Controllers\DummyColadaController.cs" />
     <Compile Include="Controllers\DummyColadasPorProyectoController.cs" />
+    <Compile Include="Controllers\DummyDespachoController.cs" />
     <Compile Include="Controllers\DummyGenerarOrdenAlmacenajeController.cs" />
     <Compile Include="Controllers\DummyGridOrdenRecepcionController.cs" />
     <Compile Include="Controllers\DummyItemCodeSteelgoController.cs" />
+    <Compile Include="Controllers\DummyMaquinaController.cs" />
     <Compile Include="Controllers\DummyObtenerDatosFolioAvisoEntradaController.cs" />
     <Compile Include="Controllers\DummyObtenerDatosFolioLlegadaMaterialController.cs" />
+    <Compile Include="Controllers\DummyOperadorController.cs" />
     <Compile Include="Controllers\DummyOrdenAlmacenajeController.cs" />
     <Compile Include="Controllers\DummyOrdenRecepcionFoliosAvisoEntradaController.cs" />
     <Compile Include="Controllers\DummyOrdenRecepcionItemCodeController.cs" />
@@ -169,7 +197,9 @@
     <Compile Include="Controllers\DumyValidarItemCodeNuCuantificacionController.cs" />
     <Compile Include="Controllers\DummyFabricanteController.cs" />
     <Compile Include="Controllers\EmbarqueController.cs" />
+    <Compile Include="Controllers\EntregaController.cs" />
     <Compile Include="Controllers\EntregaResultadosController.cs" />
+    <Compile Include="Controllers\EspesorController.cs" />
     <Compile Include="Controllers\FabricantesController.cs" />
     <Compile Include="Controllers\FamiliaAceroController.cs" />
     <Compile Include="Controllers\FolioAvisoEntradaController.cs" />
@@ -180,8 +210,13 @@
     <Compile Include="Controllers\DummyGuardarFolioLlegadaCuantificacionController.cs" />
     <Compile Include="Controllers\GenerarCuantificacion.cs" />
     <Compile Include="Controllers\GenerarOrdenAlmacenajeController.cs" />
+    <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\GuardarFolioLlegadaCuantificacionController.cs" />
+    <Compile Include="Controllers\HerramientasPruebas\HerramientasPruebasController.cs" />
+    <Compile Include="Controllers\ImpresionDocumentalController.cs" />
     <Compile Include="Controllers\ImpresionPruebasController.cs" />
+    <Compile Include="Controllers\IncidenciaController.cs" />
+    <Compile Include="Controllers\IncidenciaPaseSalidaController.cs" />
     <Compile Include="Controllers\InspeccionController.cs" />
     <Compile Include="Controllers\InspeccionDimensionalController.cs" />
     <Compile Include="Controllers\ItemCodeController.cs" />
@@ -192,8 +227,15 @@
     <Compile Include="Controllers\ListadoMaterialesController.cs" />
     <Compile Include="Controllers\ListadoMaterialesPorItemCodeController.cs" />
     <Compile Include="Controllers\ListadoTrabajosAdicionalesController.cs" />
+    <Compile Include="Controllers\MaquinaController.cs" />
     <Compile Include="Controllers\MarcadoController.cs" />
+    <Compile Include="Controllers\MaterialPendienteController.cs" />
+    <Compile Include="Controllers\MaterialSpoolController.cs" />
+    <Compile Include="Controllers\MedicionesClimatologicas\MedicionesClimatologicasController.cs" />
     <Compile Include="Controllers\MedioTransporteController\MedioTransporteController.cs" />
+    <Compile Include="Controllers\MTRController.cs" />
+    <Compile Include="Controllers\NotificacionDeficitController.cs" />
+    <Compile Include="Controllers\NumerosUnicosController.cs" />
     <Compile Include="Controllers\NumeroUnicoController.cs" />
     <Compile Include="Controllers\ObreroController.cs" />
     <Compile Include="Controllers\ObreroUbicacionController.cs" />
@@ -204,16 +246,26 @@
     <Compile Include="Controllers\OrdenAlmacenajeController.cs" />
     <Compile Include="Controllers\OrdenDescargaController.cs" />
     <Compile Include="Controllers\OrdenRecepcionController.cs" />
+    <Compile Include="Controllers\OrdenTrabajoController.cs" />
+    <Compile Include="Controllers\OrdenTrabajoSpoolController.cs" />
     <Compile Include="Controllers\PaseSalidaController.cs" />
+    <Compile Include="Controllers\Patios\PatiosController.cs" />
+    <Compile Include="Controllers\PickingTicketController.cs" />
     <Compile Include="Controllers\PinturaControllers\CapturaAvanceIntAcabado\CapturaAvanceIntAcabadoController.cs" />
     <Compile Include="Controllers\PinturaControllers\CapturaAvance\CapturaAvanceController.cs" />
     <Compile Include="Controllers\PinturaControllers\CargaCarroBackLog\CargaCarroBackLogController.cs" />
     <Compile Include="Controllers\PinturaControllers\DescargaCarroController\DescargaCarroController.cs" />
     <Compile Include="Controllers\PinturaControllers\LotesCapturaReporteController\LotesCapturaReporteController.cs" />
+    <Compile Include="Controllers\PlaneacionYControl\Ciclos\CiclosController.cs" />
+    <Compile Include="Controllers\PlaneacionYControl\DetalleOT\DetalleOTController.cs" />
     <Compile Include="Controllers\PlaneacionYControl\EmisionOT\EmisionOTController.cs" />
     <Compile Include="Controllers\PQRController.cs" />
+    <Compile Include="Controllers\PreDespachoController.cs" />
+    <Compile Include="Controllers\ProxyController.cs" />
     <Compile Include="Controllers\ProyectosCuantificacionController.cs" />
     <Compile Include="Controllers\PruebasController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\RevisionDeficitController.cs" />
     <Compile Include="Controllers\RevisionEmbarqueController.cs" />
     <Compile Include="Controllers\ServiciosTecnicosController\AsignarRequisicionController.cs" />
     <Compile Include="Controllers\ServiciosTecnicosController\CapturaReportePruebasController.cs" />
@@ -226,6 +278,7 @@
     <Compile Include="Controllers\TipoAceroController.cs" />
     <Compile Include="Controllers\TipoArchivoController.cs" />
     <Compile Include="Controllers\TipoAvisoController.cs" />
+    <Compile Include="Controllers\TipoIncidenciaController.cs" />
     <Compile Include="Controllers\TipoJuntaController.cs" />
     <Compile Include="Controllers\TipoObreroController.cs" />
     <Compile Include="Controllers\TipoPackingListController.cs" />
@@ -280,22 +333,33 @@
     <Compile Include="Controllers\DummyVerificarCancelacionController.cs" />
     <Compile Include="Controllers\ProyectoPorFolioLlegadaController.cs" />
     <Compile Include="Controllers\TransportistaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValidacionesFolioAvisoLlegadaController.cs" />
     <Compile Include="Controllers\ValidacionFolioConPermisoAduanaController.cs" />
     <Compile Include="Controllers\ValidacionResultadosController.cs" />
+    <Compile Include="Controllers\ValidarCedulasController.cs" />
     <Compile Include="Controllers\ValidarItemCodeNuCuantificacionController.cs" />
     <Compile Include="Controllers\WPSController.cs" />
+    <Compile Include="DataAcces\AlmacenajeBd.cs" />
     <Compile Include="DataAcces\AreaBD.cs" />
     <Compile Include="DataAcces\ArmadoBD\CapturaArmadoBD.cs" />
+    <Compile Include="DataAcces\AsociacionICSBd.cs" />
     <Compile Include="DataAcces\AvisoLlegadaBd.cs" />
     <Compile Include="DataAcces\CapturaSoldaduraBD.cs" />
     <Compile Include="DataAcces\CapturasRapidasBd.cs" />
+    <Compile Include="DataAcces\CatalogosBd.cs" />
+    <Compile Include="DataAcces\CedulasBd.cs" />
     <Compile Include="DataAcces\ClienteBd.cs" />
     <Compile Include="DataAcces\ColadaBd.cs" />
     <Compile Include="DataAcces\ComplementoRecepcionBd.cs" />
+    <Compile Include="DataAcces\CortadorBd.cs" />
+    <Compile Include="DataAcces\CorteBd.cs" />
     <Compile Include="DataAcces\CuadranteBD.cs" />
     <Compile Include="DataAcces\CuantificacionBd.cs" />
     <Compile Include="DataAcces\DefectosBd.cs" />
+    <Compile Include="DataAcces\DeficitBd.cs" />
+    <Compile Include="DataAcces\DespachoBd.cs" />
+    <Compile Include="DataAcces\DetalleNumeroUnicoBd.cs" />
     <Compile Include="DataAcces\DocumentosBd.cs" />
     <Compile Include="DataAcces\EmbarqueBD\CargaEmbarqueBD\CargaEmbarqueBD.cs" />
     <Compile Include="DataAcces\EmbarqueBD\ConsultaBD.cs" />
@@ -303,13 +367,19 @@
     <Compile Include="DataAcces\EmbarqueBD\ListadoEmbarqueBD.cs" />
     <Compile Include="DataAcces\EmbarqueBD\MarcadoBD.cs" />
     <Compile Include="DataAcces\EmbarqueBD\RevisionEmbarqueBD\RevisionEmbarqueBD.cs" />
+    <Compile Include="DataAcces\EntregaBd.cs" />
     <Compile Include="DataAcces\EnviarAvisosBd.cs" />
+    <Compile Include="DataAcces\EspesorBd.cs" />
     <Compile Include="DataAcces\EstatusCuantificacionBd.cs" />
     <Compile Include="DataAcces\FabricantesBd.cs" />
     <Compile Include="DataAcces\FamiliaBd.cs" />
     <Compile Include="DataAcces\FolioAvisoEntradaBd.cs" />
+    <Compile Include="DataAcces\GrupoBd.cs" />
     <Compile Include="DataAcces\GuardarFolioLlegadaCuantificacionBd.cs" />
     <Compile Include="DataAcces\GuardarItemCodesBd.cs" />
+    <Compile Include="DataAcces\HerramientasPruebasBD\HerramientasPruebasBD.cs" />
+    <Compile Include="DataAcces\ImpresionDocumentalBd.cs" />
+    <Compile Include="DataAcces\IncidenciaBd.cs" />
     <Compile Include="DataAcces\Inspeccion\InspeccionBD.cs" />
     <Compile Include="DataAcces\Inspeccion\InspeccionDimensionalBD.cs" />
     <Compile Include="DataAcces\ItemCodeBd.cs" />
@@ -319,20 +389,33 @@
     <Compile Include="DataAcces\ListadoCamposPredeterminadosBd.cs" />
     <Compile Include="DataAcces\ListadoMaterialesBd.cs" />
     <Compile Include="DataAcces\ListadoMaterialesPorItemCodeBd.cs" />
+    <Compile Include="DataAcces\LoggerBd.cs" />
+    <Compile Include="DataAcces\MaquinaBd.cs" />
+    <Compile Include="DataAcces\MaterialSpoolBd.cs" />
+    <Compile Include="DataAcces\MedicionesClimatologicasBD\CondicionesClimatologicasBD.cs" />
+    <Compile Include="DataAcces\MTRBd.cs" />
     <Compile Include="DataAcces\NumeroUnicoBd.cs" />
     <Compile Include="DataAcces\ObreroBD.cs" />
     <Compile Include="DataAcces\ObreroUbicacionBD.cs" />
     <Compile Include="DataAcces\OrdenAlmacenajeBd.cs" />
     <Compile Include="DataAcces\OrdenRecepcionBd.cs" />
+    <Compile Include="DataAcces\OrdenTrabajoBd.cs" />
+    <Compile Include="DataAcces\OrdenTrabajoSpoolBd.cs" />
     <Compile Include="DataAcces\PaseSalidaBd.cs" />
+    <Compile Include="DataAcces\PatiosBD\PatiosBD.cs" />
+    <Compile Include="DataAcces\PickingTicketBd.cs" />
     <Compile Include="DataAcces\PinturaBD\CapturaAvanceBD\CapturaAvanceBD.cs" />
     <Compile Include="DataAcces\PinturaBD\CapturaAvanceIntAcabadoBD\CapturaAvanceIntAcabadoBD.cs" />
     <Compile Include="DataAcces\PinturaBD\CargaCarroBackLogBD\CargaCarroBackLogBD.cs" />
     <Compile Include="DataAcces\PinturaBD\LotesCapturaReporteBD\LotesCapturaReporteBD.cs" />
     <Compile Include="DataAcces\PinturaBD\MedioTransporteBD\MedioTransporteBD.cs" />
+    <Compile Include="DataAcces\PlaneacionYControlBD\CiclosDB\CicloDB.cs" />
+    <Compile Include="DataAcces\PlaneacionYControlBD\DetalleOTDB\DetalleOTDB.cs" />
     <Compile Include="DataAcces\PlaneacionYControlBD\EmisionOTBD\EmisionOTBD.cs" />
     <Compile Include="DataAcces\PQR\PQRBd.cs" />
+    <Compile Include="DataAcces\PreDespachoBd.cs" />
     <Compile Include="DataAcces\PruebasBD\PruebasBD.cs" />
+    <Compile Include="DataAcces\ReportesBd.cs" />
     <Compile Include="DataAcces\ServiciosTecnicosBD\AsignarRequisicionBD\AsignarRequisicionBD.cs" />
     <Compile Include="DataAcces\ServiciosTecnicosBD\CapturaReportePruebasBD\CapturaReportePruebasBD.cs" />
     <Compile Include="DataAcces\ServiciosTecnicosBD\EntregaResultadosBD\EntregaResultadosBD.cs" />
@@ -342,6 +425,7 @@
     <Compile Include="DataAcces\ServiciosTecnicosBD\RequisicionesAsignadasBD\RequisicionesAsignadasBD.cs" />
     <Compile Include="DataAcces\ServiciosTecnicosBD\ValidacionResultadosBD\ValidacionResultadosBD.cs" />
     <Compile Include="DataAcces\SoldadorCertificacion\SoldadorCertificacionBd.cs" />
+    <Compile Include="DataAcces\SpoolBd.cs" />
     <Compile Include="DataAcces\TallerBD.cs" />
     <Compile Include="DataAcces\TipoAceroBd.cs" />
     <Compile Include="DataAcces\TipoArchivoBd.cs" />
@@ -363,20 +447,27 @@
     <Compile Include="DataAcces\ProyectoBd.cs" />
     <Compile Include="DataAcces\TransportistaBd.cs" />
     <Compile Include="DataAcces\UsuarioBd.cs" />
+    <Compile Include="DataAcces\ValidarCedulasBd.cs" />
     <Compile Include="DataAcces\ValidarItemCodeNUBd.cs" />
     <Compile Include="DataAcces\WPS\WPSBd.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Almacenaje.cs" />
     <Compile Include="Models\Armado\CapturaArmado.cs" />
     <Compile Include="Models\AsociacionItemCodeSteelgo.cs" />
     <Compile Include="Models\AvisoLlegadaJson.cs" />
     <Compile Include="Models\CantidadesDashboard.cs" />
     <Compile Include="Models\CapturasRapidas.cs" />
+    <Compile Include="Models\Catalogos.cs" />
+    <Compile Include="Models\ConsultaReportes.cs" />
     <Compile Include="Models\Cuadrante\Cuadrante.cs" />
     <Compile Include="Models\CuantificacionListado.cs" />
+    <Compile Include="Models\DashBoardDespacho.cs" />
     <Compile Include="Models\DatosFolioLlegadaCuantificacion.cs" />
+    <Compile Include="Models\Deficit.cs" />
     <Compile Include="Models\DocumentoPosteado.cs" />
+    <Compile Include="Models\DocumentosEnCatalogos.cs" />
     <Compile Include="Models\Dummy\Accesorios.cs" />
     <Compile Include="Models\Dummy\AlmacenajeRack.cs" />
     <Compile Include="Models\Dummy\ArchivoAutorizado.cs" />
@@ -384,15 +475,18 @@
     <Compile Include="Models\Dummy\Camion.cs" />
     <Compile Include="Models\Dummy\Cedula.cs" />
     <Compile Include="Models\Dummy\Chofer.cs" />
+    <Compile Include="Models\Dummy\Clasificacion.cs" />
     <Compile Include="Models\Dummy\Cliente.cs" />
     <Compile Include="Models\Dummy\Coladas.cs" />
     <Compile Include="Models\Dummy\Contacto.cs" />
+    <Compile Include="Models\Dummy\DummyDespacho.cs" />
     <Compile Include="Models\Dummy\DummyFabricante.cs" />
     <Compile Include="Models\Dummy\DummyGridOrdenRecepcion.cs" />
     <Compile Include="Models\Dummy\DummyOrdenAlmacenaje.cs" />
     <Compile Include="Models\Dummy\EdicionCuantificacion.cs" />
     <Compile Include="Models\Dummy\EdicionLlegadaMaterial.cs" />
     <Compile Include="Models\Dummy\EntradaMaterial.cs" />
+    <Compile Include="Models\Dummy\Entrega.cs" />
     <Compile Include="Models\Dummy\Estatus.cs" />
     <Compile Include="Models\Dummy\Familia.cs" />
     <Compile Include="Models\Dummy\FamiliaAcero.cs" />
@@ -404,13 +498,18 @@
     <Compile Include="Models\Dummy\FormatoIncidencias.cs" />
     <Compile Include="Models\Dummy\FormatoPaseSalida.cs" />
     <Compile Include="Models\Dummy\GridCuantificacion.cs" />
+    <Compile Include="Models\Dummy\ImpresionDocumental.cs" />
     <Compile Include="Models\Dummy\Incidencia.cs" />
     <Compile Include="Models\Dummy\ItemCode.cs" />
     <Compile Include="Models\Dummy\ListadoCuantificacion.cs" />
     <Compile Include="Models\Dummy\ListadoFolioAvisoLlegada.cs" />
+    <Compile Include="Models\Dummy\ListadoImpresionDocumental.cs" />
     <Compile Include="Models\Dummy\ListadoItemCodes.cs" />
     <Compile Include="Models\Dummy\ListadoLlegadaMaterial.cs" />
+    <Compile Include="Models\Dummy\Maquina.cs" />
+    <Compile Include="Models\Dummy\NumeroControl.cs" />
     <Compile Include="Models\Dummy\NumerosUnicos.cs" />
+    <Compile Include="Models\Dummy\Operador.cs" />
     <Compile Include="Models\Dummy\PackingList.cs" />
     <Compile Include="Models\Dummy\PackingListOrdenRecepcion.cs" />
     <Compile Include="Models\Dummy\PaseSalida.cs" />
@@ -423,6 +522,7 @@
     <Compile Include="Models\Dummy\RegistroTiempos.cs" />
     <Compile Include="Models\Dummy\TipoAcero.cs" />
     <Compile Include="Models\Dummy\TipoAviso.cs" />
+    <Compile Include="Models\Dummy\TipoIncidencia.cs" />
     <Compile Include="Models\Dummy\TipoVehiculo.cs" />
     <Compile Include="Models\Dummy\Transportista.cs" />
     <Compile Include="Models\Dummy\Tubos.cs" />
@@ -439,6 +539,8 @@
     <Compile Include="Models\FolioCuantificacionItemCode.cs" />
     <Compile Include="Models\FolioLlegadaCuantificacion.cs" />
     <Compile Include="Models\FormatoPermisoAduana.cs" />
+    <Compile Include="Models\HerramientasPruebas\HerramientaPrueba.cs" />
+    <Compile Include="Models\Incidencia.cs" />
     <Compile Include="Models\InfoEtiquetaNumeroUnico.cs" />
     <Compile Include="Models\InfoFolioCuantificacion.cs" />
     <Compile Include="Models\Inspeccion\CapturaInspeccion.cs" />
@@ -447,25 +549,35 @@
     <Compile Include="Models\ItemCodeSteelgoJson.cs" />
     <Compile Include="Models\ListaCombos.cs" />
     <Compile Include="Models\ListadoCamposPredeterminados.cs" />
+    <Compile Include="Models\ListadoConvertirSpoolAGranel.cs" />
     <Compile Include="Models\ListaDocumentos.cs" />
     <Compile Include="Models\ListadoGenerarOrdenAlmacenaje.cs" />
     <Compile Include="Models\ListadoGenerarOrdenRecepcion.cs" />
+    <Compile Include="Models\ListadoIncidencias.cs" />
+    <Compile Include="Models\ListadoMaterialesPorItemCode.cs" />
     <Compile Include="Models\ListadoMaterialesPorPL.cs" />
     <Compile Include="Models\ListadoMaterialesSinCuantificar.cs" />
     <Compile Include="Models\GridGeneracionOrdenAlmacenaje.cs" />
     <Compile Include="Models\ListadoOrdeRecepcion.cs" />
+    <Compile Include="Models\ListadosPreDespacho.cs" />
     <Compile Include="Models\ListObject.cs" />
     <Compile Include="DataAcces\PerfilBd.cs" />
+    <Compile Include="Models\lstCortes.cs" />
+    <Compile Include="Models\LstDespacho.cs" />
+    <Compile Include="Models\MedicionesClimatologicas\CondicionesClimatologicas.cs" />
     <Compile Include="Models\Obrero.cs" />
     <Compile Include="Models\OrdenAlmacenaje.cs" />
     <Compile Include="Models\PaseSalidaJson.cs" />
+    <Compile Include="Models\Patios\Patios.cs" />
     <Compile Include="Models\Pintura\CapturaAvanceIntAcabado\CapturaAvanceIntAcabado.cs" />
     <Compile Include="Models\Pintura\CapturaAvance\CapturaAvance.cs" />
     <Compile Include="Models\Pintura\CargaCarroBackLog\CargaCarroBackLog.cs" />
     <Compile Include="Models\Pintura\LotesCapturaReporte\LotesCapturaReporte.cs" />
     <Compile Include="Models\Pintura\MedioTransporte\MedioTransporte.cs" />
+    <Compile Include="Models\PlaneacionYControl\DetalleOT.cs" />
     <Compile Include="Models\PlaneacionYControl\EmisionOT.cs" />
     <Compile Include="Models\PQR\PQR.cs" />
+    <Compile Include="Models\PreDespacho.cs" />
     <Compile Include="Models\Pruebas\Pruebas.cs" />
     <Compile Include="Models\ServiciosTecnicos\AsignarRequisicion\AsignarRequisicion.cs" />
     <Compile Include="Models\ServiciosTecnicos\CapturaReportePruebas\CapturaReportePruebas.cs" />
@@ -484,12 +596,58 @@
     <Compile Include="Models\VehiculoJson.cs" />
     <Compile Include="Models\WPS\WPS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Sam3Reportes\Reference.cs" />
+    <Compile Include="Service References\Sam3Reportes\Reference1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Conversiones.cs" />
     <Compile Include="Utilities\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\BackEnd.pubxml" />
     <None Include="Properties\PublishProfiles\backendSAM.pubxml" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.DocumentMapNode.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ExecutionHeader.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ExecutionInfo.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ExecutionInfo2.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.Extension.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.FindStringResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.GetDocumentMapResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.GetExecutionInfo2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.GetExecutionInfoResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.GetRenderResourceResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ListRenderingExtensionsResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ListSecureMethodsResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LoadDrillthroughTarget2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LoadDrillthroughTargetResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LoadReport2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LoadReportDefinition2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LoadReportDefinitionResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LoadReportResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LogoffResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.LogonUserResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.NavigateBookmarkResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.NavigateDocumentMapResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.Render2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.RenderResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.RenderStreamResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ResetExecution2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ResetExecutionResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ServerInfoHeader.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.SetExecutionCredentials2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.SetExecutionCredentialsResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.SetExecutionParameters2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.SetExecutionParametersResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.Sort2Response.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.SortResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.ToggleItemResponse.datasource" />
+    <Content Include="Service References\Sam3Reportes\BackEndSAM.Sam3Reportes.Warning.datasource" />
+    <None Include="Service References\Sam3Reportes\ReportExecution2005.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
