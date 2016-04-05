@@ -12,19 +12,20 @@
 
 //LOCALHOST BASE URL's
 
-<<<<<<< HEAD
+// URLS Definity first
+//------------------------------------------------
 //var $BackEndSAMUri = 'http://10.15.2.12:8080';
 //var $SecuritySAMUri = 'http://10.15.2.12:8081';
 //var $MessagesSAMUri = 'http://10.15.2.12:8082';
 //var $SearchSAMUri = 'http://192.168.1.7:60921';
 //var $FilesSAMUri = 'http://192.168.1.7:60921';
-=======
+
 var $BackEndSAMUri = 'http://localhost:60960';
 var $SecuritySAMUri = 'http://localhost:60921';
 var $MessagesSAMUri = 'http://localhost:60966';
 var $SearchSAMUri = 'http://localhost:61066';
 var $FilesSAMUri = 'http://localhost:60971';
->>>>>>> Steelgo-InHouse
+//------------------------------------------------
 
 //DEVELOPMENT Steelgo BASE URL's
 //var $BackEndSAMUri = 'http://newm.samaltamira.net:9071';
@@ -34,12 +35,12 @@ var $FilesSAMUri = 'http://localhost:60971';
 //var $FilesSAMUri = 'http://newm.samaltamira.net:9072';
 
 //Local host
-var $BackEndSAMUri = 'http://localhost:60960';
-var $SecuritySAMUri = 'http://localhost:60921';
-var $MessagesSAMUri = 'http://localhost:60966';
-var $SearchSAMUri = 'http://localhost:60921';
-var $SearchSAMUri2 = 'http://10.15.10.185:8089';
-var $FilesSAMUri = 'http://localhost:60921';
+//var $BackEndSAMUri = 'http://localhost:60960';
+//var $SecuritySAMUri = 'http://localhost:60921';
+//var $MessagesSAMUri = 'http://localhost:60966';
+//var $SearchSAMUri = 'http://localhost:60921';
+//var $SearchSAMUri2 = 'http://10.15.10.185:8089';
+//var $FilesSAMUri = 'http://localhost:60921';
 
 //Combos Base URL
 var $DocumentoAvisoLlegadaUploadFiles = $BackEndSAMUri + "/backendsam/api/DocumentoAvisoLlegada?folioAvisoLlegadaID=";
@@ -51,7 +52,8 @@ var $URLItemCode = $BackEndSAMUri + '/backendsam/api/ItemCode?';
 var $URLColada = $BackEndSAMUri + '/backendsam/api/Colada?';
 var $URLItemCodeSteelgo = $BackEndSAMUri + '/backendsam/api/ObtenerRelacionItemCodeSteelgo?';
 var $UrlTipoUso = $BackEndSAMUri + '/backendsam/api/TipoUso?';
-<<<<<<< HEAD
+
+//Definity first
 var $UrlDummyDespacho = $BackEndSAMUri + '/backendsam/api/DummyDespacho?';
 var $UrlNumerosUnicos = $BackEndSAMUri + '/backendsam/api/NumerosUnicos?';
 var $UrlNumerosUnicosDespacho = $BackEndSAMUri + '/backendsam/api/NumeroUnico?';
@@ -66,8 +68,8 @@ var $UrlOrdenTrabajo = $BackEndSAMUri + '/backendsam/api/OrdenTrabajo?';
 var $UrlMaterialSpool = $BackEndSAMUri + '/backendsam/api/MaterialSpool?';
 var $CatalogoEspesor = $BackEndSAMUri + '/backendsam/api/Espesor?';
 var $MTR = $BackEndSAMUri + '/backendsam/api/MTR?';
-=======
 
+//Steelgo - in House
 //ServiciosTecnicos
 var $ListadoRequisicion = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $AsignarRequisicion = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
@@ -102,20 +104,14 @@ var $Ciclos = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 //armado
 var $CapturaArmado = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 
-
 ////Mediciones Climatologicas
 var $MedicionesClimatologicas = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
-
 
 ///Obtener Patios
 var $Patios = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 
 //obtener herramientas de medicion
 var $HerramientasPruebas = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
-
-
-
->>>>>>> Steelgo-InHouse
 
 //Base API's
 var $BackEndSAM = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
@@ -178,7 +174,8 @@ var $GuardarFolioLlegadaCuantificacion = new $.RestClient($BackEndSAMUri + '/bac
 var $CambiarEstatusCuantificacion = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $ComplementarRecepcion = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $ListadoMateriales = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
-<<<<<<< HEAD
+
+// Definity First
 var $Almacenaje = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $DetalleNumeroUnico = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $ListadoMaterialesPorItemCode = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
@@ -204,7 +201,7 @@ var $NotificacionDeficit = new $.RestClient($BackEndSAMUri + '/backendsam/api/')
 var $Usuario = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $RevisionDeficit = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $IncidenciaPaseSalida = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
-var $Busqueda = new $.RestClient($SearchSAMUri2 + '/solr/Steelgo_Search/');
+//var $Busqueda = new $.RestClient($SearchSAMUri2 + '/solr/Steelgo_Search/');
 var $PreDespacho = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $GuardarPermisoAduana = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $Diametros = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
@@ -216,7 +213,7 @@ var $Reporte = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $Espesor = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $ValidarCedulas = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 
-=======
+// Definity first
 var $DummyAlmacenajeRack = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $SoldadorCertificacion = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $Area = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
@@ -224,10 +221,9 @@ var $Cuadrante = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 //
 
 //
-
+// Steelgo In House
 var $TipoJunta = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $PQR = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
->>>>>>> Steelgo-InHouse
 /****************************/
 /*    Document Ready        */
 /****************************/
@@ -341,7 +337,8 @@ $GuardarFolioLlegadaCuantificacion.add("GuardarFolioLlegadaCuantificacion");
 $CambiarEstatusCuantificacion.add("CambiarEstatusCuantificacion");
 $ComplementarRecepcion.add("ComplementarRecepcion");
 $ListadoMateriales.add("ListadoMateriales")
-<<<<<<< HEAD
+
+//Definity First
 $Almacenaje.add("Almacenaje");
 $DetalleNumeroUnico.add("DetalleNumeroUnico");
 $ListadoMaterialesPorItemCode.add("ListadoMaterialesPorItemCode");
@@ -367,7 +364,7 @@ $NotificacionDeficit.add("NotificacionDeficit");
 $Usuario.add("Usuario");
 $RevisionDeficit.add("RevisionDeficit");
 $IncidenciaPaseSalida.add("IncidenciaPaseSalida");
-$Busqueda.add("select");
+//$Busqueda.add("select");
 $PreDespacho.add("PreDespacho");
 $GuardarPermisoAduana.add("DocumentoPermisoAduana");
 $Diametros.add("Diametros");
@@ -378,7 +375,8 @@ $Proxy.add("Proxy");
 $Reporte.add("Reporte");
 $Espesor.add("Espesor");
 $ValidarCedulas.add("ValidarCedulas");
-=======
+
+//Steelgo in House
 $DummyAlmacenajeRack.add("DummyAlmacenajeRack");
 
 $TipoJunta.add("TipoJunta");
@@ -428,4 +426,3 @@ $InspeccionDimensional.add("InspeccionDimensional");
 $GenerarRequisicion.add("GenerarRequisicion");
 //#endregion
 //#endregion
->>>>>>> Steelgo-InHouse

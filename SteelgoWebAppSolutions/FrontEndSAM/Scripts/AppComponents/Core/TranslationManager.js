@@ -98,7 +98,6 @@ function addElementToDictionary(sParam) {
         _dictionary[partsOfElement[0]]["en-US"] = partsOfElement[2];
     }
 }
-<<<<<<< HEAD
 
 //Function to set the right localization ot KendoUpload
 function getKendoUploadLocalization(val) {
@@ -165,7 +164,6 @@ function getKendoGridFilterableComplementoRecepcion(val) {
         }
     }
 }
-=======
 function changeheaderInputs(language) {
     //var capas = document.getElementById('grid');
     // alert('se recorre el grid');
@@ -192,6 +190,4 @@ function changeheaderInputs(language) {
             CargarGridPopUp();//tiene que ser el mismo nombre del metodo que manda a llamar el llenado del grid.
         };
     }
-
 };
->>>>>>> Steelgo-InHouse

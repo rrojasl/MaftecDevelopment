@@ -377,14 +377,11 @@ function createUserSession(username, password) {
             //RedirectToLanding
             document.location.href = $homeURI;
         } else {
-<<<<<<< HEAD
             //loadingStop();
             displayError("notificationslabel0095", "", '2');
-=======
             $('#username').css('border-color', "red");
             $('#password').css('border-color', "red");
             loadingStop();
->>>>>>> Steelgo-InHouse
         }
     });
 }

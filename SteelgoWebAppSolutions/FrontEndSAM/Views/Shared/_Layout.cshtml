@@ -388,11 +388,8 @@
             //Set on the dropdownlist the url language and change the current language
             $("#language").data("kendoDropDownList").select(_languageOrder[getUrlParameter("leng", "es-MX")]);
             $("#language").data("kendoDropDownList").trigger("change");
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> Steelgo-InHouse
+            
             //Partial Views Javascript Code Container
             @RenderSection("JavascriptDocumentReadyFunctions", required: false)
 
@@ -408,16 +405,14 @@
             }
 
             loadMessages();
-<<<<<<< HEAD
-            
+
+            //Definity version
             //Show message body when notification is clicked           
-            $("#notifications").click(function (e){
-                e.preventDefault();
-=======
+            //$("#notifications").click(function (e){
+            //    e.preventDefault();
 
             //Show message body when notification is clicked
             $("#notifications").click(function(){
->>>>>>> Steelgo-InHouse
                 $(this).parent().toggleClass("open");
                 $(".peak").toggleClass("hidden");
             });
@@ -534,13 +529,8 @@
                     strhtml += "</span>";
                     strhtml += "<span class='messageDate'>" + obtenerFormatoFechaMensajes(d) + "</span>";
 
-<<<<<<< HEAD
-                    
                     var cantidadNotificaciones = (parseInt($("span.counter").text()) - parseInt($("a.read").length));
                     $(".count").html(cantidadNotificaciones ? cantidadNotificaciones : 0);
-=======
-
->>>>>>> Steelgo-InHouse
                     $(".message-header").empty();
                     $(".message-header").append(strhtml);
                     $("#message").html(data.Mensaje);

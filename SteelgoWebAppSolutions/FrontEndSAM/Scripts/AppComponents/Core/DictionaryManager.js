@@ -4695,15 +4695,9 @@ _dictionary = {
         "es-MX": "Diam1 ('')",
         "en-US": "Diam1 ('')"
     },
-<<<<<<< HEAD
     "ListadoMaterialesItemCode0007": {
         "es-MX": "Diam2 ('')",
         "en-US": "Diam2 ('')"
-=======
-    "GenerarOrdenRecepcion0019": {
-        "es-MX": "Generar Orden de Recepcion, Imprimir Formato y etiquetas de números unicos",
-        "en-US": "Generate order of receipt, print fomat and tags unique numbers"
->>>>>>> Steelgo-InHouse
     },
     "ListadoMaterialesItemCode0008": {
         "es-MX": "Tipo Material",
@@ -4842,13 +4836,7 @@ _dictionary = {
         "es-MX": "Editar",
         "en-US": "Edit"
     },
-<<<<<<< HEAD
     "Almacenaje0005": {
-=======
-
-    //Detalle Orden Recepcion
-    "DetalleOrdenRecepcion0001": {
->>>>>>> Steelgo-InHouse
         "es-MX": "Cancelar",
         "en-US": "Cancel"
     },
@@ -4937,16 +4925,9 @@ _dictionary = {
         "es-MX": "Transacciones",
         "en-US": "Dealings"
     },
-<<<<<<< HEAD
     "Despacho0002": {
         "es-MX": "Despacho",
         "en-US": "Dispatch"
-=======
-    //Orden de Alamacenaje
-    "DetalleOrdenAlmacenaje0001": {
-        "es-MX": "Folio Orden de Almacenaje: ",
-        "en-US": "Order storage: "
->>>>>>> Steelgo-InHouse
     },
     "Despacho0003": {
         "es-MX": "Despachar",
@@ -5000,7 +4981,6 @@ _dictionary = {
         "es-MX": "Número único",
         "en-US": "Unique number"
     },
-<<<<<<< HEAD
     "Despacho0016": {
         "es-MX": "Despacho",
         "en-US": "Dispatch"
@@ -5008,15 +4988,6 @@ _dictionary = {
     "Despacho0017": {
         "es-MX": "Hold",
         "en-US": "Hold"
-=======
-    "DetalleOrdenAlmacenaje0016": {
-        "es-MX": "Número Unico ID",
-        "en-US": "Unique Number ID"
-    },
-    "DetalleOrdenAlmacenaje0017": {
-        "es-MX": "Número Unico",
-        "en-US": "Unique Number"
->>>>>>> Steelgo-InHouse
     },
     "Despacho0018": {
         "es-MX": "Tiene Despacho",
@@ -5034,16 +5005,9 @@ _dictionary = {
         "es-MX": "Agregar Nuevo",
         "en-US": "Add New"
     },
-<<<<<<< HEAD
     "Despacho0022": {
         "es-MX": "Baston 1",
         "en-US": "Stick 1"
-=======
-    //Listado de Orden de Almacenaje
-    "ListadoOrdenAlmacenaje0001": {
-        "es-MX": "Inicio",
-        "en-US": "Home"
->>>>>>> Steelgo-InHouse
     },
     "Despacho0023": {
         "es-MX": "Baston",
@@ -5126,7 +5090,6 @@ _dictionary = {
         "es-MX": "Item Code",
         "en-US": "Item Code"
     },
-<<<<<<< HEAD
     "Predespacho0015": {
         "es-MX": "Descripción",
         "en-US": "Description"
@@ -5134,16 +5097,6 @@ _dictionary = {
     "Predespacho0016": {
         "es-MX": "Número único",
         "en-US": "Unique number"
-=======
-    "ListadoOrdenAlmacenaje0022": {
-        "es-MX": "Número Unico",
-        "en-US": "Unique Number"
-    },
-    //Generar Orden Almacenaje
-    "GenerarOrdenAlmacenaje0001": {
-        "es-MX": "Inicio",
-        "en-US": "Home"
->>>>>>> Steelgo-InHouse
     },
     "Predespacho0017": {
         "es-MX": "Levantar Incidencia",
@@ -5330,7 +5283,6 @@ _dictionary = {
         "es-MX": "Asumir incongruencia.",
         "en-US": "Assume incongruence."
     },
-<<<<<<< HEAD
     "Corte0040": {
         "es-MX": "Dashboard Despacho y Corte",
         "en-US": "Dispatch & Cut Dashboard"
@@ -5342,20 +5294,11 @@ _dictionary = {
     "Corte0042": {
         "es-MX": "Imprimir Picking Ticket",
         "en-US": "Print Picking Ticket"
-=======
-    "GenerarOrdenAlmacenaje0026": {
-        "es-MX": "Número Unico ID",
-        "en-US": "Unique Number ID"
-    },
-    "GenerarOrdenAlmacenaje0027": {
-        "es-MX": "Número Unico",
-        "en-US": "Unique Number"
     },
     //Dashboard Recepcion y Almacenaje
     "DashboardRecepcionAlmacenaje0001": {
         "es-MX": "Inicio",
         "en-US": "Home"
->>>>>>> Steelgo-InHouse
     },
     "Corte0043": {
         "es-MX": "Materiales",
@@ -5542,16 +5485,9 @@ _dictionary = {
         "es-MX": "No. Empleado recibe",
         "en-US": "No. Employee receives"
     },
-<<<<<<< HEAD
     "DashboardDespachoCorte0046": {
         "es-MX": "Fecha entrega",
         "en-US": "Deliver date"
-=======
-    //Listados Recepcion y Almacenaje
-    "ListadoRecepcionAlmacenajeTuberia0001": {
-        "es-MX": "Cliente",
-        "en-US": "Client"
->>>>>>> Steelgo-InHouse
     },
     "DashboardDespachoCorte0047": {
         "es-MX": "Unidad de Medida",
@@ -6464,13 +6400,8 @@ _dictionary = {
         "en-US": "It redirects to home because logout done"
     },
     "notificationslabel0006": {
-<<<<<<< HEAD
         "es-MX": "Por favor, seleccionar el numero de permiso",
         "en-US": "Please, select the permission number"
-=======
-        "es-MX": "Por favor, seleccionar el número de permiso",
-        "en-US": ""
->>>>>>> Steelgo-InHouse
     },
     "notificationslabel0007": {
         "es-MX": "Por favor, seleccionar un folio",
@@ -6489,13 +6420,8 @@ _dictionary = {
         "en-US": "At least a signed packing list must be attached to print the departure pass"
     },
     "notificationslabel0011": {
-<<<<<<< HEAD
         "es-MX": "Por favor, seleccionar el numero de permiso",
         "en-US": "Please, select the permission number"
-=======
-        "es-MX": "Por favor, seleccionar el número de permiso",
-        "en-US": ""
->>>>>>> Steelgo-InHouse
     },
     "notificationslabel0012": {
         "es-MX": "Por favor, seleccionar el tipo de archivo",
@@ -6538,13 +6464,8 @@ _dictionary = {
         "en-US": "Unable to read the file: "
     },
     "notificationslabel0022": {
-<<<<<<< HEAD
         "es-MX": "Los item codes no tienen asignado un numero unico",
         "en-US": "The item codes does not have an assigned unique number"
-=======
-        "es-MX": "Los item codes no tienen asignado un número unico",
-        "en-US": ""
->>>>>>> Steelgo-InHouse
     },
     "notificationslabel0023": {
         "es-MX": "Por lo menos un packing list firmado debe estar anexado para poder imprimir el pase de salida",
@@ -6667,15 +6588,9 @@ _dictionary = {
         "en-US": "Records have been kept."
     },
     "notificationslabel0053": {
-<<<<<<< HEAD
         "es-MX": "El folio captura packing list no tiene registros para realizar la acción.",
         "en-US": "Folio capture packing list has no records to perform the action."
     }, 
-=======
-        "es-MX": "El folio cuantificacion no tiene registros para realizar la acción.",
-        "en-US": "Folio quantification has no records to perform the action."
-    },
->>>>>>> Steelgo-InHouse
     "notificationslabel0054": {
         "es-MX": "Favor de seleccionar un Folio de llegada.",
         "en-US": "Please select a Arrival Folio"
@@ -6897,7 +6812,7 @@ _dictionary = {
         "es-MX": "",
         "en-US": ""
     },
-<<<<<<< HEAD
+
     //KendoUploadLocalization
     "KendoUploadTxt0001": {
         "es-MX": "Cancelar",
@@ -6969,8 +6884,6 @@ _dictionary = {
         "es-MX": "Eliminar",
         "en-US": "Delete"
     },
-};
-=======
     //#region Genericos
 
     "botonBuscar": {
@@ -10566,8 +10479,3 @@ _dictionary = {
     //#endregion
 }
 //#endregion
-
-
-
-
->>>>>>> Steelgo-InHouse

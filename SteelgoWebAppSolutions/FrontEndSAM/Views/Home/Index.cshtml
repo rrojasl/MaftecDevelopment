@@ -38,7 +38,8 @@
     $("#loginform").submit(function (event) {
         $(".NotAuthenticated").addClass("hidden");
         event.preventDefault();
-<<<<<<< HEAD
+
+        // Definity
         if ($("#username").val() && $("#password").val()) {
             authenticate($("#username").val(), $("#password").val());
             $('#username').css('border-color', "red");
@@ -49,11 +50,11 @@
             displayError("notificationslabel0068", "", '2');
         }
 
-=======
+        // Steelgo
         authenticate($("#username").val(), $("#password").val());
      
         validateCredentials();
->>>>>>> Steelgo-InHouse
+
     });
     }
 </script>
