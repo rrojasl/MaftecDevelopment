@@ -100,8 +100,8 @@ namespace BackEndSAM.DataAcces
                                                          liga = mg.Liga,
                                                          texto = mg.Texto,
                                                          icono = mg.Icono,
-                                                         nivel = mg.Nivel.Value, 
-                                                         acomodo = mg.Acomodo.Value
+                                                         nivel = mg.Nivel.HasValue ? mg.Nivel.Value : 0, 
+                                                         acomodo = mg.Acomodo.HasValue ? mg.Acomodo.Value : 0
                                                      }).AsParallel().OrderBy(x => x.idPadre).ThenBy(x => x.acomodo).ToList();
 
                 objsidemenu.elements = lstElements;
