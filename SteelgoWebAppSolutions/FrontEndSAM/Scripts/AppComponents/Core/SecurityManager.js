@@ -379,6 +379,9 @@ function createUserSession(username, password) {
         } else {
             //loadingStop();
             displayError("notificationslabel0095", "", '2');
+            $('#username').css('border-color', "red");
+            $('#password').css('border-color', "red");
+            loadingStop();
         }
     });
 }

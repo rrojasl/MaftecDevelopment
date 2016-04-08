@@ -75,9 +75,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int patioID = filtros.PatioID != "" ? Convert.ToInt32(filtros.PatioID) : 0;
@@ -224,9 +225,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int patioID = filtros.PatioID != "" ? Convert.ToInt32(filtros.PatioID) : 0;
@@ -335,83 +337,14 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
                     CantidadesDashboardCuantificacion result = new CantidadesDashboardCuantificacion();
-                    //DateTime fechaInicial = new DateTime();
-                    //DateTime fechaFinal = new DateTime();
-                    //DateTime.TryParse(filtros.FechaInicial, out fechaInicial);
-                    //DateTime.TryParse(filtros.FechaFinal, out fechaFinal);
-
-                    //if (fechaFinal.ToShortDateString() == "1/1/0001")
-                    //{
-                    //    fechaFinal = DateTime.Now;
-                    //}
-
-                    //if (fechaInicial.ToShortDateString() == "1/1/0001")
-                    //{
-                    //    int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                    //    int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                    //    fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
-                    //}
-
-                    //int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
-                    //int clienteID = filtros.ClienteID != "" ? Convert.ToInt32(filtros.ClienteID) : 0;
-                    //int folioAvisoLlegadaID = filtros.FolioAvisoLlegadaID != null ? Convert.ToInt32(filtros.FolioAvisoLlegadaID) : 0;
-                    //int packingListID = filtros.PackingListID != "" ? Convert.ToInt32(filtros.PackingListID) : 0;
                     int tipoMaterialID = filtros.TipoMaterialID != "" ? Convert.ToInt32(filtros.TipoMaterialID) : 0;
 
-                    //List<int> proyectos = ctx.Sam3_Rel_Usuario_Proyecto.Where(x => x.UsuarioID == usuario.UsuarioID).Select(x => x.ProyectoID).AsParallel().ToList();
+                    if (filtros.TipoMaterialID == "3")
+                    {
+                        result.EntradaPorCuantificar = (int)ListadoMaterialesSinCuantificar(filtros, usuario, true);
 
-                    //List<int> patios = (from r in ctx.Sam3_Proyecto
-                    //                    join p in ctx.Sam3_Patio on r.PatioID equals p.PatioID
-                    //                    where r.Activo && proyectos.Contains(r.ProyectoID)
-                    //                    select p.PatioID).AsParallel().ToList();
-
-                    //////Traemos todos los folios que esten dentro del periodo de fechas y que correspondan a los proyectos y patios de los usuarios.
-                    //List<Sam3_FolioAvisoEntrada> registros = (from fae in ctx.Sam3_FolioAvisoEntrada
-                    //                                          join fal in ctx.Sam3_FolioAvisoLlegada on fae.FolioAvisoLlegadaID equals fal.FolioAvisoLlegadaID
-                    //                                          join rfal in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on fal.FolioAvisoLlegadaID equals rfal.FolioAvisoLlegadaID
-                    //                                          join p in ctx.Sam3_Proyecto on rfal.ProyectoID equals p.ProyectoID
-                    //                                          join pa in ctx.Sam3_Patio on p.PatioID equals pa.PatioID
-                    //                                          where fae.Activo && fal.Activo && rfal.Activo && p.Activo && pa.Activo
-                    //                                          && proyectos.Contains(rfal.ProyectoID)
-                    //                                          && patios.Contains(pa.PatioID)
-                    //                                          && (fae.FechaCreacion >= fechaInicial && fae.FechaCreacion <= fechaFinal)
-                    //                                          && fae.FolioDescarga > 0
-                    //                                          select fae).AsParallel().ToList();
-
-                    //if (proyectoID > 0)
-                    //{
-                    //    registros = (from r in registros
-                    //                 join re in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on r.FolioAvisoLlegadaID equals re.FolioAvisoLlegadaID
-                    //                 where re.ProyectoID == proyectoID
-                    //                 select r).AsParallel().ToList();
-                    //}
-
-                    //if (clienteID > 0)
-                    //{
-                    //    int sam3Cliente = (from c in ctx.Sam3_Cliente
-                    //                       where c.Activo && c.Sam2ClienteID == clienteID
-                    //                       select c.ClienteID).AsParallel().SingleOrDefault();
-                    //    registros = registros.Where(x => x.ClienteID == sam3Cliente).ToList();
-                    //}
-
-                    //if (folioAvisoLlegadaID > 0)
-                    //{
-                    //    registros = registros.Where(x => x.FolioAvisoLlegadaID == folioAvisoLlegadaID).ToList();
-                    //}
-
-                    //if (packingListID > 0)
-                    //{
-                    //    registros = (from r in registros
-                    //                 join f in ctx.Sam3_FolioCuantificacion on r.FolioAvisoEntradaID equals f.FolioAvisoEntradaID
-                    //                 where f.Activo && f.FolioCuantificacionID == packingListID
-                    //                 select r).AsParallel().ToList();
-                    //}
-
-                    //registros = registros.GroupBy(x => x.FolioAvisoEntradaID).Select(x => x.First()).ToList();
-
-                    result.EntradaPorCuantificar = (int)ListadoMaterialesSinCuantificar(filtros, usuario, true);
-
-                    result.PLPorCuantificar = (int)ListadoPacknglistPorCuantificar(filtros, usuario, true);
+                        result.PLPorCuantificar = (int)ListadoPacknglistPorCuantificar(filtros, usuario, true);
+                    }
 
                     result.MTLSinICS = (int)ListadoMTLSinICS(filtros, usuario, true);
 
@@ -484,7 +417,8 @@ namespace BackEndSAM.DataAcces
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    Boolean activarFolioConfiguracion = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracion"]) ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracion"].Equals("1") ? true : false) : false;
+                    Boolean activarFolioConfiguracion = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracion"]) 
+                        ? (ConfigurationManager.AppSettings["ActivarFolioConfiguracion"].Equals("1") ? true : false) : false;
                     DateTime fechaInicial = new DateTime();
                     DateTime fechaFinal = new DateTime();
                     DateTime.TryParse(filtros.FechaInicial, out fechaInicial);
@@ -497,9 +431,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
@@ -642,9 +577,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
@@ -741,15 +677,7 @@ namespace BackEndSAM.DataAcces
                                                                  FolioAvisoEntrada = r.FolioAvisoLlegadaID.ToString(),
                                                                  FechaDescarga = r.FechaFolioDescarga != null ? r.FechaFolioDescarga.Value.ToString() : "",
                                                                  FechaCreacionPackingList = fc.FechaCreacion != null ? fc.FechaCreacion.Value.ToString() : "",
-                                                                 PackingList = activaConfiguracionPackinglist && (fc.PackingList == "" || fc.PackingList == null) ?
-                                                                                            (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
-                                                                                             where pc.Rel_Proyecto_Entidad_Configuracion_ID == fc.Rel_Proyecto_Entidad_Configuracion_ID
-                                                                                             && pc.Activo == 1
-                                                                                             select pc.PreFijoFolioPackingList + ","
-                                                                                             + pc.CantidadCerosFolioPackingList.ToString() + ","
-                                                                                             + fc.Consecutivo.ToString() + ","
-                                                                                             + pc.PostFijoFolioPackingList).FirstOrDefault() 
-                                                                                             : fc.PackingList != string.Empty ? fc.PackingList : fc.FolioCuantificacionID.ToString(),
+                                                                 PackingList = fc.PackingList == "" || fc.PackingList == null ? fc.PackingList : "",
                                                                  FolioCuantificacionID = fc.FolioCuantificacionID.ToString(),
                                                                  FolioConfiguracion = activarFolioConfiguracion ? 
                                                                                             (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
@@ -757,7 +685,14 @@ namespace BackEndSAM.DataAcces
                                                                                              select pc.PreFijoFolioAvisoLlegada + ","
                                                                                              + pc.CantidadCerosFolioAvisoLlegada.ToString() + ","
                                                                                              + fa.Consecutivo.ToString() + ","
-                                                                                             + pc.PostFijoFolioAvisoLlegada).FirstOrDefault() : r.FolioAvisoLlegadaID.ToString()
+                                                                                             + pc.PostFijoFolioAvisoLlegada).FirstOrDefault() : r.FolioAvisoLlegadaID.ToString(),
+                                                                 NombreFolioCuantificacion = (from pc in ctx.Sam3_Rel_Proyecto_Entidad_Configuracion
+                                                                                              where pc.Rel_Proyecto_Entidad_Configuracion_ID == fc.Rel_Proyecto_Entidad_Configuracion_ID
+                                                                                              && pc.Activo == 1
+                                                                                              select pc.PreFijoFolioPackingList + ","
+                                                                                              + pc.CantidadCerosFolioPackingList.ToString() + ","
+                                                                                              + fc.Consecutivo.ToString() + ","
+                                                                                              + pc.PostFijoFolioPackingList).FirstOrDefault() 
                                                              }).Distinct().AsParallel().ToList();
 
                     listado = listado.GroupBy(x => x.FolioCuantificacionID).Select(x => x.First()).ToList();
@@ -782,14 +717,14 @@ namespace BackEndSAM.DataAcces
                     {
                         foreach (ListadoPLporCuantificar item in listado)
                         {
-                            if (activaConfiguracionPackinglist && item.PackingList.Contains(','))
+                            if (activaConfiguracionPackinglist && item.NombreFolioCuantificacion.Contains(','))
                             {
-                                string[] elementos = item.PackingList.Split(',').ToArray();
+                                string[] elementos = item.NombreFolioCuantificacion.Split(',').ToArray();
                                 int digitos = Convert.ToInt32(elementos[1]);
                                 int consecutivo = Convert.ToInt32(elementos[2]);
                                 string formato = "D" + digitos.ToString();
 
-                                item.PackingList = elementos[0].Trim() + consecutivo.ToString(formato).Trim() + elementos[3].Trim();
+                                item.NombreFolioCuantificacion = elementos[0].Trim() + consecutivo.ToString(formato).Trim() + elementos[3].Trim();
                             }
                         }
                     }
@@ -854,9 +789,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
@@ -1200,9 +1136,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
@@ -1463,9 +1400,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
@@ -1709,9 +1647,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
@@ -1943,39 +1882,132 @@ namespace BackEndSAM.DataAcces
                     Boolean activarFolioConfiguracion = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["ActivarFolioConfiguracion"]) ? 
                         (ConfigurationManager.AppSettings["ActivarFolioConfiguracion"].Equals("1") ? true : false) : false;
 
-                    List<ListaCombos> folios = (from fe in ctx.Sam3_FolioAvisoEntrada
-                                                join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on fe.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
-                                                join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
-                                                join rfi in ctx.Sam3_Rel_FolioCuantificacion_ItemCode on fc.FolioCuantificacionID equals rfi.FolioCuantificacionID
-                                                where fe.Activo && rfp.Activo && fc.Activo && rfi.Activo
+                    List<ListaCombos> folios = (from r in ctx.Sam3_FolioAvisoEntrada
+                                                join c in ctx.Sam3_FolioCuantificacion on r.FolioAvisoEntradaID equals c.FolioAvisoEntradaID
+                                                join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on r.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                                join rfi in ctx.Sam3_Rel_FolioCuantificacion_ItemCode on c.FolioCuantificacionID equals rfi.FolioCuantificacionID
+                                                join rid in ctx.Sam3_Rel_ItemCode_Diametro on rfi.Rel_ItemCode_Diametro_ID equals rid.Rel_ItemCode_Diametro_ID
+                                                join i in ctx.Sam3_ItemCode on rid.ItemCodeID equals i.ItemCodeID
+                                                join t in ctx.Sam3_TipoMaterial on i.TipoMaterialID equals t.TipoMaterialID
+                                                join d1 in ctx.Sam3_Diametro on rid.Diametro1ID equals d1.DiametroID
+                                                join d2 in ctx.Sam3_Diametro on rid.Diametro2ID equals d2.DiametroID
+                                                join rics in ctx.Sam3_Rel_ItemCode_ItemCodeSteelgo on rid.Rel_ItemCode_Diametro_ID equals rics.Rel_ItemCode_Diametro_ID
+                                                join ics in ctx.Sam3_ItemCodeSteelgo on rics.ItemCodeSteelgoID equals ics.ItemCodeSteelgoID
+                                                where r.Activo && c.Activo && rfi.Activo && i.Activo && t.Activo && rics.Activo && ics.Activo
                                                 && rfp.ProyectoID == proyectoID
-                                                && !(from rel in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB
-                                                     where rel.Activo 
-                                                     && rel.Rel_FolioCuantificacion_ItemCode_ID == rfi.Rel_FolioCuantificacion_ItemCode_ID
-                                                     select rel).Any()
+                                                && !rfi.TieneNumerosUnicos
+                                                && rfi.Cantidad > 0
+                                                && rfi.MM > 0
+                                                && i.TipoMaterialID == 1
+                                                && !(from co in ctx.Sam3_Colada
+                                                     where co.Activo && co.NumeroColada == ""
+                                                     && co.ProyectoID == i.ProyectoID
+                                                     select co.ColadaID).Contains(rfi.ColadaID)
+                                                && rfi.ColadaID > 0
+                                                && !(from rnufc in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB
+                                                     where rnufc.Activo
+                                                     select rnufc.Rel_FolioCuantificacion_ItemCode_ID).Contains(rfi.Rel_FolioCuantificacion_ItemCode_ID)
                                                 select new ListaCombos
                                                 {
-                                                    id = fe.FolioAvisoLlegadaID.ToString(),
-                                                    value = fe.FolioAvisoLlegadaID.ToString()
+                                                    id = r.FolioAvisoLlegadaID.ToString(),
+                                                    value = r.FolioAvisoLlegadaID.ToString()
                                                 }).AsParallel().ToList();
 
-                    //Agregar folios que tienen pendientes en bultos
-                    folios.AddRange((from fe in ctx.Sam3_FolioAvisoEntrada
-                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on fe.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
-                                     join fc in ctx.Sam3_FolioCuantificacion on fe.FolioAvisoEntradaID equals fc.FolioAvisoEntradaID
-                                     join b in ctx.Sam3_Bulto on fc.FolioCuantificacionID equals b.FolioCuantificacionID
-                                     join rbi in ctx.Sam3_Rel_Bulto_ItemCode on b.BultoID equals rbi.BultoID
-                                     where fe.Activo && rfp.Activo && fc.Activo && rbi.Activo
+                    folios.AddRange((from r in ctx.Sam3_FolioAvisoEntrada
+                                     join c in ctx.Sam3_FolioCuantificacion on r.FolioAvisoEntradaID equals c.FolioAvisoEntradaID
+                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on r.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                     join rfi in ctx.Sam3_Rel_FolioCuantificacion_ItemCode on c.FolioCuantificacionID equals rfi.FolioCuantificacionID
+                                     join rid in ctx.Sam3_Rel_ItemCode_Diametro on rfi.Rel_ItemCode_Diametro_ID equals rid.Rel_ItemCode_Diametro_ID
+                                     join i in ctx.Sam3_ItemCode on rid.ItemCodeID equals i.ItemCodeID
+                                     join t in ctx.Sam3_TipoMaterial on i.TipoMaterialID equals t.TipoMaterialID
+                                     join d1 in ctx.Sam3_Diametro on rid.Diametro1ID equals d1.DiametroID
+                                     join d2 in ctx.Sam3_Diametro on rid.Diametro2ID equals d2.DiametroID
+                                     join rics in ctx.Sam3_Rel_ItemCode_ItemCodeSteelgo on rid.Rel_ItemCode_Diametro_ID equals rics.Rel_ItemCode_Diametro_ID
+                                     join ics in ctx.Sam3_ItemCodeSteelgo on rics.ItemCodeSteelgoID equals ics.ItemCodeSteelgoID
+                                     where r.Activo && c.Activo && rfi.Activo && i.Activo && t.Activo && rics.Activo && ics.Activo
                                      && rfp.ProyectoID == proyectoID
-                                     && !(from rel in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB
-                                          where rel.Activo
-                                          && rel.Rel_Bulto_ItemCode_ID == rbi.Rel_Bulto_ItemCode_ID
-                                          select rel).Any()
+                                     && !rfi.TieneNumerosUnicos
+                                     && rfi.Cantidad > 0
+                                     && i.TipoMaterialID == 2
+                                     && !(from co in ctx.Sam3_Colada
+                                          where co.Activo && co.NumeroColada == ""
+                                          && co.ProyectoID == i.ProyectoID
+                                          select co.ColadaID).Contains(rfi.ColadaID)
+                                     && rfi.ColadaID > 0
+                                     && !(from rnufc in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB
+                                          where rnufc.Activo
+                                          select rnufc.Rel_FolioCuantificacion_ItemCode_ID).Contains(rfi.Rel_FolioCuantificacion_ItemCode_ID)
                                      select new ListaCombos
                                      {
-                                         id = fe.FolioAvisoLlegadaID.ToString(),
-                                         value = fe.FolioAvisoLlegadaID.ToString()
+                                         id = r.FolioAvisoLlegadaID.ToString(),
+                                         value = r.FolioAvisoLlegadaID.ToString()
                                      }).AsParallel().ToList());
+
+                    //Agregar folios que tienen pendientes en bultos
+                    folios.AddRange((from r in ctx.Sam3_FolioAvisoEntrada
+                                     join c in ctx.Sam3_FolioCuantificacion on r.FolioAvisoEntradaID equals c.FolioAvisoEntradaID
+                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on r.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                     join b in ctx.Sam3_Bulto on c.FolioCuantificacionID equals b.FolioCuantificacionID
+                                     join rbi in ctx.Sam3_Rel_Bulto_ItemCode on b.BultoID equals rbi.BultoID
+                                     join rid in ctx.Sam3_Rel_ItemCode_Diametro on rbi.Rel_ItemCode_Diametro_ID equals rid.Rel_ItemCode_Diametro_ID
+                                     join i in ctx.Sam3_ItemCode on rid.ItemCodeID equals i.ItemCodeID
+                                     join t in ctx.Sam3_TipoMaterial on i.TipoMaterialID equals t.TipoMaterialID
+                                     join d1 in ctx.Sam3_Diametro on rid.Diametro1ID equals d1.DiametroID
+                                     join d2 in ctx.Sam3_Diametro on rid.Diametro2ID equals d2.DiametroID
+                                     join rics in ctx.Sam3_Rel_ItemCode_ItemCodeSteelgo on rid.Rel_ItemCode_Diametro_ID equals rics.Rel_ItemCode_Diametro_ID
+                                     join ics in ctx.Sam3_ItemCodeSteelgo on rics.ItemCodeSteelgoID equals ics.ItemCodeSteelgoID
+                                     where r.Activo && c.Activo && rbi.Activo && i.Activo && t.Activo && rics.Activo && ics.Activo
+                                     && rfp.ProyectoID == proyectoID
+                                     && !rbi.TieneNumerosUnicos
+                                     && rbi.Cantidad > 0
+                                     && rbi.MM > 0
+                                     && i.TipoMaterialID == 1
+                                     && !(from co in ctx.Sam3_Colada
+                                          where co.Activo && co.NumeroColada == ""
+                                          && co.ProyectoID == i.ProyectoID
+                                          select co.ColadaID).Contains(rbi.ColadaID)
+                                     && rbi.ColadaID > 0
+                                     && !(from rnufc in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB
+                                          where rnufc.Activo
+                                          select rnufc.Rel_Bulto_ItemCode_ID).Contains(rbi.Rel_Bulto_ItemCode_ID)
+                                     select new ListaCombos
+                                     {
+                                         id = r.FolioAvisoLlegadaID.ToString(),
+                                         value = r.FolioAvisoLlegadaID.ToString()
+                                     }).AsParallel().ToList());
+
+                    folios.AddRange((from r in ctx.Sam3_FolioAvisoEntrada
+                                     join c in ctx.Sam3_FolioCuantificacion on r.FolioAvisoEntradaID equals c.FolioAvisoEntradaID
+                                     join rfp in ctx.Sam3_Rel_FolioAvisoLlegada_Proyecto on r.FolioAvisoLlegadaID equals rfp.FolioAvisoLlegadaID
+                                     join b in ctx.Sam3_Bulto on c.FolioCuantificacionID equals b.FolioCuantificacionID
+                                     join rbi in ctx.Sam3_Rel_Bulto_ItemCode on b.BultoID equals rbi.BultoID
+                                     join rid in ctx.Sam3_Rel_ItemCode_Diametro on rbi.Rel_ItemCode_Diametro_ID equals rid.Rel_ItemCode_Diametro_ID
+                                     join i in ctx.Sam3_ItemCode on rid.ItemCodeID equals i.ItemCodeID
+                                     join t in ctx.Sam3_TipoMaterial on i.TipoMaterialID equals t.TipoMaterialID
+                                     join d1 in ctx.Sam3_Diametro on rid.Diametro1ID equals d1.DiametroID
+                                     join d2 in ctx.Sam3_Diametro on rid.Diametro2ID equals d2.DiametroID
+                                     join rics in ctx.Sam3_Rel_ItemCode_ItemCodeSteelgo on rid.Rel_ItemCode_Diametro_ID equals rics.Rel_ItemCode_Diametro_ID
+                                     join ics in ctx.Sam3_ItemCodeSteelgo on rics.ItemCodeSteelgoID equals ics.ItemCodeSteelgoID
+                                     where r.Activo && c.Activo && rbi.Activo && i.Activo && t.Activo && rics.Activo && ics.Activo
+                                     && rfp.ProyectoID == proyectoID
+                                     && !rbi.TieneNumerosUnicos
+                                     && rbi.Cantidad > 0
+                                     && i.TipoMaterialID == 2
+                                     && !(from co in ctx.Sam3_Colada
+                                          where co.Activo && co.NumeroColada == ""
+                                          && co.ProyectoID == i.ProyectoID
+                                          select co.ColadaID).Contains(rbi.ColadaID)
+                                     && rbi.ColadaID > 0
+                                     && !(from rnufc in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB
+                                          where rnufc.Activo
+                                          select rnufc.Rel_Bulto_ItemCode_ID).Contains(rbi.Rel_Bulto_ItemCode_ID)
+                                     select new ListaCombos
+                                     {
+                                         id = r.FolioAvisoLlegadaID.ToString(),
+                                         value = r.FolioAvisoLlegadaID.ToString()
+                                     }).AsParallel().ToList());
+
+                    folios = folios.GroupBy(x => x.id).Select(x => x.First()).ToList();
 
                     if (activarFolioConfiguracion)
                     {
@@ -1999,7 +2031,7 @@ namespace BackEndSAM.DataAcces
                             item.value = elemntos[0].Trim() + consecutivo.ToString(formato).Trim() + elemntos[3].Trim();
                         }
                     }
-                    folios = folios.GroupBy(x => x.id).Select(x => x.First()).ToList();
+                    
 
                     return folios;
 
@@ -2118,9 +2150,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
 
                     int proyectoID = filtros.ProyectoID != "" ? Convert.ToInt32(filtros.ProyectoID) : 0;
@@ -2492,9 +2525,10 @@ namespace BackEndSAM.DataAcces
 
                         if (fechaInicial.ToShortDateString() == "1/1/0001")
                         {
-                            int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                            int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                            fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                            //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                            //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            fechaInicial = new DateTime(2000, 01, 01);
                         }
                         #endregion
 
@@ -2690,9 +2724,10 @@ namespace BackEndSAM.DataAcces
 
                         if (fechaInicial.ToShortDateString() == "1/1/0001")
                         {
-                            int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                            int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                            fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                            //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                            //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            fechaInicial = new DateTime(2000, 01, 01);
                         }
                         #endregion
 
@@ -2857,9 +2892,10 @@ namespace BackEndSAM.DataAcces
 
                     if (fechaInicial.ToShortDateString() == "1/1/0001")
                     {
-                        int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                        int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                        fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                        //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                        //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                        fechaInicial = new DateTime(2000, 01, 01);
                     }
                     #endregion
 
@@ -3693,9 +3729,10 @@ namespace BackEndSAM.DataAcces
 
                         if (fechaInicial.ToShortDateString() == "1/1/0001")
                         {
-                            int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                            int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                            fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                            //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                            //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            fechaInicial = new DateTime(2000, 01, 01);
                         }
 
                         if (!String.IsNullOrEmpty(filtros.UnidadDeMedida))
@@ -4433,9 +4470,10 @@ namespace BackEndSAM.DataAcces
 
                         if (fechaInicial.ToShortDateString() == "1/1/0001")
                         {
-                            int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                            int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                            fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                            //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                            //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            fechaInicial = new DateTime(2000, 01, 01);
                         }
 
                         if (!String.IsNullOrEmpty(filtros.UnidadDeMedida))
@@ -5185,9 +5223,10 @@ namespace BackEndSAM.DataAcces
 
                         if (fechaInicial.ToShortDateString() == "1/1/0001")
                         {
-                            int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                            int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                            fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                            //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                            //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            fechaInicial = new DateTime(2000, 01, 01);
                         }
 
                         if (!String.IsNullOrEmpty(filtros.UnidadDeMedida))
@@ -5970,9 +6009,10 @@ namespace BackEndSAM.DataAcces
 
                         if (fechaInicial.ToShortDateString() == "1/1/0001")
                         {
-                            int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
-                            int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
-                            fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            //int mes = DateTime.Now.Month != 1 ? DateTime.Now.Month - 1 : 12;
+                            //int year = DateTime.Now.Month == 1 ? DateTime.Now.Year - 1 : DateTime.Now.Year;
+                            //fechaInicial = new DateTime(year, mes, DateTime.Now.Day);
+                            fechaInicial = new DateTime(2000, 01, 01);
                         }
 
                         if (!String.IsNullOrEmpty(filtros.UnidadDeMedida))

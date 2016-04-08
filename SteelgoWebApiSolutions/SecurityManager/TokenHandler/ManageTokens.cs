@@ -9,6 +9,7 @@ using System.Runtime.Remoting;
 using System.Configuration;
 using DatabaseManager.Sam3;
 using System.Web.Script.Serialization;
+using SecurityManager.Login;
 
 namespace SecurityManager.TokenHandler
 {
@@ -56,7 +57,8 @@ namespace SecurityManager.TokenHandler
                 { "PerfilID", usuario.PerfilID},
                 { "BloqueadoPorAdministracion", usuario.BloqueadoPorAdministracion},
                 { "Activo", usuario.Activo},
-                { "exp", now}
+                { "exp", now},
+                 { "ProveedorID", usuario.ProveedorID}
             };
 
             string token = JWT.JsonWebToken.Encode(payload, ConfigurationManager.AppSettings["scrKey"], JWT.JwtHashAlgorithm.HS256);
@@ -70,6 +72,7 @@ namespace SecurityManager.TokenHandler
                 result = JsonWebToken.Decode(token, ConfigurationManager.AppSettings["scrKey"]);
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(result);
+                Logger.Instance.EscribirLog("Resultado de validar el token: " + result);
                 newToken = CreateJwtToken(usuario);
                 return true;
             }

@@ -24,6 +24,8 @@ namespace BackEndSAM.Models
         public TipoPackingList TipoPackingList { get; set; }
         public TipoUso TipoUso { get; set; }
         public string PackingList { get; set; }
+        public string OrdenDeCompra { get; set; }
+        public string Factura { get; set; }
     }
 
     public class FolioLlegada1
@@ -36,6 +38,8 @@ namespace BackEndSAM.Models
         public int FolioAvisoLlegadaID { get; set; }
         public int ConsecutivoFolioCuanificacion { get; set; }
         public int ConsecutivoFolioLlegada { get; set; }
+        public int TipoUsoID { get; set; }
+        public string TipoUso { get; set; }
     }
 
     public class FolioEntradaYLlegada

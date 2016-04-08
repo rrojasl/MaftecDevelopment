@@ -69,6 +69,7 @@ namespace BackEndSAM.DataAcces
                     ListaCombos familiaAcero = new ListaCombos();
                     ListaCombos fabricante = new ListaCombos();
                     ListaCombos Cedulas = new ListaCombos();
+                    ListaCombos MTR = new ListaCombos();
 
                     patios.id = "1";
                     patios.value = "Patios";
@@ -113,6 +114,12 @@ namespace BackEndSAM.DataAcces
                     Cedulas.id = "11";
                     Cedulas.value = "Cédulas";
                     valoresCombo.Add(Cedulas);
+
+                    MTR.id = "12";
+                    MTR.value = "MTR";
+                    valoresCombo.Add(MTR);
+
+                    valoresCombo = valoresCombo.OrderBy(x => x.value).ToList();
 
                     return valoresCombo;
                 }
@@ -347,6 +354,25 @@ namespace BackEndSAM.DataAcces
 
                             return catCedulas;
                             #endregion
+                        case 12: //MTR
+                            #region
+                            List<CatalogoMTR> catalogoMTR = new List<CatalogoMTR>();
+                            catalogoMTR = (from mtr in ctx.Sam3_MTR
+                                           join ic in ctx.Sam3_ItemCode on mtr.ItemCodeID equals ic.ItemCodeID
+                                           join col in ctx.Sam3_Colada on mtr.ColadaID equals col.ColadaID
+                                           where mtr.Activo
+                                           select new CatalogoMTR { 
+                                               MTRID = mtr.MTRID,
+                                               ItemCodeID = ic.ItemCodeID.ToString(),
+                                               ItemCode = ic.Codigo,
+                                               ColadaID = col.ColadaID.ToString(),
+                                               Colada = col.NumeroColada,
+                                               NumeroMTR = mtr.NumeroMTR,
+                                               CantidadPiezas = mtr.CantidadPiezas.ToString()
+                                           }).AsParallel().ToList();
+
+                            return catalogoMTR;
+                            #endregion
                         default:
                             #region
                             TransactionalInformation result = new TransactionalInformation();
@@ -398,7 +424,7 @@ namespace BackEndSAM.DataAcces
                         case 1: //Patios
                             #region
                             Sam3_Patio patio = serializer.Deserialize<Sam3_Patio>(data);
-                            if (ctx.Sam3_Patio.Where(x => x.Nombre == patio.Nombre && x.Activo).AsParallel().Any())
+                            if (ctx.Sam3_Patio.Where(x => x.PatioID == patio.PatioID && x.Activo).AsParallel().Any())
                             {
                                 Sam3_Patio patioEnBd = ctx.Sam3_Patio.Where(x => x.PatioID == patio.PatioID && x.Activo).AsParallel().SingleOrDefault();
 
@@ -432,7 +458,7 @@ namespace BackEndSAM.DataAcces
                         case 2: //chofer
                             #region
                             CatalogoChofer chofer = serializer.Deserialize<CatalogoChofer>(data);
-                            if (ctx.Sam3_Chofer.Where(c => c.Nombre == chofer.Nombre && c.Activo).AsParallel().Any())
+                            if (ctx.Sam3_Chofer.Where(c => c.ChoferID.ToString() == chofer.ChoferID && c.Activo).AsParallel().Any())
                             {
                                 Sam3_Chofer choferEnBd = ctx.Sam3_Chofer.Where(x => x.ChoferID.ToString() == chofer.ChoferID && x.Activo).AsParallel().SingleOrDefault();
 
@@ -465,7 +491,7 @@ namespace BackEndSAM.DataAcces
                             #region
                             Catalogos tipoAviso = serializer.Deserialize<Catalogos>(data);
 
-                            if (ctx.Sam3_TipoAviso.Where(x => x.Activo && x.Nombre == tipoAviso.Nombre).AsParallel().Any())
+                            if (ctx.Sam3_TipoAviso.Where(x => x.Activo && x.TipoAvisoID.ToString() == tipoAviso.Id).AsParallel().Any())
                             {
                                 Sam3_TipoAviso avisoEnBd = ctx.Sam3_TipoAviso.Where(x => x.TipoAvisoID.ToString() == tipoAviso.Id && x.Activo).AsParallel().SingleOrDefault();
 
@@ -492,7 +518,7 @@ namespace BackEndSAM.DataAcces
                         case 4: //Transportista
                             #region
                             CatalogoTransportista transportista = serializer.Deserialize<CatalogoTransportista>(data);
-                            if (ctx.Sam3_Transportista.Where(x => x.Nombre == transportista.Nombre && x.Activo).AsParallel().Any())
+                            if (ctx.Sam3_Transportista.Where(x => x.TransportistaID.ToString() == transportista.TransportistaID && x.Activo).AsParallel().Any())
                             {
                                 Sam3_Transportista transEnBd = ctx.Sam3_Transportista.Where(x => x.TransportistaID.ToString() == transportista.TransportistaID && x.Activo).AsParallel().SingleOrDefault();
                                 transEnBd.ContactoID = transportista.ContactoID != null && transportista.ContactoID != transEnBd.ContactoID.ToString() ?
@@ -535,7 +561,7 @@ namespace BackEndSAM.DataAcces
                         case 5: //Tracto
                             #region
                             CatalogoTracto vehiculo = serializer.Deserialize<CatalogoTracto>(data);
-                            if (ctx.Sam3_Vehiculo.Where(x => x.Placas == vehiculo.Placas && x.Activo && x.TipoVehiculoID == 1).AsParallel().Any())
+                            if (ctx.Sam3_Vehiculo.Where(x => x.VehiculoID.ToString() == vehiculo.VehiculoID && x.Activo && x.TipoVehiculoID == 1).AsParallel().Any())
                             {
                                 Sam3_Vehiculo vehiculoEnBd = ctx.Sam3_Vehiculo.Where(x => x.VehiculoID.ToString() == vehiculo.VehiculoID && x.Activo).AsParallel().SingleOrDefault();
 
@@ -596,7 +622,7 @@ namespace BackEndSAM.DataAcces
                         case 6: //Plana
                             #region
                             CatalogoPlana plana = serializer.Deserialize<CatalogoPlana>(data);
-                            if (ctx.Sam3_Vehiculo.Where(x => x.TipoVehiculoID == 2 && x.Activo && x.Placas == plana.Placas).AsParallel().Any())
+                            if (ctx.Sam3_Vehiculo.Where(x => x.TipoVehiculoID == 2 && x.Activo && x.VehiculoID.ToString() == plana.VehiculoID).AsParallel().Any())
                             {
                                 int vehiculoID = Convert.ToInt32(plana.VehiculoID);
                                 Sam3_Vehiculo planaEnBd = ctx.Sam3_Vehiculo.Where(x => x.VehiculoID == vehiculoID).AsParallel().SingleOrDefault();
@@ -651,7 +677,7 @@ namespace BackEndSAM.DataAcces
                         case 7: //Proveedor
                             #region
                             CatalogoProveedor proveedor = serializer.Deserialize<CatalogoProveedor>(data);
-                            if (ctx.Sam3_Proveedor.Where(x => x.Nombre == proveedor.Nombre && x.Activo).AsParallel().Any())
+                            if (ctx.Sam3_Proveedor.Where(x => x.ProveedorID.ToString() == proveedor.ProveedorID && x.Activo).AsParallel().Any())
                             {
                                 Sam3_Proveedor provEnBd = ctx.Sam3_Proveedor.Where(x => x.ProveedorID.ToString() == proveedor.ProveedorID && x.Activo).AsParallel().SingleOrDefault();
 
@@ -694,7 +720,7 @@ namespace BackEndSAM.DataAcces
                         case 8: //Tipo de uso
                             #region
                             Catalogos tipoUso = serializer.Deserialize<Catalogos>(data);
-                            if (!ctx.Sam3_TipoUso.Where(x => x.Activo && x.Nombre == tipoUso.Nombre).AsParallel().Any())
+                            if (!ctx.Sam3_TipoUso.Where(x => x.Activo && x.TipoUsoID.ToString() == tipoUso.Id).AsParallel().Any())
                             {
                                 Sam3_TipoUso tipoUsoEnBd = ctx.Sam3_TipoUso.Where(x => x.TipoUsoID.ToString() == tipoUso.Id && x.Activo).AsParallel().SingleOrDefault();
 
@@ -721,7 +747,7 @@ namespace BackEndSAM.DataAcces
                         case 9: //Camion
                             #region
                             Catalogos camion = serializer.Deserialize<Catalogos>(data);
-                            if (ctx.Sam3_TipoVehiculo.Where(x => x.Activo && x.Nombre == camion.Nombre).AsParallel().Any())
+                            if (ctx.Sam3_TipoVehiculo.Where(x => x.Activo && x.TipoVehiculoID.ToString() == camion.Id).AsParallel().Any())
                             {
                                 Sam3_TipoVehiculo camionEnBd = ctx.Sam3_TipoVehiculo.Where(x => x.TipoVehiculoID.ToString() == camion.Id && x.Activo).AsParallel().SingleOrDefault();
                                 camionEnBd.Nombre = camion.Nombre != null && camion.Nombre != camionEnBd.Nombre ?
@@ -747,7 +773,7 @@ namespace BackEndSAM.DataAcces
                         case 10: //fabricante
                             #region
                             CatalogoFabricante fabricante = serializer.Deserialize<CatalogoFabricante>(data);
-                            if (ctx.Sam3_Fabricante.Where(x => x.Nombre == fabricante.Nombre && x.Activo).AsParallel().Any())
+                            if (ctx.Sam3_Fabricante.Where(x => x.FabricanteID.ToString() == fabricante.FabricanteID && x.Activo).AsParallel().Any())
                             {
                                 Sam3_Fabricante fabricanteEnBd = ctx.Sam3_Fabricante.Where(x => x.FabricanteID.ToString() == fabricante.FabricanteID && x.Activo).AsParallel().SingleOrDefault();
 
@@ -782,8 +808,54 @@ namespace BackEndSAM.DataAcces
                                     Telefono = fabricanteEnBd.Telefono
                                 };
                             }
+                            else
                             {
                                 throw new Exception("Fabricante no existente");
+                            }
+                            #endregion
+                        case 12: //MTR
+                            #region
+                            CatalogoMTR mtr = serializer.Deserialize<CatalogoMTR>(data);
+                            if (ctx.Sam3_MTR.Where(x => x.MTRID == mtr.MTRID && x.Activo).AsParallel().Any())
+                            {
+                                Sam3_MTR mtrEnBd = ctx.Sam3_MTR.Where(x => x.Activo && x.MTRID == mtr.MTRID).AsParallel().SingleOrDefault();
+                                mtrEnBd.NumeroMTR = mtr.NumeroMTR != null && mtr.NumeroMTR != mtrEnBd.NumeroMTR ?
+                                    mtr.NumeroMTR : mtrEnBd.NumeroMTR;
+
+                                int valor = Convert.ToInt32(mtr.ItemCodeID);
+
+                                int itemCodeSam3 = (from icd in ctx.Sam3_Rel_ItemCode_Diametro
+                                                    where icd.Activo && icd.Rel_ItemCode_Diametro_ID == valor
+                                                    select icd.ItemCodeID).AsParallel().SingleOrDefault();
+                       
+                                mtrEnBd.ItemCodeID = mtr.ItemCodeID != null && Convert.ToInt32(mtr.ItemCodeID) != mtrEnBd.ItemCodeID ?
+                                    itemCodeSam3 : mtrEnBd.ItemCodeID;
+
+                                mtrEnBd.ColadaID = mtr.ColadaID != null && mtr.ColadaID != mtrEnBd.ColadaID.ToString() ?
+                                    Convert.ToInt32(mtr.ColadaID) : mtrEnBd.ColadaID;
+
+                                mtrEnBd.CantidadPiezas = mtr.CantidadPiezas != null && Convert.ToInt32(mtr.CantidadPiezas) != mtrEnBd.CantidadPiezas ?
+                                    Convert.ToInt32(mtr.CantidadPiezas) : mtrEnBd.CantidadPiezas;
+
+                                mtrEnBd.FechaModificacion = DateTime.Now;
+                                mtrEnBd.UsuarioModificacion = usuario.UsuarioID;
+
+                                ctx.SaveChanges();
+
+                                return new CatalogoMTR
+                                {
+                                    MTRID = mtr.MTRID,
+                                    NumeroMTR = mtr.NumeroMTR,
+                                    CantidadPiezas = mtr.CantidadPiezas,
+                                    Colada = mtr.Colada,
+                                    ColadaID = mtr.ColadaID,
+                                    ItemCode = mtr.ItemCode,
+                                    ItemCodeID = mtr.ItemCodeID
+                                };
+                            }
+                            else
+                            {
+                                throw new Exception("MTR no existente");
                             }
                             #endregion
                         default:
@@ -949,6 +1021,24 @@ namespace BackEndSAM.DataAcces
                             return result;
 
                             #endregion
+                        case 12://MTR
+                        #region
+                            Sam3_MTR mtr = ctx.Sam3_MTR.Where(x => x.MTRID == id).AsParallel().SingleOrDefault();
+                            mtr.Activo = false;
+                            mtr.UsuarioModificacion = usuario.UsuarioID;
+                            mtr.FechaModificacion = DateTime.Now;
+
+                            ctx.SaveChanges();
+
+                            result = new TransactionalInformation();
+                            result.ReturnCode = 200;
+                            result.ReturnStatus = true;
+                            result.ReturnMessage.Add("OK");
+                            result.IsAuthenicated = true;
+
+                            return result;
+
+                        #endregion
                         default:
                             #region
                             TransactionalInformation resultado = new TransactionalInformation();
@@ -1371,6 +1461,45 @@ namespace BackEndSAM.DataAcces
                                 throw new Exception("Fabricante existente");
                             }
                             #endregion
+                        case 12: //MTR
+                        #region
+                            CatalogoMTR mtr = serializer.Deserialize<CatalogoMTR>(data);
+                            if (!ctx.Sam3_MTR.Where(x => x.NumeroMTR == mtr.NumeroMTR && x.Activo).AsParallel().Any())
+                            {
+                                int valor = Convert.ToInt32(mtr.ItemCodeID);
+                                int itemCodeSam3 = (from icd in ctx.Sam3_Rel_ItemCode_Diametro
+                                                    where icd.Activo && icd.Rel_ItemCode_Diametro_ID == valor
+                                                    select icd.ItemCodeID).AsParallel().SingleOrDefault();
+                       
+
+                                Sam3_MTR catalogoMTR = new Sam3_MTR();
+                                catalogoMTR.NumeroMTR = mtr.NumeroMTR;
+                                catalogoMTR.ItemCodeID = itemCodeSam3;
+                                catalogoMTR.ColadaID = Convert.ToInt32(mtr.ColadaID);
+                                catalogoMTR.CantidadPiezas = Convert.ToInt32(mtr.CantidadPiezas);
+                                catalogoMTR.Activo = true;
+                                catalogoMTR.FechaModificacion = DateTime.Now;
+                                catalogoMTR.UsuarioModificacion = usuario.UsuarioID;
+
+                                ctx.Sam3_MTR.Add(catalogoMTR);
+                                ctx.SaveChanges();
+
+                                return new CatalogoMTR
+                                {
+                                    MTRID = mtr.MTRID,
+                                    NumeroMTR = mtr.NumeroMTR,
+                                    CantidadPiezas = mtr.CantidadPiezas,
+                                    Colada = mtr.Colada,
+                                    ColadaID = mtr.ColadaID,
+                                    ItemCode = mtr.ItemCode,
+                                    ItemCodeID = mtr.ItemCodeID
+                                };
+                            }
+                            else
+                            {
+                                throw new Exception("MTR existente");
+                            }
+                        #endregion
                         default:
                             #region
                             TransactionalInformation resultado = new TransactionalInformation();

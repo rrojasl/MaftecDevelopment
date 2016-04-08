@@ -93,3 +93,72 @@ function displayError(message, messageComplement, type) {
         cleanDisplayMessage();
     }, alertTimeOut);
 }
+
+//function displayNotify(title, message, extraMessage, type) {
+//    var messageNotify;
+
+//    if (extraMessage.length > 0) {
+//        messageNotify = extraMessage;
+//    }
+//    else {
+//        messageNotify = _dictionary[message][$("#language").data("kendoDropDownList").value()];
+//    }
+
+//    var options = {
+//        title: _dictionary[title][$("#language").data("kendoDropDownList").value()],
+//        text: messageNotify
+//    };
+
+//    switch (type) {
+//        case '2':
+//            options.type = "error";
+//            break;
+//        case '0':
+//            options.type = "success";
+//            break;
+//    }
+//    new PNotify(options);
+//}
+//function showConfirmationWindow(message) {
+//    return showWindow('#confirmationTemplate', message)
+//};
+//function showWindow(template, message) {
+
+//    var dfd = new jQuery.Deferred();
+//    var result = false;
+
+//    $("<div id='popupWindow'></div>")
+//    .appendTo("body")
+//    .kendoWindow({
+//        width: "200px",
+//        modal: true,
+//        title: "",
+//        modal: true,
+//        visible: false,
+//        close: function (e) {
+//            this.destroy();
+//            dfd.resolve(result);
+//        }
+//    }).data('kendoWindow').content($(template).html()).center().open();
+
+//    $('.popupMessage').html(message);
+
+//    $('#popupWindow .confirm_yes').val(_dictionary.AlertPreguntaSi[$("#language").data("kendoDropDownList").value()]);
+//    $('#popupWindow .confirm_no').val(_dictionary.AlertPreguntaNo[$("#language").data("kendoDropDownList").value()]);
+
+//    $('#popupWindow .confirm_no').click(function () {
+//        result = false;
+//        $('#popupWindow').data('kendoWindow').close();
+//    });
+
+//    $('#popupWindow .confirm_yes').click(function () {
+//        result = true;
+//        $('#popupWindow').data('kendoWindow').close();
+//    });
+
+//    return dfd.promise();
+
+
+
+
+//};

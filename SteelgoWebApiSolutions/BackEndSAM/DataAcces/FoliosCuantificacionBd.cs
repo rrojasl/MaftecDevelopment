@@ -221,7 +221,11 @@ namespace BackEndSAM.DataAcces
                                                FolioConfiguracionCuantificacionID = "",
                                                FolioAvisoLlegadaID = fa.FolioAvisoLlegadaID,
                                                ConsecutivoFolioCuanificacion = t.Consecutivo.Value,
-                                               ConsecutivoFolioLlegada = fa.Consecutivo.Value
+                                               ConsecutivoFolioLlegada = fa.Consecutivo.Value,
+                                               TipoUsoID = t.TipoUsoID,
+                                               TipoUso = (from tp in ctx.Sam3_TipoUso
+                                                          where tp.Activo && tp.TipoUsoID == t.TipoUsoID
+                                                          select tp.Nombre).FirstOrDefault()
                                            }).AsParallel().ToList();
 
 
@@ -255,7 +259,15 @@ namespace BackEndSAM.DataAcces
                     InfoFolioAvisoEntrada info = new InfoFolioAvisoEntrada();
                     info.Proyecto = proyectos;
                     info.FolioLlegada = cuantificacion;
+                    info.OrdenDeCompra = (from ave in ctx.Sam3_FolioAvisoEntrada 
+                                          where ave.FolioAvisoLlegadaID == folioAvisoLlegadaID 
+                                          && ave.Activo 
+                                          select ave.OrdenCompra).AsParallel().SingleOrDefault();
 
+                    info.Factura = (from ave in ctx.Sam3_FolioAvisoEntrada
+                                    where ave.FolioAvisoLlegadaID == folioAvisoLlegadaID
+                                    && ave.Activo
+                                    select ave.Factura).AsParallel().SingleOrDefault();
                     return info;
                 }
             }
@@ -355,7 +367,8 @@ namespace BackEndSAM.DataAcces
                             {
                                 ProyectoID = t.ProyectoID,
                                 PackingList = t.PackingList,
-
+                                Factura = avll.Factura,
+                                OrdenDeCompra = avll.OrdenCompra,
                                 TipoUso = new TipoUso()
                                 {
                                     id = t.TipoUsoID.ToString(),
@@ -589,9 +602,9 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
                     List<ListaCombos> listado = (from fc in ctx.Sam3_FolioCuantificacion
-                                                 join fe in ctx.Sam3_FolioAvisoEntrada on fc.FolioAvisoEntradaID equals fe.FolioAvisoEntradaID
-                                                 join fa in ctx.Sam3_FolioAvisoLlegada on fe.FolioAvisoLlegadaID equals fa.FolioAvisoLlegadaID
-                                                 where fc.Activo && fe.Activo && fa.Activo
+                                                 join rfc in ctx.Sam3_Rel_FolioCuantificacion_ItemCode on fc.FolioCuantificacionID equals rfc.FolioCuantificacionID
+                                                 join rnufc in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB on rfc.Rel_FolioCuantificacion_ItemCode_ID equals rnufc.Rel_FolioCuantificacion_ItemCode_ID
+                                                 where fc.Activo && rfc.Activo && rnufc.Activo
                                                  && fc.ProyectoID == proyectoID
                                                  select new ListaCombos
                                                  {
@@ -599,6 +612,19 @@ namespace BackEndSAM.DataAcces
                                                      value = fc.FolioCuantificacionID.ToString()
                                                  }).AsParallel().Distinct().ToList();
 
+                    listado.AddRange((from fc in ctx.Sam3_FolioCuantificacion
+                                      join b in ctx.Sam3_Bulto on fc.FolioCuantificacionID equals b.FolioCuantificacionID
+                                      join rbi in ctx.Sam3_Rel_Bulto_ItemCode on b.BultoID equals rbi.BultoID
+                                      join rnufc in ctx.Sam3_Rel_NumeroUnico_RelFC_RelB on rbi.Rel_Bulto_ItemCode_ID equals rnufc.Rel_Bulto_ItemCode_ID
+                                      where fc.Activo && b.Activo && rbi.Activo && rnufc.Activo
+                                      && fc.ProyectoID == proyectoID
+                                      select new ListaCombos
+                                      {
+                                          id = fc.FolioCuantificacionID.ToString(),
+                                          value = fc.FolioCuantificacionID.ToString()
+                                      }).Distinct().ToList());
+
+                    listado = listado.GroupBy(x => x.id).Select(x => x.First()).ToList();
 
                     foreach (ListaCombos item in listado)
                     {
