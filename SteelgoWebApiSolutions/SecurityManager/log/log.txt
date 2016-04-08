@@ -629,3 +629,394 @@ Exception Data: System.Collections.ListDictionaryInternal
 07/04/2016 19:22:37 - GUID devuelto: 
 07/04/2016 19:22:37 - {"UsuarioID":0,"NombreUsuario":null,"ContrasenaHash":null,"PerfilID":0,"BloqueadoPorAdministracion":false,"Activo":false,"ProveedorID":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
 07/04/2016 19:22:38 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460076758,"ProveedorID":2}
+08/04/2016 10:37:48 - Usuario:samadmin, pass: samadmin
+08/04/2016 10:37:48 - GUID devuelto: 
+08/04/2016 10:37:48 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:38:08 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.RunTaskSynchronously(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:38:08 - Usuario:samAdmin, pass: samadmin
+08/04/2016 10:38:08 - GUID devuelto: 
+08/04/2016 10:38:08 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:38:35 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.RunTaskSynchronously(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:38:35 - Usuario:samAdmin, pass: samadmin
+08/04/2016 10:38:35 - GUID devuelto: 
+08/04/2016 10:38:35 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:38:36 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server) ---> System.ComponentModel.Win32Exception: No se ha encontrado la ruta de acceso de la red
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.<>c.<.cctor>b__10_0(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:38:36 - Usuario:samAdmin, pass: samadmin
+08/04/2016 10:38:36 - GUID devuelto: 
+08/04/2016 10:38:36 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:40:07 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.InvalidOperationException: Valor de tiempo de espera caducado. El período de tiempo de espera expiró antes de obtener una conexión del grupo. Esto puede suceder porque todas las conexiones de la agrupación estaban en uso y se alcanzó el máximo tamaño del grupo.
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.RunTaskSynchronously(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:40:07 - Usuario:samAdmin, pass: samadmin
+08/04/2016 10:40:07 - GUID devuelto: 
+08/04/2016 10:40:07 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:40:36 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server) ---> System.ComponentModel.Win32Exception: No se ha encontrado la ruta de acceso de la red
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.RunTaskSynchronously(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:40:36 - Usuario:samAdmin, pass: samadmin
+08/04/2016 10:40:36 - GUID devuelto: 
+08/04/2016 10:40:36 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:44:27 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server) ---> System.ComponentModel.Win32Exception: No se ha encontrado la ruta de acceso de la red
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.RunTaskSynchronously(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+08/04/2016 10:44:27 - Usuario:samAdmin, pass: samadmin
+08/04/2016 10:44:27 - GUID devuelto: 
+08/04/2016 10:44:27 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+08/04/2016 10:46:43 - Usuario:samAdmin, pass: samadmin
+08/04/2016 10:46:43 - GUID devuelto: 
+08/04/2016 10:46:43 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+08/04/2016 10:46:45 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460132204,"ProveedorID":2}
