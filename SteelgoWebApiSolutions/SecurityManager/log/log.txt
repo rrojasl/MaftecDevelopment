@@ -335,3 +335,297 @@ Exception Data: System.Collections.ListDictionaryInternal
 3/10/2016 10:51:32 AM - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1457630492}
 3/10/2016 11:11:11 AM - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1457631505}
 3/10/2016 11:11:15 AM - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1457631672}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:44:05 - EXCEPCION
+Message: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía. (C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\web.config line 35)
+Source: System.Web
+TargetSite: Void Initialize()
+StackTrace:    en System.Web.Security.Membership.Initialize()
+   en System.Web.Security.Membership.get_Provider()
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 60
+InnerException: System.Configuration.Provider.ProviderException: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía.
+   en System.Web.Util.SecUtility.GetConnectionString(NameValueCollection config)
+   en System.Web.Security.SqlMembershipProvider.Initialize(String name, NameValueCollection config)
+   en System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:44:05 - Usuario:samadmin, pass: samadmin
+05/04/2016 16:44:05 - GUID devuelto: 
+05/04/2016 16:44:05 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:44:06 - GUID devuelto: 
+05/04/2016 16:44:06 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:44:59 - EXCEPCION
+Message: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía. (C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\web.config line 35)
+Source: System.Web
+TargetSite: Void Initialize()
+StackTrace:    en System.Web.Security.Membership.Initialize()
+   en System.Web.Security.Membership.get_Provider()
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 60
+InnerException: System.Configuration.Provider.ProviderException: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía.
+   en System.Web.Util.SecUtility.GetConnectionString(NameValueCollection config)
+   en System.Web.Security.SqlMembershipProvider.Initialize(String name, NameValueCollection config)
+   en System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:44:59 - Usuario:samadmin, pass: samadmin
+05/04/2016 16:44:59 - GUID devuelto: 
+05/04/2016 16:44:59 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:45:10 - EXCEPCION
+Message: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía. (C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\web.config line 35)
+Source: System.Web
+TargetSite: Void Initialize()
+StackTrace:    en System.Web.Security.Membership.Initialize()
+   en System.Web.Security.Membership.get_Provider()
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 60
+InnerException: System.Configuration.Provider.ProviderException: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía.
+   en System.Web.Util.SecUtility.GetConnectionString(NameValueCollection config)
+   en System.Web.Security.SqlMembershipProvider.Initialize(String name, NameValueCollection config)
+   en System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:45:15 - Usuario:samAdmin, pass: samadmin
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:45:15 - EXCEPCION
+Message: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía. (C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\web.config line 35)
+Source: System.Web
+TargetSite: Void Initialize()
+StackTrace:    en System.Web.Security.Membership.Initialize()
+   en System.Web.Security.Membership.get_Provider()
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 60
+InnerException: System.Configuration.Provider.ProviderException: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía.
+   en System.Web.Util.SecUtility.GetConnectionString(NameValueCollection config)
+   en System.Web.Security.SqlMembershipProvider.Initialize(String name, NameValueCollection config)
+   en System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:45:15 - GUID devuelto: 
+05/04/2016 16:45:15 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:45:15 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:45:39 - EXCEPCION
+Message: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía. (C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\web.config line 35)
+Source: System.Web
+TargetSite: Void Initialize()
+StackTrace:    en System.Web.Security.Membership.Initialize()
+   en System.Web.Security.Membership.get_Provider()
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 60
+InnerException: System.Configuration.Provider.ProviderException: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía.
+   en System.Web.Util.SecUtility.GetConnectionString(NameValueCollection config)
+   en System.Web.Security.SqlMembershipProvider.Initialize(String name, NameValueCollection config)
+   en System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:45:39 - Usuario:samAdmin, pass: samadmin
+05/04/2016 16:45:39 - GUID devuelto: 
+05/04/2016 16:45:39 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:45:39 - Usuario:samAdmin, pass: samadmin
+05/04/2016 16:45:39 - GUID devuelto: 
+05/04/2016 16:45:39 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:46:18 - EXCEPCION
+Message: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía. (C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\web.config line 35)
+Source: System.Web
+TargetSite: Void Initialize()
+StackTrace:    en System.Web.Security.Membership.Initialize()
+   en System.Web.Security.Membership.get_Provider()
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 60
+InnerException: System.Configuration.Provider.ProviderException: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía.
+   en System.Web.Util.SecUtility.GetConnectionString(NameValueCollection config)
+   en System.Web.Security.SqlMembershipProvider.Initialize(String name, NameValueCollection config)
+   en System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:46:20 - EXCEPCION
+Message: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía. (C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\web.config line 35)
+Source: System.Web
+TargetSite: Void Initialize()
+StackTrace:    en System.Web.Security.Membership.Initialize()
+   en System.Web.Security.Membership.get_Provider()
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 60
+InnerException: System.Configuration.Provider.ProviderException: No se encontró el nombre de conexión 'Sam2DB' en la configuración de las aplicaciones o la cadena de conexión está vacía.
+   en System.Web.Util.SecUtility.GetConnectionString(NameValueCollection config)
+   en System.Web.Security.SqlMembershipProvider.Initialize(String name, NameValueCollection config)
+   en System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:46:20 - Usuario:samAdmin, pass: samadmin
+05/04/2016 16:46:20 - GUID devuelto: 
+05/04/2016 16:46:20 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:46:21 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:51:01 - EXCEPCION
+Message: Error de inicio de sesión del usuario 'sa'.
+Source: .Net SqlClient Data Provider
+TargetSite: Void .ctor(System.Data.ProviderBase.DbConnectionPoolIdentity, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SqlCredential, System.Object, System.String, System.Security.SecureString, Boolean, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SessionData, System.Data.ProviderBase.DbConnectionPool, System.String, Boolean)
+StackTrace:    en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Web.DataAccess.SqlConnectionHolder.Open(HttpContext context, Boolean revertImpersonate)
+   en System.Web.DataAccess.SqlConnectionHelper.GetConnection(String connectionString, Boolean revertImpersonation)
+   en System.Web.Security.SqlMembershipProvider.GetPasswordWithFormat(String username, Boolean updateLastLoginActivityDate, Int32& status, String& password, Int32& passwordFormat, String& passwordSalt, Int32& failedPasswordAttemptCount, Int32& failedPasswordAnswerAttemptCount, Boolean& isApproved, DateTime& lastLoginDate, DateTime& lastActivityDate)
+   en System.Web.Security.SqlMembershipProvider.CheckPassword(String username, String password, Boolean updateLastLoginActivityDate, Boolean failIfNotApproved, String& salt, Int32& passwordFormat)
+   en System.Web.Security.SqlMembershipProvider.ValidateUser(String username, String password)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\Laptop6\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 65
+InnerException: 
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+05/04/2016 16:51:01 - Usuario:samadmin, pass: samadmin
+05/04/2016 16:51:01 - GUID devuelto: 
+05/04/2016 16:51:01 - GUID devuelto: 
+05/04/2016 16:51:01 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:51:19 - Usuario:samAdmin, pass: samadmin
+05/04/2016 16:51:19 - GUID devuelto: 
+05/04/2016 16:51:19 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:51:20 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459894880,"ProveedorID":2}
+05/04/2016 16:51:35 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459894880,"ProveedorID":2}
+05/04/2016 16:52:03 - Usuario:samAdmin, pass: samadmin
+05/04/2016 16:52:03 - GUID devuelto: 
+05/04/2016 16:52:03 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:52:04 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459894924,"ProveedorID":2}
+05/04/2016 16:53:00 - Usuario:samAdmin, pass: samadmin
+05/04/2016 16:53:00 - GUID devuelto: 
+05/04/2016 16:53:00 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 16:53:01 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459894980,"ProveedorID":2}
+05/04/2016 19:59:15 - Usuario:samAdmin, pass: samadmin
+05/04/2016 19:59:15 - GUID devuelto: 
+05/04/2016 19:59:15 - GUID devuelto: 
+05/04/2016 19:59:15 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 19:59:16 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459906156,"ProveedorID":2}
+05/04/2016 20:00:09 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459906156,"ProveedorID":2}
+05/04/2016 20:00:19 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459906156,"ProveedorID":2}
+05/04/2016 20:00:53 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459906156,"ProveedorID":2}
+05/04/2016 20:04:36 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459906156,"ProveedorID":2}
+05/04/2016 20:09:33 - Usuario:samAdmin, pass: samadmin
+05/04/2016 20:09:34 - GUID devuelto: 
+05/04/2016 20:09:34 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+05/04/2016 20:09:35 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459906774,"ProveedorID":2}
+06/04/2016 11:02:55 - Usuario:samAdmin, pass: samadmin
+06/04/2016 11:02:55 - GUID devuelto: 
+06/04/2016 11:02:55 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+06/04/2016 11:02:57 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459960375,"ProveedorID":2}
+06/04/2016 11:06:21 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459960379,"ProveedorID":2}
+06/04/2016 11:06:25 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459960582,"ProveedorID":2}
+06/04/2016 11:51:30 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459961866,"ProveedorID":2}
+06/04/2016 11:54:36 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1459963291,"ProveedorID":2}
+07/04/2016 11:12:43 - Usuario:samAdmin, pass: samadmin
+07/04/2016 11:12:43 - GUID devuelto: 
+07/04/2016 11:12:43 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 11:12:45 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460047363,"ProveedorID":2}
+07/04/2016 11:13:14 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460047366,"ProveedorID":2}
+07/04/2016 11:14:02 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460047394,"ProveedorID":2}
+07/04/2016 11:42:05 - Usuario:samAdmin, pass: samadmin
+07/04/2016 11:42:05 - GUID devuelto: 
+07/04/2016 11:42:05 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 11:42:06 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460049125,"ProveedorID":2}
+07/04/2016 11:42:12 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460049126,"ProveedorID":2}
+07/04/2016 11:45:00 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460049133,"ProveedorID":2}
+07/04/2016 13:03:14 - Usuario:samAdmin, pass: samadmin
+07/04/2016 13:03:14 - GUID devuelto: 
+07/04/2016 13:03:14 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 13:03:16 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460053995,"ProveedorID":2}
+07/04/2016 13:03:31 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460053996,"ProveedorID":2}
+07/04/2016 13:09:01 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054294,"ProveedorID":2}
+07/04/2016 13:12:36 - Usuario:samAdmin, pass: samadmin
+07/04/2016 13:12:36 - GUID devuelto: 
+07/04/2016 13:12:36 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 13:12:37 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054556,"ProveedorID":2}
+07/04/2016 13:12:54 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054557,"ProveedorID":2}
+07/04/2016 13:14:05 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054574,"ProveedorID":2}
+07/04/2016 13:14:24 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054646,"ProveedorID":2}
+07/04/2016 13:16:42 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054665,"ProveedorID":2}
+07/04/2016 13:16:44 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054803,"ProveedorID":2}
+07/04/2016 13:21:30 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460054804,"ProveedorID":2}
+07/04/2016 13:25:57 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460055090,"ProveedorID":2}
+07/04/2016 13:35:35 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460055358,"ProveedorID":2}
+07/04/2016 13:50:17 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460055936,"ProveedorID":2}
+07/04/2016 13:52:25 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460056817,"ProveedorID":2}
+07/04/2016 13:53:29 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460056946,"ProveedorID":2}
+07/04/2016 13:55:02 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057010,"ProveedorID":2}
+07/04/2016 13:57:55 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057103,"ProveedorID":2}
+07/04/2016 13:58:23 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057276,"ProveedorID":2}
+07/04/2016 13:58:38 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057304,"ProveedorID":2}
+07/04/2016 14:00:35 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057319,"ProveedorID":2}
+07/04/2016 14:01:38 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057436,"ProveedorID":2}
+07/04/2016 14:02:04 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057498,"ProveedorID":2}
+07/04/2016 14:02:26 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057524,"ProveedorID":2}
+07/04/2016 14:04:19 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057546,"ProveedorID":2}
+07/04/2016 14:09:15 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057659,"ProveedorID":2}
+07/04/2016 14:11:58 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460057956,"ProveedorID":2}
+07/04/2016 14:17:08 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058119,"ProveedorID":2}
+07/04/2016 14:18:26 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058428,"ProveedorID":2}
+07/04/2016 14:18:30 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058506,"ProveedorID":2}
+07/04/2016 14:20:45 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058510,"ProveedorID":2}
+07/04/2016 14:22:47 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058646,"ProveedorID":2}
+07/04/2016 14:23:03 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058768,"ProveedorID":2}
+07/04/2016 14:25:08 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058784,"ProveedorID":2}
+07/04/2016 14:25:21 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058909,"ProveedorID":2}
+07/04/2016 14:25:25 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058922,"ProveedorID":2}
+07/04/2016 14:26:29 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058925,"ProveedorID":2}
+07/04/2016 14:28:39 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460058990,"ProveedorID":2}
+07/04/2016 14:29:04 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460059120,"ProveedorID":2}
+07/04/2016 14:29:13 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460059144,"ProveedorID":2}
+07/04/2016 14:30:16 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460059153,"ProveedorID":2}
+07/04/2016 14:30:21 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460059216,"ProveedorID":2}
+07/04/2016 16:16:40 - Usuario:samAdmin, pass: samadmin
+07/04/2016 16:16:40 - GUID devuelto: 
+07/04/2016 16:16:40 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 16:16:41 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460065600,"ProveedorID":2}
+07/04/2016 16:17:01 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460065602,"ProveedorID":2}
+07/04/2016 16:58:08 - Usuario:samAdmin, pass: samadmin
+07/04/2016 16:58:08 - GUID devuelto: 
+07/04/2016 16:58:08 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 16:58:08 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460068088,"ProveedorID":2}
+07/04/2016 16:58:15 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460068089,"ProveedorID":2}
+07/04/2016 17:29:31 - Usuario:samAdmin, pass: samadmin
+07/04/2016 17:29:31 - GUID devuelto: 
+07/04/2016 17:29:31 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 17:29:32 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460069972,"ProveedorID":2}
+07/04/2016 17:31:15 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460069973,"ProveedorID":2}
+07/04/2016 17:31:57 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460070076,"ProveedorID":2}
+07/04/2016 17:33:11 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460070118,"ProveedorID":2}
+07/04/2016 18:15:10 - Usuario:samAdmin, pass: samadmin
+07/04/2016 18:15:10 - GUID devuelto: 
+07/04/2016 18:15:10 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 18:15:11 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460072711,"ProveedorID":2}
+07/04/2016 18:49:41 - Usuario:samAdmin, pass: samadmin
+07/04/2016 18:49:41 - GUID devuelto: 
+07/04/2016 18:49:41 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 18:49:41 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460074781,"ProveedorID":2}
+07/04/2016 18:53:06 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460074788,"ProveedorID":2}
+07/04/2016 18:53:40 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460074979,"ProveedorID":2}
+07/04/2016 18:53:47 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460075021,"ProveedorID":2}
+07/04/2016 18:56:43 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460075027,"ProveedorID":2}
+07/04/2016 19:03:22 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460075203,"ProveedorID":2}
+07/04/2016 19:22:37 - Usuario:samAdmin, pass: samadmin
+07/04/2016 19:22:37 - GUID devuelto: 
+07/04/2016 19:22:37 - {"UsuarioID":0,"NombreUsuario":null,"ContrasenaHash":null,"PerfilID":0,"BloqueadoPorAdministracion":false,"Activo":false,"ProveedorID":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+07/04/2016 19:22:38 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460076758,"ProveedorID":2}
