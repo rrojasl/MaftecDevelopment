@@ -17,6 +17,8 @@
 };
 SuscribirEventos();
 
+SuscribirEventos();
+
 function SuscribirEventoListaJuntas()
 {
     $("#ListaJuntas").kendoMultiSelect({

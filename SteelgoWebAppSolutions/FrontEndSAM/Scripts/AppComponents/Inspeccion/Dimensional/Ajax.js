@@ -15,7 +15,7 @@ function AjaxObtenerListaInspector() {
 }
 function AjaxObtenerListaDefectos() {
     $Defectos.Defectos.read({ lenguaje: $("#language").val(), TipoPrueba: TipoPrueba, token: Cookies.get("token") }).done(function (data) {
-            $("#inputDefecto").data("kendoComboBox").value("");
+        $("#inputDefecto").data("kendoComboBox").value("");
             $("#inputDefecto").data("kendoComboBox").dataSource.data(data)
     });
 }

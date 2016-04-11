@@ -10,6 +10,8 @@
     SuscribirEventoAgregarCapturaRapida();
 };
 
+SuscribirEventos();
+
 function SuscribirEventoAgregarCapturaRapida() {
     $('#btnAplicarCapturaRapida').click(function (e) {
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
@@ -150,9 +152,9 @@ function SuscribirEventoInspector() {
     });
 
     AjaxObtenerListaInspector();
-}
+};
 function SuscribirEventoDefecto() {
-   
+
     $('#inputDefecto').kendoComboBox({
         dataTextField: "Nombre",
         dataValueField: "DefectoID",
@@ -168,11 +170,11 @@ function SuscribirEventoDefecto() {
             else {
                 $("#inputDefecto").data("kendoComboBox").value("");
             }
-            
+
         }
     });
     AjaxObtenerListaDefectos();
-}
+};
 function SuscribirEventoResultadoDimensional() {
 
     $('input:radio[name=ResultadoDimensional]:nth(0)').change(function () {
@@ -194,7 +196,7 @@ function suscribirEventoAgregar() {
             AjaxObtenerJSonGrid();
         }
     });
-}
+};
 function suscribirEventoGuardar() {
 
     $('.accionGuardar').click(function (e) {
@@ -218,14 +220,14 @@ function suscribirEventoGuardar() {
         AjaxGuardar(ds._data);
         limpiar();
     });
-    
+
 
     $('#btnGuardarYNuevo1').click(function (e) {
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardar(ds._data);
         limpiar();
     });
-}
+};
 function suscribirEventoCancelar() {
     $('#btnCancelar').click(function (e) {
         limpiar();
