@@ -37,20 +37,20 @@ function AjaxCargaCamposPredetrminados() {
         }
     
         if (data.Llena == "Todos") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', true);
-            $('input:radio[name=LLena]:nth(1)').attr('checked', false);
+            $('input:radio[name=LLena]:nth(0)').trigger("click");
+            //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
             $("input:radio[name=LLena]:checked").change();
            
         }
         else if (data.Llena == "Vacios") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', false);
-            $('input:radio[name=LLena]:nth(1)').attr('checked', true);
+            //$('input:radio[name=LLena]:nth(0)').attr('checked', false);
+            $('input:radio[name=LLena]:nth(1)').trigger("click");
             $("input:radio[name=LLena]:checked").change();
            
         }
         else {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', false);
-            $('input:radio[name=LLena]:nth(1)').attr('checked', true);
+            //$('input:radio[name=LLena]:nth(0)').attr('checked', false);
+            $('input:radio[name=LLena]:nth(1)').trigger("click");
             $("input:radio[name=LLena]:checked").change();
            
         }

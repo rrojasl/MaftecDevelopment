@@ -159,7 +159,7 @@ function suscribirEventoVer() {
     $('#btnAgregar').click(function (e) {
         if ($("#Area").val() != "") {
             if ($("#Cuadrante").val() != "") {
-                AjaxCargarDatos($("#Area").data("kendoComboBox").value(), $("#Cuadrante").data("kendoComboBox").value(), $('input:radio[name=Impreso]:checked').val(), $('input:radio[name=Captura]:checked').val(), $('input:radio[name=ConCinta]:checked').val());
+                AjaxCargarDatos($("#Area").data("kendoComboBox").value(), $("#Cuadrante").data("kendoComboBox").value(), $('input:radio[name=Impreso]:checked').val(), $('input:radio[name=Captura]:checked').val(), 2);
             }
             else {
                 displayMessage("EmbarqueMarcadoMensajeCuadrante", "", "1");
