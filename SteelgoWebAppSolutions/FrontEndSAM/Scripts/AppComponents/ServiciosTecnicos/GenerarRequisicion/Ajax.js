@@ -82,12 +82,12 @@ function AjaxCargarCamposPredeterminados() {
     loadingStart();
     $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
         if (data.Muestra == "Sincaptura") {
-            $('input:radio[name=Muestra]:nth(0)').attr('checked');
-            $('input:radio[name=Muestra]:nth(1)').removeAttr('checked');
+            $('input:radio[name=Muestra]:nth(0)').trigger("click");
+            //$('input:radio[name=Muestra]:nth(1)').removeAttr('checked');
         }
         else if (data.Muestra == "Todos") {
-            $('input:radio[name=Muestra]:nth(0)').removeAttr('checked');
-            $('input:radio[name=Muestra]:nth(1)').attr('checked', true);
+            //$('input:radio[name=Muestra]:nth(0)').removeAttr('checked');
+            $('input:radio[name=Muestra]:nth(1)').trigger("click");
         }
         loadingStop();
         cargaInicialRequisicionEditar();

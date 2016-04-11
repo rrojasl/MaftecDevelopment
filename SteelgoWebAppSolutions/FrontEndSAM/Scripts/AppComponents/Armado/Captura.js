@@ -164,9 +164,7 @@ function CargarGrid() {
         },
         navigatable: true,
         editable: true,
-        filterable: {
-            extra: false
-        },
+        filterable: getKendoGridFilterable($("#language").data("kendoDropDownList").value()),
         autoHeight: true,
         sortable: true,
         scrollable: true,
@@ -191,7 +189,13 @@ function CargarGrid() {
             { field: "InformacionDetalle", title: _dictionary.CapturaArmadoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "115px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TemplateMensajeTrabajosAdicionales#</span></a>" },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "99px" }
 
-        ]
+        ],
+        dataBound: function (e) {
+            //$(".k-grid input.k-textbox").prop('readonly', true);
+            //$(".k-grid td .k-button").text('');
+            //$(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
+            quickHeadFilter($("#grid").data("kendoGrid"));
+        }
     });
     CustomisaGrid($("#grid"));
 }

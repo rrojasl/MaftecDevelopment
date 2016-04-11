@@ -15,6 +15,7 @@
     SuscribirEventoListaJuntas();
    
 };
+SuscribirEventos();
 
 function SuscribirEventoListaJuntas()
 {

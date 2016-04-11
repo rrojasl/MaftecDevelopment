@@ -52,7 +52,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-	<Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -1195,8 +1195,12 @@
     <Compile Include="Controllers\Armado\ArmadoController.cs" />
     <Compile Include="Controllers\AvisoLlegada\AvisoLlegadaController.cs" />
     <Compile Include="Controllers\Busqueda\BusquedaController.cs" />
+    <Compile Include="Controllers\Catalogos\CatalogosController.cs" />
+    <Compile Include="Controllers\Catalogos\ListadoCamposPredeterminadosController.cs" />
     <Compile Include="Controllers\Catalogos\ObreroController.cs" />
     <Compile Include="Controllers\Catalogos\ObreroUbicacionController.cs" />
+    <Compile Include="Controllers\Catalogos\SoldadorCertificacionController.cs" />
+    <Compile Include="Controllers\Catalogos\SoldadorCertificacionPopUpController.cs" />
     <Compile Include="Controllers\Catalogos\TipoObreroController.cs" />
     <Compile Include="Controllers\Catalogos\TipoTrabajosAdicionalesController.cs" />
     <Compile Include="Controllers\Catalogos\TrabajosAdicionalesController.cs" />
@@ -1225,6 +1229,8 @@
     <Compile Include="Controllers\PlaneacionYControl\PlaneacionYControlController.cs" />
     <Compile Include="Controllers\popups\AgregarTipoTrabajoAdicionalController.cs" />
     <Compile Include="Controllers\popups\AgregarTrabajoAdicionalController.cs" />
+    <Compile Include="Controllers\popups\EditaPQRController.cs" />
+    <Compile Include="Controllers\popups\PopUpsController.cs" />
     <Compile Include="Controllers\PQR\PQRController.cs" />
     <Compile Include="Controllers\PreDespacho\PreDespachoController.cs" />
     <Compile Include="Controllers\Proxy\ProxyController.cs" />
@@ -1471,6 +1477,10 @@
     <Content Include="Views\Prueba\Prueba.cshtml" />
     <Content Include="Views\Spool\ListadoSpoolGranel.cshtml" />
     <Content Include="Views\Spool\SpoolGranel.cshtml" />
+    <Content Include="Views\Embarque\Empaquetado.cshtml" />
+    <Content Include="Views\Embarque\Encintado.cshtml" />
+    <Content Include="Views\Embarque\Etiquetado.cshtml" />
+    <Content Include="Views\Errors\accessdenied.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

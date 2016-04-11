@@ -71,14 +71,14 @@ function AjaxCargarCamposPredeterminados() {
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoMuestra }).done(function (data) {
         
         if (data == "sin captura") {
-            $('input:radio[name=Muestra]:nth(0)').attr('checked', true);
-            $('input:radio[name=Muestra]:nth(1)').attr('checked', false);
+            $('input:radio[name=Muestra]:nth(0)').trigger("click");
+            //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
             $("#styleSinCaptura").addClass("active");
             $("#styleTodos").removeClass("active");
         }
         else if (data == "Todos") {
-            $('input:radio[name=Muestra]:nth(0)').attr('checked', false);
-            $('input:radio[name=Muestra]:nth(1)').attr('checked', true);
+            //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
+            $('input:radio[name=Muestra]:nth(1)').trigger("click");
             $("#styleTodos").addClass("active");
             $("#styleSinCaptura").removeClass("active");
         }

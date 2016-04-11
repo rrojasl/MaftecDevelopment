@@ -453,15 +453,15 @@ function AjaxCargarCamposPredeterminados() {
 
       
         if (data.TipoCaptura == "Reporte") {
-            $('input:radio[name=TipoAgregado]:nth(0)').attr('checked', true);
-            $('input:radio[name=TipoAgregado]:nth(1)').removeAttr('checked');
+            $('input:radio[name=TipoAgregado]:nth(0)').trigger("click");
+            //$('input:radio[name=TipoAgregado]:nth(1)').removeAttr('checked');
             $("#styleReporte").addClass("active");
             $("#styleListado").removeClass("active");
             $('input:radio[name=TipoAgregado]:nth(0)').attr('checked', true).trigger("change");
         }
         else if (data.TipoCaptura == "Lista") {
-            $('input:radio[name=TipoAgregado]:nth(0)').removeAttr('checked');
-            $('input:radio[name=TipoAgregado]:nth(1)').attr('checked', true);
+            //$('input:radio[name=TipoAgregado]:nth(0)').removeAttr('checked');
+            $('input:radio[name=TipoAgregado]:nth(1)').trigger("click");
             $("#styleListado").addClass("active");
             $("#styleReporte").removeClass("active");
             $('input:radio[name=TipoAgregado]:nth(1)').attr('checked', true).trigger("change");
@@ -482,24 +482,24 @@ function AjaxCargarCamposPredeterminadosCambiaTipoVista() {
         endRangeDate.val(NewDate);
 
         if (data.Muestra == "Sincaptura") {
-            $('input:radio[name=Muestra]:nth(0)').attr('checked');
-            $('input:radio[name=Muestra]:nth(1)').removeAttr('checked');
+            $('input:radio[name=Muestra]:nth(0)').trigger("click");
+            //$('input:radio[name=Muestra]:nth(1)').removeAttr('checked');
 
         }
         else if (data.Muestra == "Todos") {
-            $('input:radio[name=Muestra]:nth(0)').removeAttr('checked');
-            $('input:radio[name=Muestra]:nth(1)').attr('checked', true);
+            //$('input:radio[name=Muestra]:nth(0)').removeAttr('checked');
+            $('input:radio[name=Muestra]:nth(1)').trigger("click");
 
         }
 
         if (data.Llena == "Todos") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', true);
-            $('input:radio[name=LLena]:nth(1)').removeAttr('checked');
+            $('input:radio[name=LLena]:nth(0)').trigger("click");
+            //$('input:radio[name=LLena]:nth(1)').removeAttr('checked');
 
         }
         else if (data.Llena == "Vacios") {
-            $('input:radio[name=LLena]:nth(0)').removeAttr('checked');
-            $('input:radio[name=LLena]:nth(1)').attr('checked', true);
+            //$('input:radio[name=LLena]:nth(0)').removeAttr('checked');
+            $('input:radio[name=LLena]:nth(1)').trigger("click");
 
         }
         

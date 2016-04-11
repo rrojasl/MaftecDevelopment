@@ -246,36 +246,36 @@ function AjaxCargarCamposPredeterminados() {
         endRangeDate.val(NewDate);
 
         if (data.Muestra == "sin captura") {
-            $('input:radio[name=Muestra]:nth(0)').attr('checked', true);
-            $('input:radio[name=Muestra]:nth(1)').attr('checked', false);
+            $('input:radio[name=Muestra]:nth(0)').trigger("click");
+            //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
            
         }
         else if (data.Muestra == "Todos") {
-            $('input:radio[name=Muestra]:nth(0)').attr('checked', false);
-            $('input:radio[name=Muestra]:nth(1)').attr('checked', true);
+            //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
+            $('input:radio[name=Muestra]:nth(1)').trigger("click");
            
         }
 
         if (data.Llena == "Todos") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', true);
-            $('input:radio[name=LLena]:nth(1)').attr('checked', false);
+            $('input:radio[name=LLena]:nth(0)').trigger("click");
+            //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
            
         }
         else if (data.Llena == "Vacios") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', false);
-            $('input:radio[name=LLena]:nth(1)').attr('checked', true);
+            //$('input:radio[name=LLena]:nth(0)').trigger("click");
+            $('input:radio[name=LLena]:nth(1)').trigger("click");
            
         }
 
         if (data.TipoCaptura == "Reporte") {
-            $('input:radio[name=TipoAgregado]:nth(0)').attr('checked', true);
-            $('input:radio[name=TipoAgregado]:nth(1)').attr('checked', false);
+            $('input:radio[name=TipoAgregado]:nth(0)').trigger("click");
+            //$('input:radio[name=TipoAgregado]:nth(1)').attr('checked', false);
             $("#styleReporte").addClass("active");
             $("#styleListado").removeClass("active");
         }
         else if (data.TipoCaptura == "Lista") {
-            $('input:radio[name=TipoAgregado]:nth(0)').attr('checked', false);
-            $('input:radio[name=TipoAgregado]:nth(1)').attr('checked', true);
+            //$('input:radio[name=TipoAgregado]:nth(0)').attr('checked', false);
+            $('input:radio[name=TipoAgregado]:nth(1)').trigger("click");
             $("#styleListado").addClass("active");
             $("#styleReporte").removeClass("active");
         }
