@@ -317,26 +317,78 @@ function cancelarCaptura(e) {
         if ($('#Guardar').text().trim() != "Editar") {
             var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
             var spoolIDRegistro = dataItem.SpoolID;
-            if (confirm(_dictionary.mensajeEliminarInspeccionVisualDimensional[$("#language").data("kendoDropDownList").value()])) {
+            windowTemplate = kendo.template($("#windowTemplate").html());
+
+            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                iframe: true,
+                title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                visible: false, //the window will not appear before its .open method is called
+                width: "auto",
+                height: "auto",
+                modal: true,
+                animation: {
+                    close: false,
+                    open: false
+                }
+            }).data("kendoWindow");
+
+            ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
+                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+            ventanaConfirm.open().center();
+
+            $("#yesButton").click(function (handler) {
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
                 dataItem.Accion = 3;
                 if (dataItem.InspeccionVisualID == 0)
                     dataSource.remove(dataItem);
                 $("#grid").data("kendoGrid").dataSource.sync();
-            }
+                ventanaConfirm.close();
+            });
+            $("#noButton").click(function (handler) {
+                ventanaConfirm.close();
+            });
+
+
         }
     }
     else {
         if ($('#Guardar').text().trim() != "Edit") {
             var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
             var spoolIDRegistro = dataItem.SpoolID;
-            if (confirm(_dictionary.mensajeEliminarInspeccionVisualDimensional[$("#language").data("kendoDropDownList").value()])) {
+            var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+            var spoolIDRegistro = dataItem.SpoolID;
+            windowTemplate = kendo.template($("#windowTemplate").html());
+
+            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                iframe: true,
+                title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                visible: false, //the window will not appear before its .open method is called
+                width: "auto",
+                height: "auto",
+                modal: true,
+                animation: {
+                    close: false,
+                    open: false
+                }
+            }).data("kendoWindow");
+
+            ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
+                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+            ventanaConfirm.open().center();
+
+            $("#yesButton").click(function (handler) {
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
                 dataItem.Accion = 3;
                 if (dataItem.InspeccionVisualID == 0)
                     dataSource.remove(dataItem);
                 $("#grid").data("kendoGrid").dataSource.sync();
-            }
+                ventanaConfirm.close();
+            });
+            $("#noButton").click(function (handler) {
+                ventanaConfirm.close();
+            });
         }
     }
         

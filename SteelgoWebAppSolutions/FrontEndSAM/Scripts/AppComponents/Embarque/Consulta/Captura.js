@@ -28,28 +28,28 @@ function CargarGrid() {
             serverFiltering: false,
             serverSorting: false
         },
-        navigatable: true,
-        filterable: {
-            extra: false
-        },
-        editable: true,
-        autoHeight: true,
-        sortable: true,
-        scrollable: true,
-        pageable: {
-            refresh: false,
-            pageSizes: [10, 15, 20],
-            info: false,
-            input: false,
-            numeric: true,
-        },
         columns: [
             { field: "SpoolID", title: _dictionary.EmbarqueConsultaSpoolID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
             { field: "Paso", title: _dictionary.EmbarqueConsultaPaso[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
             { field: "Cuadrante", title: _dictionary.EmbarqueConsultaCuadrante[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
             { field: "Traveler", title: _dictionary.EmbarqueConsultaTraveler[$("#language").data("kendoDropDownList").value()], filterable: false, template: "<a>" + _dictionary.EmbarqueConsultaVer[$("#language").data("kendoDropDownList").value()] + "</a>", width: "150px" },
             { field: "Detalle", title: _dictionary.EmbarqueConsultaDetalle[$("#language").data("kendoDropDownList").value()], filterable: false, template: "<a>" + _dictionary.EmbarqueConsultaLinkShop[$("#language").data("kendoDropDownList").value()] + "</a>", width: "150px" }
-        ]
+        ],
+        autoHeight: true,
+        sortable: true,
+        scrollable: true,
+        filterable: getKendoGridFilterable($("#language").data("kendoDropDownList").value()),
+        pageable: {
+            refresh: false,
+            pageSizes: [10, 15, 20],
+            info: false,
+            input: false,
+            numeric: true,
+            buttonCount: 2
+        },
+        dataBound: function (e) {
+            quickHeadFilter($("#grid").data("kendoGrid"));
+        }
     });
     CustomisaGrid($("#grid"));
 };

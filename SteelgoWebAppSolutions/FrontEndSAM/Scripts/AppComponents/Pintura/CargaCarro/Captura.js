@@ -103,7 +103,11 @@ function eliminarCaptura(e) {
             visible: false, //the window will not appear before its .open method is called
             width: "400px",
             height: "auto",
-            modal: true
+            modal: true,
+            animation: {
+                close: false,
+                open: false
+            }
         }).data("kendoWindow");
           
         ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +

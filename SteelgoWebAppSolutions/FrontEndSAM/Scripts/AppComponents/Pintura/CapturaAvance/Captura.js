@@ -130,6 +130,10 @@ function VentanaModalDescargarMedioTransporte(e) {
                 top: "1%",
                 left: "1%"
             },
+            animation: {
+                close: false,
+                open: false
+            },
             actions: [
                 "Close"
             ],

@@ -6,15 +6,14 @@ var endRangeDate;
 var listadoJsonCaptura;
 var anteriorlongitudTrabajosAdicionales;
 var actuallongitudTrabajosAdicionales;
-
-IniciarCapturaInspecion();
-//Cambia lenguaje
 function IniciarCapturaInspecion() {
     CargarFecha();
     asignarProyecto();
     SuscribirEventos();
-    
 };
+IniciarCapturaInspecion();
+//Cambia lenguaje
+
 function changeLanguageCall() {
     CargarGrid();
     endRangeDate.data("kendoDatePicker").setOptions({
@@ -195,8 +194,27 @@ function cancelarCaptura(e) {
     var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
     if ($("#language").val() == "es-MX") {
         if ($('#Guardar').text().trim() != "Editar") {
+            windowTemplate = kendo.template($("#windowTemplate").html());
 
-            if (confirm(_dictionary.CapturaInspeccionPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()])) {
+            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                iframe: true,
+                title: _dictionary.WarningTitle[$("#language").data("kendoDropDownList").value()],
+                visible: false, //the window will not appear before its .open method is called
+                width: "auto",
+                height: "auto",
+                modal: true,
+                animation: {
+                    close: false,
+                    open: false
+                }
+            }).data("kendoWindow");
+
+            ventanaConfirm.content(_dictionary.CapturaInspeccionPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+                        "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+
+            ventanaConfirm.open().center();
+
+            $("#yesButton").click(function () {
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
 
                 if (dataItem.Accion == 1)
@@ -205,23 +223,50 @@ function cancelarCaptura(e) {
                     dataItem.Accion = 3;
                 $("#grid").data("kendoGrid").dataSource.sync();
 
-            }
+                ventanaConfirm.close();
+            });
+            $("#noButton").click(function () {
+                ventanaConfirm.close();
+            });
+
         }
     }
     else {
         if ($('#Guardar').text().trim() != "Edit") {
+            windowTemplate = kendo.template($("#windowTemplate").html());
 
-            if (confirm(_dictionary.CapturaInspeccionPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()])) {
+            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                iframe: true,
+                title: _dictionary.WarningTitle[$("#language").data("kendoDropDownList").value()],
+                visible: false, //the window will not appear before its .open method is called
+                width: "auto",
+                height: "auto",
+                modal: true,
+                animation: {
+                    close: false,
+                    open: false
+                }
+            }).data("kendoWindow");
+
+            ventanaConfirm.content(_dictionary.CapturaInspeccionPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+                        "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+
+            ventanaConfirm.open().center();
+
+            $("#yesButton").click(function () {
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
 
                 if (dataItem.Accion == 1)
                     dataSource.remove(dataItem);
                 else
                     dataItem.Accion = 3;
-
                 $("#grid").data("kendoGrid").dataSource.sync();
 
-            }
+                ventanaConfirm.close();
+            });
+            $("#noButton").click(function () {
+                ventanaConfirm.close();
+            });
         }
     }
 

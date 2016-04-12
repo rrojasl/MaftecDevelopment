@@ -154,9 +154,34 @@ function CargarGridPopUp() {
                         e.preventDefault();
                         var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                         var dataSource = this.dataSource;
-                        if (confirm(_dictionary.ValidacionResultadosMensajeEliminarDefecto[$("#language").data("kendoDropDownList").value()])) {
+                        windowTemplate = kendo.template($("#windowTemplate").html());
+
+                        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                            iframe: true,
+                            title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                            visible: false, //the window will not appear before its .open method is called
+                            width: "auto",
+                            height: "auto",
+                            modal: true,
+                            animation: {
+                                close: false,
+                                open: false
+                            }
+                        }).data("kendoWindow");
+
+                        ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
+                                     "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+                        ventanaConfirm.open().center();
+
+                        $("#yesButton").click(function (handler) {
                             dataItem.Accion = 3;
-                        }
+                            ventanaConfirm.close();
+                        });
+                        $("#noButton").click(function (handler) {
+                            ventanaConfirm.close();
+                        });
+                        
                         dataSource.sync();
                     }
                 },
