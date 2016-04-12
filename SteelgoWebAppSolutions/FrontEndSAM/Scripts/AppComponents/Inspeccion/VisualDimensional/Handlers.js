@@ -343,7 +343,11 @@ function SuscribirEventoAgregarCapturaRapida()
                 visible: false, //the window will not appear before its .open method is called
                 width: "auto",
                 height: "auto",
-                modal: true
+                modal: true,
+                animation: {
+                    open: false,
+                    close: false
+                }
             }).data("kendoWindow");
 
             ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
