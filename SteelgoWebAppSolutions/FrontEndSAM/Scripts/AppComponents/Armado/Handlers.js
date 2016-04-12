@@ -20,6 +20,7 @@
 function suscribirEventoAdicionales() {
 
     $(document).on('click', '.botonAdicionales', function (e) {
+        e.preventDefault();
         var grid = $("#grid").data("kendoGrid"),
         dataItem = grid.dataItem($(e.target).closest("tr"));
         LlenarGridPopUp(dataItem);
@@ -28,6 +29,7 @@ function suscribirEventoAdicionales() {
 
     function SuscribirEventoCancelarAdicionales() {
         $("#CancelarTrabajosAdicionales").click(function (e) {
+            e.preventDefault();
             $("#windowGrid").data("kendoWindow").close();
         });
     }
@@ -35,6 +37,7 @@ function suscribirEventoAdicionales() {
 
     function SuscribirEventoPlanchar() {
         $("#ButtonPlanchar").click(function (e) {
+            e.preventDefault();
             if ($("#grid").data("kendoGrid").dataSource._data.length > 0) {
 
 
@@ -220,7 +223,7 @@ function suscribirEventoAdicionales() {
 
     function suscribirEventoAgregar() {
         $('#ButtonAgregar').click(function (e) {
-        
+            e.preventDefault();
             if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte" ) {
                 AjaxCargarReporteJuntas();
             }

@@ -14,6 +14,7 @@ SuscribirEventos();
 
 function SuscribirEventoAgregarCapturaRapida() {
     $('#btnAplicarCapturaRapida').click(function (e) {
+        e.preventDefault();
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
             windowTemplate = kendo.template($("#windowTemplate").html());
 
@@ -195,6 +196,7 @@ function SuscribirEventoResultadoDimensional() {
 };
 function suscribirEventoAgregar() {
     $('#btnAgregar').click(function (e) {
+        e.preventDefault();
         if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
             AjaxobtenerDetalleDimensional($("#InputID").val());
             AjaxObtenerJSonGrid();
@@ -204,6 +206,7 @@ function suscribirEventoAgregar() {
 function suscribirEventoGuardar() {
 
     $('.accionGuardar').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
 
         if (ds._data.length > 0) {
@@ -220,6 +223,7 @@ function suscribirEventoGuardar() {
 
 
     $('#btnGuardarYNuevo').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardar(ds._data);
         limpiar();
@@ -227,6 +231,7 @@ function suscribirEventoGuardar() {
 
 
     $('#btnGuardarYNuevo1').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardar(ds._data);
         limpiar();
@@ -234,6 +239,7 @@ function suscribirEventoGuardar() {
 };
 function suscribirEventoCancelar() {
     $('#btnCancelar').click(function (e) {
+        e.preventDefault();
         limpiar();
     });
 }

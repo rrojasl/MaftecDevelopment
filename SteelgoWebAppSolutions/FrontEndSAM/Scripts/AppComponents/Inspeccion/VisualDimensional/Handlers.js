@@ -280,6 +280,7 @@ function SuscribirEventoResultadoVisual() {
 };
 function suscribirEventoAgregar() {
     $('#btnAgregar').click(function (e) {
+        e.preventDefault();
         if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
             AjaxobtenerDetalleDimensional($("#InputID").val());
             AjaxObtenerJSonGrid();
@@ -302,6 +303,7 @@ function SuscribirEventoEliminar(idtable) {
 function suscribirEventoGuardar() {
 
     $('.accionGuardar').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         if (ds._data.length > 0) {
             if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
@@ -318,6 +320,7 @@ function suscribirEventoGuardar() {
 
 
     $('#btnGuardarYNuevo').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardar(ds._data);
         limpiar();
@@ -326,6 +329,7 @@ function suscribirEventoGuardar() {
     
 
     $('#btnGuardarYNuevo1').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardar(ds._data);
         limpiar();
@@ -334,6 +338,7 @@ function suscribirEventoGuardar() {
 function SuscribirEventoAgregarCapturaRapida()
 {
     $('#btnAplicarCapturaRapida').click(function (e) {
+        e.preventDefault();
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
             windowTemplate = kendo.template($("#windowTemplate").html());
 
@@ -382,6 +387,7 @@ function SuscribirEventoAgregarCapturaRapida()
 }
 function suscribirEventoCancelar() {
     $('#btnCancelar').click(function (e) {
+        e.preventDefault();
         limpiar();
     });
 }
