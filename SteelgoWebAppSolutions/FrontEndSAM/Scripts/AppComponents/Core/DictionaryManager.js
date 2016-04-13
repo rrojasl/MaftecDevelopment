@@ -7027,7 +7027,11 @@ _dictionary = {
     },
     "Listado": {
         "es-MX": "Junta",
-        "en-US": "Junta"
+        "en-US": "Joint"
+    },
+    "JuntaGrid": {
+        "es-MX": "Jta",
+        "en-US": "Jnt"
     },
     "lblInspeccion": {
         "es-MX": "Inspección",
@@ -7554,10 +7558,6 @@ _dictionary = {
         "es-MX": "Spool",
         "en-US": "Spool"
     },
-    "CapturaArmadoHeaderJunta": {
-        "es-MX": "Jta",
-        "en-US": "Jnt"
-    },
     "CapturaArmadoHeaderMostrar": {
         "es-MX": "Mostrar",
         "en-US": "Show"
@@ -7653,10 +7653,6 @@ _dictionary = {
     "DimensionalVisualHeaderSpoolID": {
         "es-MX": "SpoolID",
         "en-US": "SpoolID"
-    },
-    "DimensionalVisualHeaderJunta": {
-        "es-MX": "Junta",
-        "en-US": "Joint"
     },
     "DimensionalVisualHeaderResultadoDimesional": {
         "es-MX": "Resultado dimensional",
@@ -7906,10 +7902,6 @@ _dictionary = {
     "CapturaSoldaduraTipoJunta": {
         "es-MX": "Tipo Junta",
         "en-US": "Joint type"
-    },
-    "CapturaSoldaduraJunta": {
-        "es-MX": "Jta",
-        "en-US": "Jta"
     },
     "CapturaSoldaduraCedula": {
         "es-MX": "Cedula",
@@ -10284,10 +10276,6 @@ _dictionary = {
     "PeticionMotajeHeaderEmitido": {
         "es-MX": "Emitido",
         "en-US": "Issued"
-    },
-    "PeticionMotajeHeaderJunta": {
-        "es-MX": "Junta",
-        "en-US": "Joint"
     },
     "PeticionMotajeHeaderM2": {
         "es-MX": "M2",

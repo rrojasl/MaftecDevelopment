@@ -256,7 +256,7 @@ function CargarGridSoldadura() {
         columns: [ 
             { field: "SpoolID", title: _dictionary.CapturaArmadoHeaderSpoolID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px" },
             { field: "JuntaID", title: "", filterable: true, width: "110px", hidden: true },
-            { field: "Junta", title: _dictionary.CapturaSoldaduraJunta[$("#language").data("kendoDropDownList").value()], filterable: true, width: "55px" },
+            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: true, width: "55px" },
             { field: "DetalleJunta", title: _dictionary.CapturaSoldaduraDetalleJunta[$("#language").data("kendoDropDownList").value()], filterable: true, width: "180px" },
             { field: "FechaSoldadura", title: _dictionary.CapturaSoldaduraHeaderFechaSoldadura[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "Taller", title: _dictionary.CapturaSoldaduraHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxTaller, width: "130px" },

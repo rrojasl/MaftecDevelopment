@@ -129,7 +129,7 @@ function CargarGrid() {
             { field: "SpoolID", title: _dictionary.PeticionMotajeHeaderSpoolID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px" },
             { field: "GrupoEmbarque", title: _dictionary.PeticionMotajeHeaderGrupoEmbarque[$("#language").data("kendoDropDownList").value()], filterable: true, width: "180px" },
             { field: "Emitido", title: _dictionary.PeticionMotajeHeaderEmitido[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px" },
-            { field: "Junta", title: _dictionary.PeticionMotajeHeaderJunta[$("#language").data("kendoDropDownList").value()], filterable: false, width: "100px" },
+            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: false, width: "55px" },
             { field: "m2", title: _dictionary.PeticionMotajeHeaderM2[$("#language").data("kendoDropDownList").value()], filterable: false, width: "100px" },
             { field: "Peqs", title: _dictionary.PeticionMotajeHeaderPeqs[$("#language").data("kendoDropDownList").value()], filterable: false, width: "100px" },
             { field: "Kg", title: _dictionary.PeticionMotajeHeaderKg[$("#language").data("kendoDropDownList").value()], filterable: false, width: "100px" },
