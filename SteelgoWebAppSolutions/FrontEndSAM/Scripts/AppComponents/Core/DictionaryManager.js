@@ -7904,8 +7904,8 @@ _dictionary = {
         "en-US": "Joint type"
     },
     "CapturaSoldaduraJunta": {
-        "es-MX": "Junta",
-        "en-US": "Joint"
+        "es-MX": "Jta",
+        "en-US": "Jta"
     },
     "CapturaSoldaduraCedula": {
         "es-MX": "Cedula",

@@ -263,7 +263,7 @@ function RenderComboBoxSoldadorTrabajos(container, options) {
     var dataItem;
 
 
-    $('<input required data-text-field="Soldador" data-value-field="Soldador" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Soldador" data-value-field="Soldador" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
@@ -326,7 +326,7 @@ function RenderComboBoxTrabajos(container, options) {
     loadingStart();
     var dataItem;
 
-    $('<input required data-text-field="TrabajoAdicional" data-value-field="TrabajoAdicional" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="TrabajoAdicional" data-value-field="TrabajoAdicional" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
@@ -381,7 +381,7 @@ function ObtenerDescCorrectaSoldadorTrabajos(lista, ObreroID) {
 function RenderComboBoxTaller(container, options) {
     loadingStart();
     var dataItem;
-    $('<input required data-text-field="Nombre" id=' + options.model.uid + ' data-value-field="TallerID" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Nombre" id=' + options.model.uid + ' data-value-field="TallerID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
@@ -434,7 +434,7 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     if (ItemSeleccionado.PermiteTerminadoRaiz) {
 
         var dataItem;
-        $('<input required data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
+        $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
@@ -489,7 +489,7 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
     if (ItemSeleccionado.PermiteTerminadoRelleno) {
 
         var dataItem;
-        $('<input required data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
+        $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
