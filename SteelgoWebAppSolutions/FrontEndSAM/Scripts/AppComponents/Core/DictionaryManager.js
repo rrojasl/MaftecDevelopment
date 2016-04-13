@@ -7599,12 +7599,12 @@ _dictionary = {
         "en-US": "filling mass"
     },
     "CapturaArmadoHeaderNumeroUnico1": {
-        "es-MX": "Num. Un. 1",
-        "en-US": "Uni. Nu. 1"
+        "es-MX": "Único 1",
+        "en-US": "Unique 1"
     },
     "CapturaArmadoHeaderNumeroUnico2": {
-        "es-MX": "Num. Un. 2",
-        "en-US": "Uni. Nu. 2"
+        "es-MX": "Único 2",
+        "en-US": "Unique 2"
     },
     "CapturaArmadoHeaderAdicionales": {
         "es-MX": "Adicionales",
