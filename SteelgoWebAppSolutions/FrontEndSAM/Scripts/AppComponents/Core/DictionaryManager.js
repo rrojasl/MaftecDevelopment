@@ -7626,6 +7626,10 @@ _dictionary = {
         "es-MX": "La Orden de trabajo no es valida.",
         "en-US": "The work order is not valid."
     },
+    "CapturaArmadoMensajeOrdenTrabajoNoEncontrada": {
+        "es-MX": "Orden de trabajo no encontrada",
+        "en-US": "Work order is not found"
+    },
     "CapturaArmadoMensajeGuardadoExitoso": {
         "es-MX": "Datos guardados correctamente.",
         "en-US": "Data saved correctly."

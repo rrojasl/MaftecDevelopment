@@ -9,8 +9,16 @@
 }
 
 function AjaxObtenerSpoolID() {
+    var OrdenTrabajoOrigianl = $("#InputOrdenTrabajo").val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-        $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
+        if (data.OrdenTrabajo != ""){
+            $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
+        }
+        else {
+            $("#InputOrdenTrabajo").val(OrdenTrabajoOrigianl);
+            displayNotify("WarningTitle", "CapturaArmadoMensajeOrdenTrabajoNoEncontrada", "", '1');
+        }
+            
         $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
         Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
     });

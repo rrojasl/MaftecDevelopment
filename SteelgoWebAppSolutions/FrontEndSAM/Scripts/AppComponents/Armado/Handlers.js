@@ -405,11 +405,11 @@ function suscribirEventoAdicionales() {
                 try {
                     AjaxObtenerSpoolID();
                 } catch (e) {
-                    displayMessage("Mensajes_error", e.message, '3');
+                    displayMessage("Mensajes_error", e.message, '2');
 
                 }
             } else {
-                displayMessage("CapturaArmadoMensajeOrdenTrabajo", "", '1');
+                displayNotify("WarningTitle", "CapturaArmadoMensajeOrdenTrabajo", "", '1');
                 //$("#InputOrdenTrabajo").focus();
             }
         });

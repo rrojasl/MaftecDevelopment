@@ -107,6 +107,12 @@ body > .ui-pnotify-modal-overlay {
     bottom: 25px;
     top: auto;
 }
+
+.ui-pnotify.stack-topright {
+    top: 25px;
+    left: auto;
+}
+
 .ui-pnotify.stack-modal {
     left: 50%;
     right: auto;

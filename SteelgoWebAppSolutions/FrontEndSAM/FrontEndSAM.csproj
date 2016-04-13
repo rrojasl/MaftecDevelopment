@@ -122,16 +122,20 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\EmisionOT\EmisionOT.css" />
     <Content Include="Content\images\Delete_Grey.png" />
     <Content Include="Content\images\Dropdown_Arrow.png" />
     <Content Include="Content\images\flags\en-US-16.png" />
     <Content Include="Content\images\flags\en-US.png" />
+    <Content Include="Content\images\flags\en-US2.png" />
     <Content Include="Content\images\flags\es-MX-16.png" />
     <Content Include="Content\images\flags\es-MX.png" />
+    <Content Include="Content\images\flags\es-MX2.png" />
     <Content Include="Content\images\FooterLogo.png" />
     <Content Include="Content\images\loadingGift\loading.gif" />
     <Content Include="Content\images\logoPase.png" />
     <Content Include="Content\images\Logo_Login.jpg" />
+    <Content Include="Content\images\mobileMenu.png" />
     <Content Include="Content\images\SAMC_Add.png" />
     <Content Include="Content\images\SAMC_AddIcon.png" />
     <Content Include="Content\images\SAMC_Attachtment.png" />
@@ -156,12 +160,14 @@
     <Content Include="Content\images\SAMC_Datepicker.png" />
     <Content Include="Content\images\SAMC_Delete.png" />
     <Content Include="Content\images\SAMC_DetailIcon.png" />
+    <Content Include="Content\images\SAMC_DischargingIcon.png" />
     <Content Include="Content\images\SAMC_DropdownArrow.png" />
     <Content Include="Content\images\SAMC_Error_Icon_A.png" />
     <Content Include="Content\images\SAMC_Error_Icon_B.png" />
     <Content Include="Content\images\SAMC_Error_Icon_C.png" />
     <Content Include="Content\images\SAMC_FilterDown.png" />
     <Content Include="Content\images\SAMC_FilterUp.png" />
+    <Content Include="Content\images\SAMC_HeaderBanner.jpg" />
     <Content Include="Content\images\SAMC_HeaderBanner.png" />
     <Content Include="Content\images\SAMC_Icon_Calendar_Left.png" />
     <Content Include="Content\images\SAMC_Icon_Calendar_Right.png" />
@@ -437,6 +443,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\kendo\2014.2.716\images\kendoui.woff" />
@@ -1194,6 +1201,10 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\AppComponents\Core\SecurityManager.js" />
     <Content Include="Scripts\AppComponents\Core\DictionaryManager.js" />
+    <Content Include="Scripts\Widgets\GridStack\gridstack-extra.css" />
+    <Content Include="Scripts\Widgets\GridStack\gridstack.css" />
+    <Content Include="Scripts\Widgets\GridStack\gridstack.js" />
+    <Content Include="Scripts\Widgets\GridStack\Underscore.js" />
     <Content Include="Scripts\Widgets\Notify\src\pnotify.brighttheme.css" />
     <Content Include="Scripts\Widgets\Notify\src\pnotify.css" />
     <Content Include="Scripts\Widgets\Notify\src\pnotify.js" />
@@ -1496,6 +1507,8 @@
     <Content Include="Views\Embarque\Encintado.cshtml" />
     <Content Include="Views\Embarque\Etiquetado.cshtml" />
     <Content Include="Views\Errors\accessdenied.cshtml" />
+    <Content Include="Scripts\Widgets\GridStack\gridstack-extra.scss" />
+    <Content Include="Scripts\Widgets\GridStack\gridstack.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
