@@ -16,7 +16,7 @@ function AjaxObtenerSpoolID() {
         }
         else {
             $("#InputOrdenTrabajo").val(OrdenTrabajoOrigianl);
-            displayNotify("WarningTitle", "CapturaArmadoMensajeOrdenTrabajoNoEncontrada", "", '1');
+            displayNotify("CapturaArmadoMensajeOrdenTrabajoNoEncontrada", "", '1');
         }
             
         $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
@@ -82,7 +82,7 @@ function AjaxEjecutarGuardado(rows, tipoGuardar)
 {
     $CapturaArmado.Armado.create(rows, { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-            displayMessage("CapturaMensajeGuardadoExitoso", "", '1');
+            displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
 
             if (tipoGuardar == 1) {
                 Limpiar();
@@ -97,7 +97,7 @@ function AjaxEjecutarGuardado(rows, tipoGuardar)
         }
         else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
             //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
-            displayMessage("CapturaMensajeGuardadoErroneo", "", '1');
+            displayMessage("CapturaMensajeGuardadoErroneo", "", '2');
             loadingStop();
 
         }

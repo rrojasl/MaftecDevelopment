@@ -94,7 +94,7 @@ function displayError(message, messageComplement, type) {
     }, alertTimeOut);
 }
 
-function displayNotify(title, message, extraMessage, type) {
+function displayNotify( message, extraMessage, type) {
     var messageNotify;
 
     if (extraMessage.length > 0) {
@@ -105,7 +105,7 @@ function displayNotify(title, message, extraMessage, type) {
     }
 
     var options = {
-        title: _dictionary[title][$("#language").data("kendoDropDownList").value()],
+        
         text: messageNotify,
         styling: 'brighttheme', // brighttheme, bootstrap3, jqueryui
         hide: true,
@@ -125,9 +125,14 @@ function displayNotify(title, message, extraMessage, type) {
         case '2':
             options.type = "error";
             options.styling = "bootstrap3";
+            options.title = _dictionary.ErrorTitle[$("#language").data("kendoDropDownList").value()];
+            break;
+        case '1':
+            options.title = _dictionary.WarningTitle[$("#language").data("kendoDropDownList").value()];
             break;
         case '0':
             options.type = "success";
+            options.title = _dictionary.SuccessTitle[$("#language").data("kendoDropDownList").value()];
             break;
         
     }

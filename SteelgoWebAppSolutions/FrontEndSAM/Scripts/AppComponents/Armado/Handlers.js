@@ -409,7 +409,7 @@ function suscribirEventoAdicionales() {
 
                 }
             } else {
-                displayNotify("WarningTitle", "CapturaArmadoMensajeOrdenTrabajo", "", '1');
+                displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '1');
                 //$("#InputOrdenTrabajo").focus();
             }
         });
@@ -443,7 +443,7 @@ function suscribirEventoAdicionales() {
                     displayMessage("NoExisteSpoolID", '', '2');
             }
             else if (e.keyCode == 9) {
-                if ($("#InputID").data("kendoComboBox").value() == "")
+                if ($("#InputID").data("kendoComboBox").value() == "" && tieneClase(e.currentTarget))
                     $("#InputID").data("kendoComboBox").select(0);
             }
         });

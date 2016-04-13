@@ -7555,8 +7555,8 @@ _dictionary = {
         "en-US": "Spool"
     },
     "CapturaArmadoHeaderJunta": {
-        "es-MX": "Junta",
-        "en-US": "Joint"
+        "es-MX": "Jta",
+        "en-US": "Jnt"
     },
     "CapturaArmadoHeaderMostrar": {
         "es-MX": "Mostrar",
@@ -9874,6 +9874,14 @@ _dictionary = {
     "WarningTitle": {
         "es-MX": "Advertencia",
         "en-US": "Warning"
+    },
+    "ErrorTitle": {
+        "es-MX": "Error",
+        "en-US": "Error"
+    },
+    "SuccessTitle": {
+        "es-MX": "Correcto",
+        "en-US": "Success"
     },
     //#endregion
     "lblCapturaAvanceIntAcabado": {
