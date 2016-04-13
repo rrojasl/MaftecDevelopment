@@ -443,7 +443,9 @@ function suscribirEventoAdicionales() {
                     displayMessage("NoExisteSpoolID", '', '2');
             }
             else if (e.keyCode == 9) {
-                if ($("#InputID").data("kendoComboBox").value() == "" && tieneClase(e.currentTarget))
+                if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget))
+                    $("#InputID").data("kendoComboBox").select(0);
+                else if ($("#InputID").val() == "" && tieneClase(e.currentTarget))
                     $("#InputID").data("kendoComboBox").select(0);
             }
         });

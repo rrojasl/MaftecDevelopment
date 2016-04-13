@@ -380,7 +380,7 @@ function tieneClase(item) {
             return true;
         }
     }
-    return false
+    return false;
 }
 
 
