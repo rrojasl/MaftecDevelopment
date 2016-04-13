@@ -1,6 +1,6 @@
 ﻿function RenderComboBoxTaller(container, options) {
     var dataItem;
-    $('<input required data-text-field="Nombre" data-value-field="TallerID" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="Nombre" data-value-field="TallerID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
@@ -55,7 +55,7 @@ function RenderComboBoxTubero(container, options) {
     //options contiene el modelo del datasource ejemplo options.model.Junta
     var dataItem;
     
-    $('<input required data-text-field="Codigo" data-value-field="ObreroID" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="Codigo" data-value-field="ObreroID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
@@ -111,7 +111,7 @@ function RenderComboBoxNumeroUnico1(container, options) {
     //options contiene el modelo del datasource ejemplo options.model.Junta
     var dataItem;
     var textAnterior;
-    $('<input required data-text-field="Clave" data-value-field="NumeroUnicoID" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="Clave" data-value-field="NumeroUnicoID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
@@ -150,7 +150,7 @@ function RenderComboBoxNumeroUnico2(container, options) {
     //options contiene el modelo del datasource ejemplo options.model.Junta
     var dataItem;
     var textAnterior;
-    $('<input required data-text-field="Clave" data-value-field="NumeroUnicoID" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="Clave" data-value-field="NumeroUnicoID" data-bind="value:' + options.field + '"/>')
          .appendTo(container)
          .kendoComboBox({
              suggest: true,

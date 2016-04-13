@@ -71,13 +71,13 @@ function AjaxCargaCamposPredeterminados() {
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoResultadoVisualPredeterminada }).done(function (data) {
         if (data == "Aprobado") {
             $('input:radio[name=ResultadoVisual]:nth(0)').trigger("click");
-            $('input:radio[name=ResultadoVisual]:nth(1)').attr('checked', false);
+            //$('input:radio[name=ResultadoVisual]:nth(1)').attr('checked', false);
             $("input:radio[name=ResultadoVisual]:checked").change();
 
         }
         else if (data == "Rechazado") {
             $('input:radio[name=ResultadoVisual]:nth(0)').attr('checked', false);
-            $('input:radio[name=ResultadoVisual]:nth(1)').trigger("click");
+            //$('input:radio[name=ResultadoVisual]:nth(1)').trigger("click");
             $("input:radio[name=ResultadoVisual]:checked").change();
 
         }
@@ -86,12 +86,12 @@ function AjaxCargaCamposPredeterminados() {
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoLlenadoPredeterminada }).done(function (data) {
         if (data == "Todos") {
             $('input:radio[name=LLena]:nth(0)').trigger("click");
-            $('input:radio[name=LLena]:nth(1)').attr('checked', false);
+            //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
             $("input:radio[name=LLena]:checked").change();
 
         }
         else if (data == "Vacios") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', false);
+            //$('input:radio[name=LLena]:nth(0)').attr('checked', false);
             $('input:radio[name=LLena]:nth(1)').trigger("click");
             $("input:radio[name=LLena]:checked").change();
 
@@ -126,13 +126,13 @@ function AjaxobtenerDetalleDimensional(spoolID) {
         }
         else {
             if (data.ListaDetalleDimensional[0].ResultadoID == 1) {//aprobado
-                $('input:radio[name=ResultadoDimensional]:nth(0)').attr('checked', true);
-                $('input:radio[name=ResultadoDimensional]:nth(1)').attr('checked', false);
+                $('input:radio[name=ResultadoDimensional]:nth(0)').trigger("click");
+                //$('input:radio[name=ResultadoDimensional]:nth(1)').attr('checked', false);
                 $("input:radio[name=ResultadoDimensional]:checked").change();
             }
             else if (data.ListaDetalleDimensional[0].ResultadoID == 2) {//rechazado
-                $('input:radio[name=ResultadoDimensional]:nth(0)').attr('checked', false);
-                $('input:radio[name=ResultadoDimensional]:nth(1)').attr('checked', true);
+                //$('input:radio[name=ResultadoDimensional]:nth(0)').attr('checked', false);
+                $('input:radio[name=ResultadoDimensional]:nth(1)').trigger("click");
                 $("input:radio[name=ResultadoDimensional]:checked").change();
             }
 

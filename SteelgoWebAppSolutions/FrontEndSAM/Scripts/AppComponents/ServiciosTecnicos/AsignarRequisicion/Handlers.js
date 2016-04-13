@@ -84,6 +84,7 @@ function SuscribirEventoComboProveedor() {
 
 function suscribirEventoGuardar() {
     $('#Guardar').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
            // opcionHabilitarView(true, "FieldSetView");
@@ -94,6 +95,7 @@ function suscribirEventoGuardar() {
     });
 
     $('#btnGuardar').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //opcionHabilitarView(true, "FieldSetView");
@@ -104,6 +106,7 @@ function suscribirEventoGuardar() {
     });
 
     $('#btnGuardarYNuevo').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardarCaptura(ds._data,1);
         //Limpiar();
@@ -111,6 +114,7 @@ function suscribirEventoGuardar() {
 
 
     $('#GuardarPie').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
            // opcionHabilitarView(true, "FieldSetView");
@@ -121,6 +125,7 @@ function suscribirEventoGuardar() {
     });
 
     $('#btnGuardar1').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //opcionHabilitarView(true, "FieldSetView");
@@ -131,6 +136,7 @@ function suscribirEventoGuardar() {
     });
 
     $('#btnGuardarYNuevo1').click(function (e) {
+        e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardarCaptura(ds._data,1);
         //Limpiar();
