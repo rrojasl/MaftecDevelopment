@@ -253,7 +253,6 @@ namespace BackEndSAM.Controllers
         public List<NumeroUnico> GenerarListaNumerosUnicos(List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumerosUnicos, int numeroSeleccionado)
         {
             List<NumeroUnico> numerosUnicos = new List<NumeroUnico>();
-            numerosUnicos.Add(new NumeroUnico { NumeroUnicoID = 0, Clave = "", Etiqueta = "", EtiquetaMaterial = 0 });
 
             foreach (Sam3_Armado_Get_MaterialesSpool_Result item in listaNumerosUnicos)
             {
