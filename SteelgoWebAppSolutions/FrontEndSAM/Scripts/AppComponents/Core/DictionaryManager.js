@@ -7554,6 +7554,10 @@ _dictionary = {
         "es-MX": "Spool ID",
         "en-US": "ID spool"
     },
+    "CapturaArmadoHeaderJunta": {
+        "es-MX": "Jta",
+        "en-US": "Jnt"
+    },
     "CapturaArmadoHeaderSpool": {
         "es-MX": "Spool",
         "en-US": "Spool"
@@ -7595,12 +7599,12 @@ _dictionary = {
         "en-US": "filling mass"
     },
     "CapturaArmadoHeaderNumeroUnico1": {
-        "es-MX": "Num. Un. 1",
-        "en-US": "Uni. Nu. 1"
+        "es-MX": "Único 1",
+        "en-US": "Unique 1"
     },
     "CapturaArmadoHeaderNumeroUnico2": {
-        "es-MX": "Num. Un. 2",
-        "en-US": "Uni. Nu. 2"
+        "es-MX": "Único 2",
+        "en-US": "Unique 2"
     },
     "CapturaArmadoHeaderAdicionales": {
         "es-MX": "Adicionales",
@@ -7648,6 +7652,10 @@ _dictionary = {
     },
     "DimensionalVisualHeaderListaJUnta": {
         "es-MX": "Juntas",
+        "en-US": "Joint"
+    },
+    "DimensionalVisualHeaderJunta": {
+        "es-MX": "Junta",
         "en-US": "Joint"
     },
     "DimensionalVisualHeaderSpoolID": {
@@ -7898,6 +7906,10 @@ _dictionary = {
     "CapturaSoldaduraSoldaduraSpool": {
         "es-MX": "Soldadura",
         "en-US": "Welding"
+    },
+    "CapturaSoldaduraJunta": {
+        "es-MX": "Jta",
+        "en-US": "Jta"
     },
     "CapturaSoldaduraTipoJunta": {
         "es-MX": "Tipo Junta",
@@ -10272,6 +10284,10 @@ _dictionary = {
     "PeticionMotajeHeaderGrupoEmbarque": {
         "es-MX": "Grupo de Embarque",
         "en-US": "Shipment Group"
+    },
+    "PeticionMotajeHeaderJunta": {
+        "es-MX": "Junta",
+        "en-US": "Joint"
     },
     "PeticionMotajeHeaderEmitido": {
         "es-MX": "Emitido",
