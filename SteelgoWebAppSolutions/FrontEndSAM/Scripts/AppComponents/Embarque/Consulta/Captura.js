@@ -28,16 +28,9 @@ function CargarGrid() {
             serverFiltering: false,
             serverSorting: false
         },
-        columns: [
-            { field: "SpoolID", title: _dictionary.EmbarqueConsultaSpoolID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
-            { field: "Paso", title: _dictionary.EmbarqueConsultaPaso[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
-            { field: "Cuadrante", title: _dictionary.EmbarqueConsultaCuadrante[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
-            { field: "Traveler", title: _dictionary.EmbarqueConsultaTraveler[$("#language").data("kendoDropDownList").value()], filterable: false, template: "<a>" + _dictionary.EmbarqueConsultaVer[$("#language").data("kendoDropDownList").value()] + "</a>", width: "150px" },
-            { field: "Detalle", title: _dictionary.EmbarqueConsultaDetalle[$("#language").data("kendoDropDownList").value()], filterable: false, template: "<a>" + _dictionary.EmbarqueConsultaLinkShop[$("#language").data("kendoDropDownList").value()] + "</a>", width: "150px" }
-        ],
         autoHeight: true,
         sortable: true,
-        scrollable: true,
+        scrollable: false,
         filterable: getKendoGridFilterable($("#language").data("kendoDropDownList").value()),
         pageable: {
             refresh: false,
@@ -47,9 +40,16 @@ function CargarGrid() {
             numeric: true,
             buttonCount: 2
         },
+        columns: [
+            { field: "SpoolID", title: _dictionary.EmbarqueConsultaSpoolID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
+            { field: "Paso", title: _dictionary.EmbarqueConsultaPaso[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
+            { field: "Cuadrante", title: _dictionary.EmbarqueConsultaCuadrante[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
+            { field: "Traveler", title: _dictionary.EmbarqueConsultaTraveler[$("#language").data("kendoDropDownList").value()], filterable: false, template: "<a>" + _dictionary.EmbarqueConsultaVer[$("#language").data("kendoDropDownList").value()] + "</a>", width: "150px" },
+            { field: "Detalle", title: _dictionary.EmbarqueConsultaDetalle[$("#language").data("kendoDropDownList").value()], filterable: false, template: "<a>" + _dictionary.EmbarqueConsultaLinkShop[$("#language").data("kendoDropDownList").value()] + "</a>", width: "150px" }
+        ],
         dataBound: function (e) {
             quickHeadFilter($("#grid").data("kendoGrid"));
-        }
+        },
     });
     CustomisaGrid($("#grid"));
 };

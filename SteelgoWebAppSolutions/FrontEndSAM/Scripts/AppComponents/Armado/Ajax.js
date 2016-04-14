@@ -65,10 +65,9 @@ function ObtenerJSonGridArmado() {
                     if (array[i].FechaArmado != null) {
                         array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
                     }
-                    ds.add(array[i]);
-                    
-                    $("#Junta").data("kendoComboBox").dataSource.remove($("#Junta").data("kendoComboBox").dataSource.at(0));
-                    $("#Junta").data("kendoComboBox").select(0);
+                    ds.insert(0, array[i]);
+                    //$("#Junta").data("kendoComboBox").dataSource.remove($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()));
+                    $("#Junta").data("kendoComboBox").text("");
                 }
             });
 
@@ -372,7 +371,7 @@ function AjaxCargarReporteJuntas() {
                     {
                         array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
                     }
-                    ds.add(array[i]);
+                    ds.insert(0, array[i]);
                 }
                 loadingStop();
             });

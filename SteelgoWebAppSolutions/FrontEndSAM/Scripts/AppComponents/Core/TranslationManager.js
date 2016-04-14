@@ -133,6 +133,41 @@ function getKendoGridFilterable(val) {
     }
 }
 
+function getGridFilterableMaftec(val) {
+    return {
+        mode: "menu, row",
+        extra: false,
+        operators: {
+            string: {
+                startswith: _dictionary.KendoGridFilterable0001[$("#language").data("kendoDropDownList").value()],
+                eq: _dictionary.KendoGridFilterable0002[$("#language").data("kendoDropDownList").value()],
+                neq: _dictionary.KendoGridFilterable0003[$("#language").data("kendoDropDownList").value()],
+            }
+        },
+        cell: {
+            showOperators: false,
+            operator: "contains"
+        }
+    }
+}
+
+function getGridFilterableCellMaftec() {
+    return {
+        cell: {
+            operator: "contains",
+            template: function (args) {
+                args.css("width", "90%").addClass("k-textbox").keydown(function (e) {
+                    setTimeout(function () {
+                        $(e.target).trigger("change");
+                    });
+                });
+            },
+            showOperators: false
+        }
+    }
+}
+
+
 //function getKendoGridFilterable(val) {
 //    return {
 //        extra: false,

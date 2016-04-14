@@ -118,35 +118,17 @@ function CargarGrid() {
             schema: {
                 model: {
                     fields: {
-                        Accion: { type: "int", editable: false },
-                        IDProyecto: { type: "int", editable: false },
-                        SinCaptura: { type: "string", editable: false },
-                        Proyecto: { type: "string", editable: false },
-                        IdOrdenTrabajo: { type: "string", editable: false },
-                        OrdenTrabajo: { type: "string", editable: false },
-                        IdVal: { type: "string", editable: false },
-                        IdText: { type: "string", editable: false },
                         SpoolID: { type: "string", editable: false },
-                        JuntaID: { type: "string", editable: false },
                         Junta: { type: "string", editable: false },
-                        TipoJuntaID: { type: "int", editable: false },
-                        TipoJunta: { type: "string", editable: false },
+                        DetalleJunta: { type: "string", editable: false },
                         Diametro: { type: "number", editable: false },
-                        Cedula: { type: "string", editable: false },
                         FechaArmado: { type: "date", editable: true },
-                        TuberoID: { type: "string", editable: true },
                         Tubero: { type: "string", editable: true },
-                        TallerID: { type: "string", editable: true },
                         Taller: { type: "string", editable: true },
-                        Localizacion: { type: "string", editable: false },
-                        FamiliaAcero: { type: "string", editable: false },
-                        NumeroUnico1ID: { type: "string", editable: true },
                         NumeroUnico1: { type: "string", editable: true },
-                        NumeroUnico2ID: { type: "string", editable: true },
                         NumeroUnico2: { type: "string", editable: true },
                         TemplateMensajeTrabajosAdicionales: { type: "string", editable: true },
-                        InformacionDetalle: { type: "string", editable: false },
-                        DetalleJunta: { type: "string", editable: false }
+                        InformacionDetalle: { type: "string", editable: false }
                     }
                 }
             },
@@ -162,40 +144,33 @@ function CargarGrid() {
             serverFiltering: false,
             serverSorting: false
         },
-        navigatable: true,
-        editable: true,
-        filterable: getKendoGridFilterable($("#language").data("kendoDropDownList").value()),
         autoHeight: true,
         sortable: true,
         scrollable: true,
-        selectable: true,
+        filterable: getGridFilterableMaftec(),
         pageable: {
             refresh: false,
             pageSizes: [10, 15, 20],
             info: false,
             input: false,
-            numeric: true
+            numeric: true,
+            buttonCount: 2
         },
         columns: [
-            { field: "SpoolID", title: _dictionary.CapturaArmadoHeaderSpool[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px" },
-            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: true, width: "60px" },
-            { field: "DetalleJunta", title: _dictionary.CapturaArmadoHeaderDetalle[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px" },
-            { field: "Diametro", title: _dictionary.CapturaArmadoHeaderDiametro[$("#language").data("kendoDropDownList").value()], filterable: true, width: "85px" },
-            { field: "FechaArmado", title: _dictionary.CapturaArmadoHeaderFechaArmado[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
-            { field: "Tubero", title: _dictionary.CapturaArmadoHeaderTubero[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxTubero, width: "125px" },
-            { field: "Taller", title: _dictionary.CapturaArmadoHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxTaller, width: "125px" },
-            { field: "NumeroUnico1", title: _dictionary.CapturaArmadoHeaderNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxNumeroUnico1, width: "90px" },
-            { field: "NumeroUnico2", title: _dictionary.CapturaArmadoHeaderNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxNumeroUnico2, width: "90px" },
+            { field: "SpoolID", title: _dictionary.CapturaArmadoHeaderSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px"},
+            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "70px" },
+            { field: "DetalleJunta", title: _dictionary.CapturaArmadoHeaderDetalle[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
+            { field: "Diametro", title: _dictionary.CapturaArmadoHeaderDiametro[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, width: "85px" },
+            { field: "FechaArmado", title: _dictionary.CapturaArmadoHeaderFechaArmado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "140px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
+            { field: "Tubero", title: _dictionary.CapturaArmadoHeaderTubero[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTubero, width: "125px" },
+            { field: "Taller", title: _dictionary.CapturaArmadoHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTaller, width: "125px" },
+            { field: "NumeroUnico1", title: _dictionary.CapturaArmadoHeaderNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico1, width: "100px" },
+            { field: "NumeroUnico2", title: _dictionary.CapturaArmadoHeaderNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico2, width: "100px" },
             { field: "InformacionDetalle", title: _dictionary.CapturaArmadoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "115px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TemplateMensajeTrabajosAdicionales#</span></a>" },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "99px" }
 
         ],
-        dataBound: function (e) {
-            //$(".k-grid input.k-textbox").prop('readonly', true);
-            //$(".k-grid td .k-button").text('');
-            //$(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
-            quickHeadFilter($("#grid").data("kendoGrid"));
-        }
+        
     });
     CustomisaGrid($("#grid"));
 }
