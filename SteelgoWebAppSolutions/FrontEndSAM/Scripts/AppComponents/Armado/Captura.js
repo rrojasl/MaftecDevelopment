@@ -118,17 +118,35 @@ function CargarGrid() {
             schema: {
                 model: {
                     fields: {
+                        Accion: { type: "int", editable: false },
+                        IDProyecto: { type: "int", editable: false },
+                        SinCaptura: { type: "string", editable: false },
+                        Proyecto: { type: "string", editable: false },
+                        IdOrdenTrabajo: { type: "string", editable: false },
+                        OrdenTrabajo: { type: "string", editable: false },
+                        IdVal: { type: "string", editable: false },
+                        IdText: { type: "string", editable: false },
                         SpoolID: { type: "string", editable: false },
+                        JuntaID: { type: "string", editable: false },
                         Junta: { type: "string", editable: false },
-                        DetalleJunta: { type: "string", editable: false },
+                        TipoJuntaID: { type: "int", editable: false },
+                        TipoJunta: { type: "string", editable: false },
                         Diametro: { type: "number", editable: false },
+                        Cedula: { type: "string", editable: false },
                         FechaArmado: { type: "date", editable: true },
+                        TuberoID: { type: "string", editable: true },
                         Tubero: { type: "string", editable: true },
+                        TallerID: { type: "string", editable: true },
                         Taller: { type: "string", editable: true },
+                        Localizacion: { type: "string", editable: false },
+                        FamiliaAcero: { type: "string", editable: false },
+                        NumeroUnico1ID: { type: "string", editable: true },
                         NumeroUnico1: { type: "string", editable: true },
+                        NumeroUnico2ID: { type: "string", editable: true },
                         NumeroUnico2: { type: "string", editable: true },
                         TemplateMensajeTrabajosAdicionales: { type: "string", editable: true },
-                        InformacionDetalle: { type: "string", editable: false }
+                        InformacionDetalle: { type: "string", editable: false },
+                        DetalleJunta: { type: "string", editable: false }
                     }
                 }
             },
@@ -144,18 +162,21 @@ function CargarGrid() {
             serverFiltering: false,
             serverSorting: false
         },
+        navigatable: true,
+        editable: true,
         autoHeight: true,
         sortable: true,
         scrollable: true,
-        filterable: getGridFilterableMaftec(),
+        selectable: true,
         pageable: {
             refresh: false,
             pageSizes: [10, 15, 20],
             info: false,
             input: false,
-            numeric: true,
-            buttonCount: 2
+            numeric: true
         },
+        filterable: getGridFilterableMaftec(),
+        
         columns: [
             { field: "SpoolID", title: _dictionary.CapturaArmadoHeaderSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px"},
             { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "70px" },
