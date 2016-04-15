@@ -8093,6 +8093,10 @@ _dictionary = {
         "es-MX": "No se permite el terminado de raiz",
         "en-US": "Root welding process it's not permissable"
     },
+    "CapturaSoldaduraCamposVacios": {
+        "es-MX": "No se permite capturar campos vacios",
+        "en-US": "It is not allowed to capture empty fields"
+    },
     //#endregion
     //#region GenerarRequisicion
 
