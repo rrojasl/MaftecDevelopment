@@ -32,7 +32,15 @@ function SuscribirEventoCancelarAdicionales() {
 
 function GuardarDetalleAdicional() {
     $('#GuardarTrabajosAdicionales').click(function () {
-        var ds = $("#gridPopUp").data("kendoGrid").dataSource;
+        var ds = $("#gridPopUp").data("kendoGrid").dataSource
+        
+        for (var i = 0; i < ds._data.length; i++){
+            if (ds._data[i].Soldador == "" || ds._data[i].TrabajoAdicional == "") {
+                displayMessage("CapturaSoldaduraCamposVacios", "", "1");
+                return;
+            }
+        }
+
         modeloRenglon.DetalleAdicional = ds._data;
         $("#windowGrid").data("kendoWindow").close();
         $("#grid").data("kendoGrid").dataSource.sync();
