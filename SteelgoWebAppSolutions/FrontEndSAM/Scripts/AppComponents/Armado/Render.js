@@ -166,7 +166,6 @@ function RenderComboBoxNumeroUnico2(container, options) {
              },
              change: function (e) {
                  dataItem = this.dataItem(e.sender.selectedIndex);
-                
                  if (dataItem != undefined) {
                      options.model.NumeroUnico2 = String(dataItem.Clave);
                      options.model.NumeroUnico2ID = dataItem.NumeroUnicoID;
@@ -174,7 +173,15 @@ function RenderComboBoxNumeroUnico2(container, options) {
                      $("#grid").data("kendoGrid").dataSource.sync();
                  }
 
-             }
+             },
+         }).closest('.k-widget').keydown(function (e) {
+             //if (e.keyCode == 13) {
+             //    var event = $.Event("keydown", { keyCode: 9 });
+             //    dataItem = $(e.target)[0].textContent;
+             //    if (dataItem == "") {
+             //        $(e.target).trigger(event);
+             //    }
+             //}
          });
     $(".k-combobox").on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
@@ -183,6 +190,8 @@ function RenderComboBoxNumeroUnico2(container, options) {
             $(container).trigger(e);
         }
     });
+
+
 }
 
 function grid_saveChanges(e) {
