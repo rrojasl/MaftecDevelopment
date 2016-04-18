@@ -435,22 +435,21 @@ namespace BackEndSAM.Controllers
         {
 
             List<Raiz> listaDetalleAdicional = new List<Raiz>();
-            if (listaTrabajoAdicional.Count == 0)
-            {
-                Raiz detalleAdicional = new Raiz
-                {
-                    Accion = 3,
-                    JuntaSoldaduraID = 0,
-                    JuntaSoldaduraSoldadoID = 0,
-                    ObreroID = 0,
-                    Soldador = "",
-                    wps = ""
-                };
-                listaDetalleAdicional.Add(detalleAdicional);
-            }
-            else
-            {
-
+            //if (listaTrabajoAdicional.Count == 0)
+            //{
+            //    Raiz detalleAdicional = new Raiz
+            //    {
+            //        Accion = 3,
+            //        JuntaSoldaduraID = 0,
+            //        JuntaSoldaduraSoldadoID = 0,
+            //        ObreroID = 0,
+            //        Soldador = "",
+            //        wps = ""
+            //    };
+            //    listaDetalleAdicional.Add(detalleAdicional);
+            //}
+            //else
+            //{
 
                 foreach (Sam3_Soldadura_Get_DetalleSoldadorProceso_Result item in listaTrabajoAdicional)
                 {
@@ -465,7 +464,7 @@ namespace BackEndSAM.Controllers
                     };
                     listaDetalleAdicional.Add(detalleAdicional);
                 }
-            }
+            //}
             return listaDetalleAdicional;
         }
 

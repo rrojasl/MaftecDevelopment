@@ -425,6 +425,7 @@ function AjaxCargarReporteJuntas() {
                         var ds = $("#grid").data("kendoGrid").dataSource;
                         var array = JSON.parse(data);
                         for (var i = 0; i < array.length; i++) {
+                            array[i].ListadoProcesoSoldadura.unshift({Codigo:"", ProcesoSoldaduraID:0});
                             if (array[i].FechaSoldadura != null) {
                                 array[i].FechaSoldadura = new Date(ObtenerDato(array[i].FechaSoldadura, 1), ObtenerDato(array[i].FechaSoldadura, 2), ObtenerDato(array[i].FechaSoldadura, 3));//año, mes, dia
                             }

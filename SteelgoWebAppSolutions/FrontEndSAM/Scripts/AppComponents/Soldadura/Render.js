@@ -124,7 +124,7 @@ function RenderMultiselectRelleno(container, options) {
                             });
                         }
                         else {
-                            displayMessage("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
+                            displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
                             options.model.Soldador = "";
                             options.model.ObreroID = "";
                         }
@@ -154,7 +154,7 @@ function RenderMultiselectRelleno(container, options) {
             }).data("kendoMultiSelect");
     }
     else
-        displayMessage("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
+        displayNotify("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
 
 };
 
@@ -195,7 +195,7 @@ function RenderMultiselectRaiz(container, options) {
                         });
                     }
                     else {
-                        displayMessage("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
+                        displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
                         options.model.Soldador = "";
                         options.model.ObreroID = "";
                     }
@@ -229,7 +229,7 @@ function RenderMultiselectRaiz(container, options) {
 
     }
     else
-        displayMessage("CapturaSoldaduraMensajePermisoTerminadoRaiz", "", "1");
+        displayNotify("CapturaSoldaduraMensajePermisoTerminadoRaiz", "", "1");
 };
 
 function renderEnlaceEditar(container, options) {
@@ -294,7 +294,7 @@ function RenderComboBoxSoldadorTrabajos(container, options) {
                         //options.model.Observacion = options.model.Observacion;
                     }
                     else {
-                        displayMessage("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
+                        displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
                         options.model.Soldador = "";
                         options.model.ObreroID = "";
                     }
@@ -434,7 +434,6 @@ function ObtenerDescCorrectaTaller(lista, TallerID) {
 function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();
     if (ItemSeleccionado.PermiteTerminadoRaiz) {
-
         var dataItem;
         $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
@@ -461,7 +460,6 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
 
                     }
                 }
-
             }
             );
         $(".k-combobox").on('mouseleave', function (send) {
@@ -471,9 +469,10 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
                 $(container).trigger(e);
             }
         });
+
     }
     else
-        displayMessage("CapturaSoldaduraMensajePermisoTerminadoRaiz", "", "1");
+        displayNotify("CapturaSoldaduraMensajePermisoTerminadoRaiz", "", "1");
     loadingStop();
 }
 
@@ -489,7 +488,7 @@ function ObtenerDescCorrectaSoldaduraRaiz(lista, procesoSoldaduraRaizID) {
 function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
     loadingStart();
     if (ItemSeleccionado.PermiteTerminadoRelleno) {
-
+       
         var dataItem;
         $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
@@ -523,7 +522,7 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
         });
     }
     else
-        displayMessage("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
+        displayNotify("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
     loadingStop();
 }
 
