@@ -10501,5 +10501,14 @@ _dictionary = {
         "en-US": "Week"
     },
     //#endregion
+
+    //#region "Insepeccion Dimensional"
+    "InspeccionDimensionalAdvertencia": {
+        "es-MX":"Ya existe la orden de trabajo",
+        "en-US": "Work order already inserted"
+    },
+
+
+    //#endregion
 }
 //#endregion
