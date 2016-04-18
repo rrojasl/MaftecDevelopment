@@ -286,7 +286,7 @@ namespace BackEndSAM.Controllers
         public List<DetalleTrabajoAdicional> GenerarDetalleAdicionalJson(List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result> listaTrabajoAdicional, Sam3_Usuario usuario)
         {
             List<DetalleTrabajoAdicional> listaDetalleAdicional = new List<DetalleTrabajoAdicional>();
-            listaDetalleAdicional.Add(new DetalleTrabajoAdicional { Accion = 0, Observacion = "", ArmadoTrabajoAdicionalID=0, JuntaArmadoID=0, ObreroID=0, TrabajoAdicional="", TrabajoAdicionalID=0, Tubero="" });
+            
 
             foreach (Sam3_Armado_Get_DetalleTrabajoAdicional_Result item in listaTrabajoAdicional)
             {

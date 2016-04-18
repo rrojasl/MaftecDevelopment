@@ -300,7 +300,7 @@ function suscribirEventoAdicionales() {
         });
 
         $('#Junta').closest('.k-widget').keydown(function (e) {
-
+            e.preventDefault();
             if (e.keyCode == 37) {
                 $("#InputID").data("kendoComboBox").input.focus();
                 $("#Junta").val("");
@@ -421,7 +421,7 @@ function suscribirEventoAdicionales() {
         });
 
         $('#InputID').closest('.k-widget').keydown(function (e) {
-
+            
             if (e.keyCode == 37) {
                 $("#InputOrdenTrabajo").focus();
             }
@@ -433,6 +433,8 @@ function suscribirEventoAdicionales() {
                 AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
             }
             else if (e.keyCode == 13) {
+
+                e.preventDefault();
                 if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                     if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
                         if ($("#InputID").data("kendoComboBox").select() != -1)

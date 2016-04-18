@@ -15,6 +15,9 @@ function SuscribirEventos() {
     suscribirEventoAdicionales();
 };
 
+var preventMultiKeyDown = false;
+var lastSpoolIdInserted = "";
+
 function suscribirEventoAdicionales() {
 
     $(document).on('click', '.botonAdicionales', function (e) {
@@ -69,6 +72,7 @@ function SuscribirEventoProcesosRelleno() {
 
     });
     $('#inputProcesoRelleno').closest('.k-widget').keydown(function (e) {
+        e.preventDefault();
         if (e.keyCode == 13) {
             PlanchaRelleno();
         }
@@ -84,6 +88,7 @@ function SuscribirEventoProcesosRaiz() {
 
     });
     $('#inputProcesoRaiz').closest('.k-widget').keydown(function (e) {
+        e.preventDefault();
         if (e.keyCode == 13) {
             PlanchaRaiz();
         }
@@ -246,7 +251,7 @@ function SuscribirEventosJunta() {
     });
 
     $('#Junta').closest('.k-widget').keydown(function (e) {
-
+        e.preventDefault();
         if (e.keyCode == 37) {
             $("#InputID").data("kendoComboBox").input.focus();
             $("#Junta").val("");
@@ -381,29 +386,32 @@ function SuscribirEventoSpoolID() {
 
     $('#InputID').closest('.k-widget').keydown(function (e) {
 
-        if (e.keyCode == 37) {
-            $("#InputOrdenTrabajo").focus();
-        }
-        else if (e.keyCode == 39) {
-            $("#Junta").data("kendoComboBox").input.focus();
-        }
-        else if (e.keyCode == 40)
-            $("#InputID").data("kendoComboBox").select();
-        else if (e.keyCode == 13) {
-            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
-                if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
-                    AjaxCargarReporteJuntas();
-
-                }
+        if (!preventMultiKeyDown && lastSpoolIdInserted != $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) {
+            if (e.keyCode == 37) {
+                $("#InputOrdenTrabajo").focus();
             }
-            else
-                displayMessage("NoExisteSpoolID", '', '2');
+            else if (e.keyCode == 39) {
+                $("#Junta").data("kendoComboBox").input.focus();
+            }
+            else if (e.keyCode == 40)
+                $("#InputID").data("kendoComboBox").select();
+            else if (e.keyCode == 13) {
+                preventMultiKeyDown = true;
+                lastSpoolIdInserted = $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val();
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+                    if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
+                        AjaxCargarReporteJuntas();
+                    }
+                }
+                else
+                    displayMessage("NoExisteSpoolID", '', '2');
+            }
+            else if (e.keyCode == 9) {
+                if ($("#InputID").data("kendoComboBox").value() == "")
+                    $("#InputID").data("kendoComboBox").select(0);
+            }
+            preventMultiKeyDown = false;
         }
-        else if (e.keyCode == 9) {
-            if ($("#InputID").data("kendoComboBox").value() == "")
-                $("#InputID").data("kendoComboBox").select(0);
-        }
-
     });
 };
 

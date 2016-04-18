@@ -33,9 +33,11 @@ function ExisteJunta() {
     var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
         for (var i = 0; i < jsonGridArmado.length; i++) {
-            if (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal == ($("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) && jsonGridArmado[i].JuntaID === $("#Junta").val()) {
-                jsonGridArmado.Accion = 2;
-                $("#grid").data("kendoGrid").dataSource.sync();
+            if (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal == ($("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) && jsonGridArmado[i].JuntaID === $("#Junta").val() ) {
+                if (jsonGridArmado[i].Accion == 3) {
+                    jsonGridArmado[i].Accion = 2;
+                    $("#grid").data("kendoGrid").dataSource.sync();
+                }
                 return false;
             }
         }
@@ -51,6 +53,26 @@ function ExisteJunta() {
     }
     return true;
 }
+
+function ExisteJuntaEnSpool(juntaID) {
+    
+    var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
+ 
+        for (var i = 0; i < jsonGridArmado.length; i++) {
+            if (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal == ($("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) && jsonGridArmado[i].JuntaID === juntaID) {
+                if (jsonGridArmado[i].Accion == 3) {
+                    jsonGridArmado[i].Accion = 2;
+                    $("#grid").data("kendoGrid").dataSource.sync();
+                }
+                return false;
+            }
+        }
+    return true;
+}
+
+
+
+
 function ArregloListadoCaptura() {
     JsonCaptura = [];
     JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", IdVal: "", IdText: "", SpoolID: "", JuntaID: "", Junta: "", FechaArmado: "", TuberoID: "", Tubero: "", TallerID: "", Taller: "", SinCaptura: "" };
@@ -188,14 +210,32 @@ function CargarGrid() {
             { field: "NumeroUnico1", title: _dictionary.CapturaArmadoHeaderNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico1, width: "100px" },
             { field: "NumeroUnico2", title: _dictionary.CapturaArmadoHeaderNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico2, width: "100px" },
             { field: "InformacionDetalle", title: _dictionary.CapturaArmadoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "115px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TemplateMensajeTrabajosAdicionales#</span></a>" },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "99px" }
-
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "99px" },
+            { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "99px" }
         ],
         
     });
     CustomisaGrid($("#grid"));
 }
-
+function limpiarRenglon(e) {
+    e.preventDefault();
+    
+    var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+    itemToClean.Taller = "";
+    itemToClean.TallerID = 0;
+    itemToClean.FechaArmado = "";
+    itemToClean.NumeroUnico1 = "";
+    itemToClean.NumeroUnico1ID = 0;
+    itemToClean.NumeroUnico2 = "";
+    itemToClean.NumeroUnico2ID = 0;
+    itemToClean.Tubero = "";
+    itemToClean.TuberoID = 0;
+    itemToClean.ListaDetalleTrabajoAdicional = [];
+    itemToClean.TemplateMensajeTrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    dataSource.sync();
+    
+}
 
 function CargarGridPopUp() {
 

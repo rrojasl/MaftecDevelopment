@@ -7638,6 +7638,10 @@ _dictionary = {
         "es-MX": "Datos guardados correctamente.",
         "en-US": "Data saved correctly."
     },
+    "CapturaArmadoTemplateNoHayTrabajosAdicionales": {
+        "es-MX": "No hay trabajos adicionales",
+        "en-US": "No additional work"
+    },
 
     //#endregion
     //#region Inspeccion
