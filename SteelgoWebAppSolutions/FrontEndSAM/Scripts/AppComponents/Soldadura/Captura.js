@@ -367,6 +367,14 @@ function CargarGridPopUp() {
 
 function LlenarGridPopUp(data) {
     modeloRenglon = data;
+    modeloRenglon.Raiz.unshift({
+        Accion: 3,
+        JuntaSoldaduraID: 0,
+        JuntaSoldaduraSoldadoID: 0,
+        ObreroID: 0,
+        Soldador: "",
+        wps: ""
+    });
     $("#gridPopUp").data('kendoGrid').dataSource.data([]);
     var ds = $("#gridPopUp").data("kendoGrid").dataSource;
     var array = data.DetalleAdicional;
