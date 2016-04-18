@@ -311,24 +311,24 @@ function AjaxCargarCamposPredeterminadosOcultaJunta() {
         endRangeDate.val(NewDate);
 
         if (data.Muestra == "sin captura") {
-            $('input:radio[name=Muestra]:nth(0)').attr('checked');
-            $('input:radio[name=Muestra]:nth(1)').removeAttr('checked');
+            $('input:radio[name=Muestra]:nth(0)').trigger("click");
+            //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
 
         }
         else if (data.Muestra == "Todos") {
-            $('input:radio[name=Muestra]:nth(0)').removeAttr('checked');
-            $('input:radio[name=Muestra]:nth(1)').attr('checked');
+            //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
+            $('input:radio[name=Muestra]:nth(1)').trigger("click");
 
         }
 
         if (data.Llena == "Todos") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', true);
-            $('input:radio[name=LLena]:nth(1)').attr('checked', false);
+            $('input:radio[name=LLena]:nth(0)').trigger("click");
+            //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
 
         }
         else if (data.Llena == "Vacios") {
-            $('input:radio[name=LLena]:nth(0)').attr('checked', false);
-            $('input:radio[name=LLena]:nth(1)').attr('checked', true);
+            //$('input:radio[name=LLena]:nth(0)').trigger("click");
+            $('input:radio[name=LLena]:nth(1)').trigger("click");
 
         }
 
