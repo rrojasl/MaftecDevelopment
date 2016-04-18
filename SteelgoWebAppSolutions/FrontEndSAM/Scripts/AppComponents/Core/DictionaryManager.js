@@ -8101,6 +8101,14 @@ _dictionary = {
         "es-MX": "No se permite capturar campos vacios",
         "en-US": "It is not allowed to capture empty fields"
     },
+    "CapturaSoldaduraNoSoldadoresRaiz": {
+        "es-MX": "No hay Soldadores de Raiz",
+        "en-US": "No root welders"
+    },
+    "CapturaSoldaduraNoSoldadoresRelleno": {
+        "es-MX": "No hay Soldadores de Relleno",
+        "en-US": "No filling welders"
+    },
     //#endregion
     //#region GenerarRequisicion
 

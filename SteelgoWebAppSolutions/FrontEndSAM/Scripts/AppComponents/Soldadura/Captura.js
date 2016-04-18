@@ -266,7 +266,8 @@ function CargarGridSoldadura() {
             { field: "Relleno", title: _dictionary.CapturaRellenoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "#:SoldadoresRelleno#", editor: RenderMultiselectRelleno },
             { field: "DetalleAdicional", title: _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TrabajosAdicionales#</span></a>" },
             { field: "juntaSpoolID", title: "", filterable: true, width: "150px", hidden: true },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "99px" }
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "99px" },
+            { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "99px" }
         ],
         dataBound: function (e) {
             $(".k-grid input.k-textbox").prop('readonly', true);
@@ -278,6 +279,27 @@ function CargarGridSoldadura() {
     CustomisaGrid($("#grid"));
 };
 
+function limpiarRenglon(e) {
+    e.preventDefault();
+
+    var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+    itemToClean.Raiz = [];
+    itemToClean.Taller = "";
+    itemToClean.Relleno = [];
+    itemToClean.TallerID = 0;
+    itemToClean.FechaSoldadura = "";
+    itemToClean.procesoSoldaduraRaiz = "";
+    itemToClean.procesoSoldaduraRaizID = 0;
+    itemToClean.procesoSoldaduraRelleno = "";
+    itemToClean.procesoSoldaduraRellenoID = 0;
+    itemToClean.DetalleAdicional= [];
+    itemToClean.SoldadoresRaiz = _dictionary.CapturaSoldaduraNoSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
+    itemToClean.SoldadoresRelleno = _dictionary.CapturaSoldaduraNoSoldadoresRelleno[$("#language").data("kendoDropDownList").value()];
+    itemToClean.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    dataSource.sync();
+
+}
 
 function CargarGridPopUp() {
 
