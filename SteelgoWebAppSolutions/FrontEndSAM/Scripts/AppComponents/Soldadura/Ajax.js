@@ -47,7 +47,7 @@ function ObtenerJSonGridSoldadura() {
         }
     }
     else
-        displayMessage("CapturaArmadoMensajeJuntaExistente", "", '1');
+        displayNotify("CapturaArmadoMensajeJuntaExistente", "", '1');
 
 
 
@@ -361,7 +361,7 @@ function AjaxGuardarCaptura(arregloCaptura,tipoGuardar){
                             $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(ArregloListadoSpoolID()), lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (result) {
                                 if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
                                     //mensaje = "Se guardo correctamente la informacion" + "-0";
-                                    displayMessage("CapturaSoldaduraMensajeGuardadoExitoso", "", "0");
+                                    displayNotify("CapturaSoldaduraMensajeGuardadoExitoso", "", "0");
 
                                     if (tipoGuardar == 1) {
                                         Limpiar();
@@ -385,7 +385,7 @@ function AjaxGuardarCaptura(arregloCaptura,tipoGuardar){
                                 }
                                 else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
                                     //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
-                                    displayMessage("CapturaMensajeGuardadoErroneo", data.ReturnMessage[0], '1');
+                                    displayNotify("CapturaMensajeGuardadoErroneo", data.ReturnMessage[0], '1');
                                     loadingStop();
 
                                 }
@@ -395,18 +395,18 @@ function AjaxGuardarCaptura(arregloCaptura,tipoGuardar){
                     
                 }
                 else {
-                    displayMessage("CapturaSoldaduraMensajeErrorTaller", "", '1');
+                    displayNotify("CapturaSoldaduraMensajeErrorTaller", "", '1');
                 }
             }
             else {
-                displayMessage("CapturaSoldaduraMensajeErrorProcesoRelleno", "", '1');
+                displayNotify("CapturaSoldaduraMensajeErrorProcesoRelleno", "", '1');
             }
         }
         else {
-            displayMessage("CapturaSoldaduraMensajeErrorProcesoRaiz", "", '1');
+            displayNotify("CapturaSoldaduraMensajeErrorProcesoRaiz", "", '1');
         }
     } catch (e) {
-        displayMessage("Mensajes_error", e.message, '2');
+        displayNotify("Mensajes_error", e.message, '2');
     }
 
 };
@@ -439,7 +439,7 @@ function AjaxCargarReporteJuntas() {
        
     }
     else {
-        displayMessage("CapturaArmadoMensajeJuntaExistente", "", '1');
+        displayNotify("CapturaArmadoMensajeJuntaExistente", "", '1');
         loadingStop();
     }
 }
