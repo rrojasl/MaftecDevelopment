@@ -72,11 +72,11 @@ function ObtenerJSonGridArmado() {
             });
 
         } catch (e) {
-            displayMessage("Mensajes_error", e.message, '1');
+            displayNotify("Mensajes_error", e.message, '1');
         }
     }
     else {
-        displayMessage("CapturaArmadoMensajeJuntaExistente", "", '1');
+        displayNotify("CapturaArmadoMensajeJuntaExistente", "", '1');
     }
 }
 
@@ -98,7 +98,7 @@ function AjaxEjecutarGuardado(rows, tipoGuardar) {
         }
         else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
             //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
-            displayMessage("CapturaMensajeGuardadoErroneo", "", '2');
+            displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
             loadingStop();
 
         }
@@ -244,7 +244,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
 
     } catch (e) {
         loadingStop();
-        displayMessage("Mensajes_error", e.message, '0');
+        displayNotify("Mensajes_error", e.message, '0');
     }
 
 }

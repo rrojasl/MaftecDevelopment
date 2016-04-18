@@ -233,10 +233,10 @@ function suscribirEventoAdicionales() {
                         ObtenerJSonGridArmado();
                     }
                     else
-                        displayMessage("NoExisteJunta", '', '2');
+                        displayNotify("NoExisteJunta", '', '2');
                 }
                 else
-                    displayMessage("JuntaSinSeleccionar", "", '2');
+                    displayNotify("JuntaSinSeleccionar", "", '2');
             }
         });
     }
@@ -326,15 +326,15 @@ function suscribirEventoAdicionales() {
                             ObtenerJSonGridArmado();
                         }
                         else
-                            displayMessage("JuntaSinSeleccionar", "", '2');
+                            displayNotify("JuntaSinSeleccionar", "", '2');
                     }
                     else {
-                        displayMessage("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
+                        displayNotify("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
                     }
                 }
                 else
             
-                    displayMessage("NoExisteJunta", '', '2');
+                    displayNotify("NoExisteJunta", '', '2');
             }
         });
     }
@@ -367,7 +367,7 @@ function suscribirEventoAdicionales() {
                         e.preventDefault();
                         $("#InputID").val("");
                         console.log("borrar datos");
-                        displayMessage("Mensajes_error", dataItem.Status, '1');
+                        displayNotify("Mensajes_error", dataItem.Status, '1');
                     }
                     else {
                         $("#InputID").val(dataItem.IDValido);
@@ -395,7 +395,7 @@ function suscribirEventoAdicionales() {
                     AjaxObtenerListaTaller();
                 }
                 else
-                    displayMessage("NoExisteSpoolID", '', '2');
+                    displayNotify("NoExisteSpoolID", '', '2');
             }
         });
 
@@ -405,7 +405,7 @@ function suscribirEventoAdicionales() {
                 try {
                     AjaxObtenerSpoolID();
                 } catch (e) {
-                    displayMessage("Mensajes_error", e.message, '2');
+                    displayNotify("Mensajes_error", e.message, '2');
 
                 }
             } else {
@@ -442,7 +442,7 @@ function suscribirEventoAdicionales() {
                     }
                 }
                 else
-                    displayMessage("NoExisteSpoolID", '', '2');
+                    displayNotify("NoExisteSpoolID", '', '2');
             }
             else if (e.keyCode == 9) {
                 if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget))
