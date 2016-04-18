@@ -18,8 +18,8 @@ function CargarGrid() {
                         SpoolID: { type: "string", editable: false },
                         Paso: { type: "string", editable: false },
                         Cuadrante: { type: "string", editable: false },
-                        Traveler: { type: "int", editable: false },
-                        Detalle: { type: "int", editable: false }
+                        Traveler: { type: "String", editable: false },
+                        Detalle: { type: "string", editable: false }
                     }
                 }
             },

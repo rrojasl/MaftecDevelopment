@@ -148,12 +148,26 @@
     color: #fff;
 }
 
+.k-multiselect .k-delete{
+    background-position: -163px -82px !important;
+}
+
 .k-multiselect-wrap li span {
     color: #FFFFFF;
 }
 
+
+
 .k-multiselect-wrap li span.k-delete {
-    display: none;
+    display: block;
+    float: right;
+    opacity: .9; 
+    background-color: white;
+    padding-right: 0px;
+    border-left: 5px;
+    max-width: 11px;
+    max-height: 11px;
+    margin-left: 6px;
 }
 
 .k-block, .k-button, .k-textbox, .k-drag-clue,
