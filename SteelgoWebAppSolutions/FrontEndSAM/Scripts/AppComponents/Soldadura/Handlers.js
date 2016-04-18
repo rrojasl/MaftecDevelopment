@@ -39,7 +39,7 @@ function GuardarDetalleAdicional() {
         
         for (var i = 0; i < ds._data.length; i++){
             if (ds._data[i].Soldador == "" || ds._data[i].TrabajoAdicional == "") {
-                displayMessage("CapturaSoldaduraCamposVacios", "", "1");
+                displayNotify("CapturaSoldaduraCamposVacios", "", "1");
                 return;
             }
         }
@@ -150,10 +150,10 @@ function suscribirEventoAgregar() {
                     ObtenerJSonGridSoldadura();
                 }
                 else
-                    displayMessage("NoExisteJunta", '', '2');
+                    displayNotify("NoExisteJunta", '', '2');
             }
             else
-                displayMessage("JuntaSinSeleccionar", "", '2');
+                displayNotify("JuntaSinSeleccionar", "", '2');
 
         }
 
@@ -274,15 +274,15 @@ function SuscribirEventosJunta() {
                         ObtenerJSonGridSoldadura();
                     }
                     else
-                        displayMessage("JuntaSinSeleccionar", "", '2');
+                        displayNotify("JuntaSinSeleccionar", "", '2');
                 }
                 else {
-                    displayMessage("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
+                    displayNotify("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
                 }
             }
             else
 
-                displayMessage("NoExisteJunta", '', '2');
+                displayNotify("NoExisteJunta", '', '2');
         }
     });
 }
@@ -351,7 +351,7 @@ function SuscribirEventoSpoolID() {
                 }
             }
             else
-                displayMessage("NoExisteSpoolID", '', '2');
+                displayNotify("NoExisteSpoolID", '', '2');
         }
     });
 
@@ -368,10 +368,10 @@ function SuscribirEventoSpoolID() {
                     loadingStop();
                 });
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
+            displayNotify("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
             //$("#InputOrdenTrabajo").focus();
         }
     });
@@ -404,7 +404,7 @@ function SuscribirEventoSpoolID() {
                     }
                 }
                 else
-                    displayMessage("NoExisteSpoolID", '', '2');
+                    displayNotify("NoExisteSpoolID", '', '2');
             }
             else if (e.keyCode == 9) {
                 if ($("#InputID").data("kendoComboBox").value() == "")
