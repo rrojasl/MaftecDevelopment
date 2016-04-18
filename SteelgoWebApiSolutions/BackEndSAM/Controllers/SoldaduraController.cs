@@ -391,6 +391,10 @@ namespace BackEndSAM.Controllers
         private List<Taller> ObtenerListaTaller(List<Sam3_SteelGo_Get_Taller_Result> listaTaller)
         {
             List<Taller> listaTalleres = new List<Taller>();
+            listaTalleres.Add(new Taller {
+                TallerID = 0,
+                Nombre = ""
+            });
             foreach (Sam3_SteelGo_Get_Taller_Result item in listaTaller)
             {
                 Taller taller = new Taller
