@@ -447,7 +447,7 @@ function suscribirEventoAdicionales() {
             else if (e.keyCode == 9) {
                 if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget))
                     $("#InputID").data("kendoComboBox").select(0);
-                else if ($("#InputID").val() == "" && tieneClase(e.currentTarget))
+                else if (tieneClase(e.currentTarget))
                     $("#InputID").data("kendoComboBox").select(0);
             }
         });
