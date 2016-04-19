@@ -55,6 +55,13 @@ function AjaxCargaCamposPredetrminados() {
            
         }
 
+        if (data.Muestra == "Todos") {
+            $('input:radio[name=Muestra]:nth(1)').trigger("click");
+        }
+        else if (data.Muestra == "sin captura") {
+            $('input:radio[name=Muestra]:nth(0)').trigger("click");
+        }        
+
 
     });
 }
@@ -70,8 +77,8 @@ function AjaxObtenerSpoolID() {
             loadingStop();
 
         });
-    } catch (e) {
-        displayMessage("Mensajes_error", e.message, '2');
+    } catch (e) {       
+        displayNotify("Mensajes_error", e.message, '2');
     }
 }
 function AjaxobtenerDetalleDimensional(spoolID) {
@@ -98,8 +105,7 @@ function AjaxObtenerJSonGrid() {
         
         try {
             loadingStart();
-            $InspeccionDimensional.InspeccionDimensional.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (data) {
-
+            $InspeccionDimensional.InspeccionDimensional.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (data) {                
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);
                 if (array.length > 0) {
@@ -119,8 +125,9 @@ function AjaxObtenerJSonGrid() {
                 loadingStop();
             });
 
-        } catch (e) {
-            displayMessage("Mensajes_error", e.message, '2');
+        } catch (e) {         
+            displayNotify("Mensajes_error", e.message, '2');
+          
         }
 
     }
@@ -136,10 +143,15 @@ function ExisteJunta() {
     var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
 
     for (var i = 0; i < jsonGridArmado.length; i++) {
-        if (jsonGridArmado[i].OrdenTrabajoSpool  == ($("#InputOrdenTrabajo").val() + '-' + $("#InputID").data("kendoComboBox").text())) {
-            
+        if (jsonGridArmado[i].OrdenTrabajoSpool == ($("#InputOrdenTrabajo").val() + '-' + $("#InputID").data("kendoComboBox").text())) {
+            if (jsonGridArmado[i].Accion == 3) {
+                jsonGridArmado[i].Accion = 2;
+                $("#grid").data("kendoGrid").dataSource.sync();
+            }
+        
             return false;
         }
+      
     }
     return true;
 }
