@@ -666,33 +666,47 @@ namespace BackEndSAM.Controllers
 
                 foreach (DetalleGuardarJson item in listaCapturasSoldadura.Detalles)
                 {
-                    if (RaizAdicionales == null)
+                    if(item.ListaSoldaduraRaiz != null)
                     {
-                        RaizAdicionales = ToDataTable(item.ListaSoldaduraRaiz);
-                    }
-                    else {
-                        RaizAdicionales.Merge(ToDataTable(item.ListaSoldaduraRaiz));
+                        if(RaizAdicionales == null)
+                            RaizAdicionales = ToDataTable(item.ListaSoldaduraRaiz);
+                        else
+                            RaizAdicionales.Merge(ToDataTable(item.ListaSoldaduraRaiz));
                     }
                 }
 
                 foreach (DetalleGuardarJson item in listaCapturasSoldadura.Detalles)
                 {
-                    if (RellenoAdicionales == null)
-                        RellenoAdicionales = ToDataTable(item.ListaSoldaduraRelleno);
-                    else
-                        RellenoAdicionales.Merge(ToDataTable(item.ListaSoldaduraRelleno));
+                    if(item.ListaSoldaduraRelleno != null)
+                    {
+                        if(RellenoAdicionales == null)
+                            RellenoAdicionales = ToDataTable(item.ListaSoldaduraRelleno);
+                        else
+                            RellenoAdicionales.Merge(ToDataTable(item.ListaSoldaduraRelleno));
+                    }
                 }
+
                 DataTable dtDetalleCaptura = new DataTable();
+                DataTable dt = new DataTable("DTEnvio");
+
                 if (listaCapturasSoldadura.Detalles != null)
                 {
                     dtDetalleCaptura = ToDataTable(listaCapturasSoldadura.Detalles);
-                    RellenoAdicionales.Merge(RaizAdicionales);
+                    if (RellenoAdicionales != null && RaizAdicionales != null)
+                    {
+                        RellenoAdicionales.Merge(RaizAdicionales);
+                        dt.Merge(RellenoAdicionales);
+                    }
+                    else if (RellenoAdicionales == null)
+                        dt.Merge(RaizAdicionales);
+                    else if (RaizAdicionales == null)
+                        dt.Merge(RellenoAdicionales);
                 }
                 
                 dtDetalleCaptura.Columns.Remove("ListaDetalleTrabajoAdicional");
                 dtDetalleCaptura.Columns.Remove("ListaSoldaduraRaiz");
                 dtDetalleCaptura.Columns.Remove("ListaSoldaduraRelleno");
-                return CapturaSoldaduraBD.Instance.InsertarCapturaSoldadura(dtDetalleCaptura, TabajosAdicionales, RellenoAdicionales, usuario, lenguaje);
+                return CapturaSoldaduraBD.Instance.InsertarCapturaSoldadura(dtDetalleCaptura, TabajosAdicionales, dt, usuario, lenguaje);
             }
             else
             {
