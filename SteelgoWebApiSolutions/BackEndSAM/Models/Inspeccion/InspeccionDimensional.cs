@@ -10,6 +10,7 @@ namespace BackEndSAM.Models.InspeccionDimensional
             public string Fecha { get; set; }
             public string Resultado  { get; set; }
             public string Llena { get; set; }
+            public string Muestra { get; set; }
         }
         public class Captura
         {
