@@ -39,6 +39,7 @@ namespace BackEndSAM.Controllers
                     Fecha = (string)CapturaArmadoBD.Instance.ObtenerValorFecha(usuario, lenguaje, 24),
                     Resultado = (string)CapturaArmadoBD.Instance.ObtenerValorFecha(usuario, lenguaje, 25),
                     Llena = (string)CapturaArmadoBD.Instance.ObtenerValorFecha(usuario, lenguaje, 26),
+                    Muestra =(string)CapturaArmadoBD.Instance.ObtenerValorFecha(usuario, lenguaje, 47)
                 };
 
                 return CamposPredeterminados;
@@ -119,10 +120,12 @@ namespace BackEndSAM.Controllers
                     foreach (Sam3_Inspeccion_Get_DetalleDimensional_Result item in listaObtenerDetalleDimensional)
                     {
                         List<int?> ListaJutasSeleccionadasXSpoolID = (List<int?>)InspeccionBD.Instance.ObtenerDetalleJuntaSeleccionada(capturaDatosJson.OrdenTrabajoSpoolID,item.DefectoID.GetValueOrDefault(), usuario, Lenguaje);
-
+                        List<InspeccionDimensional.JuntaXSpool> juntasSeleccionadas = ObtenerJuntasID(ListaJutasSeleccionadasXSpoolID);
+                        string idiomaMensaje = Lenguaje == "es-MX" ? "Existen ?1 juntas seleccionadas|No existen juntas seleccionadas" : "There are ?1 joint selected|There arent joint selected";
                         InspeccionDimensional.DetalleDatosJson detalleDatos = new InspeccionDimensional.DetalleDatosJson
                         {
-                            
+
+
                             Accion = 2,
                             InspeccionDimensionalID = item.InspeccionDimensionalID,
                             ProyectoID = capturaDatosJson.ProyectoID,
@@ -139,11 +142,13 @@ namespace BackEndSAM.Controllers
                             Resultado = item.Resultado,
                             ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
                             ListaJuntas = listJuntaXSpool,
-                            IDDEFECTOTIPO= item.IdDefectoTipo.GetValueOrDefault(),
-                            ListaJuntasSeleccionadas= ObtenerJuntasID(ListaJutasSeleccionadasXSpoolID),
-                            TemplateRender = Lenguaje == "es-MX" ? "Existen " + ListaJutasSeleccionadasXSpoolID.Count + " Juntas" : "There are " + ListaJutasSeleccionadasXSpoolID.Count + " board",
+                            IDDEFECTOTIPO = item.IdDefectoTipo.GetValueOrDefault(),
+                            ListaJuntasSeleccionadas = juntasSeleccionadas,
+                            TemplateRender = juntasSeleccionadas.Count > 0 ? idiomaMensaje.Split('|')[0].Replace("?1", juntasSeleccionadas.Count.ToString()) : idiomaMensaje.Split('|')[1],
                             TIPO =item.Tipo
                         };
+                                            
+
                         detalleDatos.ListaJuntas = ObtenerJuntasSeleccionadas(detalleDatos.ListaJuntas, detalleDatos.ListaJuntasSeleccionadas);
                         listaDetalleDatos.Add(detalleDatos);
                     }
