@@ -13,6 +13,8 @@ function SuscribirEventos() {
     GuardarDetalleAdicional();
     SuscribirEventoCancelarAdicionales();
     suscribirEventoAdicionales();
+    suscribirEventoSoldadoresRaiz();
+    GuardarRaizMultiselect();
 };
 
 var preventMultiKeyDown = false;
@@ -28,11 +30,31 @@ function suscribirEventoAdicionales() {
     });
 }
 
+function suscribirEventoSoldadoresRaiz() {
+
+    $(document).on('click', '.botonSoldadoresRaiz', function (e) {
+        var grid = $("#grid").data("kendoGrid"),
+        dataItem = grid.dataItem($(e.target).closest("tr"));
+        $("#contenedorMultiselect").empty();
+        LlenarGridPopUpMultiselet(dataItem);
+    });
+}
+
 function SuscribirEventoCancelarAdicionales() {
     $("#CancelarTrabajosAdicionales").click(function (e) {
         $("#windowGrid").data("kendoWindow").close();
     });
 }
+
+function GuardarRaizMultiselect() {
+    $('#GuardarSoldadoresRaiz').click(function () {
+
+        modeloRenglon.Raiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._dataItems;
+        $("#windowMultiselectSoldador").data("kendoWindow").close();
+        $("#grid").data("kendoGrid").dataSource.sync();
+    });
+}
+
 
 function GuardarDetalleAdicional() {
     $('#GuardarTrabajosAdicionales').click(function () {
@@ -545,3 +567,6 @@ function opcionHabilitarView(valor, name) {
         $("#botonGuardar3").text("Guardar");
     }
 }
+
+
+
