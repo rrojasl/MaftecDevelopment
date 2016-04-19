@@ -223,13 +223,17 @@ function suscribirEventoAdicionales() {
 
     function suscribirEventoAgregar() {
         $('#ButtonAgregar').click(function (e) {
-            e.preventDefault();
-            if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte" ) {
-                AjaxCargarReporteJuntas();
+            
+            if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+                    $('#ButtonAgregar').prop("disabled", true);
+                    AjaxCargarReporteJuntas();
+                }
             }
             else {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "" ) {
                     if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
+                        $('#ButtonAgregar').prop("disabled", true);
                         ObtenerJSonGridArmado();
                     }
                     else

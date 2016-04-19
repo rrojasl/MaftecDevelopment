@@ -68,6 +68,7 @@ function ObtenerJSonGridArmado() {
                     ds.insert(0, array[i]);
                     //$("#Junta").data("kendoComboBox").dataSource.remove($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()));
                     $("#Junta").data("kendoComboBox").text("");
+                    $('#ButtonAgregar').prop("disabled", false);
                 }
             });
 
@@ -379,7 +380,7 @@ function AjaxCargarReporteJuntas() {
                     ds.insert(0, array[i]);
                 }
             }
-            
+            $('#ButtonAgregar').prop("disabled", false);
             loadingStop();
         });
     }
