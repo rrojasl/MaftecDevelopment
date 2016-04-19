@@ -19,14 +19,17 @@ var $DimensionalModel = {
         inputDefecto: {
             visible: "#inputDefectoDiv",
             editable: "#inputDefecto",
+            required: "#inputDefecto"
         },
         inputInspector: {
             visible: "#inputInspectorDiv",
             editable: "#inputInspector",
+            required: "#inputInspector"
         },
         FechaInspeccion: {
             visible: "#FechaInspeccionDiv",
             editable: "#FechaInspeccion",
+            required: "#FechaInspeccion"
         },
         
     }
