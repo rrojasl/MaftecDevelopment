@@ -17,6 +17,7 @@ function SuscribirEventos() {
 
 var preventMultiKeyDown = false;
 var lastSpoolIdInserted = "";
+var lastJointInserted = "";
 
 function suscribirEventoAdicionales() {
 
@@ -252,37 +253,42 @@ function SuscribirEventosJunta() {
 
     $('#Junta').closest('.k-widget').keydown(function (e) {
         e.preventDefault();
-        if (e.keyCode == 37) {
-            $("#InputID").data("kendoComboBox").input.focus();
-            $("#Junta").val("");
-        }
-        else if (e.keyCode == 39) {
-            $("#ButtonAgregar").focus();
-        }
-        else if (e.keyCode == 13) {
-            if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
-
-                if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
-                    deshabilitaSpool();
-                    ObtenerJSonGridSoldadura();
-                    opcionHabilitarRadioTipoCaptura(true);
-                }
-                else if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
-                    if ($("#Junta").val() != "") {
-                        habilitaSpool();
-                        opcionHabilitarRadioTipoCaptura(false);
-                        ObtenerJSonGridSoldadura();
-                    }
-                    else
-                        displayNotify("JuntaSinSeleccionar", "", '2');
-                }
-                else {
-                    displayNotify("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
-                }
+        if (!preventMultiKeyDown && lastJointInserted != $("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select())) {
+            if (e.keyCode == 37) {
+                $("#InputID").data("kendoComboBox").input.focus();
+                $("#Junta").val("");
             }
-            else
+            else if (e.keyCode == 39) {
+                $("#ButtonAgregar").focus();
+            }
+            else if (e.keyCode == 13) {
+                if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
+                    preventMultiKeyDown = true;
+                    lastJointInserted = $("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select());
 
-                displayNotify("NoExisteJunta", '', '2');
+                    if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
+                        deshabilitaSpool();
+                        ObtenerJSonGridSoldadura();
+                        opcionHabilitarRadioTipoCaptura(true);
+                    }
+                    else if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
+                        if ($("#Junta").val() != "") {
+                            habilitaSpool();
+                            opcionHabilitarRadioTipoCaptura(false);
+                            ObtenerJSonGridSoldadura();
+                        }
+                        else
+                            displayNotify("JuntaSinSeleccionar", "", '2');
+                    }
+                    else {
+                        displayNotify("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
+                    }
+                }
+                else
+
+                    displayNotify("NoExisteJunta", '', '2');
+            }
+            preventMultiKeyDown = false;
         }
     });
 }

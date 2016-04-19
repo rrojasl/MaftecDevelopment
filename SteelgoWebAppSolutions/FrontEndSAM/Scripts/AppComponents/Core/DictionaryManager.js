@@ -8109,6 +8109,11 @@ _dictionary = {
         "es-MX": "No hay Soldadores de Relleno",
         "en-US": "No filling welders"
     },
+    "CapturaSoldaduraJuntaHeader": {
+        "es-MX": "Junta",
+        "en-US": "Joint"
+    },
+
     //#endregion
     //#region GenerarRequisicion
 
