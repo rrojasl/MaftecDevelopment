@@ -1,5 +1,4 @@
-﻿
-function SuscribirEventos() {
+﻿function SuscribirEventos() {
     suscribirEventoGuardar();
     suscribirEventoAgregar();
     suscribirEventoAplicar();
@@ -59,8 +58,8 @@ function GuardarRaizMultiselect() {
 function GuardarDetalleAdicional() {
     $('#GuardarTrabajosAdicionales').click(function () {
         var ds = $("#gridPopUp").data("kendoGrid").dataSource
-        
-        for (var i = 0; i < ds._data.length; i++){
+
+        for (var i = 0; i < ds._data.length; i++) {
             if (ds._data[i].Soldador == "" || ds._data[i].TrabajoAdicional == "") {
                 displayNotify("CapturaSoldaduraCamposVacios", "", "1");
                 return;
@@ -119,7 +118,6 @@ function SuscribirEventoProcesosRaiz() {
 }
 
 function suscribirEventoGuardar() {
-
     $('#btnGuardar').click(function (e) {
         EventoGuardar();
     });
@@ -177,10 +175,7 @@ function suscribirEventoAgregar() {
             }
             else
                 displayNotify("JuntaSinSeleccionar", "", '2');
-
         }
-
-
     });
 }
 
@@ -227,10 +222,6 @@ function suscribirEventoAplicar() {
             if (endRangeDate.val() != "")
                 PlanchaFecha();
         }
-
-
-
-        
         loadingStop();
     });
 }
@@ -275,15 +266,15 @@ function SuscribirEventosJunta() {
 
     $('#Junta').closest('.k-widget').keydown(function (e) {
         e.preventDefault();
-        if (!preventMultiKeyDown && lastJointInserted != $("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select())) {
-            if (e.keyCode == 37) {
-                $("#InputID").data("kendoComboBox").input.focus();
-                $("#Junta").val("");
-            }
-            else if (e.keyCode == 39) {
-                $("#ButtonAgregar").focus();
-            }
-            else if (e.keyCode == 13) {
+        if (e.keyCode == 37) {
+            $("#InputID").data("kendoComboBox").input.focus();
+            $("#Junta").val("");
+        }
+        else if (e.keyCode == 39) {
+            $("#ButtonAgregar").focus();
+        }
+        else if (e.keyCode == 13) {
+            if (!preventMultiKeyDown && lastJointInserted != $("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select())) {
                 if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
                     preventMultiKeyDown = true;
                     lastJointInserted = $("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select());
@@ -309,8 +300,8 @@ function SuscribirEventosJunta() {
                 else
 
                     displayNotify("NoExisteJunta", '', '2');
+                preventMultiKeyDown = false;
             }
-            preventMultiKeyDown = false;
         }
     });
 }
@@ -413,17 +404,16 @@ function SuscribirEventoSpoolID() {
     });
 
     $('#InputID').closest('.k-widget').keydown(function (e) {
-
-        if (!preventMultiKeyDown && lastSpoolIdInserted != $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) {
-            if (e.keyCode == 37) {
-                $("#InputOrdenTrabajo").focus();
-            }
-            else if (e.keyCode == 39) {
-                $("#Junta").data("kendoComboBox").input.focus();
-            }
-            else if (e.keyCode == 40)
-                $("#InputID").data("kendoComboBox").select();
-            else if (e.keyCode == 13) {
+        if (e.keyCode == 37) {
+            $("#InputOrdenTrabajo").focus();
+        }
+        else if (e.keyCode == 39) {
+            $("#Junta").data("kendoComboBox").input.focus();
+        }
+        else if (e.keyCode == 40)
+            $("#InputID").data("kendoComboBox").select();
+        else if (e.keyCode == 13) {
+            if (!preventMultiKeyDown && lastSpoolIdInserted != $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) {
                 preventMultiKeyDown = true;
                 lastSpoolIdInserted = $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val();
                 if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
