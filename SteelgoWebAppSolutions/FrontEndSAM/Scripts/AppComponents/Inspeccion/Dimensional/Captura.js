@@ -6,21 +6,23 @@ var endRangeDate;
 var listadoJsonCaptura;
 var anteriorlongitudTrabajosAdicionales;
 var actuallongitudTrabajosAdicionales;
+
 function IniciarCapturaInspecion() {
     CargarFecha();
     asignarProyecto();
     SuscribirEventos();
-    IniciarEventos();
+    
 };
 IniciarCapturaInspecion();
+IniciarPreCarga();
 //Cambia lenguaje
 
-
-function IniciarEventos() {
-
-    AjaxObtenerListaInspector();
-    AjaxObtenerListaDefectos();
+function IniciarPreCarga() {
+    setTimeout(function () { AjaxObtenerListaInspector() }, 1000);
+    setTimeout(function () { AjaxObtenerListaDefectos() }, 2000);
+    
 }
+
 
 function changeLanguageCall() {
     CargarGrid();
