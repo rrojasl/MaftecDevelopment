@@ -74,10 +74,12 @@ function ObtenerJSonGridArmado() {
 
         } catch (e) {
             displayNotify("Mensajes_error", e.message, '1');
+            $('#ButtonAgregar').prop("disabled", false);
         }
     }
     else {
         displayNotify("CapturaArmadoMensajeJuntaExistente", "", '1');
+        $('#ButtonAgregar').prop("disabled", false);
     }
 }
 
