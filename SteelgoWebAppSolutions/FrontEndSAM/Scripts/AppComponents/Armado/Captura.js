@@ -220,21 +220,22 @@ function CargarGrid() {
 function limpiarRenglon(e) {
     e.preventDefault();
     
-    var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
-    itemToClean.Taller = "";
-    itemToClean.TallerID = 0;
-    itemToClean.FechaArmado = "";
-    itemToClean.NumeroUnico1 = "";
-    itemToClean.NumeroUnico1ID = 0;
-    itemToClean.NumeroUnico2 = "";
-    itemToClean.NumeroUnico2ID = 0;
-    itemToClean.Tubero = "";
-    itemToClean.TuberoID = 0;
-    itemToClean.ListaDetalleTrabajoAdicional = [];
-    itemToClean.TemplateMensajeTrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
-    var dataSource = $("#grid").data("kendoGrid").dataSource;
-    dataSource.sync();
-    
+    if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+        var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+        itemToClean.Taller = "";
+        itemToClean.TallerID = 0;
+        itemToClean.FechaArmado = "";
+        itemToClean.NumeroUnico1 = "";
+        itemToClean.NumeroUnico1ID = 0;
+        itemToClean.NumeroUnico2 = "";
+        itemToClean.NumeroUnico2ID = 0;
+        itemToClean.Tubero = "";
+        itemToClean.TuberoID = 0;
+        itemToClean.ListaDetalleTrabajoAdicional = [];
+        itemToClean.TemplateMensajeTrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+        var dataSource = $("#grid").data("kendoGrid").dataSource;
+        dataSource.sync();
+    }
 }
 
 function CargarGridPopUp() {

@@ -16,7 +16,7 @@ function changeLanguageCall() {
 }
  
 function IniciarBacklog() {
-    debugger;
+    
   //  SuscribirEventos();
     CargarGridBacklog();
     AjaxCargarCamposPredeterminadosBacklog();

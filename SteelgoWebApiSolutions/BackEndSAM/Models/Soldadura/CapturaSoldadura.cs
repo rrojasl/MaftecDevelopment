@@ -78,6 +78,9 @@ namespace BackEndSAM.Models.Soldadura
         public string TrabajosAdicionales { get; set; }
         public string SoldadoresRelleno { get; set; }
         public List<Taller> ListaTaller { get; set; }
+        public List<Colada> ListaColada { get; set; }
+        public int ColadaID { get; set; }
+        public string NumeroColada { get; set; }
         public string DetalleJunta { get; set; }
         public decimal Diametro { get; set; }
         public decimal Espesor { get; set; }
@@ -179,6 +182,7 @@ namespace BackEndSAM.Models.Soldadura
         public string NumeroUnico1ID { get; set; }
         public string NumeroUnico2ID { get; set; }
         public string TallerID { get; set; }
+        public int ColadaID { get; set; }
         public Nullable<int> ProcesoSoldaduraRaizID { get; set; }
         public Nullable<int> ProcesoSoldaduraRellenoID { get; set; }
         public string FechaSoldadura { get; set; }
@@ -187,7 +191,6 @@ namespace BackEndSAM.Models.Soldadura
         public List<DetalleGuardarTrabajoAdicional> ListaDetalleTrabajoAdicional { get; set; }
         public List<GuardarSoldaduraSoldado> ListaSoldaduraRaiz { get; set; }
         public List<GuardarSoldaduraSoldado> ListaSoldaduraRelleno { get; set; }
-
     }
 
     public class GuardarSoldaduraSoldado
@@ -212,4 +215,9 @@ namespace BackEndSAM.Models.Soldadura
         public string Observacion { get; set; }
     }
 
+    public class Colada
+    {
+        public int ColadaID { get; set; }
+        public string NumeroColada { get; set;  }
+    }
 }
