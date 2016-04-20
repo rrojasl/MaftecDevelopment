@@ -75,7 +75,6 @@ function GuardarDetalleAdicional() {
 function EventoGuardar() {
     var ds = $("#grid").data("kendoGrid").dataSource;
     if ($('#botonGuardar').text() == "Guardar") {
-
         AjaxGuardarCaptura(ds._data, 0);
     }
     else if ($('#botonGuardar').text() == "Editar")
@@ -424,12 +423,14 @@ function SuscribirEventoSpoolID() {
                 else
                     displayNotify("NoExisteSpoolID", '', '2');
             }
-            else if (e.keyCode == 9) {
-                if ($("#InputID").data("kendoComboBox").value() == "")
-                    $("#InputID").data("kendoComboBox").select(0);
-            }
-            preventMultiKeyDown = false;
         }
+        else if (e.keyCode == 9) {
+            if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget))
+                $("#InputID").data("kendoComboBox").select(0);
+            else if (tieneClase(e.currentTarget))
+                $("#InputID").data("kendoComboBox").select(0);
+        }
+        preventMultiKeyDown = false;
     });
 };
 

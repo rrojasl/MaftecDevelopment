@@ -1918,6 +1918,9 @@
     <Compile Include="Sam3\Sam3_Steelgo_Get_Chofer_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Steelgo_Get_Colada_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_Steelgo_Get_Color_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>

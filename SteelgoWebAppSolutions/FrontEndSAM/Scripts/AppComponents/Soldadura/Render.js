@@ -538,6 +538,55 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
     loadingStop();
 }
 
+function RenderComboBoxColada(container, options) {
+    loadingStart();
+    var dataItem;
+    $('<input data-text-field="NumeroColada" id=' + options.model.uid + ' data-value-field="ColadaID" data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoComboBox({
+            suggest: true,
+            filter: "contains",
+            autoBind: false,
+            dataSource: ItemSeleccionado.ListaColada,
+            template: "<i class=\"fa fa-#=data.NumeroColada#\"></i> #=data.NumeroColada#",
+            select: function (e) {
+
+                dataItem = this.dataItem(e.item.index());
+                options.model.NumeroColada = dataItem.NumeroColada;
+                options.model.ColadaID = dataItem.ColadaID;
+            },
+            change: function (e) {
+                dataItem = this.dataItem(e.sender.selectedIndex);
+                if (dataItem != undefined) {
+                    options.model.NumeroColada = dataItem.NumeroColada;
+                    options.model.ColadaID = dataItem.ColadaID;
+
+                }
+                else {
+                    options.model.NumeroColada = ObtenerDescCorrectaColada(ItemSeleccionado.ListaColada, options.model.ColadaID);
+
+                }
+            }
+        }
+        );
+    $(".k-combobox").on('mouseleave', function (send) {
+        var e = $.Event("keydown", { keyCode: 27 });
+        var item = this;
+        if (!tieneClase(item)) {
+            $(container).trigger(e);
+        }
+    });
+    loadingStop();
+}
+
+function ObtenerDescCorrectaColada(lista, ColadaID) {
+    for (var i = 0; i < lista.length; i++) {
+        if (lista[i].ColadaID == ColadaID)
+            return lista[i].NumeroColada;
+    }
+    return "";
+}
+
 function tieneClase(item) {
     for (var i = 0; i < item.classList.length; i++) {
         if (item.classList[i] == "k-state-border-up" || item.classList[i] == "k-state-border-down") {

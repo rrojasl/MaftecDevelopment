@@ -8113,7 +8113,10 @@ _dictionary = {
         "es-MX": "Junta",
         "en-US": "Joint"
     },
-
+    "CapturaSoldaduraColada": {
+        "es-MX": "Colada",
+        "en-US": "Wash"
+    },
     //#endregion
     //#region GenerarRequisicion
 
