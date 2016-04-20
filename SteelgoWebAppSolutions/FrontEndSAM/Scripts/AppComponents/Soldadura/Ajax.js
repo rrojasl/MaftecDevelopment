@@ -70,6 +70,12 @@ function getGridSoldadura() {
                 ds._data[i].procesoSoldaduraRelleno;
 
         }
+        
+        var itemList = ds._data;
+        for (var i = 0; i < itemList.length; i++){
+            if (itemList[i].ListadoProcesoSoldadura.length > 0 && itemList[i].ListadoProcesoSoldadura[0].Codigo != "")
+                itemList[i].ListadoProcesoSoldadura.unshift({ Codigo: "", ProcesoSoldaduraID: 0 });
+        }
         loadingStop();
     });
 }

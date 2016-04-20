@@ -21,11 +21,15 @@ var lastSpoolIdInserted = "";
 var lastJointInserted = "";
 
 function suscribirEventoAdicionales() {
-
     $(document).on('click', '.botonAdicionales', function (e) {
-        var grid = $("#grid").data("kendoGrid"),
-        dataItem = grid.dataItem($(e.target).closest("tr"));
-        LlenarGridPopUp(dataItem);
+        e.preventDefault();
+
+        if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+
+            var grid = $("#grid").data("kendoGrid"),
+            dataItem = grid.dataItem($(e.target).closest("tr"));
+            LlenarGridPopUp(dataItem);
+        }
     });
 }
 
@@ -243,15 +247,17 @@ function SuscribirEventoTaller() {
         filter: "contains",
         index: 3
     });
-    //$('#inputTaller').closest('.k-widget').keydown(function (e) {
-    //    if (e.keyCode == 13) {
-    //        if ($("#inputTaller").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
-    //            PlanchaTaller();
-    //        }
-    //        else
-    //            $("#inputTaller").data("kendoComboBox").value("");
-    //    }
-    //});
+    $('#inputTaller').closest('.k-widget').keydown(function (e) {
+        if (e.keyCode == 13) {
+            if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined) {
+                //PlanchaTaller();
+            }
+            else {
+                $("#inputTaller").data("kendoComboBox").value("");
+            }
+
+        }
+    });
 }
 
 function SuscribirEventosJunta() {
