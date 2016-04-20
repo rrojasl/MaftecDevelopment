@@ -10,9 +10,17 @@ function IniciarCapturaInspecion() {
     CargarFecha();
     asignarProyecto();
     SuscribirEventos();
+    IniciarEventos();
 };
 IniciarCapturaInspecion();
 //Cambia lenguaje
+
+
+function IniciarEventos() {
+
+    AjaxObtenerListaInspector();
+    AjaxObtenerListaDefectos();
+}
 
 function changeLanguageCall() {
     CargarGrid();

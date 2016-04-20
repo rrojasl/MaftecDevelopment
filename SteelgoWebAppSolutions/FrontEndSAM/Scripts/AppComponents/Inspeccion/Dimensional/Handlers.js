@@ -171,7 +171,7 @@ function SuscribirEventoInspector() {
         }
     });
 
-    AjaxObtenerListaInspector();
+   
 };
 
 
@@ -211,7 +211,7 @@ function SuscribirEventoDefecto() {
 
         }
     });
-    AjaxObtenerListaDefectos();
+   
 };
 function SuscribirEventoResultadoDimensional() {
 
