@@ -79,9 +79,10 @@ function ObtenerJSonGridArmado() {
                     ds.insert(0, array[i]);
                     //$("#Junta").data("kendoComboBox").dataSource.remove($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()));
                     $("#Junta").val("");
-                    $('#ButtonAgregar').prop("disabled", false);
+                    
                 }
             });
+            $('#ButtonAgregar').prop("disabled", false);
             loadingStop();
         } catch (e) {
             displayNotify("Mensajes_error", e.message, '1');
@@ -393,11 +394,11 @@ function AjaxCargarReporteJuntas() {
                     ds.insert(0, array[i]);
                 }
             }
-            $('#ButtonAgregar').prop("disabled", false);
+            
             loadingStop();
         });
     }
-
+    $('#ButtonAgregar').prop("disabled", false);
 }
 
 function AjaxCambiarAccionAModificacion() {
