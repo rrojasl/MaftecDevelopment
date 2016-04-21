@@ -3,7 +3,7 @@
     SuscribirEventosJunta();
     suscribirEventoAgregar();
     suscribirEventoGuardar();
-    suscribirEventoCancelar();
+    
     SuscribirEventoTubero();
     SuscribirEventoTaller();
     SuscribeEventosTipoCaptura();
@@ -176,14 +176,6 @@ function suscribirEventoGuardar() {
     });
 }
 
-function opcionHabilitarRadioTipoCaptura(valor) {
-    var combobox = $("#InputID").data("kendoComboBox");
-    if (valor) {
-    }
-    else {
-    }
-}
-
 
 function Limpiar() {
 
@@ -222,10 +214,7 @@ function Limpiar() {
     $("#grid").data('kendoGrid').dataSource.sync();
 }
 
-function suscribirEventoCancelar() {
-    $('#btnCancelar').click(function (e) {
-    });
-}
+
 
 function suscribirEventoAgregar() {
     $('#ButtonAgregar').click(function (e) {
@@ -363,17 +352,6 @@ function SuscribirEventosJunta() {
     });
 }
 
-function deshabilitaSpool() {
-    $("#InputOrdenTrabajo").prop("disabled", true);
-    $("#InputID").data("kendoComboBox").enable(false);
-
-}
-
-function habilitaSpool() {
-    $("#InputOrdenTrabajo").prop("disabled", false);
-    $("#InputID").data("kendoComboBox").enable(true);
-
-}
 
 
 function SuscribirEventoSpoolID() {
@@ -459,9 +437,9 @@ function SuscribirEventoSpoolID() {
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
                     if ($("#InputID").data("kendoComboBox").select() != -1 && !preventMultiKeyDown) {
-                        AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                        AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                         preventMultiKeyDown = true;
-                        setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
+                        //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
                         preventMultiKeyDown = false;
                     }
                 }
