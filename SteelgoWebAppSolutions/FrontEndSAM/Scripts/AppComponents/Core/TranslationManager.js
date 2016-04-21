@@ -156,7 +156,7 @@ function getGridFilterableCellMaftec() {
         cell: {
             operator: "contains",
             template: function (args) {
-                args.css("width", "90%").addClass("k-textbox").keydown(function (e) {
+                args.css("width", "90%").addClass("general-input").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });

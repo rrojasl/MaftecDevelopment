@@ -1,9 +1,9 @@
 ﻿function AjaxJunta(spoolID) {
     $('input:radio[name=Muestra]:checked').val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token") }).done(function (data) {
-        $("#Junta").data("kendoComboBox").dataSource.data([]);
+        
+        $("#Junta").data("kendoComboBox").value("");
         $("#Junta").data("kendoComboBox").dataSource.data(data);
-
 
     });
 }
