@@ -3,12 +3,16 @@
 IniciarCapturaPinturaCarga();
 function IniciarCapturaPinturaCarga() {
     SuscribirEventos();
+    
 }
 
 function changeLanguageCall() {
+    $("#inputCarro").data("kendoComboBox").text("");
+    $("#inputCarroBacklog").data("kendoComboBox").text("");
     AjaxObtenerCatalogoClasificacion();
     AjaxObtenerCatalogoPersistencia();
-    setTimeout(function () { AjaxPinturaCargaMedioTransporte(); }, 1100); 
+    AjaxObtenerListaProyectos();
+    //setTimeout(function () { AjaxPinturaCargaMedioTransporte(); }, 1100); 
         CargarGrid();
         AjaxCargarCamposPredeterminados();  
  
@@ -16,14 +20,15 @@ function changeLanguageCall() {
 }
  
 function IniciarBacklog() {
-    
+    $("#inputCarro").data("kendoComboBox").text("");
+    $("#inputCarroBacklog").data("kendoComboBox").text("");
   //  SuscribirEventos();
     CargarGridBacklog();
     AjaxCargarCamposPredeterminadosBacklog();
     AjaxCargarSpool(false, 0);
     AjaxObtenerCatalogoClasificacion();
     AjaxObtenerCatalogoPersistencia();
-    setTimeout(function () { AjaxPinturaCargaMedioTransporte(); }, 1100);
+    //setTimeout(function () { AjaxPinturaCargaMedioTransporte(); }, 1100);
 }
 
 function LimpiarCarro() {

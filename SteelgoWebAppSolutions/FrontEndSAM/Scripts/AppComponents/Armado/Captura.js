@@ -203,15 +203,15 @@ function CargarGrid() {
             { field: "SpoolID", title: _dictionary.CapturaArmadoHeaderSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px"},
             { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "70px" },
             { field: "DetalleJunta", title: _dictionary.CapturaArmadoHeaderDetalle[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
-            { field: "Diametro", title: _dictionary.CapturaArmadoHeaderDiametro[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, width: "85px" },
-            { field: "FechaArmado", title: _dictionary.CapturaArmadoHeaderFechaArmado[$("#language").data("kendoDropDownList").value()], filterable: true, width: "140px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
+            { field: "Diametro", title: _dictionary.CapturaArmadoHeaderDiametro[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, width: "85px", format: "{0:n4}" },
+            { field: "FechaArmado", title: _dictionary.CapturaArmadoHeaderFechaArmado[$("#language").data("kendoDropDownList").value()], filterable: {cell: {showOperators: false}}, width: "140px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "Tubero", title: _dictionary.CapturaArmadoHeaderTubero[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTubero, width: "125px" },
             { field: "Taller", title: _dictionary.CapturaArmadoHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTaller, width: "125px" },
             { field: "NumeroUnico1", title: _dictionary.CapturaArmadoHeaderNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico1, width: "100px" },
             { field: "NumeroUnico2", title: _dictionary.CapturaArmadoHeaderNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico2, width: "100px" },
             { field: "InformacionDetalle", title: _dictionary.CapturaArmadoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "115px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TemplateMensajeTrabajosAdicionales#</span></a>" },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "99px" },
-            { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "99px" }
+            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "99px" }
         ],
         
     });
@@ -262,8 +262,8 @@ function CargarGridPopUp() {
                 filters: [
                   { field: "Accion", operator: "eq", value: 1 },
                   { field: "Accion", operator: "eq", value: 2 },
-                    { field: "Accion", operator: "eq", value: 0 },
-                    { field: "Accion", operator: "eq", value: undefined }
+                  { field: "Accion", operator: "eq", value: 0 },
+                  { field: "Accion", operator: "eq", value: undefined }
                 ]
             }
 
@@ -302,11 +302,31 @@ function CargarGridPopUp() {
                   text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()],
                   click: function (e) {
                       e.preventDefault();
-
+                      var dataSource = this.dataSource;
                       var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                      if (confirm(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()])) {
-                          var dataSource = this.dataSource;
+                      windowTemplate = kendo.template($("#windowTemplate").html());
+
+                      ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                          iframe: true,
+                          title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                          visible: false, //the window will not appear before its .open method is called
+                          width: "auto",
+                          height: "auto",
+                          modal: true,
+                          animation: {
+                              close: false,
+                              open: false
+                          }
+                      }).data("kendoWindow");
+
+                      ventanaConfirm.content(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+                                   "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+                      ventanaConfirm.open().center();
+
+                      $("#yesButton").click(function (handler) {
+                          
 
                           if (dataItem.JuntaArmadoID == "1" || dataItem.JuntaArmadoID == undefined)
                               dataSource.remove(dataItem);
@@ -323,8 +343,15 @@ function CargarGridPopUp() {
                           actuallongitudTrabajosAdicionales = data.length;
 
                           modeloRenglon.TemplateMensajeTrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+                          dataSource.sync();
+                          ventanaConfirm.close();
+                      });
+                      $("#noButton").click(function (handler) {
+                          ventanaConfirm.close();
+                      });
 
-                      }
+
+                      
                   }
               }, width: "99px"
           }

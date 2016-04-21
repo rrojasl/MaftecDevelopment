@@ -37,6 +37,7 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int SpoolID { get; set; }
         public int SistemaPinturaID { get; set; }
         public int MedioTransporteCargaID { get; set; }
+        public int ProyectoID { get; set; }
     }
 
     public class Captura
@@ -122,4 +123,12 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public string Vista { get; set; }
         public string Opcion { get; set; }
     }
+
+    public partial class Proyecto
+    {
+        public int ProyectoID { get; set; }
+        public string Nombre { get; set; }
+        public string Letra { get; set; }
+    }
+
 }

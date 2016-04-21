@@ -1,7 +1,7 @@
 ﻿function AjaxJunta(spoolID) {
     $('input:radio[name=Muestra]:checked').val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token") }).done(function (data) {
-        $("#Junta").data("kendoComboBox").value("");
+        $("#Junta").data("kendoComboBox").dataSource.data([]);
         $("#Junta").data("kendoComboBox").dataSource.data(data);
 
 
@@ -67,7 +67,7 @@ function ObtenerJSonGridArmado() {
                     }
                     ds.insert(0, array[i]);
                     //$("#Junta").data("kendoComboBox").dataSource.remove($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()));
-                    $("#Junta").data("kendoComboBox").text("");
+                    $("#Junta").val("");
                     $('#ButtonAgregar').prop("disabled", false);
                 }
             });

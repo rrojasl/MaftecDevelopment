@@ -436,12 +436,12 @@ function SuscribirEventoSpoolID() {
             AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
         }
         else if (e.keyCode == 13) {
-            e.preventDefault();
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
                     if ($("#InputID").data("kendoComboBox").select() != -1 && !preventMultiKeyDown) {
+                        AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                         preventMultiKeyDown = true;
-                        AjaxCargarReporteJuntas();
+                        setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
                         preventMultiKeyDown = false;
                     }
                 }

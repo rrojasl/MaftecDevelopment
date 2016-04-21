@@ -11,7 +11,7 @@ function SuscribirEventos() {
     SuscribirEventoPersistencia();
     SuscribirEventoGuardarCrearMedioTransporte();
     SuscribirEventoCerrarCrearMedioTransporte();
-
+    SuscribirEventoProyecto();
     suscribirEventoCarroBacklog();
 };
 
@@ -24,6 +24,7 @@ function SuscribirEventoCambiarVista() {
     });
     $('#stylePatio').click(function () {
         $('#stylePatio2').addClass("active");
+        $('#styleEscritorio2').removeClass("active");
         $("#contenedorPrincipalCargaCarro").hide();
         $("#contenedorPrincipalCargaCarroBacklog").show();
         IniciarBacklog();
@@ -31,12 +32,14 @@ function SuscribirEventoCambiarVista() {
 
     $('#styleEscritorio2').click(function () {
         $('#styleEscritorio').addClass("active");
+        $('#stylePatio').removeClass("active");
         $("#contenedorPrincipalCargaCarro").show();
         $("#contenedorPrincipalCargaCarroBacklog").hide();
         changeLanguageCall();
     });
     $('#stylePatio2').click(function () {
         $('#stylePatio').addClass("active");
+        
         $("#contenedorPrincipalCargaCarro").hide();
         $("#contenedorPrincipalCargaCarroBacklog").show();
         IniciarBacklog();
@@ -83,7 +86,7 @@ function SuscribirEventoPersistencia() {
                 }
             }
             else {
-                displayMessage("NoExistePersistencia", '', '2');
+                displayNotify("NoExistePersistencia", '', '2');
             } 
         }
     });
@@ -92,6 +95,30 @@ function SuscribirEventoPersistencia() {
         $("#inputPersistencia").data("kendoComboBox").trigger("change");
     });
 }
+
+function SuscribirEventoProyecto() {
+
+    $('#inputProyecto').kendoComboBox({
+        dataTextField: "Nombre",
+        dataValueField: "ProyectoID ",
+        suggest: true,
+        filter: "contains",
+        index: 3,
+        change: function (e) {
+            var dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem != undefined) {
+                AjaxPinturaCargaMedioTransporte();
+            }
+        },
+        select: function (e) {
+            var dataItem = this.dataItem(e.item.index());
+            if (dataItem != undefined) {
+                AjaxPinturaCargaMedioTransporte();
+            }
+        }
+    });
+}
+
 
 function SuscribirEventoClasificacion() {
      
@@ -218,7 +245,7 @@ function SuscribirEventoSpoolID() {
             if (dataItem.Status != "1") {
                 e.preventDefault();
                 $("#InputID").val("");
-                displayMessage("Mensajes_error", dataItem.Status, '1');
+                displayNotify("Mensajes_error", dataItem.Status, '1');
 
             }
             else {
@@ -242,7 +269,7 @@ function SuscribirEventoSpoolID() {
                 }
             }
             else
-                displayMessage("NoExisteSpoolID", '', '2');
+                displayNotify("NoExisteSpoolID", '', '2');
         }
     });
 
@@ -252,11 +279,11 @@ function SuscribirEventoSpoolID() {
             try {
                 AjaxObtenerSpoolID();
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaArmadoMensajeOrdenTrabajo", "", '2');
-            $("#InputOrdenTrabajo").focus();
+            displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '1');
+            //$("#InputOrdenTrabajo").focus();
         }
     });
 
@@ -337,7 +364,7 @@ function SuscribirEventoCarro() {
                 }
             }
             else
-                displayMessage("NoExisteCarro", '', '2');
+                displayNotify("NoExisteCarro", '', '2');
         },
         change: function (e) {  
             var dataItem = this.dataItem(e.sender.selectedIndex);
@@ -370,13 +397,13 @@ function SuscribirEventoCarro() {
                 }
             }
             else
-                displayMessage("NoExisteCarro", '', '2');
+                displayNotify("NoExisteCarro", '', '2');
         }
     });
 
 
     $("#inputCarro").blur(function () { 
-        $("#inputCarro").data("kendoComboBox").trigger("change");
+        //$("#inputCarro").data("kendoComboBox").trigger("change");
     });
 }
 
@@ -395,7 +422,7 @@ function SuscribirEventoSpoolID() {
                 if (dataItem.Status != "1") {
                     e.preventDefault();
                     $("#InputID").val("");
-                    displayMessage("Mensajes_error", dataItem.Status, '1');
+                    displayNotify("Mensajes_error", dataItem.Status, '1');
 
                 }
                 else {
@@ -405,7 +432,7 @@ function SuscribirEventoSpoolID() {
                 }
             }
             else
-                displayMessage("NoExisteSpoolID", '', '2');
+                displayNotify("NoExisteSpoolID", '', '2');
         }
         ,
         change: function (e) {
@@ -421,7 +448,7 @@ function SuscribirEventoSpoolID() {
                 }
             }
             else {
-                displayMessage("NoExisteSpoolID", '', '2');
+                displayNotify("NoExisteSpoolID", '', '2');
             } 
         }
     });
@@ -432,11 +459,10 @@ function SuscribirEventoSpoolID() {
             try {
                 AjaxObtenerSpoolID();
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaArmadoMensajeOrdenTrabajo", "", '2');
-            $("#InputOrdenTrabajo").focus();
+            displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '2');
         }
     });
 
@@ -461,7 +487,7 @@ function SuscribirEventoSpoolID() {
                 AjaxAgregarCarga();
             }
             else {
-                displayMessage("NoExisteCarro", '', '2');
+                displayNotify("NoExisteCarro", '', '2');
             } 
         }
     });
@@ -514,7 +540,7 @@ function suscribirEventoCarroBacklog() {
                 $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
             }
             else {
-                debugger;
+                
                 AjaxCargarSpoolBacklog(false, dataItem.MedioTransporteCargaID);
             }
         }
@@ -549,7 +575,7 @@ function suscribirEventoCarroBacklog() {
         //        }
         //    }
         //    else if($("#Guardar").text() == _dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]) {
-        //        displayMessage("NoExisteCarro", '', '2');
+        //        displayNotify("NoExisteCarro", '', '2');
         //    } 
         //}
     });

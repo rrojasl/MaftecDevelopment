@@ -55,30 +55,46 @@
             </div>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3" id="InputProyectoDiv">
+            <label id="ServiciosTecnicosProyecto"></label>
+            <input id="inputProyecto" />
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-3">
+            <div class="btn-group " data-toggle="buttons" role="group">
+                <label>&nbsp;</label>
+                <div class="btn btn-primary" id="styleEscritorio">
+                    <input type="radio" name="TipoVista" style=" width:auto;" value="Escritorio" /><span id="PinturaCargaCarroEscritorio"></span>
+                </div>
+                <div class="btn btn-primary" id="stylePatio">
+                    <input type="radio" name="TipoVista" style=" width:auto;" value="Patio" /><span id="PinturaCargaCarroPatio"> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3" id="InputProyectoDiv">
+            <label id="">&nbsp;</label>
+            
+        </div>
+    </div>
     <div id="contenedorPrincipalCargaCarro">
         @*Controles Superior*@
         <div class="row" id="FieldSetView">
-            <div class="col-sm-2 col-md-2 col-lg-3">
-                <div class="btn-group " data-toggle="buttons" role="group">
-                    <label>&nbsp;</label>
-                    <div class="btn btn-primary" id="styleEscritorio">
-                        <input type="radio" name="TipoVista" style=" width:auto;" value="Escritorio" /><span id="PinturaCargaCarroEscritorio"></span>
-                    </div>
-                    <div class="btn btn-primary" id="stylePatio">
-                        <input type="radio" name="TipoVista" style=" width:auto;" value="Patio" /><span id="PinturaCargaCarroPatio"> </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2 col-md-2 col-lg-2" id="InputCarroDiv">
+
+            <div class="col-sm-3 col-md-3 col-lg-3" id="InputCarroDiv">
                 <label id="PinturaCargaCarro"></label>
                 <input id="inputCarro" />
             </div>
-            <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label id="PinturaBotonCerrarCarro3"></label>
+                <input type="checkbox" name="Cerrar2" style=" width:auto;" id="chkCerrar2" />
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
                 <label id="PinturaCargaArea"></label>
                 <label id="labelM2" />
             </div>
-            <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="col-sm-2 col-md-2 col-lg-2">
                 <label id="PinturaCargaToneladas"></label>
                 <label id="labelToneladas" />
             </div>
@@ -127,7 +143,7 @@
     <div id="contenedorPrincipalCargaCarroBacklog">
         @*Controles Superior*@
         <div class="row addedSection" id="FieldSetView">
-            <div class="col-sm-2 col-md-2 col-lg-3">
+            @*<div class="col-sm-2 col-md-2 col-lg-3">
                 <div class="btn-group " data-toggle="buttons" role="group">
                     <label>&nbsp;</label>
                     <div class="btn btn-primary" id="styleEscritorio2">
@@ -137,7 +153,7 @@
                         <input type="radio" name="TipoVista" style=" width:auto;" value="Patio" /><span id="PinturaCargaCarroPatio2"> </span>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
             <div class="col-sm-3 col-md-3 col-lg-3" id="InputCarroDiv">
                 <label id="PinturaCargaBackLogCarro"></label>
@@ -205,8 +221,8 @@
 @*Popup nuevo carro*@
 <div id="divNuevoMedioTransporte" style="display:none; width:auto">
 
-    <div  class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-        
+    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+
         <div class="form-group" id="InputNombreDiv">
             <label id="labelNuevoMedioTransporte"></label><span style="font-size: 19px;">*</span>
             <input id="InputNombre" class="form-control" />
@@ -228,7 +244,7 @@
         </div>
 
         <div class="form-group" id="inputPesoMaximoDiv">
-            <label id="labelPesoMaximo" ></label><span style="font-size: 19px;">*</span>
+            <label id="labelPesoMaximo"></label><span style="font-size: 19px;">*</span>
             <input id="inputPesoMaximo" class="form-control" />
         </div>
 
@@ -237,10 +253,10 @@
             <input id="inputArea" class="form-control" />
         </div>
 
-        <div class="buttonSave" >
+        <div class="buttonSave">
             <label id="labelArea" class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></label>
-            <a class="btn btn-primary col-xs-5 col-sm-5 col-md-4 col-lg-5" href="#"  id="btnGuardarCrearMedioTransporte"><span id="lblGuardar"></span></a>
-            <a class="btn btn-primary col-xs-5 col-sm-5 col-md-4 col-lg-5 "href="#"  id="btnCerrarVentanaCrearMedioTransporte"><span id="BotonCerrar1"></span></a>
+            <a class="btn btn-primary col-xs-5 col-sm-5 col-md-4 col-lg-5" href="#" id="btnGuardarCrearMedioTransporte"><span id="lblGuardar"></span></a>
+            <a class="btn btn-primary col-xs-5 col-sm-5 col-md-4 col-lg-5 " href="#" id="btnCerrarVentanaCrearMedioTransporte"><span id="BotonCerrar1"></span></a>
         </div>
 
     </div>
@@ -256,7 +272,7 @@
 
 <script>
     @section JavascriptDocumentReadyFunctions {
-        $authorizationModel["Carga Carro"] = $CargaCarroModel;
+    $authorizationModel["Carga Carro"] = $CargaCarroModel;
     }
 </script>
 

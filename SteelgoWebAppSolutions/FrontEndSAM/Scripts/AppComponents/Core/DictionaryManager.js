@@ -6902,11 +6902,16 @@ _dictionary = {
         "es-MX": "Cerrar",
         "en-US": "Close"
     },
-
     "botonCancelar": {
         "es-MX": "Cancelar",
         "en-US": "Cancel"
     },
+    "botonLimpiar": {
+        "es-MX": "Limpiar",
+        "en-US": "Clean"
+    },
+
+
     "botonCancelar2": {
         "es-MX": "Cancelar",
         "en-US": "Cancel"
@@ -9390,6 +9395,10 @@ _dictionary = {
         "en-US": "Close cart"
     },
     "PinturaBotonCerrarCarro2": {
+        "es-MX": "Cerrar carro",
+        "en-US": "Close cart"
+    },
+    "PinturaBotonCerrarCarro3": {
         "es-MX": "Cerrar carro",
         "en-US": "Close cart"
     },

@@ -156,7 +156,8 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             SistemaPintura = item.SistemaPintura,
                             SistemaPinturaID = item.SistemaPinturaID,
                             SpoolID = item.SpoolID,
-                            SpoolJunta = item.SpoolJunta
+                            SpoolJunta = item.SpoolJunta,
+                            ProyectoID = item.ProyectoID
                         });
                     }
                     return ListadoDetalleSpool;
@@ -464,6 +465,40 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                 return result;
             }
         }
+
+
+        public object obtenerListaProyectos()
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_SteelGo_Get_Proyectos_Result> result = ctx.Sam3_SteelGo_Get_Proyectos().ToList();
+                    List<Proyecto> lista = new List<Proyecto>();
+                    foreach(Sam3_SteelGo_Get_Proyectos_Result item in result)
+                    {
+                        lista.Add(new Proyecto {
+                            Letra = item.Letra,
+                            Nombre = item.Nombre,
+                            ProyectoID = item.ProyectoID
+                        });
+                    }
+                        
+                    return lista;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
     }
 
 

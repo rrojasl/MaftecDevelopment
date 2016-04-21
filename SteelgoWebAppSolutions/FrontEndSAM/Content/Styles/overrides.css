@@ -604,6 +604,12 @@
     background-image: url("/Content/images/SAMC_Delete.png");
 }
 
+.k-grid tbody tr td a.k-button.k-grid-Limpiar,
+.k-grid tbody tr td a.k-button.k-grid-Clean {
+    background-image: url('../images/clean_icon.png')!important;
+    
+}
+
 .k-grid tbody tr td a.k-button.k-grid-Complemento,
 .k-grid tbody tr td a.k-button.k-grid-Complement {
     background-image: url("/Content/images/SAMC_ComplementoIcon.png");
