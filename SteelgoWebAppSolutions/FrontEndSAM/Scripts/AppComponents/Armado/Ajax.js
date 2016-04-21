@@ -53,7 +53,7 @@ function AjaxObtenerListaTaller() {
 function ObtenerJSonGridArmado() {
     if (ExisteJunta()) {
         try {
-
+            loadingStart();
             $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
 
                 var ds = $("#grid").data("kendoGrid").dataSource;
@@ -71,7 +71,7 @@ function ObtenerJSonGridArmado() {
                     $('#ButtonAgregar').prop("disabled", false);
                 }
             });
-
+            loadingStop();
         } catch (e) {
             displayNotify("Mensajes_error", e.message, '1');
             $('#ButtonAgregar').prop("disabled", false);
