@@ -1149,3 +1149,14 @@ body.loading {
 .MTrabajoAdicionalMenos {
     color:#0000FF;
 }
+
+.Bginput .k-multiselect-wrap {
+    color: #000000;
+    background: none;
+    min-height: 30px;
+    height: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px;
+    height:100px;
+}

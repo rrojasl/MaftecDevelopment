@@ -79,8 +79,25 @@ function AjaxCargarSpool(medioTransporteCargaID) {
         var array = data.listaCapturaAvance;
   
         for (var i = 0; i < array.length; i++) {
-            array[i].plantillaShotblastero = _dictionary.CapturaAvancePintoresShotblastExistentes[$("#language").data("kendoDropDownList").value()] + array[i].ListaShotblasteroGuargado.length;
-            array[i].plantillaPintor = _dictionary.CapturaAvancePintoresPrimariosExistentes[$("#language").data("kendoDropDownList").value()] + array[i].ListaPintorGuargado.length;
+
+            if (array[i].ListaShotblasteroGuargado.length > 0) {
+
+                array[i].plantillaShotblastero = _dictionary.CapturaAvancePintoresShotblastExistentes[$("#language").data("kendoDropDownList").value()] + array[i].ListaShotblasteroGuargado.length;
+            }
+            else {
+
+                array[i].plantillaShotblastero = _dictionary.CapturaAvancePintoresShotblastNoExistentes[$("#language").data("kendoDropDownList").value()];
+
+            }
+
+            if (array[i].ListaPintorGuargado.length > 0) {
+                array[i].plantillaPintor = _dictionary.CapturaAvancePintoresPrimariosExistentes[$("#language").data("kendoDropDownList").value()] + array[i].ListaPintorGuargado.length;
+            }
+            else {
+
+                array[i].plantillaPintor = _dictionary.CapturaAvancePintoresPrimariosNoExistentes[$("#language").data("kendoDropDownList").value()];
+            }            
+           
             ds.add(array[i]);
         }
 
