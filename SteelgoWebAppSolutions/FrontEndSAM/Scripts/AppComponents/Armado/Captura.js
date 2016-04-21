@@ -62,6 +62,8 @@ function ExisteJuntaEnSpool(juntaID) {
             if (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal == ($("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) && jsonGridArmado[i].JuntaID === juntaID) {
                 if (jsonGridArmado[i].Accion == 3) {
                     jsonGridArmado[i].Accion = 2;
+                    var elementgrid = jsonGridArmado.splice(i,1);
+                    jsonGridArmado.unshift(elementgrid[0]);
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 return false;
