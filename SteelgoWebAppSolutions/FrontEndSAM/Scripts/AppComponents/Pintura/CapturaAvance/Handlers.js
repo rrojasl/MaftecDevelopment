@@ -81,7 +81,8 @@ function suscribirEventoGuardarCarro() {
             Limpiar();
         }
         else {
-            displayMessage("PinturaGuardarErrorComponente", "", '2');
+            displayNotify("PinturaGuardarErrorComponente", "", '2');
+          
         }
     });
 
@@ -96,7 +97,7 @@ function suscribirEventoGuardarCarro() {
                 AjaxGuardarCarro(ds._data, false)
             }
             else {
-                displayMessage("PinturaGuardarErrorComponente", "", '2');
+                displayNotify("PinturaGuardarErrorComponente", "", '2');
             }
         }
         else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
@@ -236,7 +237,7 @@ function SuscribirEventoAgregar() {
             AjaxAgregarSpool($("#InputID").data("kendoComboBox").value());
         }
         else {
-            displayMessage("PinturaCargaSeleccionaSpool", "", '1');
+            displayNotify("PinturaCargaSeleccionaSpool", "", '1');
         }
     });
 }
@@ -275,10 +276,10 @@ function SuscribirEventoSpoolID() {
                     loadingStop();
                 });
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
+            displayNotify("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
         }
     });
 

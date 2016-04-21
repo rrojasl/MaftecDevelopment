@@ -9603,12 +9603,12 @@ _dictionary = {
         "en-US": "Color"
     },
     "CapturaAvanceShotBlastero": {
-        "es-MX": "Shotblastero",
-        "en-US": "Shotblastero"
+        "es-MX": "Shotblastero Seleccionado",
+        "en-US": "Shotblastero Selected"
     },
     "CapturaAvancePintor": {
-        "es-MX": "Pintor",
-        "en-US": "Painter"
+        "es-MX": "Pintor Seleccionado",
+        "en-US": "Painter Selected"
     },
     "CapturaAvanceM2": {
         "es-MX": "M2",
@@ -9652,13 +9652,23 @@ _dictionary = {
         "en-US": "Quadrant of discharge"
     },
 
+    "CapturaAvancePintoresShotblastNoExistentes": {
+        "es-MX": "No hay shotblasteros seleccionados",
+        "en-US":"Dont exist selected shotblasteros"
+    },
+
     "CapturaAvancePintoresShotblastExistentes": {
-        "es-MX": "Pintores shotblast existentes:",
-        "en-US": "Existing shotblast painters:"
+        "es-MX": "Pintores shotblast seleccionados:",
+        "en-US": "Selected shotblast painters:"
+    },
+    "CapturaAvancePintoresPrimariosNoExistentes": {
+        "es-MX": "No hay pintores seleccionados",
+        "en-US": "Dont exist selected painters"
+
     },
     "CapturaAvancePintoresPrimariosExistentes": {
-        "es-MX": "Pintores primarios existentes:",
-        "en-US": "Existing primary painters:"
+        "es-MX": "Pintores primarios seleccionados:",
+        "en-US": "Selected primary painters:"
     },
     "PinturaGuardarErrorComponente": {
         "es-MX": "Seleccione un componente",

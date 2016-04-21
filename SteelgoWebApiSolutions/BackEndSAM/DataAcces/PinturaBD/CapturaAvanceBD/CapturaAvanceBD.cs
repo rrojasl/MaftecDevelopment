@@ -291,7 +291,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.CapturaAvanceBD
                     
 
 
-                    return ListadoPintores;
+                    return ListadoPintores.OrderBy(x=>x.ObreroID).ToList();
                 }
             }
             catch (Exception ex)
