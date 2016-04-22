@@ -67,7 +67,7 @@ _dictionary = {
         "es-MX": "Estas seguro de eliminar la informacion?",
         "en-US": "do you want delete the row?"
     },
-    "mensajeEliminarInspeccionVisualDimensional":{
+    "mensajeEliminarInspeccionVisualDimensional": {
         "es-MX": "Estas seguro de eliminar la informacion?",
         "en-US": "do you want delete the row?"
     },
@@ -1273,7 +1273,7 @@ _dictionary = {
         "es-MX": "Unidad",
         "en-US": "Unit"
     },
-    "ListadoCatalogos0033":{
+    "ListadoCatalogos0033": {
         "es-MX": "Modelo",
         "en-US": "Model"
     },
@@ -3175,7 +3175,7 @@ _dictionary = {
         "es-MX": "Levantar Incidencia",
         "en-US": "Fill Incidence"
     },
-//Detalle Orden Recepcion
+    //Detalle Orden Recepcion
     "DetalleOrdenRecepcion0001": {
         "es-MX": "Cancelar",
         "en-US": "Cancel"
@@ -3272,7 +3272,7 @@ _dictionary = {
         "es-MX": "Cancelar",
         "en-US": "Cancel"
     },
-//Orden de Alamacenaje
+    //Orden de Alamacenaje
     "DetalleOrdenAlmacenaje0001": {
         "es-MX": "Folio Orden de Almacenaje: ",
         "en-US": "Order storage Folio: "
@@ -3373,7 +3373,7 @@ _dictionary = {
         "es-MX": "Almacenaje",
         "en-US": "Storage"
     },
-//Listado de Orden de Almacenaje
+    //Listado de Orden de Almacenaje
     "ListadoOrdenAlmacenaje0001": {
         "es-MX": "Listados",
         "en-US": "Lists"
@@ -3449,7 +3449,7 @@ _dictionary = {
     "ListadoOrdenAlmacenaje0019": {
         "es-MX": "Cancelar",
         "en-US": "Cancel"
-    }, 
+    },
     "ListadoOrdenAlmacenaje0020": {
         "es-MX": "Packing List",
         "en-US": "Packing List"
@@ -3466,7 +3466,7 @@ _dictionary = {
         "es-MX": "Levantar Incidencia",
         "en-US": "Fill Incidence"
     },
-//Generar Orden Almacenaje
+    //Generar Orden Almacenaje
     "GenerarOrdenAlmacenaje0001": {
         "es-MX": "Transacciones",
         "en-US": "Transactions"
@@ -3579,13 +3579,13 @@ _dictionary = {
         "es-MX": "Mostrar",
         "en-US": "Show"
     },
-    "GenerarOrdenAlmacenaje0029":{
+    "GenerarOrdenAlmacenaje0029": {
         "es-MX": "Materiales",
         "en-US": "Materials"
     },
-//Dashboard Recepcion y Almacenaje
+    //Dashboard Recepcion y Almacenaje
     "DashboardRecepcionAlmacenaje0001": {
-        "es-MX":"Transacciones",
+        "es-MX": "Transacciones",
         "en-US": "Dealings"
     },
     "DashboardRecepcionAlmacenaje0002": {
@@ -3877,7 +3877,7 @@ _dictionary = {
         "es-MX": "Folio Recepción",
         "en-US": "Reception number"
     },
-//Listados Recepcion y Almacenaje
+    //Listados Recepcion y Almacenaje
     "ListadoRecepcionAlmacenajeTuberia0001": {
         "es-MX": "Cliente",
         "en-US": "Client"
@@ -6269,7 +6269,7 @@ _dictionary = {
         "en-US": "Status"
     },
     //Listado de Spool a Granel
-    "ListadoSpoolGranel0001":{
+    "ListadoSpoolGranel0001": {
         "es-MX": "Listado de Spool a Granel",
         "en-US": "Bulk Spool List"
     },
@@ -6590,7 +6590,7 @@ _dictionary = {
     "notificationslabel0053": {
         "es-MX": "El folio captura packing list no tiene registros para realizar la acción.",
         "en-US": "Folio capture packing list has no records to perform the action."
-    }, 
+    },
     "notificationslabel0054": {
         "es-MX": "Favor de seleccionar un Folio de llegada.",
         "en-US": "Please select a Arrival Folio"
@@ -7647,6 +7647,27 @@ _dictionary = {
         "es-MX": "No hay trabajos adicionales",
         "en-US": "No additional work"
     },
+    "CapturaArmadoMsgExiste": {
+        "es-MX": "La junta ",
+        "en-US": "The joint "
+    },
+    "CapturaArmadoMsgExisteListado": {
+        "es-MX": " ya existe en el listado",
+        "en-US": " already exist in the list"
+    },
+    "CapturaArmadoMsgExisteReporte": {
+        "es-MX": " ya existe en el spool",
+        "en-US": " already exist in the spool"
+    },
+    "CapturaArmadoMsgNuevoEnListado": {
+        "es-MX": " se agregó en el listado",
+        "en-US": " already add in the list"
+    },
+    "CapturaArmadoMsgNuevoEnReporte": {
+        "es-MX": " se agregó en el spool",
+        "en-US": " already add in the spool"
+    },
+
 
     //#endregion
     //#region Inspeccion
@@ -9663,7 +9684,7 @@ _dictionary = {
 
     "CapturaAvancePintoresShotblastNoExistentes": {
         "es-MX": "No hay shotblasteros seleccionados",
-        "en-US":"Dont exist selected shotblasteros"
+        "en-US": "Dont exist selected shotblasteros"
     },
 
     "CapturaAvancePintoresShotblastExistentes": {
@@ -10051,11 +10072,11 @@ _dictionary = {
     "spanEmisionProyectar": {
         "es-MX": "Proyectar",
         "en-US": "To project"
-    }, 
+    },
     "spanEmisionEmitir": {
         "es-MX": "Emitir",
         "en-US": "issue"
-    }, 
+    },
     "spanEmisionEmitirx": {
         "es-MX": "Emitir",
         "en-US": "issue"
@@ -10085,7 +10106,7 @@ _dictionary = {
     "spanEmisionCapacidadMan": {
         "es-MX": "Man",
         "en-US": "Manual"
-    }, 
+    },
     "divEmisionProyecciones": {
         "es-MX": "Proyecciones",
         "en-US": "Projections"
@@ -10366,7 +10387,7 @@ _dictionary = {
     },
     //#endregion
     //#region "Peticiones"
-    
+
     "PeticionGrupoEmbarque": {
         "es-MX": "Grupo Embarque",
         "en-US": "Shipment Group"
@@ -10511,9 +10532,9 @@ _dictionary = {
         "es-MX": "Peqs",
         "en-US": "Peqs"
     },
-    
+
     //#endregion
-    
+
     //#region "Autorización de Petición"
 
     "OrdenesTrabajoHeaderProyeccion": {
@@ -10539,7 +10560,7 @@ _dictionary = {
 
     //#region "Insepeccion Dimensional"
     "InspeccionDimensionalAdvertencia": {
-        "es-MX":"Ya existe la orden de trabajo",
+        "es-MX": "Ya existe la orden de trabajo",
         "en-US": "Work order already inserted"
     },
 

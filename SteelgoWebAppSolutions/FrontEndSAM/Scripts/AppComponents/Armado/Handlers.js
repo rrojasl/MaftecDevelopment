@@ -228,8 +228,6 @@ function suscribirEventoAgregar() {
                     $('#ButtonAgregar').prop("disabled", true);
                     ObtenerJSonGridArmado();
                 }
-                else
-                    displayNotify("NoExisteJunta", '', '2');
             }
             else
                 displayNotify("JuntaSinSeleccionar", "", '2');
@@ -432,7 +430,7 @@ function SuscribirEventoSpoolID() {
         else if (e.keyCode == 13) {
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
-                    if ($("#InputID").data("kendoComboBox").select() != -1 ) {
+                    if ($("#InputID").data("kendoComboBox").select() != -1) {
                         AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                         //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
                     }
