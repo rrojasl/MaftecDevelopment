@@ -16,9 +16,6 @@
     suscribirEventoAdicionales();
 };
 
-var preventMultiKeyDown = false;
-var lastJointInserted = "";
-
 function suscribirEventoAdicionales() {
 
     $(document).on('click', '.botonAdicionales', function (e) {
@@ -322,25 +319,19 @@ function SuscribirEventosJunta() {
             if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
                     if ($("#Junta").data("kendoComboBox").select() != -1) {
-                        lastJointInserted = $("#Junta").val();
-                        preventMultiKeyDown = true;
                         ObtenerJSonGridArmado();
-                        preventMultiKeyDown = false;
                         $("#Junta").data("kendoComboBox").text("");
                     }
                 }
                 else if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
                     if ($("#Junta").val() != "") {
                         if ($("#Junta").data("kendoComboBox").select() != -1 ) {
-                            lastJointInserted = $("#Junta").val();
-                            preventMultiKeyDown = true;
                             var button = $(this);
                             button.attr('disabled', 'disabled');
                             setTimeout(function () {
                                 button.removeAttr('disabled');
                             }, 500);
                             ObtenerJSonGridArmado();
-                            preventMultiKeyDown = false;
                             $("#Junta").data("kendoComboBox").text("");
                         }
                     }
@@ -373,7 +364,6 @@ function SuscribirEventoSpoolID() {
                 if (dataItem.Status != "1") {
                     e.preventDefault();
                     $("#InputID").val("");
-                    console.log("borrar datos");
                     displayNotify("Mensajes_error", dataItem.Status, '1');
                 }
                 else {
@@ -444,9 +434,7 @@ function SuscribirEventoSpoolID() {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
                     if ($("#InputID").data("kendoComboBox").select() != -1 ) {
                         AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
-                        preventMultiKeyDown = true;
                         //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
-                        preventMultiKeyDown = false;
                     }
                 }
             }
