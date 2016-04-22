@@ -160,7 +160,7 @@ function ExisteJunta() {
 }
 
 
-function AjaxGuardar(jSonCaptura) {
+function AjaxGuardar(jSonCaptura, tipoGuardar) {
     
     Captura = [];
     Captura[0] = { Detalles: "" };

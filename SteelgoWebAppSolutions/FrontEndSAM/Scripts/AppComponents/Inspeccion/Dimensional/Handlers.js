@@ -118,7 +118,7 @@ function SuscribirEventoSpoolID() {
 
     $('#InputID').closest('.k-widget').keydown(function (e) {
 
-        if (!preventMultiKeyDown && lastSpoolIdInserted != $("#InputOrdenTrabajo").val()) {
+        //if (!preventMultiKeyDown && lastSpoolIdInserted != $("#InputOrdenTrabajo").val()) {
 
             if (e.keyCode == 37) {
 
@@ -132,24 +132,31 @@ function SuscribirEventoSpoolID() {
                 $("#InputID").data("kendoComboBox").select();
 
             else if (e.keyCode == 13) {
-                lastSpoolIdInserted = $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val();
-                preventMultiKeyDown = true;
-                if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
-                    AjaxobtenerDetalleDimensional($("#InputID").val());
-                    AjaxObtenerJSonGrid();
-                }                
+                //lastSpoolIdInserted = $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val();
+                // preventMultiKeyDown = true;
+
+               if (!preventMultiKeyDown) {
+                      if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+                        AjaxobtenerDetalleDimensional($("#InputID").val());
+                        AjaxObtenerJSonGrid();
+                        preventMultiKeyDown = true;
+                      }
+               }
+               else { displayNotify("InspeccionDimensionalAdvertencia", "", '1'); }
+                        
             }
             else if (e.keyCode == 9) {               
                 if (tieneClase(e.currentTarget))
                     AjaxobtenerDetalleDimensional($("#InputID").data("kendoComboBox").select(0));
                     AjaxObtenerJSonGrid();               
             }
-            preventMultiKeyDown = false;
-        }
-        else {
-            displayNotify("InspeccionDimensionalAdvertencia", "", '1');
+     
+        //}
+        //else {
+        //    displayNotify("InspeccionDimensionalAdvertencia", "", '1');
 
-        }
+        //}
+            preventMultiKeyDown = false;
     });
 };
 function SuscribirEventoInspector() {
@@ -230,57 +237,83 @@ function SuscribirEventoResultadoDimensional() {
 
 
 
-function suscribirEventoAgregar() {   
+function suscribirEventoAgregar() {  
     $('#btnAgregar').click(function (e) {
-        e.preventDefault();
-        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {            
-                 
-            if (lastSpoolIdInserted != $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val() && !preventMultiKeyDown) {
-                lastSpoolIdInserted = $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val();
-                preventMultiKeyDown = true;
+          e.preventDefault();
+       
+        if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+            
+            if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+                var button = $(this);
+                button.attr('disabled', 'disabled');
+                setTimeout(function () {
+                    button.removeAttr('disabled');
+                }, 500);
                 AjaxobtenerDetalleDimensional($("#InputID").val());
                 AjaxObtenerJSonGrid();
+                preventMultiKeyDown = true;
+                
             }
-            else {
-                displayNotify("InspeccionDimensionalAdvertencia", "", '1');
-            }
-            preventMultiKeyDown = false;
-            
+
         }
+       
+                        
+        
+       
+         preventMultiKeyDown = false;
+
     });   
 };
+
+function EventoGuardar() {
+    var ds = $("#grid").data("kendoGrid").dataSource;
+    if (ds._data.length > 0) {
+        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
+            opcionHabilitarView(true, "FieldSetView");
+            AjaxGuardar(ds._data,0);
+        }
+        else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
+            opcionHabilitarView(false, "FieldSetView")
+        }
+    }
+}
+
 
 function suscribirEventoGuardar() {
     $('.accionGuardar').click(function (e) {
         e.preventDefault();
-        var ds = $("#grid").data("kendoGrid").dataSource;
 
-        if (ds._data.length > 0) {
-            if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-                opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardar(ds._data);
-            }
-            else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
-                opcionHabilitarView(false, "FieldSetView")
-            }
-        }
+        EventoGuardar();
+
+        //var ds = $("#grid").data("kendoGrid").dataSource;
+
+        //if (ds._data.length > 0) {
+        //    if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
+        //        opcionHabilitarView(true, "FieldSetView");
+        //        AjaxGuardar(ds._data);
+        //    }
+        //    else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
+        //        opcionHabilitarView(false, "FieldSetView")
+        //    }
+        //}
 
     });
 
 
     $('#btnGuardarYNuevo').click(function (e) {
         e.preventDefault();
-        var ds = $("#grid").data("kendoGrid").dataSource;
-        AjaxGuardar(ds._data);
-        limpiar();
+        EventoGuardar();
+        //var ds = $("#grid").data("kendoGrid").dataSource;
+        //AjaxGuardar(ds._data);
+        //limpiar();
     });
 
 
     $('#btnGuardarYNuevo1').click(function (e) {
         e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
-        AjaxGuardar(ds._data);
-        limpiar();
+        AjaxGuardar(ds._data,1);
+        //limpiar();
     });
 };
 function suscribirEventoCancelar() {
@@ -290,6 +323,7 @@ function suscribirEventoCancelar() {
     });
 }
 function limpiar() {
+   
     $("#InputOrdenTrabajo").prop("disabled", false);
     $("#InputOrdenTrabajo").val("");
     // $("#InputOrdenTrabajo").focus();

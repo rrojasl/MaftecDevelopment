@@ -242,12 +242,14 @@ function cancelarCaptura(e) {
             ventanaConfirm.open().center();
 
             $("#yesButton").click(function () {
+                
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
 
                 if (dataItem.Accion == 1)
                     dataSource.remove(dataItem);
                 else
-                    dataItem.Accion = 3;
+                    dataItem.Accion == 2;
+                dataSource.remove(dataItem);
                 $("#grid").data("kendoGrid").dataSource.sync();
 
                 ventanaConfirm.close();
@@ -286,7 +288,8 @@ function cancelarCaptura(e) {
                 if (dataItem.Accion == 1)
                     dataSource.remove(dataItem);
                 else
-                    dataItem.Accion = 3;
+                    dataItem.Accion == 2;
+                dataSource.remove(dataItem);
                 $("#grid").data("kendoGrid").dataSource.sync();
 
                 ventanaConfirm.close();
