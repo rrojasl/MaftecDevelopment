@@ -9343,6 +9343,10 @@ _dictionary = {
         "es-MX": "Toneladas",
         "en-US": "Tons"
     },
+    "PinturaCargaToneladas2": {
+        "es-MX": "Toneladas",
+        "en-US": "Tons"
+    },
     "PinturaCargaSpoolID": {
         "es-MX": "SpoolID",
         "en-US": "SpoolID"
@@ -9369,7 +9373,11 @@ _dictionary = {
     "PinturaCargaArea": {
         "es-MX": "Área",
         "en-US": "Area"
-    }
+    },
+    "PinturaCargaArea2": {
+    "es-MX": "Área",
+    "en-US": "Area"
+}
     ,
     "PinturaCargaPeso": {
         "es-MX": "Toneladas",

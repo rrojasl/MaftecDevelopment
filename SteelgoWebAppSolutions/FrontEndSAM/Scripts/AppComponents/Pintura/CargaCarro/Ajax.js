@@ -131,6 +131,7 @@ function AjaxObtenerSpoolID() {
 
 function AjaxObtenerListaProyectos() {
     $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token") }).done(function (data) {
+        
         $("#inputProyecto").data("kendoComboBox").dataSource.data([]);
         $("#inputProyecto").data("kendoComboBox").dataSource.data(data);
     });

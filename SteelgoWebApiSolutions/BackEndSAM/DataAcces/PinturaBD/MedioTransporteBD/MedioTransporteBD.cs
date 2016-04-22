@@ -295,9 +295,9 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             SpoolJunta = item.SpoolJunta,
                             CuadranteID = item.CuadranteID.GetValueOrDefault(),
                             Cuadrante = item.Cuadrante,
-                            ListaCuandrantes = ListaCuandrantes
+                            ListaCuandrantes = ListaCuandrantes,
+                            ProyectoID = item.ProyectoID
 
-                           
                         });
 
                     }

@@ -107,12 +107,18 @@ function SuscribirEventoProyecto() {
         change: function (e) {
             var dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
+                $("#grid").data('kendoGrid').dataSource.data([]);
+                $("#labelM2").text('');
+                $("#labelToneladas").text('');
                 AjaxPinturaCargaMedioTransporte();
             }
         },
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
+                $("#grid").data('kendoGrid').dataSource.data([]);
+                $("#labelM2").text('');
+                $("#labelToneladas").text('');
                 AjaxPinturaCargaMedioTransporte();
             }
         }
@@ -360,6 +366,7 @@ function SuscribirEventoCarro() {
                 }
                 else {
                     $("#inputCarro").val(dataItem.MedioTransporteCargaID);
+
                     AjaxObtenerDetalleCarroCargado(dataItem.MedioTransporteCargaID);
                 }
             }
