@@ -241,9 +241,7 @@ function CargarGridSoldadura() {
         },
         navigatable: true,
         editable: true,
-        filterable: {
-            extra: false
-        },
+        filterable: getGridFilterableMaftec(),
         autoHeight: true,
         sortable: true,
         scrollable: true,
@@ -256,21 +254,19 @@ function CargarGridSoldadura() {
             numeric: true,
         },
         columns: [ 
-            { field: "SpoolID", title: _dictionary.CapturaArmadoHeaderSpoolID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px" },
-            { field: "JuntaID", title: "", filterable: true, width: "110px", hidden: true },
-            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: true, width: "55px" },
-            { field: "DetalleJunta", title: _dictionary.CapturaSoldaduraDetalleJunta[$("#language").data("kendoDropDownList").value()], filterable: true, width: "180px" },
-            { field: "FechaSoldadura", title: _dictionary.CapturaSoldaduraHeaderFechaSoldadura[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
-            { field: "Taller", title: _dictionary.CapturaSoldaduraHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxTaller, width: "130px" },
-            { field: "NumeroColada", title: _dictionary.CapturaSoldaduraColada[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxColada, width: "130px" },
-            { field: "procesoSoldaduraRaiz", title: _dictionary.CapturaSoldaduraProcesoRaiz[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px", editor: RenderComboBoxProcesoSoldaduraRaiz },
-            { field: "procesoSoldaduraRelleno", title: _dictionary.CapturaSoldaduraProcesoRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px", editor: RenderComboBoxProcesoSoldaduraRelleno },
+            { field: "SpoolID", title: _dictionary.CapturaArmadoHeaderSpoolID[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px" },
+            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "55px" },
+            { field: "DetalleJunta", title: _dictionary.CapturaSoldaduraDetalleJunta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "180px" },
+            { field: "FechaSoldadura", title: _dictionary.CapturaSoldaduraHeaderFechaSoldadura[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false }}, width: "130px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
+            { field: "Taller", title: _dictionary.CapturaSoldaduraHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTaller, width: "130px" },
+            { field: "NumeroColada", title: _dictionary.CapturaSoldaduraColada[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxColada, width: "130px" },
+            { field: "procesoSoldaduraRaiz", title: _dictionary.CapturaSoldaduraProcesoRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", editor: RenderComboBoxProcesoSoldaduraRaiz },
+            { field: "procesoSoldaduraRelleno", title: _dictionary.CapturaSoldaduraProcesoRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", editor: RenderComboBoxProcesoSoldaduraRelleno },
             { field: "Raiz", title: _dictionary.CapturaRaizHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<a href='\\#' class='botonSoldadoresRaiz' > <span>#=SoldadoresRaiz#</span></a>"},
             { field: "Relleno", title: _dictionary.CapturaRellenoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "#:SoldadoresRelleno#", editor: RenderMultiselectRelleno },
             { field: "DetalleAdicional", title: _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TrabajosAdicionales#</span></a>" },
-            { field: "juntaSpoolID", title: "", filterable: true, width: "150px", hidden: true },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "99px" },
-            { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "99px" }
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, filterable: false, title: "", width: "99px" },
+            { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, filterable: false, title: "", width: "99px" }
         ],
         dataBound: function (e) {
             $(".k-grid input.k-textbox").prop('readonly', true);
@@ -633,15 +629,15 @@ function AltaFecha() {
 
 }
 
-function ExisteJunta() {
-    var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
+function ExisteJunta(Row) {
+    var jsonGridSoldadura = $("#grid").data("kendoGrid").dataSource._data;
 
-    for (var i = 0; i < jsonGridArmado.length; i++) {
-        if (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].idVal == ($("#InputOrdenTrabajo").val() + '-' + $("#InputID").val()) && jsonGridArmado[i].JuntaID == $("#Junta").val()) {
-            return false;
+    for (var i = 0; i < jsonGridSoldadura.length; i++) {
+        if (jsonGridSoldadura[i].IdOrdenTrabajo + '-' + jsonGridSoldadura[i].IdVal == (Row.IdOrdenTrabajo + '-' + Row.IdVal) && jsonGridSoldadura[i].JuntaID === Row.JuntaID) {
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 function deshabilitarFechasFuturo() {
