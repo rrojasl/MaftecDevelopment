@@ -108,6 +108,8 @@ function FiltroMostrar(mostrar) {
     }
     else {
         var filters = ds.filter();
+        var curr_filters = ds.filter().filters;
+        ds.filter(curr_filters[0])
         filters.logic = "or"
         filters.filters.push({ field: "Accion", operator: "eq", value: 2 });
         ds.sync();
