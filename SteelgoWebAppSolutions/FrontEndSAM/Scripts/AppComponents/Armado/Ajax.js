@@ -1,20 +1,23 @@
 ﻿function AjaxJunta(spoolID) {
+    loadingStart();
     $('input:radio[name=Muestra]:checked').val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token") }).done(function (data) {
         
         $("#Junta").data("kendoComboBox").value("");
         $("#Junta").data("kendoComboBox").dataSource.data(data);
-
+        loadingStop();
     });
 }
 
 function AjaxJuntaModoSpool(spoolID) {
+    loadingStart();
     $('input:radio[name=Muestra]:checked').val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token") }).done(function (data) {
 
         $("#Junta").data("kendoComboBox").value("");
         $("#Junta").data("kendoComboBox").dataSource.data(data);
         AjaxCargarReporteJuntas();
+        loadingStop();
     });
 }
 
@@ -55,6 +58,7 @@ function AjaxObtenerListaTaller() {
         $CapturaArmado.Armado.read({ idProyecto: Cookies.get("Proyecto").split('°')[0], token: Cookies.get("token") }).done(function (data) {
             $("#inputTaller").data("kendoComboBox").value("");
             $("#inputTaller").data("kendoComboBox").dataSource.data(data);
+            loadingStop();
         });
     }
     else
