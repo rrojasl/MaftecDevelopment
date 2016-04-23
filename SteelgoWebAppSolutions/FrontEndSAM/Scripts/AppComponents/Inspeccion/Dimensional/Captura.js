@@ -198,6 +198,7 @@ function ArregloListadoCaptura() {
 
     JsonCaptura = [];
     JsonCaptura[0] = { Accion: "", InspeccionDimensionalID: "", ProyectoID: "", Proyecto: "", OrdenTrabajoSpoolID: "", OrdenTrabajoSpool: "", ResultadoID: "", Resultado: "", DefectosID: "", Defectos: "", InspectorID: "", Inspector: "", FechaInspeccion: "" };
+
     var fechaInspeccion = new Date($("#FechaInspeccion").data("kendoDatePicker").value());
     JsonCaptura[0].Accion = "0";
     JsonCaptura[0].InspeccionDimensionalID = "0";
