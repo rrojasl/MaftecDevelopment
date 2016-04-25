@@ -594,22 +594,19 @@
 .k-grid tbody tr td a.k-button.k-grid-Cancelar,
 .k-grid tbody tr td a.k-button.k-grid-Cancel {
     background-image: url("/Content/images/SAMC_Delete.png");
+    padding-right: 10px;
+    height: 20px;
+    min-width: 20px !important;
+    margin: 0px;
 }
-
-
-    $parent {
-        padding: 0px;
-        height: 20px;
-        min-width: 40px !important;
-    }
-
-
-
-
 
 .k-grid tbody tr td a.k-button.k-grid-Limpiar,
 .k-grid tbody tr td a.k-button.k-grid-Clean {
     background-image: url('../images/clean_icon.png') !important;
+    padding-right: 10px;
+    height: 20px;
+    min-width: 20px !important;
+    margin: 0px;
 }
 
 .k-grid tbody tr td a.k-button.k-grid-Complemento,
