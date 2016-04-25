@@ -59,7 +59,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
             }
         }
 
-        public object ObtenerMedioTransporte(string lenguaje)
+        public object ObtenerMedioTransporte(string lenguaje, int proyectoID)
         {
 
 
@@ -68,7 +68,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                 using (SamContext ctx = new SamContext())
                 {
                     //
-                    List<Sam3_Pintura_Get_MedioTransporte_Result> result = ctx.Sam3_Pintura_Get_MedioTransporte(lenguaje).ToList();
+                    List<Sam3_Pintura_Get_MedioTransporte_Result> result = ctx.Sam3_Pintura_Get_MedioTransporte(lenguaje,proyectoID).ToList();
 
                     List<MedioTransporte> ListadoMedioTransporte = new List<MedioTransporte>();
 

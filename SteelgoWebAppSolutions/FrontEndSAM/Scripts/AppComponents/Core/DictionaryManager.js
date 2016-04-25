@@ -6886,6 +6886,11 @@ _dictionary = {
     },
     //#region Genericos
 
+    "MensajeSesionExpiroSesion": {
+        "es-MX": "La sesion ha expirado, se redicciona a Home",
+        "en-US": "The session is finished, will redirect to Home"
+    },
+
     "botonBuscar": {
         "es-MX": "Buscar",
         "en-US": "Find"

@@ -134,21 +134,21 @@
     padding: 4px;
 }
 
-.k-multiselect-wrap span {
-    line-height: normal;
-}
+    .k-multiselect-wrap span {
+        line-height: normal;
+    }
 
-.k-multiselect-wrap li {
-    border-color: #305E8E !important;
-    box-shadow: none !important;
-    background: #305E8E !important;
-    padding: 2.5px 7px;
-    margin-right: 5px;
-    border-radius: 3px;
-    color: #fff;
-}
+    .k-multiselect-wrap li {
+        border-color: #305E8E !important;
+        box-shadow: none !important;
+        background: #305E8E !important;
+        padding: 2.5px 7px;
+        margin-right: 5px;
+        border-radius: 3px;
+        color: #fff;
+    }
 
-.k-multiselect .k-delete{
+.k-multiselect .k-delete {
     background-position: -163px -82px !important;
 }
 
@@ -158,17 +158,17 @@
 
 
 
-.k-multiselect-wrap li span.k-delete {
-    display: block;
-    float: right;
-    opacity: .9; 
-    background-color: white;
-    padding-right: 0px;
-    border-left: 5px;
-    max-width: 11px;
-    max-height: 11px;
-    margin-left: 6px;
-}
+    .k-multiselect-wrap li span.k-delete {
+        display: block;
+        float: right;
+        opacity: .9;
+        background-color: white;
+        padding-right: 0px;
+        border-left: 5px;
+        max-width: 11px;
+        max-height: 11px;
+        margin-left: 6px;
+    }
 
 .k-block, .k-button, .k-textbox, .k-drag-clue,
 .k-touch-scrollbar, .k-window, .k-window-titleless .k-window-content,
@@ -187,19 +187,19 @@
     width: 100%;
 }
 
-.k-datepicker .k-picker-wrap .k-select {
-    border: none;
-    width: 38px;
-}
+    .k-datepicker .k-picker-wrap .k-select {
+        border: none;
+        width: 38px;
+    }
 
-.k-datepicker .k-picker-wrap span.k-i-calendar {
-    height: 100%;
-    width: 100%;
-    background-image: url("/Content/images/SAMC_Datepicker.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 16px 16px;
-}
+    .k-datepicker .k-picker-wrap span.k-i-calendar {
+        height: 100%;
+        width: 100%;
+        background-image: url("/Content/images/SAMC_Datepicker.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 16px 16px;
+    }
 
 .k-combobox .k-dropdown-wrap .k-select {
     border: none;
@@ -239,35 +239,35 @@
     border-radius: 5px;
 }
 
-.k-dropzone em {
-    visibility: visible;
-    position: relative;
-    top: 8px;
-}
+    .k-dropzone em {
+        visibility: visible;
+        position: relative;
+        top: 8px;
+    }
 
-.k-dropzone .k-upload-button,
-.k-dropzone .k-upload-button.k-state-focused,
-.k-upload .k-upload-button,
-.k-upload .k-upload-selected,
-.k-upload .k-upload-selected.k-state-focused {
-    color: #FFFFFF;
-    background: none;
-    background-color: #305E8E;
-    border: none;
-    border-radius: 3px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom: 1px solid #234568;
-    padding: 5px 14px;
-    font-size: 14px;
-    box-sizing: border-box;
-    letter-spacing: 0.6px;
-    height: 34px;
-    -moz-box-shadow: 0px 2px 2px #ccc; /* FF3.5+ */
-    -webkit-box-shadow: 0px 2px 2px #ccc; /* Saf3.0+, Chrome */
-    box-shadow: 0px 2px 2px #ccc; /* Opera 10.5, IE9, Chrome 10+ */
-    vertical-align: text-top;
-}
+    .k-dropzone .k-upload-button,
+    .k-dropzone .k-upload-button.k-state-focused,
+    .k-upload .k-upload-button,
+    .k-upload .k-upload-selected,
+    .k-upload .k-upload-selected.k-state-focused {
+        color: #FFFFFF;
+        background: none;
+        background-color: #305E8E;
+        border: none;
+        border-radius: 3px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom: 1px solid #234568;
+        padding: 5px 14px;
+        font-size: 14px;
+        box-sizing: border-box;
+        letter-spacing: 0.6px;
+        height: 34px;
+        -moz-box-shadow: 0px 2px 2px #ccc; /* FF3.5+ */
+        -webkit-box-shadow: 0px 2px 2px #ccc; /* Saf3.0+, Chrome */
+        box-shadow: 0px 2px 2px #ccc; /* Opera 10.5, IE9, Chrome 10+ */
+        vertical-align: text-top;
+    }
 
 .k-upload > .k-upload-button {
     border-radius: 3px;
@@ -280,15 +280,15 @@
     border-radius: 3px;
 }
 
-.k-dropzone .k-upload-button:hover,
-.k-upload .k-upload-button:hover,
-.k-upload .k-upload-selected:hover,
-.k-upload .k-button:focus:not(.k-state-disabled):not([disabled]) {
-    background-color: rgba(048, 094, 142, 0.9);
-    border-color: transparent;
-    border-bottom-color: rgba(035, 069, 104, 0.5);
-    box-shadow: none;
-}
+    .k-dropzone .k-upload-button:hover,
+    .k-upload .k-upload-button:hover,
+    .k-upload .k-upload-selected:hover,
+    .k-upload .k-button:focus:not(.k-state-disabled):not([disabled]) {
+        background-color: rgba(048, 094, 142, 0.9);
+        border-color: transparent;
+        border-bottom-color: rgba(035, 069, 104, 0.5);
+        box-shadow: none;
+    }
 
 .k-upload .k-upload-files .k-file .k-icon {
     background-image: url("/Content/images/SAMC_Attachtment.png");
@@ -298,7 +298,7 @@
 }
 
 .k-icon.k-i-close.k-delete {
-    background-image:url("/Content/images/SAMC_Delete.png") !important;
+    background-image: url("/Content/images/SAMC_Delete.png") !important;
 }
 
 .k-list-container {
@@ -309,24 +309,24 @@
     padding: 0 !important;
 }
 
-.k-list-container .k-list .k-item {
-    box-shadow: none;
-    border: 0 !important;
-    padding: 4px 10px !important;
-    border-radius: 0;
-}
+    .k-list-container .k-list .k-item {
+        box-shadow: none;
+        border: 0 !important;
+        padding: 4px 10px !important;
+        border-radius: 0;
+    }
 
-.k-list-container .k-list .k-item.k-state-hover {
-    background: none;
-    background-color: rgba(048, 094, 142, 0.2) !important;
-}
+        .k-list-container .k-list .k-item.k-state-hover {
+            background: none;
+            background-color: rgba(048, 094, 142, 0.2) !important;
+        }
 
-.k-list-container .k-list .k-item.k-state-selected {
-    font-weight: 600;
-    color: #000000;
-    background: none;
-    background-color: white;
-}
+        .k-list-container .k-list .k-item.k-state-selected {
+            font-weight: 600;
+            color: #000000;
+            background: none;
+            background-color: white;
+        }
 
         .k-list-container .k-list .k-item.k-state-focused {
             font-weight: 600;
@@ -355,150 +355,27 @@
  Description:   Override kendo grid.
 **********************************************************************************/
 .k-grid {
-
     background-color: #EEEEEE;
     z-index: 1;
 }
 
 <<<<<<< HEAD
-    /* header + data table */
-    .k-grid > table {
-        table-layout: fixed;
-    }
-
-    .k-grid td {
-        padding: 7.5px 13px;
-        font-size: 12px;
-        line-height: 1.4;
-        color: #111111;
-        font-weight: 100;
-        border-bottom: 1px solid #CCCCCC;
-        text-overflow: clip;
-        word-wrap:break-word;
-    }
-
-    .k-grid tr:last-child td {
-        border-bottom: none;
-    }
-
-    .k-grid tr {
-        background-color: #FFFFFF;
-    }
-
-        .k-grid tr.k-alt {
-            background-color: #F5F5F5;
-        }
-
-        .k-grid tr:not(.k-detail-row):hover {
-            background-color: #FCEED9;
-        }
-
-    .k-grid .k-grid-header tr,
-    .k-grid tbody .k-grouping-row > td {
-        min-height: 39px;
-        height: 39px;
-    }
-=======
-
+/* header + data table */
 .k-grid > table {
     table-layout: fixed;
 }
->>>>>>> Steelgo-InHouse
 
 .k-grid td {
-    padding:1px !important;
+    padding: 7.5px 13px;
     font-size: 12px;
-    
+    line-height: 1.4;
     color: #111111;
     font-weight: 100;
     border-bottom: 1px solid #CCCCCC;
-    white-space:nowrap;
-        
+    text-overflow: clip;
+    word-wrap: break-word;
 }
 
-<<<<<<< HEAD
-            .k-grid .k-grid-header tr th a.k-link,
-            .k-grid .k-grid-header tr th.k-header,
-            .k-grid tbody .k-grouping-row p.k-reset {
-                font-size: 11.5px;
-                font-weight: 600;
-                text-transform: uppercase;
-                white-space: pre-wrap;
-            }
-
-            .k-grid .k-grid-header tr th .k-filter {
-                background-image: url("/Content/images/SAMC_SearchIconChart.png");
-                background-size: auto;
-                background-position: center 1px;
-            }
-
-            .k-grid .k-grid-header tr th .k-i-arrow-n {
-                background-image: url("/Content/images/SAMC_FilterUp.png");
-                background-size: auto;
-                background-position: center !important;
-                vertical-align: middle;
-            }
-
-            .k-grid .k-grid-header tr th .k-i-arrow-s {
-                background-image: url("/Content/images/SAMC_FilterDown.png");
-                background-size: auto;
-                background-position: center !important;
-                vertical-align: middle;
-            }
-
-        .k-grid .k-grid-header tr.k-filter-row th {
-            border-bottom: 1px solid #CCCCCC;
-            border-top: none;
-        }
-
-        .k-grid .k-grid-header tr th .k-grid-filter{
-            background-color: transparent;
-        }
-
-        .k-grid .k-grid-header tr th .k-grid-filter.k-state-active {
-            background-color: #F35800;
-        }
-
-        .k-grid .k-grid-header tr th > input {
-            width: 100%;
-            box-shadow: none!important;                      
-            text-indent: initial;
-        }
-
-    .k-grid tbody tr td a.k-button {
-        color: transparent !important;
-        height: 27px;
-        max-width: 18px;
-        padding: 0;
-        margin: 0 4px;
-        font-size: 0;
-        border: none;
-        outline: none;
-        background: none;
-        background-color: transparent !important;
-        background-repeat: no-repeat;
-        background-position: center !important;
-        box-shadow: none !important;
-    }
-
-        .k-grid tbody tr td a.k-button.k-grid-edit {
-            padding: 5px 0;
-        }
-
-        .k-grid tbody tr td a.k-button.k-grid-delete {
-            padding: 7px 0;
-        }
-
-    .k-grid tbody tr td > input.k-textbox {
-        height: 40px;
-        font-size: 14px;
-            color: #1B3F70;
-    }
-
-    .k-grid tbody tr td.k-state-selected {
-        background-color: transparent;
-    }
-=======
 .k-grid tr:last-child td {
     border-bottom: none;
 }
@@ -506,26 +383,41 @@
 .k-grid tr {
     background-color: #FFFFFF;
 }
->>>>>>> Steelgo-InHouse
 
-.k-grid tr.k-alt {
-    background-color: #F5F5F5;
+    .k-grid tr.k-alt {
+        background-color: #F5F5F5;
+    }
+
+    .k-grid tr:not(.k-detail-row):hover {
+        background-color: #FCEED9;
+    }
+
+.k-grid .k-grid-header tr,
+.k-grid tbody .k-grouping-row > td {
+    min-height: 39px;
+    height: 39px;
 }
 
-.k-grid tr:not(.k-detail-row):hover {
-    background-color: #FCEED9;
-}
-.k-grid .k-grid-header tr th {
-    /*background: none;
-    background-color: #EEEEEE;
-    padding-left: 15px;
-    padding-right: 19px;*/
+======= .k-grid > table {
+    table-layout: fixed;
 }
 
-.k-grid .k-grid-header tr th a.k-link {
-    /*font-size: 11.5px;
+> > > > > > > Steelgo-InHouse .k-grid td {
+    padding: 1px !important;
+    font-size: 12px;
+    color: #111111;
+    font-weight: 100;
+    border-bottom: 1px solid #CCCCCC;
+    white-space: nowrap;
+}
+
+<<<<<<< HEAD .k-grid .k-grid-header tr th a.k-link,
+.k-grid .k-grid-header tr th.k-header,
+.k-grid tbody .k-grouping-row p.k-reset {
+    font-size: 11.5px;
     font-weight: 600;
-    text-transform: uppercase;*/
+    text-transform: uppercase;
+    white-space: pre-wrap;
 }
 
 .k-grid .k-grid-header tr th .k-filter {
@@ -534,23 +426,123 @@
     background-position: center 1px;
 }
 
-<<<<<<< HEAD
-    .k-grid tbody tr td a.k-button.k-grid-Detalle,
-    .k-grid tbody tr td a.k-button.k-grid-Detail,
-    .k-grid tbody tr td a.k-button.k-grid-Archivos,
-    .k-grid tbody tr td a.k-button.k-grid-Files {
-        background-image: url("/Content/images/SAMC_DetailIcon.png");
-    }
-=======
 .k-grid .k-grid-header tr th .k-i-arrow-n {
     background-image: url("/Content/images/SAMC_FilterUp.png");
     background-size: auto;
     background-position: center !important;
     vertical-align: middle;
 }
->>>>>>> Steelgo-InHouse
 
 .k-grid .k-grid-header tr th .k-i-arrow-s {
+    background-image: url("/Content/images/SAMC_FilterDown.png");
+    background-size: auto;
+    background-position: center !important;
+    vertical-align: middle;
+}
+
+.k-grid .k-grid-header tr.k-filter-row th {
+    border-bottom: 1px solid #CCCCCC;
+    border-top: none;
+}
+
+.k-grid .k-grid-header tr th .k-grid-filter {
+    background-color: transparent;
+}
+
+    .k-grid .k-grid-header tr th .k-grid-filter.k-state-active {
+        background-color: #F35800;
+    }
+
+.k-grid .k-grid-header tr th > input {
+    width: 100%;
+    box-shadow: none !important;
+    text-indent: initial;
+}
+
+.k-grid tbody tr td a.k-button {
+    color: transparent !important;
+    height: 27px;
+    max-width: 18px;
+    padding: 0;
+    margin: 0 4px;
+    font-size: 0;
+    border: none;
+    outline: none;
+    background: none;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: center !important;
+    box-shadow: none !important;
+}
+
+    .k-grid tbody tr td a.k-button.k-grid-edit {
+        padding: 5px 0;
+    }
+
+    .k-grid tbody tr td a.k-button.k-grid-delete {
+        padding: 7px 0;
+    }
+
+.k-grid tbody tr td > input.k-textbox {
+    height: 40px;
+    font-size: 14px;
+    color: #1B3F70;
+}
+
+.k-grid tbody tr td.k-state-selected {
+    background-color: transparent;
+}
+
+======= .k-grid tr:last-child td {
+    border-bottom: none;
+}
+
+.k-grid tr {
+    background-color: #FFFFFF;
+}
+
+> > > > > > > Steelgo-InHouse .k-grid tr.k-alt {
+    background-color: #F5F5F5;
+}
+
+.k-grid tr:not(.k-detail-row):hover {
+    background-color: #FCEED9;
+}
+
+.k-grid .k-grid-header tr th {
+    /*background: none;
+    background-color: #EEEEEE;
+    padding-left: 15px;
+    padding-right: 19px;*/
+}
+
+    .k-grid .k-grid-header tr th a.k-link {
+        /*font-size: 11.5px;
+    font-weight: 600;
+    text-transform: uppercase;*/
+    }
+
+    .k-grid .k-grid-header tr th .k-filter {
+        background-image: url("/Content/images/SAMC_SearchIconChart.png");
+        background-size: auto;
+        background-position: center 1px;
+    }
+
+<<<<<<< HEAD .k-grid tbody tr td a.k-button.k-grid-Detalle,
+.k-grid tbody tr td a.k-button.k-grid-Detail,
+.k-grid tbody tr td a.k-button.k-grid-Archivos,
+.k-grid tbody tr td a.k-button.k-grid-Files {
+    background-image: url("/Content/images/SAMC_DetailIcon.png");
+}
+
+======= .k-grid .k-grid-header tr th .k-i-arrow-n {
+    background-image: url("/Content/images/SAMC_FilterUp.png");
+    background-size: auto;
+    background-position: center !important;
+    vertical-align: middle;
+}
+
+> > > > > > > Steelgo-InHouse .k-grid .k-grid-header tr th .k-i-arrow-s {
     background-image: url("/Content/images/SAMC_FilterDown.png");
     background-size: auto;
     background-position: center !important;
@@ -585,10 +577,10 @@
     padding: 0;
 }
 
-.k-grid.gridWithInputs tbody tr.k-detail-row .k-grid thead tr th:first-child label,
-.k-grid.gridWithInputsStorage tbody tr.k-detail-row .k-grid thead tr th label {
-    margin: 0;
-}
+    .k-grid.gridWithInputs tbody tr.k-detail-row .k-grid thead tr th:first-child label,
+    .k-grid.gridWithInputsStorage tbody tr.k-detail-row .k-grid thead tr th label {
+        margin: 0;
+    }
 
 .k-grid tbody tr td a.k-button:active:hover {
     box-shadow: none !important;
@@ -604,10 +596,20 @@
     background-image: url("/Content/images/SAMC_Delete.png");
 }
 
+
+    $parent {
+        padding: 0px;
+        height: 20px;
+        min-width: 40px !important;
+    }
+
+
+
+
+
 .k-grid tbody tr td a.k-button.k-grid-Limpiar,
 .k-grid tbody tr td a.k-button.k-grid-Clean {
-    background-image: url('../images/clean_icon.png')!important;
-    
+    background-image: url('../images/clean_icon.png') !important;
 }
 
 .k-grid tbody tr td a.k-button.k-grid-Complemento,
@@ -619,7 +621,8 @@
 .k-grid tbody tr td a.k-button.k-grid-Quantification {
     background-image: url("/Content/images/SAMC_CuantificacionIcon.png");
 }
-    .k-grid tbody tr td a.k-button.k-grid-Descarga,
+
+.k-grid tbody tr td a.k-button.k-grid-Descarga,
 .k-grid tbody tr td a.k-button.k-grid-Discharging {
     background-image: url("/Content/images/SAMC_DischargingIcon.png");
 }
@@ -637,48 +640,47 @@
     padding: 12px 9px;
 }
 
-.k-grid-pager .k-pager-nav:hover {
-    background-color: #FCEED9;
-}
-.k-grid-pager .k-pager-sizes {
-    color: #666666;
-    float: right;
-    /*padding: 3px 0 0;*/
-    padding: 0;
-    margin-top: 1px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-}
+    .k-grid-pager .k-pager-nav:hover {
+        background-color: #FCEED9;
+    }
 
-.k-grid-pager .k-pager-sizes .k-dropdown {
-    float: right;
-    width: 63px;
-    margin-right: 0px;
-    margin-top: -4px;
-    margin-left: 10px;
-}
+    .k-grid-pager .k-pager-sizes {
+        color: #666666;
+        float: right;
+        /*padding: 3px 0 0;*/
+        padding: 0;
+        margin-top: 1px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.9px;
+    }
 
-<<<<<<< HEAD
-        .k-grid-pager .k-pager-sizes .k-dropdown-wrap .k-input {
-            min-height: 24px;
-            height: 24px;
-            font-size: 14px;
-            padding: 5px;
-            letter-spacing: normal;
-            line-height: 1.7;
+        .k-grid-pager .k-pager-sizes .k-dropdown {
+            float: right;
+            width: 63px;
+            margin-right: 0px;
+            margin-top: -4px;
+            margin-left: 10px;
         }
-=======
-.k-grid-pager .k-pager-sizes .k-dropdown-wrap .k-input {
+
+<<<<<<< HEAD .k-grid-pager .k-pager-sizes .k-dropdown-wrap .k-input {
+    min-height: 24px;
+    height: 24px;
+    font-size: 14px;
+    padding: 5px;
+    letter-spacing: normal;
+    line-height: 1.7;
+}
+
+======= .k-grid-pager .k-pager-sizes .k-dropdown-wrap .k-input {
     min-height: 24px;
     height: 24px;
     font-size: 14px;
     padding: 5px;
     letter-spacing: normal;
 }
->>>>>>> Steelgo-InHouse
 
-.k-grid-pager .k-pager-sizes .k-dropdown .k-dropdown-wrap .k-select {
+> > > > > > > Steelgo-InHouse .k-grid-pager .k-pager-sizes .k-dropdown .k-dropdown-wrap .k-select {
     width: 35px;
 }
 /**********************************************************************************/
@@ -694,84 +696,84 @@
     border-radius: 0;
 }
 
-.k-calendar-container.k-group {
-    border-color: transparent;
-    border: 0;
-    border-bottom: 1px solid #c5c5c5;
-}
+    .k-calendar-container.k-group {
+        border-color: transparent;
+        border: 0;
+        border-bottom: 1px solid #c5c5c5;
+    }
 
-.k-calendar-container.k-state-border-up {
-    border-radius: 0;
-}
+    .k-calendar-container.k-state-border-up {
+        border-radius: 0;
+    }
 
 .k-calendar {
     font-size: 12px;
     border-radius: 0;
 }
 
-.k-calendar .k-header {
-    background: none;
-    font-weight: 600;
-    background-color: #1B3F70;
-    border: 1px solid #1B3F70;
-    border-bottom: 0;
-}
+    .k-calendar .k-header {
+        background: none;
+        font-weight: 600;
+        background-color: #1B3F70;
+        border: 1px solid #1B3F70;
+        border-bottom: 0;
+    }
 
-.k-calendar .k-header .k-i-arrow-w {
-    background-image: url("/Content/images/SAMC_Icon_Calendar_Left.png");
-    background-position: center 2px !important;
-}
+        .k-calendar .k-header .k-i-arrow-w {
+            background-image: url("/Content/images/SAMC_Icon_Calendar_Left.png");
+            background-position: center 2px !important;
+        }
 
-.k-calendar .k-header .k-i-arrow-e {
-    background-image: url("/Content/images/SAMC_Icon_Calendar_Right.png");
-    background-position: center 2px !important;
-}
+        .k-calendar .k-header .k-i-arrow-e {
+            background-image: url("/Content/images/SAMC_Icon_Calendar_Right.png");
+            background-position: center 2px !important;
+        }
 
-.k-calendar .k-header .k-link,
-.k-calendar .k-header .k-link.k-state-hover {
-    color: #FFFFFF;
-    background: none !important;
-    padding: 6px 0;
-    text-transform: uppercase;
-}
+        .k-calendar .k-header .k-link,
+        .k-calendar .k-header .k-link.k-state-hover {
+            color: #FFFFFF;
+            background: none !important;
+            padding: 6px 0;
+            text-transform: uppercase;
+        }
 
-.k-calendar table {
-    color: #202020 !important;
-    font-weight: 600;
-    border-right: 1px solid #c5c5c5;
-    border-left: 1px solid #c5c5c5;
-}
+    .k-calendar table {
+        color: #202020 !important;
+        font-weight: 600;
+        border-right: 1px solid #c5c5c5;
+        border-left: 1px solid #c5c5c5;
+    }
 
-.k-calendar table thead tr th {
-    background-color: #FFFFFF;
-    padding: 5.6px 7.5px;
-    font-weight: 600;
-}
+        .k-calendar table thead tr th {
+            background-color: #FFFFFF;
+            padding: 5.6px 7.5px;
+            font-weight: 600;
+        }
 
-.k-calendar table tbody tr td {
-    padding: 3.6px 6.5px;
-}
+        .k-calendar table tbody tr td {
+            padding: 3.6px 6.5px;
+        }
 
-.k-calendar table tbody tr td.k-state-focused {
-    box-shadow: inset 0 0 5px 1px #1B3F70;
-    background: none;
-}
+            .k-calendar table tbody tr td.k-state-focused {
+                box-shadow: inset 0 0 5px 1px #1B3F70;
+                background: none;
+            }
 
-.k-calendar table tbody tr td.k-state-selected {
-    box-shadow: none;
-    background: none;
-    background-color: #1B3F70;
-}
+            .k-calendar table tbody tr td.k-state-selected {
+                box-shadow: none;
+                background: none;
+                background-color: #1B3F70;
+            }
 
-.k-calendar table tbody tr td.k-state-hover {
-    box-shadow: none;
-    background: none;
-    background-color: #FCEED9 !important;
-}
+            .k-calendar table tbody tr td.k-state-hover {
+                box-shadow: none;
+                background: none;
+                background-color: #FCEED9 !important;
+            }
 
-.k-calendar .k-footer {
-    display: none;
-}
+    .k-calendar .k-footer {
+        display: none;
+    }
 /**********************************************************************************/
 
 /**********************************************************************************
@@ -802,15 +804,15 @@
     z-index: 1;
 }
 
-.k-tabstrip-items .k-item .k-link {
-    color: #305E8E;
-    letter-spacing: .8px;
-    padding: 0 25px 14px 0;
-}
+    .k-tabstrip-items .k-item .k-link {
+        color: #305E8E;
+        letter-spacing: .8px;
+        padding: 0 25px 14px 0;
+    }
 
-.k-tabstrip-items .k-item.k-state-active .k-link {
-    color: #333333;
-}
+    .k-tabstrip-items .k-item.k-state-active .k-link {
+        color: #333333;
+    }
 
 .k-tabstrip .k-content {
     border: none;
@@ -819,13 +821,13 @@
     padding: 0;
 }
 
-.k-tabstrip .k-content > div,
-.k-tabstrip .k-content > div * {
-    box-sizing: border-box;
-}
+    .k-tabstrip .k-content > div,
+    .k-tabstrip .k-content > div * {
+        box-sizing: border-box;
+    }
 
-.k-tabstrip .k-content.k-state-active {
-}
+    .k-tabstrip .k-content.k-state-active {
+    }
 
     .k-tabstrip .k-content .addedSection {
         padding-left: 15px;
@@ -876,8 +878,8 @@
 
     /*$_k-widget*/
     .k-widget.k-window {
-        min-width: 100%!important;
-        left: 0!important;        
+        min-width: 100% !important;
+        left: 0 !important;
     }
 
     .form-group {
@@ -892,7 +894,7 @@
     .k-grid {
         overflow: hidden;
         overflow-x: auto;
-    }       
+    }
 
         .k-grid > table {
             table-layout: auto;
@@ -987,7 +989,6 @@
     .popup .k-dropdown {
         width: 100%;
     }
-
 }
 
 /* sm viewport */
@@ -997,22 +998,21 @@
 /* tablet viewport*/
 @media (min-width: 768px) and (max-width: 1024px) {
 
-/*$_k-widget*/
-.k-multiselect, .k-combobox,
-.k-autocomplete, .k-datepicker {
-    max-width: 100%;
-}
+    /*$_k-widget*/
+    .k-multiselect, .k-combobox,
+    .k-autocomplete, .k-datepicker {
+        max-width: 100%;
+    }
 
-/*$_input-group*/
-/*Override bootstrap input group display for tablets*/
-.form .input-group {
-    display: block;
-}
+    /*$_input-group*/
+    /*Override bootstrap input group display for tablets*/
+    .form .input-group {
+        display: block;
+    }
 
-<<<<<<< HEAD
-        .form .input-group > .input-group-btn {
-            display: none;
-        }
+    <<<<<<< HEAD .form .input-group > .input-group-btn {
+        display: none;
+    }
 
     /*$_k-grid*/
     .k-grid {
@@ -1071,11 +1071,12 @@
     .k-grid-pager {
         border-top: none;
     }
-=======
-.form .input-group > .input-group-btn {
-    display: none;
-}
->>>>>>> Steelgo-InHouse
+
+    ======= .form .input-group > .input-group-btn {
+        display: none;
+    }
+
+    > > > > > > > Steelgo-InHouse
 }
 
 /* md viewport */
@@ -1090,28 +1091,33 @@
 /*Controles genericos*/
 
 .altoControl {
-   height:80px !important;
-   overflow:hidden !important;
+    height: 80px !important;
+    overflow: hidden !important;
 }
+
 h6 {
-    margin:0;
-    font-weight:600;
-    font-size:larger;
-    line-height:40px;
+    margin: 0;
+    font-weight: 600;
+    font-size: larger;
+    line-height: 40px;
 }
+
 .btn-primary.active {
-    background-color:#1c4070 !important;
+    background-color: #1c4070 !important;
 }
+
 .btn-file {
-        position: relative;
-        overflow: hidden;
-        background-color:#1c4070;
-    }
+    position: relative;
+    overflow: hidden;
+    background-color: #1c4070;
+}
+
     .btn-file:hover {
         position: relative;
         overflow: hidden;
-        background-color:#152f52;
+        background-color: #152f52;
     }
+
     .btn-file input[type=file] {
         position: absolute;
         top: 0;
@@ -1128,20 +1134,22 @@ h6 {
     }
 /*Grid*/
 .k-grid {
-    margin-top:15px;
+    margin-top: 15px;
 }
-.k-grid .k-grid{
-    margin-top:0;
-}
+
+    .k-grid .k-grid {
+        margin-top: 0;
+    }
+
 .k-grid-header {
     padding-right: 0 !important;
     width: inherit;
-    
 }
-.k-grid-header th.k-header, .k-filter-row th,
-.nivel2 .k-grid-header th.k-header, .nivel2 .k-filter-row th{
-   font-weight:500;
-}
+
+    .k-grid-header th.k-header, .k-filter-row th,
+    .nivel2 .k-grid-header th.k-header, .nivel2 .k-filter-row th {
+        font-weight: 500;
+    }
 
 /*.k-grid-pager {
     padding:3px;
@@ -1153,31 +1161,32 @@ h6 {
     }*/
 
 .ScrollUp {
-    overflow-x:scroll; 
-    /*margin-top:-20px;*/ 
-    
+    overflow-x: scroll;
+    /*margin-top:-20px;*/
 }
+
 .ScrollUpPestania {
-    overflow-x:scroll; 
+    overflow-x: scroll;
 }
+
 .DivScrollSup {
-    height:1px; 
-    overflow:hidden;
+    height: 1px;
+    overflow: hidden;
 }
+
 .stick {
     position: fixed;
     max-height: 100%;
-    max-width:100%;
+    max-width: 100%;
     top: 0;
-    z-index: 1000;   
+    z-index: 1000;
 }
-.GridMenu{
-    height:1px;
+
+.GridMenu {
+    height: 1px;
 }
+
 #grid #contextMenu li {
-    padding:5px;
-    cursor:pointer;
+    padding: 5px;
+    cursor: pointer;
 }
-
-
-    

@@ -45,7 +45,7 @@
 function AjaxPinturaCargaMedioTransporte() {
     loadingStart();
 
-    $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+    $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), proyectoID: $("#inputProyecto").data("kendoComboBox").value() }).done(function (data) {
         $("#inputCarro").data("kendoComboBox").text("");
         $("#inputCarroBacklog").data("kendoComboBox").text("");
         if (data.length > 0) {

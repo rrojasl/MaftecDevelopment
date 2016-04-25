@@ -373,7 +373,9 @@ function createUserSession(username, password) {
             Cookies.set("home", false, { path: '/' });
             Cookies.set("user", username, { path: '/' });
             Cookies.set("nameUserLogged", data.ReturnMessage[0], { path: '/' });
-            Cookies.set("token", data.ReturnMessage[1], { path: '/' });
+            Cookies.set("token", data.ReturnMessage[1], { path: '/', expires: 365 });
+            
+            
             //RedirectToLanding
             document.location.href = $homeURI;
         } else {
