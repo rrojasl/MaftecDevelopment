@@ -620,6 +620,29 @@ function PlanchaFecha() {
     }
     $("#grid").data("kendoGrid").dataSource.sync();
 }
+
+function ObtenerDato(fecha, tipoDatoObtener) {
+    var cultura = $("#language").val();
+
+    switch (tipoDatoObtener) {
+        case 1://anho
+            return fecha.split('/')[2]
+            break;
+        case 2://mes
+            if (cultura = 'es-MX')
+                return fecha.split('/')[1]-1
+            else
+                return fecha.split('/')[0]-1
+            break;
+        case 3://dia
+            if (cultura = 'es-MX')
+                return fecha.split('/')[0]
+            else
+                return fecha.split('/')[1]
+            break;
+    }
+}
+
 function ArregloListadoReporte() {
     JsonCaptura = [];
     var lista = $("#Junta").data("kendoComboBox").dataSource._data;

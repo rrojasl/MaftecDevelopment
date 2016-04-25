@@ -7963,6 +7963,18 @@ _dictionary = {
         "en-US": "WorkShop"
     },
 
+    "CapturaSoldaduraHeaderColada": {
+        "es-MX": "Colada",
+        "en-US": "Wash"
+    },
+    "CapturaSoldaduraHeaderSoldaduraRaiz": {
+        "es-MX": "Soldadura Raiz",
+        "en-US": "Root welding"
+    },
+    "CapturaSoldaduraHeaderSoldaduraRaiz": {
+        "es-MX": "Soldadura Relleno",
+        "en-US": "Padding welding"
+    },
     "CapturaSoldaduraHeaderLocalizacion": {
         "es-MX": "Localización",
         "en-US": "Location"
