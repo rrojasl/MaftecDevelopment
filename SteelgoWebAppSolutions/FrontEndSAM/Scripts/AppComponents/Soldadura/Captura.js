@@ -266,7 +266,7 @@ function CargarGridSoldadura() {
             { field: "Relleno", title: _dictionary.CapturaRellenoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "#:SoldadoresRelleno#", editor: RenderMultiselectRelleno },
             { field: "DetalleAdicional", title: _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TrabajosAdicionales#</span></a>" },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, filterable: false, title: "", width: "99px" },
-            { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, filterable: false, title: "", width: "99px" }
+            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, filterable: false, title: "", width: "99px" }
         ],
         dataBound: function (e) {
             $(".k-grid input.k-textbox").prop('readonly', true);

@@ -9,6 +9,21 @@ function AjaxJunta(spoolID) {
     });
 }
 
+
+function AjaxJuntaModoSpool(spoolID) {
+    loadingStart();
+    $('input:radio[name=Muestra]:checked').val();
+
+    $CapturasRapidas.CapturasRapidas.read({ id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token"), proceso: 2 }).done(function (data) {
+        $("#Junta").data("kendoComboBox").value("");
+        $("#Junta").data("kendoComboBox").dataSource.data(data);
+        AjaxCargarReporteJuntas();
+        loadingStop();
+
+    });
+    
+}
+
 function AjaxObtenerListaTaller() {
     loadingStart();
     if (Cookies.get("Proyecto") != undefined) {

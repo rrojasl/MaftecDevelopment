@@ -413,20 +413,38 @@ function SuscribirEventoSpoolID() {
         }
         else if (e.keyCode == 40)
             $("#InputID").data("kendoComboBox").select();
+        //else if (e.keyCode == 13) {
+        //    if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+        //        if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
+        //            AjaxCargarReporteJuntas();
+        //        }
+        //    }
+        //    else
+        //        displayNotify("NoExisteSpoolID", '', '2');
+        //}
         else if (e.keyCode == 13) {
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
-                    AjaxCargarReporteJuntas();
+                    if ($("#InputID").data("kendoComboBox").select() != -1) {
+                        AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                        //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
+                    }
                 }
             }
             else
                 displayNotify("NoExisteSpoolID", '', '2');
         }
         else if (e.keyCode == 9) {
-            if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget))
+            if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget)) {
                 $("#InputID").data("kendoComboBox").select(0);
-            else if (tieneClase(e.currentTarget))
+                AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+            }
+
+            else if (tieneClase(e.currentTarget)) {
                 $("#InputID").data("kendoComboBox").select(0);
+                AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+            }
+
         }
     });
 };
