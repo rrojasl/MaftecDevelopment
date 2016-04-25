@@ -422,10 +422,18 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 function AjaxCargarReporteJuntas() {
     var listadoReporte = ArregloListadoReporte();
     var elementoNoEncontrado = false;
-    for (var x = 0; x < listadoReporte.length; x++) {
 
+    CapturaJuntas = [];
+    CapturaJuntas[0] = { Detalles: "" };
+    ListaDetalles = [];
+
+    ListaDetalles = listadoReporte;
+    CapturaJuntas[0].Detalles = ListaDetalles;
+
+        //se envia solo un objeto de los 4 porque ahora solo se hace una sola peticion y se trae todos los objetos ajax.
+   
         loadingStart();
-        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(listadoReporte[x]), lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
+        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(listadoReporte[0]), lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
             var ds = $("#grid").data("kendoGrid").dataSource;
             var lInicialGrid = ds._data.length;
             var array = JSON.parse(data);
@@ -493,7 +501,7 @@ function AjaxCargarReporteJuntas() {
             
         });
         
-    }
+    
   
     $('#ButtonAgregar').prop("disabled", false);
    

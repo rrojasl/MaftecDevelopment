@@ -143,6 +143,11 @@ namespace BackEndSAM.Models.Armado
     {
         public List<DetalleGuardarJson> Detalles { get; set; }
     }
+
+    public class CapturaJuntas
+    {
+        public List<DetalleDatosJson> Detalles { get; set; }
+    }
     public class DetalleGuardarJson
     {
         public int Accion { get; set; }

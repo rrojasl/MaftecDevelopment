@@ -139,72 +139,80 @@ namespace BackEndSAM.Controllers
                 capturaDatosJson.SinCaptura = capturaDatosJson.SinCaptura == "Todos" ? "1" : "0";
                 List<DetalleDatosJson> listaDetalleDatos = new List<DetalleDatosJson>();
 
-
-                List<Sam3_Armado_Get_DetalleJunta_Result> detalle = (List<Sam3_Armado_Get_DetalleJunta_Result>)CapturaArmadoBD.Instance.ObtenerDetalleArmado(capturaDatosJson, usuario, lenguaje);
-
-                List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result> detallaArmadoAdicional = (List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result>)CapturaArmadoBD.Instance.DetallaArmadoAdicional(capturaDatosJson, usuario);
-
-                List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)CapturaArmadoBD.Instance.listaNumeroUnicos(capturaDatosJson, usuario, 1);
-
-
-                List<DetalleTrabajoAdicional> listDetalleTrabajoAdicional = GenerarDetalleAdicionalJson(detallaArmadoAdicional, usuario);
-
-                List<NumeroUnico> listNumeroUnico1 = GenerarListaNumerosUnicos(listaNumeroUnicos, 1);
-
-                List<NumeroUnico> listNumeroUnico2 = GenerarListaNumerosUnicos(listaNumeroUnicos, 2);
-
-                List<Sam3_Steelgo_Get_TrabajoAdicional_Result> listaTrabajoAdicionalXJunta = (List<Sam3_Steelgo_Get_TrabajoAdicional_Result>)CapturaArmadoBD.Instance.listaTrabajosAdicionalesXJunta(usuario);
-
-                List<TrabajosAdicionalesXJunta> listaDetalleAdicionalXJuntaConvertida = listaTrabajoAdicionalXJunta.ConvertAll(new Converter<Sam3_Steelgo_Get_TrabajoAdicional_Result, TrabajosAdicionalesXJunta>(DetalleTrabajoAdicionalXJuntaResultToDetalleTrabajoAdicionalXJunta));
-
-                IFormatProvider culture = new System.Globalization.CultureInfo("es-MX", true);
-
-
-
-                foreach (Sam3_Armado_Get_DetalleJunta_Result item in detalle)
+                List<Sam3_Steelgo_Get_JuntaSpool_Result> listaJuntasXSpool =(List<Sam3_Steelgo_Get_JuntaSpool_Result>) CapturaArmadoBD.Instance.ObtenerJuntasXSpoolID(usuario, capturaDatosJson.OrdenTrabajo, capturaDatosJson.IdVal,int.Parse( capturaDatosJson.SinCaptura));
+                for (int i = 0; i < listaJuntasXSpool.Count; i++)
                 {
-                    //item.TipoJunta
-                    DetalleDatosJson detalleDatos = new DetalleDatosJson
+                    capturaDatosJson.JuntaID = listaJuntasXSpool[i].JuntaSpoolID.ToString();
+                    capturaDatosJson.Junta = listaJuntasXSpool[i].Etiqueta.ToString();
+
+                    List<Sam3_Armado_Get_DetalleJunta_Result> detalle = (List<Sam3_Armado_Get_DetalleJunta_Result>)CapturaArmadoBD.Instance.ObtenerDetalleArmado(capturaDatosJson, usuario, lenguaje);
+
+                    List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result> detallaArmadoAdicional = (List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result>)CapturaArmadoBD.Instance.DetallaArmadoAdicional(capturaDatosJson, usuario);
+
+                    List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)CapturaArmadoBD.Instance.listaNumeroUnicos(capturaDatosJson, usuario, 1);
+
+
+                    List<DetalleTrabajoAdicional> listDetalleTrabajoAdicional = GenerarDetalleAdicionalJson(detallaArmadoAdicional, usuario);
+
+                    List<NumeroUnico> listNumeroUnico1 = GenerarListaNumerosUnicos(listaNumeroUnicos, 1);
+
+                    List<NumeroUnico> listNumeroUnico2 = GenerarListaNumerosUnicos(listaNumeroUnicos, 2);
+
+                    List<Sam3_Steelgo_Get_TrabajoAdicional_Result> listaTrabajoAdicionalXJunta = (List<Sam3_Steelgo_Get_TrabajoAdicional_Result>)CapturaArmadoBD.Instance.listaTrabajosAdicionalesXJunta(usuario);
+
+                    List<TrabajosAdicionalesXJunta> listaDetalleAdicionalXJuntaConvertida = listaTrabajoAdicionalXJunta.ConvertAll(new Converter<Sam3_Steelgo_Get_TrabajoAdicional_Result, TrabajosAdicionalesXJunta>(DetalleTrabajoAdicionalXJuntaResultToDetalleTrabajoAdicionalXJunta));
+
+                    IFormatProvider culture = new System.Globalization.CultureInfo("es-MX", true);
+
+
+
+                    foreach (Sam3_Armado_Get_DetalleJunta_Result item in detalle)
                     {
-                        Accion = item.JuntaArmadoID == null ? 1 : 2,
-                        JuntaTrabajoID = item.JuntaTrabajoID == null ? 0 : item.JuntaTrabajoID.GetValueOrDefault(),
-                        JuntaArmadoID = item.JuntaArmadoID == null ? 0 : int.Parse(item.JuntaArmadoID.ToString()),
-                        IDProyecto = capturaDatosJson.IDProyecto,
-                        Proyecto = capturaDatosJson.Proyecto,
-                        IdOrdenTrabajo = capturaDatosJson.IdOrdenTrabajo,
-                        OrdenTrabajo = capturaDatosJson.OrdenTrabajo,
-                        IdVal = capturaDatosJson.IdVal,
-                        IdText = capturaDatosJson.IdText,
-                        SpoolID = capturaDatosJson.OrdenTrabajo + "-" + capturaDatosJson.IdText,
-                        JuntaID = capturaDatosJson.JuntaID,
-                        Junta = capturaDatosJson.Junta,
-                        TipoJunta = item.TipoJunta,
-                        Diametro = item.Diametro.ToString().Replace(',', '.'),
-                        Cedula = item.Cedula,
-                        FechaArmado = item.FechaArmado,
-                        TipoJuntaID = item.TipoJuntaID,
-                        TuberoID = item.Tubero == null ? "" : item.ObreroID.ToString(),
-                        Tubero = item.Tubero == null ? "" : item.Tubero,
-                        TallerID = item.TallerID == null ? "" : item.TallerID.ToString(),
-                        Taller = item.Taller == null ? "" : item.Taller,
-                        Localizacion = item.Localizacion,
-                        FamiliaAcero = item.FamiliaAcero,
-                        NumeroUnico1 = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].Clave : "") : item.Clave1.ToString(),
-                        NumeroUnico2 = item.NumeroUnico2ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].Clave : "") : item.Clave2.ToString(),
-                        TemplateMensajeTrabajosAdicionales = item.TabajosAdicionales,
-                        ListaNumerosUnicos1 = listNumeroUnico1,
-                        ListaNumerosUnicos2 = listNumeroUnico2,
-                        ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaArmadoBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
-                        ListaTubero = ObtenerListaTubero((List<Sam3_Steelgo_Get_Obrero_Result>)CapturaArmadoBD.Instance.ObtenerTuberoXProyecto(usuario, capturaDatosJson.IDProyecto, 4)),
-                        ListaDetalleTrabajoAdicional = listDetalleTrabajoAdicional,
-                        listadoTrabajosAdicionalesXJunta = listaDetalleAdicionalXJuntaConvertida,
-                        SinCaptura = capturaDatosJson.SinCaptura,
-                        NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].NumeroUnicoID.ToString() : "") : item.NumeroUnico1ID.ToString(),
-                        NumeroUnico2ID = item.NumeroUnico1ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].NumeroUnicoID.ToString() : "") : item.NumeroUnico2ID.ToString(),
-                        DetalleJunta = "Junta: " + item.TipoJunta + " - " + "Ced: " + item.Cedula + " - " + "Loc: " + item.Localizacion + " - " + "Acero: " + item.FamiliaAcero + ""
-                    };
-                    listaDetalleDatos.Add(detalleDatos);
+                        //item.TipoJunta
+                        DetalleDatosJson detalleDatos = new DetalleDatosJson
+                        {
+                            Accion = item.JuntaArmadoID == null ? 1 : 2,
+                            JuntaTrabajoID = item.JuntaTrabajoID == null ? 0 : item.JuntaTrabajoID.GetValueOrDefault(),
+                            JuntaArmadoID = item.JuntaArmadoID == null ? 0 : int.Parse(item.JuntaArmadoID.ToString()),
+                            IDProyecto = capturaDatosJson.IDProyecto,
+                            Proyecto = capturaDatosJson.Proyecto,
+                            IdOrdenTrabajo = capturaDatosJson.IdOrdenTrabajo,
+                            OrdenTrabajo = capturaDatosJson.OrdenTrabajo,
+                            IdVal = capturaDatosJson.IdVal,
+                            IdText = capturaDatosJson.IdText,
+                            SpoolID = capturaDatosJson.OrdenTrabajo + "-" + capturaDatosJson.IdText,
+                            JuntaID = capturaDatosJson.JuntaID,
+                            Junta = capturaDatosJson.Junta,
+                            TipoJunta = item.TipoJunta,
+                            Diametro = item.Diametro.ToString().Replace(',', '.'),
+                            Cedula = item.Cedula,
+                            FechaArmado = item.FechaArmado,
+                            TipoJuntaID = item.TipoJuntaID,
+                            TuberoID = item.Tubero == null ? "" : item.ObreroID.ToString(),
+                            Tubero = item.Tubero == null ? "" : item.Tubero,
+                            TallerID = item.TallerID == null ? "" : item.TallerID.ToString(),
+                            Taller = item.Taller == null ? "" : item.Taller,
+                            Localizacion = item.Localizacion,
+                            FamiliaAcero = item.FamiliaAcero,
+                            NumeroUnico1 = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].Clave : "") : item.Clave1.ToString(),
+                            NumeroUnico2 = item.NumeroUnico2ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].Clave : "") : item.Clave2.ToString(),
+                            TemplateMensajeTrabajosAdicionales = item.TabajosAdicionales,
+                            ListaNumerosUnicos1 = listNumeroUnico1,
+                            ListaNumerosUnicos2 = listNumeroUnico2,
+                            ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaArmadoBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
+                            ListaTubero = ObtenerListaTubero((List<Sam3_Steelgo_Get_Obrero_Result>)CapturaArmadoBD.Instance.ObtenerTuberoXProyecto(usuario, capturaDatosJson.IDProyecto, 4)),
+                            ListaDetalleTrabajoAdicional = listDetalleTrabajoAdicional,
+                            listadoTrabajosAdicionalesXJunta = listaDetalleAdicionalXJuntaConvertida,
+                            SinCaptura = capturaDatosJson.SinCaptura,
+                            NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].NumeroUnicoID.ToString() : "") : item.NumeroUnico1ID.ToString(),
+                            NumeroUnico2ID = item.NumeroUnico1ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].NumeroUnicoID.ToString() : "") : item.NumeroUnico2ID.ToString(),
+                            DetalleJunta = "Junta: " + item.TipoJunta + " - " + "Ced: " + item.Cedula + " - " + "Loc: " + item.Localizacion + " - " + "Acero: " + item.FamiliaAcero + ""
+                        };
+                        listaDetalleDatos.Add(detalleDatos);
+                    }
                 }
+
+
 
                 return serializer.Serialize(listaDetalleDatos);
 
