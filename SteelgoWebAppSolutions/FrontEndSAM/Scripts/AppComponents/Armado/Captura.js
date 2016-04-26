@@ -95,6 +95,7 @@ function FiltroMostrar(mostrar) {
         var filters = ds.filter();
         filters.logic = "or"
         filters.filters.push({ field: "Accion", operator: "eq", value: 2 });
+        filters.filters.push({ field: "Accion", operator: "eq", value: 4 });
         ds.sync();
     }
 }
@@ -163,7 +164,8 @@ function CargarGrid() {
                 logic: "or",
                 filters: [
                   { field: "Accion", operator: "eq", value: 1 },
-                  { field: "Accion", operator: "eq", value: 2 }
+                  { field: "Accion", operator: "eq", value: 2 },
+                  { field: "Accion", operator: "eq", value: 4 }
                 ]
             },
             pageSize: 20,
@@ -218,6 +220,7 @@ function limpiarRenglon(e) {
         itemToClean.NumeroUnico2ID = 0;
         itemToClean.Tubero = "";
         itemToClean.TuberoID = 0;
+        itemToClean.Accion = 4;
         itemToClean.ListaDetalleTrabajoAdicional = [];
         itemToClean.TemplateMensajeTrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
         var dataSource = $("#grid").data("kendoGrid").dataSource;

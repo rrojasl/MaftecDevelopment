@@ -2,10 +2,11 @@
     loadingStart();
     $('input:radio[name=Muestra]:checked').val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token") }).done(function (data) {
-
-        $("#Junta").data("kendoComboBox").value("");
-        $("#Junta").data("kendoComboBox").dataSource.data(data);
-        loadingStop();
+        if (Error(data)) {
+            $("#Junta").data("kendoComboBox").value("");
+            $("#Junta").data("kendoComboBox").dataSource.data(data);
+            loadingStop();
+        }
     });
 }
 
@@ -13,39 +14,46 @@ function AjaxJuntaModoSpool(spoolID) {
     loadingStart();
     $('input:radio[name=Muestra]:checked').val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token") }).done(function (data) {
-
-        $("#Junta").data("kendoComboBox").value("");
-        $("#Junta").data("kendoComboBox").dataSource.data(data);
-        AjaxCargarReporteJuntas();
-        loadingStop();
+        if (Error(data)) {
+            $("#Junta").data("kendoComboBox").value("");
+            $("#Junta").data("kendoComboBox").dataSource.data(data);
+            AjaxCargarReporteJuntas();
+            loadingStop();
+        }
     });
 }
 
 
 function AjaxObtenerSpoolID() {
+
     var OrdenTrabajoOrigianl = $("#InputOrdenTrabajo").val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-        if (data.OrdenTrabajo != "") {
-            $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
-        }
-        else {
-            $("#InputOrdenTrabajo").val(OrdenTrabajoOrigianl);
-            displayNotify("CapturaArmadoMensajeOrdenTrabajoNoEncontrada", "", '1');
-        }
+        if (Error(data)) {
+            if (data.OrdenTrabajo != "") {
+                $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
+            }
+            else {
+                $("#InputOrdenTrabajo").val(OrdenTrabajoOrigianl);
+                displayNotify("CapturaArmadoMensajeOrdenTrabajoNoEncontrada", "", '1');
+            }
 
-        $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
-        Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
+            $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
+            Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
+        }
     });
+
 }
 
 function AjaxObtenerListaTubero() {
     loadingStart();
     if (Cookies.get("Proyecto") != undefined) {
         $CapturaArmado.Armado.read({ idProyecto: Cookies.get("Proyecto").split('°')[0], tipo: 4, token: Cookies.get("token") }).done(function (data) {
-
-            $("#inputTubero").data("kendoComboBox").value("");
-            $("#inputTubero").data("kendoComboBox").dataSource.data(data);
+            if (Error(data)) {
+                $("#inputTubero").data("kendoComboBox").value("");
+                $("#inputTubero").data("kendoComboBox").dataSource.data(data);
+            }
             loadingStop();
+
         });
     }
     else
@@ -56,8 +64,10 @@ function AjaxObtenerListaTaller() {
     loadingStart();
     if (Cookies.get("Proyecto") != undefined) {
         $CapturaArmado.Armado.read({ idProyecto: Cookies.get("Proyecto").split('°')[0], token: Cookies.get("token") }).done(function (data) {
-            $("#inputTaller").data("kendoComboBox").value("");
-            $("#inputTaller").data("kendoComboBox").dataSource.data(data);
+            if (Error(data)) {
+                $("#inputTaller").data("kendoComboBox").value("");
+                $("#inputTaller").data("kendoComboBox").dataSource.data(data);
+            }
             loadingStop();
         });
     }
@@ -69,82 +79,84 @@ function ObtenerJSonGridArmado() {
     try {
         loadingStart();
         $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), isReporte: true, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-            var ds = $("#grid").data("kendoGrid").dataSource;
-            var array = JSON.parse(data);
-            var elementoNoEncontrado = false;
+            if (Error(data)) {
+                var ds = $("#grid").data("kendoGrid").dataSource;
+                var array = JSON.parse(data);
+                var elementoNoEncontrado = false;
 
-            for (var x = array.length - 1; x >= 0; x--) {
-                if (array[x].JuntaID != $("#Junta").data("kendoComboBox").value()) {
-                    array.splice(x, 1);
+                for (var x = array.length - 1; x >= 0; x--) {
+                    if (array[x].JuntaID != $("#Junta").data("kendoComboBox").value()) {
+                        array.splice(x, 1);
+                    }
                 }
-            }
 
-            if (ExisteJunta(array[0])) {
-                // Proceso validar accion
-                for (var i = 0; i < ds._data.length; i++) {
-                    if (array[0].SpoolID == ds._data[i].SpoolID && array[0].JuntaID == ds._data[i].JuntaID && ds._data[i].Accion == 3) { //SPOOL JUNTA ACCION
-                        ds._data[i].TallerID = array[0].TallerID;
-                        ds._data[i].Taller = array[0].Taller;
-                        ds._data[i].NumeroUnico1 = array[0].NumeroUnico1;
-                        ds._data[i].NumeroUnico1ID = array[0].NumeroUnico1ID;
-                        ds._data[i].NumeroUnico2 = array[0].NumeroUnico2;
-                        ds._data[i].NumeroUnico2ID = array[0].NumeroUnico2ID;
-                        ds._data[i].Tubero = array[0].Tubero;
-                        ds._data[i].TuberoID = array[0].TuberoID;
-                        ds._data[i].ListaDetalleTrabajoAdicional = array[0].ListaDetalleTrabajoAdicional;
-                        ds._data[i].TemplateMensajeTrabajosAdicionales = array[0].TemplateMensajeTrabajosAdicionales;
+                if (ExisteJunta(array[0])) {
+                    // Proceso validar accion
+                    for (var i = 0; i < ds._data.length; i++) {
+                        if (array[0].SpoolID == ds._data[i].SpoolID && array[0].JuntaID == ds._data[i].JuntaID && ds._data[i].Accion == 3) { //SPOOL JUNTA ACCION
+                            ds._data[i].TallerID = array[0].TallerID;
+                            ds._data[i].Taller = array[0].Taller;
+                            ds._data[i].NumeroUnico1 = array[0].NumeroUnico1;
+                            ds._data[i].NumeroUnico1ID = array[0].NumeroUnico1ID;
+                            ds._data[i].NumeroUnico2 = array[0].NumeroUnico2;
+                            ds._data[i].NumeroUnico2ID = array[0].NumeroUnico2ID;
+                            ds._data[i].Tubero = array[0].Tubero;
+                            ds._data[i].TuberoID = array[0].TuberoID;
+                            ds._data[i].ListaDetalleTrabajoAdicional = array[0].ListaDetalleTrabajoAdicional;
+                            ds._data[i].TemplateMensajeTrabajosAdicionales = array[0].TemplateMensajeTrabajosAdicionales;
 
-                        ds._data[i].Accion = 2;
+                            ds._data[i].Accion = 2;
 
-                        if (array[0].FechaArmado != null) {
-                            ds._data[i].FechaArmado = new Date(ObtenerDato(array[0].FechaArmado, 1), ObtenerDato(array[0].FechaArmado, 2), ObtenerDato(array[0].FechaArmado, 3));//año, mes, dia
+                            if (array[0].FechaArmado != null) {
+                                ds._data[i].FechaArmado = new Date(ObtenerDato(array[0].FechaArmado, 1), ObtenerDato(array[0].FechaArmado, 2), ObtenerDato(array[0].FechaArmado, 3));//año, mes, dia
+                            }
+
+                            var elementgrid = ds._data.splice(i, 1);
+                            ds._data.unshift(elementgrid[0]);
+
+                            displayNotify("",
+                            _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                            array[0].Junta +
+                            _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
+
+                            elementoNoEncontrado = true;
                         }
-
-                        var elementgrid = ds._data.splice(i, 1);
-                        ds._data.unshift(elementgrid[0]);
-
+                    }
+                    if (!elementoNoEncontrado)
                         displayNotify("",
                         _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         array[0].Junta +
-                        _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
-
-                        elementoNoEncontrado = true;
-                    }
-                }
-                if (!elementoNoEncontrado)
-                    displayNotify("",
-                    _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
-                    array[0].Junta +
-                    _dictionary.CapturaArmadoMsgExisteListado[$("#language").data("kendoDropDownList").value()], '2');
-            }
-            else {
-                //Proceso insertar elemento
-                for (var i = 0; i < array.length; i++) {
-                    array[i].NumeroUnico1 = array[i].NumeroUnico1 === "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
-                    array[i].NumeroUnico2 = array[i].NumeroUnico2 === "" ? DatoDefaultNumeroUnico2() : array[i].NumeroUnico2;
-                    if (array[i].FechaArmado != null) {
-                        array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
-                    }
-                    ds.insert(0, array[i]);
-                    //$("#Junta").data("kendoComboBox").dataSource.remove($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()));
-                    $("#Junta").val("");
-                }
-
-                $("#Junta").data("kendoComboBox").value("");
-                if (array.length == 0) {
-                    displayNotify("",
-                        _dictionary.CapturaArmadoJuntaCapturada[$("#language").data("kendoDropDownList").value()], '1');
+                        _dictionary.CapturaArmadoMsgExisteListado[$("#language").data("kendoDropDownList").value()], '2');
                 }
                 else {
-                    displayNotify("",
-                        _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
-                        array[0].Junta +
-                        _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
+                    //Proceso insertar elemento
+                    for (var i = 0; i < array.length; i++) {
+                        array[i].NumeroUnico1 = array[i].NumeroUnico1 === "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
+                        array[i].NumeroUnico2 = array[i].NumeroUnico2 === "" ? DatoDefaultNumeroUnico2() : array[i].NumeroUnico2;
+                        if (array[i].FechaArmado != null) {
+                            array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
+                        }
+                        ds.insert(0, array[i]);
+                        //$("#Junta").data("kendoComboBox").dataSource.remove($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()));
+                        $("#Junta").val("");
+                    }
+
+                    $("#Junta").data("kendoComboBox").value("");
+                    if (array.length == 0) {
+                        displayNotify("",
+                            _dictionary.CapturaArmadoJuntaCapturada[$("#language").data("kendoDropDownList").value()], '1');
+                    }
+                    else {
+                        displayNotify("",
+                            _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                            array[0].Junta +
+                            _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
+                    }
+
+
+                    //displayNotify("", 'La junta ' + $('#Junta').data("kendoComboBox").value() + ' ya existe en el listado', '2');
+                    $('#ButtonAgregar').prop("disabled", false);
                 }
-
-
-                //displayNotify("", 'La junta ' + $('#Junta').data("kendoComboBox").value() + ' ya existe en el listado', '2');
-                $('#ButtonAgregar').prop("disabled", false);
             }
         });
         $('#ButtonAgregar').prop("disabled", false);
@@ -157,6 +169,7 @@ function ObtenerJSonGridArmado() {
 
 function AjaxEjecutarGuardado(rows, tipoGuardar) {
     $CapturaArmado.Armado.create(rows, { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+
         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
             displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
 
@@ -224,21 +237,21 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 ListaDetalles[index].ListaDetalleTrabajoAdicional = arregloCaptura[index].ListaDetalleTrabajoAdicional.length == 0 ? undefined : ListaTrabajosAdicionalesEditados;
 
                 if (
-
-               ListaDetalles[index].IdVal == "" ||
-               ListaDetalles[index].JuntaID == "" ||
-               ListaDetalles[index].TipoJuntaID == "" ||
-               ListaDetalles[index].Junta == "" ||
-               ListaDetalles[index].Localizacion1 == "" ||
-               ListaDetalles[index].Localizacion2 == "" ||
-               ListaDetalles[index].NumeroUnico1ID == "" ||
-               ListaDetalles[index].NumeroUnico2ID == "" ||
-               ListaDetalles[index].TallerID == "" ||
-               ListaDetalles[index].TallerID == "0" ||
-               ListaDetalles[index].TuberoID == "" ||
-               ListaDetalles[index].TuberoID == "0" ||
-               ListaDetalles[index].FechaArmado == ""
-
+                    (
+                       ListaDetalles[index].IdVal == "" ||
+                       ListaDetalles[index].JuntaID == "" ||
+                       ListaDetalles[index].TipoJuntaID == "" ||
+                       ListaDetalles[index].Junta == "" ||
+                       ListaDetalles[index].Localizacion1 == "" ||
+                       ListaDetalles[index].Localizacion2 == "" ||
+                       ListaDetalles[index].NumeroUnico1ID == "" ||
+                       ListaDetalles[index].NumeroUnico2ID == "" ||
+                       ListaDetalles[index].TallerID == "" ||
+                       ListaDetalles[index].TallerID == "0" ||
+                       ListaDetalles[index].TuberoID == "" ||
+                       ListaDetalles[index].TuberoID == "0" ||
+                       ListaDetalles[index].FechaArmado == ""
+                    ) && ( ListaDetalles[index].Accion != 3 && ListaDetalles[index].Accion != 4)
                    ) {
                     ListaDetalles[index].Estatus = 0;
                 }
@@ -327,46 +340,46 @@ function AjaxCargarCamposPredeterminados() {
 
 
     $CapturaArmado.Armado.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        if (Error(data)) {
+            var NewDate = kendo.toString(data.FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
 
-        var NewDate = kendo.toString(data.FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
+            endRangeDate.val(NewDate);
 
-        endRangeDate.val(NewDate);
+            if (data.Muestra == "sin captura") {
+                $('input:radio[name=Muestra]:nth(0)').trigger("click");
+                //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
 
-        if (data.Muestra == "sin captura") {
-            $('input:radio[name=Muestra]:nth(0)').trigger("click");
-            //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
+            }
+            else if (data.Muestra == "Todos") {
+                //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
+                $('input:radio[name=Muestra]:nth(1)').trigger("click");
 
+            }
+
+            if (data.Llena == "Todos") {
+                $('input:radio[name=LLena]:nth(0)').trigger("click");
+                //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
+
+            }
+            else if (data.Llena == "Vacios") {
+                //$('input:radio[name=LLena]:nth(0)').trigger("click");
+                $('input:radio[name=LLena]:nth(1)').trigger("click");
+
+            }
+
+            if (data.TipoCaptura == "Reporte") {
+                $('input:radio[name=TipoAgregado]:nth(0)').trigger("click");
+                //$('input:radio[name=TipoAgregado]:nth(1)').attr('checked', false);
+                $("#styleReporte").addClass("active");
+                $("#styleListado").removeClass("active");
+            }
+            else if (data.TipoCaptura == "Lista") {
+                //$('input:radio[name=TipoAgregado]:nth(0)').attr('checked', false);
+                $('input:radio[name=TipoAgregado]:nth(1)').trigger("click");
+                $("#styleListado").addClass("active");
+                $("#styleReporte").removeClass("active");
+            }
         }
-        else if (data.Muestra == "Todos") {
-            //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
-            $('input:radio[name=Muestra]:nth(1)').trigger("click");
-
-        }
-
-        if (data.Llena == "Todos") {
-            $('input:radio[name=LLena]:nth(0)').trigger("click");
-            //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
-
-        }
-        else if (data.Llena == "Vacios") {
-            //$('input:radio[name=LLena]:nth(0)').trigger("click");
-            $('input:radio[name=LLena]:nth(1)').trigger("click");
-
-        }
-
-        if (data.TipoCaptura == "Reporte") {
-            $('input:radio[name=TipoAgregado]:nth(0)').trigger("click");
-            //$('input:radio[name=TipoAgregado]:nth(1)').attr('checked', false);
-            $("#styleReporte").addClass("active");
-            $("#styleListado").removeClass("active");
-        }
-        else if (data.TipoCaptura == "Lista") {
-            //$('input:radio[name=TipoAgregado]:nth(0)').attr('checked', false);
-            $('input:radio[name=TipoAgregado]:nth(1)').trigger("click");
-            $("#styleListado").addClass("active");
-            $("#styleReporte").removeClass("active");
-        }
-
     });
 
 }
@@ -376,38 +389,39 @@ function AjaxCargarCamposPredeterminadosOcultaJunta() {
 
     loadingStart();
     $CapturaArmado.Armado.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        if (Error(data)) {
+            var NewDate = kendo.toString(data.FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
 
-        var NewDate = kendo.toString(data.FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
+            endRangeDate.val(NewDate);
 
-        endRangeDate.val(NewDate);
+            if (data.Muestra == "sin captura") {
+                $('input:radio[name=Muestra]:nth(0)').trigger("click");
+                //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
 
-        if (data.Muestra == "sin captura") {
-            $('input:radio[name=Muestra]:nth(0)').trigger("click");
-            //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
+            }
+            else if (data.Muestra == "Todos") {
+                //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
+                $('input:radio[name=Muestra]:nth(1)').trigger("click");
 
+            }
+
+            if (data.Llena == "Todos") {
+                $('input:radio[name=LLena]:nth(0)').trigger("click");
+                //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
+
+            }
+            else if (data.Llena == "Vacios") {
+                //$('input:radio[name=LLena]:nth(0)').trigger("click");
+                $('input:radio[name=LLena]:nth(1)').trigger("click");
+
+            }
         }
-        else if (data.Muestra == "Todos") {
-            //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
-            $('input:radio[name=Muestra]:nth(1)').trigger("click");
-
-        }
-
-        if (data.Llena == "Todos") {
-            $('input:radio[name=LLena]:nth(0)').trigger("click");
-            //$('input:radio[name=LLena]:nth(1)').attr('checked', false);
-
-        }
-        else if (data.Llena == "Vacios") {
-            //$('input:radio[name=LLena]:nth(0)').trigger("click");
-            $('input:radio[name=LLena]:nth(1)').trigger("click");
-
-        }
-
         loadingStop();
     });
 }
 
 function AjaxCargarReporteJuntas() {
+
     var listadoReporte = ArregloListadoReporte();
     var elementoNoEncontrado = false;
 
@@ -419,90 +433,94 @@ function AjaxCargarReporteJuntas() {
     CapturaJuntas[0].Detalles = ListaDetalles;
 
     //se envia solo un objeto de los 4 porque ahora solo se hace una sola peticion y se trae todos los objetos ajax.
+    if (listadoReporte.length > 0) {
+        loadingStart();
+        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(listadoReporte[0]), isReporte: true, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
+            if (Error(data)) {
+                var elementosModificados = "";
+                var elementosNoModificados = "";
+                var ds = $("#grid").data("kendoGrid").dataSource;
+                var lInicialGrid = ds._data.length;
+                var array = JSON.parse(data);
 
-    loadingStart();
-    $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(listadoReporte[0]), isReporte: true, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
-        var elementosModificados = "";
-        var elementosNoModificados = "";
-        var ds = $("#grid").data("kendoGrid").dataSource;
-        var lInicialGrid = ds._data.length;
-        var array = JSON.parse(data);
 
-
-        for (var i = 0; i < array.length; i++) {
-            if (!ExisteJuntaEnSpool(array[i])) {
-                ds.insert(0, array[i]);
-
-                if (array[i].FechaArmado != null) {
-                    array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
-                }
-                elementoNoEncontrado = true;
-
-                if (elementosModificados != "")
-                    elementosModificados += ", " + array[i].Junta;
-                else
-                    elementosModificados = array[i].Junta;
-            }
-            else {
-                for (var j = 0; j < ds._data.length; j++) {
-                    if (array[i].SpoolID == ds._data[j].SpoolID && array[i].JuntaID == ds._data[j].JuntaID && ds._data[j].Accion == 3) {
-
-                        ds._data[j].TallerID = array[i].TallerID;
-                        ds._data[j].Taller = array[i].Taller;
-                        ds._data[j].NumeroUnico1 = array[i].NumeroUnico1;
-                        ds._data[j].NumeroUnico1ID = array[i].NumeroUnico1ID;
-                        ds._data[j].NumeroUnico2 = array[i].NumeroUnico2;
-                        ds._data[j].NumeroUnico2ID = array[i].NumeroUnico2ID;
-                        ds._data[j].Tubero = array[i].Tubero;
-                        ds._data[j].TuberoID = array[i].TuberoID;
-                        ds._data[j].ListaDetalleTrabajoAdicional = array[i].ListaDetalleTrabajoAdicional;
-                        ds._data[j].TemplateMensajeTrabajosAdicionales = array[i].TemplateMensajeTrabajosAdicionales;
-
-                        ds._data[j].Accion = 2;
+                for (var i = 0; i < array.length; i++) {
+                    if (!ExisteJuntaEnSpool(array[i])) {
+                        ds.insert(0, array[i]);
 
                         if (array[i].FechaArmado != null) {
-                            ds._data[j].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
+                            array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
                         }
+                        elementoNoEncontrado = true;
 
                         if (elementosModificados != "")
                             elementosModificados += ", " + array[i].Junta;
                         else
                             elementosModificados = array[i].Junta;
-
-                        var elementgrid = ds._data.splice(j, 1);
-                        ds._data.unshift(elementgrid[0]);
-
-                        elementoNoEncontrado = true;
                     }
-                    else if (array[i].SpoolID == ds._data[j].SpoolID && array[i].JuntaID == ds._data[j].JuntaID) {
-                        //Elementos no agregados
-                        if (elementosNoModificados != "")
-                            elementosNoModificados += ", " + array[i].Junta;
-                        else
-                            elementosNoModificados = array[i].Junta;
+                    else {
+                        for (var j = 0; j < ds._data.length; j++) {
+                            if (array[i].SpoolID == ds._data[j].SpoolID && array[i].JuntaID == ds._data[j].JuntaID && ds._data[j].Accion == 3) {
+
+                                ds._data[j].TallerID = array[i].TallerID;
+                                ds._data[j].Taller = array[i].Taller;
+                                ds._data[j].NumeroUnico1 = array[i].NumeroUnico1;
+                                ds._data[j].NumeroUnico1ID = array[i].NumeroUnico1ID;
+                                ds._data[j].NumeroUnico2 = array[i].NumeroUnico2;
+                                ds._data[j].NumeroUnico2ID = array[i].NumeroUnico2ID;
+                                ds._data[j].Tubero = array[i].Tubero;
+                                ds._data[j].TuberoID = array[i].TuberoID;
+                                ds._data[j].ListaDetalleTrabajoAdicional = array[i].ListaDetalleTrabajoAdicional;
+                                ds._data[j].TemplateMensajeTrabajosAdicionales = array[i].TemplateMensajeTrabajosAdicionales;
+
+                                ds._data[j].Accion = 2;
+
+                                if (array[i].FechaArmado != null) {
+                                    ds._data[j].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
+                                }
+
+                                if (elementosModificados != "")
+                                    elementosModificados += ", " + array[i].Junta;
+                                else
+                                    elementosModificados = array[i].Junta;
+
+                                var elementgrid = ds._data.splice(j, 1);
+                                ds._data.unshift(elementgrid[0]);
+
+                                elementoNoEncontrado = true;
+                            }
+                            else if (array[i].SpoolID == ds._data[j].SpoolID && array[i].JuntaID == ds._data[j].JuntaID) {
+                                //Elementos no agregados
+                                if (elementosNoModificados != "")
+                                    elementosNoModificados += ", " + array[i].Junta;
+                                else
+                                    elementosNoModificados = array[i].Junta;
+                            }
+                        }
                     }
                 }
+                $("#grid").data("kendoGrid").dataSource.sync();
+
+                loadingStop();
+                $("#InputID").data("kendoComboBox").value("");
+
+
+                if (elementosModificados != "") {
+                    displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                       elementosModificados + _dictionary.CapturaArmadoMsgNuevoEnReporte[$("#language").data("kendoDropDownList").value()], '0');
+                }
+                if (elementosNoModificados != "") {
+                    displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                        elementosNoModificados + _dictionary.CapturaArmadoMsgExisteReporte[$("#language").data("kendoDropDownList").value()], '2');
+                }
+
             }
-        }
-        $("#grid").data("kendoGrid").dataSource.sync();
+            loadingStop();
+        });
 
-        loadingStop();
-        $("#InputID").data("kendoComboBox").value("");
-
-
-        if (elementosModificados != "") {
-            displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
-               elementosModificados + _dictionary.CapturaArmadoMsgNuevoEnReporte[$("#language").data("kendoDropDownList").value()], '0');
-        }
-        if (elementosNoModificados != "") {
-            displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
-                elementosNoModificados + _dictionary.CapturaArmadoMsgExisteReporte[$("#language").data("kendoDropDownList").value()], '2');
-        }
-
-
-    });
-
-
+    } else {
+        displayNotify("", "El spool no tiene juntas", "2")
+    }
 
     $('#ButtonAgregar').prop("disabled", false);
 
@@ -520,15 +538,15 @@ function AjaxCambiarAccionAModificacion() {
     $("#grid").data("kendoGrid").dataSource.data([]);
 
     var differentsJoits = [];
-    
-        for (var y = 0; y < listado.length; y++) {
-            if (differentsJoits.length == 0) {
-                differentsJoits.push(listado[y]);
-            }
-            else if (differentsJoits[differentsJoits.length - 1].SpoolID != listado[y].SpoolID) {
-                differentsJoits.push(listado[y]);
-            }
+
+    for (var y = 0; y < listado.length; y++) {
+        if (differentsJoits.length == 0) {
+            differentsJoits.push(listado[y]);
         }
+        else if (differentsJoits[differentsJoits.length - 1].SpoolID != listado[y].SpoolID) {
+            differentsJoits.push(listado[y]);
+        }
+    }
 
     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
         isReporte = false;
@@ -539,15 +557,17 @@ function AjaxCambiarAccionAModificacion() {
 
         loadingStart();
         $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(differentsJoits[x]), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
-            var ds = $("#grid").data("kendoGrid").dataSource;
-            var array = JSON.parse(data);
+            if (Error(data)) {
+                var ds = $("#grid").data("kendoGrid").dataSource;
+                var array = JSON.parse(data);
 
-            for (var i = 0; i < array.length; i++) {
-                if (array[i].FechaArmado != null) {
-                    array[i].FechaArmado = kendo.toString(array[i].FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
-                    array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i].FechaArmado != null) {
+                        array[i].FechaArmado = kendo.toString(array[i].FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
+                        array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
+                    }
+                    ds.add(array[i]);
                 }
-                ds.add(array[i]);
             }
             loadingStop();
         });
