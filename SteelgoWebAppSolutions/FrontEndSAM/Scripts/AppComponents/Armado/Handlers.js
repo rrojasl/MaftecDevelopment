@@ -170,18 +170,17 @@ function suscribirEventoGuardar() {
 
     });
 
-    $('#GuardarPie').click(function (e) {
+    $("#GuardarPie").click(function (e) {
+        EventoGuardar();
+    });      
 
+    $('#btnGuardarPie').click(function (e) {
         EventoGuardar();
     });
-    $('#btnGuardar').click(function (e) {
 
-        EventoGuardar();
-    });
-    $('#DetalleAvisoLlegada0062').click(function (e) {
+    $('#btnGuardarYNuevoPie').click(function (e) {      
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardarCaptura(ds._data, 1)
-        //Limpiar();
     });
 }
 
