@@ -125,7 +125,7 @@ namespace BackEndSAM.Controllers
                 return result;
             }
         }
-        public object Get(string JsonCaptura, string token, string lenguaje)
+        public object Get(string JsonCaptura, bool isReporte, string token, string lenguaje)
         {
             string payload = "";
             string newToken = "";
@@ -138,13 +138,22 @@ namespace BackEndSAM.Controllers
                 DetalleDatosJson capturaDatosJson = serializer.Deserialize<DetalleDatosJson>(JsonCaptura);
                 capturaDatosJson.SinCaptura = capturaDatosJson.SinCaptura == "Todos" ? "1" : "0";
                 List<DetalleDatosJson> listaDetalleDatos = new List<DetalleDatosJson>();
-
-                List<Sam3_Steelgo_Get_JuntaSpool_Result> listaJuntasXSpool =(List<Sam3_Steelgo_Get_JuntaSpool_Result>) CapturaArmadoBD.Instance.ObtenerJuntasXSpoolID(usuario, capturaDatosJson.OrdenTrabajo, capturaDatosJson.IdVal,int.Parse( capturaDatosJson.SinCaptura));
+                List<Sam3_Steelgo_Get_JuntaSpool_Result> listaJuntasXSpool = null;
+                if (isReporte)
+                    listaJuntasXSpool = (List<Sam3_Steelgo_Get_JuntaSpool_Result>) CapturaArmadoBD.Instance.ObtenerJuntasXSpoolID(usuario, capturaDatosJson.OrdenTrabajo, capturaDatosJson.IdVal,int.Parse( capturaDatosJson.SinCaptura));
+                else
+                {
+                    listaJuntasXSpool = new List<Sam3_Steelgo_Get_JuntaSpool_Result>();
+                    listaJuntasXSpool.Add(new Sam3_Steelgo_Get_JuntaSpool_Result());
+                }
+                
                 for (int i = 0; i < listaJuntasXSpool.Count; i++)
                 {
-                    capturaDatosJson.JuntaID = listaJuntasXSpool[i].JuntaSpoolID.ToString();
-                    capturaDatosJson.Junta = listaJuntasXSpool[i].Etiqueta.ToString();
-
+                    if (isReporte)
+                    {
+                        capturaDatosJson.JuntaID = listaJuntasXSpool[i].JuntaSpoolID.ToString();
+                        capturaDatosJson.Junta = listaJuntasXSpool[i].Etiqueta.ToString();
+                    }
                     List<Sam3_Armado_Get_DetalleJunta_Result> detalle = (List<Sam3_Armado_Get_DetalleJunta_Result>)CapturaArmadoBD.Instance.ObtenerDetalleArmado(capturaDatosJson, usuario, lenguaje);
 
                     List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result> detallaArmadoAdicional = (List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result>)CapturaArmadoBD.Instance.DetallaArmadoAdicional(capturaDatosJson, usuario);

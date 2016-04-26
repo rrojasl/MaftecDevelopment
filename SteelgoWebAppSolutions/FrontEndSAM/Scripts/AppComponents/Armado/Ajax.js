@@ -68,10 +68,16 @@ function AjaxObtenerListaTaller() {
 function ObtenerJSonGridArmado() {
     try {
         loadingStart();
-        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), isReporte: true, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
             var ds = $("#grid").data("kendoGrid").dataSource;
             var array = JSON.parse(data);
             var elementoNoEncontrado = false;
+
+            for (var x = array.length - 1; x >= 0; x--) {
+                if (array[x].JuntaID != $("#Junta").data("kendoComboBox").value()) {
+                    array.splice(x, 1);
+                }
+            }
 
             if (ExisteJunta(array[0])) {
                 // Proceso validar accion
@@ -124,6 +130,8 @@ function ObtenerJSonGridArmado() {
                     $("#Junta").val("");
                 }
 
+                $("#Junta").data("kendoComboBox").value("");
+
                 displayNotify("",
                         _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         array[0].Junta +
@@ -173,9 +181,6 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         Captura = [];
         Captura[0] = { Detalles: "" };
         ListaDetalles = [];
-
-
-
 
         for (index = 0; index < arregloCaptura.length; index++) {
             try {
@@ -292,7 +297,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 }
                 else {
                     loadingStop();
-                    displayNotify("AlertaAdvertencia", "AdverteciaExcepcionGuardado", "", '1');
+                    displayNotify("AdverteciaExcepcionGuardado", "", '1');
                 }
 
                 ventanaConfirm.close();
@@ -408,7 +413,7 @@ function AjaxCargarReporteJuntas() {
     //se envia solo un objeto de los 4 porque ahora solo se hace una sola peticion y se trae todos los objetos ajax.
 
     loadingStart();
-    $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(listadoReporte[0]), lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
+    $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(listadoReporte[0]), isReporte: true, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
         var elementosModificados = "";
         var elementosNoModificados = "";
         var ds = $("#grid").data("kendoGrid").dataSource;
@@ -474,39 +479,61 @@ function AjaxCargarReporteJuntas() {
         $("#grid").data("kendoGrid").dataSource.sync();
 
         loadingStop();
+        $("#InputID").data("kendoComboBox").value("");
 
 
-        if(elementosModificados!=""){
-             displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
-                elementosModificados +_dictionary.CapturaArmadoMsgNuevoEnReporte[$("#language").data("kendoDropDownList").value()], '0');
+        if (elementosModificados != "") {
+            displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+               elementosModificados + _dictionary.CapturaArmadoMsgNuevoEnReporte[$("#language").data("kendoDropDownList").value()], '0');
         }
-        if(elementosNoModificados!="") {
-                displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
-                    elementosNoModificados + _dictionary.CapturaArmadoMsgExisteReporte[$("#language").data("kendoDropDownList").value()], '2');
+        if (elementosNoModificados != "") {
+            displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                elementosNoModificados + _dictionary.CapturaArmadoMsgExisteReporte[$("#language").data("kendoDropDownList").value()], '2');
         }
-       
-
-});
 
 
+    });
 
-$('#ButtonAgregar').prop("disabled", false);
+
+
+    $('#ButtonAgregar').prop("disabled", false);
 
 }
 
 function AjaxCambiarAccionAModificacion() {
+    var capturaListado = [];
+    capturaListado[0] = { Detalles: "" };
     var listado = ArregloListadoJuntasCapturadas();
+    capturaListado[0].Detalles = listado;
+    var isReporte = true;
+
+    var listadogrid = $("#grid").data("kendoGrid").dataSource._data;
 
     $("#grid").data("kendoGrid").dataSource.data([]);
 
-    for (var i = 0; i < listado.length; i++) {
+    var differentsJoits = [];
+    for (var y = 0; y < listado.length; y++) {
+        if (differentsJoits.length == 0) {
+            differentsJoits.push(listado[y]);
+        }
+        else if (differentsJoits[differentsJoits.length - 1].SpoolID != listado[y].SpoolID) {
+            differentsJoits.push(listado[y]);
+        }
+    }
+    
+    if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
+        isReporte = false;
+    }
 
+    for (var x = 0; x < differentsJoits.length; x++) {
         loadingStart();
-        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(listado[i]), lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
+        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(differentsJoits[x]), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
             var ds = $("#grid").data("kendoGrid").dataSource;
             var array = JSON.parse(data);
+                
             for (var i = 0; i < array.length; i++) {
                 if (array[i].FechaArmado != null) {
+                    array[i].FechaArmado = kendo.toString(array[i].FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
                     array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
                 }
                 ds.add(array[i]);
@@ -514,4 +541,6 @@ function AjaxCambiarAccionAModificacion() {
             loadingStop();
         });
     }
+
+
 }

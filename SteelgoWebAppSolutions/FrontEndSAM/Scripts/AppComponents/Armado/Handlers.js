@@ -331,7 +331,6 @@ function SuscribirEventosJunta() {
                                 button.removeAttr('disabled');
                             }, 500);
                             ObtenerJSonGridArmado();
-                            $("#Junta").data("kendoComboBox").text("");
                         }
                     }
                     else

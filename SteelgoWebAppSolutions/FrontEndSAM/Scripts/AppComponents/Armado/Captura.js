@@ -658,7 +658,7 @@ function ArregloListadoReporte() {
         JsonCaptura[i].SpoolID = $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val();
         JsonCaptura[i].JuntaID = lista[i].JuntaSpoolID;
         JsonCaptura[i].Junta = lista[i].Etiqueta;
-        JsonCaptura[i].FechaArmado = $("#FechaArmado").val();
+        JsonCaptura[i].FechaArmado = kendo.toString($("#FechaArmado").val(), _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
         JsonCaptura[i].TuberoID = $("#inputTubero").val();
         JsonCaptura[i].Tubero = $("#inputTubero").data("kendoComboBox").text();
         JsonCaptura[i].TallerID = $("#inputTaller").val();
@@ -688,12 +688,12 @@ function ArregloListadoJuntasCapturadas() {
         JsonCaptura[i].SpoolID = data[i].SpoolID;
         JsonCaptura[i].JuntaID = data[i].JuntaID;
         JsonCaptura[i].Junta = data[i].Junta;
-        JsonCaptura[i].FechaArmado = data[i].FechaArmado;
+        JsonCaptura[i].FechaArmado = kendo.toString(data[i].FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);;
         JsonCaptura[i].TuberoID = data[i].TuberoID;
         JsonCaptura[i].Tubero = data[i].Tubero;
         JsonCaptura[i].TallerID = data[i].TallerID;
         JsonCaptura[i].Taller = data[i].Taller;
-        JsonCaptura[i].sinCaptura = data[i].SinCaptura;
+        JsonCaptura[i].sinCaptura = "Todos";
     }
     return JsonCaptura;
 }
