@@ -62,8 +62,7 @@ function RenderComboBoxTubero(container, options) {
             filter: "contains",
             autoBind: false,
             dataSource: options.model.ListaTubero,
-            template: "<i class=\"fa fa-#=data.Codigo.toLowerCase()#\"></i> #=data.Codigo#",
-            
+            template: "<i class=\"fa fa-#=data.Codigo.toLowerCase()#\"></i> #=data.Codigo#",            
             select: function (e) {
                 dataItem = this.dataItem(e.item.index());
                 if (dataItem != undefined) {
@@ -71,8 +70,7 @@ function RenderComboBoxTubero(container, options) {
                     options.model.TuberoID = dataItem.ObreroID;
                 }
             },
-            change: function (e) {
-                
+            change: function (e) {                
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.Tubero = dataItem.Codigo;
@@ -85,7 +83,7 @@ function RenderComboBoxTubero(container, options) {
                 }
                 //    this.data('kendoComboBox').select(options.model.TuberoID)
                 //$("#MyComboBox").data("kendoComboBox").value(id);
-                $("#grid").data("kendoGrid").dataSource.sync();
+               // $("#grid").data("kendoGrid").dataSource.sync();
             }
         }
         );
