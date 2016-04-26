@@ -221,6 +221,7 @@ function suscribirEventoAgregar() {
                 $('#ButtonAgregar').prop("disabled", true);
                 AjaxCargarReporteJuntas();
             }
+
         }
         else {
             if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "") {
@@ -228,6 +229,10 @@ function suscribirEventoAgregar() {
                     $('#ButtonAgregar').prop("disabled", true);
                     ObtenerJSonGridArmado();
                     
+                }
+                else {
+
+                    displayNotify("NoExisteJunta", '', '2');
                 }
             }
             else

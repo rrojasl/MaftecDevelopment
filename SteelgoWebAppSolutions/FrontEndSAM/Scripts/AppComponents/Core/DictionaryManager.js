@@ -7656,6 +7656,12 @@ _dictionary = {
         "es-MX": "La junta ",
         "en-US": "The joint "
     },
+
+    "CapturaArmadoJuntaCapturada": {
+        "es-MX": "La junta ya fue capturada",
+        "en-US": "The joint is captured"
+    },
+
     "CapturaArmadoMsgExisteListado": {
         "es-MX": " ya existe en el listado",
         "en-US": " already exist in the list"

@@ -131,11 +131,17 @@ function ObtenerJSonGridArmado() {
                 }
 
                 $("#Junta").data("kendoComboBox").value("");
-
-                displayNotify("",
+                if (array.length == 0) {
+                    displayNotify("",
+                        _dictionary.CapturaArmadoJuntaCapturada[$("#language").data("kendoDropDownList").value()], '1');
+                }
+                else {
+                    displayNotify("",
                         _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         array[0].Junta +
                         _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
+                }
+                
 
                 //displayNotify("", 'La junta ' + $('#Junta').data("kendoComboBox").value() + ' ya existe en el listado', '2');
                 $('#ButtonAgregar').prop("disabled", false);
