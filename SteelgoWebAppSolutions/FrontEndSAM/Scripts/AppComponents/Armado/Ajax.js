@@ -141,7 +141,7 @@ function ObtenerJSonGridArmado() {
                         array[0].Junta +
                         _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
                 }
-                
+
 
                 //displayNotify("", 'La junta ' + $('#Junta').data("kendoComboBox").value() + ' ya existe en el listado', '2');
                 $('#ButtonAgregar').prop("disabled", false);
@@ -234,7 +234,9 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                ListaDetalles[index].NumeroUnico1ID == "" ||
                ListaDetalles[index].NumeroUnico2ID == "" ||
                ListaDetalles[index].TallerID == "" ||
+               ListaDetalles[index].TallerID == "0" ||
                ListaDetalles[index].TuberoID == "" ||
+               ListaDetalles[index].TuberoID == "0" ||
                ListaDetalles[index].FechaArmado == ""
 
                    ) {
@@ -518,25 +520,28 @@ function AjaxCambiarAccionAModificacion() {
     $("#grid").data("kendoGrid").dataSource.data([]);
 
     var differentsJoits = [];
-    for (var y = 0; y < listado.length; y++) {
-        if (differentsJoits.length == 0) {
-            differentsJoits.push(listado[y]);
-        }
-        else if (differentsJoits[differentsJoits.length - 1].SpoolID != listado[y].SpoolID) {
-            differentsJoits.push(listado[y]);
-        }
-    }
     
+        for (var y = 0; y < listado.length; y++) {
+            if (differentsJoits.length == 0) {
+                differentsJoits.push(listado[y]);
+            }
+            else if (differentsJoits[differentsJoits.length - 1].SpoolID != listado[y].SpoolID) {
+                differentsJoits.push(listado[y]);
+            }
+        }
+
     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
         isReporte = false;
+        differentsJoits = listado;
     }
 
     for (var x = 0; x < differentsJoits.length; x++) {
+
         loadingStart();
         $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(differentsJoits[x]), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
             var ds = $("#grid").data("kendoGrid").dataSource;
             var array = JSON.parse(data);
-                
+
             for (var i = 0; i < array.length; i++) {
                 if (array[i].FechaArmado != null) {
                     array[i].FechaArmado = kendo.toString(array[i].FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
