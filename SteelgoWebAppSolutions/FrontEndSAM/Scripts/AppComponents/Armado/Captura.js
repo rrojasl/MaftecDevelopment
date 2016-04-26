@@ -32,11 +32,11 @@ function AltaFecha() {
 function ExisteJunta(Row) {
     var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
-        for (var i = 0; i < jsonGridArmado.length; i++){
+        for (var i = 0; i < jsonGridArmado.length; i++) {
             if (Row.IdOrdenTrabajo + '-' + Row.IdVal == jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal && Row.JuntaID === jsonGridArmado[i].JuntaID) {
                 return true;
             }
-        }   
+        }
     }
     return false;
 }
@@ -88,7 +88,7 @@ function FiltroMostrar(mostrar) {
         ds.sync();
     }
     else {
-        
+
         var curr_filters = ds.filter().filters;
         ds.filter(curr_filters[0])
         ds.sync();
@@ -261,6 +261,7 @@ function CargarGridPopUp() {
         dataBinding: function (e) {
             console.log("dataBinding");
         },
+        filterable: getGridFilterableMaftec(),
         edit: function (e) {
 
         },
@@ -280,8 +281,8 @@ function CargarGridPopUp() {
 
         },
         columns: [
-          { field: "TrabajoAdicional", title: 'Trabajo', editor: RenderComboBoxTrabajoAdicional, filterable: true, width: "100px" },
-          { field: "Observacion", title: 'Observacion', filterable: true, width: "100px" },
+          { field: "TrabajoAdicional", title: 'Trabajo', editor: RenderComboBoxTrabajoAdicional, filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
+          { field: "Observacion", title: 'Observacion', filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
           {
               command: {
                   name: "",
@@ -340,7 +341,23 @@ function CargarGridPopUp() {
 
 
                   }
-              }, width: "99px"
+              }, width: "50px"
+          },
+          {
+              command: {
+                  name: "",
+                  title: "",
+                  text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()],
+                  click: function (e) {
+                      var itemToClean = $("#gridPopUp").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+                      itemToClean.TrabajoAdicional = "";
+                      itemToClean.TrabajoAdicionalID = 0;
+                      itemToClean.Observacion = "";
+                      var dataSource = $("#gridPopUp").data("kendoGrid").dataSource;
+                      dataSource.sync();
+
+                  }
+              }, width: "50px"
           }
         ], saveChanges: function (e) {
             if (!confirm("Are you sure you want to save all changes?")) {
@@ -630,9 +647,9 @@ function ObtenerDato(fecha, tipoDatoObtener) {
             break;
         case 2://mes
             if (cultura = 'es-MX')
-                return fecha.split('/')[1]-1
+                return fecha.split('/')[1] - 1
             else
-                return fecha.split('/')[0]-1
+                return fecha.split('/')[0] - 1
             break;
         case 3://dia
             if (cultura = 'es-MX')

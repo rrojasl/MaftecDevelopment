@@ -167,6 +167,23 @@ function getGridFilterableCellMaftec() {
     }
 }
 
+function getGridFilterableCellMaftecpopUp() {
+    return {
+        cell: {
+            operator: "contains",
+            template: function (args) {
+                args.css("width", "90%").addClass("k-input").keydown(function (e) {
+                    setTimeout(function () {
+                        $(e.target).trigger("change");
+                    });
+                });
+            },
+            showOperators: false
+        }
+    }
+}
+
+
 
 //function getKendoGridFilterable(val) {
 //    return {

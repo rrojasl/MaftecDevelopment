@@ -94,10 +94,22 @@ function plancharTodo() {
 
 function GuardarDetalleAdicional() {
     $('#GuardarTrabajosAdicionales').click(function () {
+        var trabajosCorrectos = true;
         var ds = $("#gridPopUp").data("kendoGrid").dataSource;
-        modeloRenglon.ListaDetalleTrabajoAdicional = ds._data;
-        $("#windowGrid").data("kendoWindow").close();
-        $("#grid").data("kendoGrid").dataSource.sync();
+
+        for (var i = 0; i < ds._data.length; i++) {
+            if (ds._data[i].TrabajoAdicional == "")
+                trabajosCorrectos = false;
+        }
+        if (trabajosCorrectos) {
+            modeloRenglon.ListaDetalleTrabajoAdicional = ds._data;
+            $("#windowGrid").data("kendoWindow").close();
+            $("#grid").data("kendoGrid").dataSource.sync();
+        }
+        else {
+            displayNotify('', 'El campo de trabajo, es mandatorio', '2');
+        }
+        
     });
 }
 
@@ -526,7 +538,7 @@ function opcionHabilitarView(valor, name) {
         $("#FechaArmado").data("kendoDatePicker").enable(false);
         $('#botonGuardar').text("Editar");
         $("#DetalleAvisoLlegada0017").text("Editar");
-
+        $('#ButtonPlanchar').attr('disabled', true);
         $("#GuardarPie").text("Editar");
         $('#btnGuardarPiePagina').text("Editar");
 
@@ -540,7 +552,7 @@ function opcionHabilitarView(valor, name) {
         $("#FechaArmado").data("kendoDatePicker").enable(true);
         $('#botonGuardar').text("Guardar");
         $("#DetalleAvisoLlegada0017").text("Guardar");
-
+        $('#ButtonPlanchar').attr('disabled', false);
         $("#GuardarPie").text("Guardar");
         $('#btnGuardarPiePagina').text("Guardar");
 
