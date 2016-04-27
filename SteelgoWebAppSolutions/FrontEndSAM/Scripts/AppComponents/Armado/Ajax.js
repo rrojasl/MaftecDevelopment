@@ -159,9 +159,10 @@ function ObtenerJSonGridArmado() {
                     $('#ButtonAgregar').prop("disabled", false);
                 }
             }
+            loadingStop();
         });
         $('#ButtonAgregar').prop("disabled", false);
-        loadingStop();
+      
     } catch (e) {
         displayNotify("Mensajes_error", e.message, '1');
         $('#ButtonAgregar').prop("disabled", false);
