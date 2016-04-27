@@ -130,16 +130,16 @@ function SuscribeEventosTipoCaptura() {
 
 function suscribirEventoChangeRadio() {
     $('input:radio[name=Muestra]:nth(0)').change(function () {
-        //if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
-        //    AjaxJunta($("#InputID").val());
-            FiltroMostrar(0);
-        //}
+        if ($("#InputID").val() != "" && $("#inputordentrabajo").val()!="") {
+            AjaxJunta($("#InputID").val());
+        }
+        FiltroMostrar(0);
     });
     $('input:radio[name=Muestra]:nth(1)').change(function () {
-        //if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
-        //    AjaxJunta($("#InputID").val());
-            FiltroMostrar(1);
-        //}
+        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()!="") {
+            AjaxJunta($("#InputID").val());
+        }
+        FiltroMostrar(1);
     });
 
 }
@@ -242,8 +242,11 @@ function suscribirEventoAgregar() {
                     
                 }
                 else {
-
-                    displayNotify("NoExisteJunta", '', '2');
+                    if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
+                        displayNotify("", "La junta no existe en el spool", '2');
+                    }
+                    else
+                        displayNotify("", "La junta no existe en el listado de sin captura, revisar opción Todos", '1');
                 }
             }
             else
@@ -356,8 +359,13 @@ function SuscribirEventosJunta() {
                     displayNotify("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
                 }
             }
-            else
-                displayNotify("NoExisteJunta", '', '2');
+            else {
+                if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
+                    displayNotify("", "La junta no existe en el spool", '2');
+                }
+                else
+                    displayNotify("", "La junta no existe en el listado de sin captura, revisar opción Todos", '1');
+            }   
         }
     });
 }

@@ -89,7 +89,7 @@ function ObtenerJSonGridArmado() {
                         array.splice(x, 1);
                     }
                 }
-
+            
                 if (ExisteJunta(array[0])) {
                     // Proceso validar accion
                     for (var i = 0; i < ds._data.length; i++) {
