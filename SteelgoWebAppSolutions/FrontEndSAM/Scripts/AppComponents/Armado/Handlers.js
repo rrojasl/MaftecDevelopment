@@ -260,6 +260,7 @@ function SuscribirEventoTubero() {
         dataTextField: "Codigo",
         dataValueField: "ObreroID",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3,
         change: function (e) {
@@ -287,6 +288,7 @@ function SuscribirEventoTaller() {
         dataTextField: "Nombre",
         dataValueField: "TallerID",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3
     });
@@ -308,6 +310,7 @@ function SuscribirEventosJunta() {
         dataTextField: "Etiqueta",
         dataValueField: "JuntaSpoolID",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3
     });
@@ -378,6 +381,7 @@ function SuscribirEventoSpoolID() {
         dataTextField: "IDValido",
         dataValueField: "Valor",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3,
         delay: 10,

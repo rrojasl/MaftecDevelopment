@@ -4,6 +4,7 @@
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: options.model.ListaTaller,
@@ -59,6 +60,7 @@ function RenderComboBoxTubero(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: options.model.ListaTubero,
@@ -113,6 +115,7 @@ function RenderComboBoxNumeroUnico1(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: options.model.ListaNumerosUnicos1,
@@ -152,6 +155,7 @@ function RenderComboBoxNumeroUnico2(container, options) {
          .appendTo(container)
          .kendoComboBox({
              suggest: true,
+             delay: 10,
              filter: "contains",
              autoBind: false,
              dataSource: options.model.ListaNumerosUnicos2,
@@ -349,6 +353,7 @@ function RenderComboBoxTrabajoAdicional(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: true,
             dataSource: ItemSeleccionado.listadoTrabajosAdicionalesXJunta,
