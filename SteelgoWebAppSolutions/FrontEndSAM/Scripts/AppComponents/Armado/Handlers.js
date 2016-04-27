@@ -380,6 +380,7 @@ function SuscribirEventoSpoolID() {
         suggest: true,
         filter: "contains",
         index: 3,
+        delay: 10,
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
