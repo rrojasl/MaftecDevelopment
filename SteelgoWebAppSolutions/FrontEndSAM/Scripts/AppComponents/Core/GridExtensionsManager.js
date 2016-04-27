@@ -30,7 +30,7 @@ function gridExtensionsToBeExecutedOnDocumentReady() {
 
 function CustomisaGrid(elemento) {
     $(".k-grid-header-wrap  ", elemento).after("<div class='ScrollUp'><div class='DivScrollSup'>&nbsp;</div></div>");
-    $(".DivScrollSup", elemento).css("width", $('table[role="grid"]').width() - 17)
+    $(".DivScrollSup", elemento).css("width", $('table[role="grid"]').width())
     $(".k-grid-content", elemento).css("overflow", "hidden");
 
     $(".k-grid-header", elemento).before("<div id='sticky-anchor' class='Css_sticky-anchor'></div>");
@@ -110,9 +110,9 @@ function sticky_relocate(elemento) {
     var offset = $('#sticky-anchor', elemento).offset().top;
     if (window_top > offset) {
         $('.k-grid-header', elemento).addClass('stick');
-        $(".k-grid-header", elemento).css("width", $('.k-grid-content', elemento).width() - 17)
+        $(".k-grid-header", elemento).css("width", $('.k-grid-content', elemento).width())
         $(window).resize(function () {
-            $(".k-grid-header", elemento).css("width", $('.k-grid-content', elemento).width() - 17)
+            $(".k-grid-header", elemento).css("width", $('.k-grid-content', elemento).width())
         });
     } else {
         $('.k-grid-header', elemento).removeClass('stick');
