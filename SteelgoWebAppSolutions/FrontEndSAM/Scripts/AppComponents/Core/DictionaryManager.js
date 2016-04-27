@@ -7678,6 +7678,22 @@ _dictionary = {
         "es-MX": " se agregó en el spool",
         "en-US": " already add in the spool"
     },
+    "CapturaArmadoTrabajoMandatorio": {
+        "es-MX": "El campo de trabajo, es mandatorio",
+        "en-US": "The work field is mandatory"
+    },
+    "CapturaArmadoNoExisteSpool": {
+        "es-MX": "La junta no existe en el spool",
+        "en-US": "The joint not exist in the spool"
+    },
+    "CapturaArmadoNoExisteLista": {
+        "es-MX": "La junta no existe en el listado de sin captura, revisar opción Todos",
+        "en-US": "The joint not exist in the list without capture, check option All"
+    },
+    "CapturaArmadoNoTieneJuntas": {
+        "es-MX": "El spool no tiene juntas",
+        "en-US": "The spool don't have joints"
+    },
 
 
     //#endregion

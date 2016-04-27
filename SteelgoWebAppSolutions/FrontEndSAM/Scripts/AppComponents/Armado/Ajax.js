@@ -519,7 +519,7 @@ function AjaxCargarReporteJuntas() {
         });
 
     } else {
-        displayNotify("", "El spool no tiene juntas", "2")
+        displayNotify("CapturaArmadoNoTieneJuntas", "", "2")
     }
 
     $('#ButtonAgregar').prop("disabled", false);

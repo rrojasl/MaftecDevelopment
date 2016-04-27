@@ -107,7 +107,7 @@ function GuardarDetalleAdicional() {
             $("#grid").data("kendoGrid").dataSource.sync();
         }
         else {
-            displayNotify('', 'El campo de trabajo, es mandatorio', '2');
+            displayNotify('CapturaArmadoTrabajoMandatorio', '', '2');
         }
         
     });
@@ -243,10 +243,10 @@ function suscribirEventoAgregar() {
                 }
                 else {
                     if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
-                        displayNotify("", "La junta no existe en el spool", '2');
+                        displayNotify("CapturaArmadoNoExisteSpool", "", '2');
                     }
                     else
-                        displayNotify("", "La junta no existe en el listado de sin captura, revisar opción Todos", '1');
+                        displayNotify("CapturaArmadoNoExisteLista", "", '1');
                 }
             }
             else
@@ -361,10 +361,10 @@ function SuscribirEventosJunta() {
             }
             else {
                 if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
-                    displayNotify("", "La junta no existe en el spool", '2');
+                    displayNotify("CapturaArmadoNoExisteSpool", "", '2');
                 }
                 else
-                    displayNotify("", "La junta no existe en el listado de sin captura, revisar opción Todos", '1');
+                    displayNotify("CapturaArmadoNoExisteLista", "", '1');
             }   
         }
     });
