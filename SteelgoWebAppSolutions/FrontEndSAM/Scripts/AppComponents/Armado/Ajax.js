@@ -17,8 +17,9 @@ function AjaxJuntaModoSpool(spoolID) {
         if (Error(data)) {
             $("#Junta").data("kendoComboBox").value("");
             $("#Junta").data("kendoComboBox").dataSource.data(data);
-            AjaxCargarReporteJuntas();
+            
             loadingStop();
+            AjaxCargarReporteJuntas();
         }
     });
 }
@@ -501,7 +502,7 @@ function AjaxCargarReporteJuntas() {
                 }
                 $("#grid").data("kendoGrid").dataSource.sync();
 
-                loadingStop();
+              
                 $("#InputID").data("kendoComboBox").value("");
 
 
@@ -513,9 +514,10 @@ function AjaxCargarReporteJuntas() {
                     displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         elementosNoModificados + _dictionary.CapturaArmadoMsgExisteReporte[$("#language").data("kendoDropDownList").value()], '2');
                 }
+                loadingStop();
 
             }
-            loadingStop();
+           
         });
 
     } else {
