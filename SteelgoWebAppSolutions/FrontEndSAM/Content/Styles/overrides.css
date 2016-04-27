@@ -1187,3 +1187,8 @@ h6 {
     padding: 5px;
     cursor: pointer;
 }
+
+
+button[data-bind="visible:operatorVisible"] {
+    display:none;
+}
