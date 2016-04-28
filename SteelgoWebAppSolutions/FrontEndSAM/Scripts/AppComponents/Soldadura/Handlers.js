@@ -4,6 +4,7 @@
     suscribirEventoAplicar();
     suscribirEventoCancelar();
     SuscribirEventoTaller();
+    SuscribirEventoColada();
     SuscribirEventosJunta();
     SuscribirEventoSpoolID();
     suscribirEventoChangeRadio();
@@ -246,6 +247,27 @@ function SuscribirEventoTaller() {
     $('#inputTaller').closest('.k-widget').keydown(function (e) {
         if (e.keyCode == 13) {
             if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined) {
+                //PlanchaTaller();
+            }
+            else {
+                $("#inputTaller").data("kendoComboBox").value("");
+            }
+
+        }
+    });
+}
+
+function SuscribirEventoColada() {
+    $('#inputColada').kendoComboBox({
+        dataTextField: "NumeroColada",
+        dataValueField: "ColadaID",
+        suggest: true,
+        filter: "contains",
+        index: 3
+    });
+    $('#inputColada').closest('.k-widget').keydown(function (e) {
+        if (e.keyCode == 13) {
+            if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined) {
                 //PlanchaTaller();
             }
             else {

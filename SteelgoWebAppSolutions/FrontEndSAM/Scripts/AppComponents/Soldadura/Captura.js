@@ -100,7 +100,7 @@ function asignarProyecto() {
 
 function ArregloListadoCaptura() {
     JsonCaptura = [];
-    JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaSoldadura: "", tallerID: "", Taller: "", sinCaptura: "", IDProyecto: "" };
+    JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaSoldadura: "", tallerID: "", Taller: "", NumeroColada:"", ColadaID:"", sinCaptura: "", IDProyecto: "" };
     JsonCaptura[0].IDProyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).ProyectoID;
     JsonCaptura[0].Proyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Proyecto;
     JsonCaptura[0].IdOrdenTrabajo = $("#InputOrdenTrabajo").val();
@@ -113,6 +113,8 @@ function ArregloListadoCaptura() {
     JsonCaptura[0].FechaSoldadura = $("#FechaSoldadura").val();
     JsonCaptura[0].tallerID = $("#inputTaller").val();
     JsonCaptura[0].Taller = $("#inputTaller").data("kendoComboBox").text();
+    JsonCaptura[0].ColadaID = $("#inputColada").val();
+    JsonCaptura[0].NumeroColada = $("#inputColada").data("kendoComboBox").text();
     JsonCaptura[0].sinCaptura = $('input:radio[name=Muestra]:checked').val();
 
     return JsonCaptura[0];
@@ -142,12 +144,12 @@ function ArregloListadoReporte() {
 };
 
 function ArregloListadoSpoolID() {
-    JsonCaptura = [];
+    
     var dataSource = $("#grid").data("kendoGrid").dataSource;
-    var filters = dataSource.filter();
-    var allData = dataSource.data();
-    var query = new kendo.data.Query(allData);
     var data = query.filter(filters).data;
+
+    JsonCaptura = [];
+
 
     for (var index = 0 ; index < data.length ; index++) {
         JsonCaptura[index] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaSoldadura: "", tallerID: "", Taller: "", sinCaptura: "" };
@@ -160,11 +162,11 @@ function ArregloListadoSpoolID() {
         JsonCaptura[index].SpoolID = data[index].SpoolID;
         JsonCaptura[index].JuntaID = data[index].JuntaID;
         JsonCaptura[index].Junta = data[index].Junta;
-        JsonCaptura[index].FechaSoldadura = data[index].FechaSoldadura;
+        JsonCaptura[index].FechaSoldadura = kendo.toString(data[i].FechaSoldadura, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
         JsonCaptura[index].TallerID = data[index].TallerID;
         JsonCaptura[index].tallerID = data[index].TallerID;
         JsonCaptura[index].Taller = data[index].Taller;
-        JsonCaptura[index].sinCaptura = data[index].sinCaptura;
+        JsonCaptura[index].sinCaptura = "Todos";
     }
     return JsonCaptura;
 };
@@ -631,10 +633,11 @@ function AltaFecha() {
 
 function ExisteJunta(Row) {
     var jsonGridSoldadura = $("#grid").data("kendoGrid").dataSource._data;
-
-    for (var i = 0; i < jsonGridSoldadura.length; i++) {
-        if (jsonGridSoldadura[i].IdOrdenTrabajo + '-' + jsonGridSoldadura[i].IdVal == (Row.IdOrdenTrabajo + '-' + Row.IdVal) && jsonGridSoldadura[i].JuntaID === Row.JuntaID) {
-            return true;
+    if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
+        for (var i = 0; i < jsonGridSoldadura.length; i++) {
+            if (jsonGridSoldadura[i].IdOrdenTrabajo + '-' + jsonGridSoldadura[i].IdVal == (Row.IdOrdenTrabajo + '-' + Row.IdVal) && jsonGridSoldadura[i].JuntaID === Row.JuntaID) {
+                return true;
+            }
         }
     }
     return false;

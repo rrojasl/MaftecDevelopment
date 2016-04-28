@@ -273,7 +273,21 @@ function renderEnlaceSoldadoresRaiz(container, options) {
 
 }
 
+function RenderDatePicker(container, options) {
+    //container  contiene las propiedades de la celda
+    //options contiene el modelo del datasource ejemplo options.model.Junta
+    var dataItem;
 
+    $('<input   data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoDatePicker({
+            max: new Date(),
+            change: function () {
+                var value = this.value();
+                options.model.FechaArmado = value;
+            }
+        });
+}
 
 function ObtenerDescCorrectaSoldador(lista, ObreroID) {
     for (var i = 0; i < lista.length; i++) {
@@ -463,7 +477,6 @@ function ObtenerDescCorrectaTaller(lista, TallerID) {
     }
     return "";
 }
-
 
 function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();
