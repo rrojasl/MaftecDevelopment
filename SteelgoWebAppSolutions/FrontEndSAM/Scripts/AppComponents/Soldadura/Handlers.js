@@ -183,7 +183,6 @@ function suscribirEventoAgregar() {
 
 function suscribirEventoAplicar() {
     $('#ButtonAplicar').click(function (e) {
-        loadingStart();
 
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
             windowTemplate = kendo.template($("#windowTemplate").html());
@@ -224,7 +223,6 @@ function suscribirEventoAplicar() {
             if (endRangeDate.val() != "")
                 PlanchaFecha();
         }
-        loadingStop();
     });
 }
 
@@ -338,10 +336,12 @@ function SuscribirEventosJunta() {
 function SuscribirEventoMuestraJunta() {
 
     if ($('input:radio[name=TipoAgregado]').val() == "Reporte") {
-        $("#JuntaDiv").css('display', 'none');
+        $("#JuntaDiv").hide();
+        // $("#MuestraDiv").hide();
     }
     else if ($('input:radio[name=TipoAgregado]').val() == "Listado") {
-        $("#JuntaDiv").css('display', 'block');
+        $("#JuntaDiv").show();
+        // $("#MuestraDiv").show();
     }
 }
 
@@ -410,12 +410,10 @@ function SuscribirEventoSpoolID() {
 
         if ($("#InputOrdenTrabajo").val().match("^[a-zA-Z][0-9]*$")) {
             try {
-                loadingStart();
                 $CapturaSoldadura.Soldadura.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
                     $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
                     $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
                     Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
-                    loadingStop();
                 });
             } catch (e) {
                 displayNotify("Mensajes_error", e.message, '0');
@@ -453,11 +451,9 @@ function SuscribirEventoSpoolID() {
         //        displayNotify("NoExisteSpoolID", '', '2');
         //}
         else if (e.keyCode == 13) {
-            loadingStart();
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
                     if ($("#InputID").data("kendoComboBox").select() != -1) {
-                        loadingStop();
                         AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                         //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
                     }
@@ -494,19 +490,16 @@ $(document.body).keydown(function (e) {
 
 function suscribirEventoChangeRadio() {
     $('input:radio[name=Muestra]:nth(0)').change(function () {
-        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+        if ($("#InputID").val() != "" && $("#inputordentrabajo").val() != "") {
             AjaxJunta($("#InputID").val());
-            FiltroMostrar(0);
-
         }
-
+        FiltroMostrar(0);
     });
     $('input:radio[name=Muestra]:nth(1)').change(function () {
-        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val() != "") {
             AjaxJunta($("#InputID").val());
-            FiltroMostrar(1);
-
         }
+        FiltroMostrar(1);
     });
 }
 
