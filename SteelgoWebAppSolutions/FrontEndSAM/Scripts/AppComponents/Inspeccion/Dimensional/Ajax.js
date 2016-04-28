@@ -87,9 +87,9 @@ function AjaxObtenerSpoolID() {
 function AjaxobtenerDetalleDimensional(spoolID) {
     loadingStart();
     $CapturasRapidas.CapturasRapidas.read({ id: spoolID, sinCaptura: 'todos', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-
-
+        
         if (data.ListaDetalleDimensional.length == 0) {
+           
             $("#InspeccionDimensionalID").val("0")
 
         }
@@ -103,25 +103,23 @@ function AjaxobtenerDetalleDimensional(spoolID) {
 
 function AjaxObtenerJSonGrid() {
 
-    
-    if (ExisteJunta()) {
-        
+    if (ExisteJunta()) {        
         try {
             loadingStart();
             $InspeccionDimensional.InspeccionDimensional.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (data) {                
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);
                 if (array.length > 0) {
-                    for (var i = 0; i < array.length; i++) {
+                    for (var i = 0; i < array.length; i++) {                      
                         array[i].NumeroUnico1 = array[i].NumeroUnico1 == "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
                         array[i].NumeroUnico2 = array[i].NumeroUnico2 == "" ? DatoDefaultNumeroUnico2() : array[i].NumeroUnico2;
                         if (array[i].FechaInspeccion != null) {
                             array[i].FechaInspeccion = new Date(ObtenerDato(array[i].FechaInspeccion, 1), ObtenerDato(array[i].FechaInspeccion, 2), ObtenerDato(array[i].FechaInspeccion, 3));//año, mes, dia
                         }
                         ds.add(array[i]);
-                          
+                        displayNotify("", _dictionary.DimensionalSpool[$("#language").data("kendoDropDownList").value()] + array[i].OrdenTrabajoSpool, '0');
                     }
-                    displayNotify("Se agrego el spool", "", '0');
+                   
                 }
                 else {
 
@@ -136,7 +134,7 @@ function AjaxObtenerJSonGrid() {
 
     }
     else {
-        displayNotify("InspeccionDimensionalAdvertencia", "", '1');
+       // displayNotify("InspeccionDimensionalAdvertencia", "", '1');
         loadingStop();
     }
    
@@ -152,6 +150,11 @@ function ExisteJunta() {
                 jsonGridArmado[i].Accion = 2;
                 $("#grid").data("kendoGrid").dataSource.sync();
             }
+            else
+            {
+
+                displayNotify("", _dictionary.DimensionalSpoolExist[$("#language").data("kendoDropDownList").value()] + jsonGridArmado[i].OrdenTrabajoSpool, "1");
+            }
         
             return false;
         }
@@ -164,34 +167,44 @@ function ExisteJunta() {
 function AjaxGuardar(jSonCaptura, tipoGuardado) {
         Captura = [];
     Captura[0] = { Detalles: "" };
-
+    
     var mensaje = '';
     inspeccionDimensional = [];
     Juntas = [];
     if (InspectorCorrecto(jSonCaptura)) {
         for (index = 0; index < jSonCaptura.length; index++) {
-            inspeccionDimensional[index] = { Accion: "", InspeccionDimensionalID: "", FechaInspeccion: "", ResultadoID: "", Resultado: "", InspectorID: "", Inspector: "", DefectosID: "", Defectos: "", OrdenTrabajoSpoolID: "",ListaJuntas:"" }
-            inspeccionDimensional[index].Accion = jSonCaptura[index].Accion;
-            inspeccionDimensional[index].InspeccionDimensionalID = jSonCaptura[index].InspeccionDimensionalID;
-            inspeccionDimensional[index].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID;
-            inspeccionDimensional[index].ResultadoID = jSonCaptura[index].ResultadoID;
-            inspeccionDimensional[index].DefectosID = jSonCaptura[index].DefectosID == "" ? 0 : jSonCaptura[index].DefectosID;
-            inspeccionDimensional[index].InspectorID = jSonCaptura[index].InspectorID;
-            inspeccionDimensional[index].FechaInspeccion = kendo.toString(jSonCaptura[index].FechaInspeccion, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
-            inspeccionDimensional[index].FechaInspeccion = inspeccionDimensional[index].FechaInspeccion.trim();
+            if (jSonCaptura[index].FechaInspeccion != null && (jSonCaptura[index].InspectorID != 0 && jSonCaptura[index].DefectosID != 0)) {
 
-            if (jSonCaptura[index].ListaJuntasSeleccionadas.length > 0) {
-                for (var r = 0; r < jSonCaptura[index].ListaJuntasSeleccionadas.length; r++) {
-                    Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
-                    Juntas[r].DefectoID = jSonCaptura[index].DefectosID == "" ? 0 : jSonCaptura[index].DefectosID;
-                    Juntas[r].JuntaID = jSonCaptura[index].ListaJuntasSeleccionadas[r].JuntaID;
-                    Juntas[r].Accion = jSonCaptura[index].ListaJuntasSeleccionadas[r].Accion
-                    Juntas[r].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID
+                inspeccionDimensional[index] = { Accion: "", InspeccionDimensionalID: "", FechaInspeccion: "", ResultadoID: "", Resultado: "", InspectorID: "", Inspector: "", DefectosID: "", Defectos: "", OrdenTrabajoSpoolID: "", ListaJuntas: "" }
+                inspeccionDimensional[index].Accion = jSonCaptura[index].Accion;
+                inspeccionDimensional[index].InspeccionDimensionalID = jSonCaptura[index].InspeccionDimensionalID;
+                inspeccionDimensional[index].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID;
+                inspeccionDimensional[index].ResultadoID = jSonCaptura[index].ResultadoID;
+                inspeccionDimensional[index].DefectosID = jSonCaptura[index].DefectosID == "" ? 0 : jSonCaptura[index].DefectosID;
+                inspeccionDimensional[index].InspectorID = jSonCaptura[index].InspectorID;
+                inspeccionDimensional[index].FechaInspeccion = kendo.toString(jSonCaptura[index].FechaInspeccion, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+                inspeccionDimensional[index].FechaInspeccion = jSonCaptura[index].FechaInspeccion.trim();
+
+                if (jSonCaptura[index].ListaJuntasSeleccionadas.length > 0) {
+                    for (var r = 0; r < jSonCaptura[index].ListaJuntasSeleccionadas.length; r++) {
+                        Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
+                        Juntas[r].DefectoID = jSonCaptura[index].DefectosID == "" ? 0 : jSonCaptura[index].DefectosID;
+                        Juntas[r].JuntaID = jSonCaptura[index].ListaJuntasSeleccionadas[r].JuntaID;
+                        Juntas[r].Accion = jSonCaptura[index].ListaJuntasSeleccionadas[r].Accion
+                        Juntas[r].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID
+                    }
+                    inspeccionDimensional[index].ListaJuntas = Juntas;
                 }
-                inspeccionDimensional[index].ListaJuntas = Juntas;
+                else
+                    inspeccionDimensional[index].ListaJuntas = undefined;
+
             }
-            else
-                inspeccionDimensional[index].ListaJuntas = undefined;
+
+            else {
+                displayNotify("", "Los datos en Blanco no se guardaran", '1');
+
+            }
+           
 
         }
 
@@ -213,7 +226,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
             AjaxCargaCamposPredetrminados();
             displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
         }
-
+        loadingStop();
         //$InspeccionDimensional.InspeccionDimensional.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
         //    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
                 

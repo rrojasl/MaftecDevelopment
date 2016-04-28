@@ -10611,6 +10611,28 @@ _dictionary = {
         "en-US": "Work order already inserted"
     },
 
+    "NoExistenJuntasSel": {
+        "es-MX": "No existen juntas seleccionadas",
+        "en-US": "Dont exist joins selected"
+
+    },
+
+    "DimensionalSpool": {
+        "es-MX": "Se agrego el spool ",
+        "en-US": "He added the spool "
+    },
+
+    "DimensionalSpoolExist": {
+        "es-MX": "Ya existe el spool ",
+        "en-US": "Already exists spool "
+    },
+
+    "DimensionalSpoolNoExist": {
+        "es-MX": "No existe el spool ",
+        "en-US": "There is not spool "
+        
+
+    },
 
     //#endregion
 }
