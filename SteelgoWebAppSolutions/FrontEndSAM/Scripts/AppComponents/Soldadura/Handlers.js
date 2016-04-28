@@ -453,9 +453,11 @@ function SuscribirEventoSpoolID() {
         //        displayNotify("NoExisteSpoolID", '', '2');
         //}
         else if (e.keyCode == 13) {
+            loadingStart();
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
                     if ($("#InputID").data("kendoComboBox").select() != -1) {
+                        loadingStop();
                         AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                         //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
                     }

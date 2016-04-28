@@ -138,7 +138,7 @@ function ArregloListadoReporte() {
         JsonCaptura[i].FechaSoldadura = $("#FechaSoldadura").val();
         JsonCaptura[i].tallerID = $("#inputTaller").val();
         JsonCaptura[i].Taller = $("#inputTaller").data("kendoComboBox").text();
-        JsonCaptura[i].sinCaptura = "todos";
+        JsonCaptura[i].sinCaptura = "Todos";
     }
     return JsonCaptura;
 };

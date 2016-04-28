@@ -2,7 +2,6 @@
 function AjaxJunta(spoolID) {
     loadingStart();
     $CapturasRapidas.CapturasRapidas.read({ id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token"), proceso: 2 }).done(function (data) {
-        console.log("fecha nueva" + data.FechaSoldadura);
         $("#Junta").data("kendoComboBox").value("");
         $("#Junta").data("kendoComboBox").dataSource.data(data)
         loadingStop();
@@ -17,11 +16,9 @@ function AjaxJuntaModoSpool(spoolID) {
     $CapturasRapidas.CapturasRapidas.read({ id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token"), proceso: 2 }).done(function (data) {
         $("#Junta").data("kendoComboBox").value("");
         $("#Junta").data("kendoComboBox").dataSource.data(data);
-        AjaxCargarReporteJuntas();
         loadingStop();
-
+        AjaxCargarReporteJuntas();
     });
-
 }
 
 
@@ -148,9 +145,9 @@ function ObtenerJSonGridSoldadura() {
                 //displayNotify("", 'La junta ' + $('#Junta').data("kendoComboBox").value() + ' ya existe en el listado', '2');
                 $('#ButtonAgregar').prop("disabled", false);
             }
+            loadingStop();
         });
         $('#ButtonAgregar').prop("disabled", false);
-        loadingStop();
     } catch (e) {
         loadingStop();
         displayNotify("Mensajes_error", e.message, '1');
@@ -167,9 +164,9 @@ function ObtenerDato(fecha, tipoDatoObtener) {
             break;
         case 2://mes
             if (cultura = 'es-MX')
-                return fecha.split('/')[1]
+                return fecha.split('/')[1] - 1
             else
-                return fecha.split('/')[0]
+                return fecha.split('/')[0] - 1
             break;
         case 3://dia
             if (cultura = 'es-MX')
@@ -181,6 +178,7 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 }
 
 function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
+    loadingStart();
     try {
         var bandera = true, banderaProcesoRaiz = true, banderaProcesoRelleno = true;
         loadingStart();
@@ -421,7 +419,10 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         }
         else
             displayNotify("CapturaSoldaduraMensajeErrorProcesoRaiz", "", '1');
+
+        loadingStop();
     } catch (e) {
+        loadingStop();
         displayNotify("Mensajes_error", e.message, '2');
     }
 
@@ -476,15 +477,17 @@ function AjaxEjecutarGuardado(rows, tipoGuardar) {
 
             if (tipoGuardar == 1) {
                 Limpiar();
+                loadingStop();
                 AjaxCargarCamposPredeterminados();
             }
             else {
                 opcionHabilitarView(true, "FieldSetView");
+                loadingStop();
                 AjaxCambiarAccionAModificacion();
             }
-            loadingStop();
         }
         else {
+            loadingStop();
             displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
         }
     });
