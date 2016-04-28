@@ -28,6 +28,10 @@ namespace BackEndSAM.Models.Soldadura
         public string SignoInformativo { get; set; }
     }
 
+    public class CapturaJuntas
+    {
+        List<DetalleDatosJsonSoldadura> Detalles { get; set; }
+    }
 
     public class DetalleDatosJsonSoldadura
     {
