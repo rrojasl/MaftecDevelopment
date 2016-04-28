@@ -104,6 +104,9 @@ var $Ciclos = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 //armado
 var $CapturaArmado = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 
+//Catalogos generales
+var $CatalogosGenerales = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
+
 ////Mediciones Climatologicas
 var $MedicionesClimatologicas = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 
@@ -378,6 +381,7 @@ $ValidarCedulas.add("ValidarCedulas");
 
 //Steelgo in House
 $DummyAlmacenajeRack.add("DummyAlmacenajeRack");
+$CatalogosGenerales.add("CatalogosGenerales");
 
 $TipoJunta.add("TipoJunta");
 $PQR.add("PQR");
