@@ -15,13 +15,22 @@ function FiltroMostrar(mostrar) {
 
     if (mostrar == 0) {
         var curr_filters = ds.filter().filters;
-        ds.filter(curr_filters[0])
+        if (curr_filters[0].filters != undefined)
+            ds.filter(curr_filters[0].filters[0])
+        else
+            ds.filter(curr_filters[0])
         ds.sync();
     }
     else {
+
+        var curr_filters = ds.filter().filters;
+        ds.filter(curr_filters[0])
+        ds.sync();
         var filters = ds.filter();
         filters.logic = "or"
+
         filters.filters.push({ field: "Accion", operator: "eq", value: 2 });
+        filters.filters.push({ field: "Accion", operator: "eq", value: 4 });
         ds.sync();
     }
 }
@@ -96,6 +105,35 @@ function aplicarFiltro(listaRespaldo, listaConFiltro) {
 function asignarProyecto() {
     $("#InputOrdenTrabajo").val(Cookies.get('LetraProyecto') == undefined ? '' : Cookies.get('LetraProyecto'));
     $("#LabelProyecto").text('Proyecto :' + (Cookies.get('Proyecto') == undefined ? 'No hay ningun proyecto' : Cookies.get('Proyecto')));
+}
+
+function ArregloListadoJuntasCapturadas() {
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    var data = dataSource._data
+
+    JsonCaptura = [];
+
+
+    for (var i = 0; i < data.length ; i++) {
+        JsonCaptura[i] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaArmado: "", TuberoID: "", Tubero: "", TallerID: "", Taller: "", sinCaptura: "" };
+        JsonCaptura[i].IDProyecto = data[i].IDProyecto;
+        JsonCaptura[i].Proyecto = data[i].Proyecto;
+        JsonCaptura[i].IdOrdenTrabajo = data[i].IdOrdenTrabajo;
+        JsonCaptura[i].OrdenTrabajo = data[i].OrdenTrabajo;
+        JsonCaptura[i].idVal = data[i].IdVal;
+        JsonCaptura[i].idText = data[i].IdText;
+        JsonCaptura[i].SpoolID = data[i].SpoolID;
+        JsonCaptura[i].JuntaID = data[i].JuntaID;
+        JsonCaptura[i].Junta = data[i].Junta;
+        JsonCaptura[i].FechaSoldadura = kendo.toString(data[i].FechaSoldadura, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);;
+        JsonCaptura[i].tallerID = data[i].TallerID
+        JsonCaptura[i].Taller = data[i].Taller;
+        JsonCaptura[i].ColadaID = data[i].ColadaID;
+        JsonCaptura[i].NumeroColada = data[i].NumeroColada;
+        JsonCaptura[i].sinCaptura = "Todos";
+
+    }
+    return JsonCaptura;
 }
 
 function ArregloListadoCaptura() {
