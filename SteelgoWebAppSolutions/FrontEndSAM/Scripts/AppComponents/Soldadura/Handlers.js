@@ -174,7 +174,7 @@ function suscribirEventoAgregar() {
             if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "") {
                 if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
                     $('#ButtonAgregar').prop("disabled", true);
-                    ObtenerJSonGridArmado();
+                    ObtenerJSonGridSoldadura();
 
                 }
                 else {
