@@ -183,11 +183,12 @@ function ArregloListadoReporte() {
 
 function ArregloListadoSpoolID() {
     
+
     var dataSource = $("#grid").data("kendoGrid").dataSource;
-    var data = query.filter(filters).data;
+    var data = dataSource._data
+
 
     JsonCaptura = [];
-
 
     for (var index = 0 ; index < data.length ; index++) {
         JsonCaptura[index] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaSoldadura: "", tallerID: "", Taller: "", sinCaptura: "" };
