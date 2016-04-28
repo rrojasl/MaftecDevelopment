@@ -86,10 +86,11 @@ SuscribirEventoProcesosRaiz();
 SuscribirEventoProcesosRelleno();
 
 function SuscribirEventoProcesosRelleno() {
-    $('#inputProcesoRelleno').kendoDropDownList({
+    $('#inputProcesoRelleno').kendoComboBox({
         dataTextField: "Codigo",
         dataValueField: "ProcesoSoldaduraID",
         suggest: true,
+        delay: 10,
         filter: "contains",
 
     });
@@ -102,10 +103,11 @@ function SuscribirEventoProcesosRelleno() {
 }
 
 function SuscribirEventoProcesosRaiz() {
-    $('#inputProcesoRaiz').kendoDropDownList({
+    $('#inputProcesoRaiz').kendoComboBox({
         dataTextField: "Codigo",
         dataValueField: "ProcesoSoldaduraID",
         suggest: true,
+        delay: 10,
         filter: "contains",
 
     });
@@ -241,6 +243,7 @@ function SuscribirEventoTaller() {
         dataTextField: "Nombre",
         dataValueField: "TallerID",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3
     });
@@ -262,6 +265,7 @@ function SuscribirEventoColada() {
         dataTextField: "NumeroColada",
         dataValueField: "ColadaID",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3
     });
@@ -271,7 +275,7 @@ function SuscribirEventoColada() {
                 //PlanchaTaller();
             }
             else {
-                $("#inputTaller").data("kendoComboBox").value("");
+                $("#inputColada").data("kendoComboBox").value("");
             }
 
         }
@@ -283,6 +287,7 @@ function SuscribirEventosJunta() {
         dataTextField: "Etiqueta",
         dataValueField: "JuntaSpoolID",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3
     });
@@ -358,6 +363,7 @@ function SuscribirEventoSpoolID() {
         dataTextField: "IDValido",
         dataValueField: "Valor",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3,
         select: function (e) {
@@ -375,6 +381,7 @@ function SuscribirEventoSpoolID() {
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     AjaxJunta($("#InputID").val());
                     AjaxObtenerListaTaller();
+                    AjaxColada();
                 }
             }
         }
@@ -390,6 +397,7 @@ function SuscribirEventoSpoolID() {
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     AjaxJunta($("#InputID").val());
                     AjaxObtenerListaTaller();
+                    AjaxColada();
                 }
             }
             else
