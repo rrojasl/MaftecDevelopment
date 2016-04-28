@@ -157,7 +157,8 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             SistemaPinturaID = item.SistemaPinturaID,
                             SpoolID = item.SpoolID,
                             SpoolJunta = item.SpoolJunta,
-                            ProyectoID = item.ProyectoID
+                            ProyectoID = item.ProyectoID,
+                            NombreMedioTransporte = item.NombreMedioTransporte
                         });
                     }
                     return ListadoDetalleSpool;

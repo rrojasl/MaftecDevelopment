@@ -289,6 +289,7 @@ function CargarGridBacklog() {
                     dataItem.Seleccionado = false;
                 }
             }
+            ImprimirAreaToneladaBackLog();
             $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource.sync();
         }
         else {
@@ -300,6 +301,8 @@ function CargarGridBacklog() {
             }
         }
     });
+    CustomisaGrid($("#grid[nombre='grid-backlog']"));
+
 };
 
 function AjaxCargarCamposPredeterminadosBacklog() {

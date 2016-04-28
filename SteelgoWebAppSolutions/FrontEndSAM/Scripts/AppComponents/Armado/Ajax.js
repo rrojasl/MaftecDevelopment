@@ -255,7 +255,13 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                        ListaDetalles[index].FechaArmado == ""
                     ) && ( ListaDetalles[index].Accion != 3 && ListaDetalles[index].Accion != 4)
                    ) {
-                    ListaDetalles[index].Estatus = 0;
+                    if (ListaDetalles[index].Accion == 2) {
+                        ListaDetalles[index].Accion = 4;
+                    }
+                    else {
+                        ListaDetalles[index].Estatus = 0;
+                    }
+                    
                 }
             } catch (e) {
                 loadingStop();

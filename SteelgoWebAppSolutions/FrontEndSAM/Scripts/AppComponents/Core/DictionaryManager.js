@@ -7206,6 +7206,18 @@ _dictionary = {
         "es-MX": "Pintura",
         "en-US": "Painting "
     },
+    "PinturaCargaCarroSpoolProyectoEquivocado": {
+        "es-MX": "El Spool no corresponde al proyecto seleccionado",
+        "en-US": "The Spool does not correspond to the selected project"
+    },
+    "PinturaCargaCarroSpoolProyectoDiferente": {
+        "es-MX": "No se pueden agregar Spools de proyectos diferentes",
+        "en-US": "You can not add Spools of different projects"
+    },
+    "PinturaCargaSpoolCargadoEnCarro": {
+        "es-MX": "El spool ya fue cargado en el carro: ",
+        "en-US": "The spool is charged in the car"
+    },
     "menuPinturaCargaCarro": {
         "es-MX": "Carga de Carro",
         "en-US": "Load Carriage"

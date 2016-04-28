@@ -38,6 +38,7 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int SistemaPinturaID { get; set; }
         public int MedioTransporteCargaID { get; set; }
         public int ProyectoID { get; set; }
+        public string NombreMedioTransporte { get; set; }
     }
 
     public class Captura

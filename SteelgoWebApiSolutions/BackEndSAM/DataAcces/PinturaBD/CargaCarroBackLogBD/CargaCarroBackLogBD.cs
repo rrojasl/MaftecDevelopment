@@ -30,13 +30,13 @@ namespace BackEndSAM.DataAcces.PinturaBD.CargaCarroBackLogBD
             }
         }
 
-        public object ObtenerListadoSpool(int medioTransporteID)
+        public object ObtenerListadoSpool(int medioTransporteID,int  proyectoID)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 { 
-                    List<Sam3_Pintura_Get_SpoolCarroBackLog_Result> result = ctx.Sam3_Pintura_Get_SpoolCarroBackLog(medioTransporteID).ToList();
+                    List<Sam3_Pintura_Get_SpoolCarroBackLog_Result> result = ctx.Sam3_Pintura_Get_SpoolCarroBackLog(medioTransporteID, proyectoID).ToList();
                     List<CargaCarroBackLog> lista = new List<CargaCarroBackLog>();
                     foreach(Sam3_Pintura_Get_SpoolCarroBackLog_Result item in result)
                     {

@@ -108,8 +108,14 @@ function SuscribirEventoProyecto() {
             var dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
                 $("#grid").data('kendoGrid').dataSource.data([]);
+                if ($("#grid[nombre='grid-backlog']").data('kendoGrid') != undefined) {
+                    $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
+                }
+                
                 $("#labelM2").text('');
                 $("#labelToneladas").text('');
+                $("#labelM22").text('');
+                $("#labelToneladas2").text('');
                 AjaxPinturaCargaMedioTransporte();
             }
         },
@@ -117,8 +123,14 @@ function SuscribirEventoProyecto() {
             var dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
                 $("#grid").data('kendoGrid').dataSource.data([]);
+                if ($("#grid[nombre='grid-backlog']").data('kendoGrid') != undefined) {
+                    $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
+                }
+                
                 $("#labelM2").text('');
                 $("#labelToneladas").text('');
+                $("#labelM22").text('');
+                $("#labelToneladas2").text('');
                 AjaxPinturaCargaMedioTransporte();
             }
         }

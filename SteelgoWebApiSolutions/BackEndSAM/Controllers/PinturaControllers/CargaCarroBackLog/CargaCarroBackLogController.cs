@@ -21,7 +21,7 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
     public class CargaCarroBackLogController : ApiController
     {
         [HttpGet]
-        public object ObtieneListadoSpool(int medioTransporteID, string token)
+        public object ObtieneListadoSpool(int medioTransporteID, string token, int proyectoID)
         {
             string payload = "";
             string newToken = "";
@@ -30,7 +30,7 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                return CargaCarroBackLogBD.Instance.ObtenerListadoSpool(medioTransporteID);
+                return CargaCarroBackLogBD.Instance.ObtenerListadoSpool(medioTransporteID, proyectoID);
             }
             else
             {
