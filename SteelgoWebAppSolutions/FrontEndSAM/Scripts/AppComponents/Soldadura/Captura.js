@@ -752,6 +752,18 @@ function ExisteJuntaReporte(juntaVal) {
     return true;
 }
 
+function ExisteJuntaEnSpool(Row) {
+
+    var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
+
+    for (var i = 0; i < jsonGridArmado.length; i++) {
+        if (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal == (Row.IdOrdenTrabajo + '-' + Row.IdVal) && jsonGridArmado[i].JuntaID === Row.JuntaID) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function ValidarExisteSoldadorEnTrabajosAdicionales(modelo, tipoSoldador) { 
     var existeSoldadorEnOtraLista = false;
     if (tipoSoldador == "relleno") {

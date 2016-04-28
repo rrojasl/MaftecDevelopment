@@ -165,15 +165,25 @@ function suscribirEventoAgregar() {
     $('#ButtonAgregar').click(function (e) {
 
         if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
-            AjaxCargarReporteJuntas();
+            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+                $('#ButtonAgregar').prop("disabled", true);
+                AjaxCargarReporteJuntas();
+            }
         }
         else {
             if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "") {
                 if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
-                    ObtenerJSonGridSoldadura();
+                    $('#ButtonAgregar').prop("disabled", true);
+                    ObtenerJSonGridArmado();
+
                 }
-                else
-                    displayNotify("NoExisteJunta", '', '2');
+                else {
+                    if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
+                        displayNotify("CapturaArmadoNoExisteSpool", "", '2');
+                    }
+                    else
+                        displayNotify("CapturaArmadoNoExisteLista", "", '1');
+                }
             }
             else
                 displayNotify("JuntaSinSeleccionar", "", '2');

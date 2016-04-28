@@ -509,6 +509,7 @@ function AjaxEjecutarGuardado(rows, tipoGuardar) {
 }
 
 function AjaxCargarReporteJuntas() {
+
     var listadoReporte = ArregloListadoReporte();
     var elementoNoEncontrado = false;
 
@@ -518,6 +519,8 @@ function AjaxCargarReporteJuntas() {
 
     ListaDetalles = listadoReporte;
     CapturaJuntas[0].Detalles = ListaDetalles;
+
+
     if (listadoReporte.length > 0) {
         loadingStart();
         $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(listadoReporte[0]), isReporte: true, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
@@ -528,7 +531,7 @@ function AjaxCargarReporteJuntas() {
                 var array = JSON.parse(data);
 
                 for (var i = 0; i < array.length; i++) {
-                    if (!ExisteJunta(array[i])) {
+                    if (!ExisteJuntaEnSpool(array[i])) {
                         ds.insert(0, array[i]);
 
                         if (array[i].FechaSoldadura != null) {
