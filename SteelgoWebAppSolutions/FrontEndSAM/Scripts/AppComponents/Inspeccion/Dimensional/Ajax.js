@@ -187,19 +187,18 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
             
             if (jSonCaptura[index].ListaJuntasSeleccionadas != null) {
                 if (jSonCaptura[index].ListaJuntasSeleccionadas.length > 0) {
-                for (var r = 0; r < jSonCaptura[index].ListaJuntasSeleccionadas.length; r++) {
-                    Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
-                    Juntas[r].DefectoID = jSonCaptura[index].DefectosID == "" ? 0 : jSonCaptura[index].DefectosID;
-                    Juntas[r].JuntaID = jSonCaptura[index].ListaJuntasSeleccionadas[r].JuntaID;
-                    Juntas[r].Accion = jSonCaptura[index].ListaJuntasSeleccionadas[r].Accion
-                    Juntas[r].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID
+                    for (var r = 0; r < jSonCaptura[index].ListaJuntasSeleccionadas.length; r++) {
+                        Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
+                        Juntas[r].DefectoID = jSonCaptura[index].DefectosID == "" ? 0 : jSonCaptura[index].DefectosID;
+                        Juntas[r].JuntaID = jSonCaptura[index].ListaJuntasSeleccionadas[r].JuntaID;
+                        Juntas[r].Accion = jSonCaptura[index].ListaJuntasSeleccionadas[r].Accion
+                        Juntas[r].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID
+                    }
+                    inspeccionDimensional[index].ListaJuntas = Juntas;
                 }
-                inspeccionDimensional[index].ListaJuntas = Juntas;
-            }
+                else { inspeccionDimensional[index].ListaJuntas = undefined; }
         }
-                else
-                    inspeccionDimensional[index].ListaJuntas = undefined;           
-
+             
             if (inspeccionDimensional[index].DefectosID == 0 || inspeccionDimensional[index].FechaInspeccion == "" && (inspeccionDimensional[index].Accion != 3 && inspeccionDimensional[index].Accion != 4)) {
                 if (inspeccionDimensional[index].Accion == 2) {
 
