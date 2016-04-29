@@ -551,12 +551,14 @@ function eventoCambioTipoListado() {
 
 
         AjaxObtenerListaTaller();
+        AjaxColada();
     }
     else if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
         $("#JuntaDiv").css('display', 'block');
         $("#MuestraDiv").css('display', 'block');
 
         AjaxObtenerListaTaller();
+        AjaxColada();
     }
 }
 
