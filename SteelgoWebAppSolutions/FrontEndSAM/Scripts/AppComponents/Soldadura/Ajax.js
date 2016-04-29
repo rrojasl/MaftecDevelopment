@@ -69,11 +69,17 @@ function AjaxObtenerListaProcesos() {
 function ObtenerJSonGridSoldadura() {
     try {
         loadingStart();
-        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), isReporte: false, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
+        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), isReporte: true, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
             if (Error(data)) {
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);
                 var elementoNoEncontrado = false;
+
+                for (var x = array.length - 1; x >= 0; x--) {
+                    if (array[x].JuntaID != $("#Junta").data("kendoComboBox").value()) {
+                        array.splice(x, 1);
+                    }
+                }
 
                 if (ExisteJunta(array[0])) {
                     // Proceso validar accion
@@ -147,10 +153,17 @@ function ObtenerJSonGridSoldadura() {
                         $("#Junta").val("");
                     }
 
-                    displayNotify("",
+                    $("#Junta").data("kendoComboBox").value("");
+                    if (array.length == 0) {
+                        displayNotify("",
+                            _dictionary.CapturaArmadoJuntaCapturada[$("#language").data("kendoDropDownList").value()], '1');
+                    }
+                    else {
+                        displayNotify("",
                             _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
                             array[0].Junta +
                             _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
+                    }
 
                     //displayNotify("", 'La junta ' + $('#Junta').data("kendoComboBox").value() + ' ya existe en el listado', '2');
                     $('#ButtonAgregar').prop("disabled", false);
@@ -446,6 +459,8 @@ function AjaxCambiarAccionAModificacion() {
     capturaListado[0].Detalles = listado;
     var isReporte = true;
 
+    var listadogrid = $("#grid").data("kendoGrid").dataSource._data;
+
     $("#grid").data("kendoGrid").dataSource.data([]);
 
     var differentsJoits = [];
@@ -460,15 +475,16 @@ function AjaxCambiarAccionAModificacion() {
 
     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
         isReporte = false;
+        differentsJoits = listado;
     }
 
     for (var x = 0; x < differentsJoits.length; x++) {
+
         loadingStart();
-        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(ArregloListadoSpoolID()), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (result) {
+        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(differentsJoits[x]), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function(result) {
             if (Error(data)) {
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);
-
 
                 for (var i = 0; i < array.length; i++) {
                     if (array[i].FechaSoldadura != null) {
@@ -478,7 +494,7 @@ function AjaxCambiarAccionAModificacion() {
                     ds.add(array[i]);
                 }
             }
-            loadingStart();
+            loadingStop();
         });
     }
 }
