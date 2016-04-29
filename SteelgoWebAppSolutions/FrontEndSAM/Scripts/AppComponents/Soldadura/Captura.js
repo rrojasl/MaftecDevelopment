@@ -151,7 +151,7 @@ function ArregloListadoCaptura() {
     JsonCaptura[0].FechaSoldadura = $("#FechaSoldadura").val();
     JsonCaptura[0].tallerID = $("#inputTaller").val();
     JsonCaptura[0].Taller = $("#inputTaller").data("kendoComboBox").text();
-    JsonCaptura[0].ColadaID = $("#inputColada").val();
+    JsonCaptura[0].ColadaID = $("#inputColada").val() == "" ? 0 : $("#inputColada").val();
     JsonCaptura[0].NumeroColada = $("#inputColada").data("kendoComboBox").text();
     JsonCaptura[0].sinCaptura = $('input:radio[name=Muestra]:checked').val();
 
@@ -841,6 +841,27 @@ function PlanchaFecha() {
         else {
             if (data[i].FechaSoldadura == "") {
                 data[i].FechaSoldadura = String(endRangeDate.val()).trim();
+            }
+        }
+    }
+    $("#grid").data("kendoGrid").dataSource.sync();
+};
+function PlanchaColada() {
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    var filters = dataSource.filter();
+    var allData = dataSource.data();
+    var query = new kendo.data.Query(allData);
+    var data = query.filter(filters).data;
+
+    for (var i = 0; i < data.length; i++) {
+        if ($('input:radio[name=LLena]:checked').val() === "Todos") {
+            data[i].ColadaID = $("#inputColada").val();
+            data[i].NumeroColada = $("#inputColada").data("kendoComboBox").text();
+        }
+        else {
+            if (data[i].NumeroColada == "" || data[i].NumeroColada == null || data[i].NumeroColada == undefined) {
+                data[i].ColadaID = $("#inputColada").val();
+                data[i].NumeroColada = $("#inputColada").data("kendoComboBox").text();
             }
         }
     }

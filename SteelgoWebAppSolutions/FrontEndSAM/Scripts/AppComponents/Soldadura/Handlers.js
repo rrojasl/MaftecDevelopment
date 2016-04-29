@@ -254,6 +254,8 @@ function suscribirEventoAplicar() {
                 PlanchaTaller();
             if (endRangeDate.val() != "")
                 PlanchaFecha();
+            if ($("#inputColada").val() != "")
+                PlanchaColada();
         }
     });
 }
