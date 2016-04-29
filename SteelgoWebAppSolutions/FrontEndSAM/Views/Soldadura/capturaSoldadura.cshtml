@@ -179,7 +179,7 @@
     <div id="windowMultiselectSoldador" style="display: none; z-index:inherit;">
         <div id="formaObrero" class="col-sm-12 col-md-12 col-lg-11">
             <div class="row">
-                <div class="form-group  col-sm-12 col-md-12 col-lg-12" id="containerMultiSelect">
+                <div class="form-group  col-sm-12 col-md-12 col-lg-12" id="containerMultiSelect" style="min-height: 100px;">
                     <label id=""><span>Soldadores Raiz</span></label>
                     <div id="contenedorMultiselect">
                         <div id="inputSoldadoresRaiz" />
@@ -199,7 +199,7 @@
     <div id="windowMultiselectSoldadorRelleno" style="display: none; z-index:inherit;">
         <div id="formaObrero" class="col-sm-12 col-md-12 col-lg-11">
             <div class="row">
-                <div class="form-group  col-sm-12 col-md-12 col-lg-12" id="containerMultiSelect">
+                <div class="form-group  col-sm-12 col-md-12 col-lg-12" id="containerMultiSelect" style="min-height: 100px;">
                     <label id=""><span>Soldadores Relleno</span></label>
                     <div id="contenedorMultiselectRelleno">
                         <div id="inputSoldadoresRelleno" />
@@ -220,6 +220,14 @@
 </div>
 
 </div>
+
+
+<style>
+    .k-multiselect-wrap {
+        height: 50px;
+    }
+</style>
+
 
 <script src="~/Scripts/AppComponents/Soldadura/Seguridad.js"></script>
 <script src="~/Scripts/AppComponents/Soldadura/Ajax.js"></script>
