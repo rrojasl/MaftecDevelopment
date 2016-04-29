@@ -616,6 +616,7 @@ function opcionHabilitarView(valor, name) {
         $("#InputID").data("kendoComboBox").enable(false);
         $("#Junta").data("kendoComboBox").enable(false);
         $("#inputTaller").data("kendoComboBox").enable(false);
+        $("#inputColada").data("kendoComboBox").enable(false);
         $("#FechaSoldadura").data("kendoDatePicker").enable(false);
         $('#botonGuardar').text("Editar");
         $("#DetalleAvisoLlegada0017").text("Editar");
@@ -629,6 +630,7 @@ function opcionHabilitarView(valor, name) {
         $('#FieldSetView').find('*').attr('disabled', false);
         $("#InputID").data("kendoComboBox").enable(true);
         $("#inputTaller").data("kendoComboBox").enable(true);
+        $("#inputColada").data("kendoComboBox").enable(true);
         $("#FechaSoldadura").data("kendoDatePicker").enable(true);
         $("#Junta").data("kendoComboBox").enable(true);
         $('#botonGuardar').text("Guardar");
