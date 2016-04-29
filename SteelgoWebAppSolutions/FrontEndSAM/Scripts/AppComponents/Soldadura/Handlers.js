@@ -15,6 +15,8 @@
     suscribirEventoAdicionales();
     suscribirEventoSoldadoresRaiz();
     GuardarRaizMultiselect();
+    suscribirEventoSoldadoresRelleno();
+    GuardarRellenoMultiselect();
 };
 
 function suscribirEventoAdicionales() {
@@ -40,6 +42,17 @@ function suscribirEventoSoldadoresRaiz() {
     });
 }
 
+function suscribirEventoSoldadoresRelleno() {
+
+    $(document).on('click', '.botonSoldadoresRelleno', function (e) {
+        var grid = $("#grid").data("kendoGrid"),
+        dataItem = grid.dataItem($(e.target).closest("tr"));
+        $("#contenedorMultiselectRelleno").empty();
+        LlenarGridPopUpMultiseletRelleno(dataItem);
+    });
+}
+
+
 function SuscribirEventoCancelarAdicionales() {
     $("#CancelarTrabajosAdicionales").click(function (e) {
         $("#windowGrid").data("kendoWindow").close();
@@ -54,6 +67,15 @@ function GuardarRaizMultiselect() {
         $("#grid").data("kendoGrid").dataSource.sync();
     });
 }
+
+function GuardarRellenoMultiselect() {
+    $('#GuardarSoldadoresRelleno').click(function () {
+        modeloRenglon.Relleno = $("#inputSoldadoresRelleno").data("kendoMultiSelect")._dataItems;
+        $("#windowMultiselectSoldadorRelleno").data("kendoWindow").close();
+        $("#grid").data("kendoGrid").dataSource.sync();
+    });
+}
+
 
 
 function GuardarDetalleAdicional() {

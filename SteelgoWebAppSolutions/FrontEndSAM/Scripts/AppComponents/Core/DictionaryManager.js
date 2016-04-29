@@ -6937,6 +6937,10 @@ _dictionary = {
         "es-MX": "Guardar",
         "en-US": "Save"
     },
+    "botonGuardar5": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
     "botonGuardarYNuevo": {
         "es-MX": "Guardar y Nuevo",
         "en-US": "Save and New"
@@ -8065,6 +8069,7 @@ _dictionary = {
         "es-MX": " soldadores raiz",
         "en-US": " root welders"
     },
+    
     "CapturaSoldaduraHeaderSoldador": {
         "es-MX": "Soldador",
         "en-US": "Welder"
