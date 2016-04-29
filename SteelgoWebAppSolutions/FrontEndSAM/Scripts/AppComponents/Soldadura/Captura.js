@@ -120,7 +120,7 @@ function ArregloListadoJuntasCapturadas() {
         JsonCaptura[i].Proyecto = data[i].Proyecto;
         JsonCaptura[i].IdOrdenTrabajo = data[i].IdOrdenTrabajo;
         JsonCaptura[i].OrdenTrabajo = data[i].OrdenTrabajo;
-        JsonCaptura[i].idVal = data[i].IdVal;
+        JsonCaptura[i].idVal = data[i].idVal;
         JsonCaptura[i].idText = data[i].IdText;
         JsonCaptura[i].SpoolID = data[i].SpoolID;
         JsonCaptura[i].JuntaID = data[i].JuntaID;

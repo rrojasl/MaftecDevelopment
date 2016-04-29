@@ -464,7 +464,7 @@ function AjaxCambiarAccionAModificacion() {
 
     for (var x = 0; x < differentsJoits.length; x++) {
         loadingStart();
-        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(ArregloListadoSpoolID()), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (result) {
+        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(differentsJoits[x]), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
             if (Error(data)) {
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);
