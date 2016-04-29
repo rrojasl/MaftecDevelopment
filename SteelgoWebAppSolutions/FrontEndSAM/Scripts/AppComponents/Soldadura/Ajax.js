@@ -708,8 +708,8 @@ function AjaxCargarReporteJuntas() {
 
                                 ds._data[j].Accion = 2;
 
-                                if (array[i].FechaArmado != null) {
-                                    ds._data[j].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
+                                if (array[i].FechaSoldadura != null) {
+                                    ds._data[j].FechaSoldadura = new Date(ObtenerDato(array[i].FechaSoldadura, 1), ObtenerDato(array[i].FechaSoldadura, 2), ObtenerDato(array[i].FechaSoldadura, 3));//año, mes, dia
                                 }
 
                                 if (elementosModificados != "")
