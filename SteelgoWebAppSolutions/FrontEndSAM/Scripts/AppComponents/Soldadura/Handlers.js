@@ -35,6 +35,7 @@ function suscribirEventoAdicionales() {
 function suscribirEventoSoldadoresRaiz() {
 
     $(document).on('click', '.botonSoldadoresRaiz', function (e) {
+        e.preventDefault();
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
             var grid = $("#grid").data("kendoGrid"),
             dataItem = grid.dataItem($(e.target).closest("tr"));
@@ -47,6 +48,7 @@ function suscribirEventoSoldadoresRaiz() {
 function suscribirEventoSoldadoresRelleno() {
 
     $(document).on('click', '.botonSoldadoresRelleno', function (e) {
+        e.preventDefault();
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
             var grid = $("#grid").data("kendoGrid"),
             dataItem = grid.dataItem($(e.target).closest("tr"));
@@ -352,9 +354,9 @@ function SuscribirEventosJunta() {
                             setTimeout(function () {
                                 button.removeAttr('disabled');
                             }, 500);
-                            opcionHabilitarRadioTipoCaptura(false);
+                            
                             ObtenerJSonGridSoldadura();
-                            $("#Junta").data("kendoComboBox").text("");
+                            
                         }
                     }
                     else
