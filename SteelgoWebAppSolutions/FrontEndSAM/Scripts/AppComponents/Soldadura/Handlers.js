@@ -35,20 +35,24 @@ function suscribirEventoAdicionales() {
 function suscribirEventoSoldadoresRaiz() {
 
     $(document).on('click', '.botonSoldadoresRaiz', function (e) {
-        var grid = $("#grid").data("kendoGrid"),
-        dataItem = grid.dataItem($(e.target).closest("tr"));
-        $("#contenedorMultiselect").empty();
-        LlenarGridPopUpMultiselet(dataItem);
+        if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+            var grid = $("#grid").data("kendoGrid"),
+            dataItem = grid.dataItem($(e.target).closest("tr"));
+            $("#contenedorMultiselect").empty();
+            LlenarGridPopUpMultiselet(dataItem);
+        }
     });
 }
 
 function suscribirEventoSoldadoresRelleno() {
 
     $(document).on('click', '.botonSoldadoresRelleno', function (e) {
-        var grid = $("#grid").data("kendoGrid"),
-        dataItem = grid.dataItem($(e.target).closest("tr"));
-        $("#contenedorMultiselectRelleno").empty();
-        LlenarGridPopUpMultiseletRelleno(dataItem);
+        if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+            var grid = $("#grid").data("kendoGrid"),
+            dataItem = grid.dataItem($(e.target).closest("tr"));
+            $("#contenedorMultiselectRelleno").empty();
+            LlenarGridPopUpMultiseletRelleno(dataItem);
+        }
     });
 }
 
