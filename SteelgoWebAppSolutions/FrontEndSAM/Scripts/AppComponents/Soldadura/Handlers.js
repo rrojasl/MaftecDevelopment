@@ -248,6 +248,8 @@ function suscribirEventoAplicar() {
                     PlanchaTaller();
                 if (endRangeDate.val() != "")
                     PlanchaFecha();
+                if ($("#inputColada").val() != "")
+                    PlanchaColada();
 
                 ventanaConfirm.close();
             });
@@ -310,7 +312,6 @@ function SuscribirEventoColada() {
     $('#inputColada').closest('.k-widget').keydown(function (e) {
         if (e.keyCode == 13) {
             if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined) {
-                //PlanchaTaller();
             }
             else {
                 $("#inputColada").data("kendoComboBox").value("");
