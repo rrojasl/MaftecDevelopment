@@ -12,15 +12,15 @@ function IniciarCapturaInspecion() {
     asignarProyecto();
     SuscribirEventos();
     
-};
+}
+
 IniciarCapturaInspecion();
 IniciarPreCarga();
 //Cambia lenguaje
 
 function IniciarPreCarga() {
     setTimeout(function () { AjaxObtenerListaInspector() }, 1000);
-    setTimeout(function () { AjaxObtenerListaDefectos() }, 2000);
-    
+    setTimeout(function () { AjaxObtenerListaDefectos() }, 2000);    
 }
 
 
@@ -36,24 +36,24 @@ function changeLanguageCall() {
     $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
     document.title = _dictionary.DimensionalVisualInspeccionDimensional[$("#language").data("kendoDropDownList").value()];
     opcionHabilitarView(false, "FieldSetView");
-};
+}
+
 function asignarProyecto() {
     $("#InputOrdenTrabajo").val(Cookies.get('LetraProyecto') == undefined ? '' : Cookies.get('LetraProyecto'));
     $("#LabelProyecto").text('Proyecto :' + (Cookies.get('Proyecto') == undefined ? 'No hay ningun proyecto' : Cookies.get('Proyecto')));
 }
+
 function CargarFecha() {
     endRangeDate = $("#FechaInspeccion").kendoDatePicker({
         max: new Date()
-    })
+    });
 
     endRangeDate.on("keydown", function (e) {
         if (e.keyCode == 13) {
             //PlanchaFecha();
         }
-    });
-
-  
-};
+    });      
+}
 
 function CargarGrid() {
     kendo.ui.Grid.fn.editCell = (function (editCell) {
@@ -86,11 +86,11 @@ function CargarGrid() {
             if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
                 this.closeCell();
             }
-            
+
         },
         change: function () {
             var dataItem = this.dataSource.view()[this.select().index()];
-            
+
         },
         dataSource: {
             data: '',
@@ -160,7 +160,7 @@ function CargarGrid() {
             $(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
         }
     });
-};
+}
 
 function FiltroMostrar(mostrar) {
     var ds = $("#grid").data("kendoGrid").dataSource;
@@ -173,7 +173,7 @@ function FiltroMostrar(mostrar) {
     else {
         var filters = ds.filter();
         filters.logic = "or"
-        filters.filters.push({ field: "Accion", operator: "eq", value: 2 });
+        filters.filters.push({ field: "Accion", operator: "eq", value: 4 });
         ds.sync();
     }
 }
@@ -212,7 +212,7 @@ function ArregloListadoCaptura() {
     JsonCaptura[0].Inspector = $("#inputInspector").data("kendoComboBox").text();
     JsonCaptura[0].FechaInspeccion = $("#FechaInspeccion").val();
     return JsonCaptura[0];
-};
+}
 
 function cancelarCaptura(e) {
     e.preventDefault();
@@ -299,7 +299,7 @@ function cancelarCaptura(e) {
         }
     }
         
-};
+}
 
 function limpiarRenglon(e) {
     e.preventDefault();
@@ -307,12 +307,12 @@ function limpiarRenglon(e) {
           
         var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
         itemToClean.Defectos = "";
-        itemToClean.DefectosID = 0;
+        itemToClean.DefectosID = "";
         itemToClean.FechaInspeccion = "";
-        itemToClean.InspectorID = 0;
+        itemToClean.InspectorID = "";
         itemToClean.Inspector = "";
         itemToClean.ListaJuntas = [];
-    // itemToClean.Accion = 4;
+        itemToClean.Accion = 4;
         itemToClean.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         dataSource.sync();
@@ -347,7 +347,7 @@ function PlanchaDefecto() {
         }
     }
     $("#grid").data("kendoGrid").dataSource.sync();
-};
+}
 
 function PlanchaInspector() {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
@@ -374,7 +374,7 @@ function PlanchaInspector() {
         }
     }
     $("#grid").data("kendoGrid").dataSource.sync();
-};
+}
 
 function PlanchadoResultadoDimensional() {
     try{
@@ -410,7 +410,7 @@ function PlanchadoResultadoDimensional() {
         $("#grid").data("kendoGrid").dataSource.sync();
     }
     catch (e){}
-};
+}
 
 function PlanchaFecha() {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
@@ -420,15 +420,15 @@ function PlanchaFecha() {
     var data = query.filter(filters).data;
 
     for (var i = 0; i < data.length; i++) {
-        if ($('input:radio[name=LLena]:checked').val() === "Todos") {                
-            var m = ObtenerDato(endRangeDate.val(), 2)-1;
+        var m = ObtenerDato(endRangeDate.val(), 2) - 1;
+        if ($('input:radio[name=LLena]:checked').val() === "Todos") { 
             data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;           
         }
         else {
             if (data[i].FechaInspeccion == "" || data[i].FechaInspeccion == null || data[i].FechaInspeccion == undefined) {                
-                data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), ObtenerDato(endRangeDate.val(), 2), ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;
+                data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;
             }
         }
     }
     $("#grid").data("kendoGrid").dataSource.sync();
-};
+}

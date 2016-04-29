@@ -77,8 +77,8 @@ function ObtenerJSonGridSoldadura() {
 
                 if (ExisteJunta(array[0])) {
                     // Proceso validar accion
-                    for (var i = 0; i < ds._data.length; i++) {
-                        if (array[0].SpoolID == ds._data[i].SpoolID && array[0].JuntaID == ds._data[i].JuntaID && ds._data[i].Accion == 3) { //SPOOL JUNTA ACCION
+                    for (var j = 0; j < ds._data.length; j++) {
+                        if (array[0].SpoolID == ds._data[j].SpoolID && array[0].JuntaID == ds._data[j].JuntaID && ds._data[j].Accion == 3) { //SPOOL JUNTA ACCION
                             ds._data[j].ColadaID = array[0].ColadaID;
                             ds._data[j].DetalleAdicional = array[0].DetalleAdicional;
                             ds._data[j].Diametro = array[0].Diametro;
@@ -109,13 +109,13 @@ function ObtenerJSonGridSoldadura() {
                             ds._data[j].TemplateMensajeTrabajosAdicionales = array[0].TemplateMensajeTrabajosAdicionales;
                             ds._data[j].TrabajosAdicionales = array[0].TrabajosAdicionales;
 
-                            ds._data[i].Accion = 2;
+                            ds._data[j].Accion = 2;
 
                             if (array[0].FechaSoldadura != null) {
-                                ds._data[i].FechaSoldadura = new Date(ObtenerDato(array[0].FechaSoldadura, 1), ObtenerDato(array[0].FechaSoldadura, 2), ObtenerDato(array[0].FechaSoldadura, 3));//año, mes, dia
+                                ds._data[j].FechaSoldadura = new Date(ObtenerDato(array[0].FechaSoldadura, 1), ObtenerDato(array[0].FechaSoldadura, 2), ObtenerDato(array[0].FechaSoldadura, 3));//año, mes, dia
                             }
 
-                            var elementgrid = ds._data.splice(i, 1);
+                            var elementgrid = ds._data.splice(j, 1);
                             ds._data.unshift(elementgrid[0]);
 
                             displayNotify("",
