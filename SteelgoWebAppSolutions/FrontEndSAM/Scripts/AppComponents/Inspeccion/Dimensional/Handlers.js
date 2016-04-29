@@ -48,10 +48,10 @@ function SuscribirEventoAgregarCapturaRapida() {
                 ventanaConfirm.close();
             });
         }
-        else {
+        else {           
             if ($("#inputDefecto").val() != "") PlanchaDefecto();
             if ($("#inputInspector").val() != "") PlanchaInspector();
-            PlanchadoResultadoDimensional();
+            PlanchadoResultadoDimensional();           
             if (endRangeDate.val() != "") PlanchaFecha();
         }
     });
