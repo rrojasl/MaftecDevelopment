@@ -216,7 +216,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "",
                 JuntaSoldaduraID: "", NumeroUnico1ID: "", NumeroUnico2ID: "", TallerID: "",
                 ProcesoSoldaduraRaizID: "", ProcesoSoldaduraRellenoID: "", FechaSoldadura: "", ListaSoldaduraRaiz: "",
-                ListaSoldaduraRelleno: "", ListaDetalleTrabajoAdicional: "", FechaReporte: "", ColadaID: ""
+                ListaSoldaduraRelleno: "", ListaDetalleTrabajoAdicional: "", FechaReporte: "", ColadaID: "", Estatus: 1
             };
 
             var labelFecha = String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""));
@@ -423,144 +423,135 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
             ListaDetalles[index].ListaSoldaduraRelleno = ListaRellenoEditados;
             ListaDetalles[index].ListaSoldaduraRaiz = ListaSoldadoresEditados;
             ListaDetalles[index].ListaDetalleTrabajoAdicional = ListaTrabajosAdicionalesEditados;
+
+            if (
+                   (
+                      ListaDetalles[index].ColadaID == "" || ListaDetalles[index].ColadaID == 0 ||
+                      ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0" ||
+                      ListaDetalles[index].ProcesoSoldaduraRaizID == "" || ListaDetalles[index].ProcesoSoldaduraRaizID == 0 ||
+                      ListaDetalles[index].ProcesoSoldaduraRellenoID == "" || ListaDetalles[index].ProcesoSoldaduraRellenoID == 0 ||
+                      ListaDetalles[index].FechaSoldadura == ""
+                   ) && (ListaDetalles[index].Accion != 3 && ListaDetalles[index].Accion != 4)
+                  ) {
+                if ((ListaDetalles[index].ColadaID == "" || ListaDetalles[index].ColadaID == 0) &&
+                      (ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0") &&
+                      (ListaDetalles[index].ProcesoSoldaduraRaizID == "" || ListaDetalles[index].ProcesoSoldaduraRaizID == 0) &&
+                      (ListaDetalles[index].ProcesoSoldaduraRellenoID == "" || ListaDetalles[index].ProcesoSoldaduraRellenoID == 0) &&
+                      ListaDetalles[index].FechaSoldadura == "" && ListaDetalles[index].Accion == 2)
+                {
+                    ListaDetalles[index].Accion = 4;
+                }
+                else{
+                    if (arregloCaptura[index].PermiteTerminadoRaiz &&( ListaDetalles[index].ProcesoSoldaduraRaizID == "" || ListaDetalles[index].ProcesoSoldaduraRaizID == 0)) {
+                        ListaDetalles[index].Estatus = 0;
+                    }
+                    if (arregloCaptura[index].PermiteTerminadoRelleno &&( ListaDetalles[index].ProcesoSoldaduraRellenoID == "" || ListaDetalles[index].ProcesoSoldaduraRellenoID == 0)) {
+                        ListaDetalles[index].Estatus = 0;
+                    }
+                }
+            }
+            else {
+                    
+            }
         }
 
-        Captura[0].Detalles = ListaDetalles;
 
-        //if (
-        //       (
-        //          ListaDetalles[index].ColadaID == "" || ListaDetalles[index].ColadaID == 0 || 
-        //          ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0" || ListaDetalles[index].FechaSoldadura == ""
-        //       ) && (ListaDetalles[index].Accion != 3 && ListaDetalles[index].Accion != 4)
-        //      ) {
-        //    if (arregloCaptura[index].PermiteTerminadoRaiz) {
-        //        if (ListaDetalles[index].ProcesoSoldaduraRellenoID != null || ListaDetalles[index].ProcesoSoldaduraRellenoID != "" || ListaDetalles[index].ProcesoSoldaduraRellenoID != undefined || ListaDetalles[index].ProcesoSoldaduraRellenoID != 0) {
-        //            if (ListaDetalles[index].Accion == 2) {
-        //                ListaDetalles[index].Accion = 4;
-        //            }
-        //            else {
-        //                ListaDetalles[index].Estatus = 0;
-        //            }
-        //        }
-        //    }
-        //    else {
-        //        if (ListaDetalles[index].Accion == 2) {
-        //            ListaDetalles[index].Accion = 4;
-        //        }
-        //        else {
-        //            ListaDetalles[index].Estatus = 0;
-        //        }
-        //    }
-        //    if (arregloCaptura[index].PermiteTerminadoRelleno) {
-        //        if (ListaDetalles[index].ProcesoSoldaduraRaizID != null || ListaDetalles[index].ProcesoSoldaduraRaizID != "" || ListaDetalles[index].ProcesoSoldaduraRaizID != undefined || ListaDetalles[index].ProcesoSoldaduraRaizID != 0) {
-        //            if (ListaDetalles[index].Accion == 2) {
-        //                ListaDetalles[index].Accion = 4;
-        //            }
-        //            else {
-        //                ListaDetalles[index].Estatus = 0;
-        //            }
-        //        }
-        //    }
-        //    else {
-        //        if (ListaDetalles[index].Accion == 2) {
-        //            ListaDetalles[index].Accion = 4;
-        //        }
-        //        else {
-        //            ListaDetalles[index].Estatus = 0;
-        //        }
-        //    }
-        //}
+    
+
+    Captura[0].Detalles = ListaDetalles;
 
 
 
 
-        ////        if (bandera) {
-        //if (!ExistRowEmpty(ListaDetalles)) {
-        //    if (Captura[0].Detalles.length > 0) {
-        //        AjaxEjecutarGuardado(Captura[0], tipoGuardar);
-        //        loadingStart();
-        //    }
-
-        //}
-        //else {
-        //    loadingStop();
-        //    windowTemplate = kendo.template($("#windowTemplate").html());
-
-        //    ventanaConfirm = $("#ventanaConfirm").kendoWindow({
-        //        iframe: true,
-        //        title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
-        //        visible: false, //the window will not appear before its .open method is called
-        //        width: "auto",
-        //        height: "auto",
-        //        modal: true,
-        //        animation: {
-        //            close: false,
-        //            open: false
-        //        }
-        //    }).data("kendoWindow");
-
-        //    ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
-        //        "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
-
-        //    ventanaConfirm.open().center();
 
 
-        //    RowEmpty($("#grid"));
+    ////        if (bandera) {
+    if (!ExistRowEmpty(ListaDetalles)) {
+        if (Captura[0].Detalles.length > 0) {
+            AjaxEjecutarGuardado(Captura[0], tipoGuardar);
+            loadingStart();
+        }
 
-        //    $("#yesButton").click(function () {
-        //        loadingStart();
-
-        //        ArregloGuardado = [];
-        //        var indice = 0;
-        //        for (var i = 0; i < Captura[0].Detalles.length; i++) {
-        //            if (Captura[0].Detalles[i].Estatus == 1) {
-        //                ArregloGuardado[indice] = ListaDetalles[i];
-        //                indice++;
-        //            }
-        //        }
-
-        //        Captura[0].Detalles = [];
-        //        Captura[0].Detalles = ArregloGuardado;
-
-
-        //        if (ArregloGuardado.length > 0) {
-        //            AjaxEjecutarGuardado(Captura[0], tipoGuardar);
-        //        }
-        //        else {
-        //            loadingStop();
-        //            displayNotify("AdverteciaExcepcionGuardado", "", '1');
-        //        }
-
-        //        ventanaConfirm.close();
-        //    });
-        //    $("#noButton").click(function () {
-        //        ventanaConfirm.close();
-        //    });
-
-
-            if (banderaProcesoRaiz) {
-                if (banderaProcesoRelleno) {
-                    if (bandera) {
-                        if (Captura[0].Detalles.length > 0) {
-                            AjaxEjecutarGuardado(Captura[0], tipoGuardar);
-
-                            loadingStart();
-                        }
-                    }
-                    else
-                        displayNotify("CapturaSoldaduraMensajeErrorTaller", "", '1');
-                }
-                else
-                    displayNotify("CapturaSoldaduraMensajeErrorProcesoRelleno", "", '1');
-            }
-            else
-                displayNotify("CapturaSoldaduraMensajeErrorProcesoRaiz", "", '1');
-        
-        loadingStop();
-    } catch (e) {
-        loadingStop();
-        displayNotify("Mensajes_error", e.message, '2');
     }
+    else {
+        loadingStop();
+        windowTemplate = kendo.template($("#windowTemplate").html());
+
+        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+            iframe: true,
+            title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
+            visible: false, //the window will not appear before its .open method is called
+            width: "auto",
+            height: "auto",
+            modal: true,
+            animation: {
+                close: false,
+                open: false
+            }
+        }).data("kendoWindow");
+
+        ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
+            "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+
+        ventanaConfirm.open().center();
+
+
+        RowEmpty($("#grid"));
+
+        $("#yesButton").click(function () {
+            loadingStart();
+
+            ArregloGuardado = [];
+            var indice = 0;
+            for (var i = 0; i < Captura[0].Detalles.length; i++) {
+                if (Captura[0].Detalles[i].Estatus == 1) {
+                    ArregloGuardado[indice] = ListaDetalles[i];
+                    indice++;
+                }
+            }
+
+            Captura[0].Detalles = [];
+            Captura[0].Detalles = ArregloGuardado;
+
+
+            if (ArregloGuardado.length > 0) {
+                AjaxEjecutarGuardado(Captura[0], tipoGuardar);
+            }
+            else {
+                loadingStop();
+                displayNotify("AdverteciaExcepcionGuardado", "", '1');
+            }
+
+            ventanaConfirm.close();
+        });
+        $("#noButton").click(function () {
+            ventanaConfirm.close();
+        });
+
+    }
+    //if (banderaProcesoRaiz) {
+    //    if (banderaProcesoRelleno) {
+    //        if (bandera) {
+    //            if (Captura[0].Detalles.length > 0) {
+    //                AjaxEjecutarGuardado(Captura[0], tipoGuardar);
+
+    //                loadingStart();
+    //            }
+    //        }
+    //        else
+    //            displayNotify("CapturaSoldaduraMensajeErrorTaller", "", '1');
+    //    }
+    //    else
+    //        displayNotify("CapturaSoldaduraMensajeErrorProcesoRelleno", "", '1');
+    //}
+    //else
+    //    displayNotify("CapturaSoldaduraMensajeErrorProcesoRaiz", "", '1');
+
+    loadingStop();
+} catch (e) {
+    loadingStop();
+    displayNotify("Mensajes_error", e.message, '2');
+}
 
 };
 
@@ -593,7 +584,7 @@ function AjaxCambiarAccionAModificacion() {
     for (var x = 0; x < differentsJoits.length; x++) {
 
         loadingStart();
-        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(differentsJoits[x]), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function(data) {
+        $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(differentsJoits[x]), isReporte: isReporte, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
             if (Error(data)) {
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);

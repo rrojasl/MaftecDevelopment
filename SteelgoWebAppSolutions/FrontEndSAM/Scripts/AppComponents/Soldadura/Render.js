@@ -582,7 +582,7 @@ function RenderComboBoxColada(container, options) {
             suggest: true,
             filter: "contains",
             autoBind: false,
-            dataSource: ItemSeleccionado.ListaColada,
+            dataSource: options.model.ListaColada,
             template: "<i class=\"fa fa-#=data.NumeroColada#\"></i> #=data.NumeroColada#",
             select: function (e) {
 
