@@ -28,13 +28,15 @@ function AjaxJuntaModoSpool(spoolID) {
 
 function AjaxColada() {
     loadingStart();
-    $CatalogosGenerales.CatalogosGenerales.read({ proyectoID: Cookies.get("Proyecto").split('°')[0], token: Cookies.get("token"), proceso: 2 }).done(function (data) {
-        if (Error(data)) {
-            $("#inputColada").data("kendoComboBox").value("");
-            $("#inputColada").data("kendoComboBox").dataSource.data(data)
-        }
-        loadingStop();
-    });
+    if (Cookies.get("Proyecto") != undefined) {
+        $CatalogosGenerales.CatalogosGenerales.read({ proyectoID: Cookies.get("Proyecto").split('°')[0], token: Cookies.get("token"), proceso: 2 }).done(function (data) {
+            if (Error(data)) {
+                $("#inputColada").data("kendoComboBox").value("");
+                $("#inputColada").data("kendoComboBox").dataSource.data(data)
+            }
+            loadingStop();
+        });
+    }
 }
 
 
