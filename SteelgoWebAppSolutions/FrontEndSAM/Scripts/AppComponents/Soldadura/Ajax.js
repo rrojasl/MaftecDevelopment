@@ -446,15 +446,18 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
 
                     if (arregloCaptura[index].PermiteTerminadoRaiz && (ListaDetalles[index].ProcesoSoldaduraRaizID == "" || ListaDetalles[index].ProcesoSoldaduraRaizID == 0)) {
                         ListaDetalles[index].Estatus = 0;
+                        $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                     }
                     if (arregloCaptura[index].PermiteTerminadoRelleno && (ListaDetalles[index].ProcesoSoldaduraRellenoID == "" || ListaDetalles[index].ProcesoSoldaduraRellenoID == 0)) {
                         ListaDetalles[index].Estatus = 0;
+                        $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                     }
                     if (ListaDetalles[index].ColadaID == "" || ListaDetalles[index].ColadaID == 0 ||
                       ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0" ||
                         ListaDetalles[index].FechaSoldadura == ""
                         ) {
                         ListaDetalles[index].Estatus = 0;
+                        $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                     }
 
                 }
@@ -503,9 +506,6 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
 
             ventanaConfirm.open().center();
-
-
-            RowEmpty($("#grid"));
 
             $("#yesButton").click(function () {
                 loadingStart();

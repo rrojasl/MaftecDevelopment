@@ -311,9 +311,9 @@ function CargarGridSoldadura() {
             { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, filterable: false, title: "", width: "60px" }
         ],
         dataBound: function (e) {
-            $(".k-grid input.k-textbox").prop('readonly', true);
-            $(".k-grid td .k-button").text('');
-            $(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
+            //$(".k-grid input.k-textbox").prop('readonly', true);
+            //$(".k-grid td .k-button").text('');
+            //$(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
         }
     });
 
