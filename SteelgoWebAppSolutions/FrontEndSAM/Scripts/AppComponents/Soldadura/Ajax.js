@@ -145,8 +145,8 @@ function ObtenerJSonGridSoldadura() {
                     for (var i = 0; i < array.length; i++) {
                         array[i].NumeroUnico1 = array[i].NumeroUnico1 === "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
                         array[i].NumeroUnico2 = array[i].NumeroUnico2 === "" ? DatoDefaultNumeroUnico2() : array[i].NumeroUnico2;
-                        if (array[i].FechaArmado != null) {
-                            array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
+                        if (array[i].FechaSoldadura != null) {
+                            array[i].FechaSoldadura = new Date(ObtenerDato(array[i].FechaSoldadura, 1), ObtenerDato(array[i].FechaSoldadura, 2), ObtenerDato(array[i].FechaSoldadura, 3));//año, mes, dia
                         }
 
                         array[i].ListadoProcesoSoldadura.unshift({ Codigo: "", ProcesoSoldaduraID: 0 });
