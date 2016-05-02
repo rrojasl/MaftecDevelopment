@@ -528,7 +528,11 @@ function AjaxCargarReporteJuntas() {
         });
 
     } else {
-        displayNotify("CapturaArmadoNoTieneJuntas", "", "2")
+        if ($('input:radio[name=Muestra]:checked').val() == "Sin Capturar") {
+            displayNotify("CapturaArmadoNoExisteLista", "", "1");
+        } else {
+            displayNotify("CapturaArmadoNoTieneJuntas", "", "2");
+        }
     }
 
     $('#ButtonAgregar').prop("disabled", false);

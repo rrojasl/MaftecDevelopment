@@ -363,11 +363,11 @@ function SuscribirEventosJunta() {
                 }
             }
             else {
-                if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
+                if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
                     displayNotify("CapturaArmadoNoExisteSpool", "", '2');
                 }
                 else
-                    displayNotify("CapturaArmadoNoExisteLista", "", '1');
+                    displayNotify("CapturaArmadoNoExistenJuntasSpool", "", '1');
             }   
         }
     });

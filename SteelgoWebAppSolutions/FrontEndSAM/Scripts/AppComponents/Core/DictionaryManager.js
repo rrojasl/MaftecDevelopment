@@ -7706,6 +7706,10 @@ _dictionary = {
         "es-MX": "La junta no existe en el listado de sin captura, revisar opción Todos",
         "en-US": "The joint not exist in the list without capture, check option All"
     },
+    "CapturaArmadoNoExistenJuntasSpool": {
+        "es-MX": "El spool no contiene juntas en estado sin captura, revisar opción Todos",
+        "en-US": "The spool don't have joints with status without capture, check option all"
+    },
     "CapturaArmadoNoTieneJuntas": {
         "es-MX": "El spool no tiene juntas",
         "en-US": "The spool don't have joints"
@@ -8231,9 +8235,13 @@ _dictionary = {
         "es-MX": "La junta no existe en el spool",
         "en-US": "The joint not exist in the spool"
     },
-    "CapturaArmadoNoExisteLista": {
+    "CapturaSoldaduraNoExisteLista": {
         "es-MX": "La junta no existe en el listado de sin captura, revisar opción Todos",
         "en-US": "The joint not exist in the list without capture, check option All"
+    },
+    "CapturaSoldaduraNoExistenJuntasSpool": {
+        "es-MX": "El spool no contiene juntas en estado sin captura, revisar opción Todos",
+        "en-US": "The spool don't have joints with status without capture, check option all"
     },
     //#endregion
     //#region GenerarRequisicion
