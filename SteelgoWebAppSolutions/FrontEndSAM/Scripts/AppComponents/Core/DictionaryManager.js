@@ -8243,6 +8243,10 @@ _dictionary = {
         "es-MX": "El spool no contiene juntas en estado sin captura, revisar opción Todos",
         "en-US": "The spool don't have joints with status without capture, check option all"
     },
+    "CapturaSoldaduraNoExisteSpoolID": {
+        "es-MX": "El spool ID no existe o no ha sido registrado",
+        "en-US": "The spool ID doesnn't exist or hasn't been registered"
+    },
     //#endregion
     //#region GenerarRequisicion
 
