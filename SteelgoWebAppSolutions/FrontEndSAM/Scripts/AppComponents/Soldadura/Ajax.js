@@ -749,7 +749,11 @@ function AjaxCargarReporteJuntas() {
             }
         });
     } else {
-        displayNotify("CapturaSoldaduraNoTieneJuntas", "", "2")
+        if ($('input:radio[name=Muestra]:checked').val() == "Sin Capturar") {
+            displayNotify("CapturaSoldaduraNoExistenJuntasSpool", "", "1");
+        } else {
+            displayNotify("CapturaSoldaduraNoTieneJuntas", "", "2");
+        }
     }
     $('#ButtonAgregar').prop("disabled", false);
 }
