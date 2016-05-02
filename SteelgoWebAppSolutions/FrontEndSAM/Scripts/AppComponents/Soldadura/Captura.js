@@ -333,6 +333,8 @@ function limpiarRenglon(e) {
         itemToClean.procesoSoldaduraRaizID = 0;
         itemToClean.procesoSoldaduraRelleno = "";
         itemToClean.procesoSoldaduraRellenoID = 0;
+        itemToClean.NumeroColada = "";
+        itemToClean.ColadaID = 0;
         itemToClean.DetalleAdicional = [];
         itemToClean.SoldadoresRaiz = _dictionary.CapturaSoldaduraNoSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
         itemToClean.SoldadoresRelleno = _dictionary.CapturaSoldaduraNoSoldadoresRelleno[$("#language").data("kendoDropDownList").value()];
