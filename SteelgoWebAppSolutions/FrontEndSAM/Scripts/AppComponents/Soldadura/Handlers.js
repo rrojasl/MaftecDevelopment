@@ -207,10 +207,10 @@ function suscribirEventoAgregar() {
                 }
                 else {
                     if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
-                        displayNotify("CapturaArmadoNoExisteSpool", "", '2');
+                        displayNotify("CapturaSoldaduraNoExisteSpool", "", '2');
                     }
                     else
-                        displayNotify("CapturaArmadoNoExisteLista", "", '1');
+                        displayNotify("CapturaSoldaduraNoExisteLista", "", '1');
                 }
             }
             else

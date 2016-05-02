@@ -8199,6 +8199,42 @@ _dictionary = {
         "es-MX": "Colada",
         "en-US": "Wash"
     },
+    "CapturaSoldaduraMsgExiste": {
+        "es-MX": "La junta ",
+        "en-US": "The joint "
+    },
+    "CapturaSoldaduraMsgNuevoEnListado": {
+        "es-MX": " se agregó en el listado",
+        "en-US": " already add in the list"
+    },
+    "CapturaSoldaduraMsgExisteListado": {
+        "es-MX": " ya existe en el listado",
+        "en-US": " already exist in the list"
+    },
+    "CapturaSoldaduraJuntaCapturada": {
+        "es-MX": "La junta ya fue capturada",
+        "en-US": "The joint is captured"
+    },
+    "CapturaSoldaduraMsgNuevoEnReporte": {
+        "es-MX": " se agregó en el spool",
+        "en-US": " already add in the spool"
+    },
+    "CapturaSoldaduraMsgExisteReporte": {
+        "es-MX": " ya existe en el spool",
+        "en-US": " already exist in the spool"
+    },
+    "CapturaSoldaduraNoTieneJuntas": {
+        "es-MX": "El spool no tiene juntas",
+        "en-US": "The spool don't have joints"
+    },
+    "CapturaSoldaduraNoExisteSpool": {
+        "es-MX": "La junta no existe en el spool",
+        "en-US": "The joint not exist in the spool"
+    },
+    "CapturaArmadoNoExisteLista": {
+        "es-MX": "La junta no existe en el listado de sin captura, revisar opción Todos",
+        "en-US": "The joint not exist in the list without capture, check option All"
+    },
     //#endregion
     //#region GenerarRequisicion
 

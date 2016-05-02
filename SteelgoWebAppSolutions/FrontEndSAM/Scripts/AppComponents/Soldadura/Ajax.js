@@ -127,18 +127,18 @@ function ObtenerJSonGridSoldadura() {
                             ds._data.unshift(elementgrid[0]);
 
                             displayNotify("",
-                            _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                            _dictionary.CapturaSoldaduraMsgExiste[$("#language").data("kendoDropDownList").value()] +
                             array[0].Junta +
-                            _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
+                            _dictionary.CapturaSoldaduraMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
 
                             elementoNoEncontrado = true;
                         }
                     }
                     if (!elementoNoEncontrado)
                         displayNotify("",
-                        _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                        _dictionary.CapturaSoldaduraMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         array[0].Junta +
-                        _dictionary.CapturaArmadoMsgExisteListado[$("#language").data("kendoDropDownList").value()], '2');
+                        _dictionary.CapturaSoldaduraMsgExisteListado[$("#language").data("kendoDropDownList").value()], '2');
                 }
                 else {
                     //Proceso insertar elemento
@@ -158,13 +158,13 @@ function ObtenerJSonGridSoldadura() {
                     $("#Junta").data("kendoComboBox").value("");
                     if (array.length == 0) {
                         displayNotify("",
-                            _dictionary.CapturaArmadoJuntaCapturada[$("#language").data("kendoDropDownList").value()], '1');
+                            _dictionary.CapturaSoldaduraJuntaCapturada[$("#language").data("kendoDropDownList").value()], '1');
                     }
                     else {
                         displayNotify("",
-                            _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                            _dictionary.CapturaSoldaduraMsgExiste[$("#language").data("kendoDropDownList").value()] +
                             array[0].Junta +
-                            _dictionary.CapturaArmadoMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
+                            _dictionary.CapturaSoldaduraMsgNuevoEnListado[$("#language").data("kendoDropDownList").value()], '0');
                     }
 
                     //displayNotify("", 'La junta ' + $('#Junta').data("kendoComboBox").value() + ' ya existe en el listado', '2');
@@ -739,17 +739,17 @@ function AjaxCargarReporteJuntas() {
                 $("#InputID").data("kendoComboBox").value("");
 
                 if (elementosModificados != "") {
-                    displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                    displayNotify("", _dictionary.CapturaSoldaduraMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         elementosModificados + _dictionary.CapturaArmadoMsgNuevoEnReporte[$("#language").data("kendoDropDownList").value()], '0');
                 }
                 if (elementosNoModificados != "") {
-                    displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
+                    displayNotify("", _dictionary.CapturaSoldaduraMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         elementosNoModificados + _dictionary.CapturaArmadoMsgExisteReporte[$("#language").data("kendoDropDownList").value()], '2');
                 }
             }
         });
     } else {
-        displayNotify("CapturaArmadoNoTieneJuntas", "", "2")
+        displayNotify("CapturaSoldaduraNoTieneJuntas", "", "2")
     }
     $('#ButtonAgregar').prop("disabled", false);
 }
