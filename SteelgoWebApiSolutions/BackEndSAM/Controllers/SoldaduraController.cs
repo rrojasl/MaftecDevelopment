@@ -700,20 +700,22 @@ namespace BackEndSAM.Controllers
                     }
                 }
 
-                DataTable dtDetalleCaptura = new DataTable();
-                DataTable dt = new DataTable("DTEnvio");
+                DataTable dtDetalleCaptura = null;
+                DataTable dt = null;
 
                 if (listaCapturasSoldadura.Detalles != null)
                 {
+                    dtDetalleCaptura = new DataTable("Detalles");
                     dtDetalleCaptura = ToDataTable(listaCapturasSoldadura.Detalles);
                     if (RellenoAdicionales != null && RaizAdicionales != null)
                     {
+                        dt = new DataTable("DTEnvio");
                         RellenoAdicionales.Merge(RaizAdicionales);
                         dt.Merge(RellenoAdicionales);
                     }
-                    else if (RellenoAdicionales == null)
+                    else if (RellenoAdicionales == null && dt != null)
                         dt.Merge(RaizAdicionales);
-                    else if (RaizAdicionales == null)
+                    else if (RaizAdicionales == null && dt != null)
                         dt.Merge(RellenoAdicionales);
                 }
                 
