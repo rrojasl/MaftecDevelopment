@@ -199,13 +199,13 @@ function suscribirEventoAgregar() {
             }
             else {
                 if ($("#InputID").val() == "") {
-                    displayNotify("", "El spool ID no ha sido capturado", '1');
+                    displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
                 }
                 else
-                //    if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
-                //    displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
-                //}
-                //else
+                    //    if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
+                    //    displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
+                    //}
+                    //else
                     displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
             }
         }
@@ -217,11 +217,22 @@ function suscribirEventoAgregar() {
 
                 }
                 else {
-                    if ($('input:radio[name=Muestra]:checked').val() == "Todos" && $("#Junta").val() != "") {
-                        displayNotify("CapturaSoldaduraNoExisteSpool", "", '2');
+                    if ($("#InputID").val() == "") {
+                        displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
                     }
-                    else
-                        displayNotify("CapturaSoldaduraNoExisteLista", "", '1');
+                    else if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) == undefined) {
+                        displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
+                    }
+                    else if ($("#Junta").val() == "") {
+                        displayNotify("CapturaSoldaduraJuntaNoCapturada", "", '1');
+                    } else {
+                        if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Todos") {
+                            displayNotify("", 'No existe la junta en el spool', '2');
+                        }
+                        else if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Sin captura") {
+                            displayNotify("CapturaArmadoNoExisteLista", '', '1');
+                        }
+                    }
                 }
             }
             else
@@ -269,7 +280,7 @@ function suscribirEventoAplicar() {
             });
         }
         else {
-            if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined) 
+            if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined)
                 PlanchaTaller();
             if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined)
                 PlanchaColada();
@@ -378,16 +389,24 @@ function SuscribirEventosJunta() {
                     displayNotify("Mensajes_error", "Favor de seleccionar un Tipo de Captura", '2');
                 }
             }
-            else
+            else {
                 if ($("#InputID").val() == "") {
-                    displayNotify("", "El spool ID no ha sido capturado", '1');
+                    displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
+                }
+                else if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) == undefined) {
+                    displayNotify("", "CapturaSoldaduraNoExisteSpoolID", '2');
                 }
                 else if ($("#Junta").val() == "") {
-                    displayNotify("", "La junta no ha sido capturada", '1');
-                }else{
-                //else if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
-                    displayNotify("CapturaArmadoNoExisteLista", "", '1');
+                    displayNotify("CapturaSoldaduraJuntaNoCapturada", "", '1');
+                } else {
+                    if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Todos") {
+                        displayNotify("", 'No existe la junta en el spool', '2');
+                    }
+                    else if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Sin captura") {
+                        displayNotify("CapturaArmadoNoExisteLista", '', '1');
+                    }
                 }
+            }
         }
     });
 }
@@ -531,9 +550,9 @@ function SuscribirEventoSpoolID() {
             }
             else {
                 if ($("#InputID").val() == "") {
-                    displayNotify("", "El spool ID no ha sido capturado", '1');
-                }else{
-                //else if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
+                    displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
+                } else {
+                    //else if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
                     displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
                 }
                 //else
@@ -547,11 +566,12 @@ function SuscribirEventoSpoolID() {
             }
 
             else if (tieneClase(e.currentTarget)) {
-                $("#InputID").data("kendoComboBox").select(0);
-                AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
-            }
-
+                if($("#InputID").data("kendoComboBox").select(0) != undefined) {
+                    $("#InputID").data("kendoComboBox").select(0);
+                    AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                }
         }
+    }
     });
 };
 

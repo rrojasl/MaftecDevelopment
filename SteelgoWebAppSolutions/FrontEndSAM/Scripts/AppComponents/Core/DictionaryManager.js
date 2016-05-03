@@ -8251,6 +8251,18 @@ _dictionary = {
         "es-MX": "El spool ID no existe o no ha sido registrado",
         "en-US": "The spool ID doesnn't exist or hasn't been registered"
     },
+    "CapturaSoldaduraNoExisteJunta": {
+        "es-MX": "La junta no existe en el spool",
+        "en-US": "The joint doesnn't exist in the spool"
+    },
+    "CapturaSoldaduraJuntaNoCapturada": {
+        "es-MX": "La junta no ha sido capturada",
+        "en-US": "The joint has not been captured"
+    },
+    "CapturaSoldaduraSpoolNoCapturado": {
+        "es-MX": "El spool ID no ha sido capturado",
+        "en-US": "The spool ID has not been captured"
+    },
     //#endregion
     //#region GenerarRequisicion
 
