@@ -842,7 +842,7 @@ function PlanchaFecha() {
             data[i].FechaSoldadura = String(endRangeDate.val()).trim();
         }
         else {
-            if (data[i].FechaSoldadura == "") {
+            if (data[i].FechaSoldadura == "" || data[i].FechaSoldadura == null || data[i].FechaSoldadura == undefined) {
                 data[i].FechaSoldadura = String(endRangeDate.val()).trim();
             }
         }
