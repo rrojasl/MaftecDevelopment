@@ -437,6 +437,9 @@ function CargarGridPopUp() {
 
                      $("#yesButton").click(function (handler) {
 
+
+                         if (dataItem.Accion == 1 || dataItem.Accion == undefined)
+                             dataSource.remove(dataItem);
                          dataItem.Accion = 3;
                          var filters = dataSource.filter();
                          var allData = dataSource.data();

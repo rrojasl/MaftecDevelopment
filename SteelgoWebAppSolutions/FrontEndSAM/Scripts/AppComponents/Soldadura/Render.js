@@ -314,6 +314,7 @@ function RenderComboBoxSoldadorTrabajos(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: ItemSeleccionado.Raiz,
@@ -379,6 +380,7 @@ function RenderComboBoxTrabajos(container, options) {
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
+                delay: 10,
                 filter: "contains",
                 autoBind: false,
                 dataSource: ItemSeleccionado.listaTrabajosAdicionalesSoldadura,
@@ -434,6 +436,7 @@ function RenderComboBoxTaller(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: ItemSeleccionado.ListaTaller,
@@ -485,6 +488,7 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
+                delay: 10,
                 filter: "contains",
                 autoBind: false,
                 dataSource: ItemSeleccionado.ListadoProcesoSoldadura,
@@ -540,6 +544,7 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
+                delay: 10,
                 filter: "contains",
                 autoBind: false,
                 dataSource: ItemSeleccionado.ListadoProcesoSoldadura,
@@ -579,6 +584,7 @@ function RenderComboBoxColada(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: options.model.ListaColada,

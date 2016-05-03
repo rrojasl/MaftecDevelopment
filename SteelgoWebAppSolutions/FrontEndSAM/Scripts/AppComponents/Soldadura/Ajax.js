@@ -320,7 +320,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                         var soldadorDetalle = $.grep(listaSoldadoresDetalle, function (e) {
                             return e.ObreroID == listaSoldadoresNueva[i].ObreroID;
                         });
-
+                        if(soldadorDetalle.length > 0)
                         if ((listaSoldadoresInicial.length - 1) == j && !banderaExisteSoldador && banderaSoldadores == true && soldadorDetalle[0].Accion == 1)
                             listaSoldadoresFinal.push(soldadorDetalle[0]);
                     }
@@ -407,11 +407,11 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 };
 
                 if (listaRellenoSoldadoresFinal[j].length > 0) {
-                    ListaRellenoEditados[j].Accion = listaRellenoSoldadoresFinal[j][0].Accion;
-                    ListaRellenoEditados[j].JuntaSoldaduraSoldadoID = listaRellenoSoldadoresFinal[j][0].JuntaSoldaduraSoldadoID;
+                    ListaRellenoEditados[j].Accion = listaRellenoSoldadoresFinal[j].Accion;
+                    ListaRellenoEditados[j].JuntaSoldaduraSoldadoID = listaRellenoSoldadoresFinal[j].JuntaSoldaduraSoldadoID;
                     ListaRellenoEditados[j].JuntaSoldaduraID = arregloCaptura[index].JuntaSoldaduraID;
                     ListaRellenoEditados[j].TipoSoldaduraID = arregloCaptura[index].procesoSoldaduraRellenoID;
-                    ListaRellenoEditados[j].ObreroID = listaRellenoSoldadoresFinal[j][0].ObreroID;
+                    ListaRellenoEditados[j].ObreroID = listaRellenoSoldadoresFinal[j].ObreroID;
                     ListaRellenoEditados[j].JuntaSpoolID = arregloCaptura[index].JuntaID;
                 }
                 else {
@@ -605,6 +605,9 @@ function AjaxCambiarAccionAModificacion() {
                         array[i].FechaSoldadura = kendo.toString(array[i].FechaSoldadura, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
                         array[i].FechaSoldadura = new Date(ObtenerDato(array[i].FechaSoldadura, 1), ObtenerDato(array[i].FechaSoldadura, 2), ObtenerDato(array[i].FechaSoldadura, 3));//año, mes, dia
                     }
+
+                    array[i].ListadoProcesoSoldadura.unshift({ Codigo: "", ProcesoSoldaduraID: 0 });
+
                     ds.add(array[i]);
                 }
             }
