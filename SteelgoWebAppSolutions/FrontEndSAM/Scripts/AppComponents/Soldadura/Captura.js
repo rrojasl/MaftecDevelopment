@@ -390,7 +390,7 @@ function CargarGridPopUp() {
 
             actuallongitudTrabajosAdicionales = data.length;
 
-            if (actuallongitudTrabajosAdicionales == 0)
+            if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
                 modeloRenglon.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
             else
                 modeloRenglon.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
@@ -445,7 +445,7 @@ function CargarGridPopUp() {
 
                          actuallongitudTrabajosAdicionales = data.length;
 
-                         if (actuallongitudTrabajosAdicionales == 0)
+                         if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
                              modeloRenglon.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
                          else
                              modeloRenglon.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
@@ -579,14 +579,14 @@ function LlenarGridPopUpMultiseletRelleno(options) {
             
             longitudSoldadoresRelleno = $("#inputSoldadoresRelleno").data("kendoMultiSelect")._values.length;
 
-            if (actuallongitudTrabajosAdicionales == 0)
+            if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
                 options.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
             else
                 options.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
 
             longitudSoldadoresRelleno = $("#inputSoldadoresRelleno").data("kendoMultiSelect")._values.length;
 
-            if (longitudSoldadoresRelleno == 0)
+            if (longitudSoldadoresRelleno == 0 || longitudSoldadoresRelleno == undefined)
                 options.SoldadoresRelleno = _dictionary.CapturaSoldaduraNoSoldadoresRelleno[$("#language").data("kendoDropDownList").value()];
             else
                 options.SoldadoresRelleno = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + longitudSoldadoresRelleno + _dictionary.CapturaSoldaduraMensajeCambioSoldadoresRelleno[$("#language").data("kendoDropDownList").value()];
@@ -671,14 +671,14 @@ function LlenarGridPopUpMultiselet(options) {
             
             longitudSoldadoresRaiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._values.length;
 
-            if (actuallongitudTrabajosAdicionales == 0)
+            if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
                 options.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
             else
                 options.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
 
 
             longitudSoldadoresRaiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._values.length;
-            if (longitudSoldadoresRaiz == 0)
+            if (longitudSoldadoresRaiz == 0 || longitudSoldadoresRaiz == undefined)
                 options.SoldadoresRaiz = _dictionary.CapturaSoldaduraNoSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
             else
                 options.SoldadoresRaiz = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + longitudSoldadoresRaiz + _dictionary.CapturaSoldaduraMensajeCambioSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];

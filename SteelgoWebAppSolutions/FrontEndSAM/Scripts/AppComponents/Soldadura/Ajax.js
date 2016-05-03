@@ -119,6 +119,8 @@ function ObtenerJSonGridSoldadura() {
 
                             ds._data[j].Accion = 2;
 
+                            array[i].ListadoProcesoSoldadura.unshift({ Codigo: "", ProcesoSoldaduraID: 0 });
+
                             if (array[0].FechaSoldadura != null) {
                                 ds._data[j].FechaSoldadura = new Date(ObtenerDato(array[0].FechaSoldadura, 1), ObtenerDato(array[0].FechaSoldadura, 2), ObtenerDato(array[0].FechaSoldadura, 3));//año, mes, dia
                             }
@@ -660,6 +662,8 @@ function AjaxCargarReporteJuntas() {
 
                 for (var i = 0; i < array.length; i++) {
                     if (!ExisteJuntaEnSpool(array[i])) {
+                        array[i].ListadoProcesoSoldadura.unshift({ Codigo: "", ProcesoSoldaduraID: 0 });
+
                         ds.insert(0, array[i]);
 
                         if (array[i].FechaSoldadura != null) {
@@ -705,6 +709,8 @@ function AjaxCargarReporteJuntas() {
                                 ds._data[j].Taller = array[i].Taller;
                                 ds._data[j].TemplateMensajeTrabajosAdicionales = array[i].TemplateMensajeTrabajosAdicionales;
                                 ds._data[j].TrabajosAdicionales = array[i].TrabajosAdicionales;
+
+                                array[i].ListadoProcesoSoldadura.unshift({ Codigo: "", ProcesoSoldaduraID: 0 });
 
                                 ds._data[j].Accion = 2;
 
