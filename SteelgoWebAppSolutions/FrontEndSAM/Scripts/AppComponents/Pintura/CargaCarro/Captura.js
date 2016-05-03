@@ -156,25 +156,25 @@ function validarInformacion(row) {
 function ValidarDatosNuevoCarro(ListaDetalles) {
     var error = false;
 
-    if (ListaDetalles.Nombre == "") {
-        displayMessage("Mensajes_error", "Escriba nombre de carro", '2');
+    if (ListaDetalles.Nombre == "" || ListaDetalles.Nombre ==  undefined) {
+        displayNotify("PinturaCargaCarroMensajeErrorNombreCarro", "", '2');
         error = true;
     }
 
-    if (ListaDetalles.NumeroVecesUsoMaximo == "" && ListaDetalles.PersistenciaID == 1) {
-        displayMessage("Mensajes_error", "Escriba número de veces que puede ser utilizado el carro", '2');
-        error = true;
-    }
+    //if (ListaDetalles.NumeroVecesUsoMaximo == "" && ListaDetalles.PersistenciaID == 1) {
+    //    displayMessage("Mensajes_error", "Escriba número de veces que puede ser utilizado el carro", '2');
+    //    error = true;
+    //}
 
-    if (ListaDetalles.PesoMaximo == "") {
-        displayMessage("Mensajes_error", "Escriba peso de carro", '2');
-        error = true;
-    }
+    //if (ListaDetalles.PesoMaximo == "") {
+    //    displayMessage("Mensajes_error", "Escriba peso de carro", '2');
+    //    error = true;
+    //}
 
-    if (ListaDetalles.Area == "") {
-        displayMessage("Mensajes_error", "Escriba área de carro", '2');
-        error = true;
-    }
+    //if (ListaDetalles.Area == "") {
+    //    displayMessage("Mensajes_error", "Escriba área de carro", '2');
+    //    error = true;
+    //}
     return error;
 }
 

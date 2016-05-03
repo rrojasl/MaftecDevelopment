@@ -131,7 +131,7 @@ function SuscribirEventoProyecto() {
                 $("#labelToneladas").text('');
                 $("#labelM22").text('');
                 $("#labelToneladas2").text('');
-                AjaxPinturaCargaMedioTransporte();
+                //AjaxPinturaCargaMedioTransporte();
             }
         }
     });

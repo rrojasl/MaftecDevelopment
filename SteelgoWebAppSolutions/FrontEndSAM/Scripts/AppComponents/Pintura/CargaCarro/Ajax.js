@@ -9,13 +9,13 @@
         var index = 0;
 
         ListaDetalles[index] = { Nombre: "", ClasificacionID: "", PersistenciaID: "", NumeroVecesUsoMaximo: "", PesoMaximo: "", Area: "", ClasificacionMedioTransporteID: "" };
-        ListaDetalles[index].Nombre = $("#inputMedioTransporte").val();
+        ListaDetalles[index].Nombre = $("#InputNombre").val();
         ListaDetalles[index].ClasificacionMedioTransporteID = 1;
-        ListaDetalles[index].ClasificacionID = $("#inputClasificacion").val();
-        ListaDetalles[index].PersistenciaID = $("#inputPersistencia").val();
-        ListaDetalles[index].NumeroVecesUsoMaximo = $("#inputNumeroVeces").val();
-        ListaDetalles[index].PesoMaximo = $("#inputPesoMaximo").val();
-        ListaDetalles[index].Area = $("#inputArea").val();
+        ListaDetalles[index].ClasificacionID = 1; //$("#inputClasificacion").val();
+        ListaDetalles[index].PersistenciaID = 1; // $("#inputPersistencia").val();
+        ListaDetalles[index].NumeroVecesUsoMaximo = 0; //$("#inputNumeroVeces").val();
+        ListaDetalles[index].PesoMaximo = 0; //$("#inputPesoMaximo").val();
+        ListaDetalles[index].Area = 0; //$("#inputArea").val();
 
 
         if (!ValidarDatosNuevoCarro(ListaDetalles[index])) {
@@ -48,6 +48,8 @@ function AjaxPinturaCargaMedioTransporte() {
     $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), proyectoID: $("#inputProyecto").data("kendoComboBox").value() }).done(function (data) {
         $("#inputCarro").data("kendoComboBox").dataSource.data([]);
         $("#inputCarroBacklog").data("kendoComboBox").dataSource.data([]);
+        $("#inputCarro").data("kendoComboBox").value("");
+        $("#inputCarroBacklog").data("kendoComboBox").value("");
         if (data.length > 0) {
             data.unshift({ MedioTransporteID: -1, NombreMedioTransporte: _dictionary.PinturaCargaAgregarNuevoCarro[$("#language").data("kendoDropDownList").value()] });
 

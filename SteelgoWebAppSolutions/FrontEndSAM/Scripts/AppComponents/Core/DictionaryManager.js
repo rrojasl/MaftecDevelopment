@@ -7222,6 +7222,10 @@ _dictionary = {
         "es-MX": "El spool ya fue cargado en el carro: ",
         "en-US": "The spool is charged in the car"
     },
+    "PinturaCargaCarroMensajeErrorNombreCarro": {
+        "es-MX": "El nombre del carro es mandatorio",
+        "en-US": "The car name is mandatory"
+    },
     "menuPinturaCargaCarro": {
         "es-MX": "Carga de Carro",
         "en-US": "Load Carriage"
