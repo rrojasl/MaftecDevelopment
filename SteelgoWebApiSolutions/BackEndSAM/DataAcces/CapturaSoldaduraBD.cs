@@ -111,10 +111,7 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
                     List<Sam3_Steelgo_Get_SoldadorCertificado_Result> result = ctx.Sam3_Steelgo_Get_SoldadorCertificado(espesor,procesoSoldaduraID,diametro,proyecto,proceso).ToList();
-                    listaTrabajosAdicionalesSoldadura.Add(new SoldadorRaizCertificado {
-                        ObreroID = 0,
-                        Soldador = ""
-                    });
+                    
                     foreach (Sam3_Steelgo_Get_SoldadorCertificado_Result item in result)
                     {
                         listaTrabajosAdicionalesSoldadura.Add(new SoldadorRaizCertificado
