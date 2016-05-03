@@ -782,6 +782,45 @@ function AltaFecha() {
 
 }
 
+function desplegarNotificacion() {
+    var tipoCapturaSpool = $('input:radio[name=TipoAgregado]:checked').val() == "Listado" ? false : true;
+    var spoolIDDefinido = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) == undefined ? false : true;
+    var tipoMostrarTodos = $('input:radio[name=Muestra]:checked').val() == "Todos" ? true : false;
+    var InputIDVacio = $("#InputID").val() == "" ? true : false;
+    var InputJuntaVacia = $("#Junta").val() == "" ? true : false;
+    var JuntaDefinida = $("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined ? false : true;
+
+
+    if (InputIDVacio) {
+        displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
+    }
+    else if (InputJuntaVacia) {
+        displayNotify("CapturaSoldaduraJuntaNoCapturada", "", '1');
+    }
+    else if (!spoolIDDefinido) {
+        displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
+    }
+    else if (tipoCapturaSpool) {
+        displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
+    }
+    else if (!tipoCapturaSpool) {
+        if (JuntaDefinida) {
+            if (!tipoMostrarTodos) {
+                displayNotify("CapturaSoldaduraNoExisteLista", "", '1');
+            }
+        }
+        else if (!JuntaDefinida) {
+            if (tipoMostrarTodos) {
+                displayNotify("CapturaSoldaduraNoExisteJunta", "", '1');
+            }
+            else {
+                displayNotify("CapturaSoldaduraNoExisteLista", "", '1');
+            }
+        }
+    }
+
+}
+
 function ExisteJunta(Row) {
     var jsonGridSoldadura = $("#grid").data("kendoGrid").dataSource._data;
     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {

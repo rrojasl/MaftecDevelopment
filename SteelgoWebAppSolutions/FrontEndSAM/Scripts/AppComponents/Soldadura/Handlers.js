@@ -210,33 +210,12 @@ function suscribirEventoAgregar() {
             }
         }
         else {
-            if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "") {
-                if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
-                    $('#ButtonAgregar').prop("disabled", true);
-                    ObtenerJSonGridSoldadura();
-
-                }
-                else {
-                    if ($("#InputID").val() == "") {
-                        displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
-                    }
-                    else if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) == undefined) {
-                        displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
-                    }
-                    else if ($("#Junta").val() == "") {
-                        displayNotify("CapturaSoldaduraJuntaNoCapturada", "", '1');
-                    } else {
-                        if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Todos") {
-                            displayNotify("", 'No existe la junta en el spool', '2');
-                        }
-                        else if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Sin captura") {
-                            displayNotify("CapturaArmadoNoExisteLista", '', '1');
-                        }
-                    }
-                }
+            if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "" && $("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
+                $('#ButtonAgregar').prop("disabled", true);
+                ObtenerJSonGridSoldadura();
             }
             else
-                displayNotify("JuntaSinSeleccionar", "", '2');
+                desplegarNotificacion();
         }
     });
 }
@@ -390,27 +369,11 @@ function SuscribirEventosJunta() {
                 }
             }
             else {
-                if ($("#InputID").val() == "") {
-                    displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
-                }
-                else if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) == undefined) {
-                    displayNotify("", "CapturaSoldaduraNoExisteSpoolID", '2');
-                }
-                else if ($("#Junta").val() == "") {
-                    displayNotify("CapturaSoldaduraJuntaNoCapturada", "", '1');
-                } else {
-                    if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Todos") {
-                        displayNotify("", 'No existe la junta en el spool', '2');
-                    }
-                    else if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) == undefined && $('input:radio[name=Muestra]:checked').val() == "Sin captura") {
-                        displayNotify("CapturaArmadoNoExisteLista", '', '1');
-                    }
-                }
+                desplegarNotificacion();
             }
         }
     });
 }
-
 
 function SuscribirEventoMuestraJunta() {
 
@@ -566,12 +529,12 @@ function SuscribirEventoSpoolID() {
             }
 
             else if (tieneClase(e.currentTarget)) {
-                if($("#InputID").data("kendoComboBox").select(0) != undefined) {
+                if ($("#InputID").data("kendoComboBox").select(0) != undefined) {
                     $("#InputID").data("kendoComboBox").select(0);
                     AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                 }
+            }
         }
-    }
     });
 };
 
