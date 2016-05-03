@@ -374,6 +374,7 @@ function CargarGridPopUp() {
             }
         },
         selectable: true,
+        filterable: getGridFilterableMaftec(),
         dataBinding: function (e) {
             console.log("dataBinding");
         },
@@ -394,9 +395,9 @@ function CargarGridPopUp() {
 
         },
         columns: [
-          { field: "TrabajoAdicional", title: _dictionary.CapturaSoldaduraHeaderTrabajosAdicionalesAnidado[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px", editor: RenderComboBoxTrabajos },
-          { field: "Soldador", title: _dictionary.CapturaSoldaduraHeaderSoldador[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px", editor: RenderComboBoxSoldadorTrabajos },
-          { field: "Observacion", title: _dictionary.CapturaSoldaduraHeaderObservacion[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px" },
+          { field: "TrabajoAdicional", title: _dictionary.CapturaSoldaduraHeaderTrabajosAdicionalesAnidado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px", editor: RenderComboBoxTrabajos },
+          { field: "Soldador", title: _dictionary.CapturaSoldaduraHeaderSoldador[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px", editor: RenderComboBoxSoldadorTrabajos },
+          { field: "Observacion", title: _dictionary.CapturaSoldaduraHeaderObservacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
 
          {
              command: {
@@ -409,26 +410,73 @@ function CargarGridPopUp() {
 
                      var dataSource = this.dataSource;
 
-                     if (confirm(_dictionary.CapturaSoldaduraPreguntaBorradoCapturaTrabajoAdicional[$("#language").data("kendoDropDownList").value()])) {
-                         dataItem.Accion = 3;
-                     }
-                     var filters = dataSource.filter();
-                     var allData = dataSource.data();
-                     var query = new kendo.data.Query(allData);
-                     var data = query.filter(filters).data;
+                     windowTemplate = kendo.template($("#windowTemplate").html());
 
-                     actuallongitudTrabajosAdicionales = data.length;
-                     modeloRenglon.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+                     ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                         iframe: true,
+                         title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                         visible: false, //the window will not appear before its .open method is called
+                         width: "auto",
+                         height: "auto",
+                         modal: true,
+                         animation: {
+                             close: false,
+                             open: false
+                         }
+                     }).data("kendoWindow");
+
+                     ventanaConfirm.content(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+                                  "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+                     ventanaConfirm.open().center();
+
+                     $("#yesButton").click(function (handler) {
+
+                         dataItem.Accion = 3;
+                         var filters = dataSource.filter();
+                         var allData = dataSource.data();
+                         var query = new kendo.data.Query(allData);
+                         var data = query.filter(filters).data;
+
+                         actuallongitudTrabajosAdicionales = data.length;
+                         modeloRenglon.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+                         dataSource.sync();
+                         ventanaConfirm.close();
+                     });
+                     $("#noButton").click(function (handler) {
+                         ventanaConfirm.close();
+                     });
+                                          
                      dataSource.sync();
 
                  }
-             }, width: "100px"
-         }],
+             }, width: "40px"
+         },
+         {
+             command: {
+                 name: "",
+                 title: "",
+                 text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()],
+                 click: function (e) {
+                     var itemToClean = $("#gridPopUp").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+                     itemToClean.TrabajoAdicional = "";
+                     itemToClean.TrabajoAdicionalID = 0;
+                     itemToClean.Soldador = "";
+                     itemToClean.ObreroID = 0;
+                     itemToClean.Observacion = "";
+                     var dataSource = $("#gridPopUp").data("kendoGrid").dataSource;
+                     dataSource.sync();
+
+                 }
+             }, width: "50px"
+         }
+        ],
         editable: true,
         navigatable: true,
         toolbar: [{ name: "create", }]
 
     });
+    CustomisaGrid($("#gridPopUp"));
 };
 
 function LlenarGridPopUp(data) {
