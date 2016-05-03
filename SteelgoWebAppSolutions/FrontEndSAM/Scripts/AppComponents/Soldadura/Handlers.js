@@ -197,6 +197,17 @@ function suscribirEventoAgregar() {
                 $('#ButtonAgregar').prop("disabled", true);
                 AjaxCargarReporteJuntas();
             }
+            else {
+                if ($("#InputID").val() == "") {
+                    displayNotify("", "El spool ID no ha sido capturado", '1');
+                }
+                else
+                //    if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
+                //    displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
+                //}
+                //else
+                    displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
+            }
         }
         else {
             if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "") {
@@ -244,12 +255,12 @@ function suscribirEventoAplicar() {
             ventanaConfirm.open().center();
 
             $("#yesButton").click(function (handler) {
-                if ($("#inputTaller").val() != "")
+                if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined)
                     PlanchaTaller();
+                if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined)
+                    PlanchaColada();
                 if (endRangeDate.val() != "")
                     PlanchaFecha();
-                if ($("#inputColada").val() != "")
-                    PlanchaColada();
 
                 ventanaConfirm.close();
             });
@@ -258,12 +269,12 @@ function suscribirEventoAplicar() {
             });
         }
         else {
-            if ($("#inputTaller").val() != "")
+            if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined) 
                 PlanchaTaller();
+            if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined)
+                PlanchaColada();
             if (endRangeDate.val() != "")
                 PlanchaFecha();
-            if ($("#inputColada").val() != "")
-                PlanchaColada();
         }
     });
 }
@@ -355,9 +366,9 @@ function SuscribirEventosJunta() {
                             setTimeout(function () {
                                 button.removeAttr('disabled');
                             }, 500);
-                            
+
                             ObtenerJSonGridSoldadura();
-                            
+
                         }
                     }
                     else
@@ -368,7 +379,15 @@ function SuscribirEventosJunta() {
                 }
             }
             else
-                displayNotify("NoExisteJunta", '', '2');
+                if ($("#InputID").val() == "") {
+                    displayNotify("", "El spool ID no ha sido capturado", '1');
+                }
+                else if ($("#Junta").val() == "") {
+                    displayNotify("", "La junta no ha sido capturada", '1');
+                }else{
+                //else if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
+                    displayNotify("CapturaArmadoNoExisteLista", "", '1');
+                }
         }
     });
 }
@@ -441,26 +460,36 @@ function SuscribirEventoSpoolID() {
                     AjaxColada();
                 }
             }
-            else
-                displayNotify("NoExisteSpoolID", '', '2');
+            //else
+            //    displayNotify("NoExisteSpoolID", '', '2');
         }
     });
-
 
     $("#InputOrdenTrabajo").blur(function (e) {
 
         if ($("#InputOrdenTrabajo").val().match("^[a-zA-Z][0-9]*$")) {
             try {
-                $CapturaSoldadura.Soldadura.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-                    $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
-                    $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
-                    Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
-                });
+                var OrdenTrabajoOrigianl = $("#InputOrdenTrabajo").val();
+                if (Error) {
+                    $CapturaSoldadura.Soldadura.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+                        if (data.OrdenTrabajo != "") {
+                            $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
+                        }
+                        else {
+                            $("#InputOrdenTrabajo").val(OrdenTrabajoOrigianl);
+                            displayNotify("CapturaArmadoMensajeOrdenTrabajoNoEncontrada", "", '1');
+                        }
+
+                        $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
+                        Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
+                    });
+                }
             } catch (e) {
-                displayNotify("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '2');
+
             }
         } else {
-            displayNotify("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
+            displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '1');
             //$("#InputOrdenTrabajo").focus();
         }
     });
@@ -482,15 +511,15 @@ function SuscribirEventoSpoolID() {
         }
         else if (e.keyCode == 40)
             $("#InputID").data("kendoComboBox").select();
-        //else if (e.keyCode == 13) {
-        //    if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
-        //        if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
-        //            AjaxCargarReporteJuntas();
-        //        }
-        //    }
-        //    else
-        //        displayNotify("NoExisteSpoolID", '', '2');
-        //}
+            //else if (e.keyCode == 13) {
+            //    if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+            //        if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
+            //            AjaxCargarReporteJuntas();
+            //        }
+            //    }
+            //    else
+            //        displayNotify("NoExisteSpoolID", '', '2');
+            //}
         else if (e.keyCode == 13) {
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
@@ -500,8 +529,16 @@ function SuscribirEventoSpoolID() {
                     }
                 }
             }
-            else
-                displayNotify("NoExisteSpoolID", '', '2');
+            else {
+                if ($("#InputID").val() == "") {
+                    displayNotify("", "El spool ID no ha sido capturado", '1');
+                }else{
+                //else if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
+                    displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
+                }
+                //else
+                //    displayNotify("NoExisteSpoolID", '', '2');
+            }
         }
         else if (e.keyCode == 9) {
             if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget)) {
