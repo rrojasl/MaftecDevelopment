@@ -531,7 +531,7 @@ function LlenarGridPopUpMultiseletRelleno(options) {
                     options.RellenoDetalle = [];
                 }
 
-                if (!existe) {
+                //if (!existe) {
                     var accion = options.JuntaSoldaduraSoldadoID == undefined ? 1 : options.Accion;
                     options.RellenoDetalle.push({
                         Accion: accion,
@@ -540,12 +540,12 @@ function LlenarGridPopUpMultiseletRelleno(options) {
                         Soldador: dataItem.Soldador,
                         ObreroID: dataItem.ObreroID
                     });
-                }
-                else {
-                    displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
-                    options.Soldador = "";
-                    options.ObreroID = "";
-                }
+                //}
+                //else {
+                //    displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
+                //    options.Soldador = "";
+                //    options.ObreroID = "";
+                //}
 
 
             }
@@ -613,7 +613,7 @@ function LlenarGridPopUpMultiselet(options) {
                     options.RaizDetalle = [];
                 }
 
-                if (!existe) {
+                //if (!existe) {
                     var accion = options.JuntaSoldaduraSoldadoID == undefined ? 1 : options.Accion;
                     options.RaizDetalle.push({
                         Accion: accion,
@@ -622,12 +622,12 @@ function LlenarGridPopUpMultiselet(options) {
                         Soldador: dataItem.Soldador,
                         ObreroID: dataItem.ObreroID
                     });
-                }
-                else {
-                    displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
-                    options.Soldador = "";
-                    options.ObreroID = "";
-                }
+                //}
+                //else {
+                    //displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
+                    //options.Soldador = "";
+                    //options.ObreroID = "";
+                //}
 
 
             }
@@ -692,7 +692,7 @@ function VentanaModal() {
 function VentanaModalMultiselect() {
 
     var modalTitle = "";
-    modalTitle = _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()];
+    modalTitle = _dictionary.CapturaSoldaduraSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
     var window = $("#windowMultiselectSoldador");
     var win = window.kendoWindow({
         modal: true,
@@ -717,7 +717,7 @@ function VentanaModalMultiselect() {
 function VentanaModalMultiselectRelleno() {
 
     var modalTitle = "";
-    modalTitle = _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()];
+    modalTitle = _dictionary.CapturaSoldaduraSoldadoresRelleno[$("#language").data("kendoDropDownList").value()];
     var window = $("#windowMultiselectSoldadorRelleno");
     var win = window.kendoWindow({
         modal: true,

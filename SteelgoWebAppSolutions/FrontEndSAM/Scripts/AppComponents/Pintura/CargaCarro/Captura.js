@@ -22,6 +22,8 @@ function changeLanguageCall() {
 function IniciarBacklog() {
     $("#inputCarro").data("kendoComboBox").text("");
     $("#inputCarroBacklog").data("kendoComboBox").text("");
+    $("#inputPesoMaximo2").val('');
+    $("#inputArea2").val('');
   //  SuscribirEventos();
     CargarGridBacklog();
     AjaxCargarCamposPredeterminadosBacklog();

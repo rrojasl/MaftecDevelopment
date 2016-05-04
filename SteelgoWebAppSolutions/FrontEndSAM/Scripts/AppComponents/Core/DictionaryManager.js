@@ -8029,6 +8029,14 @@ _dictionary = {
         "es-MX": "Trabajos Adicionales",
         "en-US": "Additional Work"
     },
+    "CapturaSoldaduraSoldadoresRaiz": {
+        "es-MX": "Soldadores Raiz",
+        "en-US": "Root Welders"
+    },
+    "CapturaSoldaduraSoldadoresRelleno": {
+        "es-MX": "Soldadores Relleno",
+        "en-US": "Fill Welders"
+    },
     "CapturaRaizHeaderAdicionales": {
         "es-MX": "Soldadores Raiz",
         "en-US": "Root Welders"
