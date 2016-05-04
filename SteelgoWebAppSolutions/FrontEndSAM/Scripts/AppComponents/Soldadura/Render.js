@@ -45,11 +45,11 @@
 
 
           actuallongitudTrabajosAdicionales = data.length;
-          if (actuallongitudTrabajosAdicionales != undefined) {
-              options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+          if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined) {
+              options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraHeaderSoldador[$("#language").data("kendoDropDownList").value()];
           }
           else
-              options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraHeaderSoldador[$("#language").data("kendoDropDownList").value()];
+              options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
 
           if (ItemSeleccionadoAnidado.JuntaSoldaduraID != 0 && ItemSeleccionadoAnidado.JuntaSoldaduraID != undefined)
               ItemSeleccionadoAnidado.Accion = 2;
@@ -81,12 +81,11 @@
 
                    actuallongitudTrabajosAdicionales = data.length;
 
-                   if (actuallongitudTrabajosAdicionales != undefined) {
-                       options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+                   if (actuallongitudTrabajosAdicionales ==0 || actuallongitudTrabajosAdicionales == undefined) {
+                       options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraHeaderSoldador[$("#language").data("kendoDropDownList").value()];
                    }
                    else
-                       options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraHeaderSoldador[$("#language").data("kendoDropDownList").value()];
-
+                       options.model.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
                    dataSource.sync();
 
                }
@@ -315,6 +314,7 @@ function RenderComboBoxSoldadorTrabajos(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: ItemSeleccionado.Raiz,
@@ -380,6 +380,7 @@ function RenderComboBoxTrabajos(container, options) {
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
+                delay: 10,
                 filter: "contains",
                 autoBind: false,
                 dataSource: ItemSeleccionado.listaTrabajosAdicionalesSoldadura,
@@ -435,6 +436,7 @@ function RenderComboBoxTaller(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: ItemSeleccionado.ListaTaller,
@@ -486,6 +488,7 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
+                delay: 10,
                 filter: "contains",
                 autoBind: false,
                 dataSource: ItemSeleccionado.ListadoProcesoSoldadura,
@@ -541,6 +544,7 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
+                delay: 10,
                 filter: "contains",
                 autoBind: false,
                 dataSource: ItemSeleccionado.ListadoProcesoSoldadura,
@@ -580,6 +584,7 @@ function RenderComboBoxColada(container, options) {
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
+            delay: 10,
             filter: "contains",
             autoBind: false,
             dataSource: options.model.ListaColada,
