@@ -509,6 +509,16 @@ function SuscribirEventoSpoolID() {
                 $("#InputID").data("kendoComboBox").select(0);
                 AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
             }
+            dataItem = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select());
+            if (dataItem != undefined) {
+                if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
+                    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+                    $("#LabelProyecto").text(dataItem.Proyecto);
+                    AjaxJunta($("#InputID").val());
+                    AjaxObtenerListaTaller();
+                    AjaxColada();
+                }
+            }
         }
     });
 };
