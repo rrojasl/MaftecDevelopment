@@ -167,6 +167,24 @@ function getGridFilterableCellMaftec() {
     }
 }
 
+function getGridFilterableCellNumberMaftec() {
+    return {
+        cell: {
+            operator: "eq",
+            template: function (args) {
+                //$(args).prop('type', 'number');
+                args.css("width", "90%").addClass("general-input").keydown(function (e) {
+                    setTimeout(function () {
+                        $(e.target).trigger("change");
+                    });
+                });
+            },
+            showOperators: false
+        }
+    }
+}
+
+
 function getGridFilterableCellMaftecpopUp() {
     return {
         cell: {
