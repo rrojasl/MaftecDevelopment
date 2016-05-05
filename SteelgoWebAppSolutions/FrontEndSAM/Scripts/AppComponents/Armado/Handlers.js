@@ -470,16 +470,20 @@ function SuscribirEventoSpoolID() {
                 displayNotify("NoExisteSpoolID", '', '2');
         }
         else if (e.keyCode == 9) {
-            if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget)) {
+            if (tieneClase(e.currentTarget)) {
                 $("#InputID").data("kendoComboBox").select(0);
                 AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
             }
-
-            else if (tieneClase(e.currentTarget)) {
-                $("#InputID").data("kendoComboBox").select(0);
-                AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+            dataItem = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select());
+            if (dataItem != undefined) {
+                if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
+                    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+                    $("#LabelProyecto").text(dataItem.Proyecto);
+                    AjaxJunta($("#InputID").val());
+                    AjaxObtenerListaTubero();
+                    AjaxObtenerListaTaller();
+                }
             }
-
         }
     });
 
