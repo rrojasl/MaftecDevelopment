@@ -488,6 +488,33 @@ function AplicarAsignacionAutomaticaNumeroUnico(rowitem, textoAnterior, combobox
             }
         }
     }
+    else {
+        //if (YaExisteNUEnOtraJunta(combobox, jsonGridArmado)) {
+
+        //}
+
+        for (var i = 0; i < jsonGridArmado.length; i++) {
+            if (jsonGridArmado[i].NumeroUnico1ID == combobox.NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + rowitem.JuntaID)) {
+                    jsonGridArmado[i].NumeroUnico1 =  '';
+                    jsonGridArmado[i].NumeroUnico1ID = null;
+            }
+            else if (jsonGridArmado[i].NumeroUnico2ID == combobox.NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal+rowitem.JuntaID)) {
+                jsonGridArmado[i].NumeroUnico2 = '';
+                jsonGridArmado[i].NumeroUnico2ID = null;
+            }
+        }
+    }
+
+}
+
+function YaExisteNUEnOtraJunta(combobox, jsonGridArmado) {
+    var existe = false;
+    for (var i = 0; i < jsonGridArmado.length; i++) {
+        if (jsonGridArmado[i].NumeroUnico1ID == combo.NumeroUnicoID) {
+            jsonGridArmado[i].NumeroUnico1 = combobox.Clave;
+            jsonGridArmado[i].NumeroUnico1ID = combobox.NumeroUnicoID;
+        }
+    }
 
 }
 function DatoDefaultNumeroUnico1()
