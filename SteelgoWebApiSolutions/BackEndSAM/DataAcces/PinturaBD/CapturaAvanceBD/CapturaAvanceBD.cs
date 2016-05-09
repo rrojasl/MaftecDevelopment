@@ -166,8 +166,8 @@ namespace BackEndSAM.DataAcces.PinturaBD.CapturaAvanceBD
                             ListaShotblasteroInicial = (List<PintorSpool>)CapturaAvanceBD.Instance.ObtenerObrerosGuardados(lenguaje, item.PinturaSpoolIDShotblastero.GetValueOrDefault(), 1), 
                             plantillaPintor = pintores,
                             plantillaShotblastero = shotblasteros,
-                            ListaCuandrantes = ListaCuandrantes
-
+                            ListaCuandrantes = ListaCuandrantes,
+                            Descarga = 0
 
                         });
                         sPinturaID = item.SistemaPinturaID;

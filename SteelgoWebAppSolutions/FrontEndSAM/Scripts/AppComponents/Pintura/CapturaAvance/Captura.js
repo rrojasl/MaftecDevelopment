@@ -69,6 +69,7 @@ function CargarGrid() {
                         Color: { type: "string", editable: false },
                         FechaShotblast: { type: "date", editable: true },
                         FechaPrimario: { type: "date", editable: true },
+                        Cuadrante: { type: "string", editable: true },
                     }
                 }
             },
@@ -108,7 +109,8 @@ function CargarGrid() {
             { field: "FechaPrimario", title: _dictionary.CapturaAvanceFechaPrimario[$("#language").data("kendoDropDownList").value()], type: "date", filterable: true, width: "140px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]},
             { field: "ListaShotblasteroGuargado", title: _dictionary.CapturaAvanceShotBlastero[$("#language").data("kendoDropDownList").value()], filterable: false, editor: RendercomboBoxShotBlastero, template: "#:plantillaShotblastero#", width: "130px" },
             { field: "ListaPintorGuargado", title: _dictionary.CapturaAvancePintor[$("#language").data("kendoDropDownList").value()], filterable: false, editor: RendercomboBoxPintor, template: "#:plantillaPintor#", width: "130px" },
-            { command: { text: _dictionary.PinturaDescargaDescarga[$("#language").data("kendoDropDownList").value()], click: VentanaModalDescargarMedioTransporte }, title: _dictionary.CapturaAvanceDescargar[$("#language").data("kendoDropDownList").value()], width: "99px" }
+            { field: "Cuadrante", title: _dictionary.CapturaAvanceCuadrante[$("#language").data("kendoDropDownList").value()], filterable: false, editor: RendercomboBoxCuadrante, width: "130px" },
+            //{ command: { text: _dictionary.PinturaDescargaDescarga[$("#language").data("kendoDropDownList").value()], click: VentanaModalDescargarMedioTransporte }, title: _dictionary.CapturaAvanceDescargar[$("#language").data("kendoDropDownList").value()], width: "99px" }
 
         ]
     });
@@ -297,13 +299,38 @@ function PlanchaFechaPrimario() {
 
     for (var i = 0; i < data.length; i++) {
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            data[i].FechaPrimario = String(endRangeDatePrimario.val()).trim();
+            data[i].FechaShotblast = String(endRangeDateShotblast.val()).trim();
         }
         else {
-            if (data[i].FechaPrimario === "" || data[i].FechaPrimario === null || data[i].FechaPrimario === undefined) {
-                data[i].FechaPrimario = String(endRangeDatePrimario.val()).trim();
+            if (data[i].FechaShotblast === "" || data[i].FechaShotblast === null || data[i].FechaShotblast === undefined) {
+                data[i].FechaShotblast = String(endRangeDateShotblast.val()).trim();
             }
         }
     }
+    $("#grid").data("kendoGrid").dataSource.sync();
+}
+
+
+
+function PlanchaCuadranteDescarga() {
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    var filters = dataSource.filter();
+    var allData = dataSource.data();
+    var query = new kendo.data.Query(allData);
+    var data = query.filter(filters).data;
+
+    for (var i = 0; i < data.length; i++) {
+        if ($('input:radio[name=LLena]:checked').val() === "Todos") {
+            data[i].Cuadrante = $("#inputCuadrante1").data("kendoComboBox").text();
+            data[i].CuadranteID = $("#inputCuadrante1").data("kendoComboBox").value();
+        }
+        else {
+            if (data[i].Cuadrante === "" || data[i].Cuadrante === null || data[i].Cuadrante === undefined) {
+                data[i].Cuadrante = $("#inputCuadrante1").data("kendoComboBox").text();
+                data[i].CuadranteID = $("#inputCuadrante1").data("kendoComboBox").value();
+            }
+        }
+    }
+    
     $("#grid").data("kendoGrid").dataSource.sync();
 }

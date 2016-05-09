@@ -109,7 +109,7 @@ function AjaxCargarSpool(medioTransporteCargaID) {
 
         $("#inputComponente").data("kendoComboBox").value("");
         $("#inputComponente").data("kendoComboBox").dataSource.data(data.listaComponenteDetalle);
-
+        ds.sync();
         loadingStop();
     });
 }

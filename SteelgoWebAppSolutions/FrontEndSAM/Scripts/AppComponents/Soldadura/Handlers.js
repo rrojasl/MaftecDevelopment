@@ -62,6 +62,15 @@ function suscribirEventoSoldadoresRelleno() {
 function SuscribirEventoCancelarAdicionales() {
     $("#CancelarTrabajosAdicionales").click(function (e) {
         $("#windowGrid").data("kendoWindow").close();
+        actuallongitudTrabajosAdicionales = modeloRenglon.length;
+
+        if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
+            modeloRenglon.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+        else
+            modeloRenglon.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+
+
+        $("#grid").data("kendoGrid").dataSource.sync();
     });
 }
 

@@ -64,6 +64,9 @@ function plancharTodo() {
     if ($("#Fechaprimario").val() != "") {
         PlanchaFechaPrimario();
     }
+    if ($("#inputCuadrante1").data("kendoComboBox").dataItem($("#inputCuadrante1").data("kendoComboBox").select()) != undefined) {
+        PlanchaCuadranteDescarga();
+    }
     
 }
 
@@ -154,7 +157,7 @@ function suscribirEventoCuadrante1() {
         suggest: true,
         filter: "contains",
         change: function (e) {
-            if ($("#inputCuadrante1").data("kendoComboBox").dataItem($("#inputCuadrante").data("kendoComboBox").select()) != undefined) {
+            if ($("#inputCuadrante1").data("kendoComboBox").dataItem($("#inputCuadrante1").data("kendoComboBox").select()) != undefined) {
             }
             else {
                 $("#inputCuadrante1").data("kendoComboBox").value("");
