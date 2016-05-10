@@ -5,6 +5,14 @@ _languageOrder = {
 }
 
 _dictionary = {
+    "SpoolIDExistente":{
+        "es-MX": "El spool ya existe en la captura",
+        "en-US": "The  already exist in the capture"
+    },
+    "ResultAjaxEmpty":{
+        "es-MX": "No existe informacion",
+        "en-US": "There is no information"
+    },
     "RequisicionesAsignadasFolio": {
         "es-MX": "Folio",
         "en-US": "Folio"

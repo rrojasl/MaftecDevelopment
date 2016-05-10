@@ -468,6 +468,15 @@ function MensajesSteelGO(control,mensajeExepcionTecnico) {
         case 'ResultadoDimensional':
             displayNotify("radioResultadoDimensional", '', '2');//mensaje cuando el tipo de resultado dimensional no esta seleccionado
             break;
+        case 'ResultAjaxEmpty':
+            displayNotify("ResultAjaxEmpty", '', '1');//mensaje indicando que el result al hacer ajax no se obtuvo nada
+            break;
+        case 'SpoolIDExistente':
+            displayNotify("SpoolIDExistente", '', '1');//mensaje indicando que el result al hacer ajax no se obtuvo nada
+            break;
+        case 'LoadSuccesfull':
+            displayNotify("", _dictionary.DimensionalSpool[$("#language").data("kendoDropDownList").value()] + mensajeExepcionTecnico, '0');//mensaje indicando que el result al hacer ajax no se obtuvo nada
+            break;
 
     }
 };

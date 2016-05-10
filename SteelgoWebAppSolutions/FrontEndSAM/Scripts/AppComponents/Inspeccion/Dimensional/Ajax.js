@@ -109,7 +109,7 @@ function AjaxObtenerJSonGrid() {
         $InspeccionDimensional.InspeccionDimensional.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (data) {
             var ds = $("#grid").data("kendoGrid").dataSource;
             var array = JSON.parse(data);
-            if (array.length > 0) {
+            if (array.length > 0) {//1.- ahora solo trae un registro por spool porque en una sola llamada trae la junta.
                 for (var i = 0; i < array.length; i++) {
                     if (!ExisteSpool(array[i])) {
                         array[i].NumeroUnico1 = array[i].NumeroUnico1 == "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
@@ -118,18 +118,20 @@ function AjaxObtenerJSonGrid() {
                             array[i].FechaInspeccion = new Date(ObtenerDato(array[i].FechaInspeccion, 1), ObtenerDato(array[i].FechaInspeccion, 2), ObtenerDato(array[i].FechaInspeccion, 3));//año, mes, dia
                         }
                         ds.add(array[i]);
-
-                        displayNotify("", _dictionary.DimensionalSpool[$("#language").data("kendoDropDownList").value()] + array[i].OrdenTrabajoSpool, '0');
+                        MensajesSteelGO("", array[i].OrdenTrabajoSpool)
+                        //como trae solo un registro se sincroniza se explica en el punto del comentario 1
+                        $("#grid").data("kendoGrid").dataSource.sync();
+                        $("#InputID").data("kendoComboBox").value("");
                     }
                     else {
-
+                        MensajesSteelGO("SpoolIDExistente", '');
                     }
                 }
-                $("#grid").data("kendoGrid").dataSource.sync();
-                $("#InputID").data("kendoComboBox").value("");
+                
             }
             else {
-
+                //mensaje que no existe el spool.
+                MensajesSteelGO("ResultAjaxEmpty",'');
             }
             loadingStop();
         });
@@ -148,7 +150,7 @@ function ExisteSpool(row) {
     var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
 
     for (var i = 0; i < jsonGridArmado.length; i++) {
-        if (jsonGridArmado[i].OrdenTrabajoSpool == (row.OrdenTrabajo + '-' + row.Val )) {
+        if (jsonGridArmado[i].OrdenTrabajoSpool ==row.OrdenTrabajoSpool) {
             return true
         }
     }
