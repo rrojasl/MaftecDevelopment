@@ -31,4 +31,18 @@
         public bool Activo { get; set; }
         public int UsuarioModificacion { get; set; }
     }
+
+    public class ObreroSteelGo
+    {
+        public int ObreroID { get; set; }
+        public string Codigo { get; set; }
+        public string TipoObrero { get; set; }
+
+        public ObreroSteelGo()
+        {
+            ObreroID = 0;
+            Codigo = "";
+            TipoObrero = "";
+        }
+    }
 }

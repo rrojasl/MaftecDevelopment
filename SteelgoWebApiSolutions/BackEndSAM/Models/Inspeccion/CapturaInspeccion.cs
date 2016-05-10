@@ -61,6 +61,14 @@ namespace BackEndSAM.Models.Inspeccion
         public string Nombre { get; set; }
         public int IDDEFECTOTIPO { get; set; }
         public string TIPO { get; set; }
+
+        public Defectos()
+        {
+            DefectoID = 0;
+            Nombre = "";
+            IDDEFECTOTIPO = 0;
+            TIPO = "";
+        }
     }
     public class NumeroUnico
     {

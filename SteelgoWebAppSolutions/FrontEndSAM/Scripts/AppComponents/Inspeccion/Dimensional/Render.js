@@ -8,7 +8,7 @@
                 select: function (e) {
                 },
                 change: function (e) {
-                   // options.model.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    // options.model.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                     options.model.TemplateRender = $("#language").data("kendoDropDownList").value() == "es-MX" ? "Existen " + options.model.ListaJuntasSeleccionadas.length + " Juntas" : "There are " + options.model.ListaJuntasSeleccionadas.length + " board";
                     this.dataSource.sync();
                 },
@@ -155,7 +155,7 @@ function RenderComboBoxInspector(container, options) {
         if (!tieneClase(item)) {
             $(container).trigger(e);
         }
-    }); 
+    });
 };
 
 
@@ -194,4 +194,25 @@ function ObtenerDescCorrectaResultado(lista, ResultadoID) {
             return lista[i].Resultado;
     }
     return "";
+}
+
+function RenderDatePicker(container, options) {
+    //container  contiene las propiedades de la celda
+    //options contiene el modelo del datasource ejemplo options.model.Junta
+    var dataItem;
+    $('<input   data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoDatePicker({
+            max: new Date(),
+            change: function () {
+                var value = this.value();
+                var fecha = kendo.toString(value, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+                if (fecha == null) {
+                    options.model.FechaInspeccion = '';
+                    this.value('');
+                }
+
+                
+            }
+        });
 }

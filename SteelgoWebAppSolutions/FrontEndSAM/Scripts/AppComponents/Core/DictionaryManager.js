@@ -47,6 +47,21 @@ _dictionary = {
         "es-MX": "No existe el spool",
         "en-US": "No spool"
     },
+    "radioMostrar":
+    {
+        "es-MX": "No esta seleccionado que tipo de busqueda se realizará Sin Captura/Todos",
+        "en-US": "Not selected what type of search will be performed without capture / All"
+    },
+    "radioLLenadoMasivo":
+   {
+       "es-MX": "No esta seleccionado la opcion llenado masivo",
+       "en-US": "Not selected the massive filling option"
+   },
+    "radioResultadoDimensional":
+   {
+       "es-MX": "No esta seleccionado el tipo de resultado dimensional",
+       "en-US": "Not selected the type of dimensional result"
+   },
     "NoExistePersistencia": {
         "es-MX": "No existe la persistencia",
         "en-US": "No persistence"
@@ -7732,8 +7747,8 @@ _dictionary = {
         "en-US": "Could not save the information."
     },
     "DimensionalVisualHeaderListaJUnta": {
-        "es-MX": "Juntas",
-        "en-US": "Joint"
+        "es-MX": "Jta",
+        "en-US": "Jnt"
     },
     "DimensionalVisualHeaderJunta": {
         "es-MX": "Junta",

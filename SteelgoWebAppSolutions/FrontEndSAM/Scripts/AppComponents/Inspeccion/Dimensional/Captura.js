@@ -8,7 +8,7 @@ var anteriorlongitudTrabajosAdicionales;
 var actuallongitudTrabajosAdicionales;
 
 function IniciarCapturaInspecion() {
-    CargarFecha();
+  
     asignarProyecto();
     SuscribirEventos();
     
@@ -22,7 +22,7 @@ function IniciarPreCarga() {
     setTimeout(function () { AjaxObtenerListaInspector() }, 1000);
     setTimeout(function () { AjaxObtenerListaDefectos() }, 2000);    
 }
-
+    
 
 function changeLanguageCall() {
     CargarGrid();
@@ -43,16 +43,15 @@ function asignarProyecto() {
     $("#LabelProyecto").text('Proyecto :' + (Cookies.get('Proyecto') == undefined ? 'No hay ningun proyecto' : Cookies.get('Proyecto')));
 }
 
-function CargarFecha() {
-    endRangeDate = $("#FechaInspeccion").kendoDatePicker({
-        max: new Date()
-    });
 
-    endRangeDate.on("keydown", function (e) {
-        if (e.keyCode == 13) {
-            //PlanchaFecha();
-        }
-    });      
+
+
+function ValidarFecha(valor)
+{
+    var fecha = kendo.toString(valor, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+    if (fecha == null) {
+        $("#FechaInspeccion").data("kendoDatePicker").value('');
+    }
 }
 
 function CargarGrid() {
@@ -115,7 +114,8 @@ function CargarGrid() {
                 logic: "or",
                 filters: [
                   { field: "Accion", operator: "eq", value: 1 },
-                  { field: "Accion", operator: "eq", value: 2 }
+                  { field: "Accion", operator: "eq", value: 2 },
+                  { field: "Accion", operator: "eq", value: 4 }
                 ]
             },
             pageSize: 20,
@@ -127,26 +127,27 @@ function CargarGrid() {
         editable: true,
         autoHeight: true,
         sortable: true,
-        scrollable: false,
+        scrollable: true,
         selectable: true,
         pageable: {
             refresh: false,
             pageSizes: [10, 15, 20],
             info: false,
             input: false,
-            numeric: true,
+            numeric: true
         },
-        columns: [
-            { field: "OrdenTrabajoSpool", title: _dictionary.DimensionalVisualHeaderSpoolID[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderOptionResultado, width: "55px" },
-             { field: "Resultado", title: _dictionary.DimensionalVisualHeadeResultado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderOptionResultado, width: "55px" },
-             { field: "Defectos", title: _dictionary.DimensionalVisualHeaderDefecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxDefectos, width: "55px" },
-             { field: "Inspector", title: _dictionary.DimensionalVisualHeaderInspectorDimesional[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxInspector, width: "55px" },
-             { field: "FechaInspeccion", title: _dictionary.DimensionalVisualHeaderFechaDimesional[$("#language").data("kendoDropDownList").value()], type: "date", filterable: { cell: { showOperators: false } }, format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], width: "55px" },
-             { field: "ListaJuntasSeleccionadas", title: _dictionary.DimensionalVisualHeaderListaJUnta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderMultiSelectJuntas, template: "#:TemplateRender#", width: "55px" },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "99px" },
-            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "99px" }
-        ],
         filterable: getGridFilterableMaftec(),
+        columns: [
+            { field: "OrdenTrabajoSpool", title: _dictionary.DimensionalVisualHeaderSpoolID[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderOptionResultado, width: "50px" },
+             { field: "Resultado", title: _dictionary.DimensionalVisualHeadeResultado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderOptionResultado, width: "50px" },
+             { field: "Defectos", title: _dictionary.DimensionalVisualHeaderDefecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxDefectos, width: "50px" },
+             { field: "Inspector", title: _dictionary.DimensionalVisualHeaderInspectorDimesional[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxInspector, width: "50px" },
+             { field: "FechaInspeccion", title: _dictionary.DimensionalVisualHeaderFechaDimesional[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, editor: RenderDatePicker, format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], width: "70px" },
+             { field: "ListaJuntasSeleccionadas", title: _dictionary.DimensionalVisualHeaderListaJUnta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderMultiSelectJuntas, template: "#:TemplateRender#", width: "110px" },
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "40px" },
+            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "40px" }
+        ],
+        
         beforeEdit: function (e) {
             var columnIndex = this.cellIndex(e.container);
             var fieldName = this.thead.find("th").eq(columnIndex).data("field");
@@ -160,23 +161,35 @@ function CargarGrid() {
             $(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
         }
     });
+    CustomisaGrid($("#grid"));
 }
+
 
 function FiltroMostrar(mostrar) {
     var ds = $("#grid").data("kendoGrid").dataSource;
 
     if (mostrar == 0) {
         var curr_filters = ds.filter().filters;
-        ds.filter(curr_filters[0])
+        if (curr_filters[0].filters != undefined)
+            ds.filter(curr_filters[0].filters[0])
+        else
+            ds.filter(curr_filters[0])
         ds.sync();
     }
     else {
+
+        var curr_filters = ds.filter().filters;
+        ds.filter(curr_filters[0])
+        ds.sync();
         var filters = ds.filter();
         filters.logic = "or"
+
+        filters.filters.push({ field: "Accion", operator: "eq", value: 2 });
         filters.filters.push({ field: "Accion", operator: "eq", value: 4 });
         ds.sync();
     }
 }
+
 
 function isEditable(fieldName, model) {
     if (fieldName === "Defectos") {
@@ -311,7 +324,7 @@ function limpiarRenglon(e) {
         itemToClean.FechaInspeccion = "";
         itemToClean.InspectorID = "";
         itemToClean.Inspector = "";
-        itemToClean.ListaJuntas = [];
+        itemToClean.ListaJuntasSeleccionadas = [];
         itemToClean.Accion = 4;
         itemToClean.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
         var dataSource = $("#grid").data("kendoGrid").dataSource;
@@ -431,4 +444,52 @@ function PlanchaFecha() {
         }
     }
     $("#grid").data("kendoGrid").dataSource.sync();
+}
+
+function MensajesSteelGO(control,mensajeExepcionTecnico) {
+
+    switch (control) {
+      
+        case 'InputOrdenTrabajo':// el InputOrdenTrabajo no tiene el formato correcto.
+            displayNotify("OrdenTrabajoNoValida", "", '1');
+            break;
+        case 'Mensajes_error':
+            displayNotify("Mensajes_error", mensajeExepcionTecnico, '2');//muestra cualquier error indicando el error tecnico al usuario
+            break;
+        case 'InputID-SelectInvalid':
+            displayNotify("NoExisteSpoolID", '', '2');//mensaje indicando que el id no es valido.
+            break;
+        case 'radioMostrar':
+            displayNotify("radioMostrar", '', '2');//mensaje cuando el tipo de datos a Mostrar no se encuentre seleccionado
+            break;
+        case 'LLenadoMasivo':
+            displayNotify("radioLLenadoMasivo", '', '2');//mensaje cuando el tipo de llenado masivo no esta seleccionado
+            break;
+        case 'ResultadoDimensional':
+            displayNotify("radioResultadoDimensional", '', '2');//mensaje cuando el tipo de resultado dimensional no esta seleccionado
+            break;
+
+    }
+};
+
+function ObtenerDato(fecha, tipoDatoObtener) {
+    var cultura = $("#language").val();
+
+    switch (tipoDatoObtener) {
+        case 1://anho
+            return fecha.split('/')[2]
+            break;
+        case 2://mes
+            if (cultura = 'es-MX')
+                return fecha.split('/')[1] - 1;
+            else
+                return fecha.split('/')[0] - 1;
+            break;
+        case 3://dia
+            if (cultura = 'es-MX')
+                return fecha.split('/')[0]
+            else
+                return fecha.split('/')[1]
+            break;
+    }
 }

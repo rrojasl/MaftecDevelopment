@@ -1,8 +1,10 @@
 ﻿using BackEndSAM.DataAcces;
+using BackEndSAM.Models;
 using DatabaseManager.Sam3;
 using SecurityManager.Api.Models;
 using SecurityManager.TokenHandler;
 using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Script.Serialization;
@@ -72,7 +74,24 @@ namespace BackEndSAM.Controllers
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                return ObreroBD.Instance.ObtenerObrero(idProyecto,tipo,TipoObrero);
+                List<Sam3_Steelgo_Get_Obrero_Result>  listadoObrero= (List<Sam3_Steelgo_Get_Obrero_Result> )ObreroBD.Instance.ObtenerObrero(idProyecto,tipo,TipoObrero);
+
+
+                List<ObreroSteelGo> listaObreros = new List<ObreroSteelGo>();
+                listaObreros.Add(new ObreroSteelGo());
+
+                foreach (Sam3_Steelgo_Get_Obrero_Result item in listadoObrero)
+                {
+                    ObreroSteelGo obrero = new ObreroSteelGo
+                    {
+                        Codigo=item.Codigo,
+                        TipoObrero=item.TipoObrero,
+                        ObreroID=item.ObreroID
+                    };
+                    listaObreros.Add(obrero);
+                }
+                return listaObreros;
+
             }
             else
             {
