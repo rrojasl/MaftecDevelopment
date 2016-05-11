@@ -506,10 +506,10 @@ function AplicarAsignacionAutomaticaNumeroUnico(rowitem, textoAnterior, combobox
 
         for (var i = 0; i < jsonGridArmado.length; i++) {
             if (jsonGridArmado[i].NumeroUnico1ID == combobox.NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + rowitem.JuntaID)) {
-                    jsonGridArmado[i].NumeroUnico1 =  '';
-                    jsonGridArmado[i].NumeroUnico1ID = null;
+                jsonGridArmado[i].NumeroUnico1 = '';
+                jsonGridArmado[i].NumeroUnico1ID = null;
             }
-            else if (jsonGridArmado[i].NumeroUnico2ID == combobox.NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal+rowitem.JuntaID)) {
+            else if (jsonGridArmado[i].NumeroUnico2ID == combobox.NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + rowitem.JuntaID)) {
                 jsonGridArmado[i].NumeroUnico2 = '';
                 jsonGridArmado[i].NumeroUnico2ID = null;
             }
@@ -633,16 +633,17 @@ function PlanchaTubero() {
     var allData = dataSource.data();
     var query = new kendo.data.Query(allData);
     var data = query.filter(filters).data;
-
-    for (var i = 0; i < data.length; i++) {
-        if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            data[i].TuberoID = $("#inputTubero").val();
-            data[i].Tubero = $("#inputTubero").data("kendoComboBox").text();
-        }
-        else {
-            if (data[i].Tubero === "" || data[i].Tubero === null || data[i].Tubero === undefined) {
+    if ($("#inputTubero").data("kendoComboBox").text() != "") {
+        for (var i = 0; i < data.length; i++) {
+            if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 data[i].TuberoID = $("#inputTubero").val();
                 data[i].Tubero = $("#inputTubero").data("kendoComboBox").text();
+            }
+            else {
+                if (data[i].Tubero === "" || data[i].Tubero === null || data[i].Tubero === undefined) {
+                    data[i].TuberoID = $("#inputTubero").val();
+                    data[i].Tubero = $("#inputTubero").data("kendoComboBox").text();
+                }
             }
         }
     }
@@ -654,16 +655,18 @@ function PlanchaTaller() {
     var allData = dataSource.data();
     var query = new kendo.data.Query(allData);
     var data = query.filter(filters).data;
+    if ($("#inputTaller").data("kendoComboBox").text() != "") {
+        for (var i = 0; i < data.length; i++) {
 
-    for (var i = 0; i < data.length; i++) {
-        if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            data[i].TallerID = $("#inputTaller").val();
-            data[i].Taller = $("#inputTaller").data("kendoComboBox").text();
-        }
-        else {
-            if (data[i].Taller === "" || data[i].Taller === null || data[i].Taller === undefined) {
+            if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 data[i].TallerID = $("#inputTaller").val();
                 data[i].Taller = $("#inputTaller").data("kendoComboBox").text();
+            }
+            else {
+                if (data[i].Taller === "" || data[i].Taller === null || data[i].Taller === undefined) {
+                    data[i].TallerID = $("#inputTaller").val();
+                    data[i].Taller = $("#inputTaller").data("kendoComboBox").text();
+                }
             }
         }
     }
@@ -675,16 +678,17 @@ function PlanchaFecha() {
     var allData = dataSource.data();
     var query = new kendo.data.Query(allData);
     var data = query.filter(filters).data;
-
-    for (var i = 0; i < data.length; i++) {
-        if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            //data[i].FechaArmado = String(endRangeDate.val()).trim();
-            data[i].FechaArmado = new Date(ObtenerDato(endRangeDate.val(), 1), ObtenerDato(endRangeDate.val(), 2), ObtenerDato(endRangeDate.val(), 3));//año, mes, dia
-        }
-        else {
-            if (data[i].FechaArmado === "" || data[i].FechaArmado === null || data[i].FechaArmado === undefined) {
+    if (endRangeDate.val() != "") {
+        for (var i = 0; i < data.length; i++) {
+            if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 //data[i].FechaArmado = String(endRangeDate.val()).trim();
                 data[i].FechaArmado = new Date(ObtenerDato(endRangeDate.val(), 1), ObtenerDato(endRangeDate.val(), 2), ObtenerDato(endRangeDate.val(), 3));//año, mes, dia
+            }
+            else {
+                if (data[i].FechaArmado === "" || data[i].FechaArmado === null || data[i].FechaArmado === undefined) {
+                    //data[i].FechaArmado = String(endRangeDate.val()).trim();
+                    data[i].FechaArmado = new Date(ObtenerDato(endRangeDate.val(), 1), ObtenerDato(endRangeDate.val(), 2), ObtenerDato(endRangeDate.val(), 3));//año, mes, dia
+                }
             }
         }
     }

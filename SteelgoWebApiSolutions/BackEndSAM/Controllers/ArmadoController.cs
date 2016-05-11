@@ -239,7 +239,7 @@ namespace BackEndSAM.Controllers
         private List<Tubero> ObtenerListaTubero(List<Sam3_Steelgo_Get_Obrero_Result> listaTubero)
         {
             List<Tubero> listaTuberos = new List<Tubero>();
-            listaTuberos.Add(new Tubero { ObreroID = 0, Codigo = "" });
+            
             foreach (Sam3_Steelgo_Get_Obrero_Result item in listaTubero)
             {
                 Tubero tubero = new Tubero
@@ -254,7 +254,7 @@ namespace BackEndSAM.Controllers
         private List<Taller> ObtenerListaTaller(List<Sam3_SteelGo_Get_Taller_Result> listaTaller)
         {
             List<Taller> listaTalleres = new List<Taller>();
-            listaTalleres.Add(new Taller { Nombre = "", TallerID = 0 });
+            
 
             foreach (Sam3_SteelGo_Get_Taller_Result item in listaTaller)
             {
