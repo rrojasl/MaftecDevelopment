@@ -168,13 +168,13 @@ function AjaxGuardarPlanas(arregloCaptura) {
         loadingStart();
         $Embarque.Embarque.create(CapturaEmbarque[0], { token: Cookies.get("token")}).done(function (data) {
             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                displayMessage("EmbarqueMensajeGuardadoExitoso", "", "0");
+                displayNotify("EmbarqueMensajeGuardadoExitoso", "", "0");
                 AjaxCargarDatosChofer($("#Tracto").data("kendoComboBox").value(), $("#Chofer").data("kendoComboBox").value());
                 $("#Plana").data("kendoComboBox").value("");
             }
             else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                 mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
-                displayMessage("CapturaMensajeGuardadoErroneo", "", '1');
+                displayNotify("CapturaMensajeGuardadoErroneo", "", '1');
                 opcionHabilitarView(false, "FieldSetView");
                 
                 $("#Plana").data("kendoComboBox").setDataSource([]);
@@ -184,7 +184,7 @@ function AjaxGuardarPlanas(arregloCaptura) {
 
     }
     else {
-        displayMessage("EmbarqueMensajeAgregaPlanas", "", "1");
+        displayNotify("EmbarqueMensajeAgregaPlanas", "", "1");
         opcionHabilitarView(false, "FieldSetView");
     }
 }

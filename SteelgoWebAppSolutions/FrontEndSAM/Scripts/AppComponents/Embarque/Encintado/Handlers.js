@@ -162,11 +162,11 @@ function suscribirEventoVer() {
                 AjaxCargarDatos($("#Area").data("kendoComboBox").value(), $("#Cuadrante").data("kendoComboBox").value(), $('input:radio[name=Impreso]:checked').val(), 2, $('input:radio[name=ConCinta]:checked').val());
             }
             else {
-                displayMessage("EmbarqueMarcadoMensajeCuadrante", "", "1");
+                displayNotify("EmbarqueMarcadoMensajeCuadrante", "", "1");
             }
         }
         else {
-            displayMessage("EmbarqueMarcadoMensajeArea", "", "1");
+            displayNotify("EmbarqueMarcadoMensajeArea", "", "1");
         }
     });
 }

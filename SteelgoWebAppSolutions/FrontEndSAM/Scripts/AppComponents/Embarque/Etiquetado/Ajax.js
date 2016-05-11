@@ -114,26 +114,26 @@ function AjaxGuardarCaptura(arregloCaptura, impreso) {
             $Marcado.Marcado.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
                 loadingStop();
                 if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                    displayMessage("EmbarqueMarcadoMensajeGuardadoExitoso", "", "0");
+                    displayNotify("EmbarqueMarcadoMensajeGuardadoExitoso", "", "0");
                     if (impreso == "0") {
                         AjaxCargarDatos($("#Area").data("kendoComboBox").value(), $("#Cuadrante").data("kendoComboBox").value(), $('input:radio[name=Impreso]:checked').val(), $('input:radio[name=Captura]:checked').val(), 2);
                     }
-                    displayMessage("CapturaMensajeGuardadoExitoso", "", '1');
+                    displayNotify("CapturaMensajeGuardadoExitoso", "", '1');
                 }
                 else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                     mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
-                    displayMessage("CapturaMensajeGuardadoErroneo", "", '1');
+                    displayNotify("CapturaMensajeGuardadoErroneo", "", '1');
                     opcionHabilitarView(false, "FieldSetView");
                 }
             });
         }
         else {
-            displayMessage("EmbarqueMarcadoMensajeCapturarCinta", "", "1");
+            displayNotify("EmbarqueMarcadoMensajeCapturarCinta", "", "1");
             opcionHabilitarView(false, "FieldSetView");
         }
     }
     else {
-        displayMessage("EmbarqueMarcadoMensajeNoHayRegistrosGuardar", "", "1");
+        displayNotify("EmbarqueMarcadoMensajeNoHayRegistrosGuardar", "", "1");
         opcionHabilitarView(false, "FieldSetView");
     }
 

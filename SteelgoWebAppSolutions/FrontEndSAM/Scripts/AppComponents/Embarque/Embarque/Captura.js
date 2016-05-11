@@ -152,11 +152,11 @@ function AgregaRenglon(planaID, plana) {
             ds.add(ArregloNuevoRenglon[0]);
         }
         else {
-            displayMessage("EmbarqueMensajePlanaExistente", "", "1");
+            displayNotify("EmbarqueMensajePlanaExistente", "", "1");
         }
     }
     else {
-        displayMessage("EmbarqueMensajeMaximoDosPlanas", "", "1");
+        displayNotify("EmbarqueMensajeMaximoDosPlanas", "", "1");
     }
 }
 

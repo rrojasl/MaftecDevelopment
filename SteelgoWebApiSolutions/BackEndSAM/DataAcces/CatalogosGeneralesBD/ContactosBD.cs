@@ -1,4 +1,4 @@
-﻿using BackEndSAM.Models.Soldadura;
+﻿using BackEndSAM.Models.Embarque.CargaEmbarque;
 using DatabaseManager.Sam3;
 using SecurityManager.Api.Models;
 using System;
@@ -8,12 +8,12 @@ using System.Web;
 
 namespace BackEndSAM.DataAcces.CatalogosGeneralesBD
 {
-    public class ColadaBD
+    public class ContactosBD
     {
         private static readonly object _mutex = new object();
-        private static ColadaBD _instance;
+        private static ContactosBD _instance;
 
-        public static ColadaBD Instance
+        public static ContactosBD Instance
         {
             get
             {
@@ -21,25 +21,29 @@ namespace BackEndSAM.DataAcces.CatalogosGeneralesBD
                 {
                     if (_instance == null)
                     {
-                        _instance = new ColadaBD();
+                        _instance = new ContactosBD();
                     }
                 }
                 return _instance;
             }
         }
 
-        public object ObtenerListadoColada(int proyecto)
+        public object ObtenerListadoContactos(int proyecto)
         {
             try
             {
-                List<Colada> listaColada = new List<Colada>();
+                List<Contactos> listaColada = new List<Contactos>();
 
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_Steelgo_Get_Colada_Result> result = ctx.Sam3_Steelgo_Get_Colada(proyecto).ToList();
-                    foreach (Sam3_Steelgo_Get_Colada_Result item in result)
+                    List<Sam3_Steelgo_Get_Contactos_Result> result = ctx.Sam3_Steelgo_Get_Contactos().ToList();
+                    foreach (Sam3_Steelgo_Get_Contactos_Result item in result)
                     {
-                        listaColada.Add(new Colada());
+                        listaColada.Add(new Contactos
+                        {
+                            ContactoID = item.ContactoID,
+                            Nombre = item.Nombre
+                        });
                     }
                     return listaColada;
                 }

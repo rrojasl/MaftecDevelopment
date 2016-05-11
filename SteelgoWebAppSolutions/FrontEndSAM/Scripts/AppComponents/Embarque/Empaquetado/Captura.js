@@ -208,7 +208,7 @@ function validarExisteSpoolSeleccionadoSinPaquete() {
     var ds = $("#grid").data("kendoGrid").dataSource;
     var existe = false;
     if (ds._data.length == 0) {
-        displayMessage("EmbarqueCargaSeleccionaSpool", "", '2');
+        displayNotify("EmbarqueCargaSeleccionaSpool", "", '2');
         return true;
     }
     else {
@@ -219,7 +219,7 @@ function validarExisteSpoolSeleccionadoSinPaquete() {
             }
         }
         if (existe)
-            displayMessage("EmbarqueCargaSeTieneEmpaquetado", "", '2');
+            displayNotify("EmbarqueCargaSeTieneEmpaquetado", "", '2');
         return existe;
     }
 
@@ -254,10 +254,10 @@ function AsignarValorPaqueteASinPaquete() {
                 if (data.Folio != "error") {
 
                     AjaxCargarPaquetes();
-                    displayMessage("EmbarqueCargaCuadranteActualizado", "", '1');
+                    displayNotify("EmbarqueCargaCuadranteActualizado", "", '1');
                 }
                 else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                    displayMessage("EmbarqueCargaErrorCuadranteActualizado", "", '3');
+                    displayNotify("EmbarqueCargaErrorCuadranteActualizado", "", '3');
                 }
                 $("#grid").data("kendoGrid").dataSource.sync();
                 loadingStop();

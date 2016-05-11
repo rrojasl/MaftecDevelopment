@@ -22,7 +22,7 @@ namespace BackEndSAM.Controllers.CatalogosGenerales
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpGet]
-        public object RetornaListadoColada(int proyectoID, string token)
+        public object RetornaListadoColada(int proyectoID, string token, int proceso)
         {
             string payload = "";
             string newToken = "";
@@ -30,6 +30,27 @@ namespace BackEndSAM.Controllers.CatalogosGenerales
             if (tokenValido)
             {
                 return ColadaBD.Instance.ObtenerListadoColada(proyectoID);
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(payload);
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = false;
+                return result;
+            }
+        }
+
+        [HttpGet]
+        public object RetornaListadoContactos(int proyectoID, string token)
+        {
+            string payload = "";
+            string newToken = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                return ContactosBD.Instance.ObtenerListadoContactos(proyectoID);
             }
             else
             {

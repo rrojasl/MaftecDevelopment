@@ -40,19 +40,19 @@ function suscribirEventoModal() {
                             VentanaModalFecha(dataItem);
                         }
                         else {
-                            displayMessage("ListadoEmbarqueMensajeFaltaFolioAduana", "", "1");
+                            displayNotify("ListadoEmbarqueMensajeFaltaFolioAduana", "", "1");
                         }
                     }
                     else {
-                        displayMessage("ListadoEmbarqueMensajeFaltaSolicitudPermisos", "", "1");
+                        displayNotify("ListadoEmbarqueMensajeFaltaSolicitudPermisos", "", "1");
                     }
                 }
                 else {
-                    displayMessage("ListadoEmbarqueMensajeFaltaFolioCliente", "", "1");
+                    displayNotify("ListadoEmbarqueMensajeFaltaFolioCliente", "", "1");
                 }
         }
         else {
-            displayMessage("ListadoEmbarqueMensajePlanaEnviada", "", "1");
+            displayNotify("ListadoEmbarqueMensajePlanaEnviada", "", "1");
         }
         
     });
@@ -115,7 +115,7 @@ function suscribirEventoEnviarEmbarque() {
             $("#windowFecha").data("kendoWindow").close();
         }
         else{
-            displayMessage("", "", "1");
+            displayNotify("", "", "1");
         }
     });
 }

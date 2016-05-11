@@ -65,7 +65,7 @@ function SuscribirEventoAgregar() {
             }
         //}
         //else {
-        //    displayMessage("EmbarqueCargaErrorAgregar", "", '1');
+        //    displayNotify("EmbarqueCargaErrorAgregar", "", '1');
         //}
     });
 }
@@ -107,7 +107,7 @@ function SuscribirEventoSpoolID() {
             if (dataItem.Status != "1") {
                 e.preventDefault();
                 $("#InputID").val("");
-                displayMessage("Mensajes_error", dataItem.Status, '1');
+                displayNotify("Mensajes_error", dataItem.Status, '1');
 
             }
             else {
@@ -145,10 +145,10 @@ function SuscribirEventoSpoolID() {
             try {
                 AjaxObtenerSpoolID();
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaArmadoMensajeOrdenTrabajo", "", '2');
+            displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '2');
 
         }
     });
@@ -177,7 +177,7 @@ function SuscribirEventoSpoolID() {
                 }
             //}
             //else {
-            //    displayMessage("EmbarqueCargaErrorAgregar", "", '1');
+            //    displayNotify("EmbarqueCargaErrorAgregar", "", '1');
             //}
         }
 
@@ -291,7 +291,7 @@ function SuscribirEventoAgregarPaquete() {
         }
         else {
             //  alert('no hay nada seleccionado');
-            displayMessage("EmbarqueCargaSeAgregaPaquete", "", '2');
+            displayNotify("EmbarqueCargaSeAgregaPaquete", "", '2');
         }
     });
 
@@ -308,7 +308,7 @@ function SuscribirEventoAgregarPaquete() {
         }
         else {
             //  alert('no hay nada seleccionado');
-            displayMessage("EmbarqueCargaSeAgregaPaquete", "", '2');
+            displayNotify("EmbarqueCargaSeAgregaPaquete", "", '2');
         }
     });
 }
@@ -375,7 +375,7 @@ function SuscribirEventoGuardar() {
 
             }
             else {
-                displayMessage("", "", '1');
+                displayNotify("", "", '1');
                 existe = true;
                 return existe;
             }
