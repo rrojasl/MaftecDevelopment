@@ -170,6 +170,7 @@ function ObtenerJSonGridArmado() {
 }
 
 function AjaxEjecutarGuardado(rows, tipoGuardar) {
+    loadingStart();
     $CapturaArmado.Armado.create(rows, { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
 
         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {

@@ -6918,11 +6918,20 @@ _dictionary = {
         "es-MX": "La sesion ha expirado, se redicciona a Home",
         "en-US": "The session is finished, will redirect to Home"
     },
-
+    
     "botonBuscar": {
         "es-MX": "Buscar",
         "en-US": "Find"
     },
+    "tituloEliminar": {
+        "es-MX": "ELM",
+        "en-US": "DEL"
+    },
+    "tituloLimpiar": {
+        "es-MX": "LMP",
+        "en-US": "CLN"
+    },
+
     "botonEdtar": {
         "es-MX": "Editar",
         "en-US": "Edit"
