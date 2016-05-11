@@ -106,6 +106,7 @@ function RenderComboBoxTubero(container, options) {
             }
         }
         );
+    
     $(".k-combobox").on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
