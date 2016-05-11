@@ -183,7 +183,7 @@ function CargarGrid() {
                   { field: "Accion", operator: "eq", value: 4 }
                 ]
             },
-            pageSize: 20,
+            pageSize: 50,
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false
@@ -196,7 +196,7 @@ function CargarGrid() {
         selectable: true,
         pageable: {
             refresh: false,
-            pageSizes: [10, 15, 20],
+            pageSizes: [50,100],
             info: false,
             input: false,
             numeric: true
