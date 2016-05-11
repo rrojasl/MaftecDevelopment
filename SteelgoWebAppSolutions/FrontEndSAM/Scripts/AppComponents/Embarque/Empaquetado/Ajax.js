@@ -114,7 +114,7 @@ function AjaxAgregarCarga() {
                             ds.add(array[i]);
                         }
                         else
-                            displayMessage("EmbarqueCargaInformacionExistente", "", '2');
+                            displayNotify("EmbarqueCargaInformacionExistente", "", '2');
                     }
 
                     var piezas = String(ds._data.length);
@@ -127,12 +127,12 @@ function AjaxAgregarCarga() {
                     $("#lblEmbarqueEmpaquetadoToneladasCargadas").text(textoToneladasCargadas);
                 }
                 else {
-                    displayMessage("", data[0].Mensaje, '2');
+                    displayNotify("", data[0].Mensaje, '2');
                 }
             }
         }
         else {
-            displayMessage("", "El spool ya esta empaquetado en: " + data[0].Paquete, '2');
+            displayNotify("", "El spool ya esta empaquetado en: " + data[0].Paquete, '2');
         }
         loadingStop();
     });
@@ -156,7 +156,7 @@ function ajaxCargarSpoolXPlaca() {
                 ds.add(array[i]);
             }
             else
-                displayMessage("EmbarqueCargaInformacionExistente", "", '2');
+                displayNotify("EmbarqueCargaInformacionExistente", "", '2');
         }
 
         var piezas = String(ds._data.length);
@@ -231,7 +231,7 @@ function ajaxGuardar(arregloCaptura, accion, paqueteID, tipoGuardar) {
 
                 if (tipoGuardar == 1) {
                     Limpiar();
-                    displayMessage("EmbarqueCargaCrearPaquete", "", '1');
+                    displayNotify("EmbarqueCargaCrearPaquete", "", '1');
                 }
                 else if (tipoGuardar == 0) {
                     opcionHabilitarView(true, "FieldSetView");
@@ -245,17 +245,17 @@ function ajaxGuardar(arregloCaptura, accion, paqueteID, tipoGuardar) {
                     }
                     AjaxCargarPaquetes();
                     $("#grid").data("kendoGrid").dataSource.sync();
-                    displayMessage("EmbarqueCargaCrearPaquete", "", '1');
+                    displayNotify("EmbarqueCargaCrearPaquete", "", '1');
                 }
                 else {//actualizo el cuadrante
-                        displayMessage("EmbarqueCargaCuadranteActualizado", "", '1');
+                        displayNotify("EmbarqueCargaCuadranteActualizado", "", '1');
                 }
                 
 
                 
             }
             else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                displayMessage("EmbarqueCargaErrorCrearPaquete", "", '3');
+                displayNotify("EmbarqueCargaErrorCrearPaquete", "", '3');
             }
 
             $("#grid").data("kendoGrid").dataSource.sync();
@@ -265,7 +265,7 @@ function ajaxGuardar(arregloCaptura, accion, paqueteID, tipoGuardar) {
 
     } catch (e) {
         loadingStop();
-        displayMessage("Mensajes_error", e.message, '0');
+        displayNotify("Mensajes_error", e.message, '0');
 
     }
 };

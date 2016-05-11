@@ -28,16 +28,16 @@ function suscribirEventoGuardar() {
                     }
             }
             else {
-                displayMessage("", "Debe seleccionar un Destino", "1");
+                displayNotify("", "Debe seleccionar un Destino", "1");
             }
             }
             else {
-                displayMessage("", "Debe seleccionar un Chofer", "1");
+                displayNotify("", "Debe seleccionar un Chofer", "1");
             }
         }
         else {
 
-            displayMessage("", "Debe seleccionar un tracto", "1");
+            displayNotify("", "Debe seleccionar un tracto", "1");
         }
     });
 }

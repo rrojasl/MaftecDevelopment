@@ -55,7 +55,7 @@ function AjaxGuardarPlanas(ObjetoRenglon) {
                     loadingStart();
                     $ListadoEmbarque.ListadoEmbarque.create(CapturaListadoEmbarque[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
                         loadingStop();
-                        displayMessage("EmbarqueMensajeGuardadoExitoso", "", "0");
+                        displayNotify("EmbarqueMensajeGuardadoExitoso", "", "0");
                     });
 
                  

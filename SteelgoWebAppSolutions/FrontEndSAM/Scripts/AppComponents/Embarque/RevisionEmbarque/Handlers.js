@@ -166,7 +166,7 @@ function SuscribirEventoSpoolID() {
             if (dataItem.Status != "1") {
                 e.preventDefault();
                 $("#InputID").val("");
-                displayMessage("Mensajes_error", dataItem.Status, '1');
+                displayNotify("Mensajes_error", dataItem.Status, '1');
 
             }
             else {
@@ -196,10 +196,10 @@ function SuscribirEventoSpoolID() {
             try {
                 AjaxObtenerSpoolID();
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaArmadoMensajeOrdenTrabajo", "", '2');
+            displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '2');
             $("#InputOrdenTrabajo").focus();
         }
     });

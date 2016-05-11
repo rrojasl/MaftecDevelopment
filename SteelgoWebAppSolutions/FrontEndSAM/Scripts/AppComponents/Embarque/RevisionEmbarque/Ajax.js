@@ -98,7 +98,7 @@ function AjaxAgregarCarga() {
                 ds.add(array[i]);
             }
             else
-                displayMessage("EmbarqueCargaInformacionExistente", "", '2');
+                displayNotify("EmbarqueCargaInformacionExistente", "", '2');
         }
 
         loadingStop();
@@ -139,11 +139,11 @@ function ajaxGuardar(arregloCaptura) {
 
             $RevisionEmbarque.RevisionEmbarque.update(Captura[0], { token: Cookies.get("token") }).done(function (data) {
                 if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                    displayMessage("EmbarqueRevisionGuardar", "", '1');
+                    displayNotify("EmbarqueRevisionGuardar", "", '1');
                     ajaxBuscar();
                 }
                 else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                    displayMessage("EmbarqueRevisionErrorGuardar", "", '2');
+                    displayNotify("EmbarqueRevisionErrorGuardar", "", '2');
                     opcionHabilitarView(false, "FieldSetView")
                 }
                 $("#grid").data("kendoGrid").dataSource.sync();
@@ -153,12 +153,12 @@ function ajaxGuardar(arregloCaptura) {
             return true;
         }
         else {
-            displayMessage("EmbarqueRevisionNoSeleccionaOpcion", "", '2');
+            displayNotify("EmbarqueRevisionNoSeleccionaOpcion", "", '2');
             loadingStop();
         }
     } catch (e) {
         loadingStop();
-        displayMessage("Mensajes_error", e.message, '0');
+        displayNotify("Mensajes_error", e.message, '0');
     }
 }
 

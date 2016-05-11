@@ -23,7 +23,6 @@ namespace BackEndSAM.Models.Embarque.CargaEmbarque
         public string Folio { get; set; }
     }
 
-   
 
     public class DetalleCargaCaptura
     {
@@ -64,5 +63,11 @@ namespace BackEndSAM.Models.Embarque.CargaEmbarque
         public int EmbarquePaqueteID { get; set; }
 
         public string Folio { get; set; }
+    }
+
+    public class Contactos
+    {
+        public string Nombre { get; set; }
+        public int ContactoID { get; set; }
     }
 }
