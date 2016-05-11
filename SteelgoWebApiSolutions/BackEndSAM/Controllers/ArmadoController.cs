@@ -6,6 +6,7 @@ using SecurityManager.TokenHandler;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -223,7 +224,7 @@ namespace BackEndSAM.Controllers
 
 
 
-                return serializer.Serialize(listaDetalleDatos);
+                return serializer.Serialize(listaDetalleDatos.OrderByDescending(x => int.Parse(x.Junta)));
 
             }
             else

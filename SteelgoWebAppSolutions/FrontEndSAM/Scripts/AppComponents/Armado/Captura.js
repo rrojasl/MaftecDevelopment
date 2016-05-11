@@ -183,7 +183,7 @@ function CargarGrid() {
                   { field: "Accion", operator: "eq", value: 4 }
                 ]
             },
-            pageSize: 20,
+            pageSize: 50,
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false
@@ -196,7 +196,7 @@ function CargarGrid() {
         selectable: true,
         pageable: {
             refresh: false,
-            pageSizes: [10, 15, 20],
+            pageSizes: [50,100],
             info: false,
             input: false,
             numeric: true
@@ -214,8 +214,8 @@ function CargarGrid() {
             { field: "NumeroUnico1", title: _dictionary.CapturaArmadoHeaderNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico1, width: "100px" },
             { field: "NumeroUnico2", title: _dictionary.CapturaArmadoHeaderNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico2, width: "100px" },
             { field: "InformacionDetalle", title: _dictionary.CapturaArmadoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "115px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TemplateMensajeTrabajosAdicionales#</span></a>" },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "50px" },
-            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "50px" }
+            { command: {title: "DEL", text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "50px" },
+            { command: {title: "LIM", text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "50px" }
         ],
 
     });
