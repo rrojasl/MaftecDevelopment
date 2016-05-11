@@ -94,19 +94,30 @@ namespace BackEndSAM.Models.Armado
 
     }
 
-   
+
 
     public class Taller
     {
         public int TallerID { get; set; }
-
         public string Nombre { get; set; }
+
+        public Taller()
+        {
+            TallerID = 0;
+            Nombre = "";
+        }
     }
 
     public class Tubero
     {
         public int ObreroID { get; set; }
         public string Codigo { get; set; }
+
+        public Tubero()
+        {
+            ObreroID = 0;
+            Codigo = "";
+        }
     }
 
     public class NumeroUnico
@@ -167,14 +178,14 @@ namespace BackEndSAM.Models.Armado
         public string FechaReporte { get; set; }
 
         public List<DetalleGuardarTrabajoAdicional> ListaDetalleTrabajoAdicional { get; set; }
-        
 
-        
+
+
     }
 
     public class DetalleGuardarTrabajoAdicional
     {
-        
+
         public int Accion { get; set; }
         public string JuntaID { get; set; }
         public int ArmadoTrabajoAdicionalID { get; set; }

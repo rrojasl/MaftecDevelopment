@@ -19,13 +19,24 @@ function asignarProyecto() {
 }
 function AltaFecha() {
     endRangeDate = $("#FechaArmado").kendoDatePicker({
-        max: new Date()
+        max: new Date(),
+        change: function (e) {
+            ValidarFecha(e.sender._value)
+        }
     });
 
     endRangeDate.on("keydown", function (e) {
         if (e.keyCode == 13) {
             //PlanchaFecha();
         }
+        //return false;
+        if (e.keyCode == 9) {
+            ValidarFecha($("#FechaArmado").data("kendoDatePicker").value());
+        }
+    });
+
+    $("#FechaArmado").blur(function (e) {
+        ValidarFecha($("#FechaArmado").data("kendoDatePicker").value());
     });
 
 }
@@ -765,3 +776,41 @@ function ArregloListadoJuntasCapturadas() {
     }
     return JsonCaptura;
 }
+
+
+function ValidarFecha(valor) {
+    var fecha = kendo.toString(valor, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+    if (fecha == null) {
+        $("#FechaArmado").data("kendoDatePicker").value('');
+    }
+}
+
+
+function MensajesSteelGO(control, mensajeExepcionTecnico) {
+
+    switch (control) {
+
+        case 'InputOrdenTrabajo':// el InputOrdenTrabajo no tiene el formato correcto.
+            displayNotify("OrdenTrabajoNoValida", "", '1');
+            break;
+        case 'Mensajes_error':
+            displayNotify("Mensajes_error", mensajeExepcionTecnico, '2');//muestra cualquier error indicando el error tecnico al usuario
+            break;
+        case 'InputID-SelectInvalid':
+            displayNotify("NoExisteSpoolID", '', '2');//mensaje indicando que el id no es valido.
+            break;
+        case 'radioMostrar':
+            displayNotify("radioMostrar", '', '2');//mensaje cuando el tipo de datos a Mostrar no se encuentre seleccionado
+            break;
+        case 'LLenadoMasivo':
+            displayNotify("radioLLenadoMasivo", '', '2');//mensaje cuando el tipo de llenado masivo no esta seleccionado
+            break;
+        case 'ResultadoDimensional':
+            displayNotify("radioResultadoDimensional", '', '2');//mensaje cuando el tipo de resultado dimensional no esta seleccionado
+            break;
+        case 'radioTipoAgregado':
+            displayNotify("radioTipoAgregado", '', '2');//mensaje cuando el tipo de resultado dimensional no esta seleccionado
+            break;
+
+    }
+};

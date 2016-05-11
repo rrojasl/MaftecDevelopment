@@ -60,6 +60,11 @@ _dictionary = {
         "es-MX": "No esta seleccionado que tipo de busqueda se realizará Sin Captura/Todos",
         "en-US": "Not selected what type of search will be performed without capture / All"
     },
+    "radioTipoAgregado":
+    {
+        "es-MX": "No esta seleccionado que tipo de agregado (spool o junta)",
+        "en-US": "Not selected what type of aggregate (spool or join)"
+    },
     "radioLLenadoMasivo":
    {
        "es-MX": "No esta seleccionado la opcion llenado masivo",

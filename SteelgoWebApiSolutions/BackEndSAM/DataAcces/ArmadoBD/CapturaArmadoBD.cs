@@ -226,8 +226,24 @@ namespace BackEndSAM.DataAcces.ArmadoBD
             {
                 using (SamContext ctx = new SamContext())
                 {
+                    List<Sam3_Steelgo_Get_Obrero_Result> result = new List<Sam3_Steelgo_Get_Obrero_Result>();
+                    result.Add(new Sam3_Steelgo_Get_Obrero_Result
+                    {
+                        Codigo = "",
+                        ObreroID = 0,
+                        TipoObrero = ""
+                    });
                     List<Sam3_Steelgo_Get_Obrero_Result> lista = ctx.Sam3_Steelgo_Get_Obrero(tipo, "Tubero", idProyecto,null).ToList();
-                    return lista;
+                    foreach(Sam3_Steelgo_Get_Obrero_Result item in lista)
+                    {
+                        result.Add(new Sam3_Steelgo_Get_Obrero_Result
+                        {
+                            Codigo = item.Codigo,
+                            ObreroID = item.ObreroID,
+                            TipoObrero = item.TipoObrero
+                        });
+                    }
+                    return result;
                 }
             }
             catch (Exception ex)
@@ -247,8 +263,22 @@ namespace BackEndSAM.DataAcces.ArmadoBD
             {
                 using (SamContext ctx = new SamContext())
                 {
+                    List<Sam3_SteelGo_Get_Taller_Result> result = new List<Sam3_SteelGo_Get_Taller_Result>();
+                    result.Add(new Sam3_SteelGo_Get_Taller_Result
+                    {
+                        TallerID = 0,
+                        Nombre = ""
+                    });
                     List<Sam3_SteelGo_Get_Taller_Result> lista = ctx.Sam3_SteelGo_Get_Taller(idProyecto).ToList();
-                    return lista;
+                    foreach(Sam3_SteelGo_Get_Taller_Result item in lista)
+                    {
+                        result.Add(new Sam3_SteelGo_Get_Taller_Result
+                        {
+                            Nombre = item.Nombre,
+                            TallerID = item.TallerID
+                        });
+                    }
+                    return result;
                 }
             }
             catch (Exception ex)

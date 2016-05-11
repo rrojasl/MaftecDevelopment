@@ -17,7 +17,7 @@ function AjaxJuntaModoSpool(spoolID) {
         if (Error(data)) {
             $("#Junta").data("kendoComboBox").value("");
             $("#Junta").data("kendoComboBox").dataSource.data(data);
-            
+
             loadingStop();
             AjaxCargarReporteJuntas();
         }
@@ -90,7 +90,7 @@ function ObtenerJSonGridArmado() {
                         array.splice(x, 1);
                     }
                 }
-            
+
                 if (ExisteJunta(array[0])) {
                     // Proceso validar accion
                     for (var i = 0; i < ds._data.length; i++) {
@@ -162,7 +162,7 @@ function ObtenerJSonGridArmado() {
             loadingStop();
         });
         $('#ButtonAgregar').prop("disabled", false);
-      
+
     } catch (e) {
         displayNotify("Mensajes_error", e.message, '1');
         $('#ButtonAgregar').prop("disabled", false);
@@ -253,7 +253,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                        ListaDetalles[index].TuberoID == "" ||
                        ListaDetalles[index].TuberoID == "0" ||
                        ListaDetalles[index].FechaArmado == ""
-                    ) && ( ListaDetalles[index].Accion != 3 && ListaDetalles[index].Accion != 4)
+                    ) && (ListaDetalles[index].Accion != 3 && ListaDetalles[index].Accion != 4)
                    ) {
                     if (ListaDetalles[index].Accion == 2) {
                         ListaDetalles[index].Accion = 4;
@@ -261,7 +261,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                     else {
                         ListaDetalles[index].Estatus = 0;
                     }
-                    
+
                 }
             } catch (e) {
                 loadingStop();
@@ -509,7 +509,7 @@ function AjaxCargarReporteJuntas() {
                 }
                 $("#grid").data("kendoGrid").dataSource.sync();
 
-              
+
                 $("#InputID").data("kendoComboBox").value("");
 
 
@@ -524,7 +524,7 @@ function AjaxCargarReporteJuntas() {
                 loadingStop();
 
             }
-           
+
         });
 
     } else {

@@ -75,9 +75,7 @@ function CargarGridCapturaAvanceIntAcabado() {
             serverSorting: false
         },
         navigatable: true,
-        filterable: {
-            extra: false
-        },
+        filterable: getGridFilterableMaftec(),
         editable: true,
         autoHeight: true,
         sortable: true,
@@ -90,13 +88,13 @@ function CargarGridCapturaAvanceIntAcabado() {
             numeric: true,
         },
         columns: [
-            { field: "Spool", title: _dictionary.CapturaAvanceIntAcabadoHeaderSpool[$("#language").data("kendoDropDownList").value()], width:"90px", filterable: true },
-            { field: "SistemaPintura", title: _dictionary.CapturaAvanceIntAcabadoHeaderSistemaPintura[$("#language").data("kendoDropDownList").value()], width: "90px", filterable: true, editor: RenderComboboxSistemaPintura },
-            { field: "Color", title: _dictionary.CapturaAvanceIntAcabadoHeaderColor[$("#language").data("kendoDropDownList").value()], filterable: true, width: "90px", editor: RenderComboBoxColor },
-            { field: "MetrosCuadrados", title: _dictionary.CapturaAvanceIntAcabadoHeaderMetros2[$("#language").data("kendoDropDownList").value()], width: "100px", filterable: true },
-            { field: "Lote", title: _dictionary.CapturaAvanceIntAcabadoHeaderLote[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px", editor: RenderComboBoxLote },
-            { field: "Componente", title: _dictionary.CapturaAvanceIntAcabadoHeaderPinturaComponenteComposicion[$("#language").data("kendoDropDownList").value()], width: "120px", filterable: true, editor: RenderComboBoxPinturaComponenteComposicion },
-            { field: "FechaPintura", title: _dictionary.CapturaAvanceIntAcabadoHeaderFechaPintura[$("#language").data("kendoDropDownList").value()], width: "90px", filterable: true, width: "130px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
+            { field: "Spool", title: _dictionary.CapturaAvanceIntAcabadoHeaderSpool[$("#language").data("kendoDropDownList").value()], width: "90px", filterable: getGridFilterableCellMaftec() },
+            { field: "SistemaPintura", title: _dictionary.CapturaAvanceIntAcabadoHeaderSistemaPintura[$("#language").data("kendoDropDownList").value()], width: "90px", filterable: getGridFilterableCellMaftec(), editor: RenderComboboxSistemaPintura },
+            { field: "Color", title: _dictionary.CapturaAvanceIntAcabadoHeaderColor[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "90px", editor: RenderComboBoxColor },
+            { field: "MetrosCuadrados", title: _dictionary.CapturaAvanceIntAcabadoHeaderMetros2[$("#language").data("kendoDropDownList").value()], width: "100px", filterable: getGridFilterableCellNumberMaftec() },
+            { field: "Lote", title: _dictionary.CapturaAvanceIntAcabadoHeaderLote[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px", editor: RenderComboBoxLote },
+            { field: "Componente", title: _dictionary.CapturaAvanceIntAcabadoHeaderPinturaComponenteComposicion[$("#language").data("kendoDropDownList").value()], width: "120px", filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxPinturaComponenteComposicion },
+            { field: "FechaPintura", title: _dictionary.CapturaAvanceIntAcabadoHeaderFechaPintura[$("#language").data("kendoDropDownList").value()], width: "90px", filterable: { cell: { showOperators: false } }, width: "130px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "ListaDetallePintoresPorSpool", title: _dictionary.CapturaAvanceIntAcabadoPintores[$("#language").data("kendoDropDownList").value()], width: "120px", filterable: false, editor: RenderMultiselectPintores, template: "#:TemplatePintoresPorSpool#" },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: "", width: "99px" }
         ]
