@@ -235,7 +235,8 @@ function limpiarRenglon(e) {
         itemToClean.NumeroUnico2ID = 0;
         itemToClean.Tubero = "";
         itemToClean.TuberoID = 0;
-        itemToClean.Accion = 4;
+        if (itemToClean.Accion == 2)
+            itemToClean.Accion = 4;
         itemToClean.ListaDetalleTrabajoAdicional = [];
         itemToClean.TemplateMensajeTrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
         var dataSource = $("#grid").data("kendoGrid").dataSource;

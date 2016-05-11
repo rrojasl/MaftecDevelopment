@@ -260,6 +260,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                     }
                     else {
                         ListaDetalles[index].Estatus = 0;
+                        $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                     }
 
                 }
@@ -303,7 +304,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
             ventanaConfirm.open().center();
 
 
-            RowEmpty($("#grid"));
+            //RowEmpty($("#grid"));
 
             $("#yesButton").click(function () {
                 loadingStart();
