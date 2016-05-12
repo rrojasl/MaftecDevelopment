@@ -162,6 +162,7 @@ function ObtenerJSonGridArmado() {
             loadingStop();
         });
         $('#ButtonAgregar').prop("disabled", false);
+        $(".botonAdicionales").parent().css('background-color', 'red');
 
     } catch (e) {
         displayNotify("Mensajes_error", e.message, '1');
@@ -536,8 +537,10 @@ function AjaxCargarReporteJuntas() {
             displayNotify("CapturaArmadoNoTieneJuntas", "", "2");
         }
     }
-
+    $(".botonAdicionales").parent().css('background-color', 'red');
     $('#ButtonAgregar').prop("disabled", false);
+    
+    
 
 }
 
@@ -581,7 +584,7 @@ function AjaxCambiarAccionAModificacion() {
                         array[i].FechaArmado = kendo.toString(array[i].FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
                         array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
                     }
-                    ds.add(array[i]);
+                    ds.insert(array[i],0);
                 }
             }
             loadingStop();

@@ -237,7 +237,8 @@ function suscribirEventoAgregar() {
                         AjaxCargarReporteJuntas();
 
                     }
-
+                    else
+                        displayNotify("NoExisteSpoolID", '', '2');
                 }
                 else {
                     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "") {
@@ -444,8 +445,7 @@ function SuscribirEventoSpoolID() {
                 AjaxObtenerListaTubero();
                 AjaxObtenerListaTaller();
             }
-            else
-                displayNotify("NoExisteSpoolID", '', '2');
+            
         }
     });
 
@@ -522,6 +522,22 @@ function SuscribirEventoSpoolID() {
                     AjaxObtenerListaTaller();
                 }
             }
+        }
+    });
+
+    $('#InputID').blur(function (e) {
+        var spoollIDValue = $("#InputID").val();
+        var listaSpoolID = $("#InputID").data("kendoComboBox").dataSource._data;
+        if (listaSpoolID.length > 0) {
+            for (var i = 0; i < listaSpoolID.length; i++) {
+                var idvalSpoolID = listaSpoolID[i].IDValido + '';
+                if (idvalSpoolID.indexOf(spoollIDValue) > 0) {
+                    $("#InputID").data("kendoComboBox").select(0);
+                    AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                    break;
+                }
+            }
+            
         }
     });
 
