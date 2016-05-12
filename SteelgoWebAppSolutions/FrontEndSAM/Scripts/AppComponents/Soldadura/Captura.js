@@ -307,8 +307,8 @@ function CargarGridSoldadura() {
             { field: "Raiz", title: _dictionary.CapturaRaizHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<a href='\\#' class='botonSoldadoresRaiz' > <span>#=SoldadoresRaiz#</span></a>" },
             { field: "Relleno", title: _dictionary.CapturaRellenoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<a href='\\#' class='botonSoldadoresRelleno' > <span>#=SoldadoresRelleno#</span></a>" },
             { field: "DetalleAdicional", title: _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<a href='\\#' class='botonAdicionales' > <span>#=TrabajosAdicionales#</span></a>" },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, filterable: false, title: "", width: "50px" },
-            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, filterable: false, title: "", width: "60px" }
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, filterable: false, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
+            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, filterable: false, title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()], width: "60px" }
         ],
         dataBound: function (e) {
             //$(".k-grid input.k-textbox").prop('readonly', true);
@@ -463,7 +463,7 @@ function CargarGridPopUp() {
                      dataSource.sync();
 
                  }
-             }, width: "40px"
+             }, width: "40px", title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()]
          },
          {
              command: {
@@ -481,7 +481,7 @@ function CargarGridPopUp() {
                      dataSource.sync();
 
                  }
-             }, width: "50px"
+             }, width: "50px", title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()]
          }
         ],
         editable: true,
