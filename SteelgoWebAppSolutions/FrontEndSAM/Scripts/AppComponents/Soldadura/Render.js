@@ -355,11 +355,13 @@ function RenderComboBoxSoldadorTrabajos(container, options) {
             }
         }
         );
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
     loadingStop();
@@ -411,11 +413,13 @@ function RenderComboBoxTrabajos(container, options) {
                 }
             }
             );
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
     loadingStop();
@@ -462,11 +466,13 @@ function RenderComboBoxTaller(container, options) {
             }
         }
         );
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
     loadingStop();
@@ -512,11 +518,13 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
                 }
             }
             );
-        $(".k-combobox").on('mouseleave', function (send) {
+        $(".k-combobox").parent().on('mouseleave', function (send) {
             var e = $.Event("keydown", { keyCode: 27 });
-            var item = this;
-            if (!tieneClase(item)) {
-                $(container).trigger(e);
+            var item = $(this).find(".k-combobox")[0];
+            if (item != undefined) {
+                if (!tieneClase(item)) {
+                    $(container).trigger(e);
+                }
             }
         });
 
@@ -564,11 +572,13 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
                 }
             }
             );
-        $(".k-combobox").on('mouseleave', function (send) {
+        $(".k-combobox").parent().on('mouseleave', function (send) {
             var e = $.Event("keydown", { keyCode: 27 });
-            var item = this;
-            if (!tieneClase(item)) {
-                $(container).trigger(e);
+            var item = $(this).find(".k-combobox")[0];
+            if (item != undefined) {
+                if (!tieneClase(item)) {
+                    $(container).trigger(e);
+                }
             }
         });
     }
@@ -609,11 +619,13 @@ function RenderComboBoxColada(container, options) {
             }
         }
         );
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
     loadingStop();
