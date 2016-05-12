@@ -304,8 +304,8 @@ function CargarGridPopUp() {
 
         },
         columns: [
-          { field: "TrabajoAdicional", title: 'Trabajo', editor: RenderComboBoxTrabajoAdicional, filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
-          { field: "Observacion", title: 'Observacion', filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
+          { field: "TrabajoAdicional", title: _dictionary.CapturaArmadoHeaderTrabajo[$("#language").data("kendoDropDownList").value()], editor: RenderComboBoxTrabajoAdicional, filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
+          { field: "Observacion", title: _dictionary.CapturaArmadoHeaderObservacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
           {
               command: {
                   name: "",
@@ -368,7 +368,7 @@ function CargarGridPopUp() {
 
 
                   }
-              }, width: "50px"
+              }, width: "50px", title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()]
           },
           {
               command: {
@@ -384,7 +384,7 @@ function CargarGridPopUp() {
                       dataSource.sync();
 
                   }
-              }, width: "50px"
+              }, width: "50px", title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()]
           }
         ], saveChanges: function (e) {
             if (!confirm("Are you sure you want to save all changes?")) {
