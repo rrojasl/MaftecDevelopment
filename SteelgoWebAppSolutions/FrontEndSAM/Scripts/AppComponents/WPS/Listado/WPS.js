@@ -6,12 +6,9 @@ function changeLanguageCall() {
     ObtenerJSONParaGrid();
     CargarGrid();
     loadingStop();
-
-
 };
 
 function CargarGrid() {
-
 
     $("#grid").kendoGrid({
         dataSource: {
@@ -33,9 +30,6 @@ function CargarGrid() {
                         EspesorMinimoRaiz: { type: "string" },
                         EspesorMaximoRelleno: { type: "string" },
                         EspesorMinimoRelleno: { type: "string" },
-
-
-
                     }
                 }
             },
@@ -50,7 +44,6 @@ function CargarGrid() {
         editable: "inline",
         filterable: {
             extra: false,
-
         },
         pageable: {
             refresh: false,
@@ -130,27 +123,19 @@ function AbrirVentanaModalVista() {
 function LimpiarControlesParaAgregar() {
 
     $("#WPSID").val(0);
-
     $("#NomnreWPS").val("");
-
-
     $("#PQRRaizNombre").data("kendoComboBox").value("");
     $("#PQRRellenoNombre").data("kendoComboBox").value("");
-
 
     $("#grupoPRelleno").data("kendoComboBox").value("");
     $("#PWHRaiz").prop('checked', false);
     $("#EspesoirMaximoRaiz").val(0);
     $("#EspesoirMinimoRaiz").val(0);
 
-
     $("#grupoPRaiz").data("kendoComboBox").value("");
     $("#PWHRelleno").prop('checked', false);
     $("#EspesoirMaximoRelleno").val(0);
     $("#EspesoirMinimoRelleno").val(0);
-
-
-
 };
 
 

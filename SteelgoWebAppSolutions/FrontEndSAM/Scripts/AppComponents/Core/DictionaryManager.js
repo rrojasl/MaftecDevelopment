@@ -7178,6 +7178,14 @@ _dictionary = {
         "es-MX": "Fabricación",
         "en-US": "Manufacturing"
     },
+    "menuPQR": {
+        "es-MX": "Catálogo PQR",
+        "en-US": "PQR catalog"
+    },
+    "menuWPS": {
+        "es-MX": "Catálogo WPS",
+        "en-US": "WPS catalog"
+    },
     "menuArmado": {
         "es-MX": "Armado",
         "en-US": "Assembly"

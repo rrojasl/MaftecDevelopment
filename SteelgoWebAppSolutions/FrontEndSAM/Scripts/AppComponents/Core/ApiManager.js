@@ -123,6 +123,7 @@ var $MessagesManager = new $.RestClient($MessagesSAMUri + '/messagesmanager/api/
 //var $SearchManager = new $.RestClient($SearchSAMUri + '/searchmanager/api/');
 var $SecurityManager = new $.RestClient($SecuritySAMUri + '/securitymanager/api/');
 //DetalleAvisoLlegada
+var $WPS = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $Plana = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $Transportista = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
 var $Patio = new $.RestClient($BackEndSAMUri + '/backendsam/api/');
@@ -286,6 +287,7 @@ $HerramientasPruebas.add("HerramientasPruebas");
 
 //Detalle Aviso Llegada
 $Plana.add("Plana");
+$WPS.add("WPS");
 $Transportista.add("Transportista");
 $Patio.add("Patio");
 $Proveedor.add("Proveedor");

@@ -16,10 +16,7 @@ function changeLanguageCall() {
 
 
 function LlenarGridPQR() {
-
     LlenaGridAjax();
-
-
 }
 
 
