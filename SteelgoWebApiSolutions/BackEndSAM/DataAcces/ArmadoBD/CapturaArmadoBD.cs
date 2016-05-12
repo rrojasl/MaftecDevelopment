@@ -206,7 +206,7 @@ namespace BackEndSAM.DataAcces.ArmadoBD
                 using (SamContext ctx = new SamContext())
                 {
                     List<Sam3_Steelgo_Get_JuntaSpool_Result> lista = ctx.Sam3_Steelgo_Get_JuntaSpool(sinCaptura, int.Parse(id), 1).ToList();
-                    return lista;
+                    return lista.OrderBy(x => int.Parse(x.Etiqueta)).ToList<Sam3_Steelgo_Get_JuntaSpool_Result>();
                 }
             }
             catch (Exception ex)
