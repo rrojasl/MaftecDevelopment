@@ -7651,7 +7651,7 @@ _dictionary = {
     },
     "CapturaArmadoHeaderFechaArmado": {
         "es-MX": "Fecha Armado",
-        "en-US": "Reinforced Date"
+        "en-US": "Assembly Date"
     },
     "CapturaArmadoHeaderTubero": {
         "es-MX": "Tubero",
@@ -7755,8 +7755,14 @@ _dictionary = {
         "es-MX": "El spool no tiene juntas",
         "en-US": "The spool don't have joints"
     },
-
-
+    "CapturaArmadoHeaderObservacion": {
+        "es-MX": "Observación",
+        "en-US": "Observation"
+    },
+    "CapturaArmadoHeaderTrabajo": {
+        "es-MX": "Trabajo",
+        "en-US": "Work"
+    },
     //#endregion
     //#region Inspeccion
 

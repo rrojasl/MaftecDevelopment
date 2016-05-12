@@ -389,6 +389,10 @@ function RenderComboBoxTrabajoAdicional(container, options) {
                     options.model.TrabajoAdicional = dataItem.NombreCorto;
                     //$("#grid").data("kendoGrid").dataSource.sync();
                 }
+                else {
+                    options.model.TrabajoAdicionalID = 0;
+                    options.model.TrabajoAdicional = "";
+                }
             }
         });
    
