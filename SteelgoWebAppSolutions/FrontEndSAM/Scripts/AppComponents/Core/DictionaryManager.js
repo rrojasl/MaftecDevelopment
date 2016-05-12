@@ -49,7 +49,7 @@ _dictionary = {
     },
     "NoExisteJunta": {
         "es-MX": "No existe Junta",
-        "en-US": "No Board"
+        "en-US": "Joint not exist"
     },
     "NoExisteSpoolID": {
         "es-MX": "No existe el spool",
@@ -7170,7 +7170,7 @@ _dictionary = {
 
     "JuntaSinSeleccionar": {
         "es-MX": "se necesita una junta",
-        "en-US": "you need a board"
+        "en-US": "you need a joint"
     },
 
     //#region menu
@@ -7937,7 +7937,7 @@ _dictionary = {
     },
     "ServiciosTecnicosJunta": {
         "es-MX": "Junta",
-        "en-US": "Board"
+        "en-US": "Joint"
     },
     "ServiciosTecnicosAgregar": {
         "es-MX": "Agregar",
@@ -8347,7 +8347,7 @@ _dictionary = {
     },
     "GenerarRequisicionNumeroControl": {
         "es-MX": "Spool ID/Junta",
-        "en-US": "Spool ID/Board "
+        "en-US": "Spool ID/Joint "
     },
     "GenerarRequisicionAsignarRequisicion": {
         "es-MX": "Asignar Requisición",
