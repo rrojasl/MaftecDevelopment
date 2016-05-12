@@ -4,7 +4,9 @@
     suscribirEventoAplicar();
     suscribirEventoCancelar();
     SuscribirEventoTaller();
-    SuscribirEventoColada();
+    //SuscribirEventoColada();
+    SuscribirEventoWPS();
+    SuscribirEventoPQR();
     SuscribirEventosJunta();
     SuscribirEventoSpoolID();
     suscribirEventoChangeRadio();
@@ -139,6 +141,38 @@ function SuscribirEventoProcesosRelleno() {
     });
 }
 
+function SuscribirEventoWPS() {
+    $('#inputWPS').kendoComboBox({
+        dataTextField: "WPSNombre",
+        dataValueField: "WSPID",
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+
+    });
+    $('#inputWPS').closest('.k-widget').keydown(function (e) {
+        e.preventDefault();
+        if (e.keyCode == 13) {
+        }
+    });
+}
+
+function SuscribirEventoPQR() {
+    $('#inputPQR').kendoComboBox({
+        datatextfield: "Nombre",
+        datavaluefield: "PQRID",
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+
+    });
+    $('#inputPQR').closest('.k-widget').keydown(function (e) {
+        e.preventDefault();
+        if (e.keyCode == 13) {
+        }
+    });
+}
+
 function SuscribirEventoProcesosRaiz() {
     $('#inputProcesoRaiz').kendoComboBox({
         dataTextField: "Codigo",
@@ -256,8 +290,8 @@ function suscribirEventoAplicar() {
             $("#yesButton").click(function (handler) {
                 if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined)
                     PlanchaTaller();
-                if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined)
-                    PlanchaColada();
+                //if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined)
+                //    PlanchaColada();
                 if (endRangeDate.val() != "")
                     PlanchaFecha();
 
@@ -270,8 +304,8 @@ function suscribirEventoAplicar() {
         else {
             if ($("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select()) != undefined)
                 PlanchaTaller();
-            if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined)
-                PlanchaColada();
+            //if ($("#inputColada").data("kendoComboBox").dataItem($("#inputColada").data("kendoComboBox").select()) != undefined)
+            //    PlanchaColada();
             if (endRangeDate.val() != "")
                 PlanchaFecha();
         }
@@ -423,14 +457,14 @@ function SuscribirEventoSpoolID() {
                 if ($("#InputID").val().length == 1) {
                     $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
                     AjaxObtenerListaTaller();
-                    AjaxColada();
+                    //AjaxColada(); Agregar WPS y PQR
                 }
                 if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
                     Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     AjaxJunta($("#InputID").val());
                     AjaxObtenerListaTaller();
-                    AjaxColada();
+                    //AjaxColada(); Agregar WPS y PQR
                 }
             }
             //else
@@ -525,7 +559,7 @@ function SuscribirEventoSpoolID() {
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     AjaxJunta($("#InputID").val());
                     AjaxObtenerListaTaller();
-                    AjaxColada();
+                    //AjaxColada(); Agregar PQR y WPS
                 }
             }
         }
@@ -566,14 +600,14 @@ function eventoCambioTipoListado() {
 
 
         AjaxObtenerListaTaller();
-        AjaxColada();
+        //AjaxColada();
     }
     else if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
         $("#JuntaDiv").css('display', 'block');
         $("#MuestraDiv").css('display', 'block');
 
         AjaxObtenerListaTaller();
-        AjaxColada();
+        //AjaxColada();
     }
 }
 
@@ -633,7 +667,8 @@ function opcionHabilitarView(valor, name) {
         $("#InputID").data("kendoComboBox").enable(false);
         $("#Junta").data("kendoComboBox").enable(false);
         $("#inputTaller").data("kendoComboBox").enable(false);
-        $("#inputColada").data("kendoComboBox").enable(false);
+        $("#inputWPS").data("kendoComboBox").enable(false);
+        $("#inputPQR").data("kendoComboBox").enable(false);
         $("#FechaSoldadura").data("kendoDatePicker").enable(false);
         $('#botonGuardar').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
         $("#DetalleAvisoLlegada0017").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
@@ -647,7 +682,8 @@ function opcionHabilitarView(valor, name) {
         $('#FieldSetView').find('*').attr('disabled', false);
         $("#InputID").data("kendoComboBox").enable(true);
         $("#inputTaller").data("kendoComboBox").enable(true);
-        $("#inputColada").data("kendoComboBox").enable(true);
+        $("#inputWPS").data("kendoComboBox").enable(true);
+        $("#inputPQR").data("kendoComboBox").enable(true);
         $("#FechaSoldadura").data("kendoDatePicker").enable(true);
         $("#Junta").data("kendoComboBox").enable(true);
         $('#botonGuardar').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);

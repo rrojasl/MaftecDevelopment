@@ -631,6 +631,94 @@ function RenderComboBoxColada(container, options) {
     loadingStop();
 }
 
+function RenderComboBoxWPS(container, options) {
+    loadingStart();
+    var dataItem;
+    $('<input data-text-field="WPSNombre" id=' + options.model.uid + ' data-value-field="WPSID" data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoComboBox({
+            suggest: true,
+            delay: 10,
+            filter: "contains",
+            autoBind: false,
+            //dataSource: options.model.ListaColada,
+            template: "<i class=\"fa fa-#=data.WPSNombre#\"></i> #=data.WPSNombre#",
+            select: function (e) {
+
+                //dataItem = this.dataItem(e.item.index());
+                //options.model.NumeroColada = dataItem.NumeroColada;
+                //options.model.ColadaID = dataItem.ColadaID;
+            },
+            change: function (e) {
+                dataItem = this.dataItem(e.sender.selectedIndex);
+                if (dataItem != undefined) {
+                    //options.model.NumeroColada = dataItem.NumeroColada;
+                    //options.model.ColadaID = dataItem.ColadaID;
+
+                }
+                else {
+                    //options.model.NumeroColada = ObtenerDescCorrectaColada(ItemSeleccionado.ListaColada, options.model.ColadaID);
+
+                }
+            }
+        }
+        );
+    $(".k-combobox").parent().on('mouseleave', function (send) {
+        var e = $.Event("keydown", { keyCode: 27 });
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
+        }
+    });
+    loadingStop();
+}
+
+function RenderComboBoxPQR(container, options) {
+    loadingStart();
+    var dataItem;
+    $('<input data-text-field="Nombre" id=' + options.model.uid + ' data-value-field="PQRID" data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoComboBox({
+            suggest: true,
+            delay: 10,
+            filter: "contains",
+            autoBind: false,
+            //dataSource: options.model.ListaColada,
+            template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
+            select: function (e) {
+
+                //dataItem = this.dataItem(e.item.index());
+                //options.model.NumeroColada = dataItem.NumeroColada;
+                //options.model.ColadaID = dataItem.ColadaID;
+            },
+            change: function (e) {
+                dataItem = this.dataItem(e.sender.selectedIndex);
+                if (dataItem != undefined) {
+                    //options.model.NumeroColada = dataItem.NumeroColada;
+                    //options.model.ColadaID = dataItem.ColadaID;
+
+                }
+                else {
+                    //options.model.NumeroColada = ObtenerDescCorrectaColada(ItemSeleccionado.ListaColada, options.model.ColadaID);
+
+                }
+            }
+        }
+        );
+    $(".k-combobox").parent().on('mouseleave', function (send) {
+        var e = $.Event("keydown", { keyCode: 27 });
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
+        }
+    });
+    loadingStop();
+}
+
 function ObtenerDescCorrectaColada(lista, ColadaID) {
     for (var i = 0; i < lista.length; i++) {
         if (lista[i].ColadaID == ColadaID)

@@ -26,15 +26,15 @@ function AjaxJuntaModoSpool(spoolID) {
 }
 
 
-function AjaxColada() {
-    loadingStart();
-    if (Cookies.get("Proyecto") != undefined) {
-        $CatalogosGenerales.CatalogosGenerales.read({ proyectoID: Cookies.get("Proyecto").split('°')[0], token: Cookies.get("token"), proceso: 2 }).done(function (data) {
-            if (Error(data)) {
-                $("#inputColada").data("kendoComboBox").value("");
-                $("#inputColada").data("kendoComboBox").dataSource.data(data)
+function ajaxcolada() {
+    loadingstart();
+    if (cookies.get("proyecto") != undefined) {
+        $catalogosgenerales.catalogosgenerales.read({ proyectoid: cookies.get("proyecto").split('°')[0], token: cookies.get("token"), proceso: 2 }).done(function (data) {
+            if (error(data)) {
+                $("#inputcolada").data("kendocombobox").value("");
+                $("#inputcolada").data("kendocombobox").datasource.data(data)
             }
-            loadingStop();
+            loadingstop();
         });
     }
 }
