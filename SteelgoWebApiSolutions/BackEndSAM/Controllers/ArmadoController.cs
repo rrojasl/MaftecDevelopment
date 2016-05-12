@@ -218,6 +218,13 @@ namespace BackEndSAM.Controllers
                             NumeroUnico2ID = item.NumeroUnico1ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].NumeroUnicoID.ToString() : "") : item.NumeroUnico2ID.ToString(),
                             DetalleJunta = "Junta: " + item.TipoJunta + " - " + "Ced: " + item.Cedula + " - " + "Loc: " + item.Localizacion + " - " + "Acero: " + item.FamiliaAcero + ""
                         };
+                        detalleDatos.listadoTrabajosAdicionalesXJunta.Insert(0, 
+                            new TrabajosAdicionalesXJunta
+                            {
+                                NombreCorto = "",
+                                SignoInformativo = "",
+                                TrabajoAdicionalID = 0
+                            });
                         listaDetalleDatos.Add(detalleDatos);
                     }
                 }
