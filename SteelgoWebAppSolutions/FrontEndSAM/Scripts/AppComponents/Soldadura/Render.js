@@ -407,8 +407,8 @@ function RenderComboBoxTrabajos(container, options) {
                         options.model.ObreroID = options.model.ObreroID;
                     }
                     else {
-                        options.model.Soldador = ObtenerDescCorrectaTrabajos(ItemSeleccionado.listaTrabajosAdicionalesSoldadura, options.model.ObreroID);
-
+                        options.model.TrabajoAdicional = "";
+                        options.model.TrabajoAdicionalID = 0;
                     }
                 }
             }

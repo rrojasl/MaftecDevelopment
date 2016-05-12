@@ -255,6 +255,12 @@ namespace BackEndSAM.Controllers
                             ListadoProcesoSoldadura = (List<ProcesoSoldadura>)CapturaSoldaduraBD.Instance.ObtenerProcesosSoldadura(),
                             ListaColada = (List<Colada>)CapturaSoldaduraBD.Instance.ObtenerListadoColada(capturaDatosJson.IDProyecto)
                         };
+                        detalleDatos.listaTrabajosAdicionalesSoldadura.Insert(0, new TrabajosAdicionalesSoldadura
+                        {
+                            TrabajoAdicionalID = 0,
+                            TrabajoAdicional = "",
+                            SignoInformativo = ""
+                        });
                         listaDetalleDatos.Add(detalleDatos);
                     }
                 }
