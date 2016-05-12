@@ -162,7 +162,6 @@ function ObtenerJSonGridArmado() {
             loadingStop();
         });
         $('#ButtonAgregar').prop("disabled", false);
-        $(".botonAdicionales").parent().css('background-color', 'red');
 
     } catch (e) {
         displayNotify("Mensajes_error", e.message, '1');
@@ -537,7 +536,6 @@ function AjaxCargarReporteJuntas() {
             displayNotify("CapturaArmadoNoTieneJuntas", "", "2");
         }
     }
-    $(".botonAdicionales").parent().css('background-color', 'red');
     $('#ButtonAgregar').prop("disabled", false);
     
     
