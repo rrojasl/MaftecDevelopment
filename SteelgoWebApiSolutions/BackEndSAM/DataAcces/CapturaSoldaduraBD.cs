@@ -440,7 +440,7 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
                     List<Sam3_Steelgo_Get_JuntaSpool_Result> lista = ctx.Sam3_Steelgo_Get_JuntaSpool(sinCaptura, int.Parse(id), 2).ToList();
-                    return lista;
+                    return lista.OrderBy(x => x.Etiqueta).ToList<Sam3_Steelgo_Get_JuntaSpool_Result>();
                 }
             }
             catch (Exception ex)

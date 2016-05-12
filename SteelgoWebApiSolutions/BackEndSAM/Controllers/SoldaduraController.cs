@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Script.Serialization;
+using System.Linq;
 
 namespace BackEndSAM.Controllers
 {
@@ -257,7 +258,7 @@ namespace BackEndSAM.Controllers
                         listaDetalleDatos.Add(detalleDatos);
                     }
                 }
-                return serializer.Serialize(listaDetalleDatos);
+                return serializer.Serialize(listaDetalleDatos.OrderBy(x => int.Parse(x.Junta)));
 
             }
             else

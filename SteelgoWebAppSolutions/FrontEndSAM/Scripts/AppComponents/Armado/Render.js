@@ -33,9 +33,11 @@
         );
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
 
@@ -109,9 +111,11 @@ function RenderComboBoxTubero(container, options) {
 
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
 }
@@ -156,9 +160,11 @@ function RenderComboBoxNumeroUnico1(container, options) {
         });
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
 }
@@ -204,9 +210,11 @@ function RenderComboBoxNumeroUnico2(container, options) {
          });
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
 
@@ -395,11 +403,12 @@ function RenderComboBoxTrabajoAdicional(container, options) {
 
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
-
     });
 
 

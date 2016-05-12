@@ -191,13 +191,13 @@ function ObtenerDato(fecha, tipoDatoObtener) {
             return fecha.split('/')[2]
             break;
         case 2://mes
-            if (cultura = 'es-MX')
+            if (cultura == 'es-MX')
                 return fecha.split('/')[1] - 1
             else
                 return fecha.split('/')[0] - 1
             break;
         case 3://dia
-            if (cultura = 'es-MX')
+            if (cultura == 'es-MX')
                 return fecha.split('/')[0]
             else
                 return fecha.split('/')[1]
