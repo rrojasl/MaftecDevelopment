@@ -621,7 +621,9 @@ function changeLanguageCall() {
     });
     AjaxCargarCamposPredeterminados();
     CargarGrid();
+    
     CargarGridPopUp();
+    
     Limpiar();
     AjaxObtenerListaTubero();
     AjaxObtenerListaTaller();

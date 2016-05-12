@@ -241,7 +241,7 @@ function changeheaderInputs(language) {
 
     if (entityGrid != undefined) {
 
-        $('#ContenedorGrid').find('div').remove();
+        $('#ContenedorGrid').empty();;
         $('#ContenedorGrid').append($('<div id="grid" data-role="grid" class="k-grid k-widget">'));
 
         function changeLanguageCall() {
@@ -253,7 +253,7 @@ function changeheaderInputs(language) {
 
     if (entityGridPopup != undefined) {
 
-        $('#ContenedorGridPopUp').find('div').remove();
+        $('#ContenedorGridPopUp').empty();
         $('#ContenedorGridPopUp').append($('<div id="gridPopUp" data-role="grid" class="k-grid k-widget">'));
 
         function changeLanguageCall() {

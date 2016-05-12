@@ -24,14 +24,14 @@
                     options.model.TallerID = dataItem.TallerID;
                 }
                 else {
-                   // options.model.Taller = ObtenerDescCorrectaTaller(options.model.ListaTaller, options.model.TallerID);
+                    // options.model.Taller = ObtenerDescCorrectaTaller(options.model.ListaTaller, options.model.TallerID);
                     options.model.Taller = "";
                     options.model.TallerID = "";
                 }
             }
         }
         );
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
         if (!tieneClase(item)) {
@@ -72,7 +72,7 @@ function RenderComboBoxTubero(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta
     var dataItem;
-    
+
     $('<input  data-text-field="Codigo" data-value-field="ObreroID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
@@ -81,7 +81,7 @@ function RenderComboBoxTubero(container, options) {
             filter: "contains",
             autoBind: false,
             dataSource: options.model.ListaTubero,
-            template: "<i class=\"fa fa-#=data.Codigo.toLowerCase()#\"></i> #=data.Codigo#",            
+            template: "<i class=\"fa fa-#=data.Codigo.toLowerCase()#\"></i> #=data.Codigo#",
             select: function (e) {
                 dataItem = this.dataItem(e.item.index());
                 if (dataItem != undefined) {
@@ -89,25 +89,25 @@ function RenderComboBoxTubero(container, options) {
                     options.model.TuberoID = dataItem.ObreroID;
                 }
             },
-            change: function (e) {                
+            change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.Tubero = dataItem.Codigo;
                     options.model.TuberoID = dataItem.ObreroID;
                 }
                 else {
-                //    options.model.Tubero = ObtenerDescCorrectaTubero(options.model.ListaTubero, options.model.TuberoID);
+                    //    options.model.Tubero = ObtenerDescCorrectaTubero(options.model.ListaTubero, options.model.TuberoID);
                     options.model.Tubero = "";
                     options.model.TuberoID = "";
                 }
                 //    this.data('kendoComboBox').select(options.model.TuberoID)
                 //$("#MyComboBox").data("kendoComboBox").value(id);
-               // $("#grid").data("kendoGrid").dataSource.sync();
+                // $("#grid").data("kendoGrid").dataSource.sync();
             }
         }
         );
-    
-    $(".k-combobox").on('mouseleave', function (send) {
+
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
         if (!tieneClase(item)) {
@@ -116,8 +116,7 @@ function RenderComboBoxTubero(container, options) {
     });
 }
 
-function ObtenerDescCorrectaTubero(lista, TuberoID)
-{
+function ObtenerDescCorrectaTubero(lista, TuberoID) {
     for (var i = 0; i < lista.length; i++) {
         if (lista[i].ObreroID == TuberoID)
             return lista[i].Codigo;
@@ -155,7 +154,7 @@ function RenderComboBoxNumeroUnico1(container, options) {
                 }
             }
         });
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
         if (!tieneClase(item)) {
@@ -203,7 +202,7 @@ function RenderComboBoxNumeroUnico2(container, options) {
              //    }
              //}
          });
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
         if (!tieneClase(item)) {
@@ -258,23 +257,22 @@ function RenderGridDetalle(container, options) {
                   { field: "Accion", operator: "eq", value: undefined }
               ]
           }
-          
-         
+
+
       },
-     
+
       selectable: true,
       dataBinding: function (e) {
           console.log("dataBinding");
       },
-      edit:function(e)
-      {
+      edit: function (e) {
           //alert('xd');
           //$(".k-grid").on('mouseleave', function (send) {
-              //var e = $.Event("keydown", { keyCode: 27 });
-              //var item = this;
-              //if (!tieneClase(item)) {
-              //    $(container).trigger(e);
-              //}
+          //var e = $.Event("keydown", { keyCode: 27 });
+          //var item = this;
+          //if (!tieneClase(item)) {
+          //    $(container).trigger(e);
+          //}
 
           //});
       },
@@ -288,11 +286,11 @@ function RenderGridDetalle(container, options) {
           var query = new kendo.data.Query(allData);
           var data = query.filter(filters).data;
 
-          
+
           actuallongitudTrabajosAdicionales = data.length;;
           options.model.TemplateMensajeTrabajosAdicionales = " Ahora tienes " + actuallongitudTrabajosAdicionales + " trabajos adicionales";
-         // if (ItemSeleccionado.JuntaArmadoID != 0)
-         //     ItemSeleccionado.Accion = 2;
+          // if (ItemSeleccionado.JuntaArmadoID != 0)
+          //     ItemSeleccionado.Accion = 2;
 
       },
       columns: [
@@ -308,27 +306,26 @@ function RenderGridDetalle(container, options) {
 
                     var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                    if (confirm(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()]))
-                    {
-                            var dataSource = this.dataSource;
+                    if (confirm(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()])) {
+                        var dataSource = this.dataSource;
 
-                            if (dataItem.JuntaArmadoID == "1" || dataItem.JuntaArmadoID==undefined)
-                                dataSource.remove(dataItem);
+                        if (dataItem.JuntaArmadoID == "1" || dataItem.JuntaArmadoID == undefined)
+                            dataSource.remove(dataItem);
 
-                            dataItem.Accion = 3;
-
+                        dataItem.Accion = 3;
 
 
-                            var filters = dataSource.filter();
-                            var allData = dataSource.data();
-                            var query = new kendo.data.Query(allData);
-                            var data = query.filter(filters).data;
 
-                            actuallongitudTrabajosAdicionales = data.length;
+                        var filters = dataSource.filter();
+                        var allData = dataSource.data();
+                        var query = new kendo.data.Query(allData);
+                        var data = query.filter(filters).data;
 
-                            options.model.TemplateMensajeTrabajosAdicionales = " Ahora tienes " + actuallongitudTrabajosAdicionales + " trabajos adicionales"
+                        actuallongitudTrabajosAdicionales = data.length;
 
-                            this.dataSource.sync();
+                        options.model.TemplateMensajeTrabajosAdicionales = " Ahora tienes " + actuallongitudTrabajosAdicionales + " trabajos adicionales"
+
+                        this.dataSource.sync();
                     }
 
                     ///////////////////
@@ -338,7 +335,7 @@ function RenderGridDetalle(container, options) {
 
 
 
-                  
+
                 }
             }, width: "99px"
         }
@@ -352,9 +349,9 @@ function RenderGridDetalle(container, options) {
       toolbar: [{ name: "create" }]
   });
 
-   
 
-    
+
+
 
 
 }
@@ -362,7 +359,7 @@ function RenderGridDetalle(container, options) {
 function RenderComboBoxTrabajoAdicional(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta 
-    
+
     console.log("RenderComboBoxTrabajoAdicional la propiedad accion tiene el valor de:");
     console.log(options.model.Accion);
     console.log(options.model);
@@ -383,7 +380,7 @@ function RenderComboBoxTrabajoAdicional(container, options) {
             },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
-                
+
                 if (dataItem != undefined) {
                     options.model.TrabajoAdicionalID = dataItem.TrabajoAdicionalID;
                     options.model.TrabajoAdicional = dataItem.NombreCorto;
@@ -395,16 +392,16 @@ function RenderComboBoxTrabajoAdicional(container, options) {
                 }
             }
         });
-   
-    $(".k-combobox").on('mouseleave', function (send) {
+
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
         if (!tieneClase(item)) {
             $(container).trigger(e);
         }
-        
+
     });
-  
+
 
 }
 
