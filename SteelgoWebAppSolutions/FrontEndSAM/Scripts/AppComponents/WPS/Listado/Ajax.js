@@ -1,15 +1,15 @@
 ﻿function ObtenerJSONParaGrid() {
-
+    loadingStart();
     $WPS.WPS.read({ TipoDato: 1, token: Cookies.get("token") }).done(function (data) {
         if (Error(data)) {
-            resultadoJson = data;
-            if (resultadoJson.length > 0) {
-                $("#grid").data("kendoGrid").dataSource.data(resultadoJson);
-            } else {
-                $("#grid").data("kendoGrid").dataSource.data([]);
-            };
+            $("#grid").data('kendoGrid').dataSource.data([]);
+            var ds = $("#grid").data("kendoGrid").dataSource;
+            var array = data;
+                for (var i = 0; i < array.length; i++) {
+                    ds.add(array[i]);
+                }
+                loadingStop();
         }
-
     });
 };
 

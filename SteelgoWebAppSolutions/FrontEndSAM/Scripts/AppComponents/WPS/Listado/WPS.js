@@ -1,5 +1,5 @@
-﻿var resultadoJson
-var win
+﻿var resultadoJson;
+var win;
 
 function changeLanguageCall() {
     loadingStart();
@@ -12,7 +12,7 @@ function CargarGrid() {
 
     $("#grid").kendoGrid({
         dataSource: {
-            data: resultadoJson,
+            data: [],
             schema: {
                 model: {
                     fields: {
@@ -70,12 +70,12 @@ function CargarGrid() {
                     { field: "EspesorMaximoRelleno", title: _dictionary.WPSEspesorMaximoRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "145px" },
                     { field: "EspesorMinimoRelleno", title: _dictionary.WPSEspesorMinimoRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "145px" },
                     { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminaWPS }, title: "", width: "90px" },
-                    { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: EditaWPS }, title: "", width: "90px" }
+                    { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: EditaWPS }, title: "", width: "90px" }
         ],
         dataBound: function (e) {
-            $(".k-grid input.k-textbox").prop('readonly', true);
-            $(".k-grid td .k-button").text('');
-            $(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
+            //$(".k-grid input.k-textbox").prop('readonly', true);
+            //$(".k-grid td .k-button").text('');
+            //$(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
         }
     });
 };

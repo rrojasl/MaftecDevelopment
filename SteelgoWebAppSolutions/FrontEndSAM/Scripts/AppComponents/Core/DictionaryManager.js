@@ -7519,6 +7519,66 @@ _dictionary = {
         "en-US": "----"
     },
     //#endregion 
+    
+    //#region WPS
+    "WPSID": {
+        "es-MX": "WPS ID",
+        "en-US": "WPS ID"
+    },
+    "WPSNombre": {
+        "es-MX": "WPS",
+        "en-US": "WPS"
+    },
+    "WPSpqrraizId": {
+        "es-MX": "PQR Raiz ID",
+        "en-US": "PQR Root ID"
+    },
+    "WPSPQRRAIZ": {
+        "es-MX": "PQR Raiz",
+        "en-US": "PQR Root"
+    },
+    "WPSpqrrellenoId": {
+        "es-MX": "PQR Relleno ID",
+        "en-US": "PQR Fill ID"
+    },
+    "WPSPQRRelleno": {
+        "es-MX": "PQR Relleno",
+        "en-US": "PQR Fill"
+    },
+    "WPSGrupoPId": {
+        "es-MX": "Grupo P ID",
+        "en-US": "Group P ID"
+    },
+    "WPSGrupoP": {
+        "es-MX": "Grupo P",
+        "en-US": "Group P"
+    },
+    "WPSpwhtid": {
+        "es-MX": "Preheat ID",
+        "en-US": "Preheat ID"
+    },
+    "WPSPWHT": {
+        "es-MX": "PWHT",
+        "en-US": "PWHT"
+    },
+    "WPSEspesorMaximoRaiz": {
+        "es-MX": "Espesor Máximo Raíz",
+        "en-US": "Root Maximum Thickness"
+    },
+    "WPSEspesorMinimoRaiz": {
+        "es-MX": "Espesor Mínimo Raíz",
+        "en-US": "Root Minimum Thickness"
+    },
+    "WPSEspesorMaximoRelleno": {
+        "es-MX": "Espesor Máximo Relleno",
+        "en-US": "Fill Maximum Thickness"
+    },
+    "WPSEspesorMinimoRelleno": {
+        "es-MX": "Espesor Mínimo Relleno",
+        "en-US": "Fill Minimum Thickness"
+    },
+
+    //#endregion 
     //#region PQR
     //#region Grid
     "lblPQRNombre": {
