@@ -7526,8 +7526,8 @@ _dictionary = {
         "en-US": "WPS ID"
     },
     "WPSNombre": {
-        "es-MX": "WPS",
-        "en-US": "WPS"
+        "es-MX": "Nombre",
+        "en-US": "Nombre"
     },
     "WPSpqrraizId": {
         "es-MX": "PQR Raiz ID",
@@ -7536,6 +7536,14 @@ _dictionary = {
     "WPSPQRRAIZ": {
         "es-MX": "PQR Raiz",
         "en-US": "PQR Root"
+    },
+    "WPSPWHTRaiz": {
+        "es-MX": "PQR PWHT Raiz",
+        "en-US": "Root PQR PWHT"
+    },
+    "WPSPWHTRelleno": {
+        "es-MX": "PQR PWHT Relleno",
+        "en-US": "Fill PQR PWHT"
     },
     "WPSpqrrellenoId": {
         "es-MX": "PQR Relleno ID",
@@ -7549,7 +7557,7 @@ _dictionary = {
         "es-MX": "Grupo P ID",
         "en-US": "Group P ID"
     },
-    "WPSGrupoP": {
+    "WPSPQRGrupoP": {
         "es-MX": "Grupo P",
         "en-US": "Group P"
     },

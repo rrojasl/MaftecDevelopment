@@ -8,30 +8,23 @@
                 for (var i = 0; i < array.length; i++) {
                     ds.add(array[i]);
                 }
-                loadingStop();
         }
+        loadingStop();
     });
 };
 
 
 
 function EliminaWPSAjax(dataItem) {
-
-
-
+    loadingStart();
     if (confirm(_dictionary.WPSEliminar[$("#language").data("kendoDropDownList").value()])) {
-      
         $WPS.WPS.update({}, { TipoDeDato: 4, WPSIdentificador: dataItem.WPSID, token: Cookies.get("token") }).done(function (data) {
             if (data.ReturnMessage == 'OK') {
-                loadingStart();
                 ObtenerJSONParaGrid();
-                loadingStop();
             } else {
 
             };
-            
-        })
+            loadingStop();
+        });
     }
-
-
 };

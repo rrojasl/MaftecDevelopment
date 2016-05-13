@@ -1,34 +1,4 @@
-﻿kendo.ui.Upload.fn._supportsDrop = function () { return false; };
-Cookies.set("home", true, { path: '/' });
-Cookies.set("navegacion", "10015", { path: '/' });
-
-
-var $WPSSaveModel = {
-    listContainer: {
-        create: "",
-        list: "",
-        detail: "",
-        destroy: ""
-    },
-    properties: {
-        NombreWPS: {
-            visible: "#DivNombreWPS",
-            editable: "#NomnreWPS",
-            required: "#NomnreWPS"
-        },
-        PQRRaiz: {
-            visible: "#DivNombrePQRRaiz",
-            editable: "#PQRRaizNombre",
-            required: "#PQRRaizNombre"
-        },
-        PQRRelleno: {
-            visible: "#DivNombrePQRRelleno",
-            editable: "#PQRRellenoNombre",
-            required: "#PQRRellenoNombre"
-        }
-    }
-};
-
+﻿
 
 
 
@@ -36,7 +6,7 @@ CargaInicial();
 
 function CargaInicial() {
     ConvertirCombos();
-    obtenerPQRAjax();
+    setTimeout(function () { obtenerPQRAjax(); }, 1000);
     obtenerGrupoPAjax();
 };
 

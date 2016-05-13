@@ -1,71 +1,74 @@
-﻿<div id="ValidaCamposRequeridosWPS">
-    <input id="WPSID" style="display:none;" />
-    <div class="alert-container">
-        <div class="message">
-            Mensaje de éxito/error/advertencia
+﻿<div id="divPopupWPSEdit" style="width:100%;">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div id="ValidaCamposRequeridosWPS" class="col-xs-10 col-sm-10 col-md-10 col-lg-10 form-group">
+            <input id="WPSID" style="display:none;" />
+            <div class="alert-container">
+                <div class="message">
+                    Mensaje de éxito/error/advertencia
+                </div>
+            </div>
+            <div id="DivNombreWPS">
+                <label id="WPSNombre"></label>
+                <input id="NomnreWPS" class="form-control" type="text" />
+            </div>
+
         </div>
-    </div>
-    <div id="DivNombreWPS">
-        <label id="WPSNombre"></label>
-        <input id="NomnreWPS" class="k-input" type="text" />
-        <br /><br />
-    </div>
 
+        @*IZQUEIRDA*@
 
-
-    @*IZQUEIRDA*@
-    <div class="col-sm-5 col-md-5 col-lg-5">
-        <div id="DivNombrePQRRaiz">
+        <div id="DivNombrePQRRaiz" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 form-group">
             <label id="WPSPQRRAIZ"></label>
-            <input id="PQRRaizNombre" />
+            <input id="PQRRaizNombre" class="general-input" />
         </div>
-        <div>
+        <div class="form-group col-xs-5 col-sm-5 col-md-5 col-lg-5">
             <label id="WPSPQRGrupoPRelleno"></label>
-            <input id="grupoPRaiz" readonly="readonly" />
+            <input id="grupoPRaiz" readonly="readonly" class="general-input" />
         </div>
-        <div>
+        <div class="form-group col-xs-5 col-sm-5 col-md-5 col-lg-5">
             <label id="WPSPWHTRaiz"></label>
             <input type="checkbox" id="PWHRaiz" data-bind="checked: optionCheck" readonly="readonly" checked onclick="javascript: return false;" />
         </div>
-        <div>
+        <div class="form-group col-xs-5 col-sm-5 col-md-5 col-lg-5">
             <label id="WPSEspesorMaximoRaiz"></label>
-            <input id="EspesoirMaximoRaiz" value="0" readonly="readonly" />
+            <input id="EspesoirMaximoRaiz" value="0" readonly="readonly" class="general-input" />
         </div>
-        <div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
             <label id="WPSEspesorMinimoRaiz"></label>
-            <input id="EspesoirMinimoRaiz" value="0" readonly="readonly" />
+            <input id="EspesoirMinimoRaiz" value="0" readonly="readonly" class="general-input" />
         </div>
-    </div>
-    @*DERECHA*@
-    <div class="col-sm-5 col-md-5 col-lg-5">
-        <div id="DivNombrePQRRelleno">
+
+        @*DERECHA*@
+
+        <div id="DivNombrePQRRelleno" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 form-group">
             <label id="WPSPQRRelleno"></label>
-            <input id="PQRRellenoNombre" />
+            <input id="PQRRellenoNombre" class="general-input" />
         </div>
-        <div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 form-group">
             <label id="WPSPQRGrupoPRaiz"></label>
-            <input id="grupoPRelleno" readonly="readonly" />
+            <input id="grupoPRelleno" readonly="readonly" class="general-input" />
         </div>
-        <div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 form-group">
             <label id="WPSPWHTRelleno"></label>
             <input type="checkbox" id="PWHRelleno" data-bind="checked: optionCheck" readonly="readonly" checked onclick="javascript: return false;" />
         </div>
-        <div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 form-group">
             <label id="WPSEspesorMaximoRelleno"></label>
-            <input id="EspesoirMaximoRelleno" value="0" readonly="readonly" />
+            <input id="EspesoirMaximoRelleno" value="0" readonly="readonly" class="general-input" />
         </div>
-        <div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
             <label id="WPSEspesorMinimoRelleno"></label>
-            <input id="EspesoirMinimoRelleno" value="0" readonly="readonly" />
+            <input id="EspesoirMinimoRelleno" value="0" readonly="readonly" class="general-input" />
         </div>
+
+
+        <div id="divPQRRelleno" >
+            <a id="GuardarWPS" href="#" class="btn btn-blue col-xs-5 col-sm-5 col-md-5 col-lg-5 form-group"><span id="botonGuardar"></span></a>
+            
+            <a id="CancelarWPS" href="#" class="btn btn-blue col-xs-5 col-sm-5 col-md-5 col-lg-5 form-group"><span id="botonCancelar"></span></a>
+        </div>
+
     </div>
-
-    <div class="form-group col-sm-6 col-md-6 col-lg-6" id="divPQRRelleno">
-        <a id="GuardarWPS" href="#" class="btn btn-primary"><span id="botonGuardar"></span></a>
-        <a id="CancelarWPS" href="#" class="btn btn-primary"><span id="botonCancelar"></span></a>
-    </div>
-
-
 </div>
 
 <script src="~/Scripts/AppComponents/WPS/PopUp/PopUpAjax.js"></script>
