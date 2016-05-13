@@ -14,6 +14,11 @@ namespace FrontEndSAM.Controllers.Catalogos
             return View();
         }
 
-     
+        public ActionResult _PQR()
+        {
+            return View();
+        }
+
+
     }
 }

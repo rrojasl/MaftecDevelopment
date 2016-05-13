@@ -6927,6 +6927,10 @@ _dictionary = {
         "es-MX": "ELM",
         "en-US": "DEL"
     },
+    "tituloEditar": {
+        "es-MX": "EDT",
+        "en-US": "EDT"
+    },
     "tituloLimpiar": {
         "es-MX": "LMP",
         "en-US": "CLN"
@@ -7182,6 +7186,11 @@ _dictionary = {
         "es-MX": "Catálogo PQR",
         "en-US": "PQR catalog"
     },
+    "menuListaSoldadorCertificacion": {
+        "es-MX": "Soldador Certificación",
+        "en-US": "Certification Welder"
+    },
+    
     "menuWPS": {
         "es-MX": "Catálogo WPS",
         "en-US": "WPS catalog"
@@ -7521,6 +7530,22 @@ _dictionary = {
     //#endregion 
     
     //#region WPS
+    "WPSMensajeEliminar": {
+        "es-MX": "¿Esta seguro de eliminar el WPS?",
+        "en-US": "Are you sure to delete the WPS?"
+    },
+    "lblExisteNombreWPS": {
+        "es-MX": "El WPS ya existe",
+        "en-US": "The WPS exist"
+    },
+    "WPSPWHTNoCoinciden": {
+        "es-MX": "Los PWHT deben ser iguales",
+        "en-US": "The PWHT should be equals"
+    },
+    "WPSGrupoPNoCoinciden": {
+        "es-MX": "El grupo P no coincide",
+        "en-US": "The P group no match"
+    },
     "WPSID": {
         "es-MX": "WPS ID",
         "en-US": "WPS ID"
@@ -7570,20 +7595,20 @@ _dictionary = {
         "en-US": "PWHT"
     },
     "WPSEspesorMaximoRaiz": {
-        "es-MX": "Espesor Máximo Raíz",
-        "en-US": "Root Maximum Thickness"
+        "es-MX": "E Máx Raíz",
+        "en-US": "Root Max T"
     },
     "WPSEspesorMinimoRaiz": {
-        "es-MX": "Espesor Mínimo Raíz",
-        "en-US": "Root Minimum Thickness"
+        "es-MX": "E Mín Raíz",
+        "en-US": "Root Mini T"
     },
     "WPSEspesorMaximoRelleno": {
-        "es-MX": "Espesor Máximo Relleno",
-        "en-US": "Fill Maximum Thickness"
+        "es-MX": "E Máx Relleno",
+        "en-US": "Fill Ma T"
     },
     "WPSEspesorMinimoRelleno": {
-        "es-MX": "Espesor Mínimo Relleno",
-        "en-US": "Fill Minimum Thickness"
+        "es-MX": "E Mín Relleno",
+        "en-US": "Fill Min T"
     },
 
     //#endregion 
@@ -7606,32 +7631,32 @@ _dictionary = {
         "en-US": "PWHT"
     },
     "lblPQREspesorRelleno": {
-        "es-MX": "Espesor Relleno",
-        "en-US": "Padding density"
+        "es-MX": "Esp Relleno",
+        "en-US": "Fill Thck"
     },
     "lblPQREspesorRaiz": {
-        "es-MX": "Espesor Raiz",
-        "en-US": "Root Density"
+        "es-MX": "Esp Raiz",
+        "en-US": "Root Thck"
     },
     "lblPQRProcesoSoldaduraRelleno": {
-        "es-MX": "Proceso soldadura Relleno",
-        "en-US": "Welding padding process "
+        "es-MX": "Proc Relleno",
+        "en-US": "Fill Proc"
     },
     "lblPQRProcesoSoldaduraRaiz": {
-        "es-MX": "Proceso soldadura Raiz",
-        "en-US": "Welding root process"
+        "es-MX": "Proc Raiz",
+        "en-US": "Root Proc"
     },
     "lblPQRNumeroP": {
         "es-MX": "Numero P",
         "en-US": "P number"
     },
     "lblPQRGrupoPMaterialBase1": {
-        "es-MX": "Grupo P Material Base 1",
-        "en-US": "P group base material 1"
+        "es-MX": "Gpo P Base 1",
+        "en-US": "P grp Base 1"
     },
     "lblPQRGrupoPMaterialBase2": {
-        "es-MX": "Grupo P Material Base 2",
-        "en-US": "P group base material 2"
+        "es-MX": "Gpo P Base 2",
+        "en-US": "P grp Base 2"
     },
     "lblPQRAporte": {
         "es-MX": "Aporte",

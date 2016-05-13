@@ -3,7 +3,6 @@
 });
 
 
-
 $("#EditaPQR").click(function (e) {
     PQRModal = {
         PQRID: "",
@@ -47,7 +46,7 @@ $("#EditaPQR").click(function (e) {
         var PQRID  = $("#IdPQR").val();
         var nombrePQR = $("#NombreId").val();
         var Accion = 6;
-        $PQR.PQR.read({ nombrePQR, token: Cookies.get("token"), PQRID, Accion }).done(function (data) {
+        $PQR.PQR.read({ nombrePQR: nombrePQR, token: Cookies.get("token"), PQRID: PQRID, Accion: Accion }).done(function (data) {
 
             if (data.ReturnMessage == "Error") {
 

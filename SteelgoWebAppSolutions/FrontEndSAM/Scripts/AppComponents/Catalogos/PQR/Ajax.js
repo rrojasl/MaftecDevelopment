@@ -1,8 +1,9 @@
-﻿function LlenaGridAjax() {
+﻿
+function LlenaGridAjax() {
 
     var TipoDato = 1;
 
-    $PQR.PQR.read({ TipoDato, token: Cookies.get("token") }).done(function (data) {
+    $PQR.PQR.read({TipoDato: TipoDato, token: Cookies.get("token") }).done(function (data) {
         if (Error(data)) {
             resultadoJson = data;
             if (resultadoJson.length > 0) {

@@ -17,10 +17,8 @@ function ObtenerListadoPQRPopUpAjax() {
     CrearDropDownListPQR();
 
     $PQR.PQR.read({ token: Cookies.get("token"), TipoAccion: 1 }).done(function (data) {
-       
         $("#SoldadorCertificacionCargarPQRID").data("kendoComboBox").dataSource.data(data);
-    }
-)
+    });
 };
 function ObtenerListadoProcesoSoldaduraAjax() {
 

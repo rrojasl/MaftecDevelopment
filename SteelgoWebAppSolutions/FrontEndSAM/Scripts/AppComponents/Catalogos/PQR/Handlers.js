@@ -3,9 +3,6 @@
     VentanaModal();
 };
 
-
-
-
 function EliminarPQR(e) {
     if (confirm(_dictionary.lblConfirmaElimanarPQR[$("#language").data("kendoDropDownList").value()])) {
         EliminaPQRAjax(e);
@@ -15,12 +12,7 @@ function EliminarPQR(e) {
     }
 };
 
-
-
-
 $("#AAgregarPQR").click(function () {
     LimpiaControles();
     VentanaModal();
 });
-
-

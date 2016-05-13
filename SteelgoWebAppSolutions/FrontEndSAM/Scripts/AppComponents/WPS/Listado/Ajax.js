@@ -16,8 +16,9 @@
 
 
 function EliminaWPSAjax(dataItem) {
-    loadingStart();
-    if (confirm(_dictionary.WPSEliminar[$("#language").data("kendoDropDownList").value()])) {
+    
+    if (confirm(_dictionary.WPSMensajeEliminar[$("#language").data("kendoDropDownList").value()])) {
+        loadingStart();
         $WPS.WPS.update({}, { TipoDeDato: 4, WPSIdentificador: dataItem.WPSID, token: Cookies.get("token") }).done(function (data) {
             if (data.ReturnMessage == 'OK') {
                 ObtenerJSONParaGrid();

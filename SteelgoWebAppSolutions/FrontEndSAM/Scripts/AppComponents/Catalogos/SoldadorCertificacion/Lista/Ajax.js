@@ -9,7 +9,6 @@
                 $("#grid").data("kendoGrid").dataSource.data([]);
             };
         }
-
     });
 
 }
@@ -18,10 +17,7 @@ function EliminaSoldadorCertificacionAjax(dataItem) {
    
     if (confirm(_dictionary.lblConfirmaElimanarPQR[$("#language").data("kendoDropDownList").value()])) {
         $SoldadorCertificacion.SoldadorCertificacion.update({}, { TipoDeDato: 4, SoldadorCertificacionID: dataItem.SoldadorCertificacionID, token: Cookies.get("token") }).done(function (data) {
-            loadingStart();
             ObtenerJSONParaGrid();
-            loadingStop();
-
         });
     }
 }

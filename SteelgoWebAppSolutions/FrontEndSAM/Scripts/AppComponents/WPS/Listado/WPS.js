@@ -87,9 +87,9 @@ function CargarGrid() {
                     //{ field: "WPSID", title: _dictionary.WPSID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", hidden: true },
                     { field: "WPSNombre", title: _dictionary.WPSNombre[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px" },
                     //{ field: "PQRRaizId", title: _dictionary.WPSpqrraizId[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", hidden: true },
-                    { field: "NombrePQRRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: true, width: "100px" },
+                    { field: "NombrePQRRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px" },
                     //{ field: "PQRRellenoId", title: _dictionary.WPSpqrrellenoId[$("#language").data("kendoDropDownList").value()], filterable: true, width: "90px", hidden: true },
-                    { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px" },
+                    { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px" },
                     //{ field: "GrupoPId", title: _dictionary.WPSGrupoPId[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", hidden: true },
                     { field: "GrupoP", title: _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px" },
                     //{ field: "PWHTId", title: _dictionary.WPSpwhtid[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px", hidden: true },
@@ -99,8 +99,8 @@ function CargarGrid() {
                     { field: "EspesorMinimoRaiz", title: _dictionary.WPSEspesorMinimoRaiz[$("#language").data("kendoDropDownList").value()], filterable: true, width: "125px" },
                     { field: "EspesorMaximoRelleno", title: _dictionary.WPSEspesorMaximoRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "145px" },
                     { field: "EspesorMinimoRelleno", title: _dictionary.WPSEspesorMinimoRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "145px" },
-                    { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminaWPS }, title: "", width: "90px" },
-                    { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: EditaWPS }, title: "", width: "90px" }
+                    { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminaWPS }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
+                    { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: EditaWPS }, title: _dictionary.tituloEditar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ],
     });
     CustomisaGrid($("#grid"));

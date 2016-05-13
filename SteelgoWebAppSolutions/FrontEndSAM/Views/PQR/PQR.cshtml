@@ -13,47 +13,48 @@
         <a href="#">Soldadura</a>
     </li>
     <li class="active">
-        <a href="@Url.Action("PQR", "PQR")"><span id="PQRMENU"></span></a>
+        <a href="@Url.Action("PQR", "PQR")"><span id="">Pqr </span></a>
     </li>
 }
 
 <div class="form clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="formNav filtersFields clearfix">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-2 col-lg-2">
-                                <div class="button-section">
-                                    <button id="AAgregarPQR" type="button" class="btn btn-newArrival btn-yellow"><span id="botonAgregar"></span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div id="grid" class=""></div>
+    <div class="row ">
+        <div class="row">
+            <div class="col-sm-11 col-md-11 col-lg-11">
+                <div class="button-section">
+                    <button id="AAgregarPQR" type="button" class="btn btn-newArrival btn-yellow"><span id="botonAgregar"></span></button>
                 </div>
             </div>
         </div>
-
     </div>
-    <div id="windowPQR" style="display: none; z-index:inherit;">
-        @Html.Partial("~/Views/EditaPQR/_EditaPQR.cshtml")
+    <div class="col-sm-11 col-md-11 col-lg-11">
+        <div class="row">
+            <div class="form-group">
+                <div id="ContenedorGridPopUp">
+                    <div id="grid" data-role="grid" class="k-grid k-widget">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<div id="windowPQR" style="display: none; z-index:inherit;">
+    @Html.Partial("~/Views/EditaPQR/_EditaPQR.cshtml")
+</div>
 
-<script src="~/Scripts/AppComponents/Catalogos/PQR/Lista/Ajax.js"></script>
-<script src="~/Scripts/AppComponents/Catalogos/PQR/Lista/Handlers.js"></script>
-<script src="~/Scripts/AppComponents/Catalogos/PQR/Lista/PQR.js"></script>
 
-<script>
-    @section JavascriptDocumentReadyFunctions {
-    $authorizationModel["Edita PQR"] = $PqrSaveModel;
-    }
-</script>
+
+<script src="~/Scripts/AppComponents/Catalogos/PQR/Ajax.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/PQR/Handlers.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/PQR/PQR.js"></script>
+
+
+
+
+@*@section JavascriptDocumentReadyFunctions {
+    //$authorizationModel["Edita PQR"] = $PqrSaveModel;
+    }*@
+
 
 

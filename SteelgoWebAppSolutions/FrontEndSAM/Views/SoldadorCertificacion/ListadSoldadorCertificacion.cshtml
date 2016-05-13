@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "ListadSoldadorCertificacion";
+    ViewBag.Title = "Listado Soldador Certificación";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -43,19 +43,23 @@
         </div>
 
     </div>
-    <div id="windowSoldadorCertificacion" style="display:none; z-index:inherit">
+    @*<div id="windowSoldadorCertificacion" style="display:none; z-index:inherit">
         @Html.Partial("~/Views/SoldadorCertificacionPopUp/_SoldadorCertificacion.cshtml")
-    </div>
-    
-   
-
+    </div>*@
 </div>
+@Scripts.Render("~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/SoldadorCertificacion.js")
+@Scripts.Render("~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/Ajax.js")
+@Scripts.Render("~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/Handlers.js")
+@Scripts.Render("~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/Seguridad.js")
+
+
 <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/SoldadorCertificacion.js"></script>
 <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/Ajax.js"></script>
 <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/Handlers.js"></script>
-<script type="text/javascript">
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Lista/Seguridad.js"></script>
 
-@section JavascriptGlobalVariables {
-    $authorizationModel["Edita SoldadortCertificacion"] = $SoldadorCertificacionSaveModel;
-}
+<script type="text/javascript">
+    @section JavascriptDocumentReadyFunctions {
+    //$authorizationModel["Edita SoldadortCertificacion"] = $SoldadorCertificacionSaveModel;
+    }
 </script>

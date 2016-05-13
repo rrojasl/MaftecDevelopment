@@ -71,6 +71,7 @@ $("#GuardarWPS").click(function (e) {
 
                 if (WPSModal.WPSID == 0) {
                     GuardaNuevoWPSAjax(WPSModal);
+
                 }
                 else {
                     EditaWPSAjax(WPSModal);
@@ -79,7 +80,7 @@ $("#GuardarWPS").click(function (e) {
 
 
         });
-
+        $("#windowWPS").data("kendoWindow").close();
 
     }
     else {
