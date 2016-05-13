@@ -641,19 +641,19 @@ function RenderComboBoxWPS(container, options) {
             delay: 10,
             filter: "contains",
             autoBind: false,
-            //dataSource: options.model.ListaColada,
+            dataSource: options.model.WPS,
             template: "<i class=\"fa fa-#=data.WPSNombre#\"></i> #=data.WPSNombre#",
             select: function (e) {
 
-                //dataItem = this.dataItem(e.item.index());
-                //options.model.NumeroColada = dataItem.NumeroColada;
-                //options.model.ColadaID = dataItem.ColadaID;
+                dataItem = this.dataItem(e.item.index());
+                options.model.WPSNombre = dataItem.WPSNombre;
+                options.model.WPSID = dataItem.WPSID;
             },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
-                    //options.model.NumeroColada = dataItem.NumeroColada;
-                    //options.model.ColadaID = dataItem.ColadaID;
+                    options.model.WPSNombre = dataItem.WPSNombre;
+                    options.model.WPSID = dataItem.WPSID;
 
                 }
                 else {
@@ -685,19 +685,19 @@ function RenderComboBoxPQR(container, options) {
             delay: 10,
             filter: "contains",
             autoBind: false,
-            //dataSource: options.model.ListaColada,
+            dataSource: options.model.Nombre,
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
             select: function (e) {
 
-                //dataItem = this.dataItem(e.item.index());
-                //options.model.NumeroColada = dataItem.NumeroColada;
-                //options.model.ColadaID = dataItem.ColadaID;
+                dataItem = this.dataItem(e.item.index());
+                options.model.Nombre = dataItem.Nombre;
+                options.model.PQRID = dataItem.PQRID;
             },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
-                    //options.model.NumeroColada = dataItem.NumeroColada;
-                    //options.model.ColadaID = dataItem.ColadaID;
+                    options.model.Nombre = dataItem.Nombre;
+                    options.model.PQRID = dataItem.PQRID;
 
                 }
                 else {

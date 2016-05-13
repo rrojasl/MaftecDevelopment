@@ -26,18 +26,40 @@ function AjaxJuntaModoSpool(spoolID) {
 }
 
 
-function ajaxcolada() {
-    loadingstart();
-    if (cookies.get("proyecto") != undefined) {
-        $catalogosgenerales.catalogosgenerales.read({ proyectoid: cookies.get("proyecto").split('°')[0], token: cookies.get("token"), proceso: 2 }).done(function (data) {
-            if (error(data)) {
-                $("#inputcolada").data("kendocombobox").value("");
-                $("#inputcolada").data("kendocombobox").datasource.data(data)
+function AjaxColada() {
+    loadingStart();
+    if (Cookies.get("proyecto") != undefined) {
+        $CatalogosGenerales.CatalogosGenerales.read({ proyectoid: Cookies.get("proyecto").split('°')[0], token: Cookies.get("token"), proceso: 2 }).done(function (data) {
+            if (Error(data)) {
+                $("#inputColada").data("kendoComboBox").value("");
+                $("#inputColada").data("kendoComboBox").dataSource.data(data)
             }
-            loadingstop();
+            loadingStop();
         });
     }
 }
+
+//function AjaxWPS() {
+//    loadingStart();
+//    $WPS.WPS.read({ TipoDato: 1, token: Cookies.get("token") }).done(function (data) {
+//        if (Error(data)) {
+//            $("#inputWPS").data("kendoComboBox").value("");
+//            $("#inputWPS").data("kendoComboBox").dataSource.data(data)
+//        }
+//        loadingStop();
+//    });
+//}
+
+//function AjaxPQR() {
+//    loadingStart();
+//    $PQR.PQR.read({ TipoDato: 1, token: Cookies.get("token") }).done(function (data) {
+//        if (Error(data)) {
+//            $("#inputPQR").data("kendoComboBox").value("");
+//            $("#inputPQR").data("kendoComboBox").dataSource.data(data)
+//        }
+//        loadingStop();
+//    });
+//}
 
 
 function AjaxObtenerListaTaller() {
@@ -97,9 +119,11 @@ function ObtenerJSonGridSoldadura() {
                             ds._data[j].ListadoSoldadoresTrabajo = array[0].ListadoSoldadoresTrabajo;
                             ds._data[j].ListaTaller = array[0].ListaTaller;
                             ds._data[j].listaTrabajosAdicionalesEditados = array[0].listaTrabajosAdicionalesEditados;
+                            ds._data[j].Nombre = array[0].Nombre;
                             ds._data[j].NumeroColada = array[0].NumeroColada;
                             ds._data[j].NumeroUnico1ID = array[0].NumeroUnico1ID;
                             ds._data[j].NumeroUnico2ID = array[0].NumeroUnico2ID;
+                            ds._data[j].PQRID = array[0].PQRID;
                             ds._data[j].procesoSoldaduraRaiz = array[0].procesoSoldaduraRaiz;
                             ds._data[j].procesoSoldaduraRelleno = array[0].procesoSoldaduraRelleno;
                             ds._data[j].procesoSoldaduraRaizID = array[0].procesoSoldaduraRaizID;
@@ -116,7 +140,7 @@ function ObtenerJSonGridSoldadura() {
                             ds._data[j].Taller = array[0].Taller;
                             ds._data[j].TemplateMensajeTrabajosAdicionales = array[0].TemplateMensajeTrabajosAdicionales;
                             ds._data[j].TrabajosAdicionales = array[0].TrabajosAdicionales;
-
+                            ds._data[j].WPSID = array[0].WPS;
                             ds._data[j].Accion = 2;
 
                             array[i].ListadoProcesoSoldadura.unshift({ Codigo: "", ProcesoSoldaduraID: 0 });

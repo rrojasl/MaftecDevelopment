@@ -159,8 +159,8 @@ function SuscribirEventoWPS() {
 
 function SuscribirEventoPQR() {
     $('#inputPQR').kendoComboBox({
-        datatextfield: "Nombre",
-        datavaluefield: "PQRID",
+        dataTextField: "Nombre",
+        dataValueField: "PQRID",
         suggest: true,
         delay: 10,
         filter: "contains",
@@ -457,14 +457,16 @@ function SuscribirEventoSpoolID() {
                 if ($("#InputID").val().length == 1) {
                     $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
                     AjaxObtenerListaTaller();
-                    //AjaxColada(); Agregar WPS y PQR
+                    //AjaxWPS();
+                    //AjaxPQR();
                 }
                 if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
                     Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     AjaxJunta($("#InputID").val());
                     AjaxObtenerListaTaller();
-                    //AjaxColada(); Agregar WPS y PQR
+                    //AjaxWPS();
+                    //AjaxPQR();
                 }
             }
             //else
@@ -559,6 +561,8 @@ function SuscribirEventoSpoolID() {
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     AjaxJunta($("#InputID").val());
                     AjaxObtenerListaTaller();
+                    //AjaxWPS();
+                    //AjaxPQR();
                     //AjaxColada(); Agregar PQR y WPS
                 }
             }
@@ -600,14 +604,16 @@ function eventoCambioTipoListado() {
 
 
         AjaxObtenerListaTaller();
-        //AjaxColada();
+        //AjaxWPS();
+        //AjaxPQR();
     }
     else if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado") {
         $("#JuntaDiv").css('display', 'block');
         $("#MuestraDiv").css('display', 'block');
 
         AjaxObtenerListaTaller();
-        //AjaxColada();
+        //AjaxWPS();
+        //AjaxPQR();
     }
 }
 
@@ -682,8 +688,8 @@ function opcionHabilitarView(valor, name) {
         $('#FieldSetView').find('*').attr('disabled', false);
         $("#InputID").data("kendoComboBox").enable(true);
         $("#inputTaller").data("kendoComboBox").enable(true);
-        $("#inputWPS").data("kendoComboBox").enable(true);
-        $("#inputPQR").data("kendoComboBox").enable(true);
+        //$("#inputWPS").data("kendoComboBox").enable(true);
+        //$("#inputPQR").data("kendoComboBox").enable(true);
         $("#FechaSoldadura").data("kendoDatePicker").enable(true);
         $("#Junta").data("kendoComboBox").enable(true);
         $('#botonGuardar').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
