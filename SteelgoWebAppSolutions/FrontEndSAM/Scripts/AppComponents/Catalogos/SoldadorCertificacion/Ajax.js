@@ -12,6 +12,7 @@
     });
 
 }
+
 function EliminaSoldadorCertificacionAjax(dataItem) {
     
    

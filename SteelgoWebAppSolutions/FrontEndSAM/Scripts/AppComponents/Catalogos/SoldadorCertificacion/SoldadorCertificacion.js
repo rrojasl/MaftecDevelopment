@@ -3,16 +3,16 @@ var win;
 resultadoJson = [];
 function changeLanguageCall() {
     
-    endRangeDateI0.data("kendoDatePicker").setOptions({
-        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
-    });
+    //endRangeDateI0.data("kendoDatePicker").setOptions({
+    //    format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
+    //});
 
-    endRangeDateI1.data("kendoDatePicker").setOptions({
-        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
-    });
+    //endRangeDateI1.data("kendoDatePicker").setOptions({
+    //    format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
+    //});
     
-    ObtenerJSONParaGrid();
     CargarGrid();
+    ObtenerJSONParaGrid();
     
 };
 
@@ -95,6 +95,7 @@ function CargarGrid() {
                     { field: "ProcesoSoldadura", title: _dictionary.SoldadorCertificacionProcesoSoldaduraPQR[$("#language").data("kendoDropDownList").value()], filterable: true }      
         ]
     });
+    CustomisaGrid($("#grid"));
 };
 function VentanaModal() {
     var modalTitle = "";

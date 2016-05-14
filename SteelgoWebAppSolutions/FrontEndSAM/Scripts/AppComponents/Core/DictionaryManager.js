@@ -8077,12 +8077,30 @@ _dictionary = {
         "es-MX": "Nombre PQR",
         "en-US": "PQR name"
     },
-
+    "SoldadorCertificacionTipoDePruebaPQR": {
+        "es-MX": "Tipo de prueba",
+        "en-US": "Test type"
+    },
+    "SoldadorCertificacionPosicionPQR": {
+        "es-MX": "Posición",
+        "en-US": "Position"
+    },
+    "SoldadorCertificacionCedulaTuboPQR": {
+        "es-MX": "Cédula Tupo",
+        "en-US": "PQR name"
+    },
+    "SoldadorCertificacionDiametroCalificadoPQR": {
+        "es-MX": "Diametro calificado",
+        "en-US": "PQR name"
+    },
+    "SoldadorCertificacionProcesoSoldaduraPQR": {
+        "es-MX": "Proceso soldadura",
+        "en-US": "Start date of certificate"
+    },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Fecha inicio de certificado",
         "en-US": "Start date of certificate"
     },
-
     "SoldadorCertificacionFechaFinCertificado": {
         "es-MX": "Fecha fin de certificado",
         "en-US": "End date of certificate"
