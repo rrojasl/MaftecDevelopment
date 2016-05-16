@@ -5,11 +5,11 @@ _languageOrder = {
 }
 
 _dictionary = {
-    "SpoolIDExistente":{
+    "SpoolIDExistente": {
         "es-MX": "El spool ya existe en la captura",
         "en-US": "The  already exist in the capture"
     },
-    "ResultAjaxEmpty":{
+    "ResultAjaxEmpty": {
         "es-MX": "No existe informacion",
         "en-US": "There is no information"
     },
@@ -6918,7 +6918,7 @@ _dictionary = {
         "es-MX": "La sesion ha expirado, se redicciona a Home",
         "en-US": "The session is finished, will redirect to Home"
     },
-    
+
     "botonBuscar": {
         "es-MX": "Buscar",
         "en-US": "Find"
@@ -7190,10 +7190,14 @@ _dictionary = {
         "es-MX": "Soldador Certificación",
         "en-US": "Certification Welder"
     },
-    
+
     "menuWPS": {
         "es-MX": "Catálogo WPS",
         "en-US": "WPS catalog"
+    },
+    "menuConfiguracionSoldadura": {
+        "es-MX": "Configuraciòn de soldadura",
+        "en-US": "Welging Configuration"
     },
     "menuArmado": {
         "es-MX": "Armado",
@@ -7528,8 +7532,12 @@ _dictionary = {
         "en-US": "----"
     },
     //#endregion 
-    
+
     //#region WPS
+    "WPSButtonNuevoWPS": {
+        "es-MX": "Crear Nuevo",
+        "en-US": "Create New"
+    },
     "WPSMensajeEliminar": {
         "es-MX": "¿Esta seguro de eliminar el WPS?",
         "en-US": "Are you sure to delete the WPS?"
@@ -8247,7 +8255,7 @@ _dictionary = {
         "es-MX": " soldadores raiz",
         "en-US": " root welders"
     },
-    
+
     "CapturaSoldaduraHeaderSoldador": {
         "es-MX": "Soldador",
         "en-US": "Welder"
@@ -9665,9 +9673,9 @@ _dictionary = {
         "en-US": "Area"
     },
     "PinturaCargaArea2": {
-    "es-MX": "Área",
-    "en-US": "Area"
-}
+        "es-MX": "Área",
+        "en-US": "Area"
+    }
     ,
     "PinturaCargaPeso": {
         "es-MX": "Toneladas",
@@ -10881,7 +10889,7 @@ _dictionary = {
     "DimensionalSpoolNoExist": {
         "es-MX": "No existe el spool ",
         "en-US": "There is not spool "
-        
+
 
     },
 
