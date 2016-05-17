@@ -45,7 +45,7 @@ function CargarGrid() {
         edit: function (e) {
 
             if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
-                
+
             } else
                 this.closeCell();
 
@@ -53,12 +53,12 @@ function CargarGrid() {
         change: function () {
             ItemSeleccionado = this.dataSource.view()[this.select().index()];
         },
-        dataBound: function () {
-            var myElem = document.getElementById('trParentHeader');
-            if (myElem == null) {
-                $("#grid").find("th.k-header").parent().before("<tr id='trParentHeader'>  <th colspan='1' class='k-header'></th>  <th   colspan='2' class='k-header' style='text-align: center;'><span id='WPSPQR'></span></th><th colspan='8' class='k-header'></th> </tr>");
-            }
-        },
+        //dataBound: function () {
+        //    var myElem = document.getElementById('trParentHeader');
+        //    if (myElem == null) {
+        //        $("#grid").find("th.k-header").parent().before("<tr id='trParentHeader'>  <th colspan='1' class='k-header'></th>  <th   colspan='2' class='k-header' style='text-align: center;'><span id='WPSPQR'></span></th><th colspan='8' class='k-header'></th> </tr>");
+        //    }
+        //},
         dataSource: {
             data: [],
             schema: {
@@ -68,8 +68,8 @@ function CargarGrid() {
                         NombrePQRRaiz: { type: "string", editable: true },
                         NombrePQRRelleno: { type: "string", editable: true },
                         GrupoP: { type: "string", editable: false },
-                        PWHT: { type: "string",editable: false },
-                        EspesorMaximoRaiz: { type: "string", editable:false},
+                        PWHT: { type: "string", editable: false },
+                        EspesorMaximoRaiz: { type: "string", editable: false },
                         EspesorMinimoRaiz: { type: "string", editable: false },
                         EspesorMaximoRelleno: { type: "string", editable: false },
                         EspesorMinimoRelleno: { type: "string", editable: false },
@@ -108,8 +108,8 @@ function CargarGrid() {
         columns: [
                     { field: "WPSNombre", title: _dictionary.WPSNombre[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px" },
                     { field: "NombrePQRRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", editor: RenderComboBoxPQRRaiz },
-                    { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", editor: RenderComboBoxPQRRelleno },  
-                    { field: "GrupoP", title: _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px"},
+                    { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", editor: RenderComboBoxPQRRelleno },
+                    { field: "GrupoP", title: _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px" },
                     { field: "PWHT", title: _dictionary.WPSPWHT[$("#language").data("kendoDropDownList").value()], filterable: true, width: "90px" },
                     { field: "EspesorMaximoRaiz", title: _dictionary.WPSEspesorMaximoRaiz[$("#language").data("kendoDropDownList").value()], filterable: true, width: "125px" },
                     { field: "EspesorMinimoRaiz", title: _dictionary.WPSEspesorMinimoRaiz[$("#language").data("kendoDropDownList").value()], filterable: true, width: "125px" },

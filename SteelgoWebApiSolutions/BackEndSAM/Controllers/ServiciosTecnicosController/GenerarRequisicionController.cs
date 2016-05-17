@@ -279,7 +279,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
 
 
         [HttpPost]
-        public object Post(Captura listaCapturasRequisicion, string token, string lenguaje)
+        public object Post(Models.GenerarRequisicion.Captura listaCapturasRequisicion, string token, string lenguaje)
         {
             string payload = "";
             string newToken = "";
