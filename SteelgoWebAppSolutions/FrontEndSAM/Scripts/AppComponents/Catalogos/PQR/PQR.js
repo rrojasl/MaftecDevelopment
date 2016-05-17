@@ -62,9 +62,6 @@ function CargarGrid() {
         sortable: true,
         scrollable: true,
         editable: "inline",
-        filterable: {
-            extra: false,
-        },
         pageable: {
             refresh: false,
             pageSizes: [10, 15, 20],
@@ -72,29 +69,24 @@ function CargarGrid() {
             input: false,
             numeric: true,
         },
+        filterable: getGridFilterableMaftec(),
         columns: [
-
-                    { width: "110px", field: "Nombre", title: _dictionary.lblPQRNombre[$("#language").data("kendoDropDownList").value()], filterable: true },
+                     { width: "110px", field: "Nombre", title: _dictionary.lblPQRNombre[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: true },
                     { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "EspesorRelleno", title: _dictionary.lblPQREspesorRelleno[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "EspesorRaiz", title: _dictionary.lblPQREspesorRaiz[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "CodigoRelleno", title: _dictionary.lblPQRProcesoSoldaduraRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width:"130px" },
-                    { width: "120px", field: "CodigoRaiz", title: _dictionary.lblPQRProcesoSoldaduraRaiz[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "NumeroP", title: _dictionary.lblPQRNumeroP[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "GrupoMaterialBase1", title: _dictionary.lblPQRGrupoPMaterialBase1[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "GrupoMaterialBase2", title: _dictionary.lblPQRGrupoPMaterialBase2[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "Aporte", title: _dictionary.lblPQRAporte[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "Mezcla", title: _dictionary.lblPQRMezcla[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "Respaldo", title: _dictionary.lblPQRRespaldo[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "GrupoF", title: _dictionary.lblPQRGrupoF[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "Codigo", title: _dictionary.lblPQRCodigo[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: editarPQR }, title: " ", width: "90px" },
-                    { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminarPQR }, title: " ", width: "90px" },
-
-
-
-
+                    { width: "120px", field: "EspesorRelleno", title: _dictionary.lblPQREspesorRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
+                    { width: "120px", field: "EspesorRaiz", title: _dictionary.lblPQREspesorRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
+                    { width: "120px", field: "CodigoRelleno", title: _dictionary.lblPQRProcesoSoldaduraRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
+                    { width: "120px", field: "CodigoRaiz", title: _dictionary.lblPQRProcesoSoldaduraRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "NumeroP", title: _dictionary.lblPQRNumeroP[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "GrupoMaterialBase1", title: _dictionary.lblPQRGrupoPMaterialBase1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "GrupoMaterialBase2", title: _dictionary.lblPQRGrupoPMaterialBase2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "Aporte", title: _dictionary.lblPQRAporte[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "Mezcla", title: _dictionary.lblPQRMezcla[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "Respaldo", title: _dictionary.lblPQRRespaldo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "GrupoF", title: _dictionary.lblPQRGrupoF[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "Codigo", title: _dictionary.lblPQRCodigo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminarPQR }, width: "90px", title: "ELM" }
         ],
         dataBound: function (e) {
             $(".k-grid input.k-textbox").prop('readonly', true);
