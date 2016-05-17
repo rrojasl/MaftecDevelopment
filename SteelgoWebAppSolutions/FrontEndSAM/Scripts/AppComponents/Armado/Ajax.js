@@ -617,3 +617,33 @@ function AjaxCambiarAccionAModificacion() {
 
 
 }
+
+
+function AjaxObtenerDatoOriginalBorrado(dataItem, dataSource) {
+    try {
+
+        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(ObjetoBorrado(dataItem)), isReporte: false, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+            if (Error(data)) {
+                var ds = $("#grid").data("kendoGrid").dataSource;
+                var array = JSON.parse(data);
+                var elementoNoEncontrado = false;
+                //se aplica el algoritmo de los numeros unicos.
+                if (dataItem.ListaNumerosUnicos1.length > 2 && ExisteNUGrid(array[0].NumeroUnico1ID, dataSource._data, dataItem)) //valida NU1
+                {
+                    EliminarItemNUSeleccionado(dataSource._data, array[0].NumeroUnico1ID, dataItem);
+                }
+                else if (dataItem.ListaNumerosUnicos2.length > 2 && ExisteNUGrid(array[0].NumeroUnico2ID, dataSource._data, dataItem)) //valida NU2
+                {
+                    EliminarItemNUSeleccionado(dataSource._data, array[0].NumeroUnico2ID, dataItem);
+                }
+
+                ds.sync();
+            }
+            loadingStop();
+        });
+      
+
+    } catch (e) {
+     
+    }
+}

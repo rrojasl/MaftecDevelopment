@@ -623,6 +623,8 @@ function eliminarCaptura(e) {
             if (dataItem.JuntaArmadoID === 0)
             { dataSource.remove(dataItem); }
 
+            AjaxObtenerDatoOriginalBorrado(dataItem, dataSource);
+            
             dataSource.sync();
             ventanaConfirm.close();
         });
@@ -842,4 +844,26 @@ function MensajesSteelGO(control, mensajeExepcionTecnico) {
     }
 };
 
+function ObjetoBorrado(item) {
+    JsonCaptura = [];
+    JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", IdVal: "", IdText: "", SpoolID: "", JuntaID: "", Junta: "", FechaArmado: "", TuberoID: "", Tubero: "", TallerID: "", Taller: "", SinCaptura: "" };
+   
+    JsonCaptura[0].IDProyecto = item.IDProyecto;
+    JsonCaptura[0].Proyecto = item.Proyecto;
+    JsonCaptura[0].IdOrdenTrabajo = item.IdOrdenTrabajo;
+    JsonCaptura[0].OrdenTrabajo = item.OrdenTrabajo;
+    JsonCaptura[0].IdVal = item.IdVal;
+    JsonCaptura[0].IdText = item.IdText;
+    JsonCaptura[0].SpoolID = item.SpoolID;
+    JsonCaptura[0].JuntaID = item.JuntaID;
+    JsonCaptura[0].Junta = item.Junta;
+    JsonCaptura[0].FechaArmado = item.FechaArmado;
+    JsonCaptura[0].TuberoID = item.TuberoID;
+    JsonCaptura[0].Tubero = item.Tubero;
+    JsonCaptura[0].TallerID = item.TallerID;
+    JsonCaptura[0].Taller = item.Taller;
+    JsonCaptura[0].SinCaptura = item.SinCaptura;
+
+    return JsonCaptura[0];
+}
 
