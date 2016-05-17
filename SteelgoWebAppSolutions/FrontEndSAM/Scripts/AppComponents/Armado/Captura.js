@@ -453,7 +453,7 @@ function AplicarAsignacionAutomaticaNumeroUnico(rowitem, textoAnterior, combobox
     var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
 
 
-    //se asigna datos a nivel Etiqueta
+    //se asigna datos a nivel Etiqueta. NU1 NU2 1,1 -> 3,3 
     for (var i = 0; i < jsonGridArmado.length; i++) {
         if (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) {
 
@@ -482,53 +482,70 @@ function AplicarAsignacionAutomaticaNumeroUnico(rowitem, textoAnterior, combobox
     { arrayListaNumerosUnicos = rowitem.ListaNumerosUnicos2; }
     else if (combobox.Etiqueta == "1")
     { arrayListaNumerosUnicos = rowitem.ListaNumerosUnicos1; }
+    if (arrayListaNumerosUnicos != undefined ) {
+        if (arrayListaNumerosUnicos.length<=3) {//se pone -2 por el vacio y por el elemento que reviso
+            for (var l = 0; l < arrayListaNumerosUnicos.length; l++) {
+                if (combobox.Clave != arrayListaNumerosUnicos[l].Clave) {
+                    itemSiguienteMismoMaterial = arrayListaNumerosUnicos[l];
+                    rowitem = BuscarItemSiguienteEnGrid(itemSiguienteMismoMaterial);
 
-    if (arrayListaNumerosUnicos.length - 1 == 1) {
-        for (var l = 0; l < arrayListaNumerosUnicos.length; l++) {
-            if (combobox.Clave != arrayListaNumerosUnicos[l].Clave) {
-                itemSiguienteMismoMaterial = arrayListaNumerosUnicos[l];
-                rowitem = BuscarItemSiguienteEnGrid(itemSiguienteMismoMaterial);
-
-                if (rowitem != undefined) {
+                    if (rowitem != undefined) {
 
 
-                    if (posicionSiguiente < arrayListaNumerosUnicos.length) {
-                        posicionSiguiente++;
-                        AplicarAsignacionAutomaticaNumeroUnico(rowitem[0], textoAnterior, rowitem[1], posicionSiguiente);
+                        if (posicionSiguiente < arrayListaNumerosUnicos.length) {
+                            posicionSiguiente++;
+                            AplicarAsignacionAutomaticaNumeroUnico(rowitem[0], textoAnterior, rowitem[1], posicionSiguiente);
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            if (ExisteNUGrid(combobox.NumeroUnicoID, jsonGridArmado, rowitem)) {
+                //proceso para borrar el dato seleccionado donde se encuentra y ponerlo en el actual.
+                EliminarItemNUSeleccionado(jsonGridArmado, combobox.NumeroUnicoID, rowitem)
+            }
+            else {
+                for (var i = 0; i < jsonGridArmado.length; i++) {
+                    if (combobox.JuntasEncontradas != '' && ((jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) && (jsonGridArmado[i].NumeroUnico2ID == combobox.NumeroUnicoID)) {
+                        jsonGridArmado[i].NumeroUnico2 = '';
+                        jsonGridArmado[i].NumeroUnico2ID = null;
+                        MensajesSteelGO("AvisoNumeroUnicoYaAsignado", combobox.JuntasEncontradas);
+                    }
+                    else if (combobox.JuntasEncontradas != '' && ((jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) && (jsonGridArmado[i].NumeroUnico1ID == combobox.NumeroUnicoID)) {
+                        jsonGridArmado[i].NumeroUnico1 = '';
+                        jsonGridArmado[i].NumeroUnico1ID = null;
+                        MensajesSteelGO("AvisoNumeroUnicoYaAsignado", combobox.JuntasEncontradas);
                     }
                 }
             }
         }
     }
-    else {
-        //if (YaExisteNUEnOtraJunta(combobox, jsonGridArmado)) {
-
-        //}
-
-        for (var i = 0; i < jsonGridArmado.length; i++) {
-            if (jsonGridArmado[i].NumeroUnico1ID == combobox.NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + rowitem.JuntaID)) {
-                jsonGridArmado[i].NumeroUnico1 = '';
-                jsonGridArmado[i].NumeroUnico1ID = null;
-            }
-            else if (jsonGridArmado[i].NumeroUnico2ID == combobox.NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + rowitem.JuntaID)) {
-                jsonGridArmado[i].NumeroUnico2 = '';
-                jsonGridArmado[i].NumeroUnico2ID = null;
-            }
-        }
-    }
-
 }
 
-function YaExisteNUEnOtraJunta(combobox, jsonGridArmado) {
-    var existe = false;
+function EliminarItemNUSeleccionado(jsonGridArmado, NumeroUnicoID, rowitem)
+{
     for (var i = 0; i < jsonGridArmado.length; i++) {
-        if (jsonGridArmado[i].NumeroUnico1ID == combo.NumeroUnicoID) {
-            jsonGridArmado[i].NumeroUnico1 = combobox.Clave;
-            jsonGridArmado[i].NumeroUnico1ID = combobox.NumeroUnicoID;
-        }
+                if (jsonGridArmado[i].NumeroUnico1ID == NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + rowitem.JuntaID)) {
+                    jsonGridArmado[i].NumeroUnico1 = '';
+                    jsonGridArmado[i].NumeroUnico1ID = null;
+                }
+                else if (jsonGridArmado[i].NumeroUnico2ID == NumeroUnicoID && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].JuntaID) != (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + rowitem.JuntaID)) {
+                    jsonGridArmado[i].NumeroUnico2 = '';
+                    jsonGridArmado[i].NumeroUnico2ID = null;
+                }
     }
-
 }
+
+function ExisteNUGrid(NumeroUnicoID, jsonGridArmado, rowitem) {
+    var existe=false;
+    for (var i = 0; i < jsonGridArmado.length; i++) {
+        if ((jsonGridArmado[i].Accion != 3 && (jsonGridArmado[i].NumeroUnico1ID == NumeroUnicoID || jsonGridArmado[i].NumeroUnico2ID == NumeroUnicoID)) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && jsonGridArmado[i].JuntaID != rowitem.JuntaID)
+            return true;
+    }
+    return false;
+}
+
 function DatoDefaultNumeroUnico1()
 { }
 function DatoDefaultNumeroUnico2()
@@ -606,6 +623,8 @@ function eliminarCaptura(e) {
             if (dataItem.JuntaArmadoID === 0)
             { dataSource.remove(dataItem); }
 
+            AjaxObtenerDatoOriginalBorrado(dataItem, dataSource);
+            
             dataSource.sync();
             ventanaConfirm.close();
         });
@@ -818,8 +837,33 @@ function MensajesSteelGO(control, mensajeExepcionTecnico) {
         case 'radioTipoAgregado':
             displayNotify("radioTipoAgregado", '', '2');//mensaje cuando el tipo de resultado dimensional no esta seleccionado
             break;
+        case 'AvisoNumeroUnicoYaAsignado':
+            displayNotify('',_dictionary.AvisoNumeroUnicoYaAsignado[$("#language").data("kendoDropDownList").value()].replace("?1", mensajeExepcionTecnico), '2');//mensaje cuando el numero unico ya se encuentra asignado.
+            break;
 
     }
 };
 
+function ObjetoBorrado(item) {
+    JsonCaptura = [];
+    JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", IdVal: "", IdText: "", SpoolID: "", JuntaID: "", Junta: "", FechaArmado: "", TuberoID: "", Tubero: "", TallerID: "", Taller: "", SinCaptura: "" };
+   
+    JsonCaptura[0].IDProyecto = item.IDProyecto;
+    JsonCaptura[0].Proyecto = item.Proyecto;
+    JsonCaptura[0].IdOrdenTrabajo = item.IdOrdenTrabajo;
+    JsonCaptura[0].OrdenTrabajo = item.OrdenTrabajo;
+    JsonCaptura[0].IdVal = item.IdVal;
+    JsonCaptura[0].IdText = item.IdText;
+    JsonCaptura[0].SpoolID = item.SpoolID;
+    JsonCaptura[0].JuntaID = item.JuntaID;
+    JsonCaptura[0].Junta = item.Junta;
+    JsonCaptura[0].FechaArmado = item.FechaArmado;
+    JsonCaptura[0].TuberoID = item.TuberoID;
+    JsonCaptura[0].Tubero = item.Tubero;
+    JsonCaptura[0].TallerID = item.TallerID;
+    JsonCaptura[0].Taller = item.Taller;
+    JsonCaptura[0].SinCaptura = item.SinCaptura;
+
+    return JsonCaptura[0];
+}
 

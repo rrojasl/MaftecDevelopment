@@ -143,17 +143,22 @@ function RenderComboBoxNumeroUnico1(container, options) {
             template: "<i class=\"fa fa-#=data.Clave#\"></i> #=data.Clave#",
             select: function (e) {
                 dataItem = this.dataItem(e.item.index());
-                options.model.NumeroUnico1 = String(dataItem.Clave);
-                options.model.NumeroUnico1ID = dataItem.NumeroUnicoID;
+                //options.model.NumeroUnico1 = String(dataItem.Clave);
+                //options.model.NumeroUnico1ID = dataItem.NumeroUnicoID;
                 textAnterior = e.sender._prev;
             }
             ,
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
-                if (dataItem != undefined) {
-                    options.model.NumeroUnico1 = String(dataItem.Clave);
-                    options.model.NumeroUnico1ID = dataItem.NumeroUnicoID;
+                if (dataItem != undefined && dataItem.Etiqueta!="") {
+                    //options.model.NumeroUnico1 = String(dataItem.Clave);
+                    //options.model.NumeroUnico1ID = dataItem.NumeroUnicoID;
                     AplicarAsignacionAutomaticaNumeroUnico(options.model, textAnterior, dataItem, 0);
+                    $("#grid").data("kendoGrid").dataSource.sync();
+                }
+                else {
+                    options.model.NumeroUnico1 = "";
+                    options.model.NumeroUnico1ID = null;
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
             }
@@ -185,16 +190,21 @@ function RenderComboBoxNumeroUnico2(container, options) {
              template: "<i class=\"fa fa-#=data.Clave#\"></i> #=data.Clave#",
              select: function (e) {
                  dataItem = this.dataItem(e.item.index());
-                 options.model.NumeroUnico2 = String(dataItem.Clave);
-                 options.model.NumeroUnico2ID = dataItem.NumeroUnicoID;
+                 //options.model.NumeroUnico2 = String(dataItem.Clave);
+                 //options.model.NumeroUnico2ID = dataItem.NumeroUnicoID;
                  textAnterior = e.sender._prev;
              },
              change: function (e) {
                  dataItem = this.dataItem(e.sender.selectedIndex);
-                 if (dataItem != undefined) {
-                     options.model.NumeroUnico2 = String(dataItem.Clave);
-                     options.model.NumeroUnico2ID = dataItem.NumeroUnicoID;
+                 if (dataItem != undefined && dataItem.Etiqueta != "") {
+                     //options.model.NumeroUnico2 = String(dataItem.Clave);
+                     //options.model.NumeroUnico2ID = dataItem.NumeroUnicoID;
                      AplicarAsignacionAutomaticaNumeroUnico(options.model, textAnterior, dataItem, 0);
+                     $("#grid").data("kendoGrid").dataSource.sync();
+                 }
+                 else {
+                     options.model.NumeroUnico2 = "";
+                     options.model.NumeroUnico2ID = null;
                      $("#grid").data("kendoGrid").dataSource.sync();
                  }
 
