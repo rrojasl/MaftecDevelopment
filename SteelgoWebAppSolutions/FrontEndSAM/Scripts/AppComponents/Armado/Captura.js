@@ -540,7 +540,7 @@ function EliminarItemNUSeleccionado(jsonGridArmado, NumeroUnicoID, rowitem)
 function ExisteNUGrid(NumeroUnicoID, jsonGridArmado, rowitem) {
     var existe=false;
     for (var i = 0; i < jsonGridArmado.length; i++) {
-        if ((jsonGridArmado[i].Accion != 3 && jsonGridArmado[i].NumeroUnico1ID == NumeroUnicoID || jsonGridArmado[i].NumeroUnico2ID == NumeroUnicoID) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && jsonGridArmado[i].JuntaID != rowitem.JuntaID)
+        if ((jsonGridArmado[i].Accion != 3 && (jsonGridArmado[i].NumeroUnico1ID == NumeroUnicoID || jsonGridArmado[i].NumeroUnico2ID == NumeroUnicoID)) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && jsonGridArmado[i].JuntaID != rowitem.JuntaID)
             return true;
     }
     return false;
