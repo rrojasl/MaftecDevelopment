@@ -5,6 +5,11 @@ _languageOrder = {
 }
 
 _dictionary = {
+    "AvisoNumeroUnicoYaAsignado": {
+        "es-MX": "El numero unico ya se encuentra asignado en la junta: ?1",
+        "en-US": "The only number is already assigned in the joint: ?1"
+
+    },
     "SpoolIDExistente": {
         "es-MX": "El spool ya existe en la captura",
         "en-US": "The  already exist in the capture"

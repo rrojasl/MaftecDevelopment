@@ -79,7 +79,7 @@ function AjaxObtenerListaTaller() {
 function ObtenerJSonGridArmado() {
     try {
         loadingStart();
-        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), isReporte: true, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        $CapturaArmado.Armado.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), isReporte: false, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
             if (Error(data)) {
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);
@@ -112,9 +112,19 @@ function ObtenerJSonGridArmado() {
                                 ds._data[i].FechaArmado = new Date(ObtenerDato(array[0].FechaArmado, 1), ObtenerDato(array[0].FechaArmado, 2), ObtenerDato(array[0].FechaArmado, 3));//año, mes, dia
                             }
 
+                           
+
+                            if (array[0].ListaNumerosUnicos1.length > 2 && ExisteNUGrid(array[0].NumeroUnico1ID, ds._data, ds._data[i])) //valida NU1
+                            {
+                                EliminarItemNUSeleccionado(ds._data, array[0].NumeroUnico1ID, ds._data[i]);
+                            }
+                            else if (array[0].ListaNumerosUnicos2.length > 2 && ExisteNUGrid(array[0].NumeroUnico2ID, ds._data, ds._data[i])) //valida NU2
+                            {
+                                EliminarItemNUSeleccionado(ds._data, array[0].NumeroUnico2ID, ds._data[i]);
+                            }
+
                             var elementgrid = ds._data.splice(i, 1);
                             ds._data.unshift(elementgrid[0]);
-
                             displayNotify("",
                             _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
                             array[0].Junta +
@@ -122,12 +132,17 @@ function ObtenerJSonGridArmado() {
 
                             elementoNoEncontrado = true;
                         }
+                       
                     }
                     if (!elementoNoEncontrado)
                         displayNotify("",
                         _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
                         array[0].Junta +
                         _dictionary.CapturaArmadoMsgExisteListado[$("#language").data("kendoDropDownList").value()], '2');
+                    else {
+                        $("#Junta").val("");
+                        $("#Junta").data("kendoComboBox").value("");
+                    }
                 }
                 else {
                     //Proceso insertar elemento
@@ -493,6 +508,17 @@ function AjaxCargarReporteJuntas() {
                                     elementosModificados += ", " + array[i].Junta;
                                 else
                                     elementosModificados = array[i].Junta;
+
+                                //se aplica el algoritmo de los numeros unicos.
+                                if (array[i].ListaNumerosUnicos1.length > 2 && ExisteNUGrid(array[i].NumeroUnico1ID, ds._data, ds._data[j])) //valida NU1
+                                {
+                                    EliminarItemNUSeleccionado(ds._data, array[i].NumeroUnico1ID, ds._data[j]);
+                                }
+                                else if (array[i].ListaNumerosUnicos2.length > 2 && ExisteNUGrid(array[i].NumeroUnico2ID, ds._data, ds._data[j])) //valida NU2
+                                {
+                                    EliminarItemNUSeleccionado(ds._data, array[i].NumeroUnico2ID, ds._data[j]);
+                                }
+
 
                                 var elementgrid = ds._data.splice(j, 1);
                                 ds._data.unshift(elementgrid[0]);

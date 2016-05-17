@@ -204,8 +204,8 @@ namespace BackEndSAM.Controllers
                             Taller = item.Taller == null ? "" : item.Taller,
                             Localizacion = item.Localizacion,
                             FamiliaAcero = item.FamiliaAcero,
-                            NumeroUnico1 = (item.NumeroUnico1ID == null || item.NumeroUnico1ID == 0) ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].Clave : "") : item.Clave1.ToString(),
-                            NumeroUnico2 = (item.NumeroUnico2ID == null || item.NumeroUnico2ID == 0) ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].Clave : "") : item.Clave2.ToString(),
+                            NumeroUnico1 = (item.NumeroUnico1ID == null || item.NumeroUnico1ID == 0) ? (listNumeroUnico1.Count == 2 ? listNumeroUnico1[1].Clave : "") : item.Clave1.ToString(),
+                            NumeroUnico2 = (item.NumeroUnico2ID == null || item.NumeroUnico2ID == 0) ? (listNumeroUnico2.Count == 2 ? listNumeroUnico2[1].Clave : "") : item.Clave2.ToString(),
                             TemplateMensajeTrabajosAdicionales = item.TabajosAdicionales,
                             ListaNumerosUnicos1 = listNumeroUnico1,
                             ListaNumerosUnicos2 = listNumeroUnico2,
@@ -214,8 +214,8 @@ namespace BackEndSAM.Controllers
                             ListaDetalleTrabajoAdicional = listDetalleTrabajoAdicional,
                             listadoTrabajosAdicionalesXJunta = listaDetalleAdicionalXJuntaConvertida,
                             SinCaptura = capturaDatosJson.SinCaptura,
-                            NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].NumeroUnicoID.ToString() : "") : item.NumeroUnico1ID.ToString(),
-                            NumeroUnico2ID = item.NumeroUnico1ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].NumeroUnicoID.ToString() : "") : item.NumeroUnico2ID.ToString(),
+                            NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 2 ? listNumeroUnico1[1].NumeroUnicoID.ToString() : "") : item.NumeroUnico1ID.ToString(),
+                            NumeroUnico2ID = item.NumeroUnico1ID == null ? (listNumeroUnico2.Count == 2 ? listNumeroUnico2[1].NumeroUnicoID.ToString() : "") : item.NumeroUnico2ID.ToString(),
                             DetalleJunta = "Junta: " + item.TipoJunta + " - " + "Ced: " + item.Cedula + " - " + "Loc: " + item.Localizacion + " - " + "Acero: " + item.FamiliaAcero + ""
                         };
                         detalleDatos.listadoTrabajosAdicionalesXJunta.Insert(0, 
@@ -278,19 +278,18 @@ namespace BackEndSAM.Controllers
         public List<NumeroUnico> GenerarListaNumerosUnicos(List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumerosUnicos, int numeroSeleccionado)
         {
             List<NumeroUnico> numerosUnicos = new List<NumeroUnico>();
-
+            numerosUnicos.Add(new NumeroUnico());
             foreach (Sam3_Armado_Get_MaterialesSpool_Result item in listaNumerosUnicos)
             {
                 if (int.Parse(item.Etiqueta.ToString()) == numeroSeleccionado)
                 {
                     NumeroUnico numeroUnico = new NumeroUnico
                     {
-
                         NumeroUnicoID = item.NumeroUnicoID,
                         Clave = item.Clave,
                         EtiquetaMaterial = int.Parse(item.EtiquetaMaterial.ToString()),
-                        Etiqueta = item.Etiqueta
-
+                        Etiqueta = item.Etiqueta,
+                        JuntasEncontradas=item.JuntasEntocontradas
                     };
                     numerosUnicos.Add(numeroUnico);
                 }
