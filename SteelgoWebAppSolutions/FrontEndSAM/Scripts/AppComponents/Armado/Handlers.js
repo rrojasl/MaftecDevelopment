@@ -33,6 +33,7 @@ function suscribirEventoAdicionales() {
 function SuscribirEventoCancelarAdicionales() {
     $("#CancelarTrabajosAdicionales").click(function (e) {
         e.preventDefault();
+        
         $("#windowGrid").data("kendoWindow").close();
     });
 }
@@ -243,9 +244,13 @@ function suscribirEventoAgregar() {
                 else {
                     if ($('input:radio[name=TipoAgregado]:checked').val() == "Listado" && $("#Junta").val() != "") {
                         if ($("#Junta").data("kendoComboBox").dataItem($("#Junta").data("kendoComboBox").select()) != undefined) {
-                            $('#ButtonAgregar').prop("disabled", true);
+                            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+                                $('#ButtonAgregar').prop("disabled", true);
 
-                            ObtenerJSonGridArmado();
+                                ObtenerJSonGridArmado();
+                            }
+                            else
+                                displayNotify("NoExisteSpoolID", '', '2');
 
                         }
                         else {
@@ -445,7 +450,7 @@ function SuscribirEventoSpoolID() {
                 AjaxObtenerListaTubero();
                 AjaxObtenerListaTaller();
             }
-            
+
         }
     });
 
@@ -537,7 +542,7 @@ function SuscribirEventoSpoolID() {
                     break;
                 }
             }
-            
+
         }
     });
 
