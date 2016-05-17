@@ -30,7 +30,7 @@ namespace BackEndSAM.Models.WPS
 
     public class Captura
     {
-        public List<WPSGuardar> ListaDetalles { get; set; }
+        public List<WPSGuardar> Detalles { get; set; }
     }
     public class WPSGuardar
     {

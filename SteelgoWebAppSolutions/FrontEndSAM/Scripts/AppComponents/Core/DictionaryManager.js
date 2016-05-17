@@ -7534,6 +7534,14 @@ _dictionary = {
     //#endregion 
 
     //#region WPS
+    "ConfiguracionSoldaduraLabelNavegacion": {
+        "es-MX": "Soldadura Configuracion",
+        "en-US": "Configuration Welding"
+    },
+    "WPSLabelNavegacion": {
+        "es-MX": "WPS",
+        "en-US": "WPS"
+    },
     "WPSButtonNuevoWPS": {
         "es-MX": "Crear Nuevo",
         "en-US": "Create New"
@@ -7566,9 +7574,13 @@ _dictionary = {
         "es-MX": "PQR Raiz ID",
         "en-US": "PQR Root ID"
     },
+    "WPSPQR": {
+        "es-MX": "PQR",
+        "en-US": "PQR"
+    },
     "WPSPQRRAIZ": {
-        "es-MX": "PQR Raiz",
-        "en-US": "PQR Root"
+        "es-MX": "Raiz",
+        "en-US": "Root"
     },
     "WPSPWHTRaiz": {
         "es-MX": "PQR PWHT Raiz",
@@ -7583,8 +7595,8 @@ _dictionary = {
         "en-US": "PQR Fill ID"
     },
     "WPSPQRRelleno": {
-        "es-MX": "PQR Relleno",
-        "en-US": "PQR Fill"
+        "es-MX": "Relleno",
+        "en-US": "Fill"
     },
     "WPSGrupoPId": {
         "es-MX": "Grupo P ID",

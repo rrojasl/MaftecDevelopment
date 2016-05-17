@@ -15,7 +15,7 @@ namespace BackEndSAM.Models
         public string CodigoRelleno { get; set; }
         public string CodigoRaiz { get; set; }
         public string NumeroP { get; set; }
-        public string GrupoMaterialBase1 { get; set; }
+        public string GrupoP { get; set; }
         public string GrupoMaterialBase2 { get; set; }
         public string Aporte { get; set; }
         public string Mezcla { get; set; }
@@ -35,7 +35,7 @@ namespace BackEndSAM.Models
         public int ProcesoSoldaduraRaizID { get; set; }
 
         //Grupop
-        public int GrupoMaterialBase1PID { get; set; }
+        public int GrupoPID { get; set; }
         public int GrupoMaterialBase2PID { get; set; }
 
         //Aporte

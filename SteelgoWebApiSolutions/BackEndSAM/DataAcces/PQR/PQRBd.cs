@@ -52,29 +52,25 @@ namespace BackEndSAM.DataAcces
                                       PWHT = pqr.PWHT,
                                       EspesorRelleno = Convert.ToString(pqr.EspesorRelleno),
                                       EspesorRaiz = Convert.ToString(pqr.EspesorRaiz),
-                                     CodigoRelleno = pqr.CodigoRelleno,
-                                     CodigoRaiz = pqr.CodigoRaiz,
+                                      CodigoRelleno = pqr.CodigoRelleno,
+                                      CodigoRaiz = pqr.CodigoRaiz,
                                       NumeroP = pqr.NumeroP,
-                                     GrupoMaterialBase1 = pqr.GrupoMaterialBase1,
-                                     GrupoMaterialBase2 = pqr.GrupoMaterialBase2,
+                                      GrupoP = pqr.GrupoP,
                                       Aporte = pqr.Aporte,
                                       Mezcla = pqr.Mezcla,
                                       Respaldo = pqr.Respaldo,
                                       GrupoF = pqr.GrupoF,
                                       Codigo = pqr.Codigo,
-
-
                                       ProcesoSoldaduraRellenoID = pqr.ProcesoSoldaduraRellenoID,
-                                     ProcesoSoldaduraRaizID =Convert.ToInt32(pqr.ProcesoSoldaduraRaizID),
+                                      ProcesoSoldaduraRaizID = Convert.ToInt32(pqr.ProcesoSoldaduraRaizID),
                                       NumeroPID = Convert.ToInt32(pqr.NumeroPID),
-                                      GrupoMaterialBase1PID = Convert.ToInt32(pqr.GrupoMaterialBase1PID),
-                                      GrupoMaterialBase2PID = Convert.ToInt32(pqr.GrupoMaterialBase2PID),
+                                      GrupoPID = Convert.ToInt32(pqr.GrupoPID),
                                       AporteID = Convert.ToInt32(pqr.AporteID),
                                       MezclaID = Convert.ToInt32(pqr.MezclaID),
                                       RespaldoID = Convert.ToInt32(pqr.RespaldoID),
                                       GrupoFID = Convert.ToInt32(pqr.GrupoFID),
                                       CodigoID = Convert.ToInt32(pqr.CodigoID)
-                                     
+
 
 
                                   }).AsParallel().ToList();
@@ -138,8 +134,8 @@ namespace BackEndSAM.DataAcces
                 List<PQR> data = (from pqr in ctx.Sam3_Cat_PQR_GrupoP(TipoDato, null, null, null)
                                   select new PQR
                                   {
-                                      GrupoMaterialBase1 = pqr.GrupoP,
-                                      GrupoMaterialBase1PID = pqr.GrupoPID
+                                      GrupoP = pqr.GrupoP,
+                                      GrupoPID = pqr.GrupoPID
 
                                   }).AsParallel().ToList();
                 return data;
@@ -279,7 +275,7 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
 
-                    ctx.Sam3_Soldadura_PQR(3, pqr.PQRID, pqr.Nombre, pqr.PREHEAT, pqr.PWHT, pqr.EspesorRaiz, pqr.EspesorRelleno,  pqr.ProcesoSoldaduraRellenoID, pqr.ProcesoSoldaduraRaizID, pqr.NumeroP, pqr.GrupoPMaterialBase1, pqr.GrupoPMaterialBase2, pqr.Aporte, pqr.Mezcla, pqr.Respaldo, pqr.GrupoF, pqr.Codigo, usuario.UsuarioID);
+                    ctx.Sam3_Soldadura_PQR(3, pqr.PQRID, pqr.Nombre, pqr.PREHEAT, pqr.PWHT, pqr.EspesorRaiz, pqr.EspesorRelleno, pqr.ProcesoSoldaduraRellenoID, pqr.ProcesoSoldaduraRaizID, pqr.NumeroP, pqr.GrupoPID,0, pqr.Aporte, pqr.Mezcla, pqr.Respaldo, pqr.GrupoF, pqr.Codigo, usuario.UsuarioID);
                     TransactionalInformation result = new TransactionalInformation();
                     result.ReturnMessage.Add("OK");
                     result.ReturnCode = 200;
@@ -311,7 +307,7 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
 
-                    ctx.Sam3_Soldadura_PQR(2, null, Addpqr.Nombre, Addpqr.PREHEAT, Addpqr.PWHT, Addpqr.EspesorRaiz, Addpqr.EspesorRelleno,  Addpqr.ProcesoSoldaduraRellenoID, Addpqr.ProcesoSoldaduraRaizID, Addpqr.NumeroP, Addpqr.GrupoPMaterialBase1, Addpqr.GrupoPMaterialBase2, Addpqr.Aporte, Addpqr.Mezcla, Addpqr.Respaldo, Addpqr.GrupoF, Addpqr.Codigo, usuario.UsuarioID);
+                    ctx.Sam3_Soldadura_PQR(2, null, Addpqr.Nombre, Addpqr.PREHEAT, Addpqr.PWHT, Addpqr.EspesorRaiz, Addpqr.EspesorRelleno, Addpqr.ProcesoSoldaduraRellenoID, Addpqr.ProcesoSoldaduraRaizID, Addpqr.NumeroP, Addpqr.GrupoPID, 0, Addpqr.Aporte, Addpqr.Mezcla, Addpqr.Respaldo, Addpqr.GrupoF, Addpqr.Codigo, usuario.UsuarioID);
                     TransactionalInformation result = new TransactionalInformation();
                     result.ReturnMessage.Add("OK");
                     result.ReturnCode = 200;
@@ -394,9 +390,13 @@ namespace BackEndSAM.DataAcces
                                       select new PQR
                                       {
                                           PQRID = Convert.ToString(pqr.PQRID),
-                                          Nombre = pqr.Nombre
-                                         
-
+                                          Nombre = pqr.Nombre,
+                                          PREHEAT = pqr.PREHEAT,
+                                          PWHT = pqr.PWHT,
+                                          EspesorRaiz = pqr.EspesorRaiz.ToString(),
+                                          EspesorRelleno = pqr.EspesorRelleno.ToString(),
+                                          GrupoP = pqr.GrupoP,
+                                          GrupoPID = pqr.GrupoPID.GetValueOrDefault()
                                       }).AsParallel().ToList();
                     return data;
                 }
@@ -428,13 +428,12 @@ namespace BackEndSAM.DataAcces
                                       PQRID = Convert.ToString(pqr.PQRID),
                                       EspesorRaiz = Convert.ToString(pqr.EspesorRaiz),
                                       EspesorRelleno = Convert.ToString(pqr.EspesorRelleno),
-                                      GrupoMaterialBase1PID = Convert.ToInt32(pqr.GrupoMaterialBase1PID),
+                                      GrupoPID = Convert.ToInt32(pqr.GrupoPID),
                                       PWHT = pqr.PWHT,
-                                      GrupoMaterialBase2PID = Convert.ToInt32(pqr.GrupoMaterialBase2PID),
                                       CodigoRaiz = pqr.CodigoRaiz,
                                       CodigoRelleno = pqr.CodigoRelleno
-                                      
-               
+
+
 
                                   }).AsParallel().ToList();
                 return data;

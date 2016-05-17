@@ -44,6 +44,7 @@ namespace BackEndSAM.DataAcces
                 List<WPS> data = (from WPS in ctx.Sam3_Soldadura_WPS(TipoDato, null, null, null, null, null, null, null, null, null, null, null, null, null)
                                             select new WPS
                                             {
+                                                Accion = 2,
                                                 WPSID = WPS.WPSID,
                                                 WPSNombre = WPS.WPSNombre,
                                                 PQRRaizId = Convert.ToInt32(WPS.PQRRaizId),

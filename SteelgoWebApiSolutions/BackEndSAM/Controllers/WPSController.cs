@@ -105,9 +105,9 @@ namespace BackEndSAM.Controllers
                     JavaScriptSerializer serializer = new JavaScriptSerializer();
                     Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                     DataTable dtDetalleCaptura = new DataTable();
-                    if (listaCaptura.ListaDetalles != null)
+                    if (listaCaptura.Detalles != null)
                     {
-                        dtDetalleCaptura = ToDataTable(listaCaptura.ListaDetalles);
+                        dtDetalleCaptura = ToDataTable(listaCaptura.Detalles);
                     }
                     return WPSBd.Instance.AgregarWPS(dtDetalleCaptura, Usuario);
                 }

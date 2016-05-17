@@ -68,34 +68,3 @@ function EditaWPSAjax(WPSModal) {
     });
 
 };
-
-function AjaxGuardarCaptura() {
-
-    Captura = [];
-    Captura[0] = { ListaDetalles: "" };
-    ListaDetalles = [];
-
-    for (index = 0; index < arregloCaptura.length; index++) {
-        if (arregloCaptura[index].Etiquetado || arregloCaptura[index].ColorCintaID != 0) {
-
-            ListaDetalles[contGuardar] = {
-                EmbarqueMarcadoID: "",
-                SpoolID: "",
-                Impreso: "",
-                Etiquetado: "",
-                ColorCintaID: ""
-            };
-
-        }
-    }
-
-
-    $WPS.WPS.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
-        if (data.ReturnMessage == 'OK') {
-            loadingStart();
-            $("#windowWPS").data("kendoWindow").close();
-            ObtenerJSONParaGrid();
-            loadingStop();
-        }
-    });
-};
