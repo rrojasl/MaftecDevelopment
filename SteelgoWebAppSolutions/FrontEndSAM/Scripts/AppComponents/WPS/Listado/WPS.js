@@ -46,20 +46,15 @@ function CargarGrid() {
             schema: {
                 model: {
                     fields: {
-                        WPSID: { type: "int" },
-                        WPSNombre: { type: "string" },
-                        PQRRaizId: { type: "int" },
-                        NombrePQRRaiz: { type: "string" },
-                        PQRRellenoId: { type: "int" },
-                        NombrePQRRelleno: { type: "string" },
-                        GrupoPId: { type: "int" },
-                        GrupoP: { type: "string" },
-                        PWHTId: { type: "int" },
-                        PWHT: { type: "string" },
-                        EspesorMaximoRaiz: { type: "string" },
-                        EspesorMinimoRaiz: { type: "string" },
-                        EspesorMaximoRelleno: { type: "string" },
-                        EspesorMinimoRelleno: { type: "string" },
+                        WPSNombre: { type: "string", editable: true },
+                        NombrePQRRaiz: { type: "string", editable: true },
+                        NombrePQRRelleno: { type: "string", editable: true },
+                        GrupoP: { type: "string", editable: true },
+                        PWHT: { type: "string",editable: false },
+                        EspesorMaximoRaiz: { type: "string", editable:false},
+                        EspesorMinimoRaiz: { type: "string", editable: false },
+                        EspesorMaximoRelleno: { type: "string", editable: false },
+                        EspesorMinimoRelleno: { type: "string", editable: false },
                     }
                 }
             },
@@ -71,7 +66,7 @@ function CargarGrid() {
         autoHeight: true,
         sortable: true,
         scrollable: true,
-        editable: "inline",
+        editable: true,
         filterable: {
             extra: false,
         },
@@ -84,15 +79,11 @@ function CargarGrid() {
         },
         columns: [
 
-                    //{ field: "WPSID", title: _dictionary.WPSID[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", hidden: true },
+                    
                     { field: "WPSNombre", title: _dictionary.WPSNombre[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px" },
-                    //{ field: "PQRRaizId", title: _dictionary.WPSpqrraizId[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", hidden: true },
-                    { field: "NombrePQRRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px" },
-                    //{ field: "PQRRellenoId", title: _dictionary.WPSpqrrellenoId[$("#language").data("kendoDropDownList").value()], filterable: true, width: "90px", hidden: true },
-                    { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px" },
-                    //{ field: "GrupoPId", title: _dictionary.WPSGrupoPId[$("#language").data("kendoDropDownList").value()], filterable: true, width: "110px", hidden: true },
-                    { field: "GrupoP", title: _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px" },
-                    //{ field: "PWHTId", title: _dictionary.WPSpwhtid[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px", hidden: true },
+                    { field: "NombrePQRRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px", editor: RenderComboBoxPQRRaiz },
+                    { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: true, width: "120px", editor: RenderComboBoxPQRRelleno },
+                    { field: "GrupoP", title: _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px", editor: RenderComboBoxGrupoP },
                     { field: "PWHT", title: _dictionary.WPSPWHT[$("#language").data("kendoDropDownList").value()], filterable: true, width: "90px" },
 
                     { field: "EspesorMaximoRaiz", title: _dictionary.WPSEspesorMaximoRaiz[$("#language").data("kendoDropDownList").value()], filterable: true, width: "125px" },

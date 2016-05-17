@@ -8,6 +8,7 @@ using SecurityManager.Api.Models;
 using System.Data.Entity.Core.Objects;
 using BackEndSAM.Models.WPS;
 using SecurityManager.TokenHandler;
+using System.Data;
 
 namespace BackEndSAM.DataAcces
 {
@@ -57,7 +58,9 @@ namespace BackEndSAM.DataAcces
                                                 EspesorMinimoRaiz = WPS.EspesorMinimoRaiz,
                                                 EspesorMaximoRelleno = WPS.EspesorMaximoRelleno,
                                                 EspesorMinimoRelleno = WPS.EspesorMinimoRelleno,
-                                               
+                                                listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
+                                                listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
+                                                listadoGrupoP = (List<PQR>)PQRBd.Instance.ObtenerGrupoP(1)
                                             }).AsParallel().ToList();
                 return data;
 
@@ -96,7 +99,7 @@ namespace BackEndSAM.DataAcces
 
 
 
-        public object AgregarWPS(WPS AddWPS, Sam3_Usuario usuario)
+        public object AgregarWPS(DataTable dtDetalleWPS, Sam3_Usuario usuario)
         {
 
             try
@@ -104,7 +107,10 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
 
-                    ObjectResult<Sam3_Soldadura_WPS_Result> ColeccionObjetResult =   ctx.Sam3_Soldadura_WPS(2, AddWPS.WPSNombre, AddWPS.PQRRaizId, AddWPS.PQRRellenoId, AddWPS.GrupoPIdRaiz, AddWPS.GrupoPIdRaiz, Convert.ToBoolean(AddWPS.PWHTRaiz), Convert.ToBoolean(AddWPS.PWHTRaiz), AddWPS.EspesorMaximoRelleno, AddWPS.EspesorMinimoRelleno, AddWPS.EspesorMaximoRaiz, AddWPS.EspesorMinimoRaiz, usuario.UsuarioID, null);
+                    ObjetosSQL _SQL = new ObjetosSQL();
+                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() } };
+                    _SQL.Ejecuta(Stords.GUARDAWPS, dtDetalleWPS, "@Tabla", parametro);
+
 
                     TransactionalInformation result = new TransactionalInformation();
                     result.ReturnMessage.Add("OK");

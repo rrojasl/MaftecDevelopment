@@ -58,7 +58,6 @@ function AsignarValoresItemSeleccionado(e) {
     var NombreWPS = DataItem.WPSNombre;
     $("#NomnreWPS").val(NombreWPS);
 
-
     //#region Raices
     var CMBPQRD = $("#PQRRaizNombre").data("kendoComboBox");
     CMBPQRD.value(DataItem.PQRRaizId);
