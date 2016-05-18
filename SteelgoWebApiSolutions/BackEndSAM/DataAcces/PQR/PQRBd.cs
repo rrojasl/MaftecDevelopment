@@ -172,10 +172,8 @@ namespace BackEndSAM.DataAcces
 
         //public object ObtenerNumeroP(int TipoDato)
         //{
-
         //    using (SamContext ctx = new SamContext())
         //    {
-
         //        List<PQR> data = (from pqr in ctx.Sam3_Cat_PQR_NumeroP(TipoDato, null, null, null, null)
         //                          select new PQR
         //                          {
@@ -185,10 +183,6 @@ namespace BackEndSAM.DataAcces
         //                          }).AsParallel().ToList();
         //        return data;
         //    }
-
-
-
-
         //}
 
 
@@ -213,26 +207,20 @@ namespace BackEndSAM.DataAcces
 
         //}
 
-        //public object ObtenerGrupoP(int TipoDato)
-        //{
+        public object ObtenerGrupoP(int TipoDato)
+        {
+            using (SamContext ctx = new SamContext())
+            {
+                List<PQR> data = (from pqr in ctx.Sam3_Cat_PQR_GrupoP(TipoDato, null, null, null)
+                                  select new PQR
+                                  {
+                                      GrupoP = pqr.GrupoP,
+                                      GrupoPID = pqr.GrupoPID
 
-        //    using (SamContext ctx = new SamContext())
-        //    {
-
-        //        List<PQR> data = (from pqr in ctx.Sam3_Cat_PQR_GrupoP(TipoDato, null, null, null)
-        //                          select new PQR
-        //                          {
-        //                              GrupoP = pqr.GrupoP,
-        //                              GrupoPID = pqr.GrupoPID
-
-        //                          }).AsParallel().ToList();
-        //        return data;
-        //    }
-
-
-
-
-        //}
+                                  }).AsParallel().ToList();
+                return data;
+            }
+        }
 
 
         //public object ObtenerAporte(int TipoDato)
