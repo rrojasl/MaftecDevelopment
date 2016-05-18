@@ -514,22 +514,35 @@ function AplicarAsignacionAutomaticaNumeroUnico(rowitem, textoAnterior, combobox
                 EliminarItemNUSeleccionado(jsonGridArmado, combobox.NumeroUnicoID, rowitem)
             }
             else {
-                for (var i = 0; i < jsonGridArmado.length; i++) {
-                    if (combobox.JuntasEncontradas != '' && ((jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) && (jsonGridArmado[i].NumeroUnico2ID == combobox.NumeroUnicoID)) {
-                        jsonGridArmado[i].NumeroUnico2 = '';
-                        jsonGridArmado[i].NumeroUnico2ID = null;
-                        MensajesSteelGO("AvisoNumeroUnicoYaAsignado", combobox.JuntasEncontradas);
-                    }
-                    else if (combobox.JuntasEncontradas != '' && ((jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) && (jsonGridArmado[i].NumeroUnico1ID == combobox.NumeroUnicoID)) {
-                        jsonGridArmado[i].NumeroUnico1 = '';
-                        jsonGridArmado[i].NumeroUnico1ID = null;
-                        MensajesSteelGO("AvisoNumeroUnicoYaAsignado", combobox.JuntasEncontradas);
+                if (!ExisteSpoolJuntaEnGrid(combobox, jsonGridArmado, rowitem)) {
+                    for (var i = 0; i < jsonGridArmado.length; i++) {
+                        if (combobox.JuntasEncontradas != '' &&
+                            ((jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) &&
+                            (jsonGridArmado[i].NumeroUnico2ID == combobox.NumeroUnicoID)) {
+                            jsonGridArmado[i].NumeroUnico2 = '';
+                            jsonGridArmado[i].NumeroUnico2ID = null;
+                            MensajesSteelGO("AvisoNumeroUnicoYaAsignado", combobox.JuntasEncontradas);
+                        }
+                        else if (combobox.JuntasEncontradas != '' && ((jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) && (jsonGridArmado[i].NumeroUnico1ID == combobox.NumeroUnicoID)) {
+                            jsonGridArmado[i].NumeroUnico1 = '';
+                            jsonGridArmado[i].NumeroUnico1ID = null;
+                            MensajesSteelGO("AvisoNumeroUnicoYaAsignado", combobox.JuntasEncontradas);
+                        }
                     }
                 }
             }
         }
     }
 }
+
+function ExisteSpoolJuntaEnGrid(combobox, jsonGridArmado, rowitem) {
+    for (var i = 0; i < jsonGridArmado.length; i++) {
+        if (jsonGridArmado[i].Accion != 3 && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal + jsonGridArmado[i].Junta) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + combobox.JuntasEncontradas.trim())) {
+            return true;
+        }
+    }
+    return false;
+};
 
 function EliminarItemNUSeleccionado(jsonGridArmado, NumeroUnicoID, rowitem)
 {
@@ -548,7 +561,10 @@ function EliminarItemNUSeleccionado(jsonGridArmado, NumeroUnicoID, rowitem)
 function ExisteNUGrid(NumeroUnicoID, jsonGridArmado, rowitem) {
     var existe=false;
     for (var i = 0; i < jsonGridArmado.length; i++) {
-        if ((jsonGridArmado[i].Accion != 3 && (jsonGridArmado[i].NumeroUnico1ID == NumeroUnicoID || jsonGridArmado[i].NumeroUnico2ID == NumeroUnicoID)) && (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) && jsonGridArmado[i].JuntaID != rowitem.JuntaID)
+        if ((jsonGridArmado[i].Accion != 3 &&
+            (jsonGridArmado[i].NumeroUnico1ID == NumeroUnicoID || jsonGridArmado[i].NumeroUnico2ID == NumeroUnicoID)) &&
+            (jsonGridArmado[i].IdOrdenTrabajo + '-' + jsonGridArmado[i].IdVal) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal) &&
+            jsonGridArmado[i].JuntaID != rowitem.JuntaID)
             return true;
     }
     return false;
