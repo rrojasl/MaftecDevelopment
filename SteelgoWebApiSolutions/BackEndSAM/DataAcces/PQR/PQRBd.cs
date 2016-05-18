@@ -52,6 +52,7 @@ namespace BackEndSAM.DataAcces
                                 ProcesoSoldaduraRellenoID = item.ProcesoSoldaduraRellenoID,
                                 ListaProcesosSoldadura = (List<ListaProcesoSoldadura>)obtenerListadoProcesos(1),
                                 CodigoRaiz = item.CodigoRaiz,
+                                CodigoRelleno = item.CodigoRelleno,
                                 NumeroP = item.NumeroP,
                                 GrupoPID = item.GrupoPID.GetValueOrDefault(),
                                 GrupoP = item.GrupoP,
