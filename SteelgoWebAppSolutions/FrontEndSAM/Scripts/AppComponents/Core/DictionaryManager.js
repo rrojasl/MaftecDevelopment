@@ -7555,6 +7555,10 @@ _dictionary = {
         "es-MX": "¿Esta seguro de eliminar el WPS?",
         "en-US": "Are you sure to delete the WPS?"
     },
+    "WPSMensajeCamposIncorrector": {
+        "es-MX": "Algunos WPS no estan correctos, ¿Desea continuar?",
+        "en-US": "Some WPS are not correct, Would you like to continue?"
+    },
     "lblExisteNombreWPS": {
         "es-MX": "El WPS ya existe",
         "en-US": "The WPS exist"
@@ -7567,74 +7571,47 @@ _dictionary = {
         "es-MX": "El grupo P no coincide",
         "en-US": "The P group no match"
     },
-    "WPSID": {
-        "es-MX": "WPS ID",
-        "en-US": "WPS ID"
-    },
     "WPSNombre": {
         "es-MX": "Nombre",
         "en-US": "Nombre"
     },
-    "WPSpqrraizId": {
-        "es-MX": "PQR Raiz ID",
-        "en-US": "PQR Root ID"
+    "WPSProyecto": {
+        "es-MX": "Proyecto",
+        "en-US": "Project"
     },
     "WPSPQR": {
         "es-MX": "PQR",
         "en-US": "PQR"
     },
     "WPSPQRRAIZ": {
-        "es-MX": "Raiz",
-        "en-US": "Root"
-    },
-    "WPSPWHTRaiz": {
-        "es-MX": "PQR PWHT Raiz",
-        "en-US": "Root PQR PWHT"
-    },
-    "WPSPWHTRelleno": {
-        "es-MX": "PQR PWHT Relleno",
-        "en-US": "Fill PQR PWHT"
-    },
-    "WPSpqrrellenoId": {
-        "es-MX": "PQR Relleno ID",
-        "en-US": "PQR Fill ID"
+        "es-MX": "RZ",
+        "en-US": "RT"
     },
     "WPSPQRRelleno": {
-        "es-MX": "Relleno",
-        "en-US": "Fill"
-    },
-    "WPSGrupoPId": {
-        "es-MX": "Grupo P ID",
-        "en-US": "Group P ID"
+        "es-MX": "RLL",
+        "en-US": "Fll"
     },
     "WPSPQRGrupoP": {
         "es-MX": "Grupo P",
         "en-US": "Group P"
     },
-    "WPSpwhtid": {
-        "es-MX": "Preheat ID",
-        "en-US": "Preheat ID"
-    },
     "WPSPWHT": {
         "es-MX": "PWHT",
         "en-US": "PWHT"
     },
-    "WPSEspesorMaximoRaiz": {
-        "es-MX": "E Máx Raíz",
-        "en-US": "Root Max T"
+    "WPSPreHeat": {
+        "es-MX": "Preheat",
+        "en-US": "Preheat"
+        },
+    "WPSEspesorMaximo": {
+        "es-MX": "E Máx",
+        "en-US": "Max T"
     },
-    "WPSEspesorMinimoRaiz": {
-        "es-MX": "E Mín Raíz",
-        "en-US": "Root Mini T"
+    "WPSEspesorMinimo": {
+        "es-MX": "E Mín",
+        "en-US": "Mini T"
     },
-    "WPSEspesorMaximoRelleno": {
-        "es-MX": "E Máx Relleno",
-        "en-US": "Fill Ma T"
-    },
-    "WPSEspesorMinimoRelleno": {
-        "es-MX": "E Mín Relleno",
-        "en-US": "Fill Min T"
-    },
+    
 
     //#endregion 
     //#region PQR

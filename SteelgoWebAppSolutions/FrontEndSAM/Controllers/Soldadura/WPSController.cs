@@ -21,7 +21,10 @@ namespace FrontEndSAM.Controllers.Soldadura
 
         public ActionResult _PopUPWPS()
         {
-
+            return View();
+        }
+        public ActionResult crearWPS()
+        {
             return View();
         }
     }

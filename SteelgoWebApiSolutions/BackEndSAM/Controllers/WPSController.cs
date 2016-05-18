@@ -29,7 +29,9 @@ namespace BackEndSAM.Controllers
                 bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
                 if (totokenValido)
                 {
-                    return WPSBd.Instance.ObtenerWPS(TipoDato);
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+                    Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                    return WPSBd.Instance.ObtenerWPS(TipoDato,usuario);
                 }
                 else
                 {

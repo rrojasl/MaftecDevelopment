@@ -8,24 +8,38 @@ namespace BackEndSAM.Models.WPS
         public int Accion { get; set; }
         public int WPSID { get; set; }
         public string WPSNombre { get; set; }
+
         public int PQRRaizId { get; set; }
         public string NombrePQRRaiz { get; set; }
         public int PQRRellenoId { get; set; }
         public string NombrePQRRelleno { get; set; }
-        public int GrupoPId { get; set; }
-        public string GrupoP { get; set; }
-        public int PWHTId { get; set; }
-        public string PWHT { get; set; }
-        public string EspesorMaximoRaiz { get; set; }
-        public string EspesorMinimoRaiz { get; set; }
-        public string EspesorMaximoRelleno { get; set; }
-        public string EspesorMinimoRelleno { get; set; }
 
-        public int GrupoPIdRaiz { get; set; }
-        public int PWHTRaiz { get; set; }
+        public int GrupoPRellenoId { get; set; }
+        public string GrupoPRelleno { get; set; }
+        public int GrupoPRaizId { get; set; }
+        public string GrupoPRaiz { get; set; }
+        
+        public int PWHTRaizId { get; set; }
+        public string PWHTRaiz { get; set; }
+        public int PWHTRellenoId { get; set; }
+        public string PWHTRelleno { get; set; }
+
+        public int PREHEATRellenoId { get; set; }
+        public string PREHEATRelleno { get; set; }
+        public int PREHEATRaizId { get; set; }
+        public string PREHEATRaiz { get; set; }
+
+        public decimal EspesorMaximoRaiz { get; set; }
+        public decimal EspesorMinimoRaiz { get; set; }
+        public decimal EspesorMaximoRelleno { get; set; }
+        public decimal EspesorMinimoRelleno { get; set; }
+        public string Proyecto { get; set; }
+        public int ProyectoID { get; set; }
+
         public List<PQR> listadoRellenoPQR { get; set; }
         public List<PQR> listadoRaizPQR { get; set; }
         public List<PQR> listadoGrupoP { get; set; }
+        public List<Models.Pintura.MedioTransporte.Proyecto> ListaProyectos { get; set; }
     }
 
     public class Captura
@@ -41,10 +55,12 @@ namespace BackEndSAM.Models.WPS
         public int PQRRellenoId { get; set; }
         public int GrupoPId { get; set; }
         public int PWHTId { get; set; }
-        public int EspesorMaximoRaiz { get; set; }
-        public int EspesorMinimoRaiz { get; set; }
-        public int EspesorMaximoRelleno { get; set; }
-        public int EspesorMinimoRelleno { get; set; }
+        public int PREHEAT { get; set; }
+        public double EspesorMaximoRaiz { get; set; }
+        public double EspesorMinimoRaiz { get; set; }
+        public double EspesorMaximoRelleno { get; set; }
+        public double EspesorMinimoRelleno { get; set; }
+        public int ProyectoID { get; set; }
     }
-
+  
 }

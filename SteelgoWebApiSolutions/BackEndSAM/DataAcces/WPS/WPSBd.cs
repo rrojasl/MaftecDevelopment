@@ -9,6 +9,7 @@ using System.Data.Entity.Core.Objects;
 using BackEndSAM.Models.WPS;
 using SecurityManager.TokenHandler;
 using System.Data;
+using BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD;
 
 namespace BackEndSAM.DataAcces
 {
@@ -36,7 +37,7 @@ namespace BackEndSAM.DataAcces
         }
 
 
-        public object ObtenerWPS(int TipoDato)
+        public object ObtenerWPS(int TipoDato, Sam3_Usuario usuario)
         {
 
             using (SamContext ctx = new SamContext())
@@ -47,21 +48,38 @@ namespace BackEndSAM.DataAcces
                                                 Accion = 2,
                                                 WPSID = WPS.WPSID,
                                                 WPSNombre = WPS.WPSNombre,
+
                                                 PQRRaizId = Convert.ToInt32(WPS.PQRRaizId),
                                                 NombrePQRRaiz = WPS.NombrePQRRaiz,
                                                 PQRRellenoId = Convert.ToInt32(WPS.PQRRellenoId),
                                                 NombrePQRRelleno = WPS.NombrePQRRelleno,
-                                                GrupoPId = Convert.ToInt32(WPS.GrupoPId),
-                                                GrupoP = WPS.GrupoP,
-                                                PWHTId = Convert.ToInt32(WPS.PWHTId),
-                                                PWHT = WPS.PWHT,
-                                                EspesorMaximoRaiz = WPS.EspesorMaximoRaiz,
+
+                                                GrupoPRaizId = Convert.ToInt32(WPS.GrupoPId),
+                                                GrupoPRaiz = WPS.GrupoP,
+                                                GrupoPRellenoId = Convert.ToInt32(WPS.GrupoPId),
+                                                GrupoPRelleno = WPS.GrupoP,
+
+                                                PWHTRaizId = Convert.ToInt32(WPS.PWHTId),
+                                                PWHTRaiz = WPS.PWHT,
+                                                PWHTRellenoId = Convert.ToInt32(WPS.PWHTId),
+                                                PWHTRelleno = WPS.PWHT,
+
+                                                PREHEATRaizId = Convert.ToInt32(WPS.PREHEATId),
+                                                PREHEATRaiz = WPS.PREHEAT,
+                                                PREHEATRellenoId = Convert.ToInt32(WPS.PREHEATId),
+                                                PREHEATRelleno = WPS.PREHEAT,
+
+                                                EspesorMaximoRaiz = WPS.EspesorMaximoRaiz.GetValueOrDefault(),
                                                 EspesorMinimoRaiz = WPS.EspesorMinimoRaiz,
-                                                EspesorMaximoRelleno = WPS.EspesorMaximoRelleno,
+                                                EspesorMaximoRelleno = WPS.EspesorMaximoRelleno.GetValueOrDefault(),
                                                 EspesorMinimoRelleno = WPS.EspesorMinimoRelleno,
+                                                Proyecto = WPS.Proyecto,
+                                                ProyectoID = WPS.ProyectoID,
+
                                                 listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
                                                 listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
-                                                listadoGrupoP = (List<PQR>)PQRBd.Instance.ObtenerGrupoP(1)
+                                                listadoGrupoP = (List<PQR>)PQRBd.Instance.ObtenerGrupoP(1),
+                                                ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos()
                                             }).AsParallel().ToList();
                 return data;
 
@@ -150,7 +168,7 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
 
-                    ObjectResult<Sam3_Soldadura_WPS_Result> ColeccionObjetResult = ctx.Sam3_Soldadura_WPS(3, AddWPS.WPSNombre, AddWPS.PQRRaizId, AddWPS.PQRRellenoId, AddWPS.GrupoPIdRaiz, AddWPS.GrupoPIdRaiz, Convert.ToBoolean(AddWPS.PWHTRaiz), Convert.ToBoolean(AddWPS.PWHTRaiz), AddWPS.EspesorMaximoRelleno, AddWPS.EspesorMinimoRelleno, AddWPS.EspesorMaximoRaiz, AddWPS.EspesorMinimoRaiz, usuario.UsuarioID, AddWPS.WPSID);
+                    //ObjectResult<Sam3_Soldadura_WPS_Result> ColeccionObjetResult = ctx.Sam3_Soldadura_WPS(3, AddWPS.WPSNombre, AddWPS.PQRRaizId, AddWPS.PQRRellenoId, AddWPS.GrupoPIdRaiz, AddWPS.GrupoPIdRaiz, Convert.ToBoolean(AddWPS.PWHTRaiz), Convert.ToBoolean(AddWPS.PWHTRaiz), AddWPS.EspesorMaximoRelleno, AddWPS.EspesorMinimoRelleno, AddWPS.EspesorMaximoRaiz, AddWPS.EspesorMinimoRaiz, usuario.UsuarioID, AddWPS.WPSID);
 
                     TransactionalInformation result = new TransactionalInformation();
                     result.ReturnMessage.Add("OK");
