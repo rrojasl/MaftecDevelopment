@@ -1,29 +1,29 @@
 ﻿function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();
     var dataItem;
-    $('<input data-text-field="CodigoRaiz" id=' + options.model.uid + ' data-value-field="CodigoRaiz" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: options.model.ListadoProcesoSoldadura,
-                template: "<i class=\"fa fa-#=data.CodigoRaiz#\"></i> #=data.CodigoRaiz#",
+                dataSource: options.model.ListaProcesosSoldadura,
+                template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
                 select: function (e) {
                     dataItem = this.dataItem(e.item.index());
-                    options.model.procesoSoldaduraRaiz = dataItem.Codigo,
-                    options.model.procesoSoldaduraRaizID = dataItem.ProcesoSoldaduraID
+                    options.model.Codigo = dataItem.Codigo,
+                    options.model.ProcesoSoldaduraRaizID = dataItem.procesoSoldaduraRaizID
                 },
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
-                        options.model.procesoSoldaduraRaiz = dataItem.Codigo
-                        options.model.procesoSoldaduraRaizID = dataItem.ProcesoSoldaduraID
+                        options.model.Codigo = dataItem.Codigo,
+                        options.model.ProcesoSoldaduraRaizID = dataItem.procesoSoldaduraRaizID
                     }
                     else {
-                        options.model.procesoSoldaduraRaiz = "";
-                        options.model.procesoSoldaduraRaizID = "";
+                        options.model.Codigo = "";
+                        options.model.ProcesoSoldaduraRaizID = "";
                     }
                 }
             }
@@ -52,25 +52,25 @@ function ObtenerDescCorrectaSoldaduraRaiz(lista, procesoSoldaduraRaizID) {
 function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
     loadingStart();
     var dataItem;
-    $('<input data-text-field="CodigoRelleno" id=' + options.model.uid + ' data-value-field="CodigoRelleno" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: options.model.ListadoProcesoSoldadura,
-                template: "<i class=\"fa fa-#=data.CodigoRelleno#\"></i> #=data.CodigoRelleno#",
+                dataSource: options.model.ListaProcesosSoldadura,
+                template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
                 select: function (e) {
                     dataItem = this.dataItem(e.item.index());
-                    options.model.procesoSoldaduraRelleno = dataItem.Codigo;
-                    options.model.procesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
+                    options.model.Codigo = dataItem.Codigo;
+                    options.model.ProcesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
                 },
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
-                        options.model.procesoSoldaduraRelleno = dataItem.Codigo;
-                        options.model.procesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
+                        options.model.Codigo = dataItem.Codigo;
+                        options.model.ProcesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
                         //AjaxActualizaSoldadoresRelleno(dataItem.ProcesoSoldaduraID, ItemSeleccionado.TipoJunta, ItemSeleccionado.Diametro, ItemSeleccionado.Espesor, ItemSeleccionado.Cedula);
                     }
                 }
