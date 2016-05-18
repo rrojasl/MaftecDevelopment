@@ -70,8 +70,8 @@ function CargarGrid() {
         filterable: getGridFilterableMaftec(),
         columns: [
                      { width: "110px", field: "Nombre", title: _dictionary.lblPQRNombre[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: true },
+                    { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>" },
+                    { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>" },
                     { width: "120px", field: "EspesorRaiz", title: _dictionary.lblPQREspesorRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
                     { width: "120px", field: "EspesorRelleno", title: _dictionary.lblPQREspesorRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
                     { width: "120px", field: "CodigoRaiz", title: _dictionary.lblPQRProcesoSoldaduraRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxProcesoSoldaduraRaiz },
