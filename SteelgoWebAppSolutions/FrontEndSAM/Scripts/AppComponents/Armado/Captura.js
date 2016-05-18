@@ -432,9 +432,11 @@ function VentanaModal() {
         ],
         close: function onClose(e) {
             var gridDataSource = $("#gridPopUp").data("kendoGrid").dataSource;
-            for (var i = 0; i < 2; i++) {//porque solo se tiene 2 columnas.
-                gridDataSource.filter({ field: gridDataSource.options.fields[i].field, value: "" });
-            }
+            gridDataSource.filter([]);
+
+            //    gridDataSource.filter({ field: gridDataSource.options.fields[i].field, value: "" });
+            
+
         }
     }).data("kendoWindow");
     window.data("kendoWindow").title(modalTitle);
