@@ -7,17 +7,16 @@ namespace BackEndSAM.Models
     {
 
         //Grid PQR
-        public string PQRID { get; set; }
+        public int PQRID { get; set; }
         public string Nombre { get; set; }
         public bool PREHEAT { get; set; }
         public bool PWHT { get; set; }
-        public string EspesorRelleno { get; set; }
-        public string EspesorRaiz { get; set; }
+        public decimal EspesorRelleno { get; set; }
+        public decimal EspesorRaiz { get; set; }
         public string CodigoRelleno { get; set; }
         public string CodigoRaiz { get; set; }
         public string NumeroP { get; set; }
         public string GrupoP { get; set; }
-        public string GrupoMaterialBase2 { get; set; }
         public string Aporte { get; set; }
         public string Mezcla { get; set; }
         public string Respaldo { get; set; }
@@ -25,19 +24,18 @@ namespace BackEndSAM.Models
         public string Codigo { get; set; }
         public string UsuarioModificacion { get; set; }
         public string FechaModificacion { get; set; }
-
+        
         //NumeroP
-
         public int NumeroPID { get; set; }
 
         //ProcesoSoldadura
-
         public int ProcesoSoldaduraRellenoID { get; set; }
         public int ProcesoSoldaduraRaizID { get; set; }
 
+        public List<ListaProcesoSoldadura> ListaProcesosSoldadura { get; set; }
+
         //Grupop
         public int GrupoPID { get; set; }
-        public int GrupoMaterialBase2PID { get; set; }
 
         //Aporte
         public int AporteID { get; set; }
@@ -57,6 +55,12 @@ namespace BackEndSAM.Models
         //ValidaNombre
         public string Existe { get; set; }
 
+    }
+
+    public class ListaProcesoSoldadura
+    {
+        public int ProcesoSoldaduraID { get; set; }
+        public string Codigo { get; set; }
     }
 
     public class Captura
