@@ -24,16 +24,15 @@ function CargarGrid() {
                 model: {
                     fields: {
                         PQRID: { type: "string" },
-                        Nombre: { type: "string" },
-                        PREHEAT: { type: "string" },
-                        PWHT: { type: "string" },
-                        EspesorRelleno: { type: "string" },
-                        EspesorRaiz: { type: "string" },
-                        CodigoRelleno: { type: "string" },
-                        CodigoRaiz: { type: "string" },
-                        NumeroP: { type: "string" },
-                        GrupoMaterialBase1: { type: "string" },
-                        GrupoMaterialBase2: { type: "string" },
+                        Nombre: { type: "string", editable: true },
+                        PREHEAT: { type: "string", editable: true },
+                        PWHT: { type: "string", editable: true},
+                        EspesorRelleno: {type: "string", editable: true},
+                        EspesorRaiz: { type: "string", editable: true },
+                        CodigoRelleno: { type: "string", editable: true},
+                        CodigoRaiz: { type: "string", editable: true},
+                        NumeroP: { type: "string", editable: true},
+                        GrupoP: {type: "string", editable: true},
                         Aporte: { type: "string" },
                         Mezcla: { type: "string" },
                         Respaldo: { type: "string" },
@@ -43,8 +42,7 @@ function CargarGrid() {
                         ProcesoSoldaduraRellenoID: { type: "int" },
                         ProcesoSoldaduraRaizID: { type: "int" },
                         NumeroPID: { type: "int" },
-                        GrupoMaterialBase1PID: { type: "int" },
-                        GrupoMaterialBase2PID: { type: "int" },
+                        GrupoPID: { type: "int" },
                         AporteID: { type: "int" },
                         MezclaID: { type: "int" },
                         RespaldoID: { type: "int" },
@@ -61,7 +59,7 @@ function CargarGrid() {
         autoHeight: true,
         sortable: true,
         scrollable: true,
-        editable: "inline",
+        editable: true,
         pageable: {
             refresh: false,
             pageSizes: [10, 15, 20],
@@ -74,13 +72,12 @@ function CargarGrid() {
                      { width: "110px", field: "Nombre", title: _dictionary.lblPQRNombre[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: true },
                     { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: true },
-                    { width: "120px", field: "EspesorRelleno", title: _dictionary.lblPQREspesorRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
                     { width: "120px", field: "EspesorRaiz", title: _dictionary.lblPQREspesorRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
-                    { width: "120px", field: "CodigoRelleno", title: _dictionary.lblPQRProcesoSoldaduraRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
-                    { width: "120px", field: "CodigoRaiz", title: _dictionary.lblPQRProcesoSoldaduraRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "EspesorRelleno", title: _dictionary.lblPQREspesorRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
+                    { width: "120px", field: "CodigoRaiz", title: _dictionary.lblPQRProcesoSoldaduraRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxProcesoSoldaduraRaiz },
+                    { width: "120px", field: "CodigoRelleno", title: _dictionary.lblPQRProcesoSoldaduraRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px", editor: RenderComboBoxProcesoSoldaduraRelleno },
                     { width: "120px", field: "NumeroP", title: _dictionary.lblPQRNumeroP[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "GrupoMaterialBase1", title: _dictionary.lblPQRGrupoPMaterialBase1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "GrupoMaterialBase2", title: _dictionary.lblPQRGrupoPMaterialBase2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "GrupoP", title: _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "Aporte", title: _dictionary.lblPQRAporte[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "Mezcla", title: _dictionary.lblPQRMezcla[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "Respaldo", title: _dictionary.lblPQRRespaldo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
@@ -132,7 +129,6 @@ function LimpiaControles() {
     $('#ProcesoSoldaduraRaizID').data("kendoComboBox").value("");
     $('#NumeroPID').data("kendoComboBox").value("");
     $('#GrupoPMaterialBase1ID').data("kendoComboBox").value("");
-    $('#GrupoPMaterialBase2ID').data("kendoComboBox").value("");
     $('#AporteID').data("kendoComboBox").value("");
     $('#MezclaID').data("kendoComboBox").value("");
     $('#RespaldoID').data("kendoComboBox").value("");
@@ -195,10 +191,6 @@ function LLenaControles(e) {
 
     var GrupoPMaterialBase1ID = $("#GrupoPMaterialBase1ID").data("kendoComboBox");
     GrupoPMaterialBase1ID.value(dataItem.GrupoMaterialBase1PID);
-
-    var GrupoPMaterialBase2ID = $("#GrupoPMaterialBase2ID").data("kendoComboBox");
-    GrupoPMaterialBase2ID.value(dataItem.GrupoMaterialBase2PID);
-
 
     var CMBAporte = $("#AporteID").data("kendoComboBox");
     CMBAporte.value(dataItem.AporteID);
