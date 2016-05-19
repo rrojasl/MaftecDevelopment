@@ -26,9 +26,9 @@ namespace BackEndSAM.Models
 
         //Grupo P Materiales base
         public int GrupoPMaterialBase1 { get; set; }
-        public int GrupoPMaterialBase1Nombre { get; set; }
+        public string GrupoPMaterialBase1Nombre { get; set; }
         public int GrupoPMaterialBase2 { get; set; }
-        public int GrupoPMaterialBase2Nombre { get; set; }
+        public string GrupoPMaterialBase2Nombre { get; set; }
 
 
         //ProcesoSoldadura

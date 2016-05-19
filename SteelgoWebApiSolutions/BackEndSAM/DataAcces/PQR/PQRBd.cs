@@ -53,9 +53,10 @@ namespace BackEndSAM.DataAcces
                                 ListaProcesosSoldadura = (List<ListaProcesoSoldadura>)obtenerListadoProcesos(1),
                                 CodigoRaiz = item.CodigoRaiz,
                                 CodigoRelleno = item.CodigoRelleno,
-                                NumeroP = item.NumeroP,
-                                GrupoPID = item.GrupoPID.GetValueOrDefault(),
-                                GrupoP = item.GrupoP,
+                                GrupoPMaterialBase1 = item.GrupoPMaterialBase1.GetValueOrDefault(),
+                                GrupoPMaterialBase1Nombre = item.GrupoPMaterialBase1Nombre,
+                                GrupoPMaterialBase2 = item.GrupoPMaterialBase2.GetValueOrDefault(),
+                                GrupoPMaterialBase2Nombre = item.GrupoPMaterialBase2Nombre,
                                 AporteID = item.AporteID.GetValueOrDefault(),
                                 Aporte = item.Aporte,
                                 MezclaID = item.MezclaID.GetValueOrDefault(),
@@ -85,6 +86,73 @@ namespace BackEndSAM.DataAcces
         }
 
         public object obtenerListadoProcesos(int tipoAccion)
+        {
+            try
+            {
+                List<ListaProcesoSoldadura> listaProcesosResult = new List<ListaProcesoSoldadura>();
+                listaProcesosResult.Add(new ListaProcesoSoldadura());
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Cat_PQR_ProcesoSoldadura_Result> listadoProcesosSoldadura = ctx.Sam3_Cat_PQR_ProcesoSoldadura(tipoAccion).ToList();
+
+                    foreach (Sam3_Cat_PQR_ProcesoSoldadura_Result item in listadoProcesosSoldadura)
+                    {
+                        listaProcesosResult.Add(new ListaProcesoSoldadura
+                        {
+                            ProcesoSoldaduraID = item.ProcesoSoldaduraID,
+                            Codigo = item.Codigo
+                        });
+                    }
+
+                    return listaProcesosResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+        public object obtenerListadoMaterialesBase(int tipoAccion)
+        {
+            try
+            {
+                List<ListaProcesoSoldadura> listaProcesosResult = new List<ListaProcesoSoldadura>();
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Cat_PQR_ProcesoSoldadura_Result> listadoProcesosSoldadura = ctx.Sam3_Cat_PQR_ProcesoSoldadura(tipoAccion).ToList();
+
+                    foreach (Sam3_Cat_PQR_ProcesoSoldadura_Result item in listadoProcesosSoldadura)
+                    {
+                        listaProcesosResult.Add(new ListaProcesoSoldadura
+                        {
+                            ProcesoSoldaduraID = item.ProcesoSoldaduraID,
+                            Codigo = item.Codigo
+                        });
+                    }
+
+                    return listaProcesosResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+        public object obtenerListadoCodigos(int tipoAccion)
         {
             try
             {
@@ -208,20 +276,20 @@ namespace BackEndSAM.DataAcces
 
         //}
 
-        public object ObtenerGrupoP(int TipoDato)
-        {
-            using (SamContext ctx = new SamContext())
-            {
-                List<PQR> data = (from pqr in ctx.Sam3_Cat_PQR_GrupoP(TipoDato, null, null, null)
-                                  select new PQR
-                                  {
-                                      GrupoP = pqr.GrupoP,
-                                      GrupoPID = pqr.GrupoPID
+        //public object ObtenerGrupoP(int TipoDato)
+        //{
+        //    using (SamContext ctx = new SamContext())
+        //    {
+        //        List<PQR> data = (from pqr in ctx.Sam3_Cat_PQR_GrupoP(TipoDato, null, null, null)
+        //                          select new PQR
+        //                          {
+        //                              GrupoP = pqr.GrupoP,
+        //                              GrupoPID = pqr.GrupoPID
 
-                                  }).AsParallel().ToList();
-                return data;
-            }
-        }
+        //                          }).AsParallel().ToList();
+        //        return data;
+        //    }
+        //}
 
 
         //public object ObtenerAporte(int TipoDato)
