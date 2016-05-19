@@ -50,42 +50,114 @@
             </div>
         </div>
     </div>
-    
-
-    @*Menu Inferior*@
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="formNav clearfix">
-                <div class="button-section editButtonSection ">
-                    <div class="btn-group save-group">
-                        <button id="Guardar1" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="botonGuardar3"></span></button>
-                        <button id="dropdown-toggle" type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="caretWhite"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" id="btnGuardar1" class="accionGuardar"><span id="botonGuardar4"></span></a></li>
-
-                        </ul>
-                    </div>
-                    <a id="btnCancelar" class="btn btn-black"><span id="CapturaSoldaduraCancelar"></span></a>
-
-                </div>
-                <div id="ArmadoSoldaduraDivInferior" class="button-section">
-                    <a id="ArmadoSoldaduraInferior" href="@Url.Action("capturaSoldadura","Soldadura")" class="btn btn-primary"><span id="menuSoldaduraPie"></span></a>
-                </div>
-                <div class="button-section actionButtonSection">
-                    <div class="dropdown action-group">
-                        <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
-                            <span id="CapturaSoldaduraAcciones"></span>
-                            <span class="caretBlue"></span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="Acciones"></ul>
-                    </div>
-                </div>
-                <a id="Imprimir" href="#" class="btn btn-fadeBlue actionButtonSection"></a>
+    @*FORMULARIO WPS*@
+    <div class="row" id="FieldSetView">
+        <div class="row">
+            <div id="ValidaCamposRequeridosWPS" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                <label id="WPSNombre"></label>
+                <input id="NomnreWPS" class="form-control" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
+                <label id="WPSProyecto"></label>
+                <input id="Proyecto" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div id="DivNombrePQRRaiz" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPQR"></label>
+                <input id="PQRRaizNombre" class="general-input" />
+            </div>
+            <div id="DivNombrePQRRelleno" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPQR2"></label>
+                <input id="PQRRellenoNombre" class="general-input" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPQRGrupoP"></label>
+                <input id="grupoPRaiz" readonly="readonly" class="general-input" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPQRGrupoP2"></label>
+                <input id="grupoPRelleno" readonly="readonly" class="general-input" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPWHT"></label>
+                <input type="checkbox" id="PWHRaiz" data-bind="checked: optionCheck" readonly="readonly" checked onclick="javascript: return false;" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPWHT2"></label>
+                <input type="checkbox" id="PWHRelleno" data-bind="checked: optionCheck" readonly="readonly" checked onclick="javascript: return false;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPreHeat"></label>
+                <input type="checkbox" id="PREHEATRaiz" data-bind="checked: optionCheck" readonly="readonly" checked onclick="javascript: return false;" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSPreHeat2"></label>
+                <input type="checkbox" id="PREHEATRelleno" data-bind="checked: optionCheck" readonly="readonly" checked onclick="javascript: return false;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSEspesorMaximo"></label>
+                <input id="EspesoirMaximoRaiz" value="0" readonly="readonly" class="general-input" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSEspesorMaximo2"></label>
+                <input id="EspesoirMaximoRelleno" value="0" readonly="readonly" class="general-input" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSEspesorMinimo"></label>
+                <input id="EspesoirMinimoRaiz" value="0" readonly="readonly" class="general-input" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label id="WPSEspesorMinimo2"></label>
+                <input id="EspesoirMinimoRelleno" value="0" readonly="readonly" class="general-input" />
             </div>
         </div>
     </div>
+
+    @*Menu Inferior*@
+    @*<div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="formNav clearfix">
+                    <div class="button-section editButtonSection ">
+                        <div class="btn-group save-group">
+                            <button id="Guardar1" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="botonGuardar3"></span></button>
+                            <button id="dropdown-toggle" type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caretWhite"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" id="btnGuardar1" class="accionGuardar"><span id="botonGuardar4"></span></a></li>
+
+                            </ul>
+                        </div>
+                        <a id="btnCancelar" class="btn btn-black"><span id="CapturaSoldaduraCancelar"></span></a>
+
+                    </div>
+                    <div id="ArmadoSoldaduraDivInferior" class="button-section">
+                        <a id="ArmadoSoldaduraInferior" href="@Url.Action(" capturaSoldadura","Soldadura")" class="btn btn-primary"><span id="menuSoldaduraPie"></span></a>
+                    </div>
+                    <div class="button-section actionButtonSection">
+                        <div class="dropdown action-group">
+                            <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
+                                <span id="CapturaSoldaduraAcciones"></span>
+                                <span class="caretBlue"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="Acciones"></ul>
+                        </div>
+                    </div>
+                    <a id="Imprimir" href="#" class="btn btn-fadeBlue actionButtonSection"></a>
+                </div>
+            </div>
+        </div>*@
 
 </div>
 

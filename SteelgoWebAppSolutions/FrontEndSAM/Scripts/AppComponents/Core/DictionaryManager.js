@@ -7583,6 +7583,10 @@ _dictionary = {
         "es-MX": "PQR",
         "en-US": "PQR"
     },
+    "WPSPQR2": {
+        "es-MX": "PQR",
+        "en-US": "PQR"
+    },
     "WPSPQRRAIZ": {
         "es-MX": "RZ",
         "en-US": "RT"
@@ -7595,15 +7599,31 @@ _dictionary = {
         "es-MX": "Grupo P",
         "en-US": "Group P"
     },
+    "WPSPQRGrupoP2": {
+        "es-MX": "Grupo P",
+        "en-US": "Group P"
+    },
     "WPSPWHT": {
+        "es-MX": "PWHT",
+        "en-US": "PWHT"
+    },
+    "WPSPWHT2": {
         "es-MX": "PWHT",
         "en-US": "PWHT"
     },
     "WPSPreHeat": {
         "es-MX": "Preheat",
         "en-US": "Preheat"
-        },
+    },
+    "WPSPreHeat2": {
+        "es-MX": "Preheat",
+        "en-US": "Preheat"
+    },
     "WPSEspesorMaximo": {
+        "es-MX": "E Máx",
+        "en-US": "Max T"
+    },
+    "WPSEspesorMaximo2": {
         "es-MX": "E Máx",
         "en-US": "Max T"
     },
@@ -7611,7 +7631,10 @@ _dictionary = {
         "es-MX": "E Mín",
         "en-US": "Mini T"
     },
-    
+    "WPSEspesorMinimo2": {
+        "es-MX": "E Mín",
+        "en-US": "Mini T"
+    },
 
     //#endregion 
     //#region PQR
