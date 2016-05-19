@@ -87,6 +87,42 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        internal object ObtenerListasPQR(int proyecto, int pruebaID)
+        {
+            try
+            {
+                List<PQR> listaPQR = new List<PQR>();
+
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Soldadura_PQR_Result> listaPQRJson = ctx.Sam3_Soldadura_PQR(1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).ToList();
+
+                    foreach (Sam3_Soldadura_PQR_Result item in listaPQRJson)
+                    {
+                        listaPQR.Add(
+                            new PQR
+                            {
+                                ListaProcesosSoldadura = (List<ListaProcesoSoldadura>)obtenerListadoProcesos(1),
+                                ListaMaterialesBase = (List<ListaMaterialesBase>)obtenerListadoMaterialesBase(1),
+                                ListaCodigos = (List<ListaCodigos>)obtenerListadoCodigos(proyecto, pruebaID, null, null)
+                            });
+                    }
+
+                    return listaPQR;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
         public object obtenerListadoProcesos(int tipoAccion)
         {
             try

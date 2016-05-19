@@ -19,6 +19,9 @@ namespace FrontEndSAM.Controllers.Catalogos
             return View();
         }
 
-
+        public ActionResult CrearPQR()
+        {
+            return View();
+        }
     }
 }

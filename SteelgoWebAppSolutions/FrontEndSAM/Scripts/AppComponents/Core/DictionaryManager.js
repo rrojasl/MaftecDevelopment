@@ -7639,6 +7639,10 @@ _dictionary = {
     //#endregion 
     //#region PQR
     //#region Grid
+    "lblPQRNavegacion": {
+        "es-MX": "PQR",
+        "en-US": "PQR"
+    },
     "lblPQRNombre": {
         "es-MX": "Nombre",
         "en-US": "Name"

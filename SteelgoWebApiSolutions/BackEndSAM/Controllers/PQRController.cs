@@ -18,7 +18,6 @@ namespace BackEndSAM.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PQRController : ApiController
     {
-
         //Obtiene el DataSource Para PQR
         public object Get(int TipoDato, int Proyecto, int PruebaID, string Especificacion, string Codigo, string token)
         {
@@ -30,6 +29,38 @@ namespace BackEndSAM.Controllers
                 if (totokenValido)
                 {
                     return PQRBd.Instance.ObtenerListadoPQRActivos(TipoDato, Proyecto, PruebaID, Especificacion, Codigo);
+                }
+                else
+                {
+                    TransactionalInformation result = new TransactionalInformation();
+                    result.ReturnMessage.Add(payload);
+                    result.ReturnCode = 401;
+                    result.ReturnStatus = false;
+                    result.IsAuthenicated = false;
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+                return result;
+            }
+        }
+
+        public object Get(int Proyecto, int PruebaID, string token)
+        {
+            try
+            {
+                string payload = "";
+                string newToken = "";
+                bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+                if (totokenValido)
+                {
+                    return PQRBd.Instance.ObtenerListasPQR(Proyecto, PruebaID);
                 }
                 else
                 {
