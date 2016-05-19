@@ -69,6 +69,15 @@ namespace BackEndSAM.DataAcces
                                                 PREHEATRellenoId = Convert.ToInt32(WPS.PREHEATId),
                                                 PREHEATRelleno = WPS.PREHEAT,
 
+                                                 GrupoMaterialBase1RaizD = WPS.GrupoMaterialBase1RaizD,
+                                                 GrupoMaterialBase1RaizDID = WPS.GrupoMaterialBase1RaizDID.GetValueOrDefault(),
+                                                 GrupoMaterialBase1RaizU = WPS.GrupoMaterialBase1RaizU,
+                                                 GrupoMaterialBase1RaizUID = WPS.GrupoMaterialBase1RaizUID.GetValueOrDefault(),
+                                                 GrupoMaterialBase1RellenoD = WPS.GrupoMaterialBase1RellenoD,
+                                                 GrupoMaterialBase1RellenoDID = WPS.GrupoMaterialBase1RellenoDID.GetValueOrDefault(),
+                                                 GrupoMaterialBase1RellenoU = WPS.GrupoMaterialBase1RellenoU,
+                                                 GrupoMaterialBase1RellenoUID = WPS.GrupoMaterialBase1RellenoUID.GetValueOrDefault(),
+
                                                 EspesorMaximoRaiz = WPS.EspesorMaximoRaiz.GetValueOrDefault(),
                                                 EspesorMinimoRaiz = WPS.EspesorMinimoRaiz,
                                                 EspesorMaximoRelleno = WPS.EspesorMaximoRelleno.GetValueOrDefault(),

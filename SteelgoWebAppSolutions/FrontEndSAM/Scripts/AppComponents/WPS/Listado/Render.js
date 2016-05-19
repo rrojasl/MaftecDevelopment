@@ -23,7 +23,7 @@
                     if (Boolean(options.model.PWHTRellenoId) != dataItem.PWHT) {
                         displayNotify("", "El PWHT, no coincide", "1");
                     }
-                    if (options.model.GrupoPRelleno != dataItem.GrupoP) {
+                    if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RellenoUID, options.model.GrupoMaterialBase1RellenoDID)) {
                         displayNotify("", "El Grupo P, no coincide", "1");
                     }
                     if (Boolean(options.model.PREHEATRellenoId) != dataItem.PREHEAT) {
@@ -31,8 +31,11 @@
                     }
                     options.model.PWHTRaiz = dataItem.PWHT == true ? "SI" : "NO";
                     options.model.PWHTRaizId = dataItem.PWHT == true ? 1 : 0;
-                    options.model.GrupoPRaiz = dataItem.GrupoP;
-                    options.model.GrupoPRaizId = dataItem.GrupoPID;
+                    options.model.GrupoMaterialBase1RaizUID = dataItem.GrupoPMaterialBase1;
+                    options.model.GrupoMaterialBase1RaizU = dataItem.GrupoPMaterialBase1Nombre;
+                    options.model.GrupoMaterialBase1RaizDID = dataItem.GrupoPMaterialBase2;
+                    options.model.GrupoMaterialBase1RaizD = dataItem.GrupoPMaterialBase2Nombre;
+                    options.model.GrupoPRaiz = dataItem.GrupoPMaterialBase1Nombre + " " + dataItem.GrupoPMaterialBase2Nombre;
                     options.model.PREHEATRaiz = dataItem.PREHEAT == true ? "SI" : "NO";
                     options.model.PREHEATRaizId = dataItem.PREHEAT == true ? 1 : 0;
                     options.model.EspesorMaximoRaiz = dataItem.CodigoRaiz.trim() != "Gmaw STT" ? (parseFloat(dataItem.EspesorRaiz) <= 1.5 ? (parseFloat(dataItem.EspesorRaiz) * 2) : 8) : parseFloat(dataItem.EspesorRaiz) * 1.1;
@@ -44,8 +47,10 @@
                     options.model.PQRRaizId = 0;
                     options.model.PWHTRaiz = "";
                     options.model.PWHTRaizId = 0;
-                    options.model.GrupoPRaiz = "";
-                    options.model.GrupoPRaizId = 0;
+                    options.model.GrupoMaterialBase1RaizUID = 0;
+                    options.model.GrupoMaterialBase1RaizU = "";
+                    options.model.GrupoMaterialBase1RaizDID = 0;
+                    options.model.GrupoMaterialBase1RaizD = "";
                     options.model.PREHEATRaiz = "";
                     options.model.PREHEATRaizId = 0;
                     options.model.EspesorMaximoRaiz = 0;
@@ -99,7 +104,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                     if (Boolean(options.model.PWHTRaizId) != dataItem.PWHT) {
                         displayNotify("", "El PWHT, no coincide", "1");
                     }
-                    if (options.model.GrupoPRaiz != dataItem.GrupoP) {
+                    if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RaizUID, options.model.GrupoMaterialBase1RaizDID)) {
                         displayNotify("", "El Grupo P, no coincide", "1");
                     }
                     if (Boolean(options.model.PREHEATRaizId) != dataItem.PREHEAT) {
@@ -107,17 +112,28 @@ function RenderComboBoxPQRRelleno(container, options) {
                     }
                     options.model.PWHTRelleno = dataItem.PWHT == true ? "SI" : "NO";
                     options.model.PWHTRellenoId = dataItem.PWHT == true ? 1 : 0;
-                    options.model.GrupoPRelleno = dataItem.GrupoP;
-                    options.model.GrupoPRellenoId = dataItem.GrupoPID;
+                    options.model.GrupoMaterialBase1RellenoUID = dataItem.GrupoPMaterialBase1;
+                    options.model.GrupoMaterialBase1RellenoU = dataItem.GrupoPMaterialBase1Nombre;
+                    options.model.GrupoMaterialBase1RellenoDID = dataItem.GrupoPMaterialBase2;
+                    options.model.GrupoMaterialBase1RellenoD = dataItem.GrupoPMaterialBase2Nombre;
+                    options.model.GrupoPRelleno = dataItem.GrupoPMaterialBase1Nombre +" "+ dataItem.GrupoPMaterialBase2Nombre;
                     options.model.PREHEATRelleno = dataItem.PREHEAT == true ? "SI" : "NO";
                     options.model.PREHEATRellenoId = dataItem.PREHEAT == true ? 1 : 0;
                     options.model.EspesorMaximoRelleno = parseFloat(dataItem.EspesorRelleno) <= 1.5 ? (parseFloat(dataItem.EspesorRelleno) * 2) : 8;
-                    //ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.);
+                    
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
                 else {
-                    //options.model.NumeroColada = ObtenerDescCorrectaColada(ItemSeleccionado.ListaColada, options.model.ColadaID);
+                    options.model.PWHTRelleno = "";
+                    options.model.PWHTRellenoId = 0;
+                    options.model.GrupoMaterialBase1RellenoUID = 0;
+                    options.model.GrupoMaterialBase1RellenoU = "";
+                    options.model.GrupoMaterialBase1RellenoDID = 0;
+                    options.model.GrupoMaterialBase1RellenoD = "";
+                    options.model.PREHEATRelleno = "";
+                    options.model.PREHEATRellenoId =  0;
+                    options.model.EspesorMaximoRelleno = 0;
 
                 }
             }
@@ -201,9 +217,9 @@ function ContieneGruposMaterialBase(itemAcomparar,Base1, Base2) {
     }
 
     for (var i = 0; i < arrayCombinacion.length; i++) {
-        if (arraCombinacion[i] == itemAcomparar) {
-            return true;
+        if (arrayCombinacion[i] == itemAcomparar) {
+            return false;
         }
     }
-    return false;
+    return true;
 }

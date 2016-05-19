@@ -36,6 +36,15 @@ namespace BackEndSAM.Models.WPS
         public string Proyecto { get; set; }
         public int ProyectoID { get; set; }
 
+        public int GrupoMaterialBase1RaizUID { get; set; }
+        public string GrupoMaterialBase1RaizU { get; set; }
+        public int GrupoMaterialBase1RaizDID { get; set; }
+        public string GrupoMaterialBase1RaizD { get; set; }
+        public int GrupoMaterialBase1RellenoUID { get; set; }
+        public string GrupoMaterialBase1RellenoU { get; set; }
+        public int GrupoMaterialBase1RellenoDID { get; set; }
+        public string GrupoMaterialBase1RellenoD { get; set; }
+
         public List<PQR> listadoRellenoPQR { get; set; }
         public List<PQR> listadoRaizPQR { get; set; }
         public List<PQR> listadoGrupoP { get; set; }
