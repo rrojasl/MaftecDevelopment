@@ -7200,8 +7200,12 @@ _dictionary = {
         "es-MX": "Catálogo WPS",
         "en-US": "WPS catalog"
     },
+     "menuWPS1": {
+        "es-MX": "Catálogo WPS",
+        "en-US": "WPS catalog"
+        },
     "menuConfiguracionSoldadura": {
-        "es-MX": "Configuraciòn de soldadura",
+        "es-MX": "Configuración de soldadura",
         "en-US": "Welging Configuration"
     },
     "menuArmado": {
