@@ -76,8 +76,8 @@ namespace BackEndSAM.DataAcces
                                                 Proyecto = WPS.Proyecto,
                                                 ProyectoID = WPS.ProyectoID,
 
-                                                listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
-                                                listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
+                                                listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1,28,2,null,null),
+                                                listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1, 28, 2, null, null),
                                                 ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos()
                                             }).AsParallel().ToList();
                 return data;

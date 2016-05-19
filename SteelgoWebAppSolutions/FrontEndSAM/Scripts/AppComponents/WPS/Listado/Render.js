@@ -112,6 +112,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                     options.model.PREHEATRelleno = dataItem.PREHEAT == true ? "SI" : "NO";
                     options.model.PREHEATRellenoId = dataItem.PREHEAT == true ? 1 : 0;
                     options.model.EspesorMaximoRelleno = parseFloat(dataItem.EspesorRelleno) <= 1.5 ? (parseFloat(dataItem.EspesorRelleno) * 2) : 8;
+                    //ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.);
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
@@ -178,6 +179,29 @@ function RendercomboBoxProyecto(container, options) {
 function tieneClase(item) {
     for (var i = 0; i < item.classList.length; i++) {
         if (item.classList[i] == "k-state-border-up" || item.classList[i] == "k-state-border-down") {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function ContieneGruposMaterialBase(itemAcomparar,Base1, Base2) {
+    var array = [];
+    var arrayCombinacion = [];
+    var cont = 0;
+    array[0] = Base1;
+    array[1] = Base2;
+
+    for (var i = 0; i < array.length; i++) {
+        for (var j = 0; j < array.length; j++) {
+            arrayCombinacion[cont] = array[i] + " " + array[j];
+            cont++;
+        }
+    }
+
+    for (var i = 0; i < arrayCombinacion.length; i++) {
+        if (arraCombinacion[i] == itemAcomparar) {
             return true;
         }
     }
