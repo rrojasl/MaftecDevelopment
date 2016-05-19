@@ -20,7 +20,7 @@ namespace BackEndSAM.Controllers
     {
 
         //Obtiene el DataSource Para PQR
-        public object Get(int TipoDato, string token)
+        public object Get(int TipoDato, int Proyecto, int PruebaID, string Especificacion, string Codigo, string token)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace BackEndSAM.Controllers
                 bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
                 if (totokenValido)
                 {
-                    return PQRBd.Instance.ObtenerListadoPQRActivos(TipoDato);
+                    return PQRBd.Instance.ObtenerListadoPQRActivos(TipoDato, Proyecto, PruebaID, Especificacion, Codigo);
                 }
                 else
                 {

@@ -85,7 +85,16 @@ namespace BackEndSAM.Models
 
     public class ListaCodigos
     {
-        public int ProcesoSoldaduraID { get; set; }
+        public ListaCodigos()
+        {
+            CodigoAsmeID = 0;
+            TipoPruebaId = 0;
+            Especificacion = "";
+            Codigo = "";
+        }
+        public int CodigoAsmeID { get; set; }
+        public int TipoPruebaId { get; set; }
+        public string Especificacion { get; set; }
         public string Codigo { get; set; }
     }
 
