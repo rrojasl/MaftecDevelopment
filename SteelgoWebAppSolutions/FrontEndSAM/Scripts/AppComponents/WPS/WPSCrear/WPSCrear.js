@@ -1,14 +1,11 @@
 ﻿
 
-
-
-CargaInicial();
-
 function CargaInicial() {
     ConvertirCombos();
-    setTimeout(function () { obtenerPQRAjax(); }, 1000);
-    obtenerGrupoPAjax();
+    setTimeout(function () { obtenerPQRAjax();  AjaxObtenerListaProyectos(); }, 500);
 };
+
+CargaInicial();
 
 function ConvertirCombos() {
 
@@ -16,35 +13,25 @@ function ConvertirCombos() {
         dataTextField: "Nombre",
         dataValueField: "PQRID",
         select: function (e) {
-
             dataItem = this.dataItem(e.item.index());
-            var PQRIDBuscar = dataItem.PQRID;
-            ObtenerDatosAutomaticosDeRaiz(PQRIDBuscar);
         },
-
-
     });
 
+    $("#Proyecto").kendoComboBox({
+        dataTextField: "Nombre",
+        dataValueField: "ProyectoID",
+        select: function (e) {
+            dataItem = this.dataItem(e.item.index());
+        },
+    });
 
     $("#PQRRellenoNombre").kendoComboBox({
         dataTextField: "Nombre",
         dataValueField: "PQRID",
         select: function (e) {
-
             dataItem = this.dataItem(e.item.index());
             var PQRIDBuscar = dataItem.PQRID;
-            ObtenerDatosAutomaticosDeRelleno(PQRIDBuscar);
         },
-    });
-
-    $("#grupoPRelleno").kendoComboBox({
-        dataTextField: "GrupoMaterialBase1",
-        dataValueField: "GrupoMaterialBase1PID",
-    });
-
-    $("#grupoPRaiz").kendoComboBox({
-        dataTextField: "GrupoMaterialBase1",
-        dataValueField: "GrupoMaterialBase1PID",
     });
 
 };

@@ -417,7 +417,7 @@ namespace BackEndSAM.Controllers
         //        {
         //            JavaScriptSerializer serializer = new JavaScriptSerializer();
         //            Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                   
+
         //            return PQRBd.Instance.ActualizaPQR(pqr, Usuario);
         //            // return new object();
         //        }
@@ -531,46 +531,46 @@ namespace BackEndSAM.Controllers
         //}
 
 
-        ////Obtiene el listado de PQR Activos, (PQRID , NOMBREPQR)
-        //public object Get(string token, int TipoAccion)
-        //{
-        //    try
-        //    {
+        //Obtiene el listado de PQR Activos, (PQRID , NOMBREPQR)
+        public object Get(string token, int TipoAccion)
+        {
+            try
+            {
 
-        //        string payload = "";
-        //        string newToken = "";
-        //        bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
-        //        if (totokenValido)
-        //        {
-        //            JavaScriptSerializer serializer = new JavaScriptSerializer();
-        //            Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                string payload = "";
+                string newToken = "";
+                bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+                if (totokenValido)
+                {
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+                    Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
 
-        //            return PQRBd.Instance.ObtenerListadoPQRActivos(TipoAccion);
-        //        }
-        //        else
-        //        {
-        //            TransactionalInformation result = new TransactionalInformation();
-        //            result.ReturnMessage.Add(payload);
-        //            result.ReturnCode = 401;
-        //            result.ReturnStatus = false;
-        //            result.IsAuthenicated = false;
-        //            return result;
-        //        }
+                    return PQRBd.Instance.ObtenerListadoPQRActivos(TipoAccion,28,2,null,null);
+                }
+                else
+                {
+                    TransactionalInformation result = new TransactionalInformation();
+                    result.ReturnMessage.Add(payload);
+                    result.ReturnCode = 401;
+                    result.ReturnStatus = false;
+                    result.IsAuthenicated = false;
+                    return result;
+                }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
+            }
+            catch (Exception ex)
+            {
 
-        //        TransactionalInformation result = new TransactionalInformation();
-        //        result.ReturnMessage.Add(ex.Message);
-        //        result.ReturnCode = 500;
-        //        result.ReturnStatus = false;
-        //        result.IsAuthenicated = true;
-        //        return result;
-        //    }
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+                return result;
+            }
 
 
-        //}
+        }
 
 
     }
