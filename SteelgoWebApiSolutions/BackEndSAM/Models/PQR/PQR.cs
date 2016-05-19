@@ -16,7 +16,6 @@ namespace BackEndSAM.Models
         public string CodigoRelleno { get; set; }
         public string CodigoRaiz { get; set; }
         public string NumeroP { get; set; }
-        public string GrupoP { get; set; }
         public string Aporte { get; set; }
         public string Mezcla { get; set; }
         public string Respaldo { get; set; }
@@ -24,19 +23,18 @@ namespace BackEndSAM.Models
         public string Codigo { get; set; }
         public string UsuarioModificacion { get; set; }
         public string FechaModificacion { get; set; }
-        
-        //NumeroP
-        public int NumeroPID { get; set; }
+
+        //Grupo P Materiales base
+        public int GrupoPMaterialBase1 { get; set; }
+        public int GrupoPMaterialBase1Nombre { get; set; }
+        public int GrupoPMaterialBase2 { get; set; }
+        public int GrupoPMaterialBase2Nombre { get; set; }
+
 
         //ProcesoSoldadura
         public int ProcesoSoldaduraRellenoID { get; set; }
         public int ProcesoSoldaduraRaizID { get; set; }
-
-        public List<ListaProcesoSoldadura> ListaProcesosSoldadura { get; set; }
-
-        //Grupop
-        public int GrupoPID { get; set; }
-
+        
         //Aporte
         public int AporteID { get; set; }
 
@@ -55,9 +53,37 @@ namespace BackEndSAM.Models
         //ValidaNombre
         public string Existe { get; set; }
 
+        public List<ListaProcesoSoldadura> ListaProcesosSoldadura { get; set; }
+
+        public List<ListaMaterialesBase> ListaMaterialesBase { get; set; }
+
+        public List<ListaCodigos> ListaCodigos { get; set; }
     }
 
     public class ListaProcesoSoldadura
+    {
+        public ListaProcesoSoldadura()
+        {
+            this.ProcesoSoldaduraID = 0;
+            this.Codigo = "";
+        }
+
+        public int ProcesoSoldaduraID { get; set; }
+        public string Codigo { get; set; }
+    }
+
+    public class ListaMaterialesBase
+    {
+        public ListaMaterialesBase()
+        {
+            GrupoPID = 0;
+            GrupoP = "";
+        }
+        public int GrupoPID { get; set; }
+        public string GrupoP { get; set; }
+    }
+
+    public class ListaCodigos
     {
         public int ProcesoSoldaduraID { get; set; }
         public string Codigo { get; set; }
