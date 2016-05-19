@@ -78,7 +78,6 @@ namespace BackEndSAM.DataAcces
 
                                                 listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
                                                 listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1),
-                                                listadoGrupoP = (List<PQR>)PQRBd.Instance.ObtenerGrupoP(1),
                                                 ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos()
                                             }).AsParallel().ToList();
                 return data;
