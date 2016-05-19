@@ -81,7 +81,7 @@ function AjaxGuardarCaptura() {
         ListaDetalles[index].WPSNombre = arregloCaptura[index].WPSNombre;
         ListaDetalles[index].PQRRaizId = arregloCaptura[index].PQRRaizId;
         ListaDetalles[index].PQRRellenoId = arregloCaptura[index].PQRRellenoId;
-        ListaDetalles[index].GrupoPId = arregloCaptura[index].GrupoPRellenoId;
+        ListaDetalles[index].GrupoPId = arregloCaptura[index].GrupoMaterialBase1RaizUID;
         ListaDetalles[index].PWHTId = arregloCaptura[index].PWHTRellenoId;
         ListaDetalles[index].PREHEAT = arregloCaptura[index].PREHEATRellenoId;
         ListaDetalles[index].EspesorMaximoRaiz = arregloCaptura[index].EspesorMaximoRaiz;
