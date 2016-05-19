@@ -25,20 +25,23 @@ function CargarGrid() {
                     fields: {
                         PQRID: { type: "string" },
                         Nombre: { type: "string", editable: true },
-                        PREHEAT: { type: "string", editable: true },
-                        PWHT: { type: "string", editable: true},
+                        PREHEAT: { type: "boolean" },
+                        PWHT: { type: "boolean"},
                         EspesorRelleno: {type: "string", editable: true},
                         EspesorRaiz: { type: "string", editable: true },
                         CodigoRelleno: { type: "string", editable: true},
                         CodigoRaiz: { type: "string", editable: true},
                         NumeroP: { type: "string", editable: true},
-                        GrupoP: {type: "string", editable: true},
+                        GrupoPMaterialesBase1: { type: "string", editable: true },
+                        GrupoPMaterialesBase2: { type: "string", editable: true },
                         Aporte: { type: "string", editable: true },
                         Mezcla: { type: "string", editable: true },
                         Respaldo: { type: "string", editable: true },
                         GrupoF: { type: "string", editable: true },
                         Codigo: { type: "String", editable: true },
 
+                        GrupoPMaterialesBase1ID: { type: "int"},
+                        GrupoPMaterialesBase2ID: { type: "int"},
                         ProcesoSoldaduraRellenoID: { type: "int" },
                         ProcesoSoldaduraRaizID: { type: "int" },
                         NumeroPID: { type: "int" },
@@ -70,19 +73,19 @@ function CargarGrid() {
         filterable: getGridFilterableMaftec(),
         columns: [
                      { width: "110px", field: "Nombre", title: _dictionary.lblPQRNombre[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>" },
-                    { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>" },
+                    { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>", width: "150px" },
+                    { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px" },
                     { width: "120px", field: "EspesorRaiz", title: _dictionary.lblPQREspesorRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
                     { width: "120px", field: "EspesorRelleno", title: _dictionary.lblPQREspesorRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
                     { width: "120px", field: "CodigoRaiz", title: _dictionary.lblPQRProcesoSoldaduraRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxProcesoSoldaduraRaiz },
                     { width: "120px", field: "CodigoRelleno", title: _dictionary.lblPQRProcesoSoldaduraRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px", editor: RenderComboBoxProcesoSoldaduraRelleno },
-                    { width: "120px", field: "NumeroP", title: _dictionary.lblPQRNumeroP[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "GrupoP", title: _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "GrupoPMaterialBase1Nombre", title: _dictionary.lblPQRGrupoPMaterialBase1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxMaterialesBase1 },
+                    { width: "120px", field: "GrupoPMaterialBase2Nombre", title: _dictionary.lblPQRGrupoPMaterialBase2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxMaterialesBase2 },
                     { width: "120px", field: "Aporte", title: _dictionary.lblPQRAporte[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "Mezcla", title: _dictionary.lblPQRMezcla[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "Respaldo", title: _dictionary.lblPQRRespaldo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "GrupoF", title: _dictionary.lblPQRGrupoF[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "Codigo", title: _dictionary.lblPQRCodigo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
+                    { width: "120px", field: "Codigo", title: _dictionary.lblPQRCodigo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxCodigo },
                     { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminarPQR }, width: "90px", title: "ELM" }
         ],
         dataBound: function (e) {
@@ -186,11 +189,14 @@ function LLenaControles(e) {
     CMBProcesoSoldaduraRAIZ.value(dataItem.ProcesoSoldaduraRaizID);
 
 
-    var CMBNumeroP = $("#NumeroPID").data("kendoComboBox");
-    CMBNumeroP.value(dataItem.NumeroPID);
+    //var CMBNumeroP = $("#NumeroPID").data("kendoComboBox");
+    //CMBNumeroP.value(dataItem.NumeroPID);
 
     var GrupoPMaterialBase1ID = $("#GrupoPMaterialBase1ID").data("kendoComboBox");
     GrupoPMaterialBase1ID.value(dataItem.GrupoMaterialBase1PID);
+
+    var GrupoPMaterialBase2ID = $("#GrupoPMaterialBase12D").data("kendoComboBox");
+    GrupoPMaterialBase2ID.value(dataItem.GrupoMaterialBase2PID);
 
     var CMBAporte = $("#AporteID").data("kendoComboBox");
     CMBAporte.value(dataItem.AporteID);
