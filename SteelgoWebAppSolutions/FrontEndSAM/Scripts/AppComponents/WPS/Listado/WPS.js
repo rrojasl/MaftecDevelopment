@@ -62,7 +62,7 @@ function CargarGrid() {
             var myElem = document.getElementById('trParentHeader');
             if (myElem == null) {
                 $("#grid").find("th.k-header").parent().before("<tr id='trParentHeader'> " +
-                    "<th scope='col' colspan='2' class='k-header'></th>  <th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPQR[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
+                    "<th scope='col' colspan='1' class='k-header'></th>  <th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPQR[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span>" + _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPWHT[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPreHeat[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
@@ -77,7 +77,6 @@ function CargarGrid() {
                 model: {
                     fields: {
                         WPSNombre: { type: "string", editable: true },
-                        Proyecto: { type: "string", editable: true },
                         NombrePQRRaiz: { type: "string", editable: true },
                         NombrePQRRelleno: { type: "string", editable: true },
                         GrupoPRaiz: { type: "string", editable: false },
@@ -123,7 +122,6 @@ function CargarGrid() {
        
         columns: [
                     { field: "WPSNombre", title: _dictionary.WPSNombre[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px" },
-                    { field: "Proyecto", title: _dictionary.WPSProyecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", editor: RendercomboBoxProyecto },
                     { field: "NombrePQRRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px", editor: RenderComboBoxPQRRaiz },
                     { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px", editor: RenderComboBoxPQRRelleno },
                     { field: "GrupoPRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
@@ -216,28 +214,13 @@ function VentanaModal() {
 
 
 function AbrirVentanaModalVista() {
-    VentanaModal();
-    $("#windowWPS").show();
+  
 };
 
 
 
 function LimpiarControlesParaAgregar() {
 
-    $("#WPSID").val(0);
-    $("#NomnreWPS").val("");
-    $("#PQRRaizNombre").data("kendoComboBox").value("");
-    $("#PQRRellenoNombre").data("kendoComboBox").value("");
-
-    $("#grupoPRelleno").data("kendoComboBox").value("");
-    $("#PWHRaiz").prop('checked', false);
-    $("#EspesoirMaximoRaiz").val(0);
-    $("#EspesoirMinimoRaiz").val(0);
-
-    $("#grupoPRaiz").data("kendoComboBox").value("");
-    $("#PWHRelleno").prop('checked', false);
-    $("#EspesoirMaximoRelleno").val(0);
-    $("#EspesoirMinimoRelleno").val(0);
 };
 
 

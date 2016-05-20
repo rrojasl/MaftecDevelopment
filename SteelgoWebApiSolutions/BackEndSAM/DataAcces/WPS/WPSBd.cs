@@ -54,10 +54,8 @@ namespace BackEndSAM.DataAcces
                                                 PQRRellenoId = Convert.ToInt32(WPS.PQRRellenoId),
                                                 NombrePQRRelleno = WPS.NombrePQRRelleno,
 
-                                                GrupoPRaizId = Convert.ToInt32(WPS.GrupoPId),
-                                                GrupoPRaiz = WPS.GrupoP,
-                                                GrupoPRellenoId = Convert.ToInt32(WPS.GrupoPId),
-                                                GrupoPRelleno = WPS.GrupoP,
+                                                GrupoPRaiz = WPS.GrupoMaterialBase1RaizU + " "+ WPS.GrupoMaterialBase1RaizD,
+                                                GrupoPRelleno = WPS.GrupoMaterialBase1RellenoU + " " + WPS.GrupoMaterialBase1RellenoD,
 
                                                 PWHTRaizId = Convert.ToInt32(WPS.PWHTId),
                                                 PWHTRaiz = WPS.PWHT,
@@ -82,8 +80,6 @@ namespace BackEndSAM.DataAcces
                                                 EspesorMinimoRaiz = WPS.EspesorMinimoRaiz,
                                                 EspesorMaximoRelleno = WPS.EspesorMaximoRelleno.GetValueOrDefault(),
                                                 EspesorMinimoRelleno = WPS.EspesorMinimoRelleno,
-                                                Proyecto = WPS.Proyecto,
-                                                ProyectoID = WPS.ProyectoID,
 
                                                 listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1,28,2,null,null),
                                                 listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1, 28, 2, null, null),

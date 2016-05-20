@@ -203,18 +203,11 @@ function tieneClase(item) {
 
 
 function ContieneGruposMaterialBase(itemAcomparar,Base1, Base2) {
-    var array = [];
+    
     var arrayCombinacion = [];
-    var cont = 0;
-    array[0] = Base1;
-    array[1] = Base2;
-
-    for (var i = 0; i < array.length; i++) {
-        for (var j = 0; j < array.length; j++) {
-            arrayCombinacion[cont] = array[i] + " " + array[j];
-            cont++;
-        }
-    }
+    
+    arrayCombinacion[0] = Base1 + " " + Base2;
+    arrayCombinacion[1] = Base2 + " " + Base1;
 
     for (var i = 0; i < arrayCombinacion.length; i++) {
         if (arrayCombinacion[i] == itemAcomparar) {
