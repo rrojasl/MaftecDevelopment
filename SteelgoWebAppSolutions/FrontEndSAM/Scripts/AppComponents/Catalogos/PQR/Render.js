@@ -1,33 +1,31 @@
 ﻿function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();
     var dataItem;
-    $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
-            .appendTo(container)
-            .kendoComboBox({
-                suggest: true,
-                delay: 10,
-                filter: "contains",
-                autoBind: false,
-                dataSource: options.model.ListaProcesosSoldadura,
-                template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
-                select: function (e) {
-                    dataItem = this.dataItem(e.item.index());
-                    options.model.Codigo = dataItem.Codigo,
+    $("#ProcesoSoldaduraRaizID").appendTo(container)
+        .kendoComboBox({
+            suggest: true,
+            delay: 10,
+            filter: "contains",
+            autoBind: false,
+            dataSource: options.model.ListaProcesosSoldadura,
+            template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
+            select: function (e) {
+                dataItem = this.dataItem(e.item.index());
+                options.model.CodigoRaiz = dataItem.Codigo,
+                options.model.ProcesoSoldaduraRaizID = dataItem.procesoSoldaduraRaizID
+            },
+            change: function (e) {
+                dataItem = this.dataItem(e.sender.selectedIndex);
+                if (dataItem != undefined) {
+                    options.model.CodigoRaiz = dataItem.Codigo,
                     options.model.ProcesoSoldaduraRaizID = dataItem.procesoSoldaduraRaizID
-                },
-                change: function (e) {
-                    dataItem = this.dataItem(e.sender.selectedIndex);
-                    if (dataItem != undefined) {
-                        options.model.Codigo = dataItem.Codigo,
-                        options.model.ProcesoSoldaduraRaizID = dataItem.procesoSoldaduraRaizID
-                    }
-                    else {
-                        options.model.Codigo = "";
-                        options.model.ProcesoSoldaduraRaizID = "";
-                    }
+                }
+                else {
+                    options.model.CodigoRaiz = "";
+                    options.model.ProcesoSoldaduraRaizID = 0;
                 }
             }
-            );
+        });
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = $(this).find(".k-combobox")[0];
@@ -35,6 +33,12 @@
             if (!tieneClase(item)) {
                 $(container).trigger(e);
             }
+        }
+    });
+
+    $("#ProcesoSoldaduraRaizID").blur(function (e) {
+        if ($("#ProcesoSoldaduraRaizID").val() == undefined) {
+            $("#ProcesoSoldaduraRaizID").value("");
         }
     });
     loadingStop();
@@ -63,15 +67,20 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
                 template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
                 select: function (e) {
                     dataItem = this.dataItem(e.item.index());
-                    options.model.Codigo = dataItem.Codigo;
+                    options.model.CodigoRelleno = dataItem.Codigo;
                     options.model.ProcesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
                 },
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
-                        options.model.Codigo = dataItem.Codigo;
+                        options.model.CodigoRelleno = dataItem.Codigo;
                         options.model.ProcesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
                         //AjaxActualizaSoldadoresRelleno(dataItem.ProcesoSoldaduraID, ItemSeleccionado.TipoJunta, ItemSeleccionado.Diametro, ItemSeleccionado.Espesor, ItemSeleccionado.Cedula);
+                    }
+                    else
+                    {
+                        options.model.CodigoRelleno = "";
+                        options.model.ProcesoSoldaduraRellenoID = 0;
                     }
                 }
             }
@@ -112,8 +121,8 @@ function RenderComboBoxMaterialesBase1(container, options) {
                         options.model.GrupoPMaterialBase1Nombre = dataItem.GrupoP
                     }
                     else {
-                        options.model.GrupoPID = 0;
-                        options.model.Grupo = "";
+                        options.model.GrupoPMaterialBase1 = 0;
+                        options.model.GrupoPMaterialBase1Nombre = "";
                     }
                 }
             }
@@ -154,8 +163,8 @@ function RenderComboBoxMaterialesBase2(container, options) {
                         options.model.GrupoPMaterialBase2Nombre = dataItem.GrupoP
                     }
                     else {
-                        options.model.GrupoPID = 0;
-                        options.model.GrupoP = "";
+                        options.model.GrupoPMaterialBase2 = 0;
+                        options.model.GrupoPMaterialBase2Nombre = "";
                     }
                 }
             }

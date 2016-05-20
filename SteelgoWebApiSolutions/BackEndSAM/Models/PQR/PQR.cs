@@ -53,6 +53,8 @@ namespace BackEndSAM.Models
         //ValidaNombre
         public string Existe { get; set; }
 
+        public int Accion { get; set; }
+
         public List<ListaProcesoSoldadura> ListaProcesosSoldadura { get; set; }
 
         public List<ListaMaterialesBase> ListaMaterialesBase { get; set; }

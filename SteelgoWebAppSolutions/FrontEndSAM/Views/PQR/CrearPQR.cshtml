@@ -131,6 +131,39 @@
                     <label id="lblPQRCodigo"></label>
                     <input id="CodigoID" class="" />
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
+                </div>
+        </div>
+    </div>
+
+    @*Menu Inferior*@
+    <div class="row">
+        <div class="col-xs-11 col-sm-12 col-md-12 col-lg-11">
+            <div class="formNav clearfix">
+                <div class="button-section editButtonSection">
+                    <div class="btn-group save-group">
+                        <button id="Guardar1" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="botonGuardar2"></span></button>
+
+                    </div>
+                    <a id="btnCancelar1" class="btn btn-black"><span id="botonCancelar1"></span></a>
+                </div>
+                <div id="ArmadoSoldaduraDivSuperior" class="button-section">
+                    <a id="ArmadoSoldaduraSuperior" href="@Url.Action("PQR","PQR")" class="btn btn-primary"><span id="menuPQR1"></span></a>
+                </div>
+                <div class="button-section actionButtonSection">
+                    <div class="dropdown action-group">
+                        <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
+                            <span id="botonAcciones2"></span>
+                            <span class="caretBlue"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="Acciones"></ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
