@@ -134,7 +134,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                     options.model.PREHEATRelleno = "";
                     options.model.PREHEATRellenoId =  0;
                     options.model.EspesorMaximoRelleno = 0;
-
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
             }
         }

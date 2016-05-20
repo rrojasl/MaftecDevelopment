@@ -213,16 +213,5 @@ function VentanaModal() {
 
 
 
-function AbrirVentanaModalVista() {
-  
-};
-
-
-
-function LimpiarControlesParaAgregar() {
-
-};
-
-
 
 

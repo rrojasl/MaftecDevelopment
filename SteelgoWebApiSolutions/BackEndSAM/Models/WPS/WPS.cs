@@ -62,14 +62,12 @@ namespace BackEndSAM.Models.WPS
         public string WPSNombre { get; set; }
         public int PQRRaizId { get; set; }
         public int PQRRellenoId { get; set; }
-        public int GrupoPId { get; set; }
         public int PWHTId { get; set; }
         public int PREHEAT { get; set; }
         public double EspesorMaximoRaiz { get; set; }
         public double EspesorMinimoRaiz { get; set; }
         public double EspesorMaximoRelleno { get; set; }
         public double EspesorMinimoRelleno { get; set; }
-        public int ProyectoID { get; set; }
     }
   
 }
