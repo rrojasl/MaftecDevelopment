@@ -1,7 +1,7 @@
 ﻿function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();
     var dataItem;
-    $("#ProcesoSoldaduraRaizID").appendTo(container)
+    $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>').appendTo(container)
         .kendoComboBox({
             suggest: true,
             delay: 10,
@@ -36,11 +36,6 @@
         }
     });
 
-    $("#ProcesoSoldaduraRaizID").blur(function (e) {
-        if ($("#ProcesoSoldaduraRaizID").val() == undefined) {
-            $("#ProcesoSoldaduraRaizID").value("");
-        }
-    });
     loadingStop();
 }
 

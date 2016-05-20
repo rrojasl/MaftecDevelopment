@@ -46,10 +46,6 @@ function CargarGrid() {
                         ProcesoSoldaduraRaizID: { type: "int" },
                         NumeroPID: { type: "int" },
                         GrupoPID: { type: "int" },
-                        AporteID: { type: "int" },
-                        MezclaID: { type: "int" },
-                        RespaldoID: { type: "int" },
-                        GrupoFID: { type: "int" },
                         CodigoID: { type: "int" },
                         Accion: { type: "int" }
                     }

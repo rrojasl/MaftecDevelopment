@@ -64,12 +64,6 @@ function AjaxGuardar() {
         displayNotify("", "El campo código debe coincidir", '1');
     }
 
-    //$("#NumeroPID")
-    //$("#AporteID").val();
-    //$("#MezclaID").val();
-    //$("#RespaldoID").val();
-    //$("#GrupoFID").val();
-
     ListaDetalles[0].PQRID = 0;
     ListaDetalles[0].Nombre = $('#NombreId').val();
     ListaDetalles[0].PWHT = $('#chkPwht').is(':checked') ? 1 : 0;

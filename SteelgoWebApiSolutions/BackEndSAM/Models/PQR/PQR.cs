@@ -35,18 +35,6 @@ namespace BackEndSAM.Models
         public int ProcesoSoldaduraRellenoID { get; set; }
         public int ProcesoSoldaduraRaizID { get; set; }
         
-        //Aporte
-        public int AporteID { get; set; }
-
-        //Mezcla
-        public int MezclaID { get; set; }
-
-        //Respaldo
-        public int RespaldoID { get; set; }
-
-        //GrupoF
-        public int GrupoFID { get; set; }
-
         //Codigo
         public int CodigoID { get; set; }
 
