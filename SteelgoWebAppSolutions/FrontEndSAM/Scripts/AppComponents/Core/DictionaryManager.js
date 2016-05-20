@@ -7191,6 +7191,10 @@ _dictionary = {
         "es-MX": "Catálogo PQR",
         "en-US": "PQR catalog"
     },
+    "menuPQR1": {
+        "es-MX": "Catálogo PQR",
+        "en-US": "PQR catalog"
+    },
     "menuListaSoldadorCertificacion": {
         "es-MX": "Soldador Certificación",
         "en-US": "Certification Welder"
@@ -7607,6 +7611,10 @@ _dictionary = {
         "es-MX": "Grupo P",
         "en-US": "Group P"
     },
+    "WPSPQRProceso": {
+        "es-MX": "PROC",
+        "en-US": "PROC"
+    },
     "WPSPWHT": {
         "es-MX": "PWHT",
         "en-US": "PWHT"
@@ -7690,6 +7698,14 @@ _dictionary = {
     "lblPQRGrupoPMaterialBase2": {
         "es-MX": "Gpo P Base 2",
         "en-US": "P grp Base 2"
+    },
+    "lblPQRBase1": {
+        "es-MX": "Base 1",
+        "en-US": "Base 1"
+    },
+    "lblPQRBase2": {
+        "es-MX": "Base 2",
+        "en-US": "Base 2"
     },
     "lblPQRAporte": {
         "es-MX": "Aporte",

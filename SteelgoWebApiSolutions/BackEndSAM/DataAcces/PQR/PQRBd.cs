@@ -66,6 +66,7 @@ namespace BackEndSAM.DataAcces
                                 GrupoF = item.GrupoF,
                                 CodigoID = item.CodigoID.GetValueOrDefault(),
                                 Codigo = item.Codigo,
+                                Accion = 2,
                                 ListaProcesosSoldadura = (List<ListaProcesoSoldadura>)obtenerListadoProcesos(TipoAccion),
                                 ListaMaterialesBase = (List<ListaMaterialesBase>)obtenerListadoMaterialesBase(TipoAccion),
                                 ListaCodigos = (List<ListaCodigos>)obtenerListadoCodigos(proyecto, pruebaID, especificacion, codigo)
