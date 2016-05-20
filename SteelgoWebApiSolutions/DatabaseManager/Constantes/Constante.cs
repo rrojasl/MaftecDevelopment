@@ -77,6 +77,7 @@ namespace DatabaseManager.Sam3
         public static string GUARDACAPTURANUEVOMEDIOTRANSPORTE = "Sam_Pintura_Guardar_NuevoMedioTransporte";
         public static string SETCIERRACARRO = "Sam3_Pintura_Set_CierraCarro";
         public static string GUARDAWPS = "Sam3_Soldadura_Set_WPS";
+        public static string GUARDAPQR = "Sam3_Soldadura_Set_PQR";
     }
 
     public static class ConstantesSteelGo

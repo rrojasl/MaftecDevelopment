@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SecurityManager.Api.Models;
 using System.Data.Entity.Core.Objects;
+using System.Data;
 
 namespace BackEndSAM.DataAcces
 {
@@ -227,7 +228,36 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        public object AgregarPQR(DataTable dtDetallePQR, Sam3_Usuario usuario)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    ObjetosSQL _SQL = new ObjetosSQL();
+                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() } };
+                    _SQL.Ejecuta(Stords.GUARDAPQR, dtDetallePQR, "@Tabla", parametro);
 
+                    TransactionalInformation result = new TransactionalInformation();
+                    result.ReturnMessage.Add("OK");
+                    result.ReturnCode = 200;
+                    result.ReturnStatus = true;
+                    result.IsAuthenicated = true;
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation lista = new TransactionalInformation();
+                lista.ReturnMessage.Add(ex.Message);
+                lista.ReturnCode = 500;
+                lista.ReturnStatus = false;
+                lista.IsAuthenicated = true;
+
+                return lista;
+            }
+        }
         //public int ProcesoSoldaduraID { get; private set; }
         //public int NumeroPID { get; private set; }
         //public int GrupoPID { get; private set; }
