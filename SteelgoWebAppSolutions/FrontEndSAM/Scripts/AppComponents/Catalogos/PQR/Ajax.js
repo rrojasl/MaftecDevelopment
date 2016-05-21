@@ -3,7 +3,7 @@ function LlenaGridAjax() {
 
     var TipoDato = 1;
 
-    $PQR.PQR.read({TipoDato: TipoDato, Proyecto: 28, PruebaID: 2, Especificacion: null, Codigo: null, token: Cookies.get("token") }).done(function (data) {
+    $PQR.PQR.read({ TipoDato: TipoDato, Proyecto: 28, PruebaID: 2, Especificacion: null, Codigo: null, token: Cookies.get("token") }).done(function (data) {
         if (Error(data)) {
             resultadoJson = data;
             if (resultadoJson.length > 0) {
@@ -23,14 +23,15 @@ function AjaxGuardarListado() {
     var arregloCaptura = $("#grid").data("kendoGrid").dataSource._data;
     for (index = 0; index < arregloCaptura.length; index++) {
         ListaDetalles[index] = {
-            PqrID: "",
-            PqrNombre: "",
-            Pwht: "",
-            PreHeat: "",
+            PQRID: "",
+            Accion: "",
+            Nombre: "",
+            PWHT: "",
+            PREHEAT: "",
             EspesorRelleno: "",
             EspesorRaiz: "",
-            ProcesoSoldaduraRelleno: "",
-            ProcesoSoldaduraRaiz: "",
+            ProcesoSoldaduraRellenoID: "",
+            ProcesoSoldaduraRaizID: "",
             NumeroP: "",
             GrupoMaterialesBase1: "",
             GrupoMaterialesBase2: "",
@@ -39,72 +40,130 @@ function AjaxGuardarListado() {
             Respaldo: "",
             GrupoF: "",
             Codigo: "",
-            Accion: "",
             Estatus: 1
         };
 
-        if ((arregloCaptura[index].Nombre == "" || $('#NombreId').val() == undefined || $('#NombreId').val() == null) ||
-             arregloCaptura[index]) {
-            correcto = false;
-            displayNotify("", "El nombre del WPS es mandatorio", '1');
-        }
-        else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()) == undefined) {
-            correcto = false;
-            displayNotify("", "El proceso de soldadura de relleno debe coincidir", '1');
-        }
-        else if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()) == undefined) {
-            correcto = false;
-            displayNotify("", "El proceso de soldadura de raiz debe coincidir", '1');
-        }
-        else if ($('#GrupoPMaterialBase1ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase1ID").data("kendoComboBox").select()) == undefined) {
-            correcto = false;
-            displayNotify("", "El campo Grupo Materiales Base 1 debe coincidir", '1');
-        }
-        else if ($('#GrupoPMaterialBase2ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase2ID").data("kendoComboBox").select()) == undefined) {
-            correcto = false;
-            displayNotify("", "El campo Grupo Materiales Base 2 debe coincidir", '1');
-        }
-        else if ($('#CodigoID').data("kendoComboBox").dataItem($("#CodigoID").data("kendoComboBox").select()) == undefined) {
-            correcto = false;
-            displayNotify("", "El campo código debe coincidir", '1');
+        if ((arregloCaptura[index].Nombre == "" || arregloCaptura[index].Nombre == undefined || arregloCaptura[index].Nombre == null) ||
+            (arregloCaptura[index].EspesorRelleno == "" || arregloCaptura[index].EspesorRelleno == undefined || arregloCaptura[index].EspesorRelleno == null) ||
+            (arregloCaptura[index].EspesorRaiz == "" || arregloCaptura[index].EspesorRaiz == undefined || arregloCaptura[index].EspesorRaiz == null) ||
+            (arregloCaptura[index].Aporte == "" || arregloCaptura[index].Aporte == undefined || arregloCaptura[index].Aporte == null) ||
+            (arregloCaptura[index].Respaldo == "" || arregloCaptura[index].Respaldo == undefined || arregloCaptura[index].Respaldo == null) ||
+            (arregloCaptura[index].Mezcla == "" || arregloCaptura[index].Mezcla == undefined || arregloCaptura[index].Mezcla == null) ||
+            (arregloCaptura[index].GrupoF == "" || arregloCaptura[index].GrupoF == undefined || arregloCaptura[index].GrupoF == null)) {
+
+            ListaDetalles[index].Estatus = 0;
+            $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
         }
 
-        ListaDetalles[0].PQRID = 0;
-        ListaDetalles[0].Nombre = $('#NombreId').val();
-        ListaDetalles[0].PWHT = $('#chkPwht').is(':checked') ? 1 : 0;
-        ListaDetalles[0].PREHEAT = $('#chkPreHeat').is(':checked') ? 1 : 0;;
-        ListaDetalles[0].EspesorRelleno = $("#EspesorRelleno").val();
-        ListaDetalles[0].EspesorRaiz = $("#EspesorRaiz").val();
-        ListaDetalles[0].ProcesoSoldaduraRellenoID = $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").value();
-        ListaDetalles[0].ProcesoSoldaduraRaizID = $("#ProcesoSoldaduraRaizID").data("kendoComboBox").value();
-        ListaDetalles[0].NumeroP = $("#NumeroPID").val();
-        ListaDetalles[0].GrupoPMaterialBase1 = $("#GrupoPMaterialBase1ID").data("kendoComboBox").value();
-        ListaDetalles[0].GrupoPMaterialBase2 = $("#GrupoPMaterialBase2ID").data("kendoComboBox").value();
-        ListaDetalles[0].Aporte = $("#AporteID").val();
-        ListaDetalles[0].Mezcla = $("#MezclaID").val();
-        ListaDetalles[0].Respaldo = $("#RespaldoID").val();
-        ListaDetalles[0].GrupoF = $("#GrupoFID").val();
-        ListaDetalles[0].Codigo = $("#CodigoID").data("kendoComboBox").value();
-        ListaDetalles[0].Accion = 1;
+        ListaDetalles[index].PQRID = arregloCaptura[index].PQRID;
+        ListaDetalles[index].Nombre = arregloCaptura[index].Nombre;
+        ListaDetalles[index].PWHT = arregloCaptura[index].PWHT;
+        ListaDetalles[index].PREHEAT = arregloCaptura[index].PREHEAT;
+        ListaDetalles[index].EspesorRelleno = arregloCaptura[index].EspesorRelleno;
+        ListaDetalles[index].EspesorRaiz = arregloCaptura[index].EspesorRaiz;
+        ListaDetalles[index].ProcesoSoldaduraRellenoID = arregloCaptura[index].ProcesoSoldaduraRellenoID;
+        ListaDetalles[index].ProcesoSoldaduraRaizID = arregloCaptura[index].ProcesoSoldaduraRaizID;
+        ListaDetalles[index].NumeroP = arregloCaptura[index].NumeroP;
+        ListaDetalles[index].GrupoPMaterialBase1 = arregloCaptura[index].GrupoPMaterialBase1;
+        ListaDetalles[index].GrupoPMaterialBase2 = arregloCaptura[index].GrupoPMaterialBase2;
+        ListaDetalles[index].Aporte = arregloCaptura[index].Aporte;
+        ListaDetalles[index].Mezcla = arregloCaptura[index].Mezcla;
+        ListaDetalles[index].Respaldo = arregloCaptura[index].Respaldo;
+        ListaDetalles[index].GrupoF = arregloCaptura[index].GrupoF;
+        ListaDetalles[index].Codigo = arregloCaptura[index].Codigo;
+        ListaDetalles[index].Accion = arregloCaptura[index].Accion;
     }
     Captura[0].Detalles = ListaDetalles;
 
-    if (Captura[0].Detalles.length > 0 && correcto) {
-        loadingStart();
-        $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
-            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
-                displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                loadingStop();
-            }
-            else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
-                //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
-                displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                loadingStop();
+    if (!ExistRowEmpty(ListaDetalles)) {
+        if (Captura[0].Detalles.length > 0 && correcto) {
+            loadingStart();
+            $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
+                if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
+                    displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                    LlenaGridAjax();
+                    loadingStop();
+                }
+                else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
+                    //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
+                    displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+                    loadingStop();
 
-            }
-        });
+                }
+            });
+        }
     }
-}
+    else {
+        loadingStop();
+        windowTemplate = kendo.template($("#windowTemplate").html());
+
+        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+            iframe: true,
+            title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
+            visible: false, //the window will not appear before its .open method is called
+            width: "auto",
+            height: "auto",
+            modal: true,
+            animation: {
+                close: false,
+                open: false
+            }
+        }).data("kendoWindow");
+
+        ventanaConfirm.content(_dictionary.WPSMensajeCamposIncorrector[$("#language").data("kendoDropDownList").value()] +
+            "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+
+        ventanaConfirm.open().center();
+
+
+        //RowEmpty($("#grid"));
+
+        $("#yesButton").click(function () {
+            loadingStart();
+
+            ArregloGuardado = [];
+            var indice = 0;
+            for (var i = 0; i < Captura[0].Detalles.length; i++) {
+                if (Captura[0].Detalles[i].Estatus == 1) {
+                    ArregloGuardado[indice] = ListaDetalles[i];
+                    indice++;
+                }
+            }
+
+            Captura[0].Detalles = [];
+            Captura[0].Detalles = ArregloGuardado;
+
+
+            if (Captura[0].Detalles.length > 0) {
+                loadingStart();
+                $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
+                    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
+                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                        LlenaGridAjax();
+                        loadingStop();
+                    }
+                    else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
+                        //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
+                        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+                        loadingStop();
+
+                    }
+                });
+            }
+            else {
+                loadingStop();
+                displayNotify("AdverteciaExcepcionGuardado", "", '1');
+            }
+
+            ventanaConfirm.close();
+        });
+        $("#noButton").click(function () {
+            opcionHabilitarView(false);
+            ventanaConfirm.close();
+        });
+
+    }
+};
 
 
 //function EliminaPQRAjax(e) {

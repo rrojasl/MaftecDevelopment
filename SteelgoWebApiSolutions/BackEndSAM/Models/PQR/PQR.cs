@@ -99,18 +99,18 @@ namespace BackEndSAM.Models
         public string Nombre { get; set; }
         public int PREHEAT { get; set; }
         public int PWHT { get; set; }
-        public string EspesorRelleno { get; set; }
-        public string EspesorRaiz { get; set; }
+        public decimal EspesorRelleno { get; set; }
+        public decimal EspesorRaiz { get; set; }
         public int ProcesoSoldaduraRellenoID { get; set; }
         public int ProcesoSoldaduraRaizID { get; set; }
-        public string NumeroP { get; set; }
-        public string GrupoPMaterialBase1 { get; set; }
-        public string GrupoPMaterialBase2 { get; set; }
+        public int NumeroP { get; set; }
+        public int GrupoPMaterialBase1 { get; set; }
+        public int GrupoPMaterialBase2 { get; set; }
         public string Aporte { get; set; }
         public string Mezcla { get; set; }
         public string Respaldo { get; set; }
         public string GrupoF { get; set; }
-        public string Codigo { get; set; }
+        public int Codigo { get; set; }
         
     }
 }

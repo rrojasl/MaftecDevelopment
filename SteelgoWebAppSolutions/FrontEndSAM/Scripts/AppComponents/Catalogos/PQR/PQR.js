@@ -23,10 +23,10 @@ function CargarGrid() {
             schema: {
                 model: {
                     fields: {
-                        PQRID: { type: "string" },
+                        PQRID: { type: "int" },
                         Nombre: { type: "string", editable: true },
-                        PREHEAT: { type: "boolean" },
-                        PWHT: { type: "boolean"},
+                        PREHEAT: { type: "boolean" , editable: false },
+                        PWHT: { type: "boolean", editable: false },
                         EspesorRelleno: {type: "number", editable: true},
                         EspesorRaiz: { type: "number", editable: true },
                         CodigoRelleno: { type: "string", editable: true},
