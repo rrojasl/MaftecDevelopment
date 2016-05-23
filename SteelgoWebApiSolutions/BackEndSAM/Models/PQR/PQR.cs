@@ -9,8 +9,8 @@ namespace BackEndSAM.Models
         //Grid PQR
         public int PQRID { get; set; }
         public string Nombre { get; set; }
-        public bool PREHEAT { get; set; }
-        public bool PWHT { get; set; }
+        public int PREHEAT { get; set; }
+        public int PWHT { get; set; }
         public decimal EspesorRelleno { get; set; }
         public decimal EspesorRaiz { get; set; }
         public string CodigoRelleno { get; set; }
@@ -36,7 +36,7 @@ namespace BackEndSAM.Models
         public int ProcesoSoldaduraRaizID { get; set; }
         
         //Codigo
-        public int CodigoID { get; set; }
+        public int CodigoASMEID { get; set; }
 
         //ValidaNombre
         public string Existe { get; set; }
@@ -110,7 +110,7 @@ namespace BackEndSAM.Models
         public string Mezcla { get; set; }
         public string Respaldo { get; set; }
         public string GrupoF { get; set; }
-        public int Codigo { get; set; }
+        public int CodigoID { get; set; }
         
     }
 }

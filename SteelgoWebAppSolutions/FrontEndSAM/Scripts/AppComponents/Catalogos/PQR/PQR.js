@@ -25,8 +25,8 @@ function CargarGrid() {
                     fields: {
                         PQRID: { type: "int" },
                         Nombre: { type: "string", editable: true },
-                        PREHEAT: { type: "boolean" , editable: false },
-                        PWHT: { type: "boolean", editable: false },
+                        PREHEAT: { type: "string" , editable: false },
+                        PWHT: { type: "string", editable: false },
                         EspesorRelleno: {type: "number", editable: true},
                         EspesorRaiz: { type: "number", editable: true },
                         CodigoRelleno: { type: "string", editable: true},
@@ -38,7 +38,8 @@ function CargarGrid() {
                         Mezcla: { type: "string", editable: true },
                         Respaldo: { type: "string", editable: true },
                         GrupoF: { type: "string", editable: true },
-                        Codigo: { type: "String", editable: true },
+                        CodigoASMEID: { type: "String", editable: false },
+                        Codigo: { type: "int", editable: true },
 
                         GrupoPMaterialesBase1ID: { type: "int"},
                         GrupoPMaterialesBase2ID: { type: "int"},
@@ -46,7 +47,6 @@ function CargarGrid() {
                         ProcesoSoldaduraRaizID: { type: "int" },
                         NumeroPID: { type: "int" },
                         GrupoPID: { type: "int" },
-                        CodigoID: { type: "int" },
                         Accion: { type: "int" }
                     }
                 }

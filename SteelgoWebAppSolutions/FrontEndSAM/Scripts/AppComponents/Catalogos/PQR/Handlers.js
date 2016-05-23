@@ -31,7 +31,7 @@ function opcionHabilitarView(valor, name) {
     }
     else {
         $('#FieldSetView').find('*').attr('disabled', false);
-        $('#AgregarPQR').prop('disabled', false);
+        $('#AAgregarPQR').prop('disabled', false);
         $('#Guardar1').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
         $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
 

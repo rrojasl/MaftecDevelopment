@@ -57,8 +57,8 @@ function AjaxGuardarListado() {
 
         ListaDetalles[index].PQRID = arregloCaptura[index].PQRID;
         ListaDetalles[index].Nombre = arregloCaptura[index].Nombre;
-        ListaDetalles[index].PWHT = arregloCaptura[index].PWHT;
-        ListaDetalles[index].PREHEAT = arregloCaptura[index].PREHEAT;
+        ListaDetalles[index].PWHT = arregloCaptura[index].PWHT ? 1 : 0;
+        ListaDetalles[index].PREHEAT = arregloCaptura[index].PREHEAT? 1: 0;
         ListaDetalles[index].EspesorRelleno = arregloCaptura[index].EspesorRelleno;
         ListaDetalles[index].EspesorRaiz = arregloCaptura[index].EspesorRaiz;
         ListaDetalles[index].ProcesoSoldaduraRellenoID = arregloCaptura[index].ProcesoSoldaduraRellenoID;
@@ -70,7 +70,7 @@ function AjaxGuardarListado() {
         ListaDetalles[index].Mezcla = arregloCaptura[index].Mezcla;
         ListaDetalles[index].Respaldo = arregloCaptura[index].Respaldo;
         ListaDetalles[index].GrupoF = arregloCaptura[index].GrupoF;
-        ListaDetalles[index].Codigo = arregloCaptura[index].Codigo;
+        ListaDetalles[index].CodigoID = arregloCaptura[index].CodigoASMEID;
         ListaDetalles[index].Accion = arregloCaptura[index].Accion;
     }
     Captura[0].Detalles = ListaDetalles;

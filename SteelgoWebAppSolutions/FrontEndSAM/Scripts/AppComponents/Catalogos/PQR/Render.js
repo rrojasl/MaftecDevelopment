@@ -190,17 +190,17 @@ function RenderComboBoxCodigo(container, options) {
                 template: "<i class=\"fa fa-#=data.Especificacion#\"></i> #=data.Especificacion#",
                 select: function (e) {
                     dataItem = this.dataItem(e.item.index());
-                    options.model.CodigoID = dataItem.CodigoAsmeID,
+                    options.model.CodigoASMEID = dataItem.CodigoAsmeID,
                     options.model.Codigo = dataItem.Especificacion
                 },
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
-                        options.model.CodigoID = dataItem.CodigoAsmeID,
+                        options.model.CodigoASMEID = dataItem.CodigoAsmeID,
                         options.model.Codigo = dataItem.Especificacion
                     }
                     else {
-                        options.model.CodigoID = 0;
+                        options.model.CodigoASMEID = 0;
                         options.model.Codigo = "";
                     }
                 }
