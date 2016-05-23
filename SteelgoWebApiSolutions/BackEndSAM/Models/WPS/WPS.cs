@@ -33,8 +33,7 @@ namespace BackEndSAM.Models.WPS
         public decimal EspesorMinimoRaiz { get; set; }
         public decimal EspesorMaximoRelleno { get; set; }
         public decimal EspesorMinimoRelleno { get; set; }
-        public string Proyecto { get; set; }
-        public int ProyectoID { get; set; }
+        
 
         public int GrupoMaterialBase1RaizUID { get; set; }
         public string GrupoMaterialBase1RaizU { get; set; }
@@ -49,6 +48,7 @@ namespace BackEndSAM.Models.WPS
         public List<PQR> listadoRaizPQR { get; set; }
         public List<PQR> listadoGrupoP { get; set; }
         public List<Models.Pintura.MedioTransporte.Proyecto> ListaProyectos { get; set; }
+        public decimal Diametro { get; set; }
     }
 
     public class Captura

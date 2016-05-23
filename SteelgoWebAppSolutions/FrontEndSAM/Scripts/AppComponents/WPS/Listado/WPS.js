@@ -89,6 +89,7 @@ function CargarGrid() {
                         EspesorMinimoRaiz: { type: "number", editable: false },
                         EspesorMaximoRelleno: { type: "number", editable: false },
                         EspesorMinimoRelleno: { type: "number", editable: false },
+                        Diametro: { type: "number", editable: false },
                     }
                 }
             },
@@ -134,6 +135,7 @@ function CargarGrid() {
                     { field: "EspesorMaximoRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
                     { field: "EspesorMinimoRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
                     { field: "EspesorMinimoRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
+                    { field: "Diametro", title: _dictionary.WPSLabelDiametro[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
                     { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
                     //{ command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: EditaWPS }, title: _dictionary.tituloEditar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ],

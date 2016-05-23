@@ -7551,6 +7551,10 @@ _dictionary = {
         "es-MX": "Soldadura Configuracion",
         "en-US": "Configuration Welding"
     },
+    "WPSLabelDiametro": {
+        "es-MX": "Diam",
+        "en-US": "Diam"
+    },
     "WPSLabelNavegacion": {
         "es-MX": "WPS",
         "en-US": "WPS"

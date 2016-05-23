@@ -43,51 +43,51 @@ namespace BackEndSAM.DataAcces
             using (SamContext ctx = new SamContext())
             {
                 List<WPS> data = (from WPS in ctx.Sam3_Soldadura_WPS(TipoDato, null, null, null, null, null, null, null, null, null, null, null, null, null)
-                                            select new WPS
-                                            {
-                                                Accion = 2,
-                                                WPSID = WPS.WPSID,
-                                                WPSNombre = WPS.WPSNombre,
+                                  select new WPS
+                                  {
+                                      Accion = 2,
+                                      WPSID = WPS.WPSID,
+                                      WPSNombre = WPS.WPSNombre,
 
-                                                PQRRaizId = Convert.ToInt32(WPS.PQRRaizId),
-                                                NombrePQRRaiz = WPS.NombrePQRRaiz,
-                                                PQRRellenoId = Convert.ToInt32(WPS.PQRRellenoId),
-                                                NombrePQRRelleno = WPS.NombrePQRRelleno,
+                                      PQRRaizId = Convert.ToInt32(WPS.PQRRaizId),
+                                      NombrePQRRaiz = WPS.NombrePQRRaiz,
+                                      PQRRellenoId = Convert.ToInt32(WPS.PQRRellenoId),
+                                      NombrePQRRelleno = WPS.NombrePQRRelleno,
 
-                                                GrupoPRaiz = WPS.GrupoMaterialBase1RaizU + " "+ WPS.GrupoMaterialBase1RaizD,
-                                                GrupoPRelleno = WPS.GrupoMaterialBase1RellenoU + " " + WPS.GrupoMaterialBase1RellenoD,
+                                      GrupoPRaiz = WPS.GrupoMaterialBase1RaizU + " " + WPS.GrupoMaterialBase1RaizD,
+                                      GrupoPRelleno = WPS.GrupoMaterialBase1RellenoU + " " + WPS.GrupoMaterialBase1RellenoD,
 
-                                                PWHTRaizId = Convert.ToInt32(WPS.PWHTId),
-                                                PWHTRaiz = WPS.PWHT,
-                                                PWHTRellenoId = Convert.ToInt32(WPS.PWHTId),
-                                                PWHTRelleno = WPS.PWHT,
+                                      PWHTRaizId = Convert.ToInt32(WPS.PWHTId),
+                                      PWHTRaiz = WPS.PWHT,
+                                      PWHTRellenoId = Convert.ToInt32(WPS.PWHTId),
+                                      PWHTRelleno = WPS.PWHT,
 
-                                                PREHEATRaizId = Convert.ToInt32(WPS.PREHEATId),
-                                                PREHEATRaiz = WPS.PREHEAT,
-                                                PREHEATRellenoId = Convert.ToInt32(WPS.PREHEATId),
-                                                PREHEATRelleno = WPS.PREHEAT,
+                                      PREHEATRaizId = Convert.ToInt32(WPS.PREHEATId),
+                                      PREHEATRaiz = WPS.PREHEAT,
+                                      PREHEATRellenoId = Convert.ToInt32(WPS.PREHEATId),
+                                      PREHEATRelleno = WPS.PREHEAT,
 
-                                                 GrupoMaterialBase1RaizD = WPS.GrupoMaterialBase1RaizD,
-                                                 GrupoMaterialBase1RaizDID = WPS.GrupoMaterialBase1RaizDID.GetValueOrDefault(),
-                                                 GrupoMaterialBase1RaizU = WPS.GrupoMaterialBase1RaizU,
-                                                 GrupoMaterialBase1RaizUID = WPS.GrupoMaterialBase1RaizUID.GetValueOrDefault(),
-                                                 GrupoMaterialBase1RellenoD = WPS.GrupoMaterialBase1RellenoD,
-                                                 GrupoMaterialBase1RellenoDID = WPS.GrupoMaterialBase1RellenoDID.GetValueOrDefault(),
-                                                 GrupoMaterialBase1RellenoU = WPS.GrupoMaterialBase1RellenoU,
-                                                 GrupoMaterialBase1RellenoUID = WPS.GrupoMaterialBase1RellenoUID.GetValueOrDefault(),
+                                      GrupoMaterialBase1RaizD = WPS.GrupoMaterialBase1RaizD,
+                                      GrupoMaterialBase1RaizDID = WPS.GrupoMaterialBase1RaizDID.GetValueOrDefault(),
+                                      GrupoMaterialBase1RaizU = WPS.GrupoMaterialBase1RaizU,
+                                      GrupoMaterialBase1RaizUID = WPS.GrupoMaterialBase1RaizUID.GetValueOrDefault(),
+                                      GrupoMaterialBase1RellenoD = WPS.GrupoMaterialBase1RellenoD,
+                                      GrupoMaterialBase1RellenoDID = WPS.GrupoMaterialBase1RellenoDID.GetValueOrDefault(),
+                                      GrupoMaterialBase1RellenoU = WPS.GrupoMaterialBase1RellenoU,
+                                      GrupoMaterialBase1RellenoUID = WPS.GrupoMaterialBase1RellenoUID.GetValueOrDefault(),
 
-                                                EspesorMaximoRaiz = WPS.EspesorMaximoRaiz.GetValueOrDefault(),
-                                                EspesorMinimoRaiz = WPS.EspesorMinimoRaiz,
-                                                EspesorMaximoRelleno = WPS.EspesorMaximoRelleno.GetValueOrDefault(),
-                                                EspesorMinimoRelleno = WPS.EspesorMinimoRelleno,
+                                      EspesorMaximoRaiz = WPS.EspesorMaximoRaiz.GetValueOrDefault(),
+                                      EspesorMinimoRaiz = WPS.EspesorMinimoRaiz,
+                                      EspesorMaximoRelleno = WPS.EspesorMaximoRelleno.GetValueOrDefault(),
+                                      EspesorMinimoRelleno = WPS.EspesorMinimoRelleno,
 
-                                                listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1,28,2,null,null),
-                                                listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1, 28, 2, null, null),
-                                                ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos()
-                                            }).AsParallel().ToList();
+                                      listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1, 28, 2, null, null),
+                                      listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1, 28, 2, null, null),
+                                      ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos(),
+                                      Diametro = 0
+
+                                  }).AsParallel().ToList();
                 return data;
-
-
             }
 
 
@@ -110,7 +110,7 @@ namespace BackEndSAM.DataAcces
                 result.ReturnStatus = false;
                 result.IsAuthenicated = false;
                 return result;
-                
+
 
 
             }
@@ -164,7 +164,7 @@ namespace BackEndSAM.DataAcces
 
 
 
-        public object EditaWPS(WPS AddWPS, string Lenguaje,  Sam3_Usuario usuario)
+        public object EditaWPS(WPS AddWPS, string Lenguaje, Sam3_Usuario usuario)
         {
 
             try
