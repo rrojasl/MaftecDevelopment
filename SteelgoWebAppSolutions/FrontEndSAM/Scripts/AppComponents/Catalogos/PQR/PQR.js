@@ -107,6 +107,96 @@ function CargarGrid() {
         },
     });
     CustomisaGrid($("#grid"));
+
+    $("#grid .k-grid-content").on("change", "input.chk-PWHT", function (e) {
+        if ($("#language").val() == "es-MX") {
+            if ($('#Guardar').text() != "Editar") {
+                var grid = $("#grid").data("kendoGrid")
+                dataItem = grid.dataItem($(e.target).closest("tr"));
+                if ($(this)[0].checked) {
+                    dataItem.PWHT = true;
+                }
+                else {
+                    dataItem.PWHT = false;
+                }
+                $("#grid").data("kendoGrid").dataSource.sync();
+            }
+            else {
+                if ($(this)[0].checked) {
+                    $(this)[0].checked = false;
+                }
+                else {
+                    $(this)[0].checked = true;
+                }
+            }
+        }
+        else {
+            if ($('#Guardar').text() != "Edit") {
+                var grid = $("#grid").data("kendoGrid")
+                dataItem = grid.dataItem($(e.target).closest("tr"));
+                if ($(this)[0].checked) {
+                    dataItem.PWHT = true;
+                }
+                else {
+                    dataItem.PWHT = false;
+                }
+                $("#grid").data("kendoGrid").dataSource.sync();
+            }
+            else {
+                if ($(this)[0].checked) {
+                    $(this)[0].checked = false;
+                }
+                else {
+                    $(this)[0].checked = true;
+                }
+            }
+        }
+    });
+
+    $("#grid .k-grid-content").on("change", "input.chk-PREHEAT", function (e) {
+        if ($("#language").val() == "es-MX") {
+            if ($('#Guardar').text() != "Editar") {
+                var grid = $("#grid").data("kendoGrid")
+                dataItem = grid.dataItem($(e.target).closest("tr"));
+                if ($(this)[0].checked) {
+                    dataItem.PREHEAT = true;
+                }
+                else {
+                    dataItem.PREHEAT = false;
+                }
+                $("#grid").data("kendoGrid").dataSource.sync();
+            }
+            else {
+                if ($(this)[0].checked) {
+                    $(this)[0].checked = false;
+                }
+                else {
+                    $(this)[0].checked = true;
+                }
+            }
+        }
+        else {
+            if ($('#Guardar').text() != "Edit") {
+                var grid = $("#grid").data("kendoGrid")
+                dataItem = grid.dataItem($(e.target).closest("tr"));
+                if ($(this)[0].checked) {
+                    dataItem.PREHEAT = true;
+                }
+                else {
+                    dataItem.PREHEAT = false;
+                }
+                $("#grid").data("kendoGrid").dataSource.sync();
+            }
+            else {
+                if ($(this)[0].checked) {
+                    $(this)[0].checked = false;
+                }
+                else {
+                    $(this)[0].checked = true;
+                }
+            }
+        }
+    });
 };
 
 

@@ -11,8 +11,8 @@ namespace BackEndSAM.Models
         public string Nombre { get; set; }
         public int PREHEAT { get; set; }
         public int PWHT { get; set; }
-        public decimal EspesorRelleno { get; set; }
-        public decimal EspesorRaiz { get; set; }
+        public double EspesorRelleno { get; set; }
+        public double EspesorRaiz { get; set; }
         public string CodigoRelleno { get; set; }
         public string CodigoRaiz { get; set; }
         public string NumeroP { get; set; }
@@ -99,8 +99,8 @@ namespace BackEndSAM.Models
         public string Nombre { get; set; }
         public int PREHEAT { get; set; }
         public int PWHT { get; set; }
-        public decimal EspesorRelleno { get; set; }
-        public decimal EspesorRaiz { get; set; }
+        public double EspesorRelleno { get; set; }
+        public double EspesorRaiz { get; set; }
         public int ProcesoSoldaduraRellenoID { get; set; }
         public int ProcesoSoldaduraRaizID { get; set; }
         public int NumeroP { get; set; }
