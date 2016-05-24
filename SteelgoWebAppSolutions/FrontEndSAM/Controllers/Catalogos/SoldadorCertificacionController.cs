@@ -9,23 +9,14 @@ namespace FrontEndSAM.Controllers.Catalogos
     public class SoldadorCertificacionController : Controller
     {
         // GET: SoldadorCertificacion
-        public ActionResult SoldadorCertificacion()
+        public ActionResult Index()
         {
             return View();
         }
-        public ActionResult ListadSoldadorCertificacion()
+        
+        public ActionResult ListadoSoldadoresCertificacion()
         {
             return View();
-        }
-        public ActionResult SoldadorCertificacionPopUP()
-        {
-            return View();
-        }
-
-        public ActionResult _PasosSoldaduraPopUp()
-        {
-            return View();
-
         }
     }
 }

@@ -8,6 +8,7 @@ using SecurityManager.Api.Models;
 using System.Data.Entity.Core.Objects;
 using BackEndSAM.Models.SoldadorCertificacion;
 using SecurityManager.TokenHandler;
+using System.Data;
 
 namespace BackEndSAM.DataAcces
 {
@@ -37,9 +38,32 @@ namespace BackEndSAM.DataAcces
 
             using (SamContext ctx = new SamContext())
             {
-                List<SoldadorCertificacion> data = (from SC in ctx.Sam3_Soldadura_SoldadorCertificacion(TipoDato, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, Lenguaje, null, null)
+
+                List<CedulaTuboCalificado> listaCedulaTuboCalificado = (from LCedulaTuboCalificado in ctx.Sam3_Soldadura_Get_CedulaTuboCalificado()
+                                                                        select new CedulaTuboCalificado
+                                                                        {
+                                                                            CedulaTuboCalificadoDesc = LCedulaTuboCalificado.CedulaTuboCalificadoDesc,
+                                                                            CedulaTuboCalificadoID = LCedulaTuboCalificado.CedulaTuboCalificadoID.ToString()
+                                                                        }).AsParallel().ToList();
+                listaCedulaTuboCalificado.Insert(0, new CedulaTuboCalificado());
+                List<TipoProcesosSoldadura> listaTipoProcesosSoldadura = (from lTPS in ctx.Sam3_Soldadura_Get_TipoProcesoSoldadura()
+                                                                          select new TipoProcesosSoldadura
+                                                                          {
+                                                                              TipoProcesoSoldaduraID = lTPS.TipoProcesoSoldaduraID.ToString(),
+                                                                              TipoProcesoSoldaduraDesc = lTPS.TipoProcesoSoldaduraDesc
+                                                                          }).AsParallel().ToList();
+                listaTipoProcesosSoldadura.Insert(0,new TipoProcesosSoldadura());
+                List<TipoPrueba> listaTipoPrueba = (from lTPS in ctx.Sam3_Soldadura_Get_TipoPrueba()
+                                                    select new TipoPrueba
+                                                    {
+                                                        TipoPruebaID = lTPS.TipoPruebaID.ToString(),
+                                                        TipoDePrueba = lTPS.Nombre
+                                                    }).AsParallel().ToList();
+                listaTipoPrueba.Insert(0, new TipoPrueba());
+                List<SoldadorCertificacion> data = (from SC in ctx.Sam3_Soldadura_SoldadorCertificacion(Lenguaje)
                                                     select new SoldadorCertificacion
                                                     {
+                                                        Accion = 2,
                                                         SoldadorCertificacionID = SC.SoldadorCertificacionID,
                                                         ObreroID = SC.OBREROID,
                                                         CodigoObrero = SC.CodigoObrero,
@@ -47,21 +71,20 @@ namespace BackEndSAM.DataAcces
                                                         NombrePQR = SC.NombrePQR,
                                                         ProcesoSoldaduraID = Convert.ToInt32(SC.ProcesoSoldaduraID),
                                                         ProcesoSoldadura = SC.ProcesoSoldadura,
-                                                        TipoDePruebaID = Convert.ToInt32(SC.TipoDePruebaID),
-                                                        TipoDePrueba = SC.TipoPrueba,
-                                                        PosicionID = Convert.ToInt32(SC.PosicionID),
-                                                        Posicion = Convert.ToInt32(SC.Posicion),
+                                                        ListaTipoProcesosSoldadura = listaTipoProcesosSoldadura,
                                                         FechaInicioCertificado = SC.FechaInicioCertificado,
                                                         FechaFinCertificado = SC.FechaFinCertificado,
+                                                        PasosSoldadura = Convert.ToString(SC.PasosSoldadura),
+                                                        CedulaTuboCalificadoID = SC.CedulaTuboCalificadoID.GetValueOrDefault(),
                                                         CedulaTuboCalificado = SC.CedulaTuboCalificado,
-                                                        DiametroCalificado = Convert.ToString(SC.DiametroCalificado),
+                                                        ListaCedulaTuboCalificado = listaCedulaTuboCalificado,
                                                         EspesorMinimo = Convert.ToString(SC.EspesorMinimo),
                                                         EspesorMaximo = Convert.ToString(SC.EspesorMaximo),
-                                                        PorcentajeJuntasRequiere = Convert.ToInt32(SC.PorcentajeJuntasRequiere),
-                                                        CertificadoActivo = Convert.ToString(SC.CertificadoActivo),
-                                                        PasosSoldadura = Convert.ToString(SC.PasosSoldadura),
-                                                       
-
+                                                        DiametroCalificado = Convert.ToString(SC.DiametroCalificado),
+                                                        TipoDePruebaID = Convert.ToInt32(SC.TipoDePruebaID),
+                                                        TipoDePrueba = SC.TipoPrueba,
+                                                        ListaTipoPrueba = listaTipoPrueba,
+                                                        Posicion = Convert.ToInt32(SC.Posicion)
                                                     }).AsParallel().ToList();
                 return data;
 
@@ -70,92 +93,41 @@ namespace BackEndSAM.DataAcces
 
         }
 
-        public object EliminaSoldadorCertificacion(int TipoDeDato, int SoldadorCertificacionID, int IdUsuario)
+        
+
+        
+        public object AgregarSoldadorCertificacion(DataTable dtSoldadorCertificacion, Sam3_Usuario usuario,string lenguaje)
         {
-
-
-            using (SamContext ctx = new SamContext())
-            {
-
-                var lista = ctx.Sam3_Soldadura_SoldadorCertificacion(TipoDeDato, SoldadorCertificacionID, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, IdUsuario);
-                return lista;
-
-            }
-
-
-
-
-
-        }
-
-        public object ActualizaSoldadorCertificacion(SoldadorCertificacion SC, string Lenguaje, int PasosSoldadura,  Sam3_Usuario usuario)
-        {
-
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
+                    ObjetosSQL _SQL = new ObjetosSQL();
+                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@Lenguaje", lenguaje } };
 
-                    ctx.Sam3_Soldadura_SoldadorCertificacion(3, SC.SoldadorCertificacionID, SC.ObreroID, SC.PQRID, SC.ProcesoSoldaduraID, SC.TipoDePruebaID, SC.PosicionID, SC.FechaInicioCertificado.Trim(), SC.FechaFinCertificado.Trim(), SC.CedulaTuboCalificado, Convert.ToDecimal(SC.DiametroCalificado), Convert.ToDecimal(SC.EspesorMinimo), Convert.ToDecimal(SC.EspesorMaximo), SC.PorcentajeJuntasRequiere, Convert.ToBoolean(SC.CertificadoActivo),  SC.UsuarioModificacion, Lenguaje, PasosSoldadura, usuario.UsuarioID);
+                    _SQL.Ejecuta(Stords.GUARDARSOLDADORCERTIFICACION, dtSoldadorCertificacion, "@Tabla", parametro);
+
                     TransactionalInformation result = new TransactionalInformation();
-                    result.ReturnMessage.Add("OK");
+                    result.ReturnMessage.Add("Ok");
                     result.ReturnCode = 200;
                     result.ReturnStatus = true;
                     result.IsAuthenicated = true;
-
                     return result;
                 }
             }
             catch (Exception ex)
             {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
 
-                TransactionalInformation lista = new TransactionalInformation();
-                lista.ReturnMessage.Add(ex.Message);
-                lista.ReturnCode = 500;
-                lista.ReturnStatus = false;
-                lista.IsAuthenicated = true;
-
-                return lista;
+                return result;
             }
+    }
 
-        }
-
-        public object AgregarSoldadorCertificacion(SoldadorCertificacion SC, string Lenguaje, int PasosSoldadura, Sam3_Usuario usuario)
-        {
-
-            try
-            {
-                using (SamContext ctx = new SamContext())
-                {
-                    ctx.Sam3_Soldadura_SoldadorCertificacion(2, null, SC.ObreroID, SC.PQRID, SC.ProcesoSoldaduraID, SC.TipoDePruebaID, SC.PosicionID, SC.FechaInicioCertificado.Trim(), SC.FechaFinCertificado.Trim(), SC.CedulaTuboCalificado, Convert.ToDecimal(SC.DiametroCalificado), Convert.ToDecimal(SC.EspesorMinimo), Convert.ToDecimal(SC.EspesorMaximo), SC.PorcentajeJuntasRequiere, Convert.ToBoolean(SC.CertificadoActivo), PasosSoldadura,  Lenguaje, PasosSoldadura, usuario.UsuarioID);
-                    TransactionalInformation result = new TransactionalInformation();
-                    result.ReturnMessage.Add("OK");
-                    result.ReturnCode = 200;
-                    result.ReturnStatus = true;
-                    result.IsAuthenicated = true;
-
-                    return result;
-
-                }
-            }
-            catch (Exception ex)
-            {
-
-                TransactionalInformation lista = new TransactionalInformation();
-                lista.ReturnMessage.Add(ex.Message);
-                lista.ReturnCode = 500;
-                lista.ReturnStatus = false;
-                lista.IsAuthenicated = true;
-
-                return lista;
-            }
-
-
-
-
-        }
-
-        public object ObtenerTipoPruebas(int TipoDato)
+    public object ObtenerTipoPruebas(int TipoDato)
         {
 
             using (SamContext ctx = new SamContext())
@@ -186,7 +158,7 @@ namespace BackEndSAM.DataAcces
                                                     {
                                                         PosicionID = SC.PosicionID,
                                                         Posicion = Convert.ToInt32(SC.Posicion)
-               
+
                                                     }).AsParallel().ToList();
                 return data;
             }
