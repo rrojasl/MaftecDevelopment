@@ -7750,7 +7750,14 @@ _dictionary = {
         "es-MX": "Este PQR ya existe",
         "en-US": "this PQR is exist"
     },
-
+    "PQRMensajeCamposIncorrectos": {
+        "es-MX": "Algunos PQR no estan correctos, ¿Desea continuar?",
+        "en-US": "Some PQR are not correct, Would you like to continue?"
+    },
+    "PQREspecificacion": {
+        "es-MX": "Especificación",
+        "en-US": "Specification"
+    },
     "lblValidaNombre": {
         "es-MX": "El nombre del PQR ya existe. No se puede agregar",
         "en-US": "PQR name already exists. You can not add"

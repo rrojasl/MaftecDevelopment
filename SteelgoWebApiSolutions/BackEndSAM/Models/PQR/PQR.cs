@@ -20,7 +20,7 @@ namespace BackEndSAM.Models
         public string Mezcla { get; set; }
         public string Respaldo { get; set; }
         public string GrupoF { get; set; }
-        public string Codigo { get; set; }
+        public string Especificacion { get; set; }
         public string UsuarioModificacion { get; set; }
         public string FechaModificacion { get; set; }
 
@@ -28,7 +28,7 @@ namespace BackEndSAM.Models
         public int GrupoPMaterialBase1 { get; set; }
         public string GrupoPMaterialBase1Nombre { get; set; }
         public int GrupoPMaterialBase2 { get; set; }
-        public string GrupoPMaterialBase2Nombre { get; set; }
+        public string GrupoPMaterialBase2Nombre { get; set;} 
 
 
         //ProcesoSoldadura
@@ -80,12 +80,10 @@ namespace BackEndSAM.Models
             CodigoAsmeID = 0;
             TipoPruebaId = 0;
             Especificacion = "";
-            Codigo = "";
         }
         public int CodigoAsmeID { get; set; }
         public int TipoPruebaId { get; set; }
         public string Especificacion { get; set; }
-        public string Codigo { get; set; }
     }
 
     public class Captura
@@ -110,7 +108,7 @@ namespace BackEndSAM.Models
         public string Mezcla { get; set; }
         public string Respaldo { get; set; }
         public string GrupoF { get; set; }
-        public int CodigoID { get; set; }
+        public int Codigo { get; set; }
         
     }
 }

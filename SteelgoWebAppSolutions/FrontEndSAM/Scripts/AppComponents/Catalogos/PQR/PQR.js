@@ -18,6 +18,11 @@ function LlenarGridPQR() {
 function CargarGrid() {
 
     $("#grid").kendoGrid({
+        edit: function (e) {
+            if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
+            } else
+                this.closeCell();
+        },
         dataSource: {
             data: resultadoJson,
             schema: {
@@ -25,8 +30,8 @@ function CargarGrid() {
                     fields: {
                         PQRID: { type: "int" },
                         Nombre: { type: "string", editable: true },
-                        PREHEAT: { type: "string" , editable: false },
-                        PWHT: { type: "string", editable: false },
+                        PREHEAT: { type: "boolean" , editable: false },
+                        PWHT: { type: "boolean", editable: false },
                         EspesorRelleno: {type: "number", editable: true},
                         EspesorRaiz: { type: "number", editable: true },
                         CodigoRelleno: { type: "string", editable: true},
@@ -38,8 +43,8 @@ function CargarGrid() {
                         Mezcla: { type: "string", editable: true },
                         Respaldo: { type: "string", editable: true },
                         GrupoF: { type: "string", editable: true },
-                        CodigoASMEID: { type: "String", editable: false },
-                        Codigo: { type: "int", editable: true },
+                        CodigoASMEID: { type: "int", editable: false },
+                        Especificacion: { type: "String", editable: true },
 
                         GrupoPMaterialesBase1ID: { type: "int"},
                         GrupoPMaterialesBase2ID: { type: "int"},
@@ -79,8 +84,8 @@ function CargarGrid() {
         filterable: getGridFilterableMaftec(),
         columns: [
                      { width: "110px", field: "Nombre", title: _dictionary.lblPQRNombre[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>", width: "150px" },
-                    { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px" },
+                    { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: { multi: true, dataSource: [{ Etiquetado: true }, { Etiquetado: false }] }, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>", width: "150px" },
+                    { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: { multi: true, dataSource: [{ Etiquetado: true }, { Etiquetado: false }] }, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px" },
                     { width: "120px", field: "EspesorRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
                     { width: "120px", field: "EspesorRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
                     { width: "120px", field: "CodigoRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxProcesoSoldaduraRaiz },
@@ -91,7 +96,7 @@ function CargarGrid() {
                     { width: "120px", field: "Mezcla", title: _dictionary.lblPQRMezcla[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "Respaldo", title: _dictionary.lblPQRRespaldo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
                     { width: "120px", field: "GrupoF", title: _dictionary.lblPQRGrupoF[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-                    { width: "120px", field: "Codigo", title: _dictionary.lblPQRCodigo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxCodigo },
+                    { width: "200px", field: "Especificacion", title: _dictionary.PQREspecificacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxEspecificacion },
                     { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, width: "90px", title: "ELM" }
         ],
         dataBound: function () {
