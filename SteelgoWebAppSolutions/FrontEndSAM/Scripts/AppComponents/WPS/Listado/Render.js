@@ -10,11 +10,6 @@
             autoBind: false,
             dataSource: options.model.listadoRaizPQR,
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
-            select: function (e) {
-                dataItem = this.dataItem(e.item.index());
-                options.model.NombrePQRRaiz = dataItem.Nombre;
-                options.model.PQRRaizId = dataItem.PQRID;
-            },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
@@ -89,12 +84,6 @@ function RenderComboBoxPQRRelleno(container, options) {
             autoBind: false,
             dataSource: options.model.listadoRellenoPQR,
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
-            select: function (e) {
-
-                dataItem = this.dataItem(e.item.index());
-                options.model.NombrePQRRelleno = dataItem.Nombre;
-                options.model.PQRRellenoId = dataItem.PQRID;
-            },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
@@ -125,6 +114,8 @@ function RenderComboBoxPQRRelleno(container, options) {
 
                 }
                 else {
+                    options.model.NombrePQRRelleno = "";
+                    options.model.PQRRellenoId = 0;
                     options.model.PWHTRelleno = "";
                     options.model.PWHTRellenoId = 0;
                     options.model.GrupoMaterialBase1RellenoUID = 0;

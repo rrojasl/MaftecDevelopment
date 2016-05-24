@@ -81,8 +81,8 @@ namespace BackEndSAM.DataAcces
                                       EspesorMaximoRelleno = WPS.EspesorMaximoRelleno.GetValueOrDefault(),
                                       EspesorMinimoRelleno = WPS.EspesorMinimoRelleno,
 
-                                      listadoRaizPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1, 28, 2, null, null),
-                                      listadoRellenoPQR = (List<PQR>)PQRBd.Instance.ObtenerListadoPQRActivos(1, 28, 2, null, null),
+                                      listadoRaizPQR = (List<Models.WPS.PQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
+                                      listadoRellenoPQR = (List<Models.WPS.PQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
                                       ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos(),
                                       Diametro = 0
 
@@ -162,41 +162,52 @@ namespace BackEndSAM.DataAcces
 
         }
 
-
-
-        public object EditaWPS(WPS AddWPS, string Lenguaje, Sam3_Usuario usuario)
+        public object ObtenerListadoPQRActivos(int TipoAccion, int proyecto, int pruebaID, string especificacion, string codigo)
         {
-
             try
             {
+                List<Models.WPS.PQR> listaPQR = new List<Models.WPS.PQR>();
+
                 using (SamContext ctx = new SamContext())
                 {
-
-                    //ObjectResult<Sam3_Soldadura_WPS_Result> ColeccionObjetResult = ctx.Sam3_Soldadura_WPS(3, AddWPS.WPSNombre, AddWPS.PQRRaizId, AddWPS.PQRRellenoId, AddWPS.GrupoPIdRaiz, AddWPS.GrupoPIdRaiz, Convert.ToBoolean(AddWPS.PWHTRaiz), Convert.ToBoolean(AddWPS.PWHTRaiz), AddWPS.EspesorMaximoRelleno, AddWPS.EspesorMinimoRelleno, AddWPS.EspesorMaximoRaiz, AddWPS.EspesorMinimoRaiz, usuario.UsuarioID, AddWPS.WPSID);
-
-                    TransactionalInformation result = new TransactionalInformation();
-                    result.ReturnMessage.Add("OK");
-                    result.ReturnCode = 200;
-                    result.ReturnStatus = true;
-                    result.IsAuthenicated = true;
-
-                    return result;
+                    List<Sam3_Soldadura_GET_PQR_WPS_Result> listaPQRJson = ctx.Sam3_Soldadura_GET_PQR_WPS("").ToList();
+                    listaPQR.Add(new Models.WPS.PQR());
+                    foreach (Sam3_Soldadura_GET_PQR_WPS_Result item in listaPQRJson)
+                    {
+                        listaPQR.Add(
+                            new Models.WPS.PQR
+                            {
+                                PQRID = item.PQRID,
+                                Nombre = item.Nombre,
+                                PREHEAT = Convert.ToInt32(item.PREHEAT),
+                                PWHT = Convert.ToInt32(item.PWHT),
+                                EspesorRaiz = Decimal.ToDouble(item.EspesorRaiz.GetValueOrDefault()),
+                                EspesorRelleno = Decimal.ToDouble(item.EspesorRelleno),
+                                GrupoPMaterialBase1 = item.GrupoPMaterialBase1.GetValueOrDefault(),
+                                GrupoPMaterialBase1Nombre = item.GrupoPMaterialBase1Nombre,
+                                GrupoPMaterialBase2 = item.GrupoPMaterialBase2.GetValueOrDefault(),
+                                GrupoPMaterialBase2Nombre = item.GrupoPMaterialBase2Nombre,
+                                ProcesoSoldaduraRaizID = item.ProcesoSoldaduraRaizID.GetValueOrDefault(),
+                                ProcesoSoldaduraRellenoID = item.ProcesoSoldaduraRellenoID,
+                                CodigoRaiz = item.CodigoRaiz,
+                                CodigoRelleno = item.CodigoRelleno,
+                            });
+                    }
+                    
+                    return listaPQR;
                 }
             }
             catch (Exception ex)
             {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
 
-                TransactionalInformation lista = new TransactionalInformation();
-                lista.ReturnMessage.Add(ex.Message);
-                lista.ReturnCode = 500;
-                lista.ReturnStatus = false;
-                lista.IsAuthenicated = true;
-
-                return lista;
+                return result;
             }
-
         }
-
 
         public object ValidarExisteWPS(int WPSID, string nombre)
         {
