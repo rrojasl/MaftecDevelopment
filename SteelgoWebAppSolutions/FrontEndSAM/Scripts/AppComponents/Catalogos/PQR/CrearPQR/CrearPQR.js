@@ -8,12 +8,20 @@ CargaInicial();
 
 function ConvertirCombos() {
 
+    $("#EspesorRelleno").kendoNumericTextBox({
+        format: "#.0000 mm"
+    });
+
+    $("#EspesorRaiz").kendoNumericTextBox({
+        format: "#.0000 mm"
+    });
+
     $("#ProcesoSoldaduraRellenoID").kendoComboBox({
         dataTextField: "Codigo",
         dataValueField: "ProcesoSoldaduraID",
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
-        },
+        }
     });
 
     $("#ProcesoSoldaduraRellenoID").blur(function (e) {
