@@ -8163,6 +8163,10 @@ _dictionary = {
         "es-MX": "Espesor mínimo",
         "en-US": "Minimum thickness"
     },
+    "SoldadorCertificacionEspesorMaximo": {
+        "es-MX": "Espesor maximo",
+        "en-US": "Maximum thickness"
+    },
 
     "SoldadorCertificacionPasosSoldadura": {
         "es-MX": "Num Pasos",
