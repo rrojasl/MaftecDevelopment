@@ -12,13 +12,13 @@
             select: function (e) {
                 dataItem = this.dataItem(e.item.index());
                 options.model.CodigoRaiz = dataItem.Codigo,
-                options.model.ProcesoSoldaduraRaizID = dataItem.procesoSoldaduraRaizID
+                options.model.ProcesoSoldaduraRaizID = dataItem.ProcesoSoldaduraID
             },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.CodigoRaiz = dataItem.Codigo,
-                    options.model.ProcesoSoldaduraRaizID = dataItem.procesoSoldaduraRaizID
+                    options.model.ProcesoSoldaduraRaizID = dataItem.ProcesoSoldaduraID
                 }
                 else {
                     options.model.CodigoRaiz = "";
@@ -176,7 +176,7 @@ function RenderComboBoxMaterialesBase2(container, options) {
     loadingStop();
 }
 
-function RenderComboBoxCodigo(container, options) {
+function RenderComboBoxEspecificacion(container, options) {
     loadingStart();
     var dataItem;
     $('<input data-text-field="Especificacion" id=' + options.model.uid + ' data-value-field="Especificacion" data-bind="value:' + options.field + '"/>')
@@ -188,20 +188,15 @@ function RenderComboBoxCodigo(container, options) {
                 autoBind: false,
                 dataSource: options.model.ListaCodigos,
                 template: "<i class=\"fa fa-#=data.Especificacion#\"></i> #=data.Especificacion#",
-                select: function (e) {
-                    dataItem = this.dataItem(e.item.index());
-                    options.model.CodigoASMEID = dataItem.CodigoAsmeID,
-                    options.model.Codigo = dataItem.Especificacion
-                },
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
                         options.model.CodigoASMEID = dataItem.CodigoAsmeID,
-                        options.model.Codigo = dataItem.Especificacion
+                        options.model.Especificacion = dataItem.Especificacion
                     }
                     else {
                         options.model.CodigoASMEID = 0;
-                        options.model.Codigo = "";
+                        options.model.Especificacion = "";
                     }
                 }
             }

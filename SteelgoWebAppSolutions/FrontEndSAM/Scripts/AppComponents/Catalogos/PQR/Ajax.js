@@ -39,13 +39,18 @@ function AjaxGuardarListado() {
             Mezcla: "",
             Respaldo: "",
             GrupoF: "",
-            Codigo: "",
+            Especificacion: "",
             Estatus: 1
         };
 
         if ((arregloCaptura[index].Nombre == "" || arregloCaptura[index].Nombre == undefined || arregloCaptura[index].Nombre == null) ||
-            (arregloCaptura[index].EspesorRelleno == "" || arregloCaptura[index].EspesorRelleno == undefined || arregloCaptura[index].EspesorRelleno == null) ||
-            (arregloCaptura[index].EspesorRaiz == "" || arregloCaptura[index].EspesorRaiz == undefined || arregloCaptura[index].EspesorRaiz == null) ||
+            (arregloCaptura[index].Mezcla == "" || arregloCaptura[index].Mezcla == undefined || arregloCaptura[index].Mezcla == null) ||
+            (arregloCaptura[index].Mezcla == "" || arregloCaptura[index].Mezcla == undefined || arregloCaptura[index].Mezcla == null) ||
+            (arregloCaptura[index].ProcesoSoldaduraRaizID == 0 || arregloCaptura[index].ProcesoSoldaduraRaizID == undefined || arregloCaptura[index].ProcesoSoldaduraRaizID == "" || arregloCaptura[index].ProcesoSoldaduraRaizID == null) ||
+            (arregloCaptura[index].ProcesoSoldaduraRellenoID == 0 || arregloCaptura[index].ProcesoSoldaduraRellenoID == undefined || arregloCaptura[index].ProcesoSoldaduraRellenoID == "" || arregloCaptura[index].ProcesoSoldaduraRellenoID == null) ||
+            (arregloCaptura[index].GrupoPMaterialBase1 == 0 || arregloCaptura[index].GrupoPMaterialBase1 == undefined || arregloCaptura[index].GrupoPMaterialBase1 == "" || arregloCaptura[index].GrupoPMaterialBase1 == null) ||
+            (arregloCaptura[index].GrupoPMaterialBase2 == 0 || arregloCaptura[index].GrupoPMaterialBase2 == undefined || arregloCaptura[index].GrupoPMaterialBase2 == "" || arregloCaptura[index].GrupoPMaterialBase2 == null) ||
+            (arregloCaptura[index].CodigoASMEID == 0 || arregloCaptura[index].CodigoASMEID == undefined || arregloCaptura[index].CodigoASMEID == "" || arregloCaptura[index].CodigoASMEID == null) ||
             (arregloCaptura[index].Aporte == "" || arregloCaptura[index].Aporte == undefined || arregloCaptura[index].Aporte == null) ||
             (arregloCaptura[index].Respaldo == "" || arregloCaptura[index].Respaldo == undefined || arregloCaptura[index].Respaldo == null) ||
             (arregloCaptura[index].Mezcla == "" || arregloCaptura[index].Mezcla == undefined || arregloCaptura[index].Mezcla == null) ||
@@ -70,7 +75,7 @@ function AjaxGuardarListado() {
         ListaDetalles[index].Mezcla = arregloCaptura[index].Mezcla;
         ListaDetalles[index].Respaldo = arregloCaptura[index].Respaldo;
         ListaDetalles[index].GrupoF = arregloCaptura[index].GrupoF;
-        ListaDetalles[index].CodigoID = arregloCaptura[index].CodigoASMEID;
+        ListaDetalles[index].Codigo = arregloCaptura[index].CodigoASMEID;
         ListaDetalles[index].Accion = arregloCaptura[index].Accion;
     }
     Captura[0].Detalles = ListaDetalles;
@@ -110,7 +115,7 @@ function AjaxGuardarListado() {
             }
         }).data("kendoWindow");
 
-        ventanaConfirm.content(_dictionary.WPSMensajeCamposIncorrector[$("#language").data("kendoDropDownList").value()] +
+        ventanaConfirm.content(_dictionary.PQRMensajeCamposIncorrectos[$("#language").data("kendoDropDownList").value()] +
             "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
 
         ventanaConfirm.open().center();

@@ -62,7 +62,7 @@ namespace BackEndSAM.DataAcces
                                 Respaldo = item.Respaldo,
                                 GrupoF = item.GrupoF,
                                 CodigoASMEID = item.CodigoID.GetValueOrDefault(),
-                                Codigo = item.Codigo,
+                                Especificacion = item.Especificacion,
                                 Accion = 2,
                                 ListaProcesosSoldadura = (List<ListaProcesoSoldadura>)obtenerListadoProcesos(TipoAccion),
                                 ListaMaterialesBase = (List<ListaMaterialesBase>)obtenerListadoMaterialesBase(TipoAccion),
@@ -202,7 +202,6 @@ namespace BackEndSAM.DataAcces
                     {
                         listaCodigoResult.Add(new ListaCodigos
                         {
-                            Codigo = item.Codigo,
                             CodigoAsmeID = item.CodigoAsmeID,
                             Especificacion = item.Especificacion,
                             TipoPruebaId = item.TipoPruebaId
