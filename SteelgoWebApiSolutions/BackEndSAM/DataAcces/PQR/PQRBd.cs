@@ -64,6 +64,7 @@ namespace BackEndSAM.DataAcces
                                 CodigoASMEID = item.CodigoID.GetValueOrDefault(),
                                 Especificacion = item.Especificacion,
                                 Accion = 2,
+                                RegistrosWPS = item.RegistrosWPS.GetValueOrDefault(),
                                 ListaProcesosSoldadura = (List<ListaProcesoSoldadura>)obtenerListadoProcesos(TipoAccion),
                                 ListaMaterialesBase = (List<ListaMaterialesBase>)obtenerListadoMaterialesBase(TipoAccion),
                                 ListaCodigos = (List<ListaCodigos>)obtenerListadoCodigos(proyecto, pruebaID, especificacion, codigo)

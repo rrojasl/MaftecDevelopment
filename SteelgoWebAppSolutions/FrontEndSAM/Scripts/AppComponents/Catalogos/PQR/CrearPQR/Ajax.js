@@ -41,15 +41,27 @@ function AjaxGuardar() {
 
     if ($('#NombreId').val() == "" || $('#NombreId').val() == undefined || $('#NombreId').val() == null) {
         correcto = false;
-        displayNotify("", "El nombre del WPS es mandatorio", '1');
+        displayNotify("", "El campo nombre del WPS es mandatorio", '1');
+    }
+    else if ($('#EspesorRelleno').val() == "" || $('#EspesorRelleno').val() == undefined || $('#EspesorRelleno').val() == null) {
+        correcto = false;
+        displayNotify("", "El campo espesor relleno es mandatorio", '1');
+    }
+    else if ($('#EspesorRaiz').val() == "" || $('#EspesorRaiz').val() == undefined || $('#EspesorRaiz').val() == null) {
+        correcto = false;
+        displayNotify("", "El campo espesor raiz es mandatorio", '1');
     }
     else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()) == undefined) {
         correcto = false;
-        displayNotify("", "El proceso de soldadura de relleno debe coincidir", '1');
+        displayNotify("", "El campo proceso de soldadura de relleno debe coincidir", '1');
     }
     else if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()) == undefined) {
         correcto = false;
-        displayNotify("", "El proceso de soldadura de raiz debe coincidir", '1');
+        displayNotify("", "El campo proceso de soldadura de raiz debe coincidir", '1');
+    }
+    else if ($('#NumeroPID').val() == "" || $('#NumeroPID').val() == undefined || $('#NumeroPID').val() == null) {
+        correcto = false;
+        displayNotify("", "El campo numero P es mandatorio", '1');
     }
     else if ($('#GrupoPMaterialBase1ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase1ID").data("kendoComboBox").select()) == undefined) {
         correcto = false;
@@ -58,6 +70,22 @@ function AjaxGuardar() {
     else if ($('#GrupoPMaterialBase2ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase2ID").data("kendoComboBox").select()) == undefined) {
         correcto = false;
         displayNotify("", "El campo Grupo Materiales Base 2 debe coincidir", '1');
+    }
+    else if ($('#AporteID').val() == "" || $('#AporteID').val() == undefined || $('#AporteID').val() == null) {
+        correcto = false;
+        displayNotify("", "El campo aporte es mandatorio", '1');
+    }
+    else if ($('#MezclaID').val() == "" || $('#MezclaID').val() == undefined || $('#MezclaID').val() == null) {
+        correcto = false;
+        displayNotify("", "El campo mezcla es mandatorio", '1');
+    }
+    else if ($('#RespaldoID').val() == "" || $('#RespaldoID').val() == undefined || $('#RespaldoID').val() == null) {
+        correcto = false;
+        displayNotify("", "El campo respaldo es mandatorio", '1');
+    }
+    else if ($('#GrupoFID').val() == "" || $('#GrupoFID').val() == undefined || $('#GrupoFID').val() == null) {
+        correcto = false;
+        displayNotify("", "El campo grupo F es mandatorio", '1');
     }
     else if ($('#CodigoID').data("kendoComboBox").dataItem($("#CodigoID").data("kendoComboBox").select()) == undefined) {
         correcto = false;

@@ -30,13 +30,13 @@ function CargarGrid() {
                     fields: {
                         PQRID: { type: "int" },
                         Nombre: { type: "string", editable: true },
-                        PREHEAT: { type: "boolean" , editable: false },
+                        PREHEAT: { type: "boolean", editable: false },
                         PWHT: { type: "boolean", editable: false },
-                        EspesorRelleno: {type: "number", editable: true},
+                        EspesorRelleno: { type: "number", editable: true },
                         EspesorRaiz: { type: "number", editable: true },
-                        CodigoRelleno: { type: "string", editable: true},
-                        CodigoRaiz: { type: "string", editable: true},
-                        NumeroP: { type: "string", editable: true},
+                        CodigoRelleno: { type: "string", editable: true },
+                        CodigoRaiz: { type: "string", editable: true },
+                        NumeroP: { type: "string", editable: true },
                         GrupoPMaterialesBase1: { type: "string", editable: true },
                         GrupoPMaterialesBase2: { type: "string", editable: true },
                         Aporte: { type: "string", editable: true },
@@ -46,13 +46,15 @@ function CargarGrid() {
                         CodigoASMEID: { type: "int", editable: false },
                         Especificacion: { type: "String", editable: true },
 
-                        GrupoPMaterialesBase1ID: { type: "int"},
-                        GrupoPMaterialesBase2ID: { type: "int"},
+                        GrupoPMaterialesBase1ID: { type: "int" },
+                        GrupoPMaterialesBase2ID: { type: "int" },
                         ProcesoSoldaduraRellenoID: { type: "int" },
                         ProcesoSoldaduraRaizID: { type: "int" },
                         NumeroPID: { type: "int" },
                         GrupoPID: { type: "int" },
-                        Accion: { type: "int" }
+                        Accion: { type: "int" },
+
+                        RegistrosWPS: { type: "int" }
                     }
                 }
             },
@@ -68,7 +70,7 @@ function CargarGrid() {
             serverFiltering: false,
             serverSorting: false
         },
-        navigatable: true, 
+        navigatable: true,
         autoHeight: true,
         sortable: true,
         scrollable: true,
@@ -105,7 +107,7 @@ function CargarGrid() {
                 $("#grid").find("th.k-header").parent().before("<tr id='trParentHeader'> " +
                     "<th scope='col' colspan='3' class='k-header'></th>  <th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.ListadoCatalogos0040[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span>" + _dictionary.WPSPQRProceso[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
-                    "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>"  + _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
+                    "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='6' class='k-header' style='text-align: center;'><span id=''></span></th>" +
                     "</tr>");
             }
@@ -249,42 +251,45 @@ function VentanaModal() {
 function cancelarCaptura(e) {
     e.preventDefault();
     if ($('#botonGuardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
-
         e.preventDefault();
         var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
         var PQRIDRegistro = dataItem.PQRID;
 
-        windowTemplate = kendo.template($("#windowTemplate").html());
+        if (dataItem.RegistrosWPS == 0) {
+            windowTemplate = kendo.template($("#windowTemplate").html());
 
-        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
-            iframe: true,
-            title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
-            visible: false, //the window will not appear before its .open method is called
-            width: "auto",
-            height: "auto",
-            modal: true,
-            animation: {
-                close: false,
-                open: false
-            }
-        }).data("kendoWindow");
+            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                iframe: true,
+                title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                visible: false, //the window will not appear before its .open method is called
+                width: "auto",
+                height: "auto",
+                modal: true,
+                animation: {
+                    close: false,
+                    open: false
+                }
+            }).data("kendoWindow");
 
-        ventanaConfirm.content(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
-                     "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+            ventanaConfirm.content(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
 
-        ventanaConfirm.open().center();
+            ventanaConfirm.open().center();
 
-        $("#yesButton").click(function () {
+            $("#yesButton").click(function () {
 
-            var dataSource = $("#grid").data("kendoGrid").dataSource;
-            dataItem.Accion = 3;
-            $("#grid").data("kendoGrid").dataSource.sync();
+                var dataSource = $("#grid").data("kendoGrid").dataSource;
+                dataItem.Accion = 3;
+                $("#grid").data("kendoGrid").dataSource.sync();
 
-            ventanaConfirm.close();
-        });
-        $("#noButton").click(function () {
-            ventanaConfirm.close();
-        });
+                ventanaConfirm.close();
+            });
+            $("#noButton").click(function () {
+                ventanaConfirm.close();
+            });
+        }
+        else
+            displayNotify("","El elemento PQR " + dataItem.Nombre + " se encuentra asignado, favor de revisar el listado WPS",1);
     }
 
 };

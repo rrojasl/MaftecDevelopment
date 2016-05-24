@@ -48,6 +48,8 @@ namespace BackEndSAM.Models
         public List<ListaMaterialesBase> ListaMaterialesBase { get; set; }
 
         public List<ListaCodigos> ListaCodigos { get; set; }
+
+        public int RegistrosWPS { get; set; }
     }
 
     public class ListaProcesoSoldadura
