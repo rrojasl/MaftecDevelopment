@@ -8149,6 +8149,14 @@ _dictionary = {
         "es-MX": "Proceso soldadura",
         "en-US": "Start date of certificate"
     },
+    "CheckBoxFilterPQRContiene": {
+        "es-MX": "C",
+        "en-US": "T"
+    },
+    "CheckBoxFilterPQRNoContiene": {
+        "es-MX": "F",
+        "en-US": "F"
+    },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Vigencia de:",
         "en-US": "Validity of"
