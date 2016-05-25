@@ -31,6 +31,11 @@ namespace BackEndSAM.Models.WPS
 
         public decimal EspesorMaximo { get; set; }
         public decimal EspesorMinimo { get; set; }
+
+        public decimal RaizEspesorRaiz { get; set; }
+        public decimal RaizEspesorRelleno { get; set; }
+        public decimal RellenoEspesorRaiz { get; set; }
+        public decimal RellenoEspesorRelleno { get; set; }
         
 
         public int GrupoMaterialBase1RaizUID { get; set; }

@@ -206,7 +206,7 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object ValidarExisteWPS(int WPSID, string nombre)
+        public object ValidarExisteWPS(string nombre)
         {
 
             try
@@ -216,7 +216,7 @@ namespace BackEndSAM.DataAcces
                     ObjectParameter op = new ObjectParameter("Retorna", typeof(string));
                     op.Value = null;
                     var oMyString = new ObjectParameter("Retorna", typeof(string));
-                    var res = ctx.Sam3_Soldadura_WPS_Existe(nombre, oMyString, WPSID);
+                    var res = ctx.Sam3_Soldadura_WPS_Existe(nombre, oMyString);
                     var data = oMyString.Value.ToString();
                     TransactionalInformation result = new TransactionalInformation();
                     if (data.Equals("ok"))

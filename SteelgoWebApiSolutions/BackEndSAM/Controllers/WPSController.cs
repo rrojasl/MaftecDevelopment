@@ -141,7 +141,8 @@ namespace BackEndSAM.Controllers
 
 
         //VALIDA QUE EL WPS NO EXISTA
-        public object Get(string NombreWPSValida, string token, int WPSIDValida, int Accion)
+        [HttpGet]
+        public object Get(string NombreWPSValida, string token)
         {
             try
             {
@@ -153,7 +154,7 @@ namespace BackEndSAM.Controllers
                     JavaScriptSerializer serializer = new JavaScriptSerializer();
                     Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
 
-                    return WPSBd.Instance.ValidarExisteWPS(WPSIDValida, NombreWPSValida);
+                    return WPSBd.Instance.ValidarExisteWPS( NombreWPSValida);
                 }
                 else
                 {

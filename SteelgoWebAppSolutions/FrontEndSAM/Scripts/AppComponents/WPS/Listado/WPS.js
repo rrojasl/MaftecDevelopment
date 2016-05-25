@@ -173,6 +173,9 @@ function eliminarCaptura(e) {
             ventanaConfirm.close();
         });
     }
+    else {
+        displayNotify("", "El nombre del WPS, no se puede repetir", "2");
+    }
 
 }
 
@@ -209,3 +212,35 @@ function VentanaModal() {
 
 
 
+function NombreRepetido(listaDetalles) {
+    for (var i = 0; i < listaDetalles.length; i++) {
+        for (var j = 0; j < listaDetalles.length; j++) {
+            if (listaDetalles[i].WPSNombre == listaDetalles[j].WPSNombre && i != j) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function ObtenerEspesorCorrecto(EspesorTotalT) {
+    var espesores = [];
+    espesores[0] = { EspesorMaximo: "", EspesorMinimo: "" };
+    if (EspesorTotalT < 1.5) {
+        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+        espesores[0].EspesorMinimo = parseFloat(EspesorTotalT).toFixed(4);
+    }
+    else if (EspesorTotalT >= 1.5 && EspesorTotalT < 8) {
+        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+        espesores[0].EspesorMinimo = 5.0000;
+    }
+    else if (EspesorTotalT >= 10 && EspesorTotalT < 19) {
+        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+        espesores[0].EspesorMinimo = 5.0000;
+    }
+    else if (EspesorTotalT >= 19 && EspesorTotalT < 38) {
+        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+        espesores[0].EspesorMinimo = 5.0000;
+    }
+
+}
