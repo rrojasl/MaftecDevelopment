@@ -43,6 +43,9 @@ function ConvertirCombos() {
                 $("#EspesorMaximoRaiz").text(dataItem.CodigoRaiz.trim() != "Gmaw STT" ? (parseFloat(dataItem.EspesorRaiz) <= 1.5 ? (parseFloat(dataItem.EspesorRaiz) * 2) : 8) : parseFloat(dataItem.EspesorRaiz) * 1.1);
                 $("#EspesorMinimoRaiz").text("0");
             }
+            else {
+                $("#PQRRaizNombre").data("kendoComboBox").value("");
+            }
         }
     });
 
@@ -80,6 +83,9 @@ function ConvertirCombos() {
                     $("#grupoPRelleno").val(dataItem.GrupoPMaterialBase1Nombre + " - " + dataItem.GrupoPMaterialBase2Nombre);
                     $("#EspesorMaximoRelleno").text(parseFloat(dataItem.EspesorRelleno) <= 1.5 ? (parseFloat(dataItem.EspesorRelleno) * 2) : 8);
                     $("#EspesorMinimoRelleno").text("0");
+                }
+                else {
+                    $("#PQRRellenoNombre").data("kendoComboBox").value("");
                 }
             }
         },
