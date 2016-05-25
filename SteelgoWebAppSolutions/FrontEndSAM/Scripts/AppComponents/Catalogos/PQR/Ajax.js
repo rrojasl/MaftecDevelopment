@@ -20,6 +20,7 @@ function AjaxGuardarListado() {
     Captura[0] = { Detalles: "" };
     ListaDetalles = [];
     var correcto = true;
+    var pqrModified = '';
     var arregloCaptura = $("#grid").data("kendoGrid").dataSource._data;
     for (index = 0; index < arregloCaptura.length; index++) {
         ListaDetalles[index] = {
@@ -59,11 +60,17 @@ function AjaxGuardarListado() {
             ListaDetalles[index].Estatus = 0;
             $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
         }
+        else {
+            if (pqrModified.length == 0)
+                pqrModified = arregloCaptura[index].Nombre;
+            else
+                pqrModified += ", " + arregloCaptura[index].Nombre;
+        }
 
         ListaDetalles[index].PQRID = arregloCaptura[index].PQRID;
         ListaDetalles[index].Nombre = arregloCaptura[index].Nombre;
         ListaDetalles[index].PWHT = arregloCaptura[index].PWHT ? 1 : 0;
-        ListaDetalles[index].PREHEAT = arregloCaptura[index].PREHEAT? 1: 0;
+        ListaDetalles[index].PREHEAT = arregloCaptura[index].PREHEAT ? 1 : 0;
         ListaDetalles[index].EspesorRelleno = arregloCaptura[index].EspesorRelleno;
         ListaDetalles[index].EspesorRaiz = arregloCaptura[index].EspesorRaiz;
         ListaDetalles[index].ProcesoSoldaduraRellenoID = arregloCaptura[index].ProcesoSoldaduraRellenoID;
@@ -85,7 +92,7 @@ function AjaxGuardarListado() {
             loadingStart();
             $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
                 if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
-                    displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                    displayNotify("", "Los elementos: " + pqrModified + " han sido modificados correctamente", '0');
                     LlenaGridAjax();
                     loadingStop();
                 }
@@ -115,7 +122,7 @@ function AjaxGuardarListado() {
             }
         }).data("kendoWindow");
 
-        ventanaConfirm.content(_dictionary.PQRMensajeCamposIncorrectos[$("#language").data("kendoDropDownList").value()] +
+        ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
             "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
 
         ventanaConfirm.open().center();
@@ -125,12 +132,18 @@ function AjaxGuardarListado() {
 
         $("#yesButton").click(function () {
             loadingStart();
-
+            var pqrModified = '';
             ArregloGuardado = [];
             var indice = 0;
             for (var i = 0; i < Captura[0].Detalles.length; i++) {
                 if (Captura[0].Detalles[i].Estatus == 1) {
                     ArregloGuardado[indice] = ListaDetalles[i];
+                    
+                    if (pqrModified.length == 0)
+                        pqrModified = ListaDetalles[i].Nombre;
+                    else
+                        pqrModified += "," + ListaDetalles[i].Nombre
+
                     indice++;
                 }
             }
@@ -143,7 +156,7 @@ function AjaxGuardarListado() {
                 loadingStart();
                 $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
                     if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
-                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                        displayNotify("", "Los elementos: " + pqrModified + " han sido modificados correctamente", '0');
                         LlenaGridAjax();
                         loadingStop();
                     }

@@ -7567,10 +7567,6 @@ _dictionary = {
         "es-MX": "¿Esta seguro de eliminar el WPS?",
         "en-US": "Are you sure to delete the WPS?"
     },
-    "WPSMensajeCamposIncorrector": {
-        "es-MX": "Algunos WPS no estan correctos, ¿Desea continuar?",
-        "en-US": "Some WPS are not correct, Would you like to continue?"
-    },
     "lblExisteNombreWPS": {
         "es-MX": "El WPS ya existe",
         "en-US": "The WPS exist"
@@ -7749,10 +7745,6 @@ _dictionary = {
     "lblExisteNombrePQR": {
         "es-MX": "Este PQR ya existe",
         "en-US": "this PQR is exist"
-    },
-    "PQRMensajeCamposIncorrectos": {
-        "es-MX": "Algunos PQR no estan correctos, ¿Desea continuar?",
-        "en-US": "Some PQR are not correct, Would you like to continue?"
     },
     "PQREspecificacion": {
         "es-MX": "Especificación",
