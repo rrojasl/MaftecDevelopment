@@ -41,7 +41,7 @@ function AjaxGuardar() {
 
     if ($('#NombreId').val() == "" || $('#NombreId').val() == undefined || $('#NombreId').val() == null) {
         correcto = false;
-        displayNotify("", "El campo nombre del WPS es mandatorio", '1');
+        displayNotify("", "El campo nombre del PQR es mandatorio", '1');
     }
     else if ($('#EspesorRelleno').val() == "" || $('#EspesorRelleno').val() == undefined || $('#EspesorRelleno').val() == null) {
         correcto = false;
