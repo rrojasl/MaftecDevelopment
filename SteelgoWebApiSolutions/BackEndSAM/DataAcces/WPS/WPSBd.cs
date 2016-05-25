@@ -79,8 +79,8 @@ namespace BackEndSAM.DataAcces
                                       EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
                                       EspesorMinimo= WPS.EspesorMinimo,
 
-                                      listadoRaizPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
-                                      listadoRellenoPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
+                                      listadoRaizPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(),
+                                      listadoRellenoPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(),
 
                                   }).AsParallel().ToList();
                 return data;
@@ -158,7 +158,7 @@ namespace BackEndSAM.DataAcces
 
         }
 
-        public object ObtenerListadoPQRActivos(int TipoAccion, int proyecto, int pruebaID, string especificacion, string codigo)
+        public object ObtenerListadoPQRActivos()
         {
             try
             {
