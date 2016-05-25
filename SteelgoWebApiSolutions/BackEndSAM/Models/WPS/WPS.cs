@@ -31,6 +31,11 @@ namespace BackEndSAM.Models.WPS
 
         public decimal EspesorMaximo { get; set; }
         public decimal EspesorMinimo { get; set; }
+
+        public decimal RaizEspesorRaiz { get; set; }
+        public decimal RaizEspesorRelleno { get; set; }
+        public decimal RellenoEspesorRaiz { get; set; }
+        public decimal RellenoEspesorRelleno { get; set; }
         
 
         public int GrupoMaterialBase1RaizUID { get; set; }
@@ -42,49 +47,13 @@ namespace BackEndSAM.Models.WPS
         public int GrupoMaterialBase1RellenoDID { get; set; }
         public string GrupoMaterialBase1RellenoD { get; set; }
 
-        public List<PQR> listadoRellenoPQR { get; set; }
-        public List<PQR> listadoRaizPQR { get; set; }
-        public List<PQR> listadoGrupoP { get; set; }
-        public List<Models.Pintura.MedioTransporte.Proyecto> ListaProyectos { get; set; }
+        public List<DetallePQR> listadoRellenoPQR { get; set; }
+        public List<DetallePQR> listadoRaizPQR { get; set; }
+        public List<DetallePQR> listadoGrupoP { get; set; } 
     }
 
 
-    public class PQR 
-    {
-        public PQR()
-        {
-            PQRID = 0;
-            Nombre = "";
-            PREHEAT = 0;
-            PWHT = 0;
-            EspesorRaiz = 0;
-            EspesorRelleno = 0;
-            GrupoPMaterialBase1 = 0;
-            GrupoPMaterialBase1Nombre = "";
-            GrupoPMaterialBase2 = 0;
-            GrupoPMaterialBase2Nombre = "";
-            ProcesoSoldaduraRaizID = 0;
-            ProcesoSoldaduraRellenoID = 0;
-            CodigoRaiz = "";
-            CodigoRelleno = "";
-        }
-
-        //Grid PQR
-        public int PQRID { get; set; }
-        public string Nombre { get; set; }
-        public int PREHEAT { get; set; }
-        public int PWHT { get; set; }
-        public double EspesorRelleno { get; set; }
-        public double EspesorRaiz { get; set; }
-        public int GrupoPMaterialBase1 { get; set; }
-        public string GrupoPMaterialBase1Nombre { get; set; }
-        public int GrupoPMaterialBase2 { get; set; }
-        public string GrupoPMaterialBase2Nombre { get; set; }
-        public int ProcesoSoldaduraRellenoID { get; set; }
-        public int ProcesoSoldaduraRaizID { get; set; }
-        public string CodigoRelleno { get; set; }
-        public string CodigoRaiz { get; set; }
-    }
+   
 
         public class Captura
     {

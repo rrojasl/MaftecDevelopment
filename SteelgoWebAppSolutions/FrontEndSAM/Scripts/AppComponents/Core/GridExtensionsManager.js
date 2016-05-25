@@ -34,7 +34,7 @@ function CustomisaGrid(elemento) {
     $(".k-grid-content", elemento).css("overflow", "hidden");
 
     $(".k-grid-header", elemento).before("<div id='sticky-anchor' class='Css_sticky-anchor'></div>");
-    //$(".k-grid-header", elemento).before("<div id='sticky-anchor' class='Css_sticky-anchor'></div>");
+    $(".k-grid-header", elemento).before("<div id='sticky-anchor' class='Css_sticky-anchor'></div>");
     $(".k-grid-header", elemento).before("<ul id='contextMenu' class='dropdown-menu' role='menu' style='display:none; width:150px; min-width:150px; z-index:2000'><li class='Ajustar_texto'>Ajustar texto</li></ul>");
 
     //Scroll en en la parte Superior

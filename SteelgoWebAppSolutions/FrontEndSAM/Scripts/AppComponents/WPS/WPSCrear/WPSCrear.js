@@ -40,7 +40,7 @@ function ConvertirCombos() {
                     kendo.bind($("#PWHRaiz"), data);
                 }
                 $("#grupoPRaiz").val(dataItem.GrupoPMaterialBase1Nombre + " - " + dataItem.GrupoPMaterialBase2Nombre);
-                $("#EspesorMaximoRaiz").text(dataItem.CodigoRaiz.trim() != "Gmaw STT" ? (parseFloat(dataItem.EspesorRaiz) <= 1.5 ? (parseFloat(dataItem.EspesorRaiz) * 2) : 8) : parseFloat(dataItem.EspesorRaiz) * 1.1);
+                $("#EspesorMaximoRaiz").text((dataItem.CodigoRaiz.trim() != "Gmaw STT" ? (parseFloat(dataItem.EspesorRaiz) <= 1.5 ? (parseFloat(dataItem.EspesorRaiz) * 2) : 8) : parseFloat(dataItem.EspesorRaiz) * 1.1).toFixed(4));
                 $("#EspesorMinimoRaiz").text("0");
             }
             else {
@@ -81,7 +81,7 @@ function ConvertirCombos() {
                         kendo.bind($("#PWHRelleno"), data);
                     }
                     $("#grupoPRelleno").val(dataItem.GrupoPMaterialBase1Nombre + " - " + dataItem.GrupoPMaterialBase2Nombre);
-                    $("#EspesorMaximoRelleno").text(parseFloat(dataItem.EspesorRelleno) <= 1.5 ? (parseFloat(dataItem.EspesorRelleno) * 2) : 8);
+                    $("#EspesorMaximoRelleno").text((parseFloat(dataItem.EspesorRelleno) <= 1.5 ? (parseFloat(dataItem.EspesorRelleno) * 2) : 8).toFixed(4));
                     $("#EspesorMinimoRelleno").text("0");
                 }
                 else {

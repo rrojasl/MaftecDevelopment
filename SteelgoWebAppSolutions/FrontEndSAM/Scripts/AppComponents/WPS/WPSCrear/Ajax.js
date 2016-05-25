@@ -6,6 +6,18 @@ function obtenerPQRAjax() {
     });
 }
 
+function AjaxExisteWPS() {
+    if ($('#NomnreWPS').val() != "" && $('#NomnreWPS').val() != undefined && $('#NomnreWPS').val() != null) {
+        loadingStart();
+        $WPS.WPS.read({ NombreWPSValida: $('#NomnreWPS').val(), token: Cookies.get("token") }).done(function (data) {
+            if (data.ReturnMessage[0] != "OK") {
+                displayNotify("", "El Nombre del WPS ya existe", '2');
+            }
+            loadingStop();
+        });
+    }
+}
+
 
 function AjaxGuardar() {
     Captura = [];
