@@ -29,10 +29,8 @@ namespace BackEndSAM.Models.WPS
         public int PREHEATRaizId { get; set; }
         public string PREHEATRaiz { get; set; }
 
-        public decimal EspesorMaximoRaiz { get; set; }
-        public decimal EspesorMinimoRaiz { get; set; }
-        public decimal EspesorMaximoRelleno { get; set; }
-        public decimal EspesorMinimoRelleno { get; set; }
+        public decimal EspesorMaximo { get; set; }
+        public decimal EspesorMinimo { get; set; }
         
 
         public int GrupoMaterialBase1RaizUID { get; set; }
@@ -48,7 +46,6 @@ namespace BackEndSAM.Models.WPS
         public List<PQR> listadoRaizPQR { get; set; }
         public List<PQR> listadoGrupoP { get; set; }
         public List<Models.Pintura.MedioTransporte.Proyecto> ListaProyectos { get; set; }
-        public decimal Diametro { get; set; }
     }
 
 

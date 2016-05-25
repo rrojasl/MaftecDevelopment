@@ -66,8 +66,6 @@ function CargarGrid() {
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span>" + _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPWHT[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPreHeat[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
-                    "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSEspesorMaximo[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
-                    "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSEspesorMinimo[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "</tr>");
             }
         },
@@ -85,11 +83,8 @@ function CargarGrid() {
                         PWHTRaiz: { type: "string", editable: false },
                         PREHEATRaiz: { type: "string", editable: false },
                         PREHEATRelleno: { type: "string", editable: false },
-                        EspesorMaximoRaiz: { type: "number", editable: false },
-                        EspesorMinimoRaiz: { type: "number", editable: false },
-                        EspesorMaximoRelleno: { type: "number", editable: false },
-                        EspesorMinimoRelleno: { type: "number", editable: false },
-                        Diametro: { type: "number", editable: false },
+                        EspesorMaximo: { type: "number", editable: false },
+                        EspesorMaximo: { type: "number", editable: false },
                     }
                 }
             },
@@ -131,11 +126,8 @@ function CargarGrid() {
                     { field: "PWHTRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px" },
                     { field: "PREHEATRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px" },
                     { field: "PREHEATRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px" },
-                    { field: "EspesorMaximoRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
-                    { field: "EspesorMaximoRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
-                    { field: "EspesorMinimoRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
-                    { field: "EspesorMinimoRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
-                    { field: "Diametro", title: _dictionary.WPSLabelDiametro[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
+                    { field: "EspesorMaximo", title: _dictionary.WPSEspesorMaximo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
+                    { field: "EspesorMinimo", title: _dictionary.WPSEspesorMinimo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
                     { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
                     //{ command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: EditaWPS }, title: _dictionary.tituloEditar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ],

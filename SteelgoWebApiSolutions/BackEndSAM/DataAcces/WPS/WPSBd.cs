@@ -76,15 +76,12 @@ namespace BackEndSAM.DataAcces
                                       GrupoMaterialBase1RellenoU = WPS.GrupoMaterialBase1RellenoU,
                                       GrupoMaterialBase1RellenoUID = WPS.GrupoMaterialBase1RellenoUID.GetValueOrDefault(),
 
-                                      EspesorMaximoRaiz = WPS.EspesorMaximoRaiz.GetValueOrDefault(),
-                                      EspesorMinimoRaiz = WPS.EspesorMinimoRaiz,
-                                      EspesorMaximoRelleno = WPS.EspesorMaximoRelleno.GetValueOrDefault(),
-                                      EspesorMinimoRelleno = WPS.EspesorMinimoRelleno,
+                                      EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
+                                      EspesorMinimo= WPS.EspesorMinimo,
 
                                       listadoRaizPQR = (List<Models.WPS.PQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
                                       listadoRellenoPQR = (List<Models.WPS.PQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
-                                      ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos(),
-                                      Diametro = 0
+                                      ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos()
 
                                   }).AsParallel().ToList();
                 return data;
