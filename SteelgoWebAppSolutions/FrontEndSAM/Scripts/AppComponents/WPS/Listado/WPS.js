@@ -242,5 +242,13 @@ function ObtenerEspesorCorrecto(EspesorTotalT) {
         espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
         espesores[0].EspesorMinimo = 5.0000;
     }
+    else if (EspesorTotalT >= 38 && EspesorTotalT < 150) {
+        espesores[0].EspesorMaximo = 200.0000;
+        espesores[0].EspesorMinimo = 5.0000;
+    }
+    else if (EspesorTotalT >= 150) {
+        espesores[0].EspesorMaximo = (1.33 * parseFloat(EspesorTotalT)).toFixed(4);
+        espesores[0].EspesorMinimo = 5.0000;
+    }
 
 }

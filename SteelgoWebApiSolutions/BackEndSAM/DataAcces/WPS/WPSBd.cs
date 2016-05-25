@@ -79,9 +79,8 @@ namespace BackEndSAM.DataAcces
                                       EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
                                       EspesorMinimo= WPS.EspesorMinimo,
 
-                                      listadoRaizPQR = (List<Models.WPS.PQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
-                                      listadoRellenoPQR = (List<Models.WPS.PQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
-                                      ListaProyectos = (List<Models.Pintura.MedioTransporte.Proyecto>)MedioTransporteBD.Instance.obtenerListaProyectos()
+                                      listadoRaizPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
+                                      listadoRellenoPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(1, 28, 2, null, null),
 
                                   }).AsParallel().ToList();
                 return data;
@@ -163,16 +162,16 @@ namespace BackEndSAM.DataAcces
         {
             try
             {
-                List<Models.WPS.PQR> listaPQR = new List<Models.WPS.PQR>();
+                List<DetallePQR> listaPQR = new List<DetallePQR>();
 
                 using (SamContext ctx = new SamContext())
                 {
                     List<Sam3_Soldadura_GET_PQR_WPS_Result> listaPQRJson = ctx.Sam3_Soldadura_GET_PQR_WPS("").ToList();
-                    listaPQR.Add(new Models.WPS.PQR());
+                    listaPQR.Add(new DetallePQR());
                     foreach (Sam3_Soldadura_GET_PQR_WPS_Result item in listaPQRJson)
                     {
                         listaPQR.Add(
-                            new Models.WPS.PQR
+                            new DetallePQR
                             {
                                 PQRID = item.PQRID,
                                 Nombre = item.Nombre,

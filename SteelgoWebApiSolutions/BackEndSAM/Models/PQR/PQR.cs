@@ -3,7 +3,7 @@ using System.Web.Http;
 
 namespace BackEndSAM.Models
 {
-    public class PQR : ApiController
+    public class PQR
     {
 
         //Grid PQR
@@ -113,4 +113,42 @@ namespace BackEndSAM.Models
         public int Codigo { get; set; }
         
     }
+
+    public class DetallePQR
+    {
+        public DetallePQR()
+        {
+            PQRID = 0;
+            Nombre = "";
+            PREHEAT = 0;
+            PWHT = 0;
+            EspesorRaiz = 0;
+            EspesorRelleno = 0;
+            GrupoPMaterialBase1 = 0;
+            GrupoPMaterialBase1Nombre = "";
+            GrupoPMaterialBase2 = 0;
+            GrupoPMaterialBase2Nombre = "";
+            ProcesoSoldaduraRaizID = 0;
+            ProcesoSoldaduraRellenoID = 0;
+            CodigoRaiz = "";
+            CodigoRelleno = "";
+        }
+
+        //Grid PQR
+        public int PQRID { get; set; }
+        public string Nombre { get; set; }
+        public int PREHEAT { get; set; }
+        public int PWHT { get; set; }
+        public double EspesorRelleno { get; set; }
+        public double EspesorRaiz { get; set; }
+        public int GrupoPMaterialBase1 { get; set; }
+        public string GrupoPMaterialBase1Nombre { get; set; }
+        public int GrupoPMaterialBase2 { get; set; }
+        public string GrupoPMaterialBase2Nombre { get; set; }
+        public int ProcesoSoldaduraRellenoID { get; set; }
+        public int ProcesoSoldaduraRaizID { get; set; }
+        public string CodigoRelleno { get; set; }
+        public string CodigoRaiz { get; set; }
+    }
+
 }
