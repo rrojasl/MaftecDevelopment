@@ -54,9 +54,13 @@
     @*GRID*@
     <div id="FieldSetView">
         <div class="row" addedSectionInLine>
-            <div class="button-section col-sm-12 col-md-2 col-lg-2">
-                <a id="AgregarWPS" href="@Url.Action("AgregarNuevoSoldadorCertificacion","SoldadorCertificacion")" type="button" class="btn btn-newArrival btn-yellow"><span id="btnNuevo"></span></a>
+            <div class="button-section col-sm-10 col-md-10 col-lg-10">
+                <label>&nbsp;</label>
             </div>
+            <div class="button-section col-sm-2 col-md-2 col-lg-2">
+                <a id="AgregarSC" href="@Url.Action("AgregarNuevoSoldadorCertificacion","SoldadorCertificacion")" type="button" class="btn btn-newArrival btn-yellow"><span id="btnNuevo"></span></a>
+            </div>
+
             <div id="ContenedorGrid" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div id="grid" data-role="grid" class="k-grid k-widget">
                 </div>

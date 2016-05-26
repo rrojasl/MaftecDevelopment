@@ -49,7 +49,7 @@
         </div>
     </div>
     @*FORMULARIO SoldadorCertificacion*@
-    
+
     <div class="row" id="FieldSetView">
         <div id="CamposRequeridosPQR" class="col-sm-12 col-md-12 col-lg-11" style=" z-index:1 !important;">
             <div class="row">
@@ -71,29 +71,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
                     <label id="lblNombrePQR"></label>
-                    <input  id="inputNombrePQR" />
-                </div>
-
-            </div>
-            <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRCodigoDiv">
-                    <label id="lblPosicionPQR"></label>
-                    <input id="inputPosicionPQR" />
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
-                    <label id="lblProcesoSoldaduraPQR"></label>
-                    <input type="text" id="inputProcesoSol" class="form-control general-input" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesoRellenorDiV">
-                    <label id="lblFechaInicioCertificado"></label>
-                    <input type="text" id="inputFechaInicioCertificado" class="form-control general-input" />
-                </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesorRaizDiV">
-                    <label id="lblFechaFinCertificado"></label>
-                    <input type="text" id="inputFechaFinCertificado" class="form-control general-input" />
+                    <input id="inputNombrePQR" />
                 </div>
 
             </div>
@@ -102,6 +80,28 @@
                     <label id="lblPasosSoldadura"></label>
                     <input type="text" id="inputPasosSoldadura" />
                 </div>
+
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRNumeroPDiv">
+                    <label id="lblCedulaTuboPQR"></label>
+                    <input id="inputCedulaTuboPQR" class="form-control general-input" />
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesoRellenorDiV">
+                    <label id="lblFechaInicioCertificado"></label>
+                    <input id="inputFechaInicioCertificado" />
+                </div>
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesorRaizDiV">
+                    <label id="lblFechaFinCertificado"></label>
+                    <input id="inputFechaFinCertificado" />
+                </div>
+
+            </div>
+            <div class="row">
+
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoPMaterialBase2Div">
                     <label id="lblEspesorMinimo"></label>
                     <input id="inputEspesorMinimo" />
@@ -115,10 +115,7 @@
 
             </div>
             <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRNumeroPDiv">
-                    <label id="lblCedulaTuboPQR"></label>
-                    <input id="inputCedulaTuboPQR" class="form-control general-input"  />
-                </div>
+
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRRespaldoDiv">
                     <label id="lblDiametroCalificado"></label>
                     <input id="inputDiametroCalificado" />
@@ -126,6 +123,17 @@
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoFDiv">
                     <label id="lblTipoPrueba"></label>
                     <input id="inputTipoPrueba" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRCodigoDiv">
+                    <label id="lblPosicionPQR"></label>
+                    <input id="inputPosicionPQR" />
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
+                    <label id="lblProcesoSoldaduraPQR"></label>
+                    <input type="text" id="inputProcesoSol" />
                 </div>
             </div>
             <div class="row">
@@ -135,7 +143,7 @@
             </div>
             <div class="row">
                 <div class=" col-sm-12 col-md-12 col-lg-12" style="display: block">
-                <label >&nbsp;</label>
+                    <label>&nbsp;</label>
                 </div>
             </div>
 
@@ -170,9 +178,10 @@
         </div>
     </div>
 </div>
-   
- <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Handlers.js"></script>
-<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Captura.js"></script>    
+
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Ajax.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Handlers.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Captura.js"></script>
 
 
 
