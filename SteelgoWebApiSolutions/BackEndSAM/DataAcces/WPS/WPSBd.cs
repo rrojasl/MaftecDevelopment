@@ -57,6 +57,14 @@ namespace BackEndSAM.DataAcces
                                       GrupoPRaiz = WPS.GrupoMaterialBase1RaizU + " " + WPS.GrupoMaterialBase1RaizD,
                                       GrupoPRelleno = WPS.GrupoMaterialBase1RellenoU + " " + WPS.GrupoMaterialBase1RellenoD,
 
+                                      ProcesoSoldaduraRaiz = WPS.ProcesoSoldaduraRaiz,
+                                      ProcesoSoldaduraRelleno = WPS.ProcesoSoldaduraRelleno,
+
+                                      RaizEspesorRaiz = WPS.RaizEspesorRaiz.GetValueOrDefault(),
+                                      RaizEspesorRelleno = WPS.RaizEspesorRelleno,
+                                      RellenoEspesorRaiz = WPS.RellenoEspesorRaiz.GetValueOrDefault(),
+                                      RellenoEspesorRelleno = WPS.RellenoEspesorRelleno,
+
                                       PWHTRaizId = Convert.ToInt32(WPS.PWHTId),
                                       PWHTRaiz = WPS.PWHT,
                                       PWHTRellenoId = Convert.ToInt32(WPS.PWHTId),
@@ -76,8 +84,8 @@ namespace BackEndSAM.DataAcces
                                       GrupoMaterialBase1RellenoU = WPS.GrupoMaterialBase1RellenoU,
                                       GrupoMaterialBase1RellenoUID = WPS.GrupoMaterialBase1RellenoUID.GetValueOrDefault(),
 
-                                      //EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
-                                      //EspesorMinimo= WPS.EspesorMinimo,
+                                      EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
+                                      EspesorMinimo = WPS.EspesorMinimo.GetValueOrDefault(),
 
                                       listadoRaizPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
                                       listadoRellenoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
