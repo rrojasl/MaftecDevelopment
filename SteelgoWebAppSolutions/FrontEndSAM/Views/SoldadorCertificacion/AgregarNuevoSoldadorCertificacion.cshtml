@@ -1,0 +1,178 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb {
+    <li>
+        <a href="@Url.Action("landing", "Home")"><span id="lblInicio"></span></a>
+    </li>
+    <li>
+        <a href="#"><span id="ConfiguracionSoldaduraLabelNavegacion"></span></a>
+    </li>
+    <li class="active">
+        <a href="@Url.Action("AgregarNuevoSoldadorCertificacion", "SoldadorCertificacion")"><span id="lblSoldadorCeritificacion"></span></a>
+    </li>
+}
+
+<div class="form clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    @*Menu superior*@
+    <div class="row">
+        <div class="col-xs-11 col-sm-12 col-md-12 col-lg-11">
+            <div class="formNav clearfix">
+                <div class="button-section editButtonSection">
+                    <div class="btn-group save-group">
+                        <button id="Guardar" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="botonGuardar"></span></button>
+
+                    </div>
+                    <a id="btnCancelar" class="btn btn-black"><span id="botonCancelar"></span></a>
+                </div>
+                <div id="ArmadoSoldaduraDivSuperior" class="button-section">
+                    <a id="ArmadoSoldaduraSuperior" href="@Url.Action("PQR","PQR")" class="btn btn-primary"><span id="menuPQR"></span></a>
+                </div>
+                <div class="button-section actionButtonSection">
+                    <div class="dropdown action-group">
+                        <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
+                            <span id="botonAcciones1"></span>
+                            <span class="caretBlue"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="Acciones"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @*FORMULARIO SoldadorCertificacion*@
+    
+    <div class="row" id="FieldSetView">
+        <div id="CamposRequeridosPQR" class="col-sm-12 col-md-12 col-lg-11" style=" z-index:1 !important;">
+            <div class="row">
+                <div class="row">
+                    <div class=" col-sm-6 col-md-6 col-lg-4" style="display: none">
+                        <input id="IdPQR" value="0" />
+                    </div>
+                </div>
+                <div class="alert-container">
+                    <div class="message">
+                        Mensaje de éxito/error/advertencia
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRNombreDiv">
+                    <label id="lblSoldador"> </label>
+                    <input type="text" id="inputSoldador" class="form-control general-input" />
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
+                    <label id="lblNombrePQR"></label>
+                    <input  id="inputNombrePQR" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRCodigoDiv">
+                    <label id="lblPosicionPQR"></label>
+                    <input id="inputPosicionPQR" />
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
+                    <label id="lblProcesoSoldaduraPQR"></label>
+                    <input type="text" id="inputProcesoSol" class="form-control general-input" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesoRellenorDiV">
+                    <label id="lblFechaInicioCertificado"></label>
+                    <input type="text" id="inputFechaInicioCertificado" class="form-control general-input" />
+                </div>
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesorRaizDiV">
+                    <label id="lblFechaFinCertificado"></label>
+                    <input type="text" id="inputFechaFinCertificado" class="form-control general-input" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRProcesoSoldaduraRaizDiv">
+                    <label id="lblPasosSoldadura"></label>
+                    <input type="text" id="inputPasosSoldadura" />
+                </div>
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoPMaterialBase2Div">
+                    <label id="lblEspesorMinimo"></label>
+                    <input id="inputEspesorMinimo" />
+                </div>
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRAporteDiv">
+                    <label id="lblEspesorMaximo"></label>
+                    <input id="inputEspesorMaximo" />
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRNumeroPDiv">
+                    <label id="lblCedulaTuboPQR"></label>
+                    <input id="inputCedulaTuboPQR" class="form-control general-input"  />
+                </div>
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRRespaldoDiv">
+                    <label id="lblDiametroCalificado"></label>
+                    <input id="inputDiametroCalificado" />
+                </div>
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoFDiv">
+                    <label id="lblTipoPrueba"></label>
+                    <input id="inputTipoPrueba" />
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-12 col-lg-12" style="display: block">
+                    <label>&nbsp;</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12 col-md-12 col-lg-12" style="display: block">
+                <label >&nbsp;</label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-11 col-sm-12 col-md-12 col-lg-11">
+            <div class="formNav clearfix">
+                <div class="button-section editButtonSection">
+                    <div class="btn-group save-group">
+                        <button id="Guardar1" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="botonGuardar2"></span></button>
+
+                    </div>
+                    <a id="btnCancelar1" class="btn btn-black"><span id="botonCancelar1"></span></a>
+                </div>
+                <div id="ArmadoSoldaduraDivSuperior" class="button-section">
+                    <a id="ArmadoSoldaduraSuperior" href="@Url.Action(" PQR","PQR")" class="btn btn-primary"><span id="menuPQR1"></span></a>
+                </div>
+                <div class="button-section actionButtonSection">
+                    <div class="dropdown action-group">
+                        <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
+                            <span id="botonAcciones2"></span>
+                            <span class="caretBlue"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="Acciones"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+   
+ <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Handlers.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Captura.js"></script>    
+
+
+

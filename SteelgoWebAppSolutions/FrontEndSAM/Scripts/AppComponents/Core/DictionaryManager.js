@@ -5,6 +5,14 @@ _languageOrder = {
 }
 
 _dictionary = {
+    "lblSoldadorCeritificacion": {
+        "es-MX": "Soldador certificacion",
+        "en-US": "welder certification"
+    },
+    "btnNuevo": {
+        "es-MX": "Nuevo",
+        "en-US": "New"
+    },
     "AvisoNumeroUnicoYaAsignado": {
         "es-MX": "El numero unico ya se encuentra asignado en la junta: ?1",
         "en-US": "The only number is already assigned in the joint: ?1"

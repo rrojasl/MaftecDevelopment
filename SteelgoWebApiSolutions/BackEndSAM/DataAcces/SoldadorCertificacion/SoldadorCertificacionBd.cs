@@ -93,7 +93,7 @@ namespace BackEndSAM.DataAcces
 
         }
 
-        public object ObtenerNuevoSoldadorCertificacion()
+        public object ObtenerNuevoSoldadorCertificacion(int idSoldadorCertificacion)
         {
 
             using (SamContext ctx = new SamContext())
@@ -126,11 +126,10 @@ namespace BackEndSAM.DataAcces
                     ListaCedulaTuboCalificado = listaCedulaTuboCalificado,
                     ListaPQR = (List<PQRActivo>)PQRBd.ObtenerPQRActivo(),
                     ListaTipoProcesosSoldadura = listaTipoProcesosSoldadura,
-                    ListaTipoPrueba= listaTipoPrueba
+                    ListaTipoPrueba= listaTipoPrueba,
+                    Accion=idSoldadorCertificacion==0 ? 1:2
                 };
                 return nuevoSoldadorCertificacion;
-
-
             }
 
         }
