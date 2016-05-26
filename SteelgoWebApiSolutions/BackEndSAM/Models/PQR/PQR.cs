@@ -7,6 +7,11 @@ namespace BackEndSAM.Models
     {
         public int PQRID { get; set; }
         public string Nombre { get; set; }
+
+        public PQRActivo() {
+            PQRID = 0;
+            Nombre = "";
+        }
     }
 
     public class PQR
