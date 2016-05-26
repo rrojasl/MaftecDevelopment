@@ -50,9 +50,8 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
             }
         }
 
-       
         //Agrega Soldador Certificacion
-        public object Post(Captura AddSC, string token,string Lenguaje)
+        public object Post(Captura AddSC, string token, string Lenguaje)
         {
             try
             {
@@ -91,8 +90,7 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
 
         }
 
-        //Obtiene DataSource para el combo TipoPruebas
-        public object Get(int TipoDato, string token)
+        public object Get(string token, string Lenguaje, int idSoldadorCertificacion)
         {
             try
             {
@@ -101,7 +99,7 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
                 bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
                 if (totokenValido)
                 {
-                    return SoldadorCertificacionBd.Instance.ObtenerTipoPruebas(TipoDato);
+                    return SoldadorCertificacionBd.Instance.ObtenerNuevoSoldadorCertificacion(idSoldadorCertificacion);
                 }
                 else
                 {
@@ -112,60 +110,17 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
                     result.IsAuthenicated = false;
                     return result;
                 }
-
-
             }
             catch (Exception ex)
             {
-
-
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
                 result.ReturnStatus = false;
                 result.IsAuthenicated = true;
                 return result;
-            }
-
-        }
-
-        //Obtiene DataSource para el combo Posicion
-        public object Get(string token, int TipoDeDato)
-        {
-
-            try
-            {
-                string payload = "";
-                string newToken = "";
-                bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
-                if (totokenValido)
-                {
-                    return SoldadorCertificacionBd.Instance.ObtenerPosicion(TipoDeDato);
-                }
-                else
-                {
-                    TransactionalInformation result = new TransactionalInformation();
-                    result.ReturnMessage.Add(payload);
-                    result.ReturnCode = 401;
-                    result.ReturnStatus = false;
-                    result.IsAuthenicated = false;
-                    return result;
-                }
-
 
             }
-            catch (Exception ex)
-            {
-
-
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(ex.Message);
-                result.ReturnCode = 500;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = true;
-                return result;
-            }
-
         }
     }
 }
