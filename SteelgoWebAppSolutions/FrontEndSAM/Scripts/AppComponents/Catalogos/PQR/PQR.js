@@ -224,6 +224,17 @@ function CargarGrid() {
     });
 };
 
+function NombreRepetido(listaDetalles) {
+    for (var i = 0; i < listaDetalles.length; i++) {
+        for (var j = 0; j < listaDetalles.length; j++) {
+            if (listaDetalles[i].Nombre == listaDetalles[j].Nombre && i != j) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 
 
 function VentanaModal() {
