@@ -76,8 +76,8 @@ namespace BackEndSAM.DataAcces
                                       GrupoMaterialBase1RellenoU = WPS.GrupoMaterialBase1RellenoU,
                                       GrupoMaterialBase1RellenoUID = WPS.GrupoMaterialBase1RellenoUID.GetValueOrDefault(),
 
-                                      EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
-                                      EspesorMinimo= WPS.EspesorMinimo,
+                                      //EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
+                                      //EspesorMinimo= WPS.EspesorMinimo,
 
                                       listadoRaizPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
                                       listadoRellenoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),

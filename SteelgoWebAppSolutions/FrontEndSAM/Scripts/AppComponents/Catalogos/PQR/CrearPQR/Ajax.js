@@ -128,3 +128,11 @@ function AjaxGuardar() {
         });
     }
 }
+
+function AjaxExistePQR() {
+    $PQR.PQR.read({ token: Cookies.get("token"), nombre: $("#NombreId").val() }).done(function (data) {
+        if (Error(data)) {
+            return data;
+        }
+    });
+}

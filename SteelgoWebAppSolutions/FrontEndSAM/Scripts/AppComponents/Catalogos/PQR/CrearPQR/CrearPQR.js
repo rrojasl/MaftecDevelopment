@@ -1,5 +1,4 @@
-﻿
-function CargaInicial() {
+﻿function CargaInicial() {
     ConvertirCombos();
     setTimeout(function () { ObtenerListasPQR() }, 500);
 };
@@ -9,11 +8,13 @@ CargaInicial();
 function ConvertirCombos() {
 
     $("#EspesorRelleno").kendoNumericTextBox({
-        format: "#.0000 mm"
+        format: "#.0000 mm",
+        decimals: 4
     });
 
     $("#EspesorRaiz").kendoNumericTextBox({
-        format: "#.0000 mm"
+        format: "#.0000 mm",
+        decimals: 4
     });
 
     $("#ProcesoSoldaduraRellenoID").kendoComboBox({
@@ -22,6 +23,15 @@ function ConvertirCombos() {
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
         }
+    });
+
+    $("#NombreId").blur(function (e) {
+        var result = AjaxExistePQR();
+        setTimeout(function () {
+            if (result == 'error') {
+                DisplayNotify("", "El nombre " + $("#NombreId").val() + " ya se ecuentra asignado en la lista de PQR", 2);
+            }
+        }, 500);
     });
 
     $("#ProcesoSoldaduraRellenoID").blur(function (e) {
@@ -93,3 +103,5 @@ function ConvertirCombos() {
         }
     });
 };
+
+

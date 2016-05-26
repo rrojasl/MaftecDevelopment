@@ -117,8 +117,8 @@ function CargarGrid() {
                     dataSource: [{ Etiquetado: true }, { Etiquetado: false }]
                 }, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px"
             },
-            { width: "120px", field: "EspesorRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
             { width: "120px", field: "EspesorRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
+            { width: "120px", field: "EspesorRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
             { width: "120px", field: "CodigoRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxProcesoSoldaduraRaiz },
             { width: "120px", field: "CodigoRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px", editor: RenderComboBoxProcesoSoldaduraRelleno },
             { width: "120px", field: "GrupoPMaterialBase1Nombre", title: _dictionary.lblPQRBase1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxMaterialesBase1 },
