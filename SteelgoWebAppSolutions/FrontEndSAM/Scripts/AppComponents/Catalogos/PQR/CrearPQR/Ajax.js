@@ -130,9 +130,15 @@ function AjaxGuardar() {
 }
 
 function AjaxExistePQR() {
-    $PQR.PQR.read({ token: Cookies.get("token"), nombre: $("#NombreId").val() }).done(function (data) {
-        if (Error(data)) {
-            return data;
-        }
-    });
+    if ($('#NombreId').val() != "" && $('#NombreId').val() != undefined && $('#NombreId').val() != null) {
+        loadingStart();
+        $PQR.PQR.read({ token: Cookies.get("token"), nombre: $('#NombreId').val() }).done(function (data) {
+            if (data.ReturnMessage[0] != "OK") {
+                displayNotify("", "El Nombre del PQR ya existe", '2');
+                $('#NombreId').val("");
+                $('#NombreId').focus();
+            }
+            loadingStop();
+        });
+    }
 }
