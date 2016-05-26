@@ -223,32 +223,52 @@ function NombreRepetido(listaDetalles) {
     return false;
 }
 
-function ObtenerEspesorCorrecto(EspesorTotalT) {
+function ObtenerEspesorCorrecto(EspesorTotalT, PWHT,ProcesoSoldadura, esRaiz) {
     var espesores = [];
     espesores[0] = { EspesorMaximo: "", EspesorMinimo: "" };
-    if (EspesorTotalT < 1.5) {
-        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
-        espesores[0].EspesorMinimo = parseFloat(EspesorTotalT).toFixed(4);
-    }
-    else if (EspesorTotalT >= 1.5 && EspesorTotalT < 8) {
-        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
-        espesores[0].EspesorMinimo = 5.0000;
-    }
-    else if (EspesorTotalT >= 10 && EspesorTotalT < 19) {
-        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
-        espesores[0].EspesorMinimo = 5.0000;
-    }
-    else if (EspesorTotalT >= 19 && EspesorTotalT < 38) {
-        espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
-        espesores[0].EspesorMinimo = 5.0000;
-    }
-    else if (EspesorTotalT >= 38 && EspesorTotalT < 150) {
-        espesores[0].EspesorMaximo = 200.0000;
-        espesores[0].EspesorMinimo = 5.0000;
-    }
-    else if (EspesorTotalT >= 150) {
-        espesores[0].EspesorMaximo = (1.33 * parseFloat(EspesorTotalT)).toFixed(4);
-        espesores[0].EspesorMinimo = 5.0000;
-    }
+    if ( !PWHT || (PWHT || EspesorTotalT > 16)) {
 
+        if (ProcesoSoldadura == "GMAW STT" && EspesorTotalT < 13 && esRaiz) {
+            espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+            espesores[0].EspesorMinimo = (1.1*parseFloat(EspesorTotalT)).toFixed(4);
+        }
+        else {
+            if (EspesorTotalT < 1.5) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = parseFloat(EspesorTotalT).toFixed(4);
+            }
+            else if (EspesorTotalT >= 1.5 && EspesorTotalT < 8) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 10 && EspesorTotalT < 19) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 19 && EspesorTotalT < 38) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 38 && EspesorTotalT < 150) {
+                espesores[0].EspesorMaximo = 200.0000;
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 150) {
+                espesores[0].EspesorMaximo = (1.33 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+        }
+        
+    }
+    else {
+        if (EspesorTotalT < 6) {
+            espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+            espesores[0].EspesorMinimo = (parseFloat(EspesorTotalT)/2).toFixed(4);
+        }
+        else {
+            espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+            espesores[0].EspesorMinimo = parseFloat(EspesorTotalT).toFixed(4);
+        }
+    }
+    return espesores;
 }

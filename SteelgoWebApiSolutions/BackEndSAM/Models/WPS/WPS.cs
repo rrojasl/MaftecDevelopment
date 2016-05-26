@@ -29,14 +29,16 @@ namespace BackEndSAM.Models.WPS
         public int PREHEATRaizId { get; set; }
         public string PREHEATRaiz { get; set; }
 
-        public decimal EspesorMaximo { get; set; }
-        public decimal EspesorMinimo { get; set; }
+        public double EspesorMaximo { get; set; }
+        public double EspesorMinimo { get; set; }
 
         public decimal RaizEspesorRaiz { get; set; }
         public decimal RaizEspesorRelleno { get; set; }
         public decimal RellenoEspesorRaiz { get; set; }
         public decimal RellenoEspesorRelleno { get; set; }
-        
+
+        public string ProcesoSoldaduraRaiz { get; set; }
+        public string ProcesoSoldaduraRelleno { get; set; }
 
         public int GrupoMaterialBase1RaizUID { get; set; }
         public string GrupoMaterialBase1RaizU { get; set; }

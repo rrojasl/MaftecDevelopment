@@ -18,11 +18,9 @@
                     var cadenaError = "";
                     if (Boolean(options.model.PWHTRellenoId) != dataItem.PWHT) {
                         cadenaError += "\n "+"El PWHT, no coincide";
-                        
                     }
                     if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RellenoUID, options.model.GrupoMaterialBase1RellenoDID)) {
                         cadenaError += "\n "+"El Grupo P, no coincide";
-                        
                     }
                     if (Boolean(options.model.PREHEATRellenoId) != dataItem.PREHEAT) {
                         cadenaError += "\n "+"El PREHEAT, no coincide";
@@ -41,8 +39,13 @@
                     options.model.GrupoPRaiz = dataItem.GrupoPMaterialBase1Nombre + " " + dataItem.GrupoPMaterialBase2Nombre;
                     options.model.PREHEATRaiz = dataItem.PREHEAT == true ? "SI" : "NO";
                     options.model.PREHEATRaizId = dataItem.PREHEAT == true ? 1 : 0;
-                    options.model.EspesorMaximoRaiz = dataItem.CodigoRaiz.trim() != "Gmaw STT" ? (parseFloat(dataItem.EspesorRaiz) <= 1.5 ? (parseFloat(dataItem.EspesorRaiz) * 2) : 8) : parseFloat(dataItem.EspesorRaiz) * 1.1;
+                    var rootMax = ObtenerEspesorCorrecto((parseFloat(dataItem.EspesorRaiz) + parseFloat(dataItem.EspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(),true);
+                    var fillMax = ObtenerEspesorCorrecto((parseFloat(options.model.RellenoEspesorRaiz) + parseFloat(options.model.RellenoEspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(),false);
 
+                    options.model.EspesorMaximo = rootMax[0].EspesorMaximo > fillMax[0].EspesorMaximo ? rootMax[0].EspesorMaximo : fillMax[0].EspesorMaximo;
+                    options.model.EspesorMinimo = rootMax[0].EspesorMinimo < fillMax[0].EspesorMinimo ? rootMax[0].EspesorMinimo : fillMax[0].EspesorMinimo;
+                    options.model.RellenoEspesorRaiz = parseFloat(dataItem.EspesorRaiz);
+                    options.model.RellenoEspesorRelleno = parseFloat(dataItem.EspesorRelleno);
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
@@ -56,7 +59,6 @@
                     options.model.GrupoMaterialBase1RaizD = "";
                     options.model.PREHEATRaiz = "";
                     options.model.PREHEATRaizId = 0;
-                    options.model.EspesorMaximoRaiz = 0;
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
@@ -97,15 +99,18 @@ function RenderComboBoxPQRRelleno(container, options) {
                 if (dataItem != undefined) {
                     options.model.NombrePQRRelleno = dataItem.Nombre;
                     options.model.PQRRellenoId = dataItem.PQRID;
-
+                    var cadenaError = "";
                     if (Boolean(options.model.PWHTRaizId) != dataItem.PWHT) {
-                        displayNotify("", "El PWHT, no coincide", "1");
+                        cadenaError += "\n " + "El PWHT, no coincide";
                     }
                     if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RaizUID, options.model.GrupoMaterialBase1RaizDID)) {
-                        displayNotify("", "El Grupo P, no coincide", "1");
+                        cadenaError += "\n " +"El Grupo P, no coincide";
                     }
                     if (Boolean(options.model.PREHEATRaizId) != dataItem.PREHEAT) {
-                        displayNotify("", "El PREHEAT, no coincide", "1");
+                        cadenaError += "\n " + "El PREHEAT, no coincide";
+                    }
+                    if (cadenaError != "") {
+                        displayNotify("", cadenaError, "1");
                     }
                     options.model.PWHTRelleno = dataItem.PWHT == true ? "SI" : "NO";
                     options.model.PWHTRellenoId = dataItem.PWHT == true ? 1 : 0;
@@ -116,8 +121,13 @@ function RenderComboBoxPQRRelleno(container, options) {
                     options.model.GrupoPRelleno = dataItem.GrupoPMaterialBase1Nombre +" "+ dataItem.GrupoPMaterialBase2Nombre;
                     options.model.PREHEATRelleno = dataItem.PREHEAT == true ? "SI" : "NO";
                     options.model.PREHEATRellenoId = dataItem.PREHEAT == true ? 1 : 0;
-                    options.model.EspesorMaximoRelleno = parseFloat(dataItem.EspesorRelleno) <= 1.5 ? (parseFloat(dataItem.EspesorRelleno) * 2) : 8;
+                    var rootMax = ObtenerEspesorCorrecto((parseFloat(dataItem.EspesorRaiz) + parseFloat(dataItem.EspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), true);
+                    var fillMax = ObtenerEspesorCorrecto((parseFloat(options.model.RaizEspesorRaiz) + parseFloat(options.model.RaizEspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), false);
                     
+                    options.model.EspesorMaximo = rootMax[0].EspesorMaximo > fillMax[0].EspesorMaximo ? rootMax[0].EspesorMaximo : fillMax[0].EspesorMaximo;
+                    options.model.EspesorMinimo = rootMax[0].EspesorMinimo < fillMax[0].EspesorMinimo ? rootMax[0].EspesorMinimo : fillMax[0].EspesorMinimo;
+                    options.model.RaizEspesorRaiz = parseFloat(dataItem.EspesorRaiz);
+                    options.model.RaizEspesorRelleno = parseFloat(dataItem.EspesorRelleno);
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
