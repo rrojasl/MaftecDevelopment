@@ -28,7 +28,7 @@
                     <div class="btn-group save-group">
                         <button id="Guardar" onclick="javascript:void(0);" type="button" class="btn btn-yellow"><span id="botonGuardar"></span></button>
                         <button id="Editar" onclick="javascript:void(0);" type="button" class="btn btn-yellow" style="display:none"><span id="botonEdtar"></span></button>
-                       
+
                     </div>
                     <a id="btnCancelar" class="btn btn-black"><span id="botonCancelar"></span></a>
                 </div>
@@ -52,10 +52,10 @@
 
 
     @*GRID*@
-    <div  id="FieldSetView">
+    <div id="FieldSetView">
         <div class="row" addedSectionInLine>
             <div class="button-section col-sm-12 col-md-2 col-lg-2">
-                <button id="AAgregarPQR" type="button" class="btn btn-newArrival btn-yellow"><span id="DashboardAvisoLlegada0003"></span></button>
+                <a id="AgregarWPS" href="@Url.Action("AgregarNuevoSoldadorCertificacion","SoldadorCertificacion")" type="button" class="btn btn-newArrival btn-yellow"><span id="btnNuevo"></span></a>
             </div>
             <div id="ContenedorGrid" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div id="grid" data-role="grid" class="k-grid k-widget">
@@ -74,35 +74,35 @@
         </div>
     </div>
 
-    
-        @*Menu Inferior*@
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="formNav clearfix">
-                    <div class="button-section editButtonSection ">
-                        <div class="btn-group save-group ">
-                            <button id="GuardarPie" onclick="javascript:void(0);" type="button" class="btn btn-yellow"><span id="CapturaSoldaduraGuardar"></span></button>
-                        </div>
-                        <a id="btnCancelar" class="btn btn-black"><span id="CapturaSoldaduraCancelar"></span></a>
 
+    @*Menu Inferior*@
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="formNav clearfix">
+                <div class="button-section editButtonSection ">
+                    <div class="btn-group save-group ">
+                        <button id="GuardarPie" onclick="javascript:void(0);" type="button" class="btn btn-yellow"><span id="CapturaSoldaduraGuardar"></span></button>
                     </div>
-                    <div id="ArmadoSoldaduraDivInferior" class="button-section">
-                        <a id="ArmadoSoldaduraInferior" href="@Url.Action("capturaSoldadura","Soldadura")" class="btn btn-primary"><span id="menuSoldaduraPie"></span></a>
-                    </div>
-                    <div class="button-section actionButtonSection">
-                        <div class="dropdown action-group">
-                            <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
-                                <span id="CapturaSoldaduraAcciones"></span>
-                                <span class="caretBlue"></span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="Acciones"></ul>
-                        </div>
-                    </div>
-                    <a id="Imprimir" href="#" class="btn btn-fadeBlue actionButtonSection"></a>
+                    <a id="btnCancelar" class="btn btn-black"><span id="CapturaSoldaduraCancelar"></span></a>
+
                 </div>
+                <div id="ArmadoSoldaduraDivInferior" class="button-section">
+                    <a id="ArmadoSoldaduraInferior" href="@Url.Action("capturaSoldadura","Soldadura")" class="btn btn-primary"><span id="menuSoldaduraPie"></span></a>
+                </div>
+                <div class="button-section actionButtonSection">
+                    <div class="dropdown action-group">
+                        <a id="Acciones" data-target="#" href="#" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false" class="btn btn-default">
+                            <span id="CapturaSoldaduraAcciones"></span>
+                            <span class="caretBlue"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="Acciones"></ul>
+                    </div>
+                </div>
+                <a id="Imprimir" href="#" class="btn btn-fadeBlue actionButtonSection"></a>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -112,7 +112,7 @@
     }
 </script>
 
-<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Handlers.js"></script>
-<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Ajax.js"></script>
-<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Render.js"></script>
-<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Captura.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Listado/Handlers.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Listado/Ajax.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Listado/Render.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/Listado/Captura.js"></script>

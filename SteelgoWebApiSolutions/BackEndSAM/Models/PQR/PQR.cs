@@ -3,6 +3,12 @@ using System.Web.Http;
 
 namespace BackEndSAM.Models
 {
+    public class PQRActivo
+    {
+        public int PQRID { get; set; }
+        public string Nombre { get; set; }
+    }
+
     public class PQR
     {
 
@@ -150,5 +156,7 @@ namespace BackEndSAM.Models
         public string CodigoRelleno { get; set; }
         public string CodigoRaiz { get; set; }
     }
+
+
 
 }

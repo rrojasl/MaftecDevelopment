@@ -79,8 +79,8 @@ namespace BackEndSAM.DataAcces
                                       EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
                                       EspesorMinimo= WPS.EspesorMinimo,
 
-                                      listadoRaizPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(),
-                                      listadoRellenoPQR = (List<DetallePQR>)ObtenerListadoPQRActivos(),
+                                      listadoRaizPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
+                                      listadoRellenoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
 
                                   }).AsParallel().ToList();
                 return data;
@@ -158,52 +158,7 @@ namespace BackEndSAM.DataAcces
 
         }
 
-        public object ObtenerListadoPQRActivos()
-        {
-            try
-            {
-                List<DetallePQR> listaPQR = new List<DetallePQR>();
-
-                using (SamContext ctx = new SamContext())
-                {
-                    List<Sam3_Soldadura_GET_PQR_WPS_Result> listaPQRJson = ctx.Sam3_Soldadura_GET_PQR_WPS("").ToList();
-                    listaPQR.Add(new DetallePQR());
-                    foreach (Sam3_Soldadura_GET_PQR_WPS_Result item in listaPQRJson)
-                    {
-                        listaPQR.Add(
-                            new DetallePQR
-                            {
-                                PQRID = item.PQRID,
-                                Nombre = item.Nombre,
-                                PREHEAT = Convert.ToInt32(item.PREHEAT),
-                                PWHT = Convert.ToInt32(item.PWHT),
-                                EspesorRaiz = Decimal.ToDouble(item.EspesorRaiz.GetValueOrDefault()),
-                                EspesorRelleno = Decimal.ToDouble(item.EspesorRelleno),
-                                GrupoPMaterialBase1 = item.GrupoPMaterialBase1.GetValueOrDefault(),
-                                GrupoPMaterialBase1Nombre = item.GrupoPMaterialBase1Nombre,
-                                GrupoPMaterialBase2 = item.GrupoPMaterialBase2.GetValueOrDefault(),
-                                GrupoPMaterialBase2Nombre = item.GrupoPMaterialBase2Nombre,
-                                ProcesoSoldaduraRaizID = item.ProcesoSoldaduraRaizID.GetValueOrDefault(),
-                                ProcesoSoldaduraRellenoID = item.ProcesoSoldaduraRellenoID,
-                                CodigoRaiz = item.CodigoRaiz,
-                                CodigoRelleno = item.CodigoRelleno,
-                            });
-                    }
-                    
-                    return listaPQR;
-                }
-            }
-            catch (Exception ex)
-            {
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(ex.Message);
-                result.ReturnCode = 500;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = true;
-
-                return result;
-            }
-        }
+       
 
         public object ValidarExisteWPS(string nombre)
         {

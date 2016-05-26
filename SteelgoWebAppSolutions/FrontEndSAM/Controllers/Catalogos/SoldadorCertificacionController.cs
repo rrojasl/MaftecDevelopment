@@ -13,8 +13,13 @@ namespace FrontEndSAM.Controllers.Catalogos
         {
             return View();
         }
-        
+
         public ActionResult ListadoSoldadoresCertificacion()
+        {
+            return View();
+        }
+
+        public ActionResult AgregarNuevoSoldadorCertificacion()
         {
             return View();
         }

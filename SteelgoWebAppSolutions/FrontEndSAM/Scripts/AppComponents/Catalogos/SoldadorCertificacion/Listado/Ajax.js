@@ -1,5 +1,4 @@
 ﻿function AjaxObtenerJSONGrid() {
-    
     $SoldadorCertificacion.SoldadorCertificacion.read({ TipoDato: 1, token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (data) {
         if (Error(data)) {
             resultadoJson = data;
@@ -11,10 +10,7 @@
             };
         }
     });
-
 }
-
-
 
 
 function AjaxGuardarInformacion(detalle)

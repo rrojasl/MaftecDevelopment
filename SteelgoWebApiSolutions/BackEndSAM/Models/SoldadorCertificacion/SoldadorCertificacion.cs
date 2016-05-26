@@ -96,4 +96,14 @@ namespace BackEndSAM.Models.SoldadorCertificacion
         public List<GuardarSoldadorCertificacion> Detalles { get; set; }
     }
 
+    public class NuevoSoldadorCertificacion
+    {
+        public int Accion { get; set; }
+        public List<TipoProcesosSoldadura> ListaTipoProcesosSoldadura { get; set; }
+        public List<CedulaTuboCalificado> ListaCedulaTuboCalificado { get; set; }
+        public List<TipoPrueba> ListaTipoPrueba { get; set; }
+        public List<PQRActivo> ListaPQR { get; set; }
+    }
+
+
 }

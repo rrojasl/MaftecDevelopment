@@ -86,6 +86,53 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        public static object ObtenerListadoPQRActivos()
+        {
+            try
+            {
+                List<DetallePQR> listaPQR = new List<DetallePQR>();
+
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Soldadura_GET_PQR_WPS_Result> listaPQRJson = ctx.Sam3_Soldadura_GET_PQR_WPS("").ToList();
+                    listaPQR.Add(new DetallePQR());
+                    foreach (Sam3_Soldadura_GET_PQR_WPS_Result item in listaPQRJson)
+                    {
+                        listaPQR.Add(
+                            new DetallePQR
+                            {
+                                PQRID = item.PQRID,
+                                Nombre = item.Nombre,
+                                PREHEAT = Convert.ToInt32(item.PREHEAT),
+                                PWHT = Convert.ToInt32(item.PWHT),
+                                EspesorRaiz = Decimal.ToDouble(item.EspesorRaiz.GetValueOrDefault()),
+                                EspesorRelleno = Decimal.ToDouble(item.EspesorRelleno),
+                                GrupoPMaterialBase1 = item.GrupoPMaterialBase1.GetValueOrDefault(),
+                                GrupoPMaterialBase1Nombre = item.GrupoPMaterialBase1Nombre,
+                                GrupoPMaterialBase2 = item.GrupoPMaterialBase2.GetValueOrDefault(),
+                                GrupoPMaterialBase2Nombre = item.GrupoPMaterialBase2Nombre,
+                                ProcesoSoldaduraRaizID = item.ProcesoSoldaduraRaizID.GetValueOrDefault(),
+                                ProcesoSoldaduraRellenoID = item.ProcesoSoldaduraRellenoID,
+                                CodigoRaiz = item.CodigoRaiz,
+                                CodigoRelleno = item.CodigoRelleno,
+                            });
+                    }
+
+                    return listaPQR;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
         internal object ObtenerListasPQR(int proyecto, int pruebaID)
         {
             try
@@ -603,6 +650,40 @@ namespace BackEndSAM.DataAcces
 
         //}
 
+        public static object ObtenerPQRActivo()
+        {
+            try
+            {
+                List<PQRActivo> listaPQR = new List<PQRActivo>();
+
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Soldadura_GET_PQRS_Result> listaPQRJson = ctx.Sam3_Soldadura_GET_PQRS("").ToList();
+                    listaPQR.Add(new PQRActivo());
+                    foreach (Sam3_Soldadura_GET_PQRS_Result item in listaPQRJson)
+                    {
+                        listaPQR.Add(
+                            new PQRActivo
+                            {
+                               Nombre=item.Nombre,
+                                PQRID=item.PQRID
+                            });
+                    }
+
+                    return listaPQR;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
     }
 
 }

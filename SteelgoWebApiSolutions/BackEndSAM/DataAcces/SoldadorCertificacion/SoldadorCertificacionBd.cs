@@ -93,9 +93,51 @@ namespace BackEndSAM.DataAcces
 
         }
 
-        
+        public object ObtenerNuevoSoldadorCertificacion()
+        {
 
-        
+            using (SamContext ctx = new SamContext())
+            {
+
+                List<CedulaTuboCalificado> listaCedulaTuboCalificado = (from LCedulaTuboCalificado in ctx.Sam3_Soldadura_Get_CedulaTuboCalificado()
+                                                                        select new CedulaTuboCalificado
+                                                                        {
+                                                                            CedulaTuboCalificadoDesc = LCedulaTuboCalificado.CedulaTuboCalificadoDesc,
+                                                                            CedulaTuboCalificadoID = LCedulaTuboCalificado.CedulaTuboCalificadoID.ToString()
+                                                                        }).AsParallel().ToList();
+                listaCedulaTuboCalificado.Insert(0, new CedulaTuboCalificado());
+                List<TipoProcesosSoldadura> listaTipoProcesosSoldadura = (from lTPS in ctx.Sam3_Soldadura_Get_TipoProcesoSoldadura()
+                                                                          select new TipoProcesosSoldadura
+                                                                          {
+                                                                              TipoProcesoSoldaduraID = lTPS.TipoProcesoSoldaduraID.ToString(),
+                                                                              TipoProcesoSoldaduraDesc = lTPS.TipoProcesoSoldaduraDesc
+                                                                          }).AsParallel().ToList();
+                listaTipoProcesosSoldadura.Insert(0, new TipoProcesosSoldadura());
+                List<TipoPrueba> listaTipoPrueba = (from lTPS in ctx.Sam3_Soldadura_Get_TipoPrueba()
+                                                    select new TipoPrueba
+                                                    {
+                                                        TipoPruebaID = lTPS.TipoPruebaID.ToString(),
+                                                        TipoDePrueba = lTPS.Nombre
+                                                    }).AsParallel().ToList();
+                listaTipoPrueba.Insert(0, new TipoPrueba());
+
+                NuevoSoldadorCertificacion nuevoSoldadorCertificacion = new NuevoSoldadorCertificacion
+                {
+                    ListaCedulaTuboCalificado = listaCedulaTuboCalificado,
+                    ListaPQR = (List<PQRActivo>)PQRBd.ObtenerPQRActivo(),
+                    ListaTipoProcesosSoldadura = listaTipoProcesosSoldadura,
+                    ListaTipoPrueba= listaTipoPrueba
+                };
+                return nuevoSoldadorCertificacion;
+
+
+            }
+
+        }
+
+
+
+
         public object AgregarSoldadorCertificacion(DataTable dtSoldadorCertificacion, Sam3_Usuario usuario,string lenguaje)
         {
             try
