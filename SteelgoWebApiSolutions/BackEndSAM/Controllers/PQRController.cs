@@ -90,7 +90,7 @@ namespace BackEndSAM.Controllers
         {
             try
             {
-                if (accion == 1)
+                if (accion == 2)
                 {
                     string payload = "";
                     string newToken = "";
@@ -116,7 +116,7 @@ namespace BackEndSAM.Controllers
                         return result;
                     }
                 }
-                if (accion == 0)
+                if (accion == 1)
                 {
                     string payload = "";
                     string newToken = "";

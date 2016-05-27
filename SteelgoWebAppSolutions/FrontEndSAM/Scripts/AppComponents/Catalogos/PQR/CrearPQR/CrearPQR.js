@@ -97,4 +97,20 @@ function ConvertirCombos() {
     });
 };
 
-
+function Limpiar() {
+    $('#NombreId').val("");
+    $('#chkPreheat').is(':checked') ? 1 : 0;
+    $('#chkPwht').is(':checked') ? 1 : 0;
+    $('#EspesorRelleno').val("");
+    $('#EspesorRaiz').val("");
+    $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").value("");
+    $('#ProcesoSoldaduraRaizID').data("kendoComboBox").value("");
+    $('#NumeroPID').val("");
+    $('#GrupoPMaterialBase1ID').data("kendoComboBox").value("");
+    $('#GrupoPMaterialBase2ID').data("kendoComboBox").value("");
+    $('#AporteID').val("");
+    $('#MezclaID').val("");
+    $('#RespaldoID').val("");
+    $('#GrupoFID').val("");
+    $('#CodigoID').data("kendoComboBox").value("");
+};

@@ -13,7 +13,7 @@
     });
 };
 
-function AjaxGuardar() {
+function AjaxGuardar(tipoGuardar) {
     Captura = [];
     Captura[0] = { Detalles: "" };
     ListaDetalles = [];
@@ -92,7 +92,8 @@ function AjaxGuardar() {
         displayNotify("", "El campo código debe coincidir", '1');
     }
 
-    ListaDetalles[0].PQRID = 0;
+    ListaDetalles[0].Accion = $("#PQRID").val() == "0" ? 1 : 2;
+    ListaDetalles[0].PQRID = $("#PQRID").val() == "0" ? 0 : $("#PQRID").val();
     ListaDetalles[0].Nombre = $('#NombreId').val();
     ListaDetalles[0].PWHT = $('#chkPwht').is(':checked') ? 1 : 0;
     ListaDetalles[0].PREHEAT = $('#chkPreheat').is(':checked') ? 1 : 0;;
@@ -108,15 +109,23 @@ function AjaxGuardar() {
     ListaDetalles[0].Respaldo= $("#RespaldoID").val();
     ListaDetalles[0].GrupoF = $("#GrupoFID").val();
     ListaDetalles[0].Codigo = $("#CodigoID").data("kendoComboBox").value();
-    ListaDetalles[0].Accion = 1;
 
     Captura[0].Detalles = ListaDetalles;
 
     if (Captura[0].Detalles.length > 0 && correcto) {
         loadingStart();
-        $PQR.PQR.create(Captura[0], { token: Cookies.get("token"), accion: 0 } ).done(function (data) {
-            if (data > 0) {
+        $PQR.PQR.create(Captura[0], { token: Cookies.get("token"), accion: ListaDetalles[0].Accion }).done(function (data) {
+            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
+                if (data.ReturnMessage[1] != undefined) {
+                    $("#PQRID").val(data.ReturnMessage[1]);
+                }
                 displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                if (tipoGuardar == 1) {
+                    Limpiar();
+                }
+                else {
+                    opcionHabilitarView(true, "FieldSetView");
+                }
                 loadingStop();
             }
             else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {

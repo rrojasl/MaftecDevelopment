@@ -311,16 +311,18 @@ namespace BackEndSAM.DataAcces
                 {
                     ObjetosSQL _SQL = new ObjetosSQL();
                     string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@PQRID", "0" } };
-                    var res = _SQL.EjecutaInsertUpdate(Stords.GUARDANUEVOPQR, dtDetallePQR, "@Tabla", parametro);
+                    int res = _SQL.EjecutaInsertUpdate(Stords.GUARDANUEVOPQR, dtDetallePQR, "@Tabla", parametro);
                     
                     TransactionalInformation result = new TransactionalInformation();
-
                     result.ReturnMessage.Add("OK");
+                    if (res > 0) {
+                        result.ReturnMessage.Add(res.ToString());
+                    }
                     result.ReturnCode = 200;
                     result.ReturnStatus = true;
                     result.IsAuthenicated = true;
 
-                    return res;
+                    return result;
                 }
             }
             catch (Exception ex)
