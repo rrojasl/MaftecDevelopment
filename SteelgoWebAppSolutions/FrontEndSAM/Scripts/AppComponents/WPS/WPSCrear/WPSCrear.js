@@ -2,13 +2,13 @@
 function changeLanguageCall() {
     document.title = _dictionary.WPSLabelNavegacion[$("#language").data("kendoDropDownList").value()];
     ConvertirCombos();
-    setTimeout(function () { obtenerPQRAjax();  }, 1000);
+    setTimeout(function () { obtenerPQRAjax(); }, 1000);
 
 };
 
 
 function ConvertirCombos() {
-   
+
 
     $("#PQRRaizNombre").kendoComboBox({
         dataTextField: "Nombre",
@@ -27,7 +27,7 @@ function ConvertirCombos() {
                     });
                     kendo.bind($("#PREHEATRaiz"), data);
                 }
-                if(dataItem.PWHT){
+                if (dataItem.PWHT) {
                     var data = kendo.observable({
                         optionCheck: true
                     });
@@ -40,11 +40,35 @@ function ConvertirCombos() {
                     kendo.bind($("#PWHRaiz"), data);
                 }
                 $("#grupoPRaiz").val(dataItem.GrupoPMaterialBase1Nombre + " - " + dataItem.GrupoPMaterialBase2Nombre);
-                $("#EspesorMaximoRaiz").text((dataItem.CodigoRaiz.trim() != "Gmaw STT" ? (parseFloat(dataItem.EspesorRaiz) <= 1.5 ? (parseFloat(dataItem.EspesorRaiz) * 2) : 8) : parseFloat(dataItem.EspesorRaiz) * 1.1).toFixed(4));
-                $("#EspesorMinimoRaiz").text("0");
+                $("#RaizEspesorRaiz").text(parseFloat(dataItem.EspesorRaiz).toFixed(4));
+                $("#RaizEspesorRelleno").text(parseFloat(dataItem.EspesorRelleno).toFixed(4));
+
+                var EspesoresRaiz = ObtenerEspesorCorrecto(parseFloat(dataItem.EspesorRaiz) + parseFloat(dataItem.EspesorRelleno), dataItem.PWHT, dataItem.ProcesoSoldadura, true);
+                var EspesoresRelleno;
+                if ($("#PQRRellenoNombre").data("kendoComboBox").dataItem($("#PQRRellenoNombre").data("kendoComboBox").select()) == undefined) {
+                    $("#EspesorMaximoWPS").text(parseFloat(EspesoresRaiz[0].EspesorMaximo));
+                    $("#EspesorMinimoWPS").text(parseFloat(EspesoresRaiz[0].EspesorMinimo));
+                }
+                else {
+                    EspesoresRelleno = ObtenerEspesorCorrecto(parseFloat($("#PQRRellenoNombre").data("kendoComboBox").dataItem($("#PQRRellenoNombre").data("kendoComboBox").select()).EspesorRelleno) +
+                                                              parseFloat($("#PQRRellenoNombre").data("kendoComboBox").dataItem($("#PQRRellenoNombre").data("kendoComboBox").select()).EspesorRaiz),
+                                                              $('#PWHRelleno').is(':checked'), $("#PQRRellenoNombre").data("kendoComboBox").dataItem($("#PQRRellenoNombre").data("kendoComboBox").select()).CodigoRelleno,
+                                                              true);
+                    $("#EspesorMaximoWPS").text(parseFloat(EspesoresRaiz[0].EspesorMaximo) > parseFloat(EspesoresRelleno[0].EspesorMaximo) ? parseFloat(EspesoresRaiz[0].EspesorMaximo) : parseFloat(EspesoresRelleno[0].EspesorMaximo));
+                    $("#EspesorMinimoWPS").text(parseFloat(EspesoresRaiz[0].EspesorMinimo) < parseFloat(EspesoresRelleno[0].EspesorMinimo) ? parseFloat(EspesoresRaiz[0].EspesorMinimo) : parseFloat(EspesoresRelleno[0].EspesorMinimo));
+                }
+
             }
             else {
                 $("#PQRRaizNombre").data("kendoComboBox").value("");
+                $("#grupoPRaiz").val("");
+                $("#RaizEspesorRaiz").text(0);
+                $("#RaizEspesorRelleno").text(0);
+                var data = kendo.observable({
+                    optionCheck: false
+                });
+                kendo.bind($("#PREHEATRaiz"), data);
+                kendo.bind($("#PWHRaiz"), data);
             }
         }
     });
@@ -81,11 +105,35 @@ function ConvertirCombos() {
                         kendo.bind($("#PWHRelleno"), data);
                     }
                     $("#grupoPRelleno").val(dataItem.GrupoPMaterialBase1Nombre + " - " + dataItem.GrupoPMaterialBase2Nombre);
-                    $("#EspesorMaximoRelleno").text((parseFloat(dataItem.EspesorRelleno) <= 1.5 ? (parseFloat(dataItem.EspesorRelleno) * 2) : 8).toFixed(4));
-                    $("#EspesorMinimoRelleno").text("0");
+                    $("#RellenoEspesorRaiz").text(parseFloat(dataItem.EspesorRaiz).toFixed(4));
+                    $("#RellenoEspesorRelleno").text(parseFloat(dataItem.EspesorRelleno).toFixed(4));
+
+                    var EspesoresRelleno = ObtenerEspesorCorrecto(parseFloat(dataItem.EspesorRaiz) + parseFloat(dataItem.EspesorRelleno), dataItem.PWHT, dataItem.ProcesoSoldadura, true);
+                    var EspesoresRaiz;
+                    if ($("#PQRRaizNombre").data("kendoComboBox").dataItem($("#PQRRaizNombre").data("kendoComboBox").select()) == undefined) {
+                        $("#EspesorMaximoWPS").text(parseFloat(EspesoresRelleno[0].EspesorMaximo));
+                        $("#EspesorMinimoWPS").text(parseFloat(EspesoresRelleno[0].EspesorMinimo));
+                    }
+                    else {
+                        EspesoresRaiz = ObtenerEspesorCorrecto(parseFloat($("#PQRRaizNombre").data("kendoComboBox").dataItem($("#PQRRaizNombre").data("kendoComboBox").select()).EspesorRelleno) +
+                                                                  parseFloat($("#PQRRaizNombre").data("kendoComboBox").dataItem($("#PQRRaizNombre").data("kendoComboBox").select()).EspesorRaiz),
+                                                                  $('#PWHRelleno').is(':checked'), $("#PQRRaizNombre").data("kendoComboBox").dataItem($("#PQRRaizNombre").data("kendoComboBox").select()).CodigoRelleno,
+                                                                  false);
+                        $("#EspesorMaximoWPS").text(parseFloat(EspesoresRelleno[0].EspesorMaximo) > parseFloat(EspesoresRaiz[0].EspesorMaximo) ? parseFloat(EspesoresRelleno[0].EspesorMaximo) : parseFloat(EspesoresRaiz[0].EspesorMaximo));
+                        $("#EspesorMinimoWPS").text(parseFloat(EspesoresRelleno[0].EspesorMinimo) < parseFloat(EspesoresRaiz[0].EspesorMinimo) ? parseFloat(EspesoresRelleno[0].EspesorMinimo) : parseFloat(EspesoresRaiz[0].EspesorMinimo));
+                    }
+
                 }
                 else {
                     $("#PQRRellenoNombre").data("kendoComboBox").value("");
+                    $("#grupoPRelleno").val("");
+                    $("#RellenoEspesorRaiz").text(0);
+                    $("#RellenoEspesorRelleno").text(0);
+                    var data = kendo.observable({
+                        optionCheck: false
+                    });
+                    kendo.bind($("#PREHEATRelleno"), data);
+                    kendo.bind($("#PWHRelleno"), data);
                 }
             }
         },
@@ -115,10 +163,88 @@ function Limpiar() {
     $('#NomnreWPS').val("");
     $('#PQRRaizNombre').data("kendoComboBox").value("");
     $('#PQRRellenoNombre').data("kendoComboBox").value("");
+    $('#grupoPRelleno').val("");
+    $('#grupoPRaiz').val("");
     $('#PREHEATRelleno').is(':checked') ? 1 : 0;
     $('#PWHRelleno').is(':checked') ? 1 : 0;
-    $('#EspesorMaximoRaiz').text("");
-    $('#EspesorMinimoRaiz').text("");
-    $('#EspesorMaximoRelleno').text("");
-    $('#EspesorMinimoRelleno').text("");
+    $('#RellenoEspesorRaiz').text("0");
+    $('#RellenoEspesorRelleno').text("0");
+    $('#RaizEspesorRaiz').text("0");
+    $('#RaizEspesorRelleno').text("0");
+    $('#EspesorMaximoWPS').text("0");
+    $('#EspesorMinimoWPS').text("0");
+    
+    $("#WPSID").val("0");
+    
 };
+
+
+function opcionHabilitarView(valor, name) {
+
+    if (valor) {
+        $('#NomnreWPS').attr('disabled', true);
+        $('#PQRRaizNombre').data("kendoComboBox").enable(false);
+        $('#PQRRellenoNombre').data("kendoComboBox").enable(false);
+        $('#grupoPRelleno').attr('disabled', true);
+        $('#grupoPRaiz').attr('disabled', true);
+        $("#Guardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+    }
+    else {
+        $('#NomnreWPS').attr('disabled', false);
+        $('#PQRRaizNombre').data("kendoComboBox").enable(true);
+        $('#PQRRellenoNombre').data("kendoComboBox").enable(true);
+        $('#grupoPRelleno').attr('disabled', false);
+        $('#grupoPRaiz').attr('disabled', false);
+        $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+    }
+}
+
+
+function ObtenerEspesorCorrecto(EspesorTotalT, PWHT, ProcesoSoldadura, esRaiz) {
+    var espesores = [];
+    espesores[0] = { EspesorMaximo: "", EspesorMinimo: "" };
+    if (PWHT== 0 || (PWHT == 1 || EspesorTotalT > 16)) {
+
+        if (ProcesoSoldadura == "GMAW STT" && EspesorTotalT < 13 && esRaiz) {
+            espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+            espesores[0].EspesorMinimo = (1.1 * parseFloat(EspesorTotalT)).toFixed(4);
+        }
+        else {
+            if (EspesorTotalT < 1.5) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = parseFloat(EspesorTotalT).toFixed(4);
+            }
+            else if (EspesorTotalT >= 1.5 && EspesorTotalT < 10) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 10 && EspesorTotalT < 19) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 19 && EspesorTotalT < 38) {
+                espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 38 && EspesorTotalT < 150) {
+                espesores[0].EspesorMaximo = 200.0000;
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+            else if (EspesorTotalT >= 150) {
+                espesores[0].EspesorMaximo = (1.33 * parseFloat(EspesorTotalT)).toFixed(4);
+                espesores[0].EspesorMinimo = 5.0000;
+            }
+        }
+    }
+    else {
+        if (EspesorTotalT < 6) {
+            espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+            espesores[0].EspesorMinimo = (parseFloat(EspesorTotalT) / 2).toFixed(4);
+        }
+        else {
+            espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
+            espesores[0].EspesorMinimo = parseFloat(EspesorTotalT).toFixed(4);
+        }
+    }
+    return espesores;
+}

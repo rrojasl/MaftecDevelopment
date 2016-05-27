@@ -106,7 +106,7 @@ namespace BackEndSAM.DataAcces
 
             using (SamContext ctx = new SamContext())
             {
-                ObjectResult<Sam3_Soldadura_WPS_Result> ColeccionObjetResult = ctx.Sam3_Soldadura_WPS(TipoDeDato, null, null, null, null, null, null, null, null, null, null, null, IdUsuario, WPSIdentificador);
+                //ObjectResult<Sam3_Soldadura_WPS_Result> ColeccionObjetResult = ctx.Sam3_Soldadura_WPS(TipoDeDato, null, null, null, null, null, null, null, null, null, null, null, IdUsuario, WPSIdentificador);
 
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add("OK");
@@ -136,11 +136,15 @@ namespace BackEndSAM.DataAcces
 
                     ObjetosSQL _SQL = new ObjetosSQL();
                     string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() } };
-                    _SQL.Ejecuta(Stords.GUARDAWPS, dtDetalleWPS, "@Tabla", parametro);
+                    int ID = _SQL.EjecutaInsertUpdate(Stords.GUARDAWPS, dtDetalleWPS, "@Tabla", parametro);
 
 
                     TransactionalInformation result = new TransactionalInformation();
                     result.ReturnMessage.Add("OK");
+                    if(ID > 0)
+                    {
+                        result.ReturnMessage.Add(ID.ToString());
+                    }
                     result.ReturnCode = 200;
                     result.ReturnStatus = true;
                     result.IsAuthenicated = true;

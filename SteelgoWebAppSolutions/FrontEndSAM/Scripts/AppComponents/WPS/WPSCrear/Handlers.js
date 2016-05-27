@@ -8,8 +8,22 @@ suscribirEventos();
 
 function suscribirEventoGuardar() {
     $('.accionGuardar').click(function (e) {
-        AjaxGuardar();
+        if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+            AjaxGuardar(0);
+        }
+        else if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0082[$("#language").data("kendoDropDownList").value()])
+            opcionHabilitarView(false, "FieldSetView")
     });
+
+    $('#btnGuardarYNuevo').click(function (e) {
+        if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+            AjaxGuardar(1);
+        }
+        else if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0082[$("#language").data("kendoDropDownList").value()])
+            opcionHabilitarView(false, "FieldSetView")
+    });
+
+    
 }
 
 

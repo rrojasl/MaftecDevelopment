@@ -1,4 +1,4 @@
-﻿
+﻿var NombreCorrecto = false;
 function obtenerPQRAjax() {
     $PQR.PQR.read({ token: Cookies.get("token"), TipoAccion: 1 }).done(function (data) {
         $("#PQRRaizNombre").data("kendoComboBox").dataSource.data(data);
@@ -11,7 +11,11 @@ function AjaxExisteWPS() {
         loadingStart();
         $WPS.WPS.read({ NombreWPSValida: $('#NomnreWPS').val(), token: Cookies.get("token") }).done(function (data) {
             if (data.ReturnMessage[0] != "OK") {
-                displayNotify("", "El Nombre del WPS ya existe", '2');
+                //displayNotify("", "El Nombre del WPS ya existe", '2');
+                NombreCorrecto = false;
+            }
+            else {
+                NombreCorrecto = true;
             }
             loadingStop();
         });
@@ -19,7 +23,7 @@ function AjaxExisteWPS() {
 }
 
 
-function AjaxGuardar() {
+function AjaxGuardar(tipoGuardar) {
     Captura = [];
     Captura[0] = { Detalles: "" };
     ListaDetalles = [];
@@ -65,11 +69,14 @@ function AjaxGuardar() {
         correcto = false;
         displayNotify("", "El preheat debe ser igual para los PQR", '1');
     }
-    
-    
+    else if (!NombreCorrecto ) {
+        correcto = false;
+        displayNotify("", "El Nombre del WPS ya existe", '2');
+    }
 
-    ListaDetalles[0].Accion = 1;
-    ListaDetalles[0].WPSId = 0;
+
+    ListaDetalles[0].Accion = $("#WPSID").val() == "0" ? 1: 2;
+    ListaDetalles[0].WPSId = $("#WPSID").val() == "0"? 0:  $("#WPSID").val();
     ListaDetalles[0].WPSNombre = $('#NomnreWPS').val();
     ListaDetalles[0].PQRRaizId = $('#PQRRaizNombre').data("kendoComboBox").value();
     ListaDetalles[0].PQRRellenoId = $('#PQRRellenoNombre').data("kendoComboBox").value();
@@ -90,14 +97,22 @@ function AjaxGuardar() {
         loadingStart();
         $WPS.WPS.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
+                if (data.ReturnMessage[1] != undefined) {
+                    $("#WPSID").val(data.ReturnMessage[1]);
+                }
                 displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                if (tipoGuardar == 1) {
+                    Limpiar();
+                }
+                else {
+                    opcionHabilitarView(true, "FieldSetView");
+                }
                 loadingStop();
             }
             else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
                 //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
                 displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
                 loadingStop();
-
             }
         });
     }

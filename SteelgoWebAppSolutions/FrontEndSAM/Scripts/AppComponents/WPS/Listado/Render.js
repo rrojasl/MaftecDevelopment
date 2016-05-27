@@ -59,6 +59,9 @@
                     options.model.GrupoMaterialBase1RaizD = "";
                     options.model.PREHEATRaiz = "";
                     options.model.PREHEATRaizId = 0;
+                    options.model.EspesorMaximo = 0;
+                    options.model.EspesorMinimo = 0;
+
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
@@ -120,7 +123,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                     options.model.GrupoMaterialBase1RellenoD = dataItem.GrupoPMaterialBase2Nombre;
                     options.model.GrupoPRelleno = dataItem.GrupoPMaterialBase1Nombre + " " + dataItem.GrupoPMaterialBase2Nombre;
                     options.model.PREHEATRelleno = dataItem.PREHEAT == true ? "SI" : "NO";
-                    options.model.PREHEATRellenoId = dataItem.PREHEAT == true ? 1 : 0;
+                    options.model.P1REHEATRellenoId = dataItem.PREHEAT == true ? 1 : 0;
                     var rootMax = ObtenerEspesorCorrecto((parseFloat(dataItem.EspesorRaiz) + parseFloat(dataItem.EspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), true);
                     var fillMax = ObtenerEspesorCorrecto((parseFloat(options.model.RaizEspesorRaiz) + parseFloat(options.model.RaizEspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), false);
 
@@ -141,8 +144,9 @@ function RenderComboBoxPQRRelleno(container, options) {
                     options.model.GrupoMaterialBase1RellenoDID = 0;
                     options.model.GrupoMaterialBase1RellenoD = "";
                     options.model.PREHEATRelleno = "";
-                    options.model.PREHEATRellenoId =  0;
-                    options.model.EspesorMaximoRelleno = 0;
+                    options.model.PREHEATRellenoId = 0;
+                    options.model.EspesorMaximo = 0;
+                    options.model.EspesorMinimo = 0;
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
             }
