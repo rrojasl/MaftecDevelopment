@@ -91,7 +91,7 @@ function AjaxGuardarListado() {
         if (!ExistRowEmpty(ListaDetalles)) {
             if (Captura[0].Detalles.length > 0 && correcto) {
                 loadingStart();
-                $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
+                $PQR.PQR.create(Captura[0], { token: Cookies.get("token"), accion: 1 }).done(function (data) {
                     if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
                         displayNotify("", "Los elementos: " + pqrModified + " han sido modificados correctamente", '0');
                         LlenaGridAjax();

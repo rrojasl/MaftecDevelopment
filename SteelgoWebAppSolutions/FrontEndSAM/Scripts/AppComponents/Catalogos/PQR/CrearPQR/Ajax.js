@@ -95,7 +95,7 @@ function AjaxGuardar() {
     ListaDetalles[0].PQRID = 0;
     ListaDetalles[0].Nombre = $('#NombreId').val();
     ListaDetalles[0].PWHT = $('#chkPwht').is(':checked') ? 1 : 0;
-    ListaDetalles[0].PREHEAT = $('#chkPreHeat').is(':checked') ? 1 : 0;;
+    ListaDetalles[0].PREHEAT = $('#chkPreheat').is(':checked') ? 1 : 0;;
     ListaDetalles[0].EspesorRelleno = $("#EspesorRelleno").val();
     ListaDetalles[0].EspesorRaiz = $("#EspesorRaiz").val();
     ListaDetalles[0].ProcesoSoldaduraRellenoID = $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").value();
@@ -114,8 +114,8 @@ function AjaxGuardar() {
 
     if (Captura[0].Detalles.length > 0 && correcto) {
         loadingStart();
-        $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
-            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
+        $PQR.PQR.create(Captura[0], { token: Cookies.get("token"), accion: 0 } ).done(function (data) {
+            if (data > 0) {
                 displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                 loadingStop();
             }

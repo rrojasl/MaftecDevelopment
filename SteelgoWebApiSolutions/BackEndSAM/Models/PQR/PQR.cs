@@ -125,6 +125,10 @@ namespace BackEndSAM.Models
         
     }
 
+    public class IDNuevoRegistro {
+        public int nuevoID { get; set; }
+    }
+
     public class DetallePQR
     {
         public DetallePQR()

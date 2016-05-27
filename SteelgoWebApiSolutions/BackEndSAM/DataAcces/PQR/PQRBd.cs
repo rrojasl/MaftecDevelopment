@@ -303,6 +303,38 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        public object AgregarNuevoPQR(DataTable dtDetallePQR, Sam3_Usuario usuario)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    ObjetosSQL _SQL = new ObjetosSQL();
+                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@PQRID", "0" } };
+                    var res = _SQL.EjecutaInsertUpdate(Stords.GUARDANUEVOPQR, dtDetallePQR, "@Tabla", parametro);
+                    
+                    TransactionalInformation result = new TransactionalInformation();
+
+                    result.ReturnMessage.Add("OK");
+                    result.ReturnCode = 200;
+                    result.ReturnStatus = true;
+                    result.IsAuthenicated = true;
+
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation lista = new TransactionalInformation();
+                lista.ReturnMessage.Add(ex.Message);
+                lista.ReturnCode = 500;
+                lista.ReturnStatus = false;
+                lista.IsAuthenicated = true;
+
+                return lista;
+            }
+        }
+
         public static object ObtenerPQRActivo()
         {
             try

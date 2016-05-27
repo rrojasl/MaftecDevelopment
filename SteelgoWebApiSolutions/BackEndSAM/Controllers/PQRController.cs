@@ -86,39 +86,66 @@ namespace BackEndSAM.Controllers
             }
         }
 
-        public object Post(Captura listaCaptura, string token)
+        public object Post(Captura listaCaptura, string token, int accion)
         {
             try
             {
-                string payload = "";
-                string newToken = "";
-                bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
-                if (totokenValido)
+                if (accion == 1)
                 {
-                    JavaScriptSerializer serializer = new JavaScriptSerializer();
-                    Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                    DataTable dtDetalleCaptura = new DataTable();
-                    if (listaCaptura.Detalles!= null)
+                    string payload = "";
+                    string newToken = "";
+                    bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+                    if (totokenValido)
                     {
-                        dtDetalleCaptura = ToDataTable(listaCaptura.Detalles);
+                        JavaScriptSerializer serializer = new JavaScriptSerializer();
+                        Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                        DataTable dtDetalleCaptura = new DataTable();
+                        if (listaCaptura.Detalles != null)
+                        {
+                            dtDetalleCaptura = ToDataTable(listaCaptura.Detalles);
+                        }
+                        return PQRBd.Instance.AgregarPQR(dtDetalleCaptura, Usuario);
                     }
-                    return PQRBd.Instance.AgregarPQR(dtDetalleCaptura, Usuario);
+                    else
+                    {
+                        TransactionalInformation result = new TransactionalInformation();
+                        result.ReturnMessage.Add(payload);
+                        result.ReturnCode = 401;
+                        result.ReturnStatus = false;
+                        result.IsAuthenicated = false;
+                        return result;
+                    }
                 }
-                else
+                if (accion == 0)
                 {
-                    TransactionalInformation result = new TransactionalInformation();
-                    result.ReturnMessage.Add(payload);
-                    result.ReturnCode = 401;
-                    result.ReturnStatus = false;
-                    result.IsAuthenicated = false;
-                    return result;
+                    string payload = "";
+                    string newToken = "";
+                    bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+                    if (totokenValido)
+                    {
+                        JavaScriptSerializer serializer = new JavaScriptSerializer();
+                        Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                        DataTable dtDetalleCaptura = new DataTable();
+                        if (listaCaptura.Detalles != null)
+                        {
+                            dtDetalleCaptura = ToDataTable(listaCaptura.Detalles);
+                        }
+                        return PQRBd.Instance.AgregarNuevoPQR(dtDetalleCaptura, Usuario);
+                    }
+                    else
+                    {
+                        TransactionalInformation result = new TransactionalInformation();
+                        result.ReturnMessage.Add(payload);
+                        result.ReturnCode = 401;
+                        result.ReturnStatus = false;
+                        result.IsAuthenicated = false;
+                        return result;
+                    }
                 }
-
-
+                return null;
             }
             catch (Exception ex)
             {
-
                 TransactionalInformation result = new TransactionalInformation();
                 result.ReturnMessage.Add(ex.Message);
                 result.ReturnCode = 500;
@@ -126,7 +153,6 @@ namespace BackEndSAM.Controllers
                 result.IsAuthenicated = true;
                 return result;
             }
-
         }
 
         public static DataTable ToDataTable<T>(List<T> l_oItems)
