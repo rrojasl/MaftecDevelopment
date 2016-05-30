@@ -488,7 +488,7 @@ function SuscribirEventoSpoolID() {
             AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
         }
         else if (e.keyCode == 13) {
-            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
                 if ($('input:radio[name=TipoAgregado]:checked').val() != undefined) {
                     if ($('input:radio[name=Muestra]:checked').val() != undefined) {
                         if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {

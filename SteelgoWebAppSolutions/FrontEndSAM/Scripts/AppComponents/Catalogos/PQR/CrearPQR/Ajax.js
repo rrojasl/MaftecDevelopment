@@ -95,8 +95,8 @@ function AjaxGuardar(tipoGuardar) {
     ListaDetalles[0].Accion = $("#PQRID").val() == "0" ? 1 : 2;
     ListaDetalles[0].PQRID = $("#PQRID").val() == "0" ? 0 : $("#PQRID").val();
     ListaDetalles[0].Nombre = $('#NombreId').val();
-    ListaDetalles[0].PWHT = $('#chkPwht').is(':checked') ? 1 : 0;
-    ListaDetalles[0].PREHEAT = $('#chkPreheat').is(':checked') ? 1 : 0;;
+    ListaDetalles[0].Pwht = $('#chkPwht').is(':checked') ? 1 : 0;
+    ListaDetalles[0].PreHeat = $('#chkPreheat').is(':checked') ? 1 : 0;;
     ListaDetalles[0].EspesorRelleno = $("#EspesorRelleno").val();
     ListaDetalles[0].EspesorRaiz = $("#EspesorRaiz").val();
     ListaDetalles[0].ProcesoSoldaduraRellenoID = $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").value();

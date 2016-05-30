@@ -14,7 +14,7 @@ function suscribirEventoBlur() {
 function suscribirEventoGuardar() {
     $('.accionGuardar').click(function (e) {
         if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-            AjaxGuardar();
+            AjaxGuardar(0);
             opcionHabilitarView(true);
         }
         else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
