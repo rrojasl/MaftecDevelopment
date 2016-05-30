@@ -79,7 +79,7 @@ namespace DatabaseManager.Sam3
         public static string GUARDAWPS = "Sam3_Soldadura_Set_WPS";
         public static string GUARDAPQR = "Sam3_Soldadura_Set_PQR";
         public static string GUARDANUEVOPQR = "Sam3_Soldadura_New_PQR";
-        public static string GUARDARSOLDADORCERTIFICACION = "Sam3_SoldadorCertificacion_Set_Captura";
+        public static string GUARDARSOLDADORCERTIFICACION = "Sam3_Soldador_Certificacion_Set_Captura";
     }
 
     public static class ConstantesSteelGo
