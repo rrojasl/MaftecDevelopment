@@ -28,7 +28,14 @@
                 <div class="button-section editButtonSection">
                     <div class="btn-group save-group">
                         <button id="Guardar" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="botonGuardar"></span></button>
-
+                        <button id="Editar" onclick="javascript:void(0);" type="button" class="btn btn-yellow" style="display:none"><span id="botonEdtar"></span></button>
+                        <button id="dropdown-toggle" type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caretWhite"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="btnGuardar"><span id="botonGuardar2"  class="accionGuardar"></span></a></li>
+                            <li><a href="#" id="btnGuardarYNuevo"><span id="botonGuardarYNuevo" class="accionGuardarYNuevo"></span></a></li>
+                        </ul>
                     </div>
                     <a id="btnCancelar" class="btn btn-black"><span id="botonCancelar"></span></a>
                 </div>
@@ -51,37 +58,25 @@
     @*FORMULARIO SoldadorCertificacion*@
 
     <div class="row" id="FieldSetView">
-        <div id="CamposRequeridosPQR" class="col-sm-12 col-md-12 col-lg-11" style=" z-index:1 !important;">
+
             <div class="row">
-                <div class="row">
-                    <div class=" col-sm-6 col-md-6 col-lg-4" style="display: none">
-                        <input id="IdPQR" value="0" />
-                    </div>
-                </div>
-                <div class="alert-container">
-                    <div class="message">
-                        Mensaje de éxito/error/advertencia
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRNombreDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCSoldadorDiv">
                     <label id="lblSoldador"> </label>
-                    <input type="text" id="inputSoldador" class="form-control general-input" />
+                    <input type="text" id="inputSoldador"  />
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCNombrePQRDiv">
                     <label id="lblNombrePQR"></label>
                     <input id="inputNombrePQR" />
                 </div>
 
             </div>
             <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRProcesoSoldaduraRaizDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCPasosSoldaduraDiv">
                     <label id="lblPasosSoldadura"></label>
-                    <input type="text" id="inputPasosSoldadura" />
+                    <input  id="inputPasosSoldadura" />
                 </div>
 
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRNumeroPDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCCedulaDiv">
                     <label id="lblCedulaTuboPQR"></label>
                     <input id="inputCedulaTuboPQR" class="form-control general-input" />
                 </div>
@@ -90,11 +85,11 @@
             </div>
 
             <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesoRellenorDiV">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCFechaInicioDiV">
                     <label id="lblFechaInicioCertificado"></label>
                     <input id="inputFechaInicioCertificado" />
                 </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesorRaizDiV">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCFechaFinDiV">
                     <label id="lblFechaFinCertificado"></label>
                     <input id="inputFechaFinCertificado" />
                 </div>
@@ -102,11 +97,11 @@
             </div>
             <div class="row">
 
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoPMaterialBase2Div">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCEspesorMinimoDiv">
                     <label id="lblEspesorMinimo"></label>
                     <input id="inputEspesorMinimo" />
                 </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRAporteDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCEspesorMaximoDiv">
                     <label id="lblEspesorMaximo"></label>
                     <input id="inputEspesorMaximo" />
                 </div>
@@ -116,48 +111,58 @@
             </div>
             <div class="row">
 
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRRespaldoDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCDiametroCalificadoDiv">
                     <label id="lblDiametroCalificado"></label>
                     <input id="inputDiametroCalificado" />
                 </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoFDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCTipoPruebaDiv">
                     <label id="lblTipoPrueba"></label>
                     <input id="inputTipoPrueba" />
                 </div>
 
             </div>
             <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRCodigoDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCPosicionDiv">
                     <label id="lblPosicionPQR"></label>
                     <input id="inputPosicionPQR" />
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
+                <div class="col-sm-6 col-md-6 col-lg-4" id="SCProcesoSoldaduraDiv">
                     <label id="lblProcesoSoldaduraPQR"></label>
                     <input type="text" id="inputProcesoSol" />
+                    <input type="hidden"id="HddNuevoSoldadorCertificacionID" />
                 </div>
             </div>
             <div class="row">
-                <div class=" col-sm-12 col-md-12 col-lg-12" style="display: block">
+                <div class="col-sm-12 col-md-12 col-lg-12" style="display: block">
                     <label>&nbsp;</label>
                 </div>
             </div>
             <div class="row">
-                <div class=" col-sm-12 col-md-12 col-lg-12" style="display: block">
+                <div class="col-sm-12 col-md-12 col-lg-12" style="display: block">
                     <label>&nbsp;</label>
                 </div>
             </div>
 
-        </div>
+        
 
     </div>
+    
+    @*Menu Inferior*@
 
     <div class="row">
         <div class="col-xs-11 col-sm-12 col-md-12 col-lg-11">
             <div class="formNav clearfix">
                 <div class="button-section editButtonSection">
                     <div class="btn-group save-group">
-                        <button id="Guardar1" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="botonGuardar2"></span></button>
-
+                        <button id="GuardarPie" onclick="javascript:void(0);" type="button" class="btn btn-yellow accionGuardar"><span id="CapturaGuardarPie"></span></button>
+                        <button id="Editar" onclick="javascript:void(0);" type="button" class="btn btn-yellow" style="display:none"><span id="CapturaGuardarMenuPie"></span></button>
+                        <button id="dropdown-toggle" type="button" class="btn btn-yellow dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caretWhite"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="btnGuardarPie"><span id="btnGuardarPiePagina"  class="accionGuardar"></span></a></li>
+                            <li><a href="#" id="btnGuardarYNuevoPie"><span id="btnGuardarYNuevoPiePagina"  class="accionGuardarYNuevo"></span></a></li>
+                        </ul>
                     </div>
                     <a id="btnCancelar1" class="btn btn-black"><span id="botonCancelar1"></span></a>
                 </div>

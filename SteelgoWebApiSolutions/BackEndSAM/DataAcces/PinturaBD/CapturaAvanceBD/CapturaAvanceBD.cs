@@ -274,7 +274,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.CapturaAvanceBD
                 using (SamContext ctx = new SamContext())
                 {
 
-                    List<Sam3_Steelgo_Get_Obrero_Result> result = ctx.Sam3_Steelgo_Get_Obrero(tipo,tipoObrero,null,null).ToList();
+                    List<Sam3_Steelgo_Get_Obrero_Result> result = ctx.Sam3_Steelgo_Get_Obrero(tipo,tipoObrero,null,null,null).ToList();
                     List<PintorSpool> ListadoPintores = new List<PintorSpool>();
 
                     foreach (Sam3_Steelgo_Get_Obrero_Result item in result)

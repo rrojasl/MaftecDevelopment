@@ -233,7 +233,7 @@ namespace BackEndSAM.DataAcces.ArmadoBD
                         ObreroID = 0,
                         TipoObrero = ""
                     });
-                    List<Sam3_Steelgo_Get_Obrero_Result> lista = ctx.Sam3_Steelgo_Get_Obrero(tipo, "Tubero", idProyecto,null).ToList();
+                    List<Sam3_Steelgo_Get_Obrero_Result> lista = ctx.Sam3_Steelgo_Get_Obrero(tipo, "Tubero", idProyecto,null,null).ToList();
                     foreach(Sam3_Steelgo_Get_Obrero_Result item in lista)
                     {
                         result.Add(new Sam3_Steelgo_Get_Obrero_Result

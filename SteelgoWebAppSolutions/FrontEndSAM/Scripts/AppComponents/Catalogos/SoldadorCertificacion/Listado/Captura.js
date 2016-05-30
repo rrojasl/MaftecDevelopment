@@ -245,11 +245,53 @@ function ValidarInformacionEnviada() {
             ventanaConfirm.close();
         });
         $("#noButton").click(function () {
-            opcionHabilitarView(false);
+            opcionHabilitarView(false, "FieldSetView");
             ventanaConfirm.close();
         });
 
     }
 
 
+}
+
+function startChange(row) {
+
+    var startDate = $("#inputFechaInicioCertificado").data("kendoDatePicker").value(),
+     endDate = $("#inputFechaFinCertificado").data("kendoDatePicker").value(),
+    end = $("#inputFechaFinCertificado").data("kendoDatePicker"),
+    start = $("#inputFechaInicioCertificado").data("kendoDatePicker");
+
+    if (startDate) {
+        startDate = new Date(startDate);
+        startDate.setDate(startDate.getDate());
+        end.min(startDate);
+    }
+    else if (endDate) {
+        start.max(new Date(endDate));
+    } else {
+        endDate = new Date();
+        start.max(endDate);
+        end.min(endDate);
+    }
+}
+
+function endChange(row) {
+
+    var endDate = $("#inputFechaFinCertificado").data("kendoDatePicker").value(),
+    startDate = $("#inputFechaInicioCertificado").data("kendoDatePicker").value(),
+    end = $("#inputFechaFinCertificado").data("kendoDatePicker"),
+    start = $("#inputFechaInicioCertificado").data("kendoDatePicker");
+
+    if (endDate) {
+        endDate = new Date(endDate);
+        endDate.setDate(endDate.getDate());
+        start.max(endDate);
+    }
+    else if (startDate) {
+        end.min(new Date(startDate));
+    } else {
+        endDate = new Date();
+        start.max(endDate);
+        end.min(endDate);
+    }
 }

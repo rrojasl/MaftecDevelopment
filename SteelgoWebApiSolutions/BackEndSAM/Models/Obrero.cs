@@ -9,6 +9,18 @@
         public bool Activo { get; set; }
         public int UsuarioModificacion { get; set; }
         public string TipoObrero { get; set; }
+
+        public Obrero()
+        {
+            ObreroID = 0;
+            TipoObreroID = 0;
+            Codigo = "";
+            NumeroEmpleado = "";
+            Activo = false;
+            UsuarioModificacion = 0;
+            TipoObrero = "";
+        }
+
     }
     public class TipoObreroModel
     {

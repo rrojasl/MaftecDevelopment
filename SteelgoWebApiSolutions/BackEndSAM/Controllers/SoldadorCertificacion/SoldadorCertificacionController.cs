@@ -50,7 +50,7 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
             }
         }
 
-        //Agrega Soldador Certificacion
+        //Agrega Soldador Certificacion, tipoGuardado se refiere si es nuevo o si es listado.
         public object Post(Captura AddSC, string token, string Lenguaje)
         {
             try
@@ -89,8 +89,9 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
             }
 
         }
-
-        public object Get(string token, string Lenguaje, int idSoldadorCertificacion)
+        
+        //Obtiene Informacion para genererar un nuevo soldador certificacion.
+        public object Get(string token, string Lenguaje,int proyectoID,int patioID)
         {
             try
             {
@@ -99,7 +100,9 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
                 bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
                 if (totokenValido)
                 {
-                    return SoldadorCertificacionBd.Instance.ObtenerNuevoSoldadorCertificacion(idSoldadorCertificacion);
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+                    Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                    return SoldadorCertificacionBd.Instance.ObtenerNuevoSoldadorCertificacion(proyectoID, Usuario.UsuarioID, patioID);
                 }
                 else
                 {
@@ -122,5 +125,39 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
 
             }
         }
+
+        public object Get(int obreroID,int pqrID, string token, string Lenguaje)
+        {
+            try
+            {
+                string payload = "";
+                string newToken = "";
+                bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+                if (totokenValido)
+                {
+                    return SoldadorCertificacionBd.Instance.ObtenerIDSoldadorCertificacion(obreroID,pqrID,Lenguaje);
+                }
+                else
+                {
+                    TransactionalInformation result = new TransactionalInformation();
+                    result.ReturnMessage.Add(payload);
+                    result.ReturnCode = 401;
+                    result.ReturnStatus = false;
+                    result.IsAuthenicated = false;
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+                return result;
+
+            }
+        }
+
     }
 }

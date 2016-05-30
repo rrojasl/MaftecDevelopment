@@ -128,10 +128,13 @@ function RenderFechaInicio(container, options) {
             change: function () {
                 var value = this.value();
                 options.model.FechaInicioCertificado = value;
+                startChange();
             }
         }
         );
 }
+
+    
 
 function RenderFechaFin(container, options) {
     //container  contiene las propiedades de la celda

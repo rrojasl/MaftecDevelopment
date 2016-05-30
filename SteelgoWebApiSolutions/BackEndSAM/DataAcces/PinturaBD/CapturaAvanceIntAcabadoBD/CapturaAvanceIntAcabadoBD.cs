@@ -182,7 +182,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.CapturaAvanceIntAcabado
             using (SamContext ctx = new SamContext())
             {
                 List<ObreroPintor> listaPintoresCapturaAvanceIntAcabado = new List<ObreroPintor>();
-                List<Sam3_Steelgo_Get_Obrero_Result> listresult = ctx.Sam3_Steelgo_Get_Obrero(2, "Pintor", null, null).ToList();
+                List<Sam3_Steelgo_Get_Obrero_Result> listresult = ctx.Sam3_Steelgo_Get_Obrero(2, "Pintor", null, null,null).ToList();
                 foreach (Sam3_Steelgo_Get_Obrero_Result item in listresult)
                 {
                     listaPintoresCapturaAvanceIntAcabado.Add(new ObreroPintor

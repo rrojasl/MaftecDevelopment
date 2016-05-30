@@ -1,4 +1,5 @@
 ﻿function SuscribirEventos() {
+    SuscribirEventoSoldador();
     SuscribirEventoNomprePQR();
     SuscribirEventoProcesoSoldadura();
     SuscribirEventoNumeroPasos();
@@ -9,7 +10,26 @@
     SuscriborEventoPosicion();
     SuscribirEventoFechaVigenciaInicio();
     SuscribirEventoFechaVigenciaFin();
+    suscribirEventoGuardarNuevoSoldadorCertificacion();
 }
+
+function SuscribirEventoSoldador() {
+    $("#inputSoldador").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        dataTextField: "Codigo",
+        dataValueField: "ObreroID",
+        autoBind: false,
+        change: function (e) {
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem == undefined) {
+                $("#inputSoldador").data("kendoComboBox").text("");
+            }
+        }
+    });
+    
+};
 
 function SuscriborEventoPosicion() {
     $("#inputPosicionPQR").kendoNumericTextBox({
@@ -110,6 +130,12 @@ function SuscribirEventoNumeroPasos() {
         value: "0",
         decimals: 3
     });
+    $("#inputPasosSoldadura").blur(function (e) {
+        if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 0.5) {
+            $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
+        }
+    });
+
 }
 
 function SuscribirEventoProcesoSoldadura() {
@@ -151,3 +177,21 @@ function SuscribirEventoNomprePQR() {
 
 }
 
+function suscribirEventoGuardarNuevoSoldadorCertificacion() {
+    
+
+    $('.accionGuardar').click(function () {
+        if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+            ValidarInformacionNuevoSoldadorCertificacion(0);
+        }
+        else {
+            HabilitarCapturaNuevoSoldadorCertificacioon(false, "FieldSetView");
+        }
+    });
+
+    $('.accionGuardarYNuevo').click(function () {
+        if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+            ValidarInformacionNuevoSoldadorCertificacion(1);
+        }
+    });
+}

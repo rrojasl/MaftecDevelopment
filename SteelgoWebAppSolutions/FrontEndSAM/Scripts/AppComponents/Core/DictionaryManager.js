@@ -5,6 +5,29 @@ _languageOrder = {
 }
 
 _dictionary = {
+    
+    "SoldadorPQRExistente":
+    {
+        "es-MX": "El soldador ya existe con el pqr seleccionado ¿Deseas Actualizarlo?",
+        "en-US": "The welder already exists with selected PQR Want to upgrade?"
+    },
+    "MensajeCamposIncorrector":
+    {
+        "es-MX": "los campos marcados con un asterisco (*) son obligatorios",
+        "en-US": "Fields marked with an asterisk ( *) are required"
+    },
+    "CapturaGuardarPie": {
+        "es-MX": "Guardar",
+        "en-US": "Save"
+    },
+    "btnGuardarYNuevoPiePagina": {
+        "es-MX": "Guardar y Nuevo",
+        "en-US": "Save and New"
+    },
+    "BotonNuevo": {
+        "es-MX": "Nuevo",
+        "en-US": "New"
+    },
     "AvisoNumeroUnicoYaAsignado": {
         "es-MX": "El numero unico ya se encuentra asignado en la junta: ?1",
         "en-US": "The only number is already assigned in the joint: ?1"
@@ -8116,8 +8139,8 @@ _dictionary = {
     },
 
     "SoldadorCertificacionCodigoObrero": {
-        "es-MX": "Código Obrero",
-        "en-US": "Workman code"
+        "es-MX": "Soldador",
+        "en-US": "Welder"
     },
 
     "SoldadorCertificacionPQRID": {

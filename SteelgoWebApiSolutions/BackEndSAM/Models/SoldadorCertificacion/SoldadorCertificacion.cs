@@ -105,6 +105,7 @@ namespace BackEndSAM.Models.SoldadorCertificacion
         public List<CedulaTuboCalificado> ListaCedulaTuboCalificado { get; set; }
         public List<TipoPrueba> ListaTipoPrueba { get; set; }
         public List<PQRActivo> ListaPQR { get; set; }
+        public List<Obrero> ListaObrero { get; set; }
     }
 
 
