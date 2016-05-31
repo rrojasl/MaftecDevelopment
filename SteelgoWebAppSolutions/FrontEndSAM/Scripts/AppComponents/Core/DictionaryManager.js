@@ -8172,8 +8172,8 @@ _dictionary = {
         "en-US": "Certificate tube"
     },
     "SoldadorCertificacionDiametroCalificadoPQR": {
-        "es-MX": "Diametro calificado",
-        "en-US": "Diameter qualified"
+        "es-MX": "Diametro C.",
+        "en-US": "Diameter Q."
     },
     "SoldadorCertificacionProcesoSoldaduraPQR": {
         "es-MX": "Proceso soldadura",
@@ -8188,26 +8188,26 @@ _dictionary = {
         "en-US": "F"
     },
     "SoldadorCertificacionFechaInicioCertificado": {
-        "es-MX": "Vigencia de:",
-        "en-US": "Validity of"
+        "es-MX": "Desde:",
+        "en-US": "From:"
     },
     "SoldadorCertificacionFechaFinCertificado": {
-        "es-MX": "Vigencia hasta:",
-        "en-US": "Effect until"
+        "es-MX": "Hasta:",
+        "en-US": "Until:"
     },
 
     "SoldadorCertificacionEspesorMinimo": {
-        "es-MX": "Espesor mínimo",
-        "en-US": "Minimum thickness"
+        "es-MX": "E. min",
+        "en-US": "Min T"
     },
     "SoldadorCertificacionEspesorMaximo": {
-        "es-MX": "Espesor maximo",
-        "en-US": "Maximum thickness"
+        "es-MX": "E. max",
+        "en-US": "Max T"
     },
 
     "SoldadorCertificacionPasosSoldadura": {
-        "es-MX": "Num Pasos",
-        "en-US": "Minimum thickness"
+        "es-MX": "No Pasos",
+        "en-US": "Steps No."
     },
     "SoldadorCertificacionPorcentajeJuntasRequiere": {
         "es-MX": "Porcentaje de juntas que requiere",
