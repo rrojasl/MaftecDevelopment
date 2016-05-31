@@ -8218,7 +8218,10 @@ _dictionary = {
         "es-MX": "¿Certificado activo?",
         "en-US": "Active certificate?"
     },
-
+    "SoldadorCertificacionFechaCertificacion": {
+        "es-MX": "FECHA CERTIFICACIÓN",
+        "en-US": "CERTIFICATION DATE"
+    },
     "lblValidaEspesorMaximoSoldadorCertificación": {
         "es-MX": "El Campo 'ESPESOR MÁXIMO', solo acepta valores numéricos'",
         "en-US": "The Field 'MAXIUM THICKNESS', accepts only numeric values"
@@ -8233,7 +8236,10 @@ _dictionary = {
         "es-MX": "El Campo 'PORCENTAJE DE JUNTAS QUE REQUIERE', solo acepta valores numéricos'",
         "en-US": "The Field 'PERCENTAGE OF MEETINGS REQUIRED', accepts only numeric values"
     },
-
+    "CapturaSoldadorCertificacionPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de Certificación?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of Certification?"
+    },
 
 
     //#endregion

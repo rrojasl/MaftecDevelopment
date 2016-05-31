@@ -89,7 +89,7 @@ function CargarGrid() {
         selectable: true,
         pageable: {
             refresh: false,
-            pageSizes: [10, 15, 20],
+            pageSizes: [50, 100],
             info: false,
             input: false,
             numeric: true,
@@ -105,8 +105,7 @@ function CargarGrid() {
                         style: "max-width:100px;"
                     },
                     dataSource: [{ Etiquetado: true }, { Etiquetado: false }]
-                }, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>", width: "150px"
-            },
+                }, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>", width: "150px"},
             { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: {
                     multi: true,
                     messages: {
@@ -115,8 +114,7 @@ function CargarGrid() {
                         style: "max-width:100px;"
                     },
                     dataSource: [{ Etiquetado: true }, { Etiquetado: false }]
-                }, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px"
-            },
+                }, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px"},
             { width: "120px", field: "EspesorRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
             { width: "120px", field: "EspesorRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec() },
             { width: "120px", field: "CodigoRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxProcesoSoldaduraRaiz },

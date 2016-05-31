@@ -7,13 +7,23 @@ function IniciarSoldadorCertifiacion() {
 }
 
 function CargarGrid() {
+
     $("#grid").kendoGrid({
         edit: function (e) {
-
-            if ($('#botonGuardar').text() != _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
+            if ($('#botonGuardar').text() != _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()])
                 this.closeCell();
+        },
+        dataBound: function () {
+            var myElem = document.getElementById('trParentHeader');
+            if (myElem == null) {
+                $("#grid").find("th.k-header").parent().before("<tr id='trParentHeader'> " +
+                    "<th scope='col' colspan='3' class='k-header'></th>  <th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.SoldadorCertificacionFechaCertificacion[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
+                    "<th width='auto'  colspan='1' class='k-header' style='text-align: center;'><span></span></th>" +
+                    "<th width='auto'  colspan='1' class='k-header' style='text-align: center;'><span id=''></span></th>" +
+                    "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.ListadoCatalogos0040[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
+                    "<th width='auto'  colspan='4' class='k-header' style='text-align: center;'><span id=''></span></th>" +
+                    "</tr>");
             }
-
         },
         dataSource: {
             data: [],
@@ -36,7 +46,14 @@ function CargarGrid() {
                     }
                 }
             },
-            pageSize: 20,
+            filter: {
+                logic: "or",
+                filters: [
+                  { field: "Accion", operator: "eq", value: 1 },
+                  { field: "Accion", operator: "eq", value: 2 }
+                ]
+            },
+            pageSize: 50,
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false
@@ -56,27 +73,68 @@ function CargarGrid() {
         },
         filterable: getGridFilterableMaftec(),
         columns: [
-                    { field: "CodigoObrero", title: _dictionary.SoldadorCertificacionCodigoObrero[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px" },
-                    { field: "NombrePQR", title: _dictionary.SoldadorCertificacionNombrePQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
-                    { field: "ProcesoSoldadura", title: _dictionary.SoldadorCertificacionProcesoSoldaduraPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldadura },
-                    { field: "FechaInicioCertificado", title: _dictionary.SoldadorCertificacionFechaInicioCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "170px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaInicio },
-                    { field: "FechaFinCertificado", title: _dictionary.SoldadorCertificacionFechaFinCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaFin },
-                    { field: "PasosSoldadura", title: _dictionary.SoldadorCertificacionPasosSoldadura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
-                    { field: "CedulaTuboCalificado", title: _dictionary.SoldadorCertificacionCedulaTuboPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxCedulaTuboCalificado },
-                    { field: "EspesorMinimo", title: _dictionary.SoldadorCertificacionEspesorMinimo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
-                    { field: "EspesorMaximo", title: _dictionary.SoldadorCertificacionEspesorMaximo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
-                    { field: "DiametroCalificado", title: _dictionary.SoldadorCertificacionDiametroCalificadoPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "160px" },
-                    { field: "TipoDePrueba", title: _dictionary.SoldadorCertificacionTipoDePruebaPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px", editor: RenderComboBoxTipoPrueba },
-                    { field: "Posicion", title: _dictionary.SoldadorCertificacionPosicionPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "135px" },
-                    { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminaSoldadorCertificacion }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" }
-
+            { field: "CodigoObrero", title: _dictionary.SoldadorCertificacionCodigoObrero[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px" },
+            { field: "NombrePQR", title: _dictionary.SoldadorCertificacionNombrePQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
+            { field: "ProcesoSoldadura", title: _dictionary.SoldadorCertificacionProcesoSoldaduraPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldadura },
+            { field: "FechaInicioCertificado", title: _dictionary.SoldadorCertificacionFechaInicioCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "170px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaInicio },
+            { field: "FechaFinCertificado", title: _dictionary.SoldadorCertificacionFechaFinCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaFin },
+            { field: "PasosSoldadura", title: _dictionary.SoldadorCertificacionPasosSoldadura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
+            { field: "CedulaTuboCalificado", title: _dictionary.SoldadorCertificacionCedulaTuboPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxCedulaTuboCalificado },
+            { field: "EspesorMinimo", title: _dictionary.SoldadorCertificacionEspesorMinimo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
+            { field: "EspesorMaximo", title: _dictionary.SoldadorCertificacionEspesorMaximo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
+            { field: "DiametroCalificado", title: _dictionary.SoldadorCertificacionDiametroCalificadoPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "160px" },
+            { field: "TipoDePrueba", title: _dictionary.SoldadorCertificacionTipoDePruebaPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px", editor: RenderComboBoxTipoPrueba },
+            { field: "Posicion", title: _dictionary.SoldadorCertificacionPosicionPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "135px" },
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminaSoldadorCertificacion }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ]
     });
     CustomisaGrid($("#grid"));
 };
 
 
-function EliminaSoldadorCertificacion() {
+function EliminaSoldadorCertificacion(e) {
+    e.preventDefault();
+    if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
+        e.preventDefault();
+        var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+        var PQRIDRegistro = dataItem.PQRID;
+
+        //if (dataItem.RegistrosWPS == 0) {
+        windowTemplate = kendo.template($("#windowTemplate").html());
+
+        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+            iframe: true,
+            title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+            visible: false, //the window will not appear before its .open method is called
+            width: "auto",
+            height: "auto",
+            modal: true,
+            animation: {
+                close: false,
+                open: false
+            }
+        }).data("kendoWindow");
+
+        ventanaConfirm.content(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+                        "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+        ventanaConfirm.open().center();
+
+        $("#yesButton").click(function () {
+
+            var dataSource = $("#grid").data("kendoGrid").dataSource;
+            dataItem.Accion = 3;
+            $("#grid").data("kendoGrid").dataSource.sync();
+
+            ventanaConfirm.close();
+        });
+        $("#noButton").click(function () {
+            ventanaConfirm.close();
+        });
+        //}
+        //else
+        //    displayNotify("", "El elemento PQR " + dataItem.Nombre + " se encuentra asignado", 1);
+    }
 
 }
 
