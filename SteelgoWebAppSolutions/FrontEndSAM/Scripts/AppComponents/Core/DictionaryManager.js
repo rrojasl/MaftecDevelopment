@@ -5,7 +5,7 @@ _languageOrder = {
 }
 
 _dictionary = {
-    
+
     "SoldadorPQRExistente":
     {
         "es-MX": "El soldador ya existe con el pqr seleccionado ¿Deseas Actualizarlo?",
@@ -7227,10 +7227,10 @@ _dictionary = {
         "es-MX": "Catálogo WPS",
         "en-US": "WPS catalog"
     },
-     "menuWPS1": {
+    "menuWPS1": {
         "es-MX": "Catálogo WPS",
         "en-US": "WPS catalog"
-        },
+    },
     "menuConfiguracionSoldadura": {
         "es-MX": "Configuración de soldadura",
         "en-US": "Welging Configuration"
@@ -8128,6 +8128,13 @@ _dictionary = {
 
 
     //#region  SoldadorCertificacion
+
+
+    "SoldadorCertificacionMensajeErrorEspesor": {
+        "es-MX": "El espesor maximo debe ser superior al minimo",
+        "en-US": "The maximum thickness needs to be greater than minimum"
+    },
+
     "SoldadorCertificacionID": {
         "es-MX": "SoldadorCertificacionID",
         "en-US": "SoldadorCertificacionID"
@@ -8185,7 +8192,7 @@ _dictionary = {
         "en-US": "Validity of"
     },
     "SoldadorCertificacionFechaFinCertificado": {
-        "es-MX": "Vigencia asta:",
+        "es-MX": "Vigencia hasta:",
         "en-US": "Effect until"
     },
 
