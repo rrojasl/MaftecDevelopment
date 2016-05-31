@@ -9,7 +9,7 @@
             autoBind: false,
             dataSource: options.model.ListaTipoProcesosSoldadura,
             template: "<i class=\"fa fa-#=data.TipoProcesoSoldaduraDesc.toLowerCase()#\"></i> #=data.TipoProcesoSoldaduraDesc#",
-            
+
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
@@ -120,34 +120,63 @@ function RenderComboBoxTipoPrueba(container, options) {
 function RenderFechaInicio(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta
-    var dataItem;
+    var fecha = kendo.toString(options.model.FechaFinCertificado, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+    if (fecha == null) {
+        $("#FechaArmado").data("kendoDatePicker").value('');
+    }
     $('<input   data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoDatePicker({
-            
             change: function () {
                 var value = this.value();
                 options.model.FechaInicioCertificado = value;
-                startChange();
-            }
-        }
-        );
+            },
+            max: new Date(ObtenerDato(fecha, 1), ObtenerDato(fecha, 2), ObtenerDato(fecha, 3))
+        });
 }
-
-    
 
 function RenderFechaFin(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta
-    var dataItem;
+    var fecha = kendo.toString(options.model.FechaInicioCertificado, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+    if (fecha == null) {
+        $("#FechaArmado").data("kendoDatePicker").value('');
+    }
     $('<input   data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoDatePicker({
-            
             change: function () {
                 var value = this.value();
                 options.model.FechaFinCertificado = value;
+            },
+            min: new Date(ObtenerDato(fecha, 1), ObtenerDato(fecha, 2), ObtenerDato(fecha, 3))
+        });
+}
+
+function renderNoPasos(container, options) {
+    $('<input   data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+        .kendoNumericTextBox({
+            change: function () {
+                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 0.5) {
+                    options.model.EspesorMaximo = '999999999999.0';
+                    $("#grid").data("kendoGrid").dataSource.sync();
+                    displayNotify("", "El espesor maximo es ilimitado", '0');
+                }
             }
-        }
-        );
+        });
+}
+
+function renderEmin(container, options) {
+    $('<input   data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+        .kendoNumericTextBox({
+            change: function () {
+                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 0.5) {
+                    options.model.EspesorMaximo = '999999999999.0';
+                    $("#grid").data("kendoGrid").dataSource.sync();
+                    displayNotify("", "El espesor maximo es ilimitado", '0');
+                }
+            }
+        });
 }

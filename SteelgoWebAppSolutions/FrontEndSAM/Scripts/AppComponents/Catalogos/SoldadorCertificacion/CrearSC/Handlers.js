@@ -33,6 +33,7 @@ function SuscribirEventoSoldador() {
 
 function SuscriborEventoPosicion() {
     $("#inputPosicionPQR").kendoNumericTextBox({
+        format: "#.0000 mm",
         min: 0,
         value: "0",
         decimals: 3
@@ -95,6 +96,7 @@ function SuscribirEventoTipoPrueba() {
 
 function SuscribirEventoDiametroCertificado() {
     $("#inputDiametroCalificado").kendoNumericTextBox({
+        format: "#.0000 mm",
         min: 0,
         value: "0",
         decimals: 3
@@ -103,6 +105,7 @@ function SuscribirEventoDiametroCertificado() {
 
 function SuscribirEventoEspesorMaximo() {
     $("#inputEspesorMaximo").kendoNumericTextBox({
+        format: "#.0000 mm",
         min: 0,
         value: "0",
         decimals: 3
@@ -112,6 +115,7 @@ function SuscribirEventoEspesorMaximo() {
 
 function SuscribirEventoEspesorMinimo() {
     $("#inputEspesorMinimo").kendoNumericTextBox({
+        format: "#.0000 mm",
         min: 0,
         value: "0",
         decimals: 3
@@ -126,6 +130,7 @@ function SuscribirEventoEspesorMinimo() {
 
 function SuscribirEventoNumeroPasos() {
     $("#inputPasosSoldadura").kendoNumericTextBox({
+        format: "#.0000 mm",
         min: 0,
         value: "0",
         decimals: 3
