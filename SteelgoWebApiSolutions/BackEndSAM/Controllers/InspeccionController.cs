@@ -17,7 +17,7 @@ namespace BackEndSAM.Controllers
     public class InspeccionController : ApiController
     {
         
-        public object Get(string JsonCaptura, string token, string Lenguaje)
+        public object Get(string JsonCaptura, string token, string Lenguaje, string juntasSeleccionadas)
         {
             string payload = "";
             string newToken = "";
@@ -31,7 +31,7 @@ namespace BackEndSAM.Controllers
 
                 List<CapturaVisualDimensional.DetalleDatosJson> listaDetalleDatos = new List<CapturaVisualDimensional.DetalleDatosJson>();
 
-                List<Sam3_Inspeccion_Get_DetalleJunta_Result> detalle = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(capturaDatosJson, usuario, Lenguaje);
+                List<Sam3_Inspeccion_Get_DetalleJunta_Result> detalle = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(capturaDatosJson, usuario, Lenguaje, juntasSeleccionadas);
                 string fecha = (string)CapturaArmadoBD.Instance.ObtenerValorFecha(usuario, Lenguaje, 16);
                 
 
@@ -220,7 +220,7 @@ namespace BackEndSAM.Controllers
             }
         }
 
-        public object Get(string id, string sinCaptura, string token, string lenguaje)
+        public object Get(int id, string sinCaptura, string token, string lenguaje)
         {
 
             string payload = "";
@@ -233,17 +233,15 @@ namespace BackEndSAM.Controllers
 
                 DetalleJuntaDimension detalleJuntaDimension = new DetalleJuntaDimension();
 
-                List<Sam3_Inspeccion_Get_DetalleDimensional_Result> listaObtenerDetalleDimensional = (List<Sam3_Inspeccion_Get_DetalleDimensional_Result>)CapturasRapidasBd.Instance.ObtenerDetalleDimensional(int.Parse(id), lenguaje);
+                List<Sam3_Inspeccion_Get_DetalleDimensional_Result> listaObtenerDetalleDimensional = (List<Sam3_Inspeccion_Get_DetalleDimensional_Result>)CapturasRapidasBd.Instance.ObtenerDetalleDimensional(id, lenguaje);
                 
                 List<DetalleDimensional> listaDetalleDimensional = new List<DetalleDimensional>();
 
-                
-
-                List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaJuntasPorOrdenTrabajo = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(id, usuario, lenguaje);
+                List<Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result> listaJuntasPorOrdenTrabajo = (List<Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result>)InspeccionBD.Instance.ObtenerJuntasVisualDimensional(id.ToString(), usuario, lenguaje, sinCaptura== "Todos" ?1:0);
 
                 List<InspeccionDimensional.JuntaXSpool> listJuntaXSpool = new List<InspeccionDimensional.JuntaXSpool>();
 
-                foreach (Sam3_Inspeccion_Get_DetalleJunta_Result item in listaJuntasPorOrdenTrabajo)
+                foreach (Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result item in listaJuntasPorOrdenTrabajo)
                 {
                     listJuntaXSpool.Add(new InspeccionDimensional.JuntaXSpool
                     {
@@ -267,9 +265,10 @@ namespace BackEndSAM.Controllers
                         Resultado = item.Resultado,
                         ResultadoID = item.ResultadoID,
                         ListaJuntas = listJuntaXSpool,
-                        ListaJuntasSeleccionadas = InspeccionDimensionalController.ObtenerJuntasID((List<int?>)InspeccionBD.Instance.ObtenerDetalleJuntaSeleccionada(id, item.DefectoID.GetValueOrDefault(), usuario, lenguaje)),
+                        ListaJuntasSeleccionadas = InspeccionDimensionalController.ObtenerJuntasIDVisualDimensional((List<Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result>)InspeccionBD.Instance.ObtenerDetalleJuntaSeleccionadaVisualDimensional(id.ToString(), usuario, lenguaje)),
                     };
                     detalleDimensional.ListaJuntas = InspeccionDimensionalController.ObtenerJuntasSeleccionadas(detalleDimensional.ListaJuntas, detalleDimensional.ListaJuntasSeleccionadas);
+
                     listaDetalleDimensional.Add(detalleDimensional);
                 }
 

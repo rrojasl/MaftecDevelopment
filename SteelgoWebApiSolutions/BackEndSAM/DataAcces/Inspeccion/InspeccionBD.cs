@@ -40,6 +40,38 @@ namespace BackEndSAM.DataAcces
                 return _instance;
             }
         }
+
+        /// <summary>
+        /// Obtiene el detalle de la junta con respecto  la inspeccion visual dimensional por cada spool
+        /// </summary>
+        /// <param name="JsonCaptura"></param>
+        /// <param name="usuario"></param>
+        /// <param name="Lenguaje"></param>
+        /// <returns></returns>
+        public object ObtenerDetalleJunta(CapturaVisualDimensional.DetalleDatosJson JsonCaptura, Sam3_Usuario usuario, string Lenguaje, string juntasSeleccionadas)
+        {
+
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+
+                    List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaDetalleDatosJson = ctx.Sam3_Inspeccion_Get_DetalleJunta(int.Parse(JsonCaptura.OrdenTrabajoSpoolID), Lenguaje).ToList();
+                    return listaDetalleDatosJson;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
         /// <summary>
         /// Obtiene el detalle de la junta con respecto  la inspeccion
         /// </summary>
@@ -103,6 +135,37 @@ namespace BackEndSAM.DataAcces
         }
 
         /// <summary>
+        /// Obtiene las juntas con respecto  la inspeccion visual dimensional
+        /// </summary>
+        /// <param name="JsonCaptura"></param>
+        /// <param name="usuario"></param>
+        /// <param name="Lenguaje"></param>
+        /// <returns></returns>
+        public object ObtenerJuntasVisualDimensional(string OrdenTrabajoSpoolID, Sam3_Usuario usuario, string Lenguaje, int? todos)
+        {
+
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+
+                    List<Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result> listaDetalleDatosJson = ctx.Sam3_Inspeccion_VD_Get_JuntasXSpoolID(int.Parse(OrdenTrabajoSpoolID), Lenguaje, todos).ToList();
+                    return listaDetalleDatosJson;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// Obtiene el detalle de las juntas seleccionadas con respecto a  la inspeccion
         /// </summary>
         /// <param name="JsonCaptura"></param>
@@ -133,6 +196,37 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        
+        /// <summary>
+        /// Obtiene el detalle de las juntas seleccionadas con respecto a  la inspeccion visual dimensional
+        /// </summary>
+        /// <param name="JsonCaptura"></param>
+        /// <param name="usuario"></param>
+        /// <param name="Lenguaje"></param>
+        /// <returns></returns>
+        public object ObtenerDetalleJuntaSeleccionadaVisualDimensional(string OrdenTrabajoSpoolID, Sam3_Usuario usuario, string Lenguaje)
+        {
+
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+
+                    List<Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result> listaDetalleDatosSeleciconadoJson = ctx.Sam3_Inspeccion_VD_Get_JuntasXSpoolID(int.Parse(OrdenTrabajoSpoolID), Lenguaje,3).ToList();
+                    return listaDetalleDatosSeleciconadoJson;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
         /// <summary>
         /// Retorna el listado de numeros unicos ¿
         /// </summary>

@@ -13,11 +13,48 @@
     SuscribirEventoTaller();
     SuscribirEventoAgregarCapturaRapida();
     SuscribirEventoListaJuntas();
-   
+    SuscribirEventoChangeRadio();
+    SuscribirEventoFecha();
 };
-SuscribirEventos();
 
-SuscribirEventos();
+function SuscribirEventoFecha() {
+    endRangeDate = $("#FechaInspeccion").kendoDatePicker({
+        max: new Date()
+
+    });
+    endRangeDateV = $("#inputFechaVisual").kendoDatePicker({
+        max: new Date()
+
+    });
+
+    endRangeDateV.on("keydown", function (e) {
+        //if (e.keyCode == 13) {
+        //    PlanchaFecha();
+        //}
+    });
+
+};
+
+
+function SuscribirEventoChangeRadio() {
+    
+
+    $('input:radio[name=Muestra]:nth(0)').change(function () {
+        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+            limpiarJuntaMultiselect();
+            MostrarDetalleVisualDimensional();
+            FiltroMostrar(0);
+        }
+    });
+    $('input:radio[name=Muestra]:nth(1)').change(function () {
+        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+            limpiarJuntaMultiselect();
+            MostrarDetalleVisualDimensional();
+            FiltroMostrar(1);
+        }
+    });
+
+}
 
 function SuscribirEventoListaJuntas()
 {
@@ -29,7 +66,7 @@ function SuscribirEventoListaJuntas()
         autoBind: false,
         ignoreCase: true,
         change: function (e) {
-            alert();
+            
         }
     }).data("kendoMultiSelect");
 
@@ -49,7 +86,7 @@ function SuscribirEventoSpoolID() {
                 e.preventDefault();
                 $("#InputID").val("");
                 console.log("borrar datos");
-                displayMessage("Mensajes_error", dataItem.Status, '1');
+                displayNotify("Mensajes_error", dataItem.Status, '1');
             }
             else {
                 $("#InputID").val(dataItem.IDValido);
@@ -60,12 +97,14 @@ function SuscribirEventoSpoolID() {
         ,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
+            
             if ($("#InputID").val().length == 1) {
                 $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
             }
             if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
                 Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
-                AjaxObtenerListaTaller();
+                
+                MostrarDetalleVisualDimensional();
                // AjaxObtenerListaJuntas();
             }
             
@@ -79,11 +118,11 @@ function SuscribirEventoSpoolID() {
                 AjaxObtenerSpoolID();
                 
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("DimensionalVisualMensajeOrdenTrabajo", "", '1');
-            $("#InputOrdenTrabajo").focus();
+            displayNotify("DimensionalVisualMensajeOrdenTrabajo", "", '1');
+            //$("#InputOrdenTrabajo").focus();
         }
     });
 
@@ -107,10 +146,25 @@ function SuscribirEventoSpoolID() {
             $("#InputID").data("kendoComboBox").select();
         else if (e.keyCode == 13) {
             if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
-                AjaxobtenerDetalleDimensional($("#InputID").val());
-                AjaxObtenerJSonGrid();
-                deshabilitaSpool();
+               // AjaxobtenerDetalleDimensional($("#InputID").val());
+               //// AjaxObtenerJSonGrid();
+                // deshabilitaSpool();
+                MostrarDetalleVisualDimensional();
             }
+        }
+        else if (e.keyCode == 9) {
+
+            if ($("#InputID").data("kendoComboBox").text() == "" && tieneClase(e.currentTarget)) {
+                $("#InputID").data("kendoComboBox").select(0);
+                
+            }
+            else if (tieneClase(e.currentTarget)) {
+                $("#InputID").data("kendoComboBox").select(0);
+              
+            }
+          
+            $("#InputID").data("kendoComboBox").trigger("change");
+            $("#InputID").data("kendoComboBox").close();
         }
     });
 };
@@ -173,7 +227,9 @@ function SuscribirEventoInspector() {
         filter: "contains",
         index: 3
     });
-    AjaxObtenerListaInspector();
+
+  
+
     $('#inputInspector').closest('.k-widget').keydown(function (e) {
         if (e.keyCode == 13) {
             if ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined) {
@@ -193,8 +249,7 @@ function SuscribirEventoInspectorVisual() {
         filter: "contains",
         index: 3
     });
-    AjaxObtenerListaInspectorVisual();
-
+   
     $('#inputInspectorVisual').closest('.k-widget').keydown(function (e) {
         if (e.keyCode == 13) {
             if ($("#inputInspectorVisual").data("kendoComboBox").dataItem($("#inputInspectorVisual").data("kendoComboBox").select()) != undefined) {
@@ -214,7 +269,8 @@ function SuscribirEventoDefecto() {
         filter: "contains",
         index: 3
     });
-    AjaxObtenerListaDefectosDimensionales();
+
+
     $('#inputDefecto').closest('.k-widget').keydown(function (e) {
         if (e.keyCode == 13) {
             if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()) != undefined) {
@@ -245,7 +301,7 @@ function SuscribirEventoDefectoVisual() {
 
         }
     });
-    AjaxObtenerListaDefectosVisuales();
+    
 }
 function SuscribirEventoResultadoDimensional() {
 
@@ -391,8 +447,16 @@ function suscribirEventoCancelar() {
         limpiar();
     });
 }
+
+function limpiarJuntaMultiselect()
+{
+    $("#ListaJuntas").data("kendoMultiSelect").dataSource.data([]);
+    $("#ListaJuntas").data("kendoMultiSelect").value("");
+}
 function limpiar()
 {
+    limpiarJuntaMultiselect();
+
     $("#InputOrdenTrabajo").prop("disabled", false);
     $("#InputOrdenTrabajo").val("");
    // $("#InputOrdenTrabajo").focus();

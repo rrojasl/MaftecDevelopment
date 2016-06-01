@@ -12,42 +12,37 @@ function changeLanguageCall() {
     endRangeDateV.data("kendoDatePicker").setOptions({
         format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
     });
-    AjaxObtenerListaDefectosDimensionales();
-    AjaxObtenerListaDefectosVisuales();
+    
     CargarGrid();
     limpiar();
     $('#Guardar1').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
     $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
     document.title = _dictionary.InpeccionVisualEnlaceInspeccion[$("#language").data("kendoDropDownList").value()];
     opcionHabilitarView(false, "FieldSetView");
+    IniciarPreCargas();
 };
 function IniciarCapturaInspecion() {
-    CargarFecha();
+    
     asignarProyecto();
     SuscribirEventos();
-    AjaxCargaCamposPredeterminados();
+    
 };
+
+function IniciarPreCargas()
+{
+    AjaxObtenerListaDefectosDimensionales();
+    AjaxObtenerListaDefectosVisuales();
+    AjaxObtenerListaInspector();
+    AjaxObtenerListaInspectorVisual();
+    AjaxCargaCamposPredeterminados();
+
+}
+
 function asignarProyecto() {
     $("#InputOrdenTrabajo").val(Cookies.get('LetraProyecto') == undefined ? '' : Cookies.get('LetraProyecto'));
     $("#LabelProyecto").text('Proyecto :' + (Cookies.get('Proyecto') == undefined ? 'No hay ningun proyecto' : Cookies.get('Proyecto')));
 }
-function CargarFecha() {
-    endRangeDate = $("#FechaInspeccion").kendoDatePicker({
-        max: new Date()
-       
-    });
-    endRangeDateV = $("#inputFechaVisual").kendoDatePicker({
-        max: new Date()
-       
-    });
 
-    endRangeDateV.on("keydown", function (e) {
-        //if (e.keyCode == 13) {
-        //    PlanchaFecha();
-        //}
-    });
-
-};
 function ExisteJunta(Spool) {
     var jsonGrid = $("#grid").data("kendoGrid").dataSource._data;
     for (var i = 0; i < jsonGrid.length; i++) {
@@ -64,6 +59,15 @@ function DatoDefaultNumeroUnico2() {
 
     return "";
 }
+
+function MostrarDetalleVisualDimensional()
+{
+    AjaxobtenerDetalleDimensional($("#InputID").val());
+    AjaxObtenerListaTaller();
+    deshabilitaSpool();
+    
+}
+
 function CargarGrid() {
     kendo.ui.Grid.fn.editCell = (function (editCell) {
         return function (cell) {
@@ -393,6 +397,24 @@ function cancelarCaptura(e) {
     }
         
 };
+
+function FiltroMostrar(mostrar) {
+    var ds = $("#grid").data("kendoGrid").dataSource;
+
+    if (mostrar == 0) {
+        var curr_filters = ds.filter().filters;
+        ds.filter(curr_filters[0])
+        ds.sync();
+    }
+    else {
+        var filters = ds.filter();
+        filters.logic = "or"
+        filters.filters.push({ field: "Accion", operator: "eq", value: 2 });
+        ds.sync();
+    }
+}
+
+
 function PlanchaTaller() {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
     var filters = dataSource.filter();
