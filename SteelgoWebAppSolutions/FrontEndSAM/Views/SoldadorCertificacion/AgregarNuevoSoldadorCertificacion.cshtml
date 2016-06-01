@@ -68,7 +68,9 @@
                     <label id="lblNombrePQR"></label>
                     <input id="inputNombrePQR" />
                 </div>
-
+                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                    <label id="">&nbsp;</label>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-4" id="SCPasosSoldaduraDiv">
@@ -80,23 +82,25 @@
                     <label id="lblCedulaTuboPQR"></label>
                     <input id="inputCedulaTuboPQR" class="form-control general-input" />
                 </div>
-
-
+                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                    <label id="">&nbsp;</label>
+                </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-4" id="SCFechaInicioDiV">
-                    <label id="lblFechaInicioCertificado"></label>
+                    <label id="SoldadorCertificacionFechaInicioCertificado"></label>
                     <input id="inputFechaInicioCertificado" />
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4" id="SCFechaFinDiV">
-                    <label id="lblFechaFinCertificado"></label>
+                    <label id="SoldadorCertificacionFechaFinCertificado"></label>
                     <input id="inputFechaFinCertificado" />
                 </div>
-
+                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                    <label id="">&nbsp;</label>
+                </div>
             </div>
             <div class="row">
-
                 <div class="col-sm-6 col-md-6 col-lg-4" id="SCEspesorMinimoDiv">
                     <label id="lblEspesorMinimo"></label>
                     <input id="inputEspesorMinimo" />
@@ -105,9 +109,9 @@
                     <label id="lblEspesorMaximo"></label>
                     <input id="inputEspesorMaximo" />
                 </div>
-
-
-
+                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                    <label id="">&nbsp;</label>
+                </div>
             </div>
             <div class="row">
 
@@ -118,6 +122,9 @@
                 <div class="col-sm-6 col-md-6 col-lg-4" id="SCTipoPruebaDiv">
                     <label id="lblTipoPrueba"></label>
                     <input id="inputTipoPrueba" />
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                    <label id="">&nbsp;</label>
                 </div>
 
             </div>
@@ -130,6 +137,9 @@
                     <label id="lblProcesoSoldaduraPQR"></label>
                     <input type="text" id="inputProcesoSol" />
                     <input type="hidden"id="HddNuevoSoldadorCertificacionID" />
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                    <label id="">&nbsp;</label>
                 </div>
             </div>
             <div class="row">
@@ -187,6 +197,13 @@
 <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Ajax.js"></script>
 <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Handlers.js"></script>
 <script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Captura.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/SoldadorCertificacion/CrearSC/Seguridad.js"></script>
+
+<script type="text/javascript">
+    @section JavascriptDocumentReadyFunctions {
+    $authorizationModel["Edita SoldadortCertificacion"] = $SoldadorCertificacionSaveModel;
+    }
+</script>
 
 
 

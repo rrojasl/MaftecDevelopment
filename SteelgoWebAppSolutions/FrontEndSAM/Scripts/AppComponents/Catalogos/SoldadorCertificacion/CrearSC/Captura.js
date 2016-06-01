@@ -190,20 +190,25 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             Estatus: 1
         };
 
+
         if (
             ($("#inputSoldador").data("kendoComboBox").select() == -1) ||
             ($("#inputNombrePQR").data("kendoComboBox").select() == -1) ||
-            (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) == 0.0 ) ||
-            ($("#inputFechaInicioCertificado").val()=='') ||
+            (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) == 0.0) ||
+            ($("#inputFechaInicioCertificado").val() == '') ||
             ($("#inputFechaFinCertificado").val() == '') ||
             (parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) == 0.0) ||
             (parseFloat($("#inputEspesorMaximo").data("kendoNumericTextBox").value()) == 0.0) ||
-            (parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) > parseFloat($("#inputEspesorMaximo").data("kendoNumericTextBox").value())) ||
             (parseFloat($("#inputDiametroCalificado").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputTipoPrueba").data("kendoComboBox").select() == -1) ||
-            (parseFloat($("#inputPosicionPQR").data("kendoNumericTextBox").value())==0.0) ||
+            (parseFloat($("#inputPosicionPQR").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputProcesoSol").data("kendoComboBox").select() == -1)
            ) {
+            ListaDetalles[index].Estatus = 0;
+            displayNotify("MensajeCamposIncorrector", "", '2');
+        }
+        else if ((parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) > parseFloat($("#inputEspesorMaximo").data("kendoNumericTextBox").value()))) {
+            displayNotify("SoldadorCertificacionMensajeErrorEspesor", "", '2');
             ListaDetalles[index].Estatus = 0;
         }
 
@@ -231,9 +236,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             AjaxValidarExisteSoldadorCertificacion(Captura[0], tipo)
         }
     }
-    else {
-        displayNotify("MensajeCamposIncorrector", "", '2');
-    }
+
 
 
 }

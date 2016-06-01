@@ -5,7 +5,7 @@ _languageOrder = {
 }
 
 _dictionary = {
-    
+
     "SoldadorPQRExistente":
     {
         "es-MX": "El soldador ya existe con el pqr seleccionado ¿Deseas Actualizarlo?",
@@ -7227,10 +7227,10 @@ _dictionary = {
         "es-MX": "Catálogo WPS",
         "en-US": "WPS catalog"
     },
-     "menuWPS1": {
+    "menuWPS1": {
         "es-MX": "Catálogo WPS",
         "en-US": "WPS catalog"
-        },
+    },
     "menuConfiguracionSoldadura": {
         "es-MX": "Configuración de soldadura",
         "en-US": "Welging Configuration"
@@ -8128,6 +8128,13 @@ _dictionary = {
 
 
     //#region  SoldadorCertificacion
+
+
+    "SoldadorCertificacionMensajeErrorEspesor": {
+        "es-MX": "El espesor maximo debe ser superior al minimo",
+        "en-US": "The maximum thickness needs to be greater than minimum"
+    },
+
     "SoldadorCertificacionID": {
         "es-MX": "SoldadorCertificacionID",
         "en-US": "SoldadorCertificacionID"
@@ -8165,8 +8172,8 @@ _dictionary = {
         "en-US": "Certificate tube"
     },
     "SoldadorCertificacionDiametroCalificadoPQR": {
-        "es-MX": "Diametro calificado",
-        "en-US": "Diameter qualified"
+        "es-MX": "Diametro C.",
+        "en-US": "Diameter Q."
     },
     "SoldadorCertificacionProcesoSoldaduraPQR": {
         "es-MX": "Proceso soldadura",
@@ -8181,26 +8188,26 @@ _dictionary = {
         "en-US": "F"
     },
     "SoldadorCertificacionFechaInicioCertificado": {
-        "es-MX": "Vigencia de:",
-        "en-US": "Validity of"
+        "es-MX": "Desde:",
+        "en-US": "From:"
     },
     "SoldadorCertificacionFechaFinCertificado": {
-        "es-MX": "Vigencia asta:",
-        "en-US": "Effect until"
+        "es-MX": "Hasta:",
+        "en-US": "Until:"
     },
 
     "SoldadorCertificacionEspesorMinimo": {
-        "es-MX": "Espesor mínimo",
-        "en-US": "Minimum thickness"
+        "es-MX": "E. min",
+        "en-US": "Min T"
     },
     "SoldadorCertificacionEspesorMaximo": {
-        "es-MX": "Espesor maximo",
-        "en-US": "Maximum thickness"
+        "es-MX": "E. max",
+        "en-US": "Max T"
     },
 
     "SoldadorCertificacionPasosSoldadura": {
-        "es-MX": "Num Pasos",
-        "en-US": "Minimum thickness"
+        "es-MX": "No Pasos",
+        "en-US": "Steps No."
     },
     "SoldadorCertificacionPorcentajeJuntasRequiere": {
         "es-MX": "Porcentaje de juntas que requiere",
@@ -8211,7 +8218,10 @@ _dictionary = {
         "es-MX": "¿Certificado activo?",
         "en-US": "Active certificate?"
     },
-
+    "SoldadorCertificacionFechaCertificacion": {
+        "es-MX": "FECHA CERTIFICACIÓN",
+        "en-US": "CERTIFICATION DATE"
+    },
     "lblValidaEspesorMaximoSoldadorCertificación": {
         "es-MX": "El Campo 'ESPESOR MÁXIMO', solo acepta valores numéricos'",
         "en-US": "The Field 'MAXIUM THICKNESS', accepts only numeric values"
@@ -8226,7 +8236,10 @@ _dictionary = {
         "es-MX": "El Campo 'PORCENTAJE DE JUNTAS QUE REQUIERE', solo acepta valores numéricos'",
         "en-US": "The Field 'PERCENTAGE OF MEETINGS REQUIRED', accepts only numeric values"
     },
-
+    "CapturaSoldadorCertificacionPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de Certificación?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of Certification?"
+    },
 
 
     //#endregion
