@@ -8224,7 +8224,7 @@ _dictionary = {
     },
     "lblValidaEspesorMaximoSoldadorCertificación": {
         "es-MX": "El Campo 'ESPESOR MÁXIMO', solo acepta valores numéricos'",
-        "en-US": "The Field 'MAXIUM THICKNESS', accepts only numeric values"
+        "en-US": "The Field 'MAXIMUM THICKNESS', accepts only numeric values"
     },
 
     "lblValidaEspesorMinimoSoldadorCertificación": {
@@ -8240,7 +8240,10 @@ _dictionary = {
         "es-MX": "¿Está seguro de cancelar el detalle de la captura de Certificación?",
         "en-US": "Are you sure you want to cancel the detail of the capture of Certification?"
     },
-
+    "CapturaSoldadorCertificacionEspesorLimiteMaximo": {
+        "es-MX": "El espesor maximo es ilimitado",
+        "en-US": "The maximum thickness is unlimited"
+    },
 
     //#endregion
 
