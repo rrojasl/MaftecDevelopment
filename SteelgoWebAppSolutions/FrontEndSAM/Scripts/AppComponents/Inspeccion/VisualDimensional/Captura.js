@@ -167,20 +167,19 @@ function CargarGrid() {
             numeric: true,
         },
         columns: [
-            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: true,width: "55px"  },
-            { field: "Taller", title: _dictionary.DimensionalVisualHeadeTaller[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxTaller ,width: "55px" },
-            { field: "Resultado", title: _dictionary.DimensionalVisualHeadeResultado[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderOptionResultado, width: "55px" },
-            { field: "Defectos", title: _dictionary.DimensionalVisualHeaderDefecto[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxDefectos, width: "55px" },
-            { field: "Inspector", title: _dictionary.DimensionalVisualHeaderInspectorDimesional[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxInspector, width: "55px" },
+            { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "55px" },
+            { field: "Taller", title: _dictionary.DimensionalVisualHeadeTaller[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTaller, width: "55px" },
+            { field: "Resultado", title: _dictionary.DimensionalVisualHeadeResultado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderOptionResultado, width: "55px" },
+            { field: "Defectos", title: _dictionary.DimensionalVisualHeaderDefecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxDefectos, width: "55px" },
+            { field: "Inspector", title: _dictionary.DimensionalVisualHeaderInspectorDimesional[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxInspector, width: "55px" },
             { field: "FechaInspeccion", title: _dictionary.DimensionalVisualHeaderFechaDimesional[$("#language").data("kendoDropDownList").value()], type: "date", filterable: true, format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], width: "55px" },
-            { field: "NumeroUnico1", title: _dictionary.DimensionalVisualNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxNumeroUnico1, width: "55px" },
-            { field: "NumeroUnico2", title: _dictionary.DimensionalVisualNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxNumeroUnico2, width: "55px" },
+            { field: "NumeroUnico1", title: _dictionary.DimensionalVisualNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico1, width: "55px" },
+            { field: "NumeroUnico2", title: _dictionary.DimensionalVisualNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico2, width: "55px" },
 
-            { command: { text: _dictionary.ListadoLlegadaMaterial0017[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "99px" }
+            { command: { text: _dictionary.ListadoLlegadaMaterial0017[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "99px" },
+            { command: { text: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarCaptura }, title: "", width: "99px" }
         ],
-        filterable: {
-            extra: false
-        },
+        filterable: getGridFilterableMaftec(),
         beforeEdit: function (e) {
             var columnIndex = this.cellIndex(e.container);
             var fieldName = this.thead.find("th").eq(columnIndex).data("field");
@@ -396,6 +395,89 @@ function cancelarCaptura(e) {
         }
     }
         
+};
+
+function limpiarCaptura(e) {
+    e.preventDefault();
+    if ($("#language").val() == "es-MX") {
+        if ($('#Guardar').text().trim() != "Editar") {
+            var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+            var spoolIDRegistro = dataItem.SpoolID;
+            windowTemplate = kendo.template($("#windowTemplate").html());
+
+            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                iframe: true,
+                title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                visible: false, //the window will not appear before its .open method is called
+                width: "auto",
+                height: "auto",
+                modal: true,
+                animation: {
+                    close: false,
+                    open: false
+                }
+            }).data("kendoWindow");
+
+            ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
+                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+            ventanaConfirm.open().center();
+
+            $("#yesButton").click(function (handler) {
+                var dataSource = $("#grid").data("kendoGrid").dataSource;
+                dataItem.Accion = 3;
+                if (dataItem.InspeccionVisualID == 0)
+                    dataSource.remove(dataItem);
+                $("#grid").data("kendoGrid").dataSource.sync();
+                ventanaConfirm.close();
+            });
+            $("#noButton").click(function (handler) {
+                ventanaConfirm.close();
+            });
+
+
+        }
+    }
+    else {
+        if ($('#Guardar').text().trim() != "Edit") {
+            var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+            var spoolIDRegistro = dataItem.SpoolID;
+            var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+            var spoolIDRegistro = dataItem.SpoolID;
+            windowTemplate = kendo.template($("#windowTemplate").html());
+
+            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                iframe: true,
+                title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                visible: false, //the window will not appear before its .open method is called
+                width: "auto",
+                height: "auto",
+                modal: true,
+                animation: {
+                    close: false,
+                    open: false
+                }
+            }).data("kendoWindow");
+
+            ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
+                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+            ventanaConfirm.open().center();
+
+            $("#yesButton").click(function (handler) {
+                var dataSource = $("#grid").data("kendoGrid").dataSource;
+                dataItem.Accion = 3;
+                if (dataItem.InspeccionVisualID == 0)
+                    dataSource.remove(dataItem);
+                $("#grid").data("kendoGrid").dataSource.sync();
+                ventanaConfirm.close();
+            });
+            $("#noButton").click(function (handler) {
+                ventanaConfirm.close();
+            });
+        }
+    }
+
 };
 
 function FiltroMostrar(mostrar) {
