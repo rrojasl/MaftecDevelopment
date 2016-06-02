@@ -12,7 +12,7 @@ function changeLanguageCall() {
     endRangeDateV.data("kendoDatePicker").setOptions({
         format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
     });
-    
+
     CargarGrid();
     limpiar();
     $('#Guardar1').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
@@ -22,14 +22,13 @@ function changeLanguageCall() {
     IniciarPreCargas();
 };
 function IniciarCapturaInspecion() {
-    
+
     asignarProyecto();
     SuscribirEventos();
-    
+
 };
 
-function IniciarPreCargas()
-{
+function IniciarPreCargas() {
     AjaxObtenerListaDefectosDimensionales();
     AjaxObtenerListaDefectosVisuales();
     AjaxObtenerListaInspector();
@@ -46,7 +45,7 @@ function asignarProyecto() {
 function ExisteJunta(Spool) {
     var jsonGrid = $("#grid").data("kendoGrid").dataSource._data;
     for (var i = 0; i < jsonGrid.length; i++) {
-        if ( jsonGrid[i].JuntaID == Spool) {
+        if (jsonGrid[i].JuntaID == Spool) {
             return false;
         }
     }
@@ -60,12 +59,11 @@ function DatoDefaultNumeroUnico2() {
     return "";
 }
 
-function MostrarDetalleVisualDimensional()
-{
+function MostrarDetalleVisualDimensional() {
     AjaxobtenerDetalleDimensional($("#InputID").val());
     AjaxObtenerListaTaller();
     deshabilitaSpool();
-    
+
 }
 
 function CargarGrid() {
@@ -126,7 +124,7 @@ function CargarGrid() {
                         Resultado: { type: "string", editable: true },
                         ResultadoID: { type: "string", editable: true },
                         TallerID: { type: "string", editable: true },
-                        Taller: { type: "string", editable: true},
+                        Taller: { type: "string", editable: true },
                         DefectosID: { type: "string", editable: true },
                         Defectos: { type: "string", editable: true },
                         InspectorID: { type: "string", editable: true },
@@ -176,8 +174,8 @@ function CargarGrid() {
             { field: "NumeroUnico1", title: _dictionary.DimensionalVisualNumeroUnico1[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico1, width: "55px" },
             { field: "NumeroUnico2", title: _dictionary.DimensionalVisualNumeroUnico2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxNumeroUnico2, width: "55px" },
 
-            { command: { text: _dictionary.ListadoLlegadaMaterial0017[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "99px" },
-            { command: { text: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarCaptura }, title: "", width: "99px" }
+            { command: { text: _dictionary.ListadoLlegadaMaterial0017[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "99px" },
+            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarCaptura }, title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()], width: "40px" }
         ],
         filterable: getGridFilterableMaftec(),
         beforeEdit: function (e) {
@@ -198,7 +196,7 @@ function CargarGrid() {
 function isEditable(fieldName, model) {
     if (fieldName === "Defectos") {
         // condition for the field "ProductName"
-        return  model.Resultado !== "Aprobado";
+        return model.Resultado !== "Aprobado";
     }
 
     return true; // default to editable
@@ -394,91 +392,31 @@ function cancelarCaptura(e) {
             });
         }
     }
-        
+
 };
 
 function limpiarCaptura(e) {
     e.preventDefault();
-    if ($("#language").val() == "es-MX") {
-        if ($('#Guardar').text().trim() != "Editar") {
-            var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
-            var spoolIDRegistro = dataItem.SpoolID;
-            windowTemplate = kendo.template($("#windowTemplate").html());
+    if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
 
-            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
-                iframe: true,
-                title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
-                visible: false, //the window will not appear before its .open method is called
-                width: "auto",
-                height: "auto",
-                modal: true,
-                animation: {
-                    close: false,
-                    open: false
-                }
-            }).data("kendoWindow");
+        var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+        itemToClean.Taller = "";
+        itemToClean.TallerID = "";
+        itemToClean.Resultado = "";
+        itemToClean.InspectorID = "";
+        itemToClean.Inspector = "";
+        itemToClean.FechaInspeccion = "";
+        itemToClean.NumeroUnico1 = "";
+        itemToClean.NumeroUnico2 = "";
+        itemToClean.NumeroUnico1ID = "";
+        itemToClean.NumeroUnico2ID = "";
 
-            ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
-                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+        
+        var dataSource = $("#grid").data("kendoGrid").dataSource;
+        dataSource.sync();
 
-            ventanaConfirm.open().center();
-
-            $("#yesButton").click(function (handler) {
-                var dataSource = $("#grid").data("kendoGrid").dataSource;
-                dataItem.Accion = 3;
-                if (dataItem.InspeccionVisualID == 0)
-                    dataSource.remove(dataItem);
-                $("#grid").data("kendoGrid").dataSource.sync();
-                ventanaConfirm.close();
-            });
-            $("#noButton").click(function (handler) {
-                ventanaConfirm.close();
-            });
-
-
-        }
     }
-    else {
-        if ($('#Guardar').text().trim() != "Edit") {
-            var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
-            var spoolIDRegistro = dataItem.SpoolID;
-            var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
-            var spoolIDRegistro = dataItem.SpoolID;
-            windowTemplate = kendo.template($("#windowTemplate").html());
-
-            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
-                iframe: true,
-                title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
-                visible: false, //the window will not appear before its .open method is called
-                width: "auto",
-                height: "auto",
-                modal: true,
-                animation: {
-                    close: false,
-                    open: false
-                }
-            }).data("kendoWindow");
-
-            ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
-                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
-
-            ventanaConfirm.open().center();
-
-            $("#yesButton").click(function (handler) {
-                var dataSource = $("#grid").data("kendoGrid").dataSource;
-                dataItem.Accion = 3;
-                if (dataItem.InspeccionVisualID == 0)
-                    dataSource.remove(dataItem);
-                $("#grid").data("kendoGrid").dataSource.sync();
-                ventanaConfirm.close();
-            });
-            $("#noButton").click(function (handler) {
-                ventanaConfirm.close();
-            });
-        }
-    }
-
-};
+}
 
 function FiltroMostrar(mostrar) {
     var ds = $("#grid").data("kendoGrid").dataSource;
