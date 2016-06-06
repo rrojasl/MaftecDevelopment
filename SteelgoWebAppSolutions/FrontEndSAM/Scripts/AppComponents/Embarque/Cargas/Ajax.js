@@ -4,8 +4,9 @@
     $Embarque.Embarque.read({ token: Cookies.get("token"), embarquePlanaID: EmbarquePlanaID }).done(function (data) {
         if (data.length > 0) {
             $("#inputProveedor").data("kendoComboBox").value("");
-            $("#inputProveedor").data("kendoComboBox").dataSource.data(data);
             $("#inputProveedor").data("kendoComboBox").trigger("change");
+            data.unshift({ Nombre: "Agregar nuevo proveedor", TransportistaID: 0 });
+            $("#inputProveedor").data("kendoComboBox").dataSource.data(data);
             AjaxCargarPaquetes();
         } else {
             $("#inputProveedor").data("kendoComboBox").value("");
@@ -18,14 +19,14 @@ function AjaxCargarPlanasPlacas() {
     loadingStart();
     EmbarquePlanaID = 0;
     $CargaEmbarque.CargaEmbarque.read({ token: Cookies.get("token"), transportistaID: $("#inputProveedor").val(), embarquePlanaID: EmbarquePlanaID, lenguaje: $("#language").val() }).done(function (data) {
-        if (data.length > 0) {
-            $("#inputEmbarqueCargaPLacaPlana").data("kendoComboBox").value("");
+        $("#inputEmbarqueCargaPLacaPlana").data("kendoComboBox").value("");
+        $("#inputEmbarqueCargaPLacaPlana").data("kendoComboBox").dataSource.data(data);
+
+        if (data.length >= 0) {
+            data.unshift({ EmbarquePlanaID: -1, Placas: _dictionary.PinturaCargaAgregarNuevoCarro[$("#language").data("kendoDropDownList").value()], estatus:"", vehiculoID: -1});
+
             $("#inputEmbarqueCargaPLacaPlana").data("kendoComboBox").dataSource.data(data);
-            
-        } else {
-            
-            $("#inputEmbarqueCargaPLacaPlana").data("kendoComboBox").value("");
-        };
+        }
         loadingStop();
     });
 }
@@ -127,7 +128,7 @@ function AjaxAgregarCarga() {
                             ds.add(array[i]);
                         }
                         else
-                            displayMessage("EmbarqueCargaInformacionExistente", "", '2');
+                            displayNotify("EmbarqueCargaInformacionExistente", "", '2');
                     }
 
                     var piezas = String(ds._data.length);
@@ -140,12 +141,12 @@ function AjaxAgregarCarga() {
                     $("#lblEmbarqueCargaToneladasCargadas").text(textoToneladasCargadas);
                 }
                 else {
-                    displayMessage("", data[0].Mensaje, '2');
+                    displayNotify("", data[0].Mensaje, '2');
                 }
             }
         }
         else {
-            displayMessage("", "El spool ya esta empaquetado en: " + data[0].Paquete, '2');
+            displayNotify("", "El spool ya esta empaquetado en: " + data[0].Paquete, '2');
         }
         loadingStop();
     });
@@ -199,11 +200,11 @@ function ajaxGuardar(arregloCaptura) {
         Captura[0].Detalles = ListaDetalles;
         $CargaEmbarque.CargaEmbarque.create(Captura[0], { token: Cookies.get("token"), proveedorID: $("#inputProveedor").val(), vehiculoID: $("#inputEmbarqueCargaPLacaPlana").val(), embarquePlanaID: EmbarquePlanaID }).done(function (data) {
             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                displayMessage("EmbarqueCargaGuardar", "", '1');
+                displayNotify("EmbarqueCargaGuardar", "", '1');
                 ajaxCargarSpoolXPlaca();
             }
             else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                displayMessage("EmbarqueCargaErrorGuardar", "", '2');
+                displayNotify("EmbarqueCargaErrorGuardar", "", '2');
                 opcionHabilitarView(false, "FieldSetView");
             }
             $("#grid").data("kendoGrid").dataSource.sync();
@@ -211,7 +212,7 @@ function ajaxGuardar(arregloCaptura) {
         });
     } catch (e) {
         loadingStop();
-        displayMessage("Mensajes_error", e.message, '0');
+        displayNotify("Mensajes_error", e.message, '0');
 
     }
 };
@@ -230,27 +231,27 @@ function ajaxCerrarPlana() {
         if (EmbarquePlanaID != 0 && (EstatusPlanaCerrar == "Abierta" || EstatusPlanaCerrar == "Open")) {
             $CargaEmbarque.CargaEmbarque.update(CierraPlana, { token: Cookies.get("token") }).done(function (data) {
                 if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                    displayMessage("EmbarqueCargaCerrarPlana", "", '1');
+                    displayNotify("EmbarqueCargaCerrarPlana", "", '1');
                     $('#btnEmbarqueCerrarPlana').attr("disabled", true);
                     var labelCerrada = $("#language").val() == "es-MX" ? "Cerrada" : "Closed";
                     $("#lblEstatus").text(labelCerrada);
                     $('.btnCerrarPlana').css('display', 'none');
                 }
                 else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                    displayMessage("EmbarqueCargaErrorCerrarPlana", "", '2');
+                    displayNotify("EmbarqueCargaErrorCerrarPlana", "", '2');
                 }
                 $("#grid").data("kendoGrid").dataSource.sync();
                 loadingStop();
             });
         }
         else {
-            displayMessage("EmbarqueCargaErrorCerrarPlana", "", "1");
+            displayNotify("EmbarqueCargaErrorCerrarPlana", "", "1");
             loadingStop();
         }
         
     } catch (e) {
         loadingStop();
-        displayMessage("Mensajes_error", e.message, '0');
+        displayNotify("Mensajes_error", e.message, '0');
 
     }
 }
@@ -275,7 +276,7 @@ function ajaxCargarSpoolXPlaca() {
                 ds.add(array[i]);
             }
             else
-                displayMessage("EmbarqueCargaInformacionExistente", "", '2');
+                displayNotify("EmbarqueCargaInformacionExistente", "", '2');
         }
 
         var piezas = String(ds._data.length);
@@ -329,10 +330,10 @@ function AjaxCrearPaquete(arregloCaptura, accion, paqueteID) {
                     }
                 }
                 AjaxCargarPaquetes();
-                displayMessage("EmbarqueCargaCuadranteActualizado", "", '1');
+                displayNotify("EmbarqueCargaCuadranteActualizado", "", '1');
             }
             else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                displayMessage("EmbarqueCargaErrorCuadranteActualizado", "", '3');
+                displayNotify("EmbarqueCargaErrorCuadranteActualizado", "", '3');
             }
             $("#grid").data("kendoGrid").dataSource.sync();
             loadingStop();
@@ -341,7 +342,7 @@ function AjaxCrearPaquete(arregloCaptura, accion, paqueteID) {
 
     } catch (e) {
         loadingStop();
-        displayMessage("Mensajes_error", e.message, '0');
+        displayNotify("Mensajes_error", e.message, '0');
 
     }
 

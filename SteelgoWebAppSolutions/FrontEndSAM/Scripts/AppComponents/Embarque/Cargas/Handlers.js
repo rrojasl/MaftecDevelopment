@@ -16,6 +16,19 @@ function SuscribirEventos() {
     SuscribirEventoCancelarPaquete();
     SuscribirEventoGuardar();
     SuscribirEventoCerrarPlana();
+    SuscribirEventoNuevoProveedor();
+}
+
+function SuscribirEventoNuevoProveedor() {
+    $("#windowPopUp").kendoWindow({
+        change: function (e) {
+            CargarGridPopUp().data("kendoWindow").data("kendoWindow").center().open()
+        }
+    });
+}
+
+function llenarFormularioNuevoProveedor() {
+    var value = this.value();
 }
 
 function SuscribirEventoCerrarPlana() {
@@ -53,11 +66,11 @@ function SuscribirEventoGuardar() {
                 }
             }
             else {
-                displayMessage("EmbarqueCargaMensajeErrorPlana", "", '2');
+                displayNotify("EmbarqueCargaMensajeErrorPlana", "", '2');
             }
         }
         else {
-            displayMessage("EmbarqueCargaMensajeErrorProveedor", "", '2');
+            displayNotify("EmbarqueCargaMensajeErrorProveedor", "", '2');
         }
     });
 
@@ -167,6 +180,7 @@ function SuscribirEventoSpoolID() {
         dataTextField: "IDValido",
         dataValueField: "Valor",
         suggest: true,
+        delay: 10,
         filter: "contains",
         index: 3,
         select: function (e) {
@@ -176,7 +190,7 @@ function SuscribirEventoSpoolID() {
             if (dataItem.Status != "1") {
                 e.preventDefault();
                 $("#InputID").val("");
-                displayMessage("Mensajes_error", dataItem.Status, '1');
+                displayNotify("Mensajes_error", dataItem.Status, '1');
 
             }
             else {
@@ -214,10 +228,10 @@ function SuscribirEventoSpoolID() {
             try {
                 AjaxObtenerSpoolID();
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaArmadoMensajeOrdenTrabajo", "", '2');
+            displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '2');
             
         }
     });
@@ -246,7 +260,7 @@ function SuscribirEventoSpoolID() {
                 }
             }
             else {
-                displayMessage("EmbarqueCargaErrorAgregar", "", '1');
+                displayNotify("EmbarqueCargaErrorAgregar", "", '1');
             }
         }
         
@@ -360,28 +374,28 @@ function SuscribirEventoPaquete() {
 function SuscribirEventoAgregar() {
     $('#btnAgregar').click(function (e) {
         if ($("#lblEstatus").text().toLowerCase() != "cerrada" && $("#lblEstatus").text().toLowerCase() != "closed") {
-        if (ObtenerTipoConsulta() == 1) {
-            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
-                AjaxAgregarCarga();
+            if (ObtenerTipoConsulta() == 1) {
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+                    AjaxAgregarCarga();
+                }
+                else {
+                    $("#InputID").data("kendoComboBox").value("");
+                }
+            }
+            else if (ObtenerTipoConsulta() == 2) {
+                if ($("#inputPaquete").data("kendoComboBox").dataItem($("#inputPaquete").data("kendoComboBox").select()) != undefined) {
+                    AjaxAgregarCarga();
+                }
+                else {
+                    $("#inputPaquete").data("kendoComboBox").value("");
+                }
             }
             else {
-                $("#InputID").data("kendoComboBox").value("");
-            }
-        }
-        else if (ObtenerTipoConsulta() == 2) {
-            if ($("#inputPaquete").data("kendoComboBox").dataItem($("#inputPaquete").data("kendoComboBox").select()) != undefined) {
                 AjaxAgregarCarga();
-            }
-            else {
-                $("#inputPaquete").data("kendoComboBox").value("");
             }
         }
         else {
-            AjaxAgregarCarga();
-        }
-        }
-        else {
-            displayMessage("EmbarqueCargaErrorAgregar", "", '1');
+            displayNotify("EmbarqueCargaErrorAgregar", "", '1');
         }
     });
 }
@@ -396,7 +410,7 @@ function SuscribirEventoCrearPaquete() {
             }
         }
         else {
-            displayMessage("", "", '1');
+            displayNotify("", "", '1');
             existe = true;
             return existe;
         }
@@ -418,7 +432,7 @@ function SuscribirEventoAgregarPaquete() {
         }
         else {
             //  alert('no hay nada seleccionado');
-            displayMessage("EmbarqueCargaSeAgregaPaquete", "", '2');
+            displayNotify("EmbarqueCargaSeAgregaPaquete", "", '2');
         }
     });
 
