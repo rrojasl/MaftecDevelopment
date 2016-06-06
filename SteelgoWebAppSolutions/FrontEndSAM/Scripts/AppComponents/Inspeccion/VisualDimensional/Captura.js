@@ -144,7 +144,8 @@ function CargarGrid() {
                 logic: "or",
                 filters: [
                   { field: "Accion", operator: "eq", value: 1 },
-                  { field: "Accion", operator: "eq", value: 2 }
+                  { field: "Accion", operator: "eq", value: 2 },
+                  { field: "Accion", operator: "eq", value: 4 }
                 ]
             },
             pageSize: 20,
@@ -410,7 +411,7 @@ function limpiarCaptura(e) {
         itemToClean.NumeroUnico2 = "";
         itemToClean.NumeroUnico1ID = "";
         itemToClean.NumeroUnico2ID = "";
-
+        itemToClean.Accion = 4;
         
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         dataSource.sync();
