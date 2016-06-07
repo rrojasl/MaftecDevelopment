@@ -7678,6 +7678,10 @@ _dictionary = {
         "es-MX": "PQR",
         "en-US": "PQR"
     },
+    "lblCrearPQRNavegacion": {
+        "es-MX": "Nuevo PQR",
+        "en-US": "New PQR"
+    },
     "lblPQRNombre": {
         "es-MX": "Nombre",
         "en-US": "Name"
@@ -7695,11 +7699,11 @@ _dictionary = {
         "en-US": "PWHT"
     },
     "lblPQREspesorRelleno": {
-        "es-MX": "Esp Relleno",
-        "en-US": "Fill Thck"
+        "es-MX": "E. Relleno",
+        "en-US": "Fill Thk"
     },
     "lblPQREspesorRaiz": {
-        "es-MX": "Esp Raiz",
+        "es-MX": "E. Raiz",
         "en-US": "Root Thck"
     },
     "lblPQRProcesoSoldaduraRelleno": {

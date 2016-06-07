@@ -11,7 +11,7 @@
         <a href="#"><span id="ConfiguracionSoldaduraLabelNavegacion"></span></a>
     </li>
     <li class="active">
-        <a href="@Url.Action("PQR", "PQR")"><span id="lblPQRNavegacion"></span></a>
+        <a href="@Url.Action("CrearPQR", "PQR")"><span id="lblCrearPQRNavegacion"></span></a>
     </li>
 }
 
@@ -70,14 +70,16 @@
                     <label id="lblPQRNombre"> </label>
                     <input type="text" id="NombreId" class="form-control general-input" />
                 </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRPreheatDiv">
+                <div class=" col-sm-6 col-md-6 col-lg-2" id="PQRPreheatDiv">
                     <label id="lblPQRPREHEAT"></label>
                     <input type="checkbox" id="chkPreheat" data-bind="checked: optionCheck" />
                 </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRPWHTDiv">
-
+                <div class=" col-sm-6 col-md-6 col-lg-2" id="PQRPWHTDiv">
                     <label id="lblPQRPWHT"></label>
                     <input type="checkbox" id="chkPwht" data-bind="checked: optionCheckPWHT" />
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
                 </div>
             </div>
             <div class="row">
@@ -85,53 +87,67 @@
                     <label id="lblPQREspesorRelleno"></label>
                     <input type="text" id="EspesorRelleno" class="form-control" />
                 </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesorRaizDiV">
-                    <label id="lblPQREspesorRaiz"></label>
-                    <input type="text" id="EspesorRaiz" class="form-control" />
-                </div>
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRProcesoSoldaduraRellenoDiv">
                     <label id="lblPQRProcesoSoldaduraRelleno"></label>
                     <input id="ProcesoSoldaduraRellenoID" class="" />
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
+                </div>
             </div>
             <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQREspesorRaizDiV">
+                    <label id="lblPQREspesorRaiz"></label>
+                    <input type="text" id="EspesorRaiz" class="form-control" />
+                </div>
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRProcesoSoldaduraRaizDiv">
                     <label id="lblPQRProcesoSoldaduraRaiz"></label>
                     <input id="ProcesoSoldaduraRaizID" class="" />
                 </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRNumeroPDiv">
-                    <label id="lblPQRNumeroP"></label>
-                    <input id="NumeroPID" class="form-control general-input" />
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
                 </div>
+            </div>
+            <div class="row">
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoPMaterialBase1Div">
                     <label id="lblPQRGrupoPMaterialBase1"></label>
                     <input id="GrupoPMaterialBase1ID" class="" />
                 </div>
-            </div>
-            <div class="row">
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoPMaterialBase2Div">
                     <label id="lblPQRGrupoPMaterialBase2"></label>
                     <input id="GrupoPMaterialBase2ID" class="" />
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRAporteDiv">
                     <label id="lblPQRAporte"></label>
                     <input id="AporteID" class="form-control general-input" />
-                </div>
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRMezclaDiv">
-                    <label id="lblPQRMezcla"></label>
-                    <input id="MezclaID" class="form-control general-input" />
-                </div>
-
-            </div>
-            <div class="row">
-                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRRespaldoDiv">
-                    <label id="lblPQRRespaldo"></label>
-                    <input id="RespaldoID" class="form-control general-input" />
                 </div>
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRGrupoFDiv">
                     <label id="lblPQRGrupoF"></label>
                     <input id="GrupoFID" class="form-control general-input" />
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRMezclaDiv">
+                    <label id="lblPQRMezcla"></label>
+                    <input id="MezclaID" class="form-control general-input" />
+                </div>
+                <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRRespaldoDiv">
+                    <label id="lblPQRRespaldo"></label>
+                    <input id="RespaldoID" class="form-control general-input" />
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label id="">&nbsp;</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class=" col-sm-6 col-md-6 col-lg-4" id="PQRCodigoDiv">
                     <label id="lblPQRCodigo"></label>
                     <input id="CodigoID" class="" />
@@ -184,9 +200,10 @@
 <script src="~/Scripts/AppComponents/Catalogos/PQR/CrearPQR/Ajax.js"></script>
 <script src="~/Scripts/AppComponents/Catalogos/PQR/CrearPQR/Handler.js"></script>
 <script src="~/Scripts/AppComponents/Catalogos/PQR/CrearPQR/CrearPQR.js"></script>
+<script src="~/Scripts/AppComponents/Catalogos/PQR/CrearPQR/Seguridad.js"></script>
 
 <script>
     @section JavascriptDocumentReadyFunctions {
-    //$authorizationModel["Edita WPS"] = $WPSSaveModel;
+        $authorizationModel["Edita PQR"] = $PQRModel;
     }
 </script>

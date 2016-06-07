@@ -7,15 +7,14 @@ suscribirEventos();
 
 function suscribirEventoBlur() {
     $("#NombreId").blur(function (e) {
-        AjaxExistePQR();
+        AjaxExistePQR(3);//se pone un tres  para indicar si se guarda o no el registro.
     });
 }
 
 function suscribirEventoGuardar() {
     $('.accionGuardar').click(function (e) {
         if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-            AjaxGuardar(0);
-            opcionHabilitarView(true);
+            AjaxExistePQR(0);
         }
         else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
             opcionHabilitarView(false);
@@ -24,7 +23,7 @@ function suscribirEventoGuardar() {
 
     $('#btnGuardarYNuevo').click(function (e) {
         if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
-            AjaxGuardar(1);
+            AjaxExistePQR(1);
         }
         else if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0082[$("#language").data("kendoDropDownList").value()])
             opcionHabilitarView(false, "FieldSetView")
@@ -41,7 +40,6 @@ function opcionHabilitarView(valor, name) {
         $("#EspesorRaiz").data("kendoNumericTextBox").enable(false);
         $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").enable(false);
         $("#ProcesoSoldaduraRaizID").data("kendoComboBox").enable(false);
-        $("#NumeroPID").attr('disabled', true);
         $("#GrupoPMaterialBase1ID").data("kendoComboBox").enable(false);
         $("#GrupoPMaterialBase2ID").data("kendoComboBox").enable(false);
         $("#AporteID").attr('disabled', true);
@@ -61,7 +59,6 @@ function opcionHabilitarView(valor, name) {
         $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
         $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").enable(true);
         $("#ProcesoSoldaduraRaizID").data("kendoComboBox").enable(true);
-        $("#NumeroPID").attr('disabled', false);
         $("#GrupoPMaterialBase1ID").data("kendoComboBox").enable(true);
         $("#GrupoPMaterialBase2ID").data("kendoComboBox").enable(true);
         $("#AporteID").attr('disabled', false);

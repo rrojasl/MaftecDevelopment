@@ -105,7 +105,6 @@ function Limpiar() {
     $('#EspesorRaiz').val("");
     $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").value("");
     $('#ProcesoSoldaduraRaizID').data("kendoComboBox").value("");
-    $('#NumeroPID').val("");
     $('#GrupoPMaterialBase1ID').data("kendoComboBox").value("");
     $('#GrupoPMaterialBase2ID').data("kendoComboBox").value("");
     $('#AporteID').val("");
