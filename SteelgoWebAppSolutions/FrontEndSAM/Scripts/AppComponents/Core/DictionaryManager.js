@@ -7734,7 +7734,7 @@ _dictionary = {
         "es-MX": "El nombre del WPS es mandatorio",
         "en-US": "WPS name is mandatory "
     },
-    
+
 
 
     //#endregion 
@@ -8256,6 +8256,42 @@ _dictionary = {
     "CheckBoxFilterPQRNoContiene": {
         "es-MX": "F",
         "en-US": "F"
+    },
+    "lblPQREspesormm": {
+        "es-MX": "ESPESOR (mm)",
+        "en-US": "THICKNESS (mm)"
+    },
+    "lblPQRNombreMandatorio": {
+        "es-MX": "El campo nombre del PQR es mandatorio",
+        "en-US": "The field PQR name is mandatory"
+    },
+    "lblPQREspRellMandatorio": {
+        "es-MX": "El campo espesor relleno es mandatorio",
+        "en-US": "The field padding thickness is mandatory"
+    },
+    "lblPQREspRaizMandatorio": {
+        "es-MX": "El campo espesor raiz es mandatorio",
+        "en-US": "The field root thickness is mandatory"
+    },
+    "lblPQRProcSoldMandatorio": {
+        "es-MX": "El campo proceso de soldadura de relleno debe coincidir",
+        "en-US": "The field padding welding process is mandatory"
+    },
+    "lblPQRProcRaizMandatorio": {
+        "es-MX": "El campo proceso de soldadura de raiz debe coincidir",
+        "en-US": "The field root welding process is mandatory"
+    },
+    "lblPQRGrpB1Mandatorio": {
+        "es-MX": "El campo Grupo Materiales Base 1 debe coincidir",
+        "en-US": "The field material base 1 is mandatory"
+    },
+    "lblPQRGrpB2Mandatorio": {
+        "es-MX": "El campo Grupo Materiales Base 2 debe coincidir",
+        "en-US": "The field material base 2 is mandatory"
+    },
+    "lblPQRCodigoMandatorio": {
+        "es-MX": "El campo código debe coincidir",
+        "en-US": "The field code is mandatory"
     },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Desde:",
