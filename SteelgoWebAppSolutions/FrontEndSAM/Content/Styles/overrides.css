@@ -1196,3 +1196,7 @@ h6 {
 button[data-bind="visible:operatorVisible"] {
     display:none;
 }
+
+.k-filter-menu div label{
+    text-align:center;
+}
