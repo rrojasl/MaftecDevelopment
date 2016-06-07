@@ -8293,6 +8293,22 @@ _dictionary = {
         "es-MX": "El campo código debe coincidir",
         "en-US": "The field code is mandatory"
     },
+    "lblPQRNoRepetidos": {
+        "es-MX": "El nombre del PQR no se puede repetir",
+        "en-US": "The PQR name can't be repeated"
+    },
+    "lblPQRNoRepetidos": {
+        "es-MX": "El nombre del PQR no se puede repetir",
+        "en-US": "The PQR name can't be repeated"
+    },
+    "lblPQRElementoPQR": {
+        "es-MX": "El elemento PQR ",
+        "en-US": "The PQR element "
+    },
+    "lblPQRYaAsignado": {
+        "es-MX": " se encuentra asignado, favor de revisar el listado WPS",
+        "en-US": " is assigned, please review the list WPS"
+    },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Desde:",
         "en-US": "From:"

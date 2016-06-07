@@ -126,7 +126,7 @@ function CargarGrid() {
             { width: "120px", field: "Respaldo", title: _dictionary.lblPQRRespaldo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
             { width: "120px", field: "GrupoF", title: _dictionary.lblPQRGrupoF[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
             { width: "200px", field: "Especificacion", title: _dictionary.PQREspecificacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxEspecificacion },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, width: "90px", title: "ELM" }
+            { command: { text: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, width: "90px", title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()] }
         ]
     });
     CustomisaGrid($("#grid"));
@@ -316,7 +316,7 @@ function cancelarCaptura(e) {
             });
         }
         else
-            displayNotify("", "El elemento PQR " + dataItem.Nombre + " se encuentra asignado, favor de revisar el listado WPS", 1);
+            displayNotify("", _dictionary.lblPQRElementoPQR[$("#language").data("kendoDropDownList").value()] + dataItem.Nombre + _dictionary.lblPQRYaAsignado[$("#language").data("kendoDropDownList").value()], 1);
     }
 
 };

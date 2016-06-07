@@ -183,7 +183,7 @@ function AjaxGuardarListado() {
         }
     }
     else {
-        displayNotify("", "El nombre del PQR no se puede repetir", "2");
+        displayNotify("lblPQRNoRepetidos", "", "2");
         opcionHabilitarView(false);
     }
 };
