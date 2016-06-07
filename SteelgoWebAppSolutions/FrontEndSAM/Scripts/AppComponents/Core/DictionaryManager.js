@@ -7570,6 +7570,38 @@ _dictionary = {
     //#endregion 
 
     //#region WPS
+    "WPSLabelEspesorRaiz": {
+        "es-MX": "E. Raíz",
+        "en-US": "Root T."
+    },
+    "WPSLabelEspesorRelleno": {
+        "es-MX": "E. Relleno",
+        "en-US": "Fill T."
+    },
+    "WPSLabelEspesorRaiz2": {
+        "es-MX": "E. Raíz",
+        "en-US": "Root T."
+    },
+    "WPSLabelEspesorRelleno2": {
+        "es-MX": "E. Relleno",
+        "en-US": "Fill T."
+    },
+    "WPSLabelEspesorMinimo": {
+        "es-MX": "Espesor Mínimo",
+        "en-US": "Minimum Thickness"
+    },
+    "WPSLabelEspesorMaximo": {
+        "es-MX": "Espesor Máximo",
+        "en-US": "Maximum Thickness"
+    },
+    "WPSLabelRaiz": {
+        "es-MX": "Raíz",
+        "en-US": "Root"
+    },
+    "WPSLabelRelleno": {
+        "es-MX": "Relleno",
+        "en-US": "Fill"
+    },
     "ConfiguracionSoldaduraLabelNavegacion": {
         "es-MX": "Soldadura Configuracion",
         "en-US": "Configuration Welding"
@@ -7581,6 +7613,10 @@ _dictionary = {
     "WPSLabelNavegacion": {
         "es-MX": "WPS",
         "en-US": "WPS"
+    },
+    "WPSNuevoLabelNavegacion": {
+        "es-MX": "NuevoWPS",
+        "en-US": "WPS Nuevo"
     },
     "WPSButtonNuevoWPS": {
         "es-MX": "Crear Nuevo",
@@ -7604,7 +7640,7 @@ _dictionary = {
     },
     "WPSNombre": {
         "es-MX": "Nombre",
-        "en-US": "Nombre"
+        "en-US": "Name"
     },
     "WPSProyecto": {
         "es-MX": "Proyecto",
@@ -7670,6 +7706,36 @@ _dictionary = {
         "es-MX": "E Mín",
         "en-US": "Mini T"
     },
+    "WPSMensajeErrorNombreRepetido": {
+        "es-MX": "El nombre del WPS no se puede repetir",
+        "en-US": "WPS Name can not be repeat"
+    },
+    "WPSMensajeErrorPWHT": {
+        "es-MX": "El WPS, no coincide",
+        "en-US": "WPS does not match"
+    },
+    "WPSMensajeErrorGrupoP": {
+        "es-MX": "El grupo P, no coincide",
+        "en-US": "P gropu does not match"
+    },
+    "WPSMensajeErrorPREHEAT": {
+        "es-MX": "El PREHEAT, no coincide",
+        "en-US": "PREHEAT does not match "
+    },
+    "WPSMensajeErrorPQRRaiz": {
+        "es-MX": "El PQR de Raiz es obligatorio",
+        "en-US": "Root PQR is mandatory "
+    },
+    "WPSMensajeErrorPQRRelleno": {
+        "es-MX": "El PQR de Relleno es obligatorio",
+        "en-US": "Fill PQR is mandatory "
+    },
+    "WPSMensajeErrorNombreMandatorio": {
+        "es-MX": "El nombre del WPS es mandatorio",
+        "en-US": "WPS name is mandatory "
+    },
+    
+
 
     //#endregion 
     //#region PQR

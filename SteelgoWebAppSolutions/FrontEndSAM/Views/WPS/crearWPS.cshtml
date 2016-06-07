@@ -12,7 +12,7 @@
         <a href="#"><span id="ConfiguracionSoldaduraLabelNavegacion"></span></a>
     </li>
     <li class="active">
-        <a href="@Url.Action("WPS", "WPS")"><span id="WPSLabelNavegacion"></span></a>
+        <a href="@Url.Action("crearWPS", "WPS")"><span id="WPSNuevoLabelNavegacion"></span></a>
     </li>
 }
 
@@ -58,13 +58,13 @@
                 <label id="WPSNombre"></label>
                 <input id="NomnreWPS" class="form-control general-input" />
             </div>
-            <div  class="col-xs-2 col-sm-2 col-md-2 col-lg-2 form-group">
-                <label id="">Espesor Maximo</label>
-                <label id="EspesorMaximoWPS">0</label>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 form-group">
+                <label id="WPSLabelEspesorMinimo"></label>
+                <label id="EspesorMinimoWPS">0</label>
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 form-group">
-                <label id="">Espesor Mínimo</label>
-                <label id="EspesorMinimoWPS">0</label>
+                <label id="WPSLabelEspesorMaximo"></label>
+                <label id="EspesorMaximoWPS">0</label>
             </div>
             @*<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 form-group">
                 <label id="WPSProyecto"></label>
@@ -74,7 +74,7 @@
         </div>
         <div class="row">
             <fieldset id="fieldSetRaiz">
-                <legend style="padding-left:10px;" id="legendRaiz">Raiz</legend>
+                <legend style="padding-left:10px;" id="legendRaiz"><label id="WPSLabelRaiz"></label></legend>
                 <div id="DivNombrePQRRaiz" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <label id="WPSPQR"></label>
                     <input id="PQRRaizNombre" />
@@ -84,20 +84,20 @@
                     <input id="grupoPRaiz" readonly="readonly" class="general-input" />
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                    <label id="">E. Raiz</label>
+                    <label id="WPSLabelEspesorRaiz2"></label>
                     <label id="RaizEspesorRaiz">0</label>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                    <label id="">E. Relleno</label>
+                    <label id="WPSLabelEspesorRelleno2"></label>
                     <label id="RaizEspesorRelleno">0</label>
-                </div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                    <label id="WPSPWHT"></label>
-                    <input type="checkbox" id="PWHRaiz" data-bind="checked: optionCheck" readonly="readonly"  onclick="javascript: return false;" />
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                     <label id="WPSPreHeat"></label>
                     <input type="checkbox" id="PREHEATRaiz" data-bind="checked: optionCheck" readonly="readonly"  onclick="javascript: return false;" />
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <label id="WPSPWHT"></label>
+                    <input type="checkbox" id="PWHRaiz" data-bind="checked: optionCheck" readonly="readonly" onclick="javascript: return false;" />
                 </div>
             </fieldset>
 
@@ -109,7 +109,7 @@
         </div>
         <div class="row">
             <fieldset id="fieldSetRelleno">
-                <legend style="padding-left:10px;" >Relleno</legend>
+                <legend style="padding-left:10px;" ><label id="WPSLabelRelleno"></label></legend>
 
                 <div id="DivNombrePQRRelleno" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <label id="WPSPQR2"></label>
@@ -120,11 +120,11 @@
                     <input id="grupoPRelleno" readonly="readonly" class="general-input" />
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                    <label id="">E. Raiz</label>
+                    <label id="WPSLabelEspesorRaiz"></label>
                     <label id="RellenoEspesorRaiz">0</label>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                    <label id="">E. Relleno</label>
+                    <label id="WPSLabelEspesorRelleno"></label>
                     <label id="RellenoEspesorRelleno">0</label>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">

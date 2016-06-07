@@ -186,7 +186,7 @@ function AjaxGuardarCaptura() {
         }
     }
     else {
-        displayNotify("", "El nombre del WPS no se puede repetir", "2");
+        displayNotify("WPSMensajeErrorNombreRepetido", "", "2");
         opcionHabilitarView(false);
     }
 

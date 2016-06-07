@@ -79,10 +79,10 @@ function CargarGrid() {
                         NombrePQRRelleno: { type: "string", editable: true },
                         GrupoPRaiz: { type: "string", editable: false },
                         GrupoPRelleno: { type: "string", editable: false },
-                        PWHTRelleno: { type: "string", editable: false },
-                        PWHTRaiz: { type: "string", editable: false },
-                        PREHEATRaiz: { type: "string", editable: false },
-                        PREHEATRelleno: { type: "string", editable: false },
+                        PWHTRelleno: { type: "boolean", editable: false },
+                        PWHTRaiz: { type: "boolean", editable: false },
+                        PREHEATRaiz: { type: "boolean", editable: false },
+                        PREHEATRelleno: { type: "boolean", editable: false },
                         EspesorMaximo: { type: "number", editable: false },
                         EspesorMaximo: { type: "number", editable: false },
                     }
@@ -122,10 +122,10 @@ function CargarGrid() {
                     { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px", editor: RenderComboBoxPQRRelleno },
                     { field: "GrupoPRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
                     { field: "GrupoPRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
-                    { field: "PWHTRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px" },
-                    { field: "PWHTRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px" },
-                    { field: "PREHEATRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px" },
-                    { field: "PREHEATRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px" },
+                    { field: "PWHTRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PWHTRaiz' #= PWHTRaiz ? checked='checked' : '' #/>" },
+                    { field: "PWHTRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PWHTRelleno' #= PWHTRelleno ? checked='checked' : '' #/>" },
+                    { field: "PREHEATRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PREHEATRaiz' #= PREHEATRaiz ? checked='checked' : '' #/>" },
+                    { field: "PREHEATRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PREHEATRelleno' #= PREHEATRelleno ? checked='checked' : '' #/>" },
                     { field: "EspesorMaximo", title: _dictionary.WPSEspesorMaximo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
                     { field: "EspesorMinimo", title: _dictionary.WPSEspesorMinimo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "73px", format: "{0:n4}" },
                     { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
@@ -174,7 +174,7 @@ function eliminarCaptura(e) {
         });
     }
     else {
-        displayNotify("", "El nombre del WPS, no se puede repetir", "2");
+        displayNotify("WPSMensajeErrorNombreRepetido", "", "2");
     }
 
 }

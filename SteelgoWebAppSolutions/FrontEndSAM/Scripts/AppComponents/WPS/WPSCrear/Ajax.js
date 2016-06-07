@@ -47,31 +47,31 @@ function AjaxGuardar(tipoGuardar) {
 
     if ($('#NomnreWPS').val() == "" || $('#NomnreWPS').val() == undefined || $('#NomnreWPS').val() == null) {
         correcto = false;
-        displayNotify("", "El nombre del WPS es mandatorio", '1');
+        displayNotify("WPSMensajeErrorNombreMandatorio", "", '1');
     }
     else if ($("#PQRRaizNombre").data("kendoComboBox").dataItem($("#PQRRaizNombre").data("kendoComboBox").select()) == undefined) {
         correcto = false;
-        displayNotify("", "El PQR de Raiz no es correcto", '1');
+        displayNotify("WPSMensajeErrorPQRRaiz", "", '1');
     }
     else if ($("#PQRRellenoNombre").data("kendoComboBox").dataItem($("#PQRRellenoNombre").data("kendoComboBox").select()) == undefined) {
         correcto = false;
-        displayNotify("", "El PQR de Relleno no es correcto", '1');
+        displayNotify("WPSMensajeErrorPQRRelleno", "", '1');
     }
     else if (ContieneGruposMaterialBase($("#PQRRaizNombre").data("kendoComboBox").dataItem($("#PQRRaizNombre").data("kendoComboBox").select()).GrupoPMaterialBase1 + " " + $("#PQRRaizNombre").data("kendoComboBox").dataItem($("#PQRRaizNombre").data("kendoComboBox").select()).GrupoPMaterialBase2, $("#PQRRellenoNombre").data("kendoComboBox").dataItem($("#PQRRellenoNombre").data("kendoComboBox").select()).GrupoPMaterialBase1, $("#PQRRellenoNombre").data("kendoComboBox").dataItem($("#PQRRellenoNombre").data("kendoComboBox").select()).GrupoPMaterialBase2)) {
         correcto = false;
-        displayNotify("", "El Grupo P debe coincidir", '1');
+        displayNotify("WPSMensajeErrorGrupoP", "", '1');
     }
     else if ($('#PWHRelleno').is(':checked') != $('#PWHRaiz').is(':checked')) {
         correcto = false;
-        displayNotify("", "El PWHT debe ser igual para los PQR", '1');
+        displayNotify("WPSMensajeErrorPWHT", "", '1');
     }
     else if ($('#PREHEATRelleno').is(':checked') != $('#PREHEATRaiz').is(':checked')) {
         correcto = false;
-        displayNotify("", "El preheat debe ser igual para los PQR", '1');
+        displayNotify("WPSMensajeErrorPREHEAT", "", '1');
     }
     else if (!NombreCorrecto ) {
         correcto = false;
-        displayNotify("", "El Nombre del WPS ya existe", '2');
+        displayNotify("WPSMensajeErrorNombreRepetido", "", "2");
     }
 
 

@@ -20,14 +20,14 @@ namespace BackEndSAM.Models.WPS
         public string GrupoPRaiz { get; set; }
         
         public int PWHTRaizId { get; set; }
-        public string PWHTRaiz { get; set; }
+        public bool PWHTRaiz { get; set; }
         public int PWHTRellenoId { get; set; }
-        public string PWHTRelleno { get; set; }
+        public bool PWHTRelleno { get; set; }
 
         public int PREHEATRellenoId { get; set; }
-        public string PREHEATRelleno { get; set; }
+        public bool PREHEATRelleno { get; set; }
         public int PREHEATRaizId { get; set; }
-        public string PREHEATRaiz { get; set; }
+        public bool PREHEATRaiz { get; set; }
 
         public double EspesorMaximo { get; set; }
         public double EspesorMinimo { get; set; }
