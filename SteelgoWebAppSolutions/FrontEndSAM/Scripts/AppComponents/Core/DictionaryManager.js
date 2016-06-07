@@ -8180,7 +8180,7 @@ _dictionary = {
         "en-US": "Start date of certificate"
     },
     "CheckBoxFilterPQRContiene": {
-        "es-MX": "C",
+        "es-MX": "V",
         "en-US": "T"
     },
     "CheckBoxFilterPQRNoContiene": {
