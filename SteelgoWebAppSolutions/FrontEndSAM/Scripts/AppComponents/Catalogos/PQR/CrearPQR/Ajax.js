@@ -20,23 +20,23 @@ function AjaxGuardar(tipoGuardar) {
     var correcto = true;
 
     ListaDetalles[0] = {
-        PqrID: "",
-        PqrNombre: "",
-        Pwht: "",
-        PreHeat: "",
+        PQRID: "",
+        Accion: "",
+        Nombre: "",
+        PREHEAT: "",
+        PWHT: "",
         EspesorRelleno: "",
         EspesorRaiz: "",
-        ProcesoSoldaduraRelleno: "",
-        ProcesoSoldaduraRaiz: "",
+        ProcesoSoldaduraRellenoID: "",
+        ProcesoSoldaduraRaizID: "",
         NumeroP: "",
-        GrupoMaterialesBase1: "",
-        GrupoMaterialesBase2: "",
+        GrupoPMaterialBase1: "",
+        GrupoPMaterialBase2: "",
         Aporte: "",
         Mezcla: "",
         Respaldo: "",
         GrupoF: "",
-        Codigo: "",
-        Accion: ""
+        Codigo: ""
     };
 
     if ($('#NombreId').val() == "" || $('#NombreId').val() == undefined || $('#NombreId').val() == null) {
@@ -78,11 +78,11 @@ function AjaxGuardar(tipoGuardar) {
     }
 
 
-    ListaDetalles[0].Accion = $("#PQRID").val() == "0" ? 1 : 2;
     ListaDetalles[0].PQRID = $("#PQRID").val() == "0" ? 0 : $("#PQRID").val();
+    ListaDetalles[0].Accion = $("#PQRID").val() == "0" ? 1 : 2;
     ListaDetalles[0].Nombre = $('#NombreId').val();
-    ListaDetalles[0].Pwht = $('#chkPwht').is(':checked') ? 1 : 0;
-    ListaDetalles[0].PreHeat = $('#chkPreheat').is(':checked') ? 1 : 0;;
+    ListaDetalles[0].PREHEAT = $('#chkPreheat').is(':checked') ? 1 : 0;;
+    ListaDetalles[0].PWHT = $('#chkPwht').is(':checked') ? 1 : 0;
     ListaDetalles[0].EspesorRelleno = $("#EspesorRelleno").val();
     ListaDetalles[0].EspesorRaiz = $("#EspesorRaiz").val();
     ListaDetalles[0].ProcesoSoldaduraRellenoID = $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").value();
@@ -91,7 +91,7 @@ function AjaxGuardar(tipoGuardar) {
     ListaDetalles[0].GrupoPMaterialBase2 = $("#GrupoPMaterialBase2ID").data("kendoComboBox").value();
     ListaDetalles[0].Aporte = $("#AporteID").val();
     ListaDetalles[0].Mezcla = $("#MezclaID").val();
-    ListaDetalles[0].Respaldo= $("#RespaldoID").val();
+    ListaDetalles[0].Respaldo = $("#RespaldoID").val();
     ListaDetalles[0].GrupoF = $("#GrupoFID").val();
     ListaDetalles[0].Codigo = $("#CodigoID").data("kendoComboBox").value();
 
