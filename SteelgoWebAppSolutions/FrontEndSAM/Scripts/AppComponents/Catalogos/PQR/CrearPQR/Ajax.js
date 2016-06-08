@@ -100,7 +100,7 @@ function AjaxGuardar(tipoGuardar) {
                     $("#PQRID").val(data.ReturnMessage[1]);
                 }
                 displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                if (tipoGuardar == 1) {
+                if (tipoGuardar == 1) {//guardar y nuevo
                     Limpiar();
                     opcionHabilitarView(false, "FieldSetView");
                 }
@@ -135,7 +135,7 @@ function AjaxExistePQR(tipo) {
             loadingStop();
         });
     } else if($("#PQRID").val() != "" || $("#PQRID").val() != undefined || $("#PQRID").val() != null || $("#PQRID").val() !=0 ) {
-        AjaxGuardar(0);
+        AjaxGuardar(tipo);
         loadingStop();
     }
 }

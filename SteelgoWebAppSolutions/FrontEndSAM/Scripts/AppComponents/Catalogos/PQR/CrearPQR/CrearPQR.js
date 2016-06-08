@@ -8,13 +8,13 @@ CargaInicial();
 function ConvertirCombos() {
 
     $("#EspesorRelleno").kendoNumericTextBox({
-        format: "#.0000 mm",
+        format: "#.0000",
         decimals: 4,
         min: 0
     });
 
     $("#EspesorRaiz").kendoNumericTextBox({
-        format: "#.0000 mm",
+        format: "#.0000",
         decimals: 4,
         min: 0
     });
@@ -99,8 +99,8 @@ function ConvertirCombos() {
 
 function Limpiar() {
     $('#NombreId').val("");
-    $('#chkPreheat').is(':checked') ? 1 : 0;
-    $('#chkPwht').is(':checked') ? 1 : 0;
+    document.getElementById("chkPreheat").checked = false;
+    document.getElementById("chkPwht").checked = false;
     $('#EspesorRelleno').data("kendoNumericTextBox").value("");
     $('#EspesorRaiz').data("kendoNumericTextBox").value("");
     $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").value("");

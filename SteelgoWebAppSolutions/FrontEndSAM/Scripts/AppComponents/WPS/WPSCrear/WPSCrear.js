@@ -165,8 +165,8 @@ function Limpiar() {
     $('#PQRRellenoNombre').data("kendoComboBox").value("");
     $('#grupoPRelleno').val("");
     $('#grupoPRaiz').val("");
-    $('#PREHEATRelleno').is(':checked') ? 1 : 0;
-    $('#PWHRelleno').is(':checked') ? 1 : 0;
+    document.getElementById("PREHEATRelleno").checked = false;
+    document.getElementById("PWHRelleno").checked = false;
     $('#RellenoEspesorRaiz').text("0");
     $('#RellenoEspesorRelleno').text("0");
     $('#RaizEspesorRaiz').text("0");
