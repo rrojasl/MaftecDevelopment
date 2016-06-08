@@ -45,17 +45,11 @@ function AjaxGuardarListado() {
         };
 
         if ((arregloCaptura[index].Nombre == "" || arregloCaptura[index].Nombre == undefined || arregloCaptura[index].Nombre == null) ||
-            (arregloCaptura[index].Mezcla == "" || arregloCaptura[index].Mezcla == undefined || arregloCaptura[index].Mezcla == null) ||
-            (arregloCaptura[index].Mezcla == "" || arregloCaptura[index].Mezcla == undefined || arregloCaptura[index].Mezcla == null) ||
             (arregloCaptura[index].ProcesoSoldaduraRaizID == 0 || arregloCaptura[index].ProcesoSoldaduraRaizID == undefined || arregloCaptura[index].ProcesoSoldaduraRaizID == "" || arregloCaptura[index].ProcesoSoldaduraRaizID == null) ||
             (arregloCaptura[index].ProcesoSoldaduraRellenoID == 0 || arregloCaptura[index].ProcesoSoldaduraRellenoID == undefined || arregloCaptura[index].ProcesoSoldaduraRellenoID == "" || arregloCaptura[index].ProcesoSoldaduraRellenoID == null) ||
             (arregloCaptura[index].GrupoPMaterialBase1 == 0 || arregloCaptura[index].GrupoPMaterialBase1 == undefined || arregloCaptura[index].GrupoPMaterialBase1 == "" || arregloCaptura[index].GrupoPMaterialBase1 == null) ||
             (arregloCaptura[index].GrupoPMaterialBase2 == 0 || arregloCaptura[index].GrupoPMaterialBase2 == undefined || arregloCaptura[index].GrupoPMaterialBase2 == "" || arregloCaptura[index].GrupoPMaterialBase2 == null) ||
-            (arregloCaptura[index].CodigoASMEID == 0 || arregloCaptura[index].CodigoASMEID == undefined || arregloCaptura[index].CodigoASMEID == "" || arregloCaptura[index].CodigoASMEID == null) ||
-            (arregloCaptura[index].Aporte == "" || arregloCaptura[index].Aporte == undefined || arregloCaptura[index].Aporte == null) ||
-            (arregloCaptura[index].Respaldo == "" || arregloCaptura[index].Respaldo == undefined || arregloCaptura[index].Respaldo == null) ||
-            (arregloCaptura[index].Mezcla == "" || arregloCaptura[index].Mezcla == undefined || arregloCaptura[index].Mezcla == null) ||
-            (arregloCaptura[index].GrupoF == "" || arregloCaptura[index].GrupoF == undefined || arregloCaptura[index].GrupoF == null)) {
+            (arregloCaptura[index].CodigoASMEID == 0 || arregloCaptura[index].CodigoASMEID == undefined || arregloCaptura[index].CodigoASMEID == "" || arregloCaptura[index].CodigoASMEID == null)) {
 
             ListaDetalles[index].Estatus = 0;
             $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
