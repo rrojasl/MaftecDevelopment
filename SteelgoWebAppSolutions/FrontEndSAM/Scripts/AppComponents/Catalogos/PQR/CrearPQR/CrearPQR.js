@@ -101,8 +101,8 @@ function Limpiar() {
     $('#NombreId').val("");
     $('#chkPreheat').is(':checked') ? 1 : 0;
     $('#chkPwht').is(':checked') ? 1 : 0;
-    $('#EspesorRelleno').val("");
-    $('#EspesorRaiz').val("");
+    $('#EspesorRelleno').data("kendoNumericTextBox").value("");
+    $('#EspesorRaiz').data("kendoNumericTextBox").value("");
     $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").value("");
     $('#ProcesoSoldaduraRaizID').data("kendoComboBox").value("");
     $('#GrupoPMaterialBase1ID').data("kendoComboBox").value("");

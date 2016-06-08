@@ -24,9 +24,14 @@ function suscribirEventoGuardar() {
     $('#btnGuardarYNuevo').click(function (e) {
         if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
             AjaxExistePQR(1);
+            Limpiar();
+            opcionHabilitarView(false, "FieldSetView");
         }
-        else if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0082[$("#language").data("kendoDropDownList").value()])
-            opcionHabilitarView(false, "FieldSetView")
+        else if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0082[$("#language").data("kendoDropDownList").value()]){
+            AjaxExistePQR(1);
+            Limpiar();
+            opcionHabilitarView(false, "FieldSetView");
+        }
     });
 }
 
