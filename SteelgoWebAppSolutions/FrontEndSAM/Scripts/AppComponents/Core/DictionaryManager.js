@@ -7571,28 +7571,28 @@ _dictionary = {
 
     //#region WPS
     "WPSLabelEspesorRaiz": {
-        "es-MX": "E. Raíz",
-        "en-US": "Root T."
+        "es-MX": "E. Raíz(mm)",
+        "en-US": "Root T.(mm)"
     },
     "WPSLabelEspesorRelleno": {
-        "es-MX": "E. Relleno",
-        "en-US": "Fill T."
+        "es-MX": "E. Relleno(mm)",
+        "en-US": "Fill T.(mm)"
     },
     "WPSLabelEspesorRaiz2": {
-        "es-MX": "E. Raíz",
-        "en-US": "Root T."
+        "es-MX": "E. Raíz(mm)",
+        "en-US": "Root T.(mm)"
     },
     "WPSLabelEspesorRelleno2": {
-        "es-MX": "E. Relleno",
-        "en-US": "Fill T."
+        "es-MX": "E. Relleno(mm)",
+        "en-US": "Fill T.(mm)"
     },
     "WPSLabelEspesorMinimo": {
-        "es-MX": "Espesor Mínimo",
-        "en-US": "Minimum Thickness"
+        "es-MX": "Espesor Mínimo(mm)",
+        "en-US": "Minimum Thickness(mm)"
     },
     "WPSLabelEspesorMaximo": {
-        "es-MX": "Espesor Máximo",
-        "en-US": "Maximum Thickness"
+        "es-MX": "Espesor Máximo(mm)",
+        "en-US": "Maximum Thickness(mm)"
     },
     "WPSLabelRaiz": {
         "es-MX": "Raíz",
@@ -7691,20 +7691,20 @@ _dictionary = {
         "en-US": "Preheat"
     },
     "WPSEspesorMaximo": {
-        "es-MX": "E Máx",
-        "en-US": "Max T"
+        "es-MX": "E Máx(mm)",
+        "en-US": "Max T(mm)"
     },
     "WPSEspesorMaximo2": {
-        "es-MX": "E Máx",
-        "en-US": "Max T"
+        "es-MX": "E Máx(mm)",
+        "en-US": "Max T(mm)"
     },
     "WPSEspesorMinimo": {
-        "es-MX": "E Mín",
-        "en-US": "Mini T"
+        "es-MX": "E Mín(mm)",
+        "en-US": "Mini T(mm)"
     },
     "WPSEspesorMinimo2": {
-        "es-MX": "E Mín",
-        "en-US": "Mini T"
+        "es-MX": "E Mín(mm)",
+        "en-US": "Mini T(mm)"
     },
     "WPSMensajeErrorNombreRepetido": {
         "es-MX": "El nombre del WPS no se puede repetir",
@@ -8331,12 +8331,12 @@ _dictionary = {
     },
 
     "SoldadorCertificacionEspesorMinimo": {
-        "es-MX": "Espesor",
-        "en-US": "Thickness"
+        "es-MX": "Espesor(mm)",
+        "en-US": "Thickness(mm)"
     },
     "SoldadorCertificacionEspesorMaximo": {
-        "es-MX": "E. max",
-        "en-US": "Max T"
+        "es-MX": "E. max(mm)",
+        "en-US": "Max T(mm)"
     },
 
     "SoldadorCertificacionPasosSoldadura": {

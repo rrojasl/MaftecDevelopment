@@ -104,24 +104,26 @@ function SuscribirEventoDiametroCertificado() {
 
 function SuscribirEventoEspesorMaximo() {
     $("#inputEspesorMaximo").kendoNumericTextBox({
-        format: "#.0000 mm",
+        format: "#.0000",
         min: 0,
         value: "0",
-        decimals: 3
+        decimals: 3,
+
     });
+    $("#inputEspesorMaximo").data("kendoNumericTextBox").readonly()
 }
 
 
 function SuscribirEventoEspesorMinimo() {
     $("#inputEspesorMinimo").kendoNumericTextBox({
-        format: "#.0000 mm",
+        format: "#.0000",
         min: 0,
         value: "0",
         decimals: 3
     });
 
     $("#inputEspesorMinimo").blur(function (e) {
-        if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 0.5) {
+        if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 13) {
             $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
         }
     });
@@ -134,11 +136,11 @@ function SuscribirEventoNumeroPasos() {
         value: "0",
         decimals: 0
     });
-    //$("#inputPasosSoldadura").blur(function (e) {
-    //    if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 0.5) {
-    //        $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
-    //    }
-    //});
+    $("#inputPasosSoldadura").blur(function (e) {
+        if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 13) {
+            $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
+        }
+    });
 
 }
 
