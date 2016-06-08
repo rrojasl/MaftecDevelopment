@@ -7765,12 +7765,12 @@ _dictionary = {
         "en-US": "PWHT"
     },
     "lblPQREspesorRelleno": {
-        "es-MX": "E. Relleno",
-        "en-US": "Fill Thk"
+        "es-MX": "E. Relleno(mm)",
+        "en-US": "Fill Thk(mm)"
     },
     "lblPQREspesorRaiz": {
-        "es-MX": "E. Raiz",
-        "en-US": "Root Thck"
+        "es-MX": "E. Raiz(mm)",
+        "en-US": "Root Thck(mm)"
     },
     "lblPQRProcesoSoldaduraRelleno": {
         "es-MX": "Proc Relleno",
