@@ -33,7 +33,7 @@
                             <span class="caretWhite"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#" id="btnGuardar"><span id="botonGuardar2"  class="accionGuardar"></span></a></li>
+                            <li><a href="#" id="btnGuardar"><span id="botonGuardar2" class="accionGuardar"></span></a></li>
                             <li><a href="#" id="btnGuardarYNuevo"><span id="botonGuardarYNuevo" class="accionGuardarYNuevo"></span></a></li>
                         </ul>
                     </div>
@@ -58,105 +58,102 @@
     @*FORMULARIO SoldadorCertificacion*@
 
     <div class="row" id="FieldSetView">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCSoldadorDiv">
+                <label id="lblSoldador"> </label>
+                <input type="text" id="inputSoldador" />
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCNombrePQRDiv">
+                <label id="lblNombrePQR"></label>
+                <input id="inputNombrePQR" />
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                <label id="">&nbsp;</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCProcesoSoldaduraDiv">
+                <label id="lblProcesoSoldaduraPQR"></label>
+                <input type="text" id="inputProcesoSol" />
+                <input type="hidden" id="HddNuevoSoldadorCertificacionID" />
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2" id="SCFechaInicioDiV">
+                <label id="SoldadorCertificacionFechaInicioCertificado"></label>
+                <input id="inputFechaInicioCertificado" />
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-2" id="SCFechaFinDiV">
+                <label id="SoldadorCertificacionFechaFinCertificado"></label>
+                <input id="inputFechaFinCertificado" />
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                <label id="">&nbsp;</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCPasosSoldaduraDiv">
+                <label id="lblPasosSoldadura"></label>
+                <input id="inputPasosSoldadura" />
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCCedulaDiv">
+                <label id="lblCedulaTuboPQR"></label>
+                <input id="inputCedulaTuboPQR" class="form-control general-input" />
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                <label id="">&nbsp;</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCEspesorMinimoDiv">
+                <label id="lblEspesorMinimo"></label>
+                <input id="inputEspesorMinimo" />
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCEspesorMaximoDiv">
+                <label id="lblEspesorMaximo"></label>
+                <input id="inputEspesorMaximo" />
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                <label id="">&nbsp;</label>
+            </div>
+        </div>
+        <div class="row">
 
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCSoldadorDiv">
-                    <label id="lblSoldador"> </label>
-                    <input type="text" id="inputSoldador"  />
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCNombrePQRDiv">
-                    <label id="lblNombrePQR"></label>
-                    <input id="inputNombrePQR" />
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
-                    <label id="">&nbsp;</label>
-                </div>
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCDiametroCalificadoDiv">
+                <label id="lblDiametroCalificado"></label>
+                <input id="inputDiametroCalificado" />
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCPasosSoldaduraDiv">
-                    <label id="lblPasosSoldadura"></label>
-                    <input  id="inputPasosSoldadura" />
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCCedulaDiv">
-                    <label id="lblCedulaTuboPQR"></label>
-                    <input id="inputCedulaTuboPQR" class="form-control general-input" />
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
-                    <label id="">&nbsp;</label>
-                </div>
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCTipoPruebaDiv">
+                <label id="lblTipoPrueba"></label>
+                <input id="inputTipoPrueba" />
             </div>
-
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCFechaInicioDiV">
-                    <label id="SoldadorCertificacionFechaInicioCertificado"></label>
-                    <input id="inputFechaInicioCertificado" />
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCFechaFinDiV">
-                    <label id="SoldadorCertificacionFechaFinCertificado"></label>
-                    <input id="inputFechaFinCertificado" />
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
-                    <label id="">&nbsp;</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCEspesorMinimoDiv">
-                    <label id="lblEspesorMinimo"></label>
-                    <input id="inputEspesorMinimo" />
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCEspesorMaximoDiv">
-                    <label id="lblEspesorMaximo"></label>
-                    <input id="inputEspesorMaximo" />
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
-                    <label id="">&nbsp;</label>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCDiametroCalificadoDiv">
-                    <label id="lblDiametroCalificado"></label>
-                    <input id="inputDiametroCalificado" />
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCTipoPruebaDiv">
-                    <label id="lblTipoPrueba"></label>
-                    <input id="inputTipoPrueba" />
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
-                    <label id="">&nbsp;</label>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCPosicionDiv">
-                    <label id="lblPosicionPQR"></label>
-                    <input id="inputPosicionPQR" />
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4" id="SCProcesoSoldaduraDiv">
-                    <label id="lblProcesoSoldaduraPQR"></label>
-                    <input type="text" id="inputProcesoSol" />
-                    <input type="hidden"id="HddNuevoSoldadorCertificacionID" />
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
-                    <label id="">&nbsp;</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12" style="display: block">
-                    <label>&nbsp;</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12" style="display: block">
-                    <label>&nbsp;</label>
-                </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                <label id="">&nbsp;</label>
             </div>
 
-        
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4" id="SCPosicionDiv">
+                <label id="lblPosicionPQR"></label>
+                <input id="inputPosicionPQR" />
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" id="SCTipoPruebaDiv">
+                <label id="">&nbsp;</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="display: block">
+                <label>&nbsp;</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="display: block">
+                <label>&nbsp;</label>
+            </div>
+        </div>
+
+
 
     </div>
-    
+
     @*Menu Inferior*@
 
     <div class="row">
@@ -170,8 +167,8 @@
                             <span class="caretWhite"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#" id="btnGuardarPie"><span id="btnGuardarPiePagina"  class="accionGuardar"></span></a></li>
-                            <li><a href="#" id="btnGuardarYNuevoPie"><span id="btnGuardarYNuevoPiePagina"  class="accionGuardarYNuevo"></span></a></li>
+                            <li><a href="#" id="btnGuardarPie"><span id="btnGuardarPiePagina" class="accionGuardar"></span></a></li>
+                            <li><a href="#" id="btnGuardarYNuevoPie"><span id="btnGuardarYNuevoPiePagina" class="accionGuardarYNuevo"></span></a></li>
                         </ul>
                     </div>
                     <a id="btnCancelar1" class="btn btn-black"><span id="botonCancelar1"></span></a>
