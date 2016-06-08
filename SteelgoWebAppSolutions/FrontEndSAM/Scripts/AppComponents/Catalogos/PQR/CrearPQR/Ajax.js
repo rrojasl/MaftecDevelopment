@@ -52,27 +52,27 @@ function AjaxGuardar(tipoGuardar) {
         displayNotify("lblPQREspRaizMandatorio", "", '1');
     }
     else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()) == undefined
-          || $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()) == 0 ) {
+          || $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).ProcesoSoldaduraID == 0 ) {
         correcto = false;
         displayNotify("lblPQRProcSoldMandatorio", "", '1');
     }
     else if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()) == undefined
-          || $('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()) == 0) {
+          || $('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).ProcesoSoldaduraID == 0) {
         correcto = false;
         displayNotify("lblPQRProcRaizMandatorio", "", '1');
     }
     else if ($('#GrupoPMaterialBase1ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase1ID").data("kendoComboBox").select()) == undefined
-          || $('#GrupoPMaterialBase1ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase1ID").data("kendoComboBox").select()) == 0) {
+          || $('#GrupoPMaterialBase1ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase1ID").data("kendoComboBox").select()).GrupoPID == 0) {
         correcto = false;
         displayNotify("lblPQRGrpB1Mandatorio", "", '1');
     }
     else if ($('#GrupoPMaterialBase2ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase2ID").data("kendoComboBox").select()) == undefined
-          || $('#GrupoPMaterialBase2ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase2ID").data("kendoComboBox").select()) == 0) {
+          || $('#GrupoPMaterialBase2ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase2ID").data("kendoComboBox").select()).GrupoPID == 0) {
         correcto = false;
         displayNotify("lblPQRGrpB2Mandatorio", "", '1');
     }
     else if ($('#CodigoID').data("kendoComboBox").dataItem($("#CodigoID").data("kendoComboBox").select()) == undefined
-          || $('#CodigoID').data("kendoComboBox").dataItem($("#CodigoID").data("kendoComboBox").select()) == 0) {
+          || $('#CodigoID').data("kendoComboBox").dataItem($("#CodigoID").data("kendoComboBox").select()).CodigoAsmeID == 0) {
         correcto = false;
         displayNotify("lblPQRCodigoMandatorio", "", '1');
     }
