@@ -22,7 +22,7 @@
                     if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RellenoUID, options.model.GrupoMaterialBase1RellenoDID)) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorGrupoP[$("#language").data("kendoDropDownList").value()];
                     }
-                    if (Boolean(options.model.PREHEATRellenoId) != dataItem.PREHEAT) {
+                    if (options.model.PREHEATRellenoId != dataItem.PREHEAT) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorPREHEAT[$("#language").data("kendoDropDownList").value()];
                     }
                     if (cadenaError != "") {
@@ -37,8 +37,8 @@
                     options.model.GrupoMaterialBase1RaizDID = dataItem.GrupoPMaterialBase2;
                     options.model.GrupoMaterialBase1RaizD = dataItem.GrupoPMaterialBase2Nombre;
                     options.model.GrupoPRaiz = dataItem.GrupoPMaterialBase1Nombre + " " + dataItem.GrupoPMaterialBase2Nombre;
-                    options.model.PREHEATRaiz = dataItem.PREHEAT ;
-                    options.model.PREHEATRaizId = dataItem.PREHEAT == true ? 1 : 0;
+                    options.model.PREHEATRaiz = dataItem.PREHEAT == 1? true: false;
+                    options.model.PREHEATRaizId = dataItem.PREHEAT;
                     var rootMax = ObtenerEspesorCorrecto((parseFloat(dataItem.EspesorRaiz) + parseFloat(dataItem.EspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), true);
                     var fillMax = ObtenerEspesorCorrecto((parseFloat(options.model.RellenoEspesorRaiz) + parseFloat(options.model.RellenoEspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), false);
 
@@ -109,7 +109,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                     if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RaizUID, options.model.GrupoMaterialBase1RaizDID)) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorGrupoP[$("#language").data("kendoDropDownList").value()];
                     }
-                    if (Boolean(options.model.PREHEATRaizId) != dataItem.PREHEAT) {
+                    if (options.model.PREHEATRaizId != dataItem.PREHEAT) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorPREHEAT[$("#language").data("kendoDropDownList").value()];
                     }
                     if (cadenaError != "") {
@@ -122,8 +122,8 @@ function RenderComboBoxPQRRelleno(container, options) {
                     options.model.GrupoMaterialBase1RellenoDID = dataItem.GrupoPMaterialBase2;
                     options.model.GrupoMaterialBase1RellenoD = dataItem.GrupoPMaterialBase2Nombre;
                     options.model.GrupoPRelleno = dataItem.GrupoPMaterialBase1Nombre + " " + dataItem.GrupoPMaterialBase2Nombre;
-                    options.model.PREHEATRelleno = dataItem.PREHEAT;
-                    options.model.P1REHEATRellenoId = dataItem.PREHEAT == true ? 1 : 0;
+                    options.model.PREHEATRelleno = dataItem.PREHEAT == 1 ? true: false;
+                    options.model.P1REHEATRellenoId = dataItem.PREHEAT;
                     var rootMax = ObtenerEspesorCorrecto((parseFloat(dataItem.EspesorRaiz) + parseFloat(dataItem.EspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), true);
                     var fillMax = ObtenerEspesorCorrecto((parseFloat(options.model.RaizEspesorRaiz) + parseFloat(options.model.RaizEspesorRelleno)), dataItem.PREHEAT, dataItem.CodigoRaiz.trim(), false);
 
