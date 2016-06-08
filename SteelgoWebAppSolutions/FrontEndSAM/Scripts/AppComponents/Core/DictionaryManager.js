@@ -7615,8 +7615,8 @@ _dictionary = {
         "en-US": "WPS"
     },
     "WPSNuevoLabelNavegacion": {
-        "es-MX": "NuevoWPS",
-        "en-US": "WPS Nuevo"
+        "es-MX": "Nuevo WPS",
+        "en-US": "New WPS"
     },
     "WPSButtonNuevoWPS": {
         "es-MX": "Crear Nuevo",
@@ -8249,6 +8249,18 @@ _dictionary = {
         "es-MX": "Proceso soldadura",
         "en-US": "Start date of certificate"
     },
+    "SoldadorCertificacionConfiguracionSoldadura": {
+        "es-MX": "Configuración de soldadura",
+        "en-US": "Welging Configuration"
+    },
+    "lblSoldadorCertificacion": {
+        "es-MX": "Soldador Certificación",
+        "en-US": "Certification Welder"
+    },
+    "lblNewSoldadorCertificacion": {
+        "es-MX": "Nuevo Soldador Certificación",
+        "en-US": "New Certification Welder"
+    },
     "CheckBoxFilterPQRContiene": {
         "es-MX": "V",
         "en-US": "T"
@@ -8319,8 +8331,8 @@ _dictionary = {
     },
 
     "SoldadorCertificacionEspesorMinimo": {
-        "es-MX": "E. min",
-        "en-US": "Min T"
+        "es-MX": "Espesor",
+        "en-US": "Thickness"
     },
     "SoldadorCertificacionEspesorMaximo": {
         "es-MX": "E. max",

@@ -33,19 +33,19 @@ function limpiarCaptura() {
     
     $("#inputSoldador").data("kendoComboBox").select(0);
     $("#inputNombrePQR").data("kendoComboBox").select(0);
-    $("#inputPasosSoldadura").data("kendoNumericTextBox").value('0.0');
+    $("#inputPasosSoldadura").data("kendoNumericTextBox").value('');
     $("#inputCedulaTuboPQR").val('');
     $("#inputFechaInicioCertificado").val('');
     $("#inputFechaFinCertificado").val('');
-    $("#inputEspesorMinimo").data("kendoNumericTextBox").value('0.0');
-    $("#inputEspesorMaximo").data("kendoNumericTextBox").value('0.0');
-    $("#inputDiametroCalificado").data("kendoNumericTextBox").value('0.0');
+    $("#inputEspesorMinimo").data("kendoNumericTextBox").value('');
+    $("#inputEspesorMaximo").data("kendoNumericTextBox").value('');
+    $("#inputDiametroCalificado").data("kendoNumericTextBox").value('');
     $("#inputTipoPrueba").data("kendoComboBox").select(0);
     $("#inputPosicionPQR").val('');
     $("#inputProcesoSol").data("kendoComboBox").select(0);
     $("#inputFechaInicioCertificado").val('');
     $("#inputFechaFinCertificado").val('');
-    $("#inputPosicionPQR").data("kendoNumericTextBox").value('0.0');
+    $("#inputPosicionPQR").data("kendoNumericTextBox").value('');
 }
 
 function ValidarFecha(control, valor) {

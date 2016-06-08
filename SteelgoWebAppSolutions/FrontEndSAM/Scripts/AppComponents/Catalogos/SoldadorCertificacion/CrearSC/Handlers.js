@@ -33,10 +33,9 @@ function SuscribirEventoSoldador() {
 
 function SuscriborEventoPosicion() {
     $("#inputPosicionPQR").kendoNumericTextBox({
-        format: "#.0000 mm",
+        format: "#",
         min: 0,
-        value: "0",
-        decimals: 3
+        value: "0"
     });
 }
 
@@ -130,16 +129,16 @@ function SuscribirEventoEspesorMinimo() {
 
 function SuscribirEventoNumeroPasos() {
     $("#inputPasosSoldadura").kendoNumericTextBox({
-        format: "#.0000 mm",
+        format: "#",
         min: 0,
         value: "0",
-        decimals: 3
+        decimals: 0
     });
-    $("#inputPasosSoldadura").blur(function (e) {
-        if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 0.5) {
-            $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
-        }
-    });
+    //$("#inputPasosSoldadura").blur(function (e) {
+    //    if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 0.5) {
+    //        $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
+    //    }
+    //});
 
 }
 

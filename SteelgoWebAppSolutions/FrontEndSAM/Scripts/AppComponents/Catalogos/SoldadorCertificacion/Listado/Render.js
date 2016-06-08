@@ -161,7 +161,7 @@ function renderNoPasos(container, options) {
                 if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 0.5) {
                     options.model.EspesorMaximo = '999999999999.0';
                     $("#grid").data("kendoGrid").dataSource.sync();
-                    displayNotify("", "El espesor maximo es ilimitado", '0');
+                    displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
                 }
             }
         });
@@ -175,7 +175,7 @@ function renderEmin(container, options) {
                 if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 0.5) {
                     options.model.EspesorMaximo = '999999999999.0';
                     $("#grid").data("kendoGrid").dataSource.sync();
-                    displayNotify("", "El espesor maximo es ilimitado", '0');
+                    displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
                 }
             }
         });
