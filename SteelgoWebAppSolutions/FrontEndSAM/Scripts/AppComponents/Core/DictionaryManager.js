@@ -7820,6 +7820,10 @@ _dictionary = {
         "es-MX": "Codigo",
         "en-US": "Code"
     },
+    "lblPQRDobleNA": {
+        "es-MX": "Los procesos de soldadura relleno y raiz no pueden coincidir en N/A",
+        "en-US": "Welding processes filling and root may not match in N/A"
+    },
     //#endregion
     //#region PopUp
     "lblConfirmaElimanarPQR": {
@@ -10444,8 +10448,8 @@ _dictionary = {
         "en-US": "Error"
     },
     "CapturaAvanceIntAcabadoMensajePreguntaGuardado": {
-        "es-MX": "Sólo se guardarán los registros que estén completos. ¿Desea continuar?",
-        "en-US": "Only will be saved complete fields. Continue anyway?"
+        "es-MX": "Los registros marcados no serán guardados. ¿Desea continuar?",
+        "en-US": "Marked records will not be saved. Continue anyway?"
     },
     "CapturaAvanceIntAcabadoMensajeErrorGuardadoComponente": {
         "es-MX": "Seleccione un componente para cada spool.",
