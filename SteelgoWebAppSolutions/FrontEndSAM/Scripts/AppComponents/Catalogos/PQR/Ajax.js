@@ -94,7 +94,7 @@ function AjaxGuardarListado() {
                 loadingStart();
                 $PQR.PQR.create(Captura[0], { token: Cookies.get("token"), accion: 2 }).done(function (data) {
                     if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
-                        displayNotify("", "Los elementos: " + pqrModified + " han sido modificados correctamente", '0');
+                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                         LlenaGridAjax();
                         loadingStop();
                     }
@@ -158,7 +158,7 @@ function AjaxGuardarListado() {
                     loadingStart();
                     $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
                         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
-                            displayNotify("", "Los elementos: " + pqrModified + " han sido modificados correctamente", '0');
+                            displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                             LlenaGridAjax();
                             loadingStop();
                         }
