@@ -36,9 +36,9 @@ var win;
 function changeLanguageCall() {
     document.title = _dictionary.WPSLabelNavegacion[$("#language").data("kendoDropDownList").value()];
     CargarGrid();
-    setTimeout(function () {
+    
         ObtenerJSONParaGrid();
-    }, 500);
+    
 
    
 
