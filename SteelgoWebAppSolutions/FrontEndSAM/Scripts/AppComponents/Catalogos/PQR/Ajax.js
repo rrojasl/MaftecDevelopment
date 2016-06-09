@@ -156,7 +156,7 @@ function AjaxGuardarListado() {
 
                 if (Captura[0].Detalles.length > 0) {
                     loadingStart();
-                    $PQR.PQR.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
+                    $PQR.PQR.create(Captura[0], { token: Cookies.get("token"), accion: 2 }).done(function (data) {
                         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
                             displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                             LlenaGridAjax();
