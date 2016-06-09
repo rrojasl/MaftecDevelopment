@@ -8286,7 +8286,7 @@ _dictionary = {
         "en-US": "The field root thickness is mandatory"
     },
     "lblPQRProcSoldMandatorio": {
-        "es-MX": "El campo proceso de soldadura es mandatorio",
+        "es-MX": "El campo proceso de soldadura de relleno es mandatorio",
         "en-US": "The field padding welding process is mandatory"
     },
     "lblPQRProcRaizMandatorio": {
