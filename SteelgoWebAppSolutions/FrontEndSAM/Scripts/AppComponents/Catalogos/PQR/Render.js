@@ -72,8 +72,7 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
                         options.model.ProcesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
                         //AjaxActualizaSoldadoresRelleno(dataItem.ProcesoSoldaduraID, ItemSeleccionado.TipoJunta, ItemSeleccionado.Diametro, ItemSeleccionado.Espesor, ItemSeleccionado.Cedula);
                     }
-                    else
-                    {
+                    else {
                         options.model.CodigoRelleno = "";
                         options.model.ProcesoSoldaduraRellenoID = 0;
                     }
@@ -95,6 +94,8 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
 function RenderComboBoxMaterialesBase1(container, options) {
     loadingStart();
     var dataItem;
+    var materialBase1 = options.model.GrupoPMaterialBase1;
+    var materialBase1Nombre = options.model.GrupoPMaterialBase1Nombre;
     $('<input data-text-field="GrupoP" id=' + options.model.uid + ' data-value-field="GrupoP" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
@@ -104,16 +105,25 @@ function RenderComboBoxMaterialesBase1(container, options) {
                 autoBind: false,
                 dataSource: options.model.ListaMaterialesBase,
                 template: "<i class=\"fa fa-#=data.GrupoP#\"></i> #=data.GrupoP#",
-                select: function (e) {
-                    dataItem = this.dataItem(e.item.index());
-                    options.model.GrupoPMaterialBase1 = dataItem.GrupoPID,
-                    options.model.GrupoPMaterialBase1Nombre = dataItem.GrupoP
-                },
+                //select: function (e) {
+                //    dataItem = this.dataItem(e.item.index());
+                //    options.model.GrupoPMaterialBase1 = dataItem.GrupoPID,
+                //    options.model.GrupoPMaterialBase1Nombre = dataItem.GrupoP
+                //},
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
-                        options.model.GrupoPMaterialBase1 = dataItem.GrupoPID,
-                        options.model.GrupoPMaterialBase1Nombre = dataItem.GrupoP
+                        if (options.model.RegistrosWPS == 0 || (options.model.RegistrosWPS == 1 && options.model.GrupoPMaterialBase2 == dataItem.GrupoPID )) {
+                            options.model.GrupoPMaterialBase1 = dataItem.GrupoPID;
+                            options.model.GrupoPMaterialBase1Nombre = dataItem.GrupoP;
+                        }
+                        else {
+                            displayNotify("", "El PQR ya esta asignado en WPS, para ser modificado los grupos P deben coincidir ", 1);
+                            options.model.GrupoPMaterialBase1 = materialBase1;
+                            options.model.GrupoPMaterialBase1Nombre = materialBase1Nombre;
+                            $("#grid").data("kendoGrid").dataSource.sync();
+
+                        }
                     }
                     else {
                         options.model.GrupoPMaterialBase1 = 0;
@@ -137,6 +147,8 @@ function RenderComboBoxMaterialesBase1(container, options) {
 function RenderComboBoxMaterialesBase2(container, options) {
     loadingStart();
     var dataItem;
+    var materialBase2 = options.model.GrupoPMaterialBase2;
+    var materialBase2Nombre = options.model.GrupoPMaterialBase1Nombre;
     $('<input data-text-field="GrupoP" id=' + options.model.uid + ' data-value-field="GrupoP" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
@@ -146,16 +158,25 @@ function RenderComboBoxMaterialesBase2(container, options) {
                 autoBind: false,
                 dataSource: options.model.ListaMaterialesBase,
                 template: "<i class=\"fa fa-#=data.GrupoP#\"></i> #=data.GrupoP#",
-                select: function (e) {
-                    dataItem = this.dataItem(e.item.index());
-                    options.model.GrupoPMaterialBase2 = dataItem.GrupoPID,
-                    options.model.GrupoPMaterialBase2Nombre = dataItem.GrupoP
-                },
+                //select: function (e) {
+                //    dataItem = this.dataItem(e.item.index());
+                //    options.model.GrupoPMaterialBase2 = dataItem.GrupoPID,
+                //    options.model.GrupoPMaterialBase2Nombre = dataItem.GrupoP
+                //},
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
-                        options.model.GrupoPMaterialBase2 = dataItem.GrupoPID,
-                        options.model.GrupoPMaterialBase2Nombre = dataItem.GrupoP
+                        if (options.model.RegistrosWPS == 0 || (options.model.RegistrosWPS == 1 && options.model.GrupoPMaterialBase1 == dataItem.GrupoPID)) {
+                            options.model.GrupoPMaterialBase2 = dataItem.GrupoPID;
+                            options.model.GrupoPMaterialBase2Nombre = dataItem.GrupoP;
+                        }
+                        else {
+                            displayNotify("", "El PQR ya esta asignado en WPS, para ser modificado los grupos P deben coincidir ", 1);
+                            options.model.GrupoPMaterialBase2 = materialBase2;
+                            options.model.GrupoPMaterialBase2Nombre = materialBase2Nombre;
+                            $("#grid").data("kendoGrid").dataSource.sync();
+
+                        }
                     }
                     else {
                         options.model.GrupoPMaterialBase2 = 0;

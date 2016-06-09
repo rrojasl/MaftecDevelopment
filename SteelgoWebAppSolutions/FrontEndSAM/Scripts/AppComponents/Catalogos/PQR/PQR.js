@@ -97,7 +97,8 @@ function CargarGrid() {
         filterable: getGridFilterableMaftec(),
         columns: [
             { width: "110px", field: "Nombre", title: _dictionary.lblPQRNombre[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec() },
-            { width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: {
+            {
+                width: "120px", field: "PREHEAT", title: _dictionary.lblPQRPREHEAT[$("#language").data("kendoDropDownList").value()], filterable: {
                     multi: true,
                     messages: {
                         isTrue: _dictionary.CheckBoxFilterPQRContiene[$("#language").data("kendoDropDownList").value()],
@@ -105,8 +106,10 @@ function CargarGrid() {
                         style: "max-width:100px;"
                     },
                     dataSource: [{ Etiquetado: true }, { Etiquetado: false }]
-                }, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>", width: "150px"},
-            { width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: {
+                }, template: "<input name='fullyPaid' class='chk-PREHEAT' type='checkbox' data-bind='checked: PREHEAT' #= PREHEAT ? checked='checked' : '' #/>", width: "150px"
+            },
+            {
+                width: "100px", field: "PWHT", title: _dictionary.lblPQRPWHT[$("#language").data("kendoDropDownList").value()], filterable: {
                     multi: true,
                     messages: {
                         isTrue: _dictionary.CheckBoxFilterPQRContiene[$("#language").data("kendoDropDownList").value()],
@@ -114,7 +117,8 @@ function CargarGrid() {
                         style: "max-width:100px;"
                     },
                     dataSource: [{ Etiquetado: true }, { Etiquetado: false }]
-                }, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px"},
+                }, template: "<input name='fullyPaid' class='chk-PWHT' type='checkbox' data-bind='checked: PWHT' #= PWHT ? checked='checked' : '' #/>", width: "150px"
+            },
             { width: "120px", field: "EspesorRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), format: "{0:n4}" },
             { width: "120px", field: "EspesorRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), format: "{0:n4}" },
             { width: "120px", field: "CodigoRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px", editor: RenderComboBoxProcesoSoldaduraRelleno },
@@ -136,13 +140,26 @@ function CargarGrid() {
             if ($('#Guardar').text() != "Editar") {
                 var grid = $("#grid").data("kendoGrid")
                 dataItem = grid.dataItem($(e.target).closest("tr"));
-                if ($(this)[0].checked) {
-                    dataItem.PWHT = true;
+                if (dataItem.RegistrosWPS == 0) {
+                    if ($(this)[0].checked) {
+                        dataItem.PWHT = true;
+                    }
+                    else {
+                        dataItem.PWHT = false;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
-                    dataItem.PWHT = false;
+                    displayNotify("", _dictionary.lblPQRElementoPQR[$("#language").data("kendoDropDownList").value()] + dataItem.Nombre + _dictionary.lblPQRYaAsignado[$("#language").data("kendoDropDownList").value()], 1);
+                    if ($(this)[0].checked) {
+                        dataItem.PWHT = false;
+                    }
+                    else {
+                        dataItem.PWHT = true;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
+
                 }
-                $("#grid").data("kendoGrid").dataSource.sync();
             }
             else {
                 if ($(this)[0].checked) {
@@ -157,13 +174,26 @@ function CargarGrid() {
             if ($('#Guardar').text() != "Edit") {
                 var grid = $("#grid").data("kendoGrid")
                 dataItem = grid.dataItem($(e.target).closest("tr"));
-                if ($(this)[0].checked) {
-                    dataItem.PWHT = true;
+                if (dataItem.RegistrosWPS == 0) {
+                    if ($(this)[0].checked) {
+                        dataItem.PWHT = true;
+                    }
+                    else {
+                        dataItem.PWHT = false;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
-                    dataItem.PWHT = false;
+                    displayNotify("", _dictionary.lblPQRElementoPQR[$("#language").data("kendoDropDownList").value()] + dataItem.Nombre + _dictionary.lblPQRYaAsignado[$("#language").data("kendoDropDownList").value()], 1);
+                    if ($(this)[0].checked) {
+                        dataItem.PWHT = false;
+                    }
+                    else {
+                        dataItem.PWHT = true;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
+
                 }
-                $("#grid").data("kendoGrid").dataSource.sync();
             }
             else {
                 if ($(this)[0].checked) {
@@ -181,13 +211,26 @@ function CargarGrid() {
             if ($('#Guardar').text() != "Editar") {
                 var grid = $("#grid").data("kendoGrid")
                 dataItem = grid.dataItem($(e.target).closest("tr"));
-                if ($(this)[0].checked) {
-                    dataItem.PREHEAT = true;
+                if (dataItem.RegistrosWPS == 0) {
+                    if ($(this)[0].checked) {
+                        dataItem.PREHEAT = true;
+                    }
+                    else {
+                        dataItem.PREHEAT = false;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
-                    dataItem.PREHEAT = false;
+                    displayNotify("", _dictionary.lblPQRElementoPQR[$("#language").data("kendoDropDownList").value()] + dataItem.Nombre + _dictionary.lblPQRYaAsignado[$("#language").data("kendoDropDownList").value()], 1);
+                    if ($(this)[0].checked) {
+                        dataItem.PREHEAT = false;
+                    }
+                    else {
+                        dataItem.PREHEAT = true;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
+
                 }
-                $("#grid").data("kendoGrid").dataSource.sync();
             }
             else {
                 if ($(this)[0].checked) {
@@ -202,20 +245,25 @@ function CargarGrid() {
             if ($('#Guardar').text() != "Edit") {
                 var grid = $("#grid").data("kendoGrid")
                 dataItem = grid.dataItem($(e.target).closest("tr"));
-                if ($(this)[0].checked) {
-                    dataItem.PREHEAT = true;
+                if (dataItem.RegistrosWPS == 0) {
+                    if ($(this)[0].checked) {
+                        dataItem.PREHEAT = true;
+                    }
+                    else {
+                        dataItem.PREHEAT = false;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
-                    dataItem.PREHEAT = false;
-                }
-                $("#grid").data("kendoGrid").dataSource.sync();
-            }
-            else {
-                if ($(this)[0].checked) {
-                    $(this)[0].checked = false;
-                }
-                else {
-                    $(this)[0].checked = true;
+                    displayNotify("", _dictionary.lblPQRElementoPQR[$("#language").data("kendoDropDownList").value()] + dataItem.Nombre + _dictionary.lblPQRYaAsignado[$("#language").data("kendoDropDownList").value()], 1);
+                    if ($(this)[0].checked) {
+                        dataItem.PREHEAT = false;
+                    }
+                    else {
+                        dataItem.PREHEAT = true;
+                    }
+                    $("#grid").data("kendoGrid").dataSource.sync();
+
                 }
             }
         }
