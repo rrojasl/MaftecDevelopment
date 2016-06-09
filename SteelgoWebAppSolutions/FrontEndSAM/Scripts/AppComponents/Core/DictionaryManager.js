@@ -7700,12 +7700,25 @@ _dictionary = {
     },
     "WPSEspesorMinimo": {
         "es-MX": "E Mín(mm)",
-        "en-US": "Mini T(mm)"
+        "en-US": "Min T(mm)"
+    },
+    "WPSEspesorMinimoGrid": {
+        "es-MX": "Mín",
+        "en-US": "Min"
+    },
+    "WPSEspesorMaximoGrid": {
+        "es-MX": "Max",
+        "en-US": "Max"
     },
     "WPSEspesorMinimo2": {
         "es-MX": "E Mín(mm)",
-        "en-US": "Mini T(mm)"
+        "en-US": "Min T(mm)"
     },
+    "WPSEspesorCabeceraGrid": {
+        "es-MX": "Espesor (mm)",
+        "en-US": "Thickness (mm)"
+    },
+
     "WPSMensajeErrorNombreRepetido": {
         "es-MX": "El nombre del WPS no se puede repetir",
         "en-US": "WPS Name can not be repeat"
