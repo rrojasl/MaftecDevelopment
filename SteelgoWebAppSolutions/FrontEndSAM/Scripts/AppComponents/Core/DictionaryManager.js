@@ -8335,8 +8335,12 @@ _dictionary = {
         "en-US": "The PQR element "
     },
     "lblPQRYaAsignado": {
-        "es-MX": " se encuentra asignado, favor de revisar el listado WPS",
-        "en-US": " is assigned, please review the list WPS"
+        "es-MX": " se encuentra asignado, favor de revisar el Catalogo WPS",
+        "en-US": " is assigned, please review the WPS Catalog"
+    },
+    "lblPQRAsignarGrupoP": {
+        "es-MX": "El PQR ya está asignado en WPS, el grupo P deben coincidir para ser modificado",
+        "en-US": "The PQR is already assigned in WPS, the P group must match to be modified"
     },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Desde:",

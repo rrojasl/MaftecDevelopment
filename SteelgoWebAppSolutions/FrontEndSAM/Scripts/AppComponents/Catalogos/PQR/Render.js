@@ -118,7 +118,7 @@ function RenderComboBoxMaterialesBase1(container, options) {
                             options.model.GrupoPMaterialBase1Nombre = dataItem.GrupoP;
                         }
                         else {
-                            displayNotify("", "El PQR ya esta asignado en WPS, para ser modificado los grupos P deben coincidir ", 1);
+                            displayNotify("lblPQRAsignarGrupoP", "", 1);
                             options.model.GrupoPMaterialBase1 = materialBase1;
                             options.model.GrupoPMaterialBase1Nombre = materialBase1Nombre;
                             $("#grid").data("kendoGrid").dataSource.sync();
@@ -171,7 +171,7 @@ function RenderComboBoxMaterialesBase2(container, options) {
                             options.model.GrupoPMaterialBase2Nombre = dataItem.GrupoP;
                         }
                         else {
-                            displayNotify("", "El PQR ya esta asignado en WPS, para ser modificado los grupos P deben coincidir ", 1);
+                            displayNotify("lblPQRAsignarGrupoP", "", 1);
                             options.model.GrupoPMaterialBase2 = materialBase2;
                             options.model.GrupoPMaterialBase2Nombre = materialBase2Nombre;
                             $("#grid").data("kendoGrid").dataSource.sync();

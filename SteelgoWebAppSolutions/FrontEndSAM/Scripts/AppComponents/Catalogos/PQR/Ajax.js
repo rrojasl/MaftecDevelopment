@@ -11,6 +11,7 @@ function LlenaGridAjax() {
             } else {
                 $("#grid").data("kendoGrid").dataSource.data([]);
             };
+            $("#grid").data("kendoGrid").dataSource.sync();
         }
     });
 };
@@ -28,6 +29,7 @@ function AjaxGuardarListado() {
     ListaDetalles = [];
     var correcto = true;
     var pqrModified = '';
+    var desplegado = false;
     for (index = 0; index < arregloCaptura.length; index++) {
         ListaDetalles[index] = {
             PQRID: "",
@@ -60,6 +62,11 @@ function AjaxGuardarListado() {
 
             ListaDetalles[index].Estatus = 0;
             $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+            
+            if (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].ProcesoSoldaduraRellenoID == 6 && !desplegado) {
+                desplegado = true;
+                displayNotify("lblPQRDobleNA", "", "1");
+            }
         }
         else {
             if (pqrModified.length == 0)
