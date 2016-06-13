@@ -130,7 +130,7 @@ function AjaxGuardar(tipoGuardar) {
 }
 
 function AjaxExistePQR(tipo) {
-    if ($('#NombreId').val() != "" && $('#NombreId').val() != undefined && $('#NombreId').val() != null
+     if ($('#NombreId').val() != "" && $('#NombreId').val() != undefined && $('#NombreId').val() != null
         && ($("#PQRID").val() == "" || $("#PQRID").val() == undefined || $("#PQRID").val() == null || $("#PQRID").val() == 0)) {
         loadingStart();
         $PQR.PQR.read({ token: Cookies.get("token"), nombre: $('#NombreId').val() }).done(function (data) {
@@ -145,7 +145,17 @@ function AjaxExistePQR(tipo) {
             loadingStop();
         });
     } else if($("#PQRID").val() != "" || $("#PQRID").val() != undefined || $("#PQRID").val() != null || $("#PQRID").val() !=0 ) {
-        AjaxGuardar(tipo);
-        loadingStop();
+        loadingStart();
+        $PQR.PQR.read({ token: Cookies.get("token"), nombre: $('#NombreId').val() }).done(function (data) {
+            if (data.ReturnMessage[0] != "OK") {
+                displayNotify("", "El Nombre del PQR ya existe", '2');
+                //$('#NombreId').focus();
+
+            }
+            else if (tipo != 3) {
+                AjaxGuardar(tipo);
+            }
+            loadingStop();
+        });
     }
 }

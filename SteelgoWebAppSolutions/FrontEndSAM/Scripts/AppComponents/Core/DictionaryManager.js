@@ -8342,6 +8342,10 @@ _dictionary = {
         "es-MX": "El PQR ya está asignado en WPS, el grupo P deben coincidir para ser modificado",
         "en-US": "The PQR is already assigned in WPS, the P group must match to be modified"
     },
+    "lblPQRCapturaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de PQR?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of PQR?"
+    },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Desde:",
         "en-US": "From:"

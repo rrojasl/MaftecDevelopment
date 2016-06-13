@@ -112,4 +112,5 @@ function Limpiar() {
     $('#RespaldoID').val("");
     $('#GrupoFID').val("");
     $('#CodigoID').data("kendoComboBox").value("");
+    $("#PQRID").val("0");
 };
