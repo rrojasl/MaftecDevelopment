@@ -8274,6 +8274,10 @@ _dictionary = {
         "es-MX": "Soldador Certificación",
         "en-US": "Certification Welder"
     },
+    "lblSoldadorCertificacion2": {
+        "es-MX": "Soldador Certificación",
+        "en-US": "Certification Welder"
+    },
     "lblNewSoldadorCertificacion": {
         "es-MX": "Nuevo Soldador Certificación",
         "en-US": "New Certification Welder"
@@ -8380,6 +8384,10 @@ _dictionary = {
     "SoldadorCertificacionFechaCertificacion": {
         "es-MX": "FECHA CERTIFICACIÓN",
         "en-US": "CERTIFICATION DATE"
+    },
+    "SoldadorCertificacionPreguntaBorradoCaptura": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de Soldador Certificación?",
+        "en-US": "Are you sure you want to cancel the detail of the capture of Certification Welder?"
     },
     "lblValidaEspesorMaximoSoldadorCertificación": {
         "es-MX": "El Campo 'ESPESOR MÁXIMO', solo acepta valores numéricos'",

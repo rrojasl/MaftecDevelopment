@@ -115,7 +115,7 @@ function EliminaSoldadorCertificacion(e) {
             }
         }).data("kendoWindow");
 
-        ventanaConfirm.content(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+        ventanaConfirm.content(_dictionary.SoldadorCertificacionPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
                         "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
 
         ventanaConfirm.open().center();
