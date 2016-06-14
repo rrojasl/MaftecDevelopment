@@ -388,7 +388,7 @@ namespace BackEndSAM.DataAcces
                     }
                     else
                     {
-                        result.ReturnMessage.Add("Error");
+                        result.ReturnMessage.Add(data);
                     }
 
                     result.ReturnCode = 200;

@@ -52,7 +52,7 @@ function AjaxGuardar(tipoGuardar) {
         displayNotify("lblPQREspRaizMandatorio", "", '1');
     }
     else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()) == undefined
-          || $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).ProcesoSoldaduraID == 0 ) {
+          || $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).ProcesoSoldaduraID == 0) {
         correcto = false;
         displayNotify("lblPQRProcSoldMandatorio", "", '1');
     }
@@ -130,27 +130,31 @@ function AjaxGuardar(tipoGuardar) {
 }
 
 function AjaxExistePQR(tipo) {
-     if ($('#NombreId').val() != "" && $('#NombreId').val() != undefined && $('#NombreId').val() != null
-        && ($("#PQRID").val() == "" || $("#PQRID").val() == undefined || $("#PQRID").val() == null || $("#PQRID").val() == 0)) {
-        loadingStart();
-        $PQR.PQR.read({ token: Cookies.get("token"), nombre: $('#NombreId').val() }).done(function (data) {
-            if (data.ReturnMessage[0] != "OK") {
-                displayNotify("", "El Nombre del PQR ya existe", '2');
-               //$('#NombreId').focus();
-
-            }
-            else if(tipo!=3) {
-                AjaxGuardar(tipo);
-            }
-            loadingStop();
-        });
-    } else if($("#PQRID").val() != "" || $("#PQRID").val() != undefined || $("#PQRID").val() != null || $("#PQRID").val() !=0 ) {
+    if ($('#NombreId').val() != "" && $('#NombreId').val() != undefined && $('#NombreId').val() != null
+       && ($("#PQRID").val() == "" || $("#PQRID").val() == undefined || $("#PQRID").val() == null || $("#PQRID").val() == 0)) {
         loadingStart();
         $PQR.PQR.read({ token: Cookies.get("token"), nombre: $('#NombreId').val() }).done(function (data) {
             if (data.ReturnMessage[0] != "OK") {
                 displayNotify("", "El Nombre del PQR ya existe", '2');
                 //$('#NombreId').focus();
 
+            }
+            else if (tipo != 3) {
+                AjaxGuardar(tipo);
+            }
+            loadingStop();
+        });
+    } else if ($("#PQRID").val() != "" || $("#PQRID").val() != undefined || $("#PQRID").val() != null || $("#PQRID").val() != 0) {
+        loadingStart();
+        $PQR.PQR.read({ token: Cookies.get("token"), nombre: $('#NombreId').val() }).done(function (data) {
+            if (data.ReturnMessage[0] != "OK") {
+                if (data.ReturnMessage[0] == $("#PQRID").val()) {
+                    if (tipo != 3) {
+                        AjaxGuardar(tipo);
+                    }
+                } else {
+                    displayNotify("", "El Nombre del PQR ya existe", '2');
+                }
             }
             else if (tipo != 3) {
                 AjaxGuardar(tipo);
