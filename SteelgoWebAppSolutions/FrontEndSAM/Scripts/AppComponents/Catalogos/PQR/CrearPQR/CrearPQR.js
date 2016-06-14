@@ -20,6 +20,10 @@ function ConvertirCombos() {
     });
 
     $("#ProcesoSoldaduraRellenoID").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        autoBind: false,
         dataTextField: "Codigo",
         dataValueField: "ProcesoSoldaduraID",
         select: function (e) {
@@ -35,6 +39,10 @@ function ConvertirCombos() {
     });
 
     $("#ProcesoSoldaduraRaizID").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        autoBind: false,
         dataTextField: "Codigo",
         dataValueField: "ProcesoSoldaduraID",
         select: function (e) {
@@ -50,6 +58,10 @@ function ConvertirCombos() {
     });
 
     $("#GrupoPMaterialBase1ID").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        autoBind: false,
         dataTextField: "GrupoP",
         dataValueField: "GrupoPID",
         select: function (e) {
@@ -66,6 +78,10 @@ function ConvertirCombos() {
     });
 
     $("#GrupoPMaterialBase2ID").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        autoBind: false,
         dataTextField: "GrupoP",
         dataValueField: "GrupoPID",
         select: function (e) {
@@ -82,6 +98,10 @@ function ConvertirCombos() {
     });
 
     $("#CodigoID").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        autoBind: false,
         dataTextField: "Especificacion",
         dataValueField: "CodigoAsmeID",
         select: function (e) {
