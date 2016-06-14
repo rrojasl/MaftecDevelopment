@@ -1200,3 +1200,7 @@ button[data-bind="visible:operatorVisible"] {
 .k-filter-menu div label{
     text-align:center;
 }
+
+.k-animation-container, .k-widget, .k-widget *, .k-animation-container *, .k-widget *::before, .k-animation-container *::after, .k-block .k-header, .k-list-container{
+    box-sizing:border-box !important;
+}

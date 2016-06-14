@@ -55,15 +55,15 @@ function CargarGrid() {
                 this.closeCell();
 
         },
-        change: function () {
-            ItemSeleccionado = this.dataSource.view()[this.select().index()];
-        },
+       
         dataBound: function () {
             var myElem = document.getElementById('trParentHeader');
             if (myElem == null) {
                 $("#grid").find("th.k-header").parent().before("<tr id='trParentHeader'> " +
                     "<th scope='col' colspan='1' class='k-header'></th>  <th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPQR[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span>" + _dictionary.WPSPQRGrupoP[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
+                    "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSLabelEspesorRaiz[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
+                    "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSLabelEspesorRelleno[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPWHT[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSPreHeat[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
                     "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.WPSEspesorCabeceraGrid[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
@@ -86,6 +86,10 @@ function CargarGrid() {
                         PREHEATRelleno: { type: "boolean", editable: false },
                         EspesorMaximo: { type: "number", editable: false },
                         EspesorMinimo: { type: "number", editable: false },
+                        RaizEspesorRaiz: { type: "number", editable: false },
+                        RaizEspesorRelleno: { type: "number", editable: false },
+                        RellenoEspesorRaiz: { type: "number", editable: false },
+                        RellenoEspesorRelleno: { type: "number", editable: false },
                     }
                 }
             },
@@ -123,12 +127,16 @@ function CargarGrid() {
                     { field: "NombrePQRRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px", editor: RenderComboBoxPQRRelleno },
                     { field: "GrupoPRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
                     { field: "GrupoPRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
+                    { field: "RaizEspesorRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "75px", format: "{0:n4}" },
+                    { field: "RaizEspesorRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "75px", format: "{0:n4}" },
+                    { field: "RellenoEspesorRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "75px", format: "{0:n4}" },
+                    { field: "RellenoEspesorRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "75px", format: "{0:n4}" },
                     { field: "PWHTRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PWHTRaiz' #= PWHTRaiz ? checked='checked' : '' #/>" },
                     { field: "PWHTRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PWHTRelleno' #= PWHTRelleno ? checked='checked' : '' #/>" },
                     { field: "PREHEATRaiz", title: _dictionary.WPSPQRRAIZ[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PREHEATRaiz' #= PREHEATRaiz ? checked='checked' : '' #/>" },
                     { field: "PREHEATRelleno", title: _dictionary.WPSPQRRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "73px", template: "<input readonly disabled type='checkbox' data-bind='checked: PREHEATRelleno' #= PREHEATRelleno ? checked='checked' : '' #/>" },
-                    { field: "EspesorMinimo", title: _dictionary.WPSEspesorMinimoGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "70px", format: "{0:n4}" },
-                    { field: "EspesorMaximo", title: _dictionary.WPSEspesorMaximoGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "70px", format: "{0:n4}" },
+                    { field: "EspesorMinimo", title: _dictionary.WPSEspesorMinimoGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "75px", format: "{0:n4}" },
+                    { field: "EspesorMaximo", title: _dictionary.WPSEspesorMaximoGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "75px", format: "{0:n4}" },
                     { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
                     //{ command: { text: _dictionary.botonDetalle[$("#language").data("kendoDropDownList").value()], click: EditaWPS }, title: _dictionary.tituloEditar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ],
@@ -227,7 +235,7 @@ function NombreRepetido(listaDetalles) {
 function ObtenerEspesorCorrecto(EspesorTotalT, PWHT,ProcesoSoldadura, esRaiz) {
     var espesores = [];
     espesores[0] = { EspesorMaximo: "", EspesorMinimo: "" };
-    if ( !PWHT || (PWHT || EspesorTotalT > 16)) {
+    if ( PWHT || (!PWHT && EspesorTotalT > 16)) {
 
         if (ProcesoSoldadura == "GMAW STT" && EspesorTotalT < 13 && esRaiz) {
             espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);

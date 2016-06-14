@@ -156,7 +156,7 @@ function getGridFilterableCellMaftec() {
         cell: {
             operator: "contains",
             template: function (args) {
-                args.css("width", "90%").addClass("general-input").keydown(function (e) {
+                args.css("width", "100%").addClass("general-input").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -173,7 +173,7 @@ function getGridFilterableCellNumberMaftec() {
             operator: "eq",
             template: function (args) {
                 //$(args).prop('type', 'number');
-                args.css("width", "90%").addClass("general-input").keydown(function (e) {
+                args.css("width", "100%").addClass("general-input").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -190,7 +190,7 @@ function getGridFilterableCellMaftecpopUp() {
         cell: {
             operator: "contains",
             template: function (args) {
-                args.css("width", "90%").addClass("k-input").keydown(function (e) {
+                args.css("width", "100%").addClass("k-input").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });

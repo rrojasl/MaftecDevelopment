@@ -141,16 +141,27 @@ function ConvertirCombos() {
 
 };
 
-function ContieneGruposMaterialBase(itemAcomparar, Base1, Base2) {
+function ContieneGruposMaterialBase(Base1Uno,Base2Uno, Base1Dos, Base2Dos) {
 
     var arrayCombinacion = [];
 
-    arrayCombinacion[0] = Base1 + " " + Base2;
-    arrayCombinacion[1] = Base2 + " " + Base1;
+    arrayCombinacion[0] = Base1Dos + " " + Base2Dos;
+    arrayCombinacion[1] = Base2Dos + " " + Base1Dos;
+    arrayCombinacion[2] = Base2Dos + " " + Base2Dos;
+    arrayCombinacion[3] = Base1Dos + " " + Base1Dos;
+
+    var arrayCombinacionDos = [];
+
+    arrayCombinacionDos[0] = Base1Uno + " " + Base2Uno;
+    arrayCombinacionDos[1] = Base2Uno + " " + Base1Uno;
+    arrayCombinacionDos[2] = Base2Uno + " " + Base2Uno;
+    arrayCombinacionDos[3] = Base1Uno + " " + Base1Uno;
 
     for (var i = 0; i < arrayCombinacion.length; i++) {
-        if (arrayCombinacion[i] == itemAcomparar) {
-            return false;
+        for (var j = 0; j < arrayCombinacionDos.length; j++) {
+            if (arrayCombinacion[i] == arrayCombinacionDos[j]) {
+                return false;
+            }
         }
     }
     return true;
@@ -203,7 +214,7 @@ function opcionHabilitarView(valor, name) {
 function ObtenerEspesorCorrecto(EspesorTotalT, PWHT, ProcesoSoldadura, esRaiz) {
     var espesores = [];
     espesores[0] = { EspesorMaximo: "", EspesorMinimo: "" };
-    if (PWHT== 0 || (PWHT == 1 || EspesorTotalT > 16)) {
+    if (PWHT== 1 || (PWHT == 0 && EspesorTotalT > 16)) {
 
         if (ProcesoSoldadura == "GMAW STT" && EspesorTotalT < 13 && esRaiz) {
             espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);

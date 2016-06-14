@@ -7724,8 +7724,8 @@ _dictionary = {
         "en-US": "WPS Name can not be repeat"
     },
     "WPSMensajeErrorPWHT": {
-        "es-MX": "El WPS, no coincide",
-        "en-US": "WPS does not match"
+        "es-MX": "El PWHT, no coincide",
+        "en-US": "PWHT does not match"
     },
     "WPSMensajeErrorGrupoP": {
         "es-MX": "El grupo P, no coincide",

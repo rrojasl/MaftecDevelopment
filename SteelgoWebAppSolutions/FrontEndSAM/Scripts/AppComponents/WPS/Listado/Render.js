@@ -19,7 +19,7 @@
                     if (Boolean(options.model.PWHTRellenoId) != dataItem.PWHT) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorPWHT[$("#language").data("kendoDropDownList").value()];
                     }
-                    if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RellenoUID, options.model.GrupoMaterialBase1RellenoDID)) {
+                    if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1,dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RellenoUID, options.model.GrupoMaterialBase1RellenoDID)) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorGrupoP[$("#language").data("kendoDropDownList").value()];
                     }
                     if (options.model.PREHEATRellenoId != dataItem.PREHEAT) {
@@ -44,8 +44,8 @@
 
                     options.model.EspesorMaximo = rootMax[0].EspesorMaximo > fillMax[0].EspesorMaximo ? rootMax[0].EspesorMaximo : fillMax[0].EspesorMaximo;
                     options.model.EspesorMinimo = rootMax[0].EspesorMinimo < fillMax[0].EspesorMinimo ? rootMax[0].EspesorMinimo : fillMax[0].EspesorMinimo;
-                    options.model.RellenoEspesorRaiz = parseFloat(dataItem.EspesorRaiz);
-                    options.model.RellenoEspesorRelleno = parseFloat(dataItem.EspesorRelleno);
+                    options.model.RaizEspesorRaiz = parseFloat(dataItem.EspesorRaiz);
+                    options.model.RaizEspesorRelleno = parseFloat(dataItem.EspesorRelleno);
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
@@ -106,7 +106,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                     if (Boolean(options.model.PWHTRaizId) != dataItem.PWHT) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorPWHT[$("#language").data("kendoDropDownList").value()];
                     }
-                    if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1 + " " + dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RaizUID, options.model.GrupoMaterialBase1RaizDID)) {
+                    if (ContieneGruposMaterialBase(dataItem.GrupoPMaterialBase1,dataItem.GrupoPMaterialBase2, options.model.GrupoMaterialBase1RaizUID, options.model.GrupoMaterialBase1RaizDID)) {
                         cadenaError += "\n " + _dictionary.WPSMensajeErrorGrupoP[$("#language").data("kendoDropDownList").value()];
                     }
                     if (options.model.PREHEATRaizId != dataItem.PREHEAT) {
@@ -129,8 +129,8 @@ function RenderComboBoxPQRRelleno(container, options) {
 
                     options.model.EspesorMaximo = rootMax[0].EspesorMaximo > fillMax[0].EspesorMaximo ? rootMax[0].EspesorMaximo : fillMax[0].EspesorMaximo;
                     options.model.EspesorMinimo = rootMax[0].EspesorMinimo < fillMax[0].EspesorMinimo ? rootMax[0].EspesorMinimo : fillMax[0].EspesorMinimo;
-                    options.model.RaizEspesorRaiz = parseFloat(dataItem.EspesorRaiz);
-                    options.model.RaizEspesorRelleno = parseFloat(dataItem.EspesorRelleno);
+                    options.model.RellenoEspesorRaiz = parseFloat(dataItem.EspesorRaiz);
+                    options.model.RellenoEspesorRelleno = parseFloat(dataItem.EspesorRelleno);
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
@@ -215,16 +215,27 @@ function tieneClase(item) {
 }
 
 
-function ContieneGruposMaterialBase(itemAcomparar,Base1, Base2) {
-    
+function ContieneGruposMaterialBase(Base1Uno, Base2Uno, Base1Dos, Base2Dos) {
+
     var arrayCombinacion = [];
-    
-    arrayCombinacion[0] = Base1 + " " + Base2;
-    arrayCombinacion[1] = Base2 + " " + Base1;
+
+    arrayCombinacion[0] = Base1Dos + " " + Base2Dos;
+    arrayCombinacion[1] = Base2Dos + " " + Base1Dos;
+    arrayCombinacion[2] = Base2Dos + " " + Base2Dos;
+    arrayCombinacion[3] = Base1Dos + " " + Base1Dos;
+
+    var arrayCombinacionDos = [];
+
+    arrayCombinacionDos[0] = Base1Uno + " " + Base2Uno;
+    arrayCombinacionDos[1] = Base2Uno + " " + Base1Uno;
+    arrayCombinacionDos[2] = Base2Uno + " " + Base2Uno;
+    arrayCombinacionDos[3] = Base1Uno + " " + Base1Uno;
 
     for (var i = 0; i < arrayCombinacion.length; i++) {
-        if (arrayCombinacion[i] == itemAcomparar) {
-            return false;
+        for (var j = 0; j < arrayCombinacionDos.length; j++) {
+            if (arrayCombinacion[i] == arrayCombinacionDos[j]) {
+                return false;
+            }
         }
     }
     return true;
