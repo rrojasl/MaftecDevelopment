@@ -84,7 +84,7 @@ function CargarGrid() {
             { field: "EspesorMaximo", title: _dictionary.SoldadorCertificacionEspesorMaximo[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
             { field: "DiametroCalificado", title: _dictionary.SoldadorCertificacionDiametroCalificadoPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
             { field: "TipoDePrueba", title: _dictionary.SoldadorCertificacionTipoDePruebaPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px", editor: RenderComboBoxTipoPrueba },
-            { field: "Posicion", title: _dictionary.SoldadorCertificacionPosicionPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px" },
+            { field: "Posicion", title: _dictionary.SoldadorCertificacionPosicionPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px", editor: renderPosicion, format: "{0} °" },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: EliminaSoldadorCertificacion }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ]
     });
@@ -292,7 +292,7 @@ function ValidarInformacionEnviada() {
             }
         }).data("kendoWindow");
 
-        ventanaConfirm.content(_dictionary.WPSMensajeCamposIncorrector[$("#language").data("kendoDropDownList").value()] +
+        ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
             "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
 
         ventanaConfirm.open().center();

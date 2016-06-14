@@ -33,8 +33,6 @@
             }
         }
     });
-
-
 }
 
 
@@ -89,7 +87,6 @@ function RenderComboBoxTipoPrueba(container, options) {
             autoBind: false,
             dataSource: options.model.ListaTipoPrueba,
             template: "<i class=\"fa fa-#=data.TipoDePrueba.toLowerCase()#\"></i> #=data.TipoDePrueba#",
-
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
@@ -157,6 +154,9 @@ function renderNoPasos(container, options) {
     $('<input   data-bind="value:' + options.field + '"/>')
     .appendTo(container)
         .kendoNumericTextBox({
+            format: "#",
+            min: 0,
+            value: "0",
             change: function () {
                 if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 0.5) {
                     options.model.EspesorMaximo = '999999999999.0';
@@ -164,6 +164,16 @@ function renderNoPasos(container, options) {
                     displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
                 }
             }
+        });
+}
+
+function renderPosicion(container, options) {
+    $('<input   data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+        .kendoNumericTextBox({
+            format: "#",
+            min: 0,
+            value: "0",
         });
 }
 

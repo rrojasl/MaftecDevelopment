@@ -195,6 +195,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             ($("#inputSoldador").data("kendoComboBox").select() == -1) ||
             ($("#inputNombrePQR").data("kendoComboBox").select() == -1) ||
             (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) == 0.0) ||
+            ($("#inputPasosSoldadura").data("kendoNumericTextBox").value() == null) ||
             ($("#inputFechaInicioCertificado").val() == '') ||
             ($("#inputFechaFinCertificado").val() == '') ||
             (parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) == 0.0) ||
@@ -202,6 +203,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             (parseFloat($("#inputDiametroCalificado").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputTipoPrueba").data("kendoComboBox").select() == -1) ||
             (parseFloat($("#inputPosicionPQR").data("kendoNumericTextBox").value()) == 0.0) ||
+             ($("#inputPosicionPQR").data("kendoNumericTextBox").value() == null) ||
             ($("#inputProcesoSol").data("kendoComboBox").select() == -1)
            ) {
             ListaDetalles[index].Estatus = 0;

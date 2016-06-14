@@ -8251,8 +8251,8 @@ _dictionary = {
         "en-US": "Test type"
     },
     "SoldadorCertificacionPosicionPQR": {
-        "es-MX": "Posición",
-        "en-US": "Position"
+        "es-MX": "Posición °",
+        "en-US": "Position °"
     },
     "SoldadorCertificacionCedulaTuboPQR": {
         "es-MX": "Cédula Tubo",
@@ -8365,8 +8365,8 @@ _dictionary = {
     },
 
     "SoldadorCertificacionPasosSoldadura": {
-        "es-MX": "No Pasos",
-        "en-US": "Steps No."
+        "es-MX": "# Pasos",
+        "en-US": "Steps #"
     },
     "SoldadorCertificacionPorcentajeJuntasRequiere": {
         "es-MX": "Porcentaje de juntas que requiere",

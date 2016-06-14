@@ -65,5 +65,10 @@ var $SoldadorCertificacionSaveModel = {
             editable: "#inputTipoPrueba",
             required: "#inputTipoPrueba"
         },
+        TipoDePrueba: {
+            visible: "#SCPasosSoldaduraDiv",
+            editable: "#inputPasosSoldadura",
+            required: "#inputPasosSoldadura"
+        },
     }
 };
