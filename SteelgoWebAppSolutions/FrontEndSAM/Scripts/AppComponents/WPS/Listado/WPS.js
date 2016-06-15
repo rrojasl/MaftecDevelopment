@@ -234,15 +234,22 @@ function NombreRepetido(listaDetalles) {
     for (var i = 0; i < listaDetalles.length; i++) {
         for (var j = 0; j < listaDetalles.length; j++) {
             if (listaDetalles[i].WPSNombre.toLowerCase() == listaDetalles[j].WPSNombre.toLowerCase() && i != j) {
-                listaDetalles[j].Estatus = 0;
+                listaDetalles[j].Estatus = -4;
                 $('tr[data-uid="' + arregloCaptura[j].uid + '"] ').css("background-color", "#ffcccc");
             }
         }
     }
 
-    return ExistRowEmpty(ListaDetalles);
+    return ValidaNombreRepetido(ListaDetalles);
 }
 
+function ValidaNombreRepetido(rows) {
+    for (var i = 0; i < rows.length; i++) {
+        if (rows[i].Estatus == -4)
+            return true;
+    }
+    return false;
+}
 
 
 function ObtenerEspesorCorrecto(EspesorTotalT, PWHT,ProcesoSoldadura, esRaiz) {

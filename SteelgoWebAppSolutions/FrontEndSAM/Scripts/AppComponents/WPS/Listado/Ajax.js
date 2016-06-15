@@ -30,6 +30,29 @@ function EliminaWPSAjax(dataItem) {
     }
 };
 
+function ExistEmptyWPS(listaDetalles) {
+
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    var filters = dataSource.filter();
+    var allData = dataSource.data();
+    var query = new kendo.data.Query(allData);
+    var arregloCaptura = query.filter(filters).data;
+
+
+   
+        for (var j = 0; j < listaDetalles.length; j++) {
+            if (listaDetalles[j].Estatus == 0) {
+                $('tr[data-uid="' + arregloCaptura[j].uid + '"] ').css("background-color", "#ffcccc");
+            }
+        }
+    
+
+    for (var i = 0; i < listaDetalles.length; i++) {
+        if (listaDetalles[i].Estatus == 0)
+            return true;
+    }
+    return false;
+}
 function AjaxGuardarCaptura() {
 
     Captura = [];
@@ -61,7 +84,7 @@ function AjaxGuardarCaptura() {
             ListaDetalles[index].Estatus = 0;//Informacion Incompleta.
             //$('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
         }
-        else if (ContieneGruposMaterialBase(arregloCaptura[index].GrupoMaterialBase1RaizUID + " " + arregloCaptura[index].GrupoMaterialBase1RaizDID, arregloCaptura[index].GrupoMaterialBase1RellenoUID, arregloCaptura[index].GrupoMaterialBase1RellenoDID)) {
+        else if (ContieneGruposMaterialBase(arregloCaptura[index].GrupoMaterialBase1RaizUID, arregloCaptura[index].GrupoMaterialBase1RaizDID, arregloCaptura[index].GrupoMaterialBase1RellenoUID, arregloCaptura[index].GrupoMaterialBase1RellenoDID)) {
             ListaDetalles[index].Estatus = -1;//se agrega esto para mostrar errores especificos
             //$('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
         }
@@ -95,7 +118,7 @@ function AjaxGuardarCaptura() {
 
 
     if (!NombreRepetido(ListaDetalles)) {
-        if (!ExistRowEmpty(ListaDetalles)) {
+        if (!ExistEmptyWPS(ListaDetalles)) {
             if (!EsCorrectoGruposMaterialBase(ListaDetalles)) {
                 if (!EsCorrectoPWHTRELLENO(ListaDetalles)) {
                     if (!EsCorrectoPreHitRelleno(ListaDetalles)) {

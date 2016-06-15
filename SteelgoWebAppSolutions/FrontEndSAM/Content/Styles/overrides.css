@@ -1201,6 +1201,6 @@ button[data-bind="visible:operatorVisible"] {
     text-align:center;
 }
 
-.k-animation-container, .k-widget, .k-widget *, .k-animation-container *, .k-widget *::before, .k-animation-container *::after, .k-block .k-header, .k-list-container{
+.k-filter-row *{
     box-sizing:border-box !important;
 }
