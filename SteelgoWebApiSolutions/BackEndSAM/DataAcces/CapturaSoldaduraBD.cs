@@ -433,6 +433,9 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        
+
+        
         public object ObtenerJuntasXSpoolID(Sam3_Usuario usuario, string ordenTrabajo, string id, int sinCaptura)
         {
             try

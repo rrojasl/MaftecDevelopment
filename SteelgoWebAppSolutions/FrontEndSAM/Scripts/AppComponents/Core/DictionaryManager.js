@@ -7570,6 +7570,19 @@ _dictionary = {
     //#endregion 
 
     //#region WPS
+    "WPSMensajeErrorPreHitRelleno": {
+        "es-MX": "Prehit no coincide",
+        "en-US": "Do not match PreHit"
+    },
+    "WPSMensajeErrorPWHRelleno": {
+        "es-MX": "PWH No coincide",
+        "en-US": "Do not match PWH"
+    },
+    "WPSMensajeErrorGruposMaterialBase": {
+        "es-MX": "Grupo Material no coincide ",
+        "en-US": "Do not match Material Group"
+    },
+
     "WPSLabelEspesorRaiz": {
         "es-MX": "E. Raíz(mm)",
         "en-US": "Root T.(mm)"

@@ -4,22 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace FrontEndSAM.Controllers.Catalogos
+namespace FrontEndSAM.Controllers.PQR
 {
-    public class PQRController : Controller
+    public class CatalogoPQRController : Controller
     {
-        // GET: PQR
-        public ActionResult PQR()
+        // GET: CatalogoPQR
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult _PQR()
+        public ActionResult ListadoPQR()
         {
             return View();
         }
 
-        public ActionResult CrearPQR()
+        public ActionResult CrearNuevoPQR()
         {
             return View();
         }

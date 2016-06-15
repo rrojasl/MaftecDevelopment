@@ -1,4 +1,8 @@
-﻿function RenderGridDetalle(container, options) {
+﻿
+
+
+
+function RenderGridDetalle(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta
     $('<div id=' + options.model.SpoolID + '' + options.model.Junta + '/>')
@@ -99,7 +103,7 @@
 };
 
 function RenderMultiselectRelleno(container, options) {
-    if (ItemSeleccionado.PermiteTerminadoRelleno) {
+    //if (ItemSeleccionado.PermiteTerminadoRelleno) {
         var multiselect = $('<input  data-text-field="Soldador" id=' + options.model.uid + ' data-value-field="ObreroID" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoMultiSelect({
@@ -167,9 +171,9 @@ function RenderMultiselectRelleno(container, options) {
                 },
                 value: options.model.Relleno
             }).data("kendoMultiSelect");
-    }
-    else
-        displayNotify("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
+    //}
+    //else
+    //    displayNotify("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
 
 };
 
@@ -260,6 +264,7 @@ function renderEnlaceEditar(container, options) {
 }
 
 function renderEnlaceSoldadoresRaiz(container, options) {
+    
     $('<a  id=' + options.model.uid + ' "><span >' + _dictionary.ValidacionResultadosEnlaceEditar[$("#language").data("kendoDropDownList").value()] + '</span></a>')
         .appendTo(container)
         .click(function () {
@@ -434,6 +439,7 @@ function ObtenerDescCorrectaSoldadorTrabajos(lista, ObreroID) {
 }
 
 function RenderComboBoxTaller(container, options) {
+    
     loadingStart();
     var dataItem;
     $('<input data-text-field="Nombre" id=' + options.model.uid + ' data-value-field="TallerID" data-bind="value:' + options.field + '"/>')
@@ -545,7 +551,7 @@ function ObtenerDescCorrectaSoldaduraRaiz(lista, procesoSoldaduraRaizID) {
 
 function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
     loadingStart();
-    if (ItemSeleccionado.PermiteTerminadoRelleno) {
+    //if (ItemSeleccionado.PermiteTerminadoRelleno) {
 
         var dataItem;
         $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
@@ -581,9 +587,9 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
                 }
             }
         });
-    }
-    else
-        displayNotify("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
+    //}
+    //else
+    //    displayNotify("CapturaSoldaduraMensajePermisoTerminadoRelleno", "", "1");
     loadingStop();
 }
 
@@ -641,24 +647,13 @@ function RenderComboBoxWPS(container, options) {
             delay: 10,
             filter: "contains",
             autoBind: false,
-            dataSource: options.model.WPS,
+            dataSource: options.model.ListaWPS,
             template: "<i class=\"fa fa-#=data.WPSNombre#\"></i> #=data.WPSNombre#",
-            select: function (e) {
-
-                dataItem = this.dataItem(e.item.index());
-                options.model.WPSNombre = dataItem.WPSNombre;
-                options.model.WPSID = dataItem.WPSID;
-            },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.WPSNombre = dataItem.WPSNombre;
                     options.model.WPSID = dataItem.WPSID;
-
-                }
-                else {
-                    //options.model.NumeroColada = ObtenerDescCorrectaColada(ItemSeleccionado.ListaColada, options.model.ColadaID);
-
                 }
             }
         }

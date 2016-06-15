@@ -90,6 +90,9 @@ namespace BackEndSAM.Models.Soldadura
         public decimal Espesor { get; set; }
         public bool PermiteTerminadoRelleno { get; set; }
         public bool PermiteTerminadoRaiz { get; set; }
+        public List<WPS.WPS> ListaWPS { get; set; }
+        public int WPSID { get; set; }
+        public string WPSNombre { get; set; }
 
     }
 
@@ -128,10 +131,13 @@ namespace BackEndSAM.Models.Soldadura
 
     public class SoldadorRaizCertificado
     {
-        
+        public int Accion { get; set; }
         public int ObreroID { get; set; }
         public string Soldador { get; set; }
         public int PQRID { get; set; }
+        public int ColadaID { get; set; }
+        public string Colada { get; set; }
+        public string Observaciones { get; set; }
     }
 
     public class Relleno

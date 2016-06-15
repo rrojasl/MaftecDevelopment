@@ -92,6 +92,7 @@ function AjaxObtenerListaProcesos() {
 
 function ObtenerJSonGridSoldadura() {
     try {
+        
         loadingStart();
         $CapturaSoldadura.Soldadura.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), isReporte: true, lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
             if (Error(data)) {

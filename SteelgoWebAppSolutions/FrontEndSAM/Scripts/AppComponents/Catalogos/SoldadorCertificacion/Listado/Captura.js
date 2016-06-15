@@ -1,29 +1,10 @@
-﻿IniciarSoldadorCertifiacion();
-
-function IniciarSoldadorCertifiacion() {
-    setTimeout(function () { SuscribirEventos(); }, 10)
-    setTimeout(function () { CargarGrid(); }, 1000)
-    setTimeout(function () { AjaxObtenerJSONGrid(); }, 2000)
-}
-
+﻿
 function CargarGrid() {
 
     $("#grid").kendoGrid({
         edit: function (e) {
             if ($('#botonGuardar').text() != _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()])
                 this.closeCell();
-        },
-        dataBound: function () {
-            //var myElem = document.getElementById('trParentHeader');
-            //if (myElem == null) {
-            //    $("#grid").find("th.k-header").parent().parent().append("<tr id='trParentHeader'> " +
-            //        "<th scope='col' colspan='3' class='k-header'></th>  " +
-            //        "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.SoldadorCertificacionFechaCertificacion[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
-            //        "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span></span></th>" +
-            //        "<th width='auto'  colspan='2' class='k-header' style='text-align: center;'><span id=''>" + _dictionary.ListadoCatalogos0040[$("#language").data("kendoDropDownList").value()] + "</span></th>" +
-            //        "<th width='auto'  colspan='4' class='k-header' style='text-align: center;'><span id=''></span></th>" +
-            //        "</tr>");
-            //}
         },
         dataSource: {
             data: [],
@@ -100,11 +81,10 @@ function EliminaSoldadorCertificacion(e) {
         var PQRIDRegistro = dataItem.PQRID;
 
         //if (dataItem.RegistrosWPS == 0) {
-        windowTemplate = kendo.template($("#windowTemplate").html());
 
         ventanaConfirm = $("#ventanaConfirm").kendoWindow({
             iframe: true,
-            title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+            title:  _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
             visible: false, //the window will not appear before its .open method is called
             width: "auto",
             height: "auto",
@@ -131,9 +111,6 @@ function EliminaSoldadorCertificacion(e) {
         $("#noButton").click(function () {
             ventanaConfirm.close();
         });
-        //}
-        //else
-        //    displayNotify("", "El elemento PQR " + dataItem.Nombre + " se encuentra asignado", 1);
     }
 
 }
@@ -174,8 +151,9 @@ function AbrirVentanaModalVista() {
 };
 
 function changeLanguageCall() {
-    CargarGrid();
-    AjaxObtenerJSONGrid();
+    setTimeout(function () { SuscribirEventos(); }, 10)
+    setTimeout(function () { CargarGrid(); }, 1000)
+    setTimeout(function () { AjaxObtenerJSONGrid(); }, 2000)
 };
 
 function tieneClase(item) {

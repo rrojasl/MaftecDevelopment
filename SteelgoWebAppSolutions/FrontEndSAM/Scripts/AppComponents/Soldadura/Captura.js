@@ -268,7 +268,9 @@ function CargarGridSoldadura() {
                         DetalleJunta: { type: "string", editable: false },
                         DetalleAdicional: { editable: false },
                         Raiz: { editable: false },
-                        Relleno: { editable: false }
+                        Relleno: { editable: false },
+                        WPSNombre: { type: "string", editable: true }
+                        
                     }
                 }
             },
@@ -303,17 +305,19 @@ function CargarGridSoldadura() {
             { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "70px" },
             { field: "DetalleJunta", title: _dictionary.CapturaSoldaduraDetalleJunta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "180px" },
             { field: "Taller", title: _dictionary.CapturaSoldaduraHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTaller, width: "130px" },
-            { field: "WPS", title: "WPS", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
-            { field: "Diametro", title: "Diametro", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
-            { field: "Cedula", title: "Cedula", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
+
+            { field: "WPSNombre", title: "WPS", editor: RenderComboBoxWPS, filterable: getGridFilterableCellMaftec(), width: "130px" },
+
+            { field: "Diametro", title: "Diametro", filterable: getGridFilterableCellMaftec(), width: "130px" },
+            { field: "Cedula", title: "Cedula" , filterable: getGridFilterableCellMaftec(), width: "130px" },
             { field: "FechaSoldadura", title: _dictionary.CapturaSoldaduraHeaderFechaSoldadura[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, editor: RenderDatePicker, width: "160px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "procesoSoldaduraRaiz", title: _dictionary.CapturaSoldaduraProcesoRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldaduraRaiz },
             { field: "Raiz", title: _dictionary.CapturaRaizHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonSoldadoresRaiz'><a href='\\#'  > <span>#=SoldadoresRaiz#</span></a></div>" },
-            { /*field: "ColadaRaiz",*/ title: "Colada Raiz", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
+            //{ /*field: "ColadaRaiz",*/ title: "Colada Raiz", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
             //{ field: "PQR", title: "PQR", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
             { field: "procesoSoldaduraRelleno", title: _dictionary.CapturaSoldaduraProcesoRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldaduraRelleno },
             { field: "Relleno", title: _dictionary.CapturaRellenoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonSoldadoresRelleno'><a href='\\#' > <span>#=SoldadoresRelleno#</span></a></div>" },
-            { /*field: "ColadaRelleno",*/ title: "Colada Relleno", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
+           // { /*field: "ColadaRelleno",*/ title: "Colada Relleno", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
             //{ field: "WPSRaiz", title: "WPS Raiz", filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxWPS },
             //{ field: "WPSRelleno", title: "WPS Relleno", filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxWPS },
             { field: "DetalleAdicional", title: _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonAdicionales'><a href='\\#' > <span>#=TrabajosAdicionales#</span></a></div>" },
@@ -620,89 +624,203 @@ function LlenarGridPopUpMultiselet(options) {
 
     $("#contenedorMultiselect").append("<div id='inputSoldadoresRaiz' />")
 
-    $("#inputSoldadoresRaiz").kendoMultiSelect({
-        dataTextField: "Soldador",
-        dataValueField: "ObreroID",
-        suggest: true,
-        delay: 10,
-        filter: "contains",
-        autoBind: false,
-        dataSource: options.ListadoRaiz,
-        template: "<i class=\"fa fa-#=data.Soldador.toLowerCase()#\"></i> #=data.Soldador#",
-        select: function (e) {
-
-            dataItem = this.dataSource.view()[e.item.index()];
-
-            if (dataItem != undefined) {
-                var existe = false;
-                for (var i = 0; i < ItemSeleccionado.Raiz.length; i++) {
-                    if (dataItem.ObreroID == ItemSeleccionado.Raiz[i].ObreroID) {
-                        existe = true;
-                        break;
-                    }
-                }
-
-                if (options.RaizDetalle == null) {
-                    options.RaizDetalle = [];
-                }
-
-                //if (!existe) {
-                    var accion = options.JuntaSoldaduraSoldadoID == undefined ? 1 : options.Accion;
-                    options.RaizDetalle.push({
-                        Accion: accion,
-                        JuntaSoldaduraSoldadoID: options.JuntaSoldaduraSoldadoID,
-                        JuntaSoldaduraID: options.JuntaSoldaduraID,
-                        Soldador: dataItem.Soldador,
-                        ObreroID: dataItem.ObreroID
-                    });
-                //}
-                //else {
-                    //displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
-                    //options.Soldador = "";
-                    //options.ObreroID = "";
-                //}
-
-
-            }
-            else {
-                options.Soldador = ObtenerDescCorrectaSoldador(ItemSeleccionado.ListadoRaiz, options.ObreroID);
-            }
-        },
-        change: function (e) {
-
-            if (longitudSoldadoresRaiz > options.Raiz.length) {
-                ValidarExisteSoldadorEnTrabajosAdicionales(options, "raiz");
-            }
-            else {
-                var actuallongitudTrabajosAdicionales = 0;
-                for (var k = 0; k < options.DetalleAdicional.length; k++) {
-                    if (options.DetalleAdicional[k].Accion != 3) {
-                        actuallongitudTrabajosAdicionales++;
-                    }
+    
+    $("#inputSoldadoresRaiz").kendoGrid({
+    dataSource: {
+        data: [],
+        schema: {
+            model: {
+                fields: {
+                    Soldador: { type: "string", editable: true },
+                    Colada: { type: "string", editable: true },
+                    Observaciones: { type: "string", editable: true }
                 }
             }
+        }, filter: {
+            logic: "or",
+            filters: [
+              { field: "Accion", operator: "eq", value: 1 },
+              { field: "Accion", operator: "eq", value: 2 },
+                { field: "Accion", operator: "eq", value: 0 },
+                { field: "Accion", operator: "eq", value: undefined }
+            ]
+        }
+    },
+    selectable: true,
+    filterable: getGridFilterableMaftec(),
+    columns: [
+      { field: "Soldador", title: _dictionary.CapturaSoldaduraHeaderTrabajosAdicionalesAnidado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px", editor: RenderComboBoxTrabajos },
+      { field: "Colada", title: _dictionary.CapturaSoldaduraHeaderSoldador[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px", editor: RenderComboBoxSoldadorTrabajos },
+      { field: "Observaciones", title: _dictionary.CapturaSoldaduraHeaderObservacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
+
+     {
+         command: {
+             name: "",
+             title: "",
+             text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()],
+             click: function (e) {
+                 e.preventDefault();
+                 dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                 var dataSource = this.dataSource;
+
+                 windowTemplate = kendo.template($("#windowTemplate").html());
+
+                 ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+                     iframe: true,
+                     title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+                     visible: false, //the window will not appear before its .open method is called
+                     width: "auto",
+                     height: "auto",
+                     modal: true,
+                     animation: {
+                         close: false,
+                         open: false
+                     }
+                 }).data("kendoWindow");
+
+                 ventanaConfirm.content(_dictionary.CapturaArmadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
+                              "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+                 ventanaConfirm.open().center();
+
+                 $("#yesButton").click(function (handler) {
+
+
+                     if (dataItem.Accion == 1 || dataItem.Accion == undefined)
+                         dataSource.remove(dataItem);
+                     dataItem.Accion = 3;
+                     var filters = dataSource.filter();
+                     var allData = dataSource.data();
+                     var query = new kendo.data.Query(allData);
+                     var data = query.filter(filters).data;
+
+                     actuallongitudTrabajosAdicionales = data.length;
+
+                     if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
+                         modeloRenglon.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+                     else
+                         modeloRenglon.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+
+                     dataSource.sync();
+                     ventanaConfirm.close();
+                 });
+                 $("#noButton").click(function (handler) {
+                     ventanaConfirm.close();
+                 });
+
+                 dataSource.sync();
+
+             }
+         }, width: "40px", title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()]
+     },
+     {
+         command: {
+             name: "",
+             title: "",
+             text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()],
+             click: function (e) {
+                 var itemToClean = $("#gridPopUp").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+                 itemToClean.TrabajoAdicional = "";
+                 itemToClean.TrabajoAdicionalID = 0;
+                 itemToClean.Soldador = "";
+                 itemToClean.ObreroID = 0;
+                 itemToClean.Observacion = "";
+                 var dataSource = $("#gridPopUp").data("kendoGrid").dataSource;
+                 dataSource.sync();
+
+             }
+         }, width: "50px", title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()]
+     }
+    ],
+    editable: true,
+    navigatable: true,
+    toolbar: [{ name: "create", }]
+
+});
+    //$("#inputSoldadoresRaiz").kendoMultiSelect({
+    //    dataTextField: "Soldador",
+    //    dataValueField: "ObreroID",
+    //    suggest: true,
+    //    delay: 10,
+    //    filter: "contains",
+    //    autoBind: false,
+    //    dataSource: options.ListadoRaiz,
+    //    template: "<i class=\"fa fa-#=data.Soldador.toLowerCase()#\"></i> #=data.Soldador#",
+    //    select: function (e) {
+
+    //        dataItem = this.dataSource.view()[e.item.index()];
+
+    //        if (dataItem != undefined) {
+    //            var existe = false;
+    //            for (var i = 0; i < ItemSeleccionado.Raiz.length; i++) {
+    //                if (dataItem.ObreroID == ItemSeleccionado.Raiz[i].ObreroID) {
+    //                    existe = true;
+    //                    break;
+    //                }
+    //            }
+
+    //            if (options.RaizDetalle == null) {
+    //                options.RaizDetalle = [];
+    //            }
+
+    //            //if (!existe) {
+    //                var accion = options.JuntaSoldaduraSoldadoID == undefined ? 1 : options.Accion;
+    //                options.RaizDetalle.push({
+    //                    Accion: accion,
+    //                    JuntaSoldaduraSoldadoID: options.JuntaSoldaduraSoldadoID,
+    //                    JuntaSoldaduraID: options.JuntaSoldaduraID,
+    //                    Soldador: dataItem.Soldador,
+    //                    ObreroID: dataItem.ObreroID
+    //                });
+    //            //}
+    //            //else {
+    //                //displayNotify("CapturaSoldaduraMensajeSoldadorExistente", "", '1');
+    //                //options.Soldador = "";
+    //                //options.ObreroID = "";
+    //            //}
+
+
+    //        }
+    //        else {
+    //            options.Soldador = ObtenerDescCorrectaSoldador(ItemSeleccionado.ListadoRaiz, options.ObreroID);
+    //        }
+    //    },
+    //    change: function (e) {
+
+    //        if (longitudSoldadoresRaiz > options.Raiz.length) {
+    //            ValidarExisteSoldadorEnTrabajosAdicionales(options, "raiz");
+    //        }
+    //        else {
+    //            var actuallongitudTrabajosAdicionales = 0;
+    //            for (var k = 0; k < options.DetalleAdicional.length; k++) {
+    //                if (options.DetalleAdicional[k].Accion != 3) {
+    //                    actuallongitudTrabajosAdicionales++;
+    //                }
+    //            }
+    //        }
             
-            longitudSoldadoresRaiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._values.length;
+    //        longitudSoldadoresRaiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._values.length;
 
-            if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
-                options.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
-            else
-                options.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+    //        if (actuallongitudTrabajosAdicionales == 0 || actuallongitudTrabajosAdicionales == undefined)
+    //            options.TrabajosAdicionales = _dictionary.CapturaArmadoTemplateNoHayTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
+    //        else
+    //            options.TrabajosAdicionales = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + actuallongitudTrabajosAdicionales + _dictionary.CapturaSoldaduraMensajeCambioTrabajosAdicionales[$("#language").data("kendoDropDownList").value()];
 
 
-            longitudSoldadoresRaiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._values.length;
-            if (longitudSoldadoresRaiz == 0 || longitudSoldadoresRaiz == undefined)
-                options.SoldadoresRaiz = _dictionary.CapturaSoldaduraNoSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
-            else
-                options.SoldadoresRaiz = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + longitudSoldadoresRaiz + _dictionary.CapturaSoldaduraMensajeCambioSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
-        },
+    //        longitudSoldadoresRaiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._values.length;
+    //        if (longitudSoldadoresRaiz == 0 || longitudSoldadoresRaiz == undefined)
+    //            options.SoldadoresRaiz = _dictionary.CapturaSoldaduraNoSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
+    //        else
+    //            options.SoldadoresRaiz = _dictionary.CapturaSoldaduraMensajeCambioLongitud[$("#language").data("kendoDropDownList").value()] + longitudSoldadoresRaiz + _dictionary.CapturaSoldaduraMensajeCambioSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
+    //    },
 
-    }).data("kendoMultiSelect");
-    var itemsToSelect = new Array();
-    for (var i = 0; i < options.Raiz.length; i++) {
-        itemsToSelect[i] = options.Raiz[i].ObreroID + "";
-    }
-    $("#inputSoldadoresRaiz").data("kendoMultiSelect").value(itemsToSelect);
+    //}).data("kendoMultiSelect");
+    //var itemsToSelect = new Array();
+    //for (var i = 0; i < options.Raiz.length; i++) {
+    //    itemsToSelect[i] = options.Raiz[i].ObreroID + "";
+    //}
+    //$("#inputSoldadoresRaiz").data("kendoMultiSelect").value(itemsToSelect);
     VentanaModalMultiselect();
 }
 

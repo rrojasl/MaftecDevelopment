@@ -71,13 +71,13 @@ function AjaxGuardarListado() {
         }
         else {
             if (pqrModified.length == 0)
-                pqrModified = arregloCaptura[index].Nombre;
+                pqrModified = arregloCaptura[index].Nombre.toLowerCase();
             else
-                pqrModified += ", " + arregloCaptura[index].Nombre;
+                pqrModified += ", " + arregloCaptura[index].Nombre.toLowerCase();
         }
 
         ListaDetalles[index].PQRID = arregloCaptura[index].PQRID;
-        ListaDetalles[index].Nombre = arregloCaptura[index].Nombre;
+        ListaDetalles[index].Nombre = arregloCaptura[index].Nombre.toLowerCase();
         ListaDetalles[index].PWHT = arregloCaptura[index].PWHT ? 1 : 0;
         ListaDetalles[index].PREHEAT = arregloCaptura[index].PREHEAT ? 1 : 0;
         ListaDetalles[index].EspesorRelleno = arregloCaptura[index].EspesorRelleno;

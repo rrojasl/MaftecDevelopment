@@ -4,29 +4,18 @@
 
 
 function suscribirEventoGuardar() {
-    
-    $("#Guardar").click(function () {
-        if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
-            ValidarInformacionEnviada();
-        }
-        else {
-            opcionHabilitarView(false, "FieldSetView");
-        }
-    });
 
-    $("#GuardarPie").click(function (e) {
-        if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
-            ValidarInformacionEnviada();
+    $('.accionGuardar').click(function (e) {
+        var ds = $("#grid").data("kendoGrid").dataSource;
+        if (ds._data.length > 0) {
+            if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
+                ValidarInformacionEnviada();
+            }
+            else {
+                opcionHabilitarView(false, "FieldSetView");
+            }
         }
-        else {
-            opcionHabilitarView(false, "FieldSetView")
-        }
-    });
-
-    
-    
-
-    
+    });    
 }
 
 
@@ -36,12 +25,16 @@ function opcionHabilitarView(valor, name) {
 
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
-        $('#botonGuardar').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
-        $("#CapturaSoldaduraGuardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $('#Guardar1').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#botonGuardar4").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#botonGuardar2").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
     }
     else {
         $('#FieldSetView').find('*').attr('disabled', false);
-        $('#botonGuardar').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
-        $("#CapturaSoldaduraGuardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $('#Guardar1').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#botonGuardar4").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#botonGuardar2").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
     }
 }

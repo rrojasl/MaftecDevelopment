@@ -1,22 +1,24 @@
 ﻿using BackEndSAM.DataAcces;
 using BackEndSAM.Models.Soldadura;
+using BackEndSAM.Models.WPS;
 using DatabaseManager.Sam3;
 using SecurityManager.Api.Models;
 using SecurityManager.TokenHandler;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using System.Web.Script.Serialization;
-using System.Linq;
 
-namespace BackEndSAM.Controllers
+namespace BackEndSAM.Controllers.SoldaduraController
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SoldaduraController : ApiController
     {
+
         [HttpGet]
         public object RetornaTrabajosAdicionales(int juntaSpoolID, string token)
         {
@@ -76,7 +78,7 @@ namespace BackEndSAM.Controllers
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                 IdOrdenTrabajo idOrdenTrabajo = new IdOrdenTrabajo();
 
-                List<Sam3_Steelgo_Get_SpoolID_Result> lista = (List<Sam3_Steelgo_Get_SpoolID_Result>)CapturaSoldaduraBD.Instance.ObtenerIDOrdenTrabajo(usuario, ordenTrabajo, tipo,lenguaje);
+                List<Sam3_Steelgo_Get_SpoolID_Result> lista = (List<Sam3_Steelgo_Get_SpoolID_Result>)CapturaSoldaduraBD.Instance.ObtenerIDOrdenTrabajo(usuario, ordenTrabajo, tipo, lenguaje);
                 List<IDS> listaAtatus = new List<IDS>();
                 if (lista.Count > 0)
                 {
@@ -175,6 +177,8 @@ namespace BackEndSAM.Controllers
                 DetalleDatosJsonSoldadura capturaDatosJson = serializer.Deserialize<DetalleDatosJsonSoldadura>(JsonCaptura);
                 capturaDatosJson.SinCaptura = capturaDatosJson.SinCaptura == "Todos" ? "1" : "0";
 
+                List<WPS> listaWPS= (List<WPS>) WPSBd.Instance.ObtenerWPS(1, usuario);
+
                 List<Sam3_Steelgo_Get_JuntaSpool_Result> listaJuntasXSpool = null;
                 if (isReporte)
                     listaJuntasXSpool = (List<Sam3_Steelgo_Get_JuntaSpool_Result>)CapturaSoldaduraBD.Instance.ObtenerJuntasXSpoolID(usuario, capturaDatosJson.IdOrdenTrabajo, capturaDatosJson.idVal, int.Parse(capturaDatosJson.SinCaptura));
@@ -184,7 +188,7 @@ namespace BackEndSAM.Controllers
                     listaJuntasXSpool.Add(new Sam3_Steelgo_Get_JuntaSpool_Result());
                 }
 
-                for(int i = 0; i < listaJuntasXSpool.Count; i++)
+                for (int i = 0; i < listaJuntasXSpool.Count; i++)
                 {
                     if (isReporte)
                     {
@@ -193,7 +197,9 @@ namespace BackEndSAM.Controllers
                     }
 
                     List<Sam3_Soldadura_Get_DetalleJunta_Result> detalle = (List<Sam3_Soldadura_Get_DetalleJunta_Result>)CapturaSoldaduraBD.Instance.ObtenerDetalleSoldadura(capturaDatosJson, usuario, lenguaje);
-                    
+
+                   
+
                     IFormatProvider culture = new System.Globalization.CultureInfo("es-MX", true);
 
                     foreach (Sam3_Soldadura_Get_DetalleJunta_Result item in detalle)
@@ -253,7 +259,8 @@ namespace BackEndSAM.Controllers
                             ListadoSoldadoresTrabajos = (List<ObreroSoldador>)CapturaSoldaduraBD.Instance.ObtenerListadoSoldaduresTrabajo(),
                             ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
                             ListadoProcesoSoldadura = (List<ProcesoSoldadura>)CapturaSoldaduraBD.Instance.ObtenerProcesosSoldadura(),
-                            ListaColada = (List<Colada>)CapturaSoldaduraBD.Instance.ObtenerListadoColada(capturaDatosJson.IDProyecto)
+                            ListaColada = (List<Colada>)CapturaSoldaduraBD.Instance.ObtenerListadoColada(capturaDatosJson.IDProyecto),
+                            ListaWPS= listaWPS
                         };
                         detalleDatos.listaTrabajosAdicionalesSoldadura.Insert(0, new TrabajosAdicionalesSoldadura
                         {
@@ -330,7 +337,7 @@ namespace BackEndSAM.Controllers
                         NumeroUnico2ID = item.NumeroUnico2ID == null ? "0" : item.NumeroUnico2ID.ToString(),
                         SoldadoresRaiz = item.SoldadoresRaiz,
                         SoldadoresRelleno = item.SoldadoresRelleno,
-                        TrabajosAdicionales =  item.TabajosAdicionales,
+                        TrabajosAdicionales = item.TabajosAdicionales,
                         TipoJuntaID = item.TipoJuntaID.ToString(),
                         JuntaSoldaduraID = item.JuntaSoldaduraID == null ? 0 : int.Parse(item.JuntaSoldaduraID.ToString()),
                         Accion = item.JuntaSoldaduraID == null ? 1 : 2,
@@ -350,7 +357,7 @@ namespace BackEndSAM.Controllers
                         TipoJunta = item.TipoJunta,
                         Cedula = item.Cedula,
                         Diametro = item.Diametro,
-                        Espesor = decimal.Parse( item.Espesor.ToString()),
+                        Espesor = decimal.Parse(item.Espesor.ToString()),
                         FechaSoldadura = item.FechaSoldadura == null ? capturaDatosJson.FechaSoldadura : item.FechaSoldadura.ToString(),
                         TallerID = item.TallerID == null ? capturaDatosJson.TallerID : item.TallerID.ToString(),
                         Taller = item.Taller == null ? capturaDatosJson.Taller : item.Taller,
@@ -412,7 +419,8 @@ namespace BackEndSAM.Controllers
         private List<Taller> ObtenerListaTaller(List<Sam3_SteelGo_Get_Taller_Result> listaTaller)
         {
             List<Taller> listaTalleres = new List<Taller>();
-            listaTalleres.Add(new Taller {
+            listaTalleres.Add(new Taller
+            {
                 TallerID = 0,
                 Nombre = ""
             });
@@ -433,21 +441,21 @@ namespace BackEndSAM.Controllers
 
             List<TrabajosAdicionalesSoldadura> listaDetalleAdicional = new List<TrabajosAdicionalesSoldadura>();
 
-            
-                foreach (Sam3_Soldadura_Get_DetalleTrabajoAdicional_Result item in listaTrabajoAdicional)
+
+            foreach (Sam3_Soldadura_Get_DetalleTrabajoAdicional_Result item in listaTrabajoAdicional)
+            {
+                TrabajosAdicionalesSoldadura detalleAdicional = new TrabajosAdicionalesSoldadura
                 {
-                    TrabajosAdicionalesSoldadura detalleAdicional = new TrabajosAdicionalesSoldadura
-                    {
-                        Accion = item.JuntaSoldaduraID == 0 ? 1 : 2,
-                        Observacion = item.Observacion,
-                        SoldaduraTrabajoAdicionalID = item.SoldaduraTrabajoAdicionalID,
-                        JuntaSoldaduraID = item.JuntaSoldaduraID,
-                        ObreroID = item.ObreroID,
-                        TrabajoAdicional = item.TrabajoAdicional,
-                        TrabajoAdicionalID = item.TrabajoAdicionalID,
-                        Soldador = item.Soldador
-                    };
-                    listaDetalleAdicional.Add(detalleAdicional);
+                    Accion = item.JuntaSoldaduraID == 0 ? 1 : 2,
+                    Observacion = item.Observacion,
+                    SoldaduraTrabajoAdicionalID = item.SoldaduraTrabajoAdicionalID,
+                    JuntaSoldaduraID = item.JuntaSoldaduraID,
+                    ObreroID = item.ObreroID,
+                    TrabajoAdicional = item.TrabajoAdicional,
+                    TrabajoAdicionalID = item.TrabajoAdicionalID,
+                    Soldador = item.Soldador
+                };
+                listaDetalleAdicional.Add(detalleAdicional);
             }
             return listaDetalleAdicional;
         }
@@ -472,19 +480,19 @@ namespace BackEndSAM.Controllers
             //else
             //{
 
-                foreach (Sam3_Soldadura_Get_DetalleSoldadorProceso_Result item in listaTrabajoAdicional)
+            foreach (Sam3_Soldadura_Get_DetalleSoldadorProceso_Result item in listaTrabajoAdicional)
+            {
+                Raiz detalleAdicional = new Raiz
                 {
-                    Raiz detalleAdicional = new Raiz
-                    {
-                        Accion = item.JuntaSoldaduraID == 0 ? 1 : 2,
-                        JuntaSoldaduraID = item.JuntaSoldaduraID,
-                        JuntaSoldaduraSoldadoID = item.JuntaSoldaduraSoldadoID,
-                        ObreroID = item.ObreroID,
-                        Soldador = item.Soldador,
-                        wps = ""
-                    };
-                    listaDetalleAdicional.Add(detalleAdicional);
-                }
+                    Accion = item.JuntaSoldaduraID == 0 ? 1 : 2,
+                    JuntaSoldaduraID = item.JuntaSoldaduraID,
+                    JuntaSoldaduraSoldadoID = item.JuntaSoldaduraSoldadoID,
+                    ObreroID = item.ObreroID,
+                    Soldador = item.Soldador,
+                    wps = ""
+                };
+                listaDetalleAdicional.Add(detalleAdicional);
+            }
             //}
             return listaDetalleAdicional;
         }
@@ -497,8 +505,8 @@ namespace BackEndSAM.Controllers
             if (listaTrabajoAdicional.Count == 0)
             {
                 Relleno detalleAdicional = new Relleno
-                { 
-                    Accion  = 3,
+                {
+                    Accion = 3,
                     JuntasoldaduraID = 0,
                     JuntaSoldaduraSoldadoID = 0,
                     ObreroID = 0,
@@ -622,7 +630,7 @@ namespace BackEndSAM.Controllers
             }
         }
 
-        public object Post(Captura listaCapturasSoldadura, string token, string lenguaje)
+        public object Post(BackEndSAM.Models.Soldadura.Captura listaCapturasSoldadura, string token, string lenguaje)
         {
             string payload = "";
             string newToken = "";
@@ -687,9 +695,9 @@ namespace BackEndSAM.Controllers
 
                 foreach (DetalleGuardarJson item in listaCapturasSoldadura.Detalles)
                 {
-                    if(item.ListaSoldaduraRaiz != null)
+                    if (item.ListaSoldaduraRaiz != null)
                     {
-                        if(RaizAdicionales == null)
+                        if (RaizAdicionales == null)
                             RaizAdicionales = ToDataTable(item.ListaSoldaduraRaiz);
                         else
                             RaizAdicionales.Merge(ToDataTable(item.ListaSoldaduraRaiz));
@@ -698,9 +706,9 @@ namespace BackEndSAM.Controllers
 
                 foreach (DetalleGuardarJson item in listaCapturasSoldadura.Detalles)
                 {
-                    if(item.ListaSoldaduraRelleno != null)
+                    if (item.ListaSoldaduraRelleno != null)
                     {
-                        if(RellenoAdicionales == null)
+                        if (RellenoAdicionales == null)
                             RellenoAdicionales = ToDataTable(item.ListaSoldaduraRelleno);
                         else
                             RellenoAdicionales.Merge(ToDataTable(item.ListaSoldaduraRelleno));
@@ -725,7 +733,7 @@ namespace BackEndSAM.Controllers
                     else if (RaizAdicionales == null && dt != null)
                         dt.Merge(RellenoAdicionales);
                 }
-                
+
                 dtDetalleCaptura.Columns.Remove("ListaDetalleTrabajoAdicional");
                 dtDetalleCaptura.Columns.Remove("ListaSoldaduraRaiz");
                 dtDetalleCaptura.Columns.Remove("ListaSoldaduraRelleno");

@@ -1,22 +1,12 @@
-﻿Cookies.set("home", true, { path: '/' });
-Cookies.set("navegacion", "10007", { path: '/' });
-
-var resultadoJson;
-
+﻿
 function changeLanguageCall() {
+   suscribirEventoGuardar();
     CargarGrid();
-    LlenarGridPQR();
+    LlenaGridAjax();
 };
 
 
-
-function LlenarGridPQR() {
-    LlenaGridAjax();
-}
-
-
 function CargarGrid() {
-
     $("#grid").kendoGrid({
         edit: function (e) {
             if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
@@ -271,14 +261,25 @@ function CargarGrid() {
 };
 
 function NombreRepetido(listaDetalles) {
+   
+
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    var filters = dataSource.filter();
+    var allData = dataSource.data();
+    var query = new kendo.data.Query(allData);
+    var arregloCaptura = query.filter(filters).data;
+
+  
     for (var i = 0; i < listaDetalles.length; i++) {
         for (var j = 0; j < listaDetalles.length; j++) {
-            if (listaDetalles[i].Nombre == listaDetalles[j].Nombre && i != j) {
-                return true;
+            if (listaDetalles[i].Nombre.toLowerCase() == listaDetalles[j].Nombre.toLowerCase() && i != j) {
+                listaDetalles[j].Estatus = 0;
+                $('tr[data-uid="' + arregloCaptura[j].uid + '"] ').css("background-color", "#ffcccc");
             }
         }
     }
-    return false;
+
+    return  ExistRowEmpty(ListaDetalles);
 }
 
 

@@ -1,4 +1,6 @@
-﻿function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
+﻿
+
+function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();
     var dataItem;
     $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>').appendTo(container)
@@ -113,7 +115,7 @@ function RenderComboBoxMaterialesBase1(container, options) {
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined) {
-                        if (options.model.RegistrosWPS == 0 || (options.model.RegistrosWPS == 1 && options.model.GrupoPMaterialBase2 == dataItem.GrupoPID )) {
+                        if (options.model.RegistrosWPS == 0 || (options.model.RegistrosWPS == 1 && options.model.GrupoPMaterialBase2 == dataItem.GrupoPID)) {
                             options.model.GrupoPMaterialBase1 = dataItem.GrupoPID;
                             options.model.GrupoPMaterialBase1Nombre = dataItem.GrupoP;
                         }
