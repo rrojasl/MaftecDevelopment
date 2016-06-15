@@ -1,6 +1,6 @@
 ﻿
 function changeLanguageCall() {
-   suscribirEventoGuardar();
+    suscribirEventoGuardar();
     CargarGrid();
     LlenaGridAjax();
 };
@@ -66,7 +66,7 @@ function CargarGrid() {
                   { field: "Accion", operator: "eq", value: 2 }
                 ]
             },
-            pageSize: 50,
+            pageSize: 10,
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false
@@ -261,28 +261,28 @@ function CargarGrid() {
 };
 
 function NombreRepetido(listaDetalles) {
-   
-
     var dataSource = $("#grid").data("kendoGrid").dataSource;
-    var filters = dataSource.filter();
     var allData = dataSource.data();
-    var query = new kendo.data.Query(allData);
-    var arregloCaptura = query.filter(filters).data;
-
-  
+    
     for (var i = 0; i < listaDetalles.length; i++) {
         for (var j = 0; j < listaDetalles.length; j++) {
             if (listaDetalles[i].Nombre.toLowerCase() == listaDetalles[j].Nombre.toLowerCase() && i != j) {
-                listaDetalles[j].Estatus = 0;
-                $('tr[data-uid="' + arregloCaptura[j].uid + '"] ').css("background-color", "#ffcccc");
+                listaDetalles[j].Estatus = -1;
+                $('tr[data-uid="' + allData[j].uid + '"] ').css("background-color", "#ffcccc");
             }
         }
-    }
+    }  
 
-    return  ExistRowEmpty(ListaDetalles);
+    return ExistNombreRepetido(listaDetalles);
 }
 
-
+function ExistNombreRepetido(rows) {
+    for (var i = 0; i < rows.length; i++) {
+        if (rows[i].Estatus == -1)
+            return true;
+    }
+    return false;
+}
 
 function VentanaModal() {
     var modalTitle = "";

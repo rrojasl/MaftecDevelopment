@@ -19,9 +19,9 @@ function LlenaGridAjax() {
 function AjaxGuardarListado() {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
     var filters = dataSource.filter();
-    var allData = dataSource.data();
-    var query = new kendo.data.Query(allData);
-    var arregloCaptura = query.filter(filters).data;
+    var arregloCaptura = dataSource.data();
+    //var query = new kendo.data.Query(allData);
+    //var arregloCaptura = query.filter(filters).data;
 
 
     Captura = [];
