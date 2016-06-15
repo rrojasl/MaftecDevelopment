@@ -218,30 +218,23 @@ function VentanaModal() {
 };
 
 
-
-
-
 function NombreRepetido(listaDetalles) {
-
-
     var dataSource = $("#grid").data("kendoGrid").dataSource;
-    var filters = dataSource.filter();
     var allData = dataSource.data();
-    var query = new kendo.data.Query(allData);
-    var arregloCaptura = query.filter(filters).data;
-
 
     for (var i = 0; i < listaDetalles.length; i++) {
         for (var j = 0; j < listaDetalles.length; j++) {
             if (listaDetalles[i].WPSNombre.toLowerCase() == listaDetalles[j].WPSNombre.toLowerCase() && i != j) {
                 listaDetalles[j].Estatus = -4;
-                $('tr[data-uid="' + arregloCaptura[j].uid + '"] ').css("background-color", "#ffcccc");
+                $('tr[data-uid="' + allData[j].uid + '"] ').css("background-color", "#ffcccc");
             }
         }
     }
 
-    return ValidaNombreRepetido(ListaDetalles);
+    return ValidaNombreRepetido(listaDetalles);
 }
+
+
 
 function ValidaNombreRepetido(rows) {
     for (var i = 0; i < rows.length; i++) {
@@ -304,15 +297,12 @@ function ObtenerEspesorCorrecto(EspesorTotalT, PWHT,ProcesoSoldadura, esRaiz) {
 
 function EsCorrectoGruposMaterialBase(rows) {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
-    var filters = dataSource.filter();
     var allData = dataSource.data();
-    var query = new kendo.data.Query(allData);
-    var arregloCaptura = query.filter(filters).data;
-
+    
    
     for (var i = 0; i < rows.length; i++) {
         if (rows[i].Estatus == -1)
-            $('tr[data-uid="' + arregloCaptura[i].uid + '"] ').css("background-color", "#ffcccc");
+            $('tr[data-uid="' + allData[i].uid + '"] ').css("background-color", "#ffcccc");
     }
 
     for (var i = 0; i < rows.length; i++) {
@@ -324,14 +314,12 @@ function EsCorrectoGruposMaterialBase(rows) {
 
 function EsCorrectoPWHTRELLENO(rows) {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
-    var filters = dataSource.filter();
     var allData = dataSource.data();
-    var query = new kendo.data.Query(allData);
-    var arregloCaptura = query.filter(filters).data;
-
+    
+   
     for (var i = 0; i < rows.length; i++) {
         if (rows[i].Estatus == -2)
-            $('tr[data-uid="' + arregloCaptura[i].uid + '"] ').css("background-color", "#ffcccc");
+            $('tr[data-uid="' + allData[i].uid + '"] ').css("background-color", "#ffcccc");
     }
 
     for (var i = 0; i < rows.length; i++) {
@@ -343,14 +331,11 @@ function EsCorrectoPWHTRELLENO(rows) {
 
 function EsCorrectoPreHitRelleno(rows) {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
-    var filters = dataSource.filter();
     var allData = dataSource.data();
-    var query = new kendo.data.Query(allData);
-    var arregloCaptura = query.filter(filters).data;
-
+    
     for (var i = 0; i < rows.length; i++) {
         if (rows[i].Estatus == -3)
-            $('tr[data-uid="' + arregloCaptura[i].uid + '"] ').css("background-color", "#ffcccc");
+            $('tr[data-uid="' + allData[i].uid + '"] ').css("background-color", "#ffcccc");
     }
 
     for (var i = 0; i < rows.length; i++) {

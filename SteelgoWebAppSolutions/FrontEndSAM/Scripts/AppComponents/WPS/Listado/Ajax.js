@@ -58,7 +58,11 @@ function AjaxGuardarCaptura() {
     Captura = [];
     Captura[0] = { Detalles: "" };
     ListaDetalles = [];
-    var arregloCaptura = $("#grid").data("kendoGrid").dataSource._data;
+    var dataSource = $("#grid").data("kendoGrid").dataSource;
+    var filters = dataSource.filter();
+    var arregloCaptura = dataSource.data();
+    //var query = new kendo.data.Query(allData);
+    //var arregloCaptura = query.filter(filters).data;
     for (index = 0; index < arregloCaptura.length; index++) {
         ListaDetalles[index] = {
             Accion: "",
@@ -116,137 +120,129 @@ function AjaxGuardarCaptura() {
 
     Captura[0].Detalles = ListaDetalles;
 
+    var CapturaCorrecta = true;
 
-    if (!NombreRepetido(ListaDetalles)) {
-        if (!ExistEmptyWPS(ListaDetalles)) {
-            if (!EsCorrectoGruposMaterialBase(ListaDetalles)) {
-                if (!EsCorrectoPWHTRELLENO(ListaDetalles)) {
-                    if (!EsCorrectoPreHitRelleno(ListaDetalles)) {
-                        if (Captura[0].Detalles.length > 0) {
-                            loadingStart();
-                            $WPS.WPS.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
-                                if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
-                                    displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                                    ObtenerJSONParaGrid();
-                                    loadingStop();
-                                }
-                                else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
-                                    //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
-                                    displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                                    loadingStop();
+    if (NombreRepetido(ListaDetalles)) {
+        displayNotify("WPSMensajeErrorNombreRepetido", "", "2");
+        opcionHabilitarView(false);
+        CapturaCorrecta = false;
+    }
 
-                                }
-                            });
-                        }
-                    }
-                    else {
-                        displayNotify("WPSMensajeErrorPreHitRelleno", "", "2");
-                        opcionHabilitarView(false);
-                    }
+    if (ExistEmptyWPS(ListaDetalles)) {
+        displayNotify("WPSMensajeErrorGruposMaterialBase", "", "2");
+        opcionHabilitarView(false);
+        CapturaCorrecta = false;
+    }
+
+    if (EsCorrectoGruposMaterialBase(ListaDetalles)) {
+        displayNotify("WPSMensajeErrorGruposMaterialBase", "", "2");
+        opcionHabilitarView(false);
+        CapturaCorrecta = false;
+    }
+    
+    if (EsCorrectoPWHTRELLENO(ListaDetalles)) {
+        displayNotify("WPSMensajeErrorPWHRelleno", "", "2");
+        opcionHabilitarView(false);
+        CapturaCorrecta = false;
+    }
+
+
+    if (EsCorrectoPreHitRelleno(ListaDetalles)) {
+        displayNotify("WPSMensajeErrorPreHitRelleno", "", "2");
+        opcionHabilitarView(false);
+        CapturaCorrecta = false;
+    }
+
+    
+
+
+    if (CapturaCorrecta) {
+        if (Captura[0].Detalles.length > 0) {
+            loadingStart();
+            $WPS.WPS.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
+                if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
+                    displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                    ObtenerJSONParaGrid();
+                    loadingStop();
                 }
-                else {
-                    displayNotify("WPSMensajeErrorPWHRelleno", "", "2");
-                    opcionHabilitarView(false);
+                else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
+                    //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
+                    displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+                    loadingStop();
+
                 }
-            }
-            else {
-                displayNotify("WPSMensajeErrorGruposMaterialBase", "", "2");
-                opcionHabilitarView(false);
-            }
-        }
-        else {
-            loadingStop();
-            windowTemplate = kendo.template($("#windowTemplate").html());
-
-            ventanaConfirm = $("#ventanaConfirm").kendoWindow({
-                iframe: true,
-                title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
-                visible: false, //the window will not appear before its .open method is called
-                width: "auto",
-                height: "auto",
-                modal: true,
-                animation: {
-                    close: false,
-                    open: false
-                }
-            }).data("kendoWindow");
-
-            ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
-                "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
-
-            ventanaConfirm.open().center();
-
-
-            //RowEmpty($("#grid"));
-
-            $("#yesButton").click(function () {
-                loadingStart();
-                if (!EsCorrectoGruposMaterialBase(ListaDetalles)) {
-                    if (!EsCorrectoPWHTRELLENO(ListaDetalles)) {
-                        if (!EsCorrectoPreHitRelleno(ListaDetalles)) {
-                            ArregloGuardado = [];
-                            var indice = 0;
-                            for (var i = 0; i < Captura[0].Detalles.length; i++) {
-                                if (Captura[0].Detalles[i].Estatus == 1) {
-                                    ArregloGuardado[indice] = ListaDetalles[i];
-                                    indice++;
-                                }
-                            }
-
-                            Captura[0].Detalles = [];
-                            Captura[0].Detalles = ArregloGuardado;
-
-
-                            if (Captura[0].Detalles.length > 0) {
-                                loadingStart();
-                                $WPS.WPS.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
-                                    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
-                                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                                        ObtenerJSONParaGrid();
-                                        loadingStop();
-                                    }
-                                    else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
-                                        //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
-                                        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                                        opcionHabilitarView(false);
-                                        loadingStop();
-
-                                    }
-                                });
-                            }
-                            else {
-                                loadingStop();
-                                displayNotify("AdverteciaExcepcionGuardado", "", '1');
-                            }
-                        }
-                        else {
-                            displayNotify("WPSMensajeErrorPreHitRelleno", "", "2");
-                            opcionHabilitarView(false);
-                        }
-                    }
-                    else {
-                        displayNotify("WPSMensajeErrorPWHRelleno", "", "2");
-                        opcionHabilitarView(false);
-                    }
-                }
-                else {
-                    displayNotify("WPSMensajeErrorGruposMaterialBase", "", "2");
-                    opcionHabilitarView(false);
-                }
-
-               
-                ventanaConfirm.close();
             });
-            $("#noButton").click(function () {
-                opcionHabilitarView(false);
-                ventanaConfirm.close();
-            });
-
         }
     }
     else {
-        displayNotify("WPSMensajeErrorNombreRepetido", "", "2");
-        opcionHabilitarView(false);
+        loadingStop();
+        windowTemplate = kendo.template($("#windowTemplate").html());
+
+        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+            iframe: true,
+            title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
+            visible: false, //the window will not appear before its .open method is called
+            width: "auto",
+            height: "auto",
+            modal: true,
+            animation: {
+                close: false,
+                open: false
+            }
+        }).data("kendoWindow");
+
+        ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
+            "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+
+        ventanaConfirm.open().center();
+
+
+        //RowEmpty($("#grid"));
+
+        $("#yesButton").click(function () {
+            loadingStart();
+            ArregloGuardado = [];
+            var indice = 0;
+            for (var i = 0; i < Captura[0].Detalles.length; i++) {
+                if (Captura[0].Detalles[i].Estatus == 1) {
+                    ArregloGuardado[indice] = ListaDetalles[i];
+                    indice++;
+                }
+            }
+
+            Captura[0].Detalles = [];
+            Captura[0].Detalles = ArregloGuardado;
+
+
+            if (Captura[0].Detalles.length > 0) {
+                loadingStart();
+                $WPS.WPS.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
+                    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "OK") {
+                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                        ObtenerJSONParaGrid();
+                        loadingStop();
+                    }
+                    else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
+                        //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
+                        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+                        opcionHabilitarView(false);
+                        loadingStop();
+
+                    }
+                });
+            }
+            else {
+                loadingStop();
+                displayNotify("AdverteciaExcepcionGuardado", "", '1');
+            }
+
+
+            ventanaConfirm.close();
+        });
+        $("#noButton").click(function () {
+            opcionHabilitarView(false);
+            ventanaConfirm.close();
+        });
     }
 
 };
