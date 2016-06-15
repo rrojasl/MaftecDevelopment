@@ -126,6 +126,9 @@ function SuscribirEventoEspesorMinimo() {
         if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 13) {
             $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
         }
+        else {
+            $("#inputEspesorMaximo").data("kendoNumericTextBox").value(parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) * 2);
+        }
     });
 }
 
@@ -139,6 +142,9 @@ function SuscribirEventoNumeroPasos() {
     $("#inputPasosSoldadura").blur(function (e) {
         if (parseFloat($("#inputPasosSoldadura").kendoNumericTextBox().val()) >= 3.0 && parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) >= 13) {
             $("#inputEspesorMaximo").data("kendoNumericTextBox").value('999999999999.0');
+        }
+        else {
+            $("#inputEspesorMaximo").data("kendoNumericTextBox").value(parseFloat($("#inputEspesorMinimo").kendoNumericTextBox().val()) * 2);
         }
     });
 
