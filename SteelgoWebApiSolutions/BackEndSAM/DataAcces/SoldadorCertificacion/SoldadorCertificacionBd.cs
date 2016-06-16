@@ -124,7 +124,7 @@ namespace BackEndSAM.DataAcces
                                                     }).AsParallel().ToList();
                 listaTipoPrueba.Insert(0, new TipoPrueba());
 
-                List<Obrero> listaObreros = (from item in ctx.Sam3_Steelgo_Get_Obrero(3, "1", proyectoID, usuarioID, patioID)
+                List<Obrero> listaObreros = (from item in ctx.Sam3_Steelgo_Get_Obrero(4, "1", proyectoID, usuarioID, patioID)
                                              select new Obrero
                                              {
                                                  Activo = true,
