@@ -29,7 +29,9 @@ function AjaxGuardarListado() {
     ListaDetalles = [];
     var correcto = true;
     var pqrModified = '';
-    var desplegado = false;
+    var desplegadoNA = false;
+    var desplegadoRell = false;
+    var desplegadoRaiz = false;
     for (index = 0; index < arregloCaptura.length; index++) {
         ListaDetalles[index] = {
             PQRID: "",
@@ -57,6 +59,8 @@ function AjaxGuardarListado() {
             (arregloCaptura[index].ProcesoSoldaduraRaizID == 0 || arregloCaptura[index].ProcesoSoldaduraRaizID == undefined || arregloCaptura[index].ProcesoSoldaduraRaizID == "" || arregloCaptura[index].ProcesoSoldaduraRaizID == null) ||
             (arregloCaptura[index].ProcesoSoldaduraRellenoID == 0 || arregloCaptura[index].ProcesoSoldaduraRellenoID == undefined || arregloCaptura[index].ProcesoSoldaduraRellenoID == "" || arregloCaptura[index].ProcesoSoldaduraRellenoID == null) ||
             (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].ProcesoSoldaduraRellenoID == 6) ||
+            (arregloCaptura[index].ProcesoSoldaduraRellenoID != 6 && arregloCaptura[index].EspesorRelleno <= 0) ||
+            (arregloCaptura[index].ProcesoSoldaduraRaizID != 6 && arregloCaptura[index].EspesorRaiz <= 0) ||
             (arregloCaptura[index].GrupoPMaterialBase1 == 0 || arregloCaptura[index].GrupoPMaterialBase1 == undefined || arregloCaptura[index].GrupoPMaterialBase1 == "" || arregloCaptura[index].GrupoPMaterialBase1 == null) ||
             (arregloCaptura[index].GrupoPMaterialBase2 == 0 || arregloCaptura[index].GrupoPMaterialBase2 == undefined || arregloCaptura[index].GrupoPMaterialBase2 == "" || arregloCaptura[index].GrupoPMaterialBase2 == null) ||
             (arregloCaptura[index].CodigoASMEID == 0 || arregloCaptura[index].CodigoASMEID == undefined || arregloCaptura[index].CodigoASMEID == "" || arregloCaptura[index].CodigoASMEID == null)) {
@@ -64,9 +68,17 @@ function AjaxGuardarListado() {
             ListaDetalles[index].Estatus = 0;
             $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
             
-            if (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].ProcesoSoldaduraRellenoID == 6 && !desplegado) {
-                desplegado = true;
+            if (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].ProcesoSoldaduraRellenoID == 6 && !desplegadoNA) {
+                desplegadoNA = true;
                 displayNotify("lblPQRDobleNA", "", "1");
+            }
+            else if (arregloCaptura[index].ProcesoSoldaduraRellenoID != 6 && arregloCaptura[index].EspesorRelleno <= 0 && !desplegadoRell) {
+                desplegadoRell = true;
+                displayNotify("lblPQREspNARell", "", "1");
+            }
+            else if (arregloCaptura[index].ProcesoSoldaduraRaizID != 6 && arregloCaptura[index].EspesorRaiz <= 0 && !desplegadoRaiz) {
+                desplegadoRaiz = true;
+                displayNotify("lblPQREspNARaiz", "", "1");
             }
         }
         else {

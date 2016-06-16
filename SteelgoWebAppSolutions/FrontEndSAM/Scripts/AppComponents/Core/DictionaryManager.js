@@ -8363,6 +8363,14 @@ _dictionary = {
         "es-MX": "¿Está seguro de cancelar el detalle de la captura de PQR?",
         "en-US": "Are you sure you want to cancel the detail of the capture of PQR?"
     },
+    "lblPQREspNARell": {
+        "es-MX": "El espesor de relleno debe ser mayor a cero si el proceso de relleno es diferente a N/A",
+        "en-US": "The filler thickness must be greater greater than zero if the filling process is different from N/A"
+    },
+    "lblPQREspNARaiz": {
+        "es-MX": "El espesor de raiz debe ser mayor a cero si el proceso de raiz es diferente a N/A",
+        "en-US": "The root thickness must be greater greater than zero if the root process is different from N/A"
+    },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Desde:",
         "en-US": "From:"
