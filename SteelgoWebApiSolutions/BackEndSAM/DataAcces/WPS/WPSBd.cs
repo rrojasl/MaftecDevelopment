@@ -91,7 +91,7 @@ namespace BackEndSAM.DataAcces
                                       listadoRellenoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
 
                                   }).AsParallel().ToList();
-                return data;
+                return data.OrderBy(x => x.WPSNombre).ToList<WPS>();
             }
 
 
@@ -172,7 +172,7 @@ namespace BackEndSAM.DataAcces
 
        
 
-        public object ValidarExisteWPS(string nombre)
+        public object ValidarExisteWPS(int WPSID,string nombre)
         {
 
             try
@@ -182,7 +182,7 @@ namespace BackEndSAM.DataAcces
                     ObjectParameter op = new ObjectParameter("Retorna", typeof(string));
                     op.Value = null;
                     var oMyString = new ObjectParameter("Retorna", typeof(string));
-                    var res = ctx.Sam3_Soldadura_WPS_Existe(nombre, oMyString);
+                    var res = ctx.Sam3_Soldadura_WPS_Existe(WPSID,nombre, oMyString);
                     var data = oMyString.Value.ToString();
                     TransactionalInformation result = new TransactionalInformation();
                     if (data.Equals("ok"))

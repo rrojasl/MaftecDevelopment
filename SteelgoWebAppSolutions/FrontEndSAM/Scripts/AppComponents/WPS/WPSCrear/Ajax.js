@@ -6,10 +6,11 @@ function obtenerPQRAjax() {
     });
 }
 
-function AjaxExisteWPS() {
+function AjaxExisteWPS(varGuardar) {
     if ($('#NomnreWPS').val() != "" && $('#NomnreWPS').val() != undefined && $('#NomnreWPS').val() != null) {
+        var WPSID = $("#WPSID").val() == "0" ? 0 : $("#WPSID").val();
         loadingStart();
-        $WPS.WPS.read({ NombreWPSValida: $('#NomnreWPS').val(), token: Cookies.get("token") }).done(function (data) {
+        $WPS.WPS.read({WPSID: WPSID, NombreWPSValida: $('#NomnreWPS').val(), token: Cookies.get("token") }).done(function (data) {
             if (data.ReturnMessage[0] != "OK") {
                 //displayNotify("", "El Nombre del WPS ya existe", '2');
                 NombreCorrecto = false;
@@ -17,6 +18,7 @@ function AjaxExisteWPS() {
             else {
                 NombreCorrecto = true;
             }
+            AjaxGuardar(varGuardar);
             loadingStop();
         });
     }

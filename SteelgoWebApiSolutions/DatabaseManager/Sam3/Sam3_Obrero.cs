@@ -37,6 +37,9 @@ namespace DatabaseManager.Sam3
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<int> IdentificadorMigra { get; set; }
         public Nullable<int> UsuarioID { get; set; }
+        public string Nombre { get; set; }
+        public string ApPaterno { get; set; }
+        public string ApMaterno { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sam3_InspeccionDimensional> Sam3_InspeccionDimensional { get; set; }

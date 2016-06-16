@@ -12,7 +12,7 @@
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
-                if (dataItem != undefined) {
+                if (dataItem != undefined && dataItem.Nombre != "") {
                     options.model.NombrePQRRaiz = dataItem.Nombre;
                     options.model.PQRRaizId = dataItem.PQRID;
                     var cadenaError = "";
@@ -51,18 +51,23 @@
                 else {
                     options.model.NombrePQRRaiz = "";
                     options.model.PQRRaizId = 0;
-                    options.model.PWHTRaiz = "";
+                    options.model.PWHTRaiz = false;
                     options.model.PWHTRaizId = 0;
                     options.model.GrupoMaterialBase1RaizUID = 0;
                     options.model.GrupoMaterialBase1RaizU = "";
                     options.model.GrupoMaterialBase1RaizDID = 0;
                     options.model.GrupoMaterialBase1RaizD = "";
-                    options.model.PREHEATRaiz = "";
+                    options.model.PREHEATRaiz = false;
                     options.model.PREHEATRaizId = 0;
                     options.model.EspesorMaximo = 0;
                     options.model.EspesorMinimo = 0;
-
-                    $("#grid").data("kendoGrid").dataSource.sync();
+                    options.model.RaizEspesorRaiz = 0;
+                    options.model.RaizEspesorRelleno = 0;
+                    try {
+                        //$("#grid").data("kendoGrid").dataSource.sync();
+                    }
+                    catch (e) {
+                    }
 
                 }
             }
@@ -99,7 +104,7 @@ function RenderComboBoxPQRRelleno(container, options) {
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
-                if (dataItem != undefined) {
+                if (dataItem != undefined && dataItem.Nombre != "") {
                     options.model.NombrePQRRelleno = dataItem.Nombre;
                     options.model.PQRRellenoId = dataItem.PQRID;
                     var cadenaError = "";
@@ -137,21 +142,33 @@ function RenderComboBoxPQRRelleno(container, options) {
                 else {
                     options.model.NombrePQRRelleno = "";
                     options.model.PQRRellenoId = 0;
-                    options.model.PWHTRelleno = "";
+                    options.model.PWHTRelleno = false;
                     options.model.PWHTRellenoId = 0;
                     options.model.GrupoMaterialBase1RellenoUID = 0;
                     options.model.GrupoMaterialBase1RellenoU = "";
                     options.model.GrupoMaterialBase1RellenoDID = 0;
                     options.model.GrupoMaterialBase1RellenoD = "";
-                    options.model.PREHEATRelleno = "";
+                    options.model.PREHEATRelleno = false;
                     options.model.PREHEATRellenoId = 0;
                     options.model.EspesorMaximo = 0;
                     options.model.EspesorMinimo = 0;
-                    $("#grid").data("kendoGrid").dataSource.sync();
+                    options.model.RellenoEspesorRaiz = 0;
+                    options.model.RellenoEspesorRelleno = 0;
+                    try{
+                        //$("#grid").data("kendoGrid").dataSource.sync();
+                    }
+                    catch (e) {
+                    }
+                    
                 }
+             
             }
+            
         }
         );
+    
+    loadingStop();
+
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = $(this).find(".k-combobox")[0];
@@ -161,7 +178,6 @@ function RenderComboBoxPQRRelleno(container, options) {
             }
         }
     });
-    loadingStop();
 }
 function RendercomboBoxProyecto(container, options) {
     var dataItem;

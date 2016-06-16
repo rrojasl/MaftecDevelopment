@@ -72,7 +72,7 @@ namespace BackEndSAM.DataAcces
                             });
                     }
 
-                    return listaPQR;
+                    return listaPQR.OrderBy(x => x.Nombre).ToList<PQR>();
                 }
             }
             catch (Exception ex)
@@ -119,7 +119,7 @@ namespace BackEndSAM.DataAcces
                             });
                     }
 
-                    return listaPQR;
+                    return listaPQR.OrderBy(x => x.Nombre).ToList<DetallePQR>();
                 }
             }
             catch (Exception ex)
@@ -155,7 +155,7 @@ namespace BackEndSAM.DataAcces
                             });
                     }
 
-                    return listaPQR;
+                    return listaPQR.OrderBy(x => x.Nombre).ToList<PQR>();
                 }
             }
             catch (Exception ex)

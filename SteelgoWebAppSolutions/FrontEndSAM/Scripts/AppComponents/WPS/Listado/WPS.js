@@ -261,7 +261,7 @@ function ObtenerEspesorCorrecto(EspesorTotalT, PWHT,ProcesoSoldadura, esRaiz) {
             }
             else if (EspesorTotalT >= 1.5 && EspesorTotalT < 10) {
                 espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
-                espesores[0].EspesorMinimo = 5.0000;
+                espesores[0].EspesorMinimo = 1.5000;
             }
             else if (EspesorTotalT >= 10 && EspesorTotalT < 19) {
                 espesores[0].EspesorMaximo = (2 * parseFloat(EspesorTotalT)).toFixed(4);
