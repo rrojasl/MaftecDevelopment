@@ -200,11 +200,11 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
 
 
         if (
-            ($("#inputSoldador").data("kendoComboBox").select() == -1) ||
+            ($("#inputSoldador").data("kendoComboBox").select() <= 0) ||
             ($("#inputSoldador").val() == '') ||
             ($("#inputCedulaTuboPQR").data("kendoComboBox").select() <= 0) ||
             ($("#inputCedulaTuboPQR").val() == '') ||
-            ($("#inputNombrePQR").data("kendoComboBox").select() == -1) ||
+            ($("#inputNombrePQR").data("kendoComboBox").select() <= 0) ||
             ($("#inputSoldador").val() == '') ||
             (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputPasosSoldadura").data("kendoNumericTextBox").value() == null) ||
@@ -220,8 +220,10 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             ($("#inputTipoPrueba").val() == "") ||
             (parseFloat($("#inputPosicionPQR").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputPosicionPQR").data("kendoNumericTextBox").value() == null) ||
-            ($("#inputProcesoSol").data("kendoComboBox").select() == -1) ||
-            ($("#inputProcesoSol").val() == "")
+            ($("#inputProcesoSol").data("kendoComboBox").select() <= 0) ||
+            ($("#inputProcesoSol").val() == "") ||
+            ($("#inputTipoPrueba").data("kendoComboBox").select() <= 0) ||
+            ($("#inputTipoPrueba").val() == '')
            ) {
 
             if (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) <= 0)

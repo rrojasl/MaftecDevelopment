@@ -84,7 +84,7 @@ function EliminaSoldadorCertificacion(e) {
 
         ventanaConfirm = $("#ventanaConfirm").kendoWindow({
             iframe: true,
-            title:  _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+            title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
             visible: false, //the window will not appear before its .open method is called
             width: "auto",
             height: "auto",
@@ -188,6 +188,12 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 }
 
 function ValidarInformacionEnviada() {
+    var desplegadoPasos = false;
+    var desplegadoEspesor = false;
+    var desplegadoDiametro = false;
+    var desplegadoPosicion = false;
+
+
     Captura = [];
     Captura[0] = { Detalles: "" };
     ListaDetalles = [];
@@ -224,6 +230,24 @@ function ValidarInformacionEnviada() {
             (arregloCaptura[index].TipoDePrueba == "" || arregloCaptura[index].TipoDePrueba == undefined || arregloCaptura[index].TipoDePrueba == null) ||
             (arregloCaptura[index].Posicion == "" || arregloCaptura[index].Posicion == undefined || arregloCaptura[index].Posicion == null)
            ) {
+
+            if (arregloCaptura[index].PasosSoldadura == "" || arregloCaptura[index].PasosSoldadura <= 0) { //Pasos soladura
+                desplegadoPasos = true;
+                displayNotify("CapturaSoldadorCertificacionNoPasosMsg", "", '1');
+            }
+            else if (arregloCaptura[index].EspesorMinimo == "" || arregloCaptura[index].EspesorMinimo <= 0) { //Pasos soladura
+                desplegadoEspesor = true;
+                displayNotify("CapturaSoldadorEspesorMsg", "", '1');
+            }
+            else if (arregloCaptura[index].DiametroCalificado == "" || arregloCaptura[index].DiametroCalificado <= 0) { //Pasos soladura
+                desplegadoDiametro = true;
+                displayNotify("CapturaSoldadorCertificacionDiametroMsg", "", '1');
+            }
+            else if (arregloCaptura[index].Posicion == "" || arregloCaptura[index].Posicion <= 0) { //Pasos soladura
+                desplegadoPosicion = true;
+                displayNotify("CapturaSoldadorCertificacionPosicionMsg", "", '1');
+            }
+
             ListaDetalles[index].Estatus = 0;
             $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
         }
