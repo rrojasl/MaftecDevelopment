@@ -158,10 +158,14 @@ function renderNoPasos(container, options) {
             min: 0,
             value: "0",
             change: function () {
-                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 0.5) {
+                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >=13) {
                     options.model.EspesorMaximo = '999999999999.0';
                     $("#grid").data("kendoGrid").dataSource.sync();
                     displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
+                }
+                else {
+                    options.model.EspesorMaximo = options.model.EspesorMinimo * 2;
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
             }
         });
@@ -182,10 +186,14 @@ function renderEmin(container, options) {
     .appendTo(container)
         .kendoNumericTextBox({
             change: function () {
-                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 0.5) {
+                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 13) {
                     options.model.EspesorMaximo = '999999999999.0';
                     $("#grid").data("kendoGrid").dataSource.sync();
                     displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
+                }
+                else {
+                    options.model.EspesorMaximo = options.model.EspesorMinimo * 2;
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
             }
         });
