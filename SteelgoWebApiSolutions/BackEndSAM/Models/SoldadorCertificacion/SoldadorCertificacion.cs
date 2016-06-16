@@ -87,10 +87,10 @@ namespace BackEndSAM.Models.SoldadorCertificacion
         public string FechaInicioCertificado { get; set; }
         public string FechaFinCertificado { get; set; }
         public int CedulaTuboCalificadoID { get; set; }
-        public string DiametroCalificado { get; set; }
-        public string EspesorMinimo { get; set; }
-        public string EspesorMaximo { get; set; }
-        public string PasosSoldadura { get; set; }
+        public decimal DiametroCalificado { get; set; }
+        public decimal EspesorMinimo { get; set; }
+        public decimal EspesorMaximo { get; set; }
+        public decimal PasosSoldadura { get; set; }
     }
 
     public class Captura
