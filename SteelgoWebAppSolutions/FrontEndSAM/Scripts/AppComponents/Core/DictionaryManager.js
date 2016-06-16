@@ -8432,7 +8432,22 @@ _dictionary = {
         "es-MX": "El espesor maximo es ilimitado",
         "en-US": "The maximum thickness is unlimited"
     },
-
+    "CapturaSoldadorCertificacionNoPasosMsg": {
+        "es-MX": "El número de pasos debe ser mayor a 0",
+        "en-US": "The number of steps must be greater than 0"
+    },
+    "CapturaSoldadorEspesorMsg": {
+        "es-MX": "El Espesor debe ser mayor a 0",
+        "en-US": "The thickness should be greater than 0"
+    },
+    "CapturaSoldadorCertificacionDiametroMsg": {
+        "es-MX": "El diametro calificado debe ser mayor a 0",
+        "en-US": "Qualified diameter must be greater than 0"
+    },
+    "CapturaSoldadorCertificacionPosicionMsg": {
+        "es-MX": "La posición debe ser mayor a 0",
+        "en-US": "The position must be greater than 0"
+    },
     //#endregion
 
     //#region Soldadura

@@ -7,6 +7,7 @@
     SuscribirEventoEspesorMaximo();
     SuscribirEventoDiametroCertificado();
     SuscribirEventoTipoPrueba();
+    SuscribirEventoCedula();
     SuscriborEventoPosicion();
     SuscribirEventoFechaVigenciaInicio();
     SuscribirEventoFechaVigenciaFin();
@@ -99,6 +100,23 @@ function SuscribirEventoDiametroCertificado() {
         min: 0,
         value: "0",
         decimals: 3
+    });
+}
+
+function SuscribirEventoCedula() {
+    $("#inputCedulaTuboPQR").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        dataTextField: "CedulaTuboCalificadoDesc",
+        dataValueField: "CedulaTuboCalificadoID",
+        autoBind: false,
+        change: function (e) {
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem == undefined) {
+                $("#inputCedulaTuboPQR").data("kendoComboBox").text("");
+            }
+        }
     });
 }
 

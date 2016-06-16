@@ -6,6 +6,7 @@
             $("#inputTipoPrueba").data("kendoComboBox").dataSource.data(data.ListaTipoPrueba);
             $("#inputProcesoSol").data("kendoComboBox").dataSource.data(data.ListaTipoProcesosSoldadura);
             $("#inputNombrePQR").data("kendoComboBox").dataSource.data(data.ListaPQR);
+            $("#inputCedulaTuboPQR").data("kendoComboBox").dataSource.data(data.ListaCedulaTuboCalificado);
         }
     });
 }
