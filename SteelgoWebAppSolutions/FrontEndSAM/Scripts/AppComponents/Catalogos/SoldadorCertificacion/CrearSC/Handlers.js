@@ -107,10 +107,10 @@ function SuscribirEventoEspesorMaximo() {
         format: "#.0000",
         min: 0,
         value: "0",
-        decimals: 3,
+        decimals: 5,
 
     });
-    $("#inputEspesorMaximo").data("kendoNumericTextBox").readonly()
+    $("#inputEspesorMaximo").data("kendoNumericTextBox").readonly();
 }
 
 
@@ -119,7 +119,7 @@ function SuscribirEventoEspesorMinimo() {
         format: "#.0000",
         min: 0,
         value: "0",
-        decimals: 3
+        decimals: 5
     });
 
     $("#inputEspesorMinimo").blur(function (e) {

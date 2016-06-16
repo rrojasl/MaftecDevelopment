@@ -3,7 +3,7 @@ function CargarGrid() {
 
     $("#grid").kendoGrid({
         edit: function (e) {
-            if ($('#botonGuardar').text() != _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()])
+            if ($('#Guardar').text() != _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()])
                 this.closeCell();
         },
         dataSource: {
@@ -12,7 +12,7 @@ function CargarGrid() {
                 model: {
                     fields: {
                         CodigoObrero: { type: "string", editable: true },
-                        NombrePQR: { type: "string", editable: false },
+                        NombrePQR: { type: "string", editable: true },
                         ProcesoSoldadura: { type: "string", editable: true },
                         FechaInicioCertificado: { type: "date", editable: true },
                         FechaFinCertificado: { type: "date", editable: true },
@@ -54,8 +54,8 @@ function CargarGrid() {
         },
         filterable: getGridFilterableMaftec(),
         columns: [
-            { field: "CodigoObrero", title: _dictionary.SoldadorCertificacionCodigoObrero[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px" },
-            { field: "NombrePQR", title: _dictionary.SoldadorCertificacionNombrePQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
+            { field: "CodigoObrero", title: _dictionary.SoldadorCertificacionCodigoObrero[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px", editor: RenderComboBoxSoldador },
+            { field: "NombrePQR", title: _dictionary.SoldadorCertificacionNombrePQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px", editor: RenderComboBoxPQR },
             { field: "ProcesoSoldadura", title: _dictionary.SoldadorCertificacionProcesoSoldaduraPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldadura },
             { field: "FechaInicioCertificado", title: _dictionary.SoldadorCertificacionFechaInicioCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaInicio },
             { field: "FechaFinCertificado", title: _dictionary.SoldadorCertificacionFechaFinCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaFin },
@@ -217,7 +217,7 @@ function ValidarInformacionEnviada() {
             (arregloCaptura[index].FechaInicioCertificado == "" || arregloCaptura[index].FechaInicioCertificado == undefined || arregloCaptura[index].FechaInicioCertificado == null) ||
             (arregloCaptura[index].FechaFinCertificado == "" || arregloCaptura[index].FechaFinCertificado == undefined || arregloCaptura[index].FechaFinCertificado == null) ||
             (arregloCaptura[index].PasosSoldadura == "" || arregloCaptura[index].PasosSoldadura == undefined || arregloCaptura[index].PasosSoldadura == null) ||
-            //        (arregloCaptura[index].CedulaTuboCalificado == "" || arregloCaptura[index].CedulaTuboCalificado == undefined || arregloCaptura[index].CedulaTuboCalificado == null) ||
+            (arregloCaptura[index].CedulaTuboCalificado == "" || arregloCaptura[index].CedulaTuboCalificado == undefined || arregloCaptura[index].CedulaTuboCalificado == null) ||
             (arregloCaptura[index].EspesorMinimo == "" || arregloCaptura[index].EspesorMinimo == undefined || arregloCaptura[index].EspesorMinimo == null) ||
             (arregloCaptura[index].EspesorMaximo == "" || arregloCaptura[index].EspesorMaximo == undefined || arregloCaptura[index].EspesorMaximo == null) ||
             (arregloCaptura[index].DiametroCalificado == "" || arregloCaptura[index].DiametroCalificado == undefined || arregloCaptura[index].DiametroCalificado == null) ||

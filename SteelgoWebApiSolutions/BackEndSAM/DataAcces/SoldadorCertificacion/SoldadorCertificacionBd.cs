@@ -33,7 +33,7 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object ObtenerSoldadorCertificacion(int TipoDato, string Lenguaje)
+        public object ObtenerSoldadorCertificacion(int TipoDato, string Lenguaje, int proyectoID, Sam3_Usuario usuario, int patioID)
         {
 
             using (SamContext ctx = new SamContext())
@@ -84,7 +84,9 @@ namespace BackEndSAM.DataAcces
                                                         TipoDePruebaID = Convert.ToInt32(SC.TipoDePruebaID),
                                                         TipoDePrueba = SC.TipoPrueba,
                                                         ListaTipoPrueba = listaTipoPrueba,
-                                                        Posicion = Convert.ToInt32(SC.Posicion)
+                                                        Posicion = Convert.ToInt32(SC.Posicion),
+                                                        listadoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
+                                                        listaObreros = (List<Obrero>)ObtenerListaSoldadores(proyectoID,usuario.UsuarioID,patioID)
                                                     }).AsParallel().ToList();
                 return data;
 
@@ -92,7 +94,24 @@ namespace BackEndSAM.DataAcces
             }
 
         }
+        public object ObtenerListaSoldadores(int proyectoID,int usuarioID, int patioID)
+        {
+            using (SamContext ctx = new SamContext())
+            {
 
+                List<Obrero> listaObreros = (from item in ctx.Sam3_Steelgo_Get_Obrero(4, "Soldador", proyectoID, usuarioID, patioID)
+                                             select new Obrero
+                                             {
+                                                 Activo = true,
+                                                 Codigo = item.Codigo,
+                                                 ObreroID = item.ObreroID,
+                                                 TipoObrero = item.TipoObrero
+                                             }).AsParallel().ToList();
+                listaObreros.Insert(0, new Obrero());
+                return listaObreros;
+            }
+            
+        }
         public object ObtenerNuevoSoldadorCertificacion( int proyectoID, int usuarioID,int patioID)
         {
 
@@ -124,7 +143,7 @@ namespace BackEndSAM.DataAcces
                                                     }).AsParallel().ToList();
                 listaTipoPrueba.Insert(0, new TipoPrueba());
 
-                List<Obrero> listaObreros = (from item in ctx.Sam3_Steelgo_Get_Obrero(4, "1", proyectoID, usuarioID, patioID)
+                List<Obrero> listaObreros = (from item in ctx.Sam3_Steelgo_Get_Obrero(4, "Soldador", proyectoID, usuarioID, patioID)
                                              select new Obrero
                                              {
                                                  Activo = true,

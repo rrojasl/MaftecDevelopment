@@ -17,16 +17,18 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
     public class SoldadorCertificacionController : ApiController
     {
         //Obtiene DataSource para el Grid
-        public object Get(int TipoDato, string token, string Lenguaje)
+        public object Get(int TipoDato, string token, string Lenguaje, int proyectoID, int patioID)
         {
             try
             {
                 string payload = "";
                 string newToken = "";
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
                 bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+                Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                 if (totokenValido)
                 {
-                    return SoldadorCertificacionBd.Instance.ObtenerSoldadorCertificacion(TipoDato, Lenguaje);
+                    return SoldadorCertificacionBd.Instance.ObtenerSoldadorCertificacion(TipoDato, Lenguaje,proyectoID, Usuario, patioID);
                 }
                 else
                 {

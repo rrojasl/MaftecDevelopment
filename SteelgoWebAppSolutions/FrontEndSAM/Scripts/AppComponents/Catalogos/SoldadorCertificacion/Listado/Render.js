@@ -11,6 +11,7 @@
             template: "<i class=\"fa fa-#=data.TipoProcesoSoldaduraDesc.toLowerCase()#\"></i> #=data.TipoProcesoSoldaduraDesc#",
 
             change: function (e) {
+                e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.ProcesoSoldadura = dataItem.TipoProcesoSoldaduraDesc;
@@ -35,6 +36,81 @@
     });
 }
 
+function RenderComboBoxSoldador(container, options) {
+    loadingStart();
+    var dataItem;
+    $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoComboBox({
+            suggest: true,
+            delay: 10,
+            filter: "contains",
+            autoBind: false,
+            dataSource: options.model.listaObreros,
+            template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
+            change: function (e) {
+                e.preventDefault();
+                dataItem = this.dataItem(e.sender.selectedIndex);
+                if (dataItem != undefined && dataItem.Nombre != "") {
+                    options.model.CodigoObrero = dataItem.Codigo;
+                    options.model.ObreroID = dataItem.ObreroID;
+                }
+                else {
+                    options.model.CodigoObrero = dataItem.Codigo;
+                    options.model.ObreroID = dataItem.ObreroID;
+                }
+            }
+        });
+    $(".k-combobox").parent().on('mouseleave', function (send) {
+        var e = $.Event("keydown", { keyCode: 27 });
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
+        }
+    });
+    loadingStop();
+}
+
+function RenderComboBoxPQR(container, options) {
+    loadingStart();
+    var dataItem;
+    $('<input data-text-field="Nombre" id=' + options.model.uid + ' data-value-field="PQRID" data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoComboBox({
+            suggest: true,
+            delay: 10,
+            filter: "contains",
+            autoBind: false,
+            dataSource: options.model.listadoPQR,
+            template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
+            change: function (e) {
+                e.preventDefault();
+                dataItem = this.dataItem(e.sender.selectedIndex);
+                if (dataItem != undefined && dataItem.Nombre != "") {
+                    options.model.NombrePQR = dataItem.Nombre;
+                    options.model.PQRID = dataItem.PQRID;
+                }
+                else {
+                    options.model.NombrePQR = dataItem.Nombre;
+                    options.model.PQRID = dataItem.PQRID;
+                }
+            }
+        });
+    $(".k-combobox").parent().on('mouseleave', function (send) {
+        var e = $.Event("keydown", { keyCode: 27 });
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
+        }
+    });
+    loadingStop();
+}
+
+
 
 function RenderComboBoxCedulaTuboCalificado(container, options) {
     var dataItem;
@@ -49,6 +125,7 @@ function RenderComboBoxCedulaTuboCalificado(container, options) {
             template: "<i class=\"fa fa-#=data.CedulaTuboCalificadoDesc#\"></i> #=data.CedulaTuboCalificadoDesc#",
 
             change: function (e) {
+                e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.CedulaTuboCalificado = dataItem.CedulaTuboCalificadoDesc;
@@ -88,6 +165,7 @@ function RenderComboBoxTipoPrueba(container, options) {
             dataSource: options.model.ListaTipoPrueba,
             template: "<i class=\"fa fa-#=data.TipoDePrueba.toLowerCase()#\"></i> #=data.TipoDePrueba#",
             change: function (e) {
+                e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.TipoDePrueba = dataItem.TipoDePrueba;
