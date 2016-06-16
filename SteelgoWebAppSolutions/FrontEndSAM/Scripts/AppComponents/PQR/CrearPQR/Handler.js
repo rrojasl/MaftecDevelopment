@@ -20,6 +20,28 @@ function suscribirEventoGuardar() {
             opcionHabilitarView(false);
         }
     });
+
+    $('#btnGuardarYNuevo').click(function (e) {
+        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
+            AjaxExistePQR(0);
+            Limpiar();
+        }
+        else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
+            opcionHabilitarView(false);
+            Limpiar();
+        }
+    });
+
+    $('#btnGuardarYNuevo1').click(function (e) {
+        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
+            AjaxExistePQR(0);
+            Limpiar();
+        }
+        else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
+            opcionHabilitarView(false);
+            Limpiar();
+        }
+    });
 }
 
 function opcionHabilitarView(valor, name) {
@@ -38,7 +60,7 @@ function opcionHabilitarView(valor, name) {
         $("#MezclaID").attr('disabled', true);
         $("#RespaldoID").attr('disabled', true);
         $("#GrupoFID").attr('disabled', true);
-        $("#CodigoID").attr('disabled', true);
+        $("#CodigoID").data("kendoComboBox").enable(false);
         $('#Guardar1').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
         $("#Guardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
         $("#botonGuardar4").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
@@ -59,7 +81,7 @@ function opcionHabilitarView(valor, name) {
         $("#MezclaID").attr('disabled', false);
         $("#RespaldoID").attr('disabled', false);
         $("#GrupoFID").attr('disabled', false);
-        $("#CodigoID").attr('disabled', false);
+        $("#CodigoID").data("kendoComboBox").enable(true);
         $('#Guardar1').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
         $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
         $("#botonGuardar4").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);

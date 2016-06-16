@@ -1,4 +1,24 @@
-﻿
+﻿function RenderEspesorRelleno(container, options) {
+    var dataItem;
+    $('<input data-text-field="EspesorRelleno" id=' + options.model.uid + ' data-value-field="EspesorRelleno" data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+    .kendoNumericTextBox({
+        format: "#.0000",
+        decimals: 4,
+        min: 0
+    });
+}
+
+function RenderEspesorRaiz(container, options) {
+    var dataItem;
+    $('<input data-text-field="EspesorRaiz" id=' + options.model.uid + ' data-value-field="EspesorRaiz" data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+    .kendoNumericTextBox({
+        format: "#.0000",
+        decimals: 4,
+        min: 0
+    });
+}
 
 function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();

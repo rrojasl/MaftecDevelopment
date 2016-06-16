@@ -28,6 +28,14 @@ function ConvertirCombos() {
         dataValueField: "ProcesoSoldaduraID",
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
+        },
+        change: function (e) {
+            if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A") {
+                $('#EspesorRelleno').data("kendoNumericTextBox").value("0");
+                $("#EspesorRelleno").data("kendoNumericTextBox").enable(false);
+            } else {
+                $("#EspesorRelleno").data("kendoNumericTextBox").enable(true);
+            }
         }
     });
 
@@ -48,6 +56,14 @@ function ConvertirCombos() {
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
         },
+        change: function (e) {
+            if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo == "N/A") {
+                $('#EspesorRaiz').data("kendoNumericTextBox").value("0");
+                $("#EspesorRaiz").data("kendoNumericTextBox").enable(false);
+            } else {
+                $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
+            }
+        }
     });
 
     $("#ProcesoSoldaduraRaizID").blur(function (e) {
