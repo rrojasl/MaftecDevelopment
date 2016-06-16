@@ -29,7 +29,9 @@ function AjaxGuardarListado() {
     ListaDetalles = [];
     var correcto = true;
     var pqrModified = '';
-    var desplegado = false;
+    var desplegadoNA = false;
+    var desplegadoRell = false;
+    var desplegadoRaiz = false;
     for (index = 0; index < arregloCaptura.length; index++) {
         ListaDetalles[index] = {
             PQRID: "",
@@ -66,9 +68,17 @@ function AjaxGuardarListado() {
             ListaDetalles[index].Estatus = 0;
             $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
             
-            if (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].ProcesoSoldaduraRellenoID == 6 && !desplegado) {
-                desplegado = true;
+            if (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].ProcesoSoldaduraRellenoID == 6 && !desplegadoNA) {
+                desplegadoNA = true;
                 displayNotify("lblPQRDobleNA", "", "1");
+            }
+            else if (arregloCaptura[index].ProcesoSoldaduraRellenoID != 6 && arregloCaptura[index].EspesorRelleno <= 0 && !desplegadoRell) {
+                desplegadoRell = true;
+                displayNotify("lblPQREspNARell", "", "1");
+            }
+            else if (arregloCaptura[index].ProcesoSoldaduraRaizID != 6 && arregloCaptura[index].EspesorRaiz <= 0 && !desplegadoRaiz) {
+                desplegadoRaiz = true;
+                displayNotify("lblPQREspNARaiz", "", "1");
             }
         }
         else {

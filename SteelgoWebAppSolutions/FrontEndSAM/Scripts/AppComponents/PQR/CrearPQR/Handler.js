@@ -1,15 +1,8 @@
 ﻿function suscribirEventos() {
     suscribirEventoGuardar();
-    suscribirEventoBlur();
 }
 
 suscribirEventos();
-
-function suscribirEventoBlur() {
-    $("#NombreId").blur(function (e) {
-        AjaxExistePQR(3);//se pone un tres  para indicar si se guarda o no el registro.
-    });
-}
 
 function suscribirEventoGuardar() {
     $('.accionGuardar').click(function (e) {
@@ -23,23 +16,19 @@ function suscribirEventoGuardar() {
 
     $('#btnGuardarYNuevo').click(function (e) {
         if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-            AjaxExistePQR(0);
-            Limpiar();
+            AjaxExistePQR(1);
         }
         else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
             opcionHabilitarView(false);
-            Limpiar();
         }
     });
 
     $('#btnGuardarYNuevo1').click(function (e) {
         if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-            AjaxExistePQR(0);
-            Limpiar();
+            AjaxExistePQR(1);
         }
         else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
             opcionHabilitarView(false);
-            Limpiar();
         }
     });
 }

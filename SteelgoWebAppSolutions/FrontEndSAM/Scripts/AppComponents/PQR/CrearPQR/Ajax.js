@@ -76,10 +76,15 @@ function AjaxGuardar(tipoGuardar) {
         correcto = false;
         displayNotify("lblPQRCodigoMandatorio", "", '1');
     }
-    else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A"
-          && $('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo == "N/A") {
+    else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo != "N/A"
+          && parseFloat($('#EspesorRelleno').val()) <= 0) {
         correcto = false;
-        displayNotify("lblPQRDobleNA", "", '1');
+        displayNotify("lblPQREspNARell", "", '1');
+    }
+    else if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo != "N/A"
+          && parseFloat($('#EspesorRaiz').val()) <= 0) {
+        correcto = false;
+        displayNotify("lblPQREspNARaiz", "", '1');
     }
 
 
