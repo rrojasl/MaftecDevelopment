@@ -11,6 +11,7 @@
             dataSource: options.model.listadoRaizPQR,
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
             change: function (e) {
+                e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined && dataItem.Nombre != "") {
                     options.model.NombrePQRRaiz = dataItem.Nombre;
@@ -64,7 +65,7 @@
                     options.model.RaizEspesorRaiz = 0;
                     options.model.RaizEspesorRelleno = 0;
                     try {
-                        //$("#grid").data("kendoGrid").dataSource.sync();
+                        $("#grid").data("kendoGrid").dataSource.sync();
                     }
                     catch (e) {
                     }
@@ -103,6 +104,7 @@ function RenderComboBoxPQRRelleno(container, options) {
             dataSource: options.model.listadoRellenoPQR,
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
             change: function (e) {
+                e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined && dataItem.Nombre != "") {
                     options.model.NombrePQRRelleno = dataItem.Nombre;
@@ -155,7 +157,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                     options.model.RellenoEspesorRaiz = 0;
                     options.model.RellenoEspesorRelleno = 0;
                     try{
-                        //$("#grid").data("kendoGrid").dataSource.sync();
+                        $("#grid").data("kendoGrid").dataSource.sync();
                     }
                     catch (e) {
                     }
@@ -199,6 +201,7 @@ function RendercomboBoxProyecto(container, options) {
                 }
             },
             change: function (e) {
+                e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
                     options.model.Proyecto = dataItem.Nombre;
