@@ -60,8 +60,10 @@ function opcionHabilitarView(valor, name) {
         $("#NombreId").attr('disabled', false);
         $("#chkPreheat").prop('disabled', false);
         $("#chkPwht").prop('disabled', false);
-        $("#EspesorRelleno").data("kendoNumericTextBox").enable(true);
-        $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
+        if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo != "N/A")
+            $("#EspesorRelleno").data("kendoNumericTextBox").enable(true);
+        if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo != "N/A")
+            $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
         $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").enable(true);
         $("#ProcesoSoldaduraRaizID").data("kendoComboBox").enable(true);
         $("#GrupoPMaterialBase1ID").data("kendoComboBox").enable(true);
