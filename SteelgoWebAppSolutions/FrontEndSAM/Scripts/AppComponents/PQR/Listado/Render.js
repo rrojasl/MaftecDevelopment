@@ -38,10 +38,15 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
             },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
-                if (dataItem != undefined) {
+                if (dataItem.Codigo == "N/A") {
+                    options.model.EspesorRaiz = 0;
+                    $("#grid").data("kendoGrid").dataSource.sync();
+                }
+                else if (dataItem != undefined) {
                     options.model.CodigoRaiz = dataItem.Codigo,
                     options.model.ProcesoSoldaduraRaizID = dataItem.ProcesoSoldaduraID
                 }
+                 
                 else {
                     options.model.CodigoRaiz = "";
                     options.model.ProcesoSoldaduraRaizID = 0;
@@ -89,7 +94,11 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
                 },
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
-                    if (dataItem != undefined) {
+                    if (dataItem.Codigo == "N/A") {
+                        options.model.EspesorRelleno = 0;
+                        $("#grid").data("kendoGrid").dataSource.sync();
+                    }
+                    else if (dataItem != undefined) {
                         options.model.CodigoRelleno = dataItem.Codigo;
                         options.model.ProcesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
                         //AjaxActualizaSoldadoresRelleno(dataItem.ProcesoSoldaduraID, ItemSeleccionado.TipoJunta, ItemSeleccionado.Diametro, ItemSeleccionado.Espesor, ItemSeleccionado.Cedula);

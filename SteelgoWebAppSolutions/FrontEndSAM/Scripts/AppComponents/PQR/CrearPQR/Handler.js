@@ -40,7 +40,9 @@ function opcionHabilitarView(valor, name) {
         $("#chkPreheat").prop('disabled', true);
         $("#chkPwht").prop('disabled', true);
         $("#EspesorRelleno").data("kendoNumericTextBox").readonly();
+        $("#EspesorRelleno").data("kendoNumericTextBox").enable(false);
         $("#EspesorRaiz").data("kendoNumericTextBox").readonly();
+        $("#EspesorRaiz").data("kendoNumericTextBox").enable(false);
         $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").enable(false);
         $("#ProcesoSoldaduraRaizID").data("kendoComboBox").enable(false);
         $("#GrupoPMaterialBase1ID").data("kendoComboBox").enable(false);
@@ -60,10 +62,14 @@ function opcionHabilitarView(valor, name) {
         $("#NombreId").attr('disabled', false);
         $("#chkPreheat").prop('disabled', false);
         $("#chkPwht").prop('disabled', false);
-        if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo != "N/A")
+        if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo != "N/A") {
             $("#EspesorRelleno").data("kendoNumericTextBox").readonly(false);
-        if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo != "N/A")
+            $("#EspesorRelleno").data("kendoNumericTextBox").enable(true);
+        }
+        if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo != "N/A") {
             $("#EspesorRaiz").data("kendoNumericTextBox").readonly(false);
+            $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
+        }
         $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").enable(true);
         $("#ProcesoSoldaduraRaizID").data("kendoComboBox").enable(true);
         $("#GrupoPMaterialBase1ID").data("kendoComboBox").enable(true);
