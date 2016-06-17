@@ -7739,22 +7739,21 @@ _dictionary = {
         "es-MX": "Espesor (mm)",
         "en-US": "Thickness (mm)"
     },
-
     "WPSMensajeErrorNombreRepetido": {
         "es-MX": "El nombre del WPS no se puede repetir",
         "en-US": "WPS Name can not be repeat"
     },
     "WPSMensajeErrorPWHT": {
-        "es-MX": "El PWHT, no coincide",
-        "en-US": "PWHT does not match"
+        "es-MX": "Los PWHT no coinciden",
+        "en-US": "PWHT don't match"
     },
     "WPSMensajeErrorGrupoP": {
-        "es-MX": "El grupo P, no coincide",
-        "en-US": "P gropu does not match"
+        "es-MX": "Los grupo P no coinciden",
+        "en-US": "P group don't match"
     },
     "WPSMensajeErrorPREHEAT": {
-        "es-MX": "El PREHEAT, no coincide",
-        "en-US": "PREHEAT does not match "
+        "es-MX": "Los PREHEAT no coinciden",
+        "en-US": "PREHEAT don't match "
     },
     "WPSMensajeErrorPQRRaiz": {
         "es-MX": "El PQR de Raiz es obligatorio",
