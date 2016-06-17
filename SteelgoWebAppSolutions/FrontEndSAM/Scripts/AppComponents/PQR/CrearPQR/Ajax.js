@@ -77,7 +77,7 @@ function AjaxGuardar(tipoGuardar) {
         displayNotify("lblPQRCodigoMandatorio", "", '1');
     }
     else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A"
-      && $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A") {
+      && $('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo == "N/A") {
         correcto = false;
         displayNotify("lblPQRDobleNA", "", '1');
     }
