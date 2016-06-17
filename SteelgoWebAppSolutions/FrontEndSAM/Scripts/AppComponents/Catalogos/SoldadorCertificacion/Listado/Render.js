@@ -236,7 +236,7 @@ function renderNoPasos(container, options) {
             min: 0,
             value: "0",
             change: function () {
-                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >=13) {
+                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 13) {
                     options.model.EspesorMaximo = '999999999999.0';
                     $("#grid").data("kendoGrid").dataSource.sync();
                     displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
@@ -260,19 +260,22 @@ function renderPosicion(container, options) {
 }
 
 function renderEmin(container, options) {
-    $('<input   data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="EspesorMinimo" id=' + options.model.uid + ' data-value-field="EspesorMinimo" data-bind="value:' + options.field + '"/>')
     .appendTo(container)
-        .kendoNumericTextBox({
-            change: function () {
-                if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 13) {
-                    options.model.EspesorMaximo = '999999999999.0';
-                    $("#grid").data("kendoGrid").dataSource.sync();
-                    displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
-                }
-                else {
-                    options.model.EspesorMaximo = options.model.EspesorMinimo * 2;
-                    $("#grid").data("kendoGrid").dataSource.sync();
-                }
+    .kendoNumericTextBox({
+        format: "#.0000",
+        decimals: 4,
+        min: 0,
+        change: function () {
+            if (options.model.PasosSoldadura >= 3 && options.model.EspesorMinimo >= 13) {
+                options.model.EspesorMaximo = '999999999999.0';
+                $("#grid").data("kendoGrid").dataSource.sync();
+                displayNotify("CapturaSoldadorCertificacionEspesorLimiteMaximo", "", '0');
             }
-        });
+            else {
+                options.model.EspesorMaximo = options.model.EspesorMinimo * 2;
+                $("#grid").data("kendoGrid").dataSource.sync();
+            }
+        }
+    });
 }

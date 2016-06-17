@@ -96,7 +96,7 @@ function SuscribirEventoTipoPrueba() {
 
 function SuscribirEventoDiametroCertificado() {
     $("#inputDiametroCalificado").kendoNumericTextBox({
-        format: "#.0000 mm",
+        format: "#.0000",
         min: 0,
         value: "0",
         decimals: 3

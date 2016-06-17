@@ -7571,8 +7571,8 @@ _dictionary = {
 
     //#region WPS
     "WPSMensajeErrorPreHitRelleno": {
-        "es-MX": "Prehit no coincide",
-        "en-US": "Do not match PreHit"
+        "es-MX": "Preheat no coincide",
+        "en-US": "Do not match PreHeat"
     },
     "WPSMensajeErrorPWHRelleno": {
         "es-MX": "PWH No coincide",
@@ -8438,15 +8438,51 @@ _dictionary = {
     },
     "CapturaSoldadorEspesorMsg": {
         "es-MX": "El Espesor debe ser mayor a 0",
-        "en-US": "The thickness should be greater than 0"
+        "en-US": "The Thickness should be greater than 0"
     },
     "CapturaSoldadorCertificacionDiametroMsg": {
-        "es-MX": "El diametro calificado debe ser mayor a 0",
-        "en-US": "Qualified diameter must be greater than 0"
+        "es-MX": "El Diametro calificado debe ser mayor a 0",
+        "en-US": "The Qualified diameter must be greater than 0"
     },
     "CapturaSoldadorCertificacionPosicionMsg": {
-        "es-MX": "La posición debe ser mayor a 0",
-        "en-US": "The position must be greater than 0"
+        "es-MX": "La Posición debe ser mayor a 0",
+        "en-US": "The Position must be greater than 0"
+    },
+    "CapturaSoldadorCertificacionSoldadorVacio": {
+        "es-MX": "El campo Soldador no puede ser vacio",
+        "en-US": "The welder field can not be empty"
+    },
+    "CapturaSoldadorCertificacionNombreVacio": {
+        "es-MX": "El campo Nombre del PQR no puede ser vacio",
+        "en-US": "The PQR name field can not be empty"
+    },
+    "CapturaSoldadorCertificacionProcSolVacio": {
+        "es-MX": "El campo Proceso soldadura no puede ser vacio",
+        "en-US": "The PQR name field can not be empty"
+    },
+    "CapturaSoldadorCertificacionPasosVacio": {
+        "es-MX": "El campo Número de pasos no puede ser vacio",
+        "en-US": "The Number of steps field can not be empty"
+    },
+    "CapturaSoldadorCertificacionCedulaVacio": {
+        "es-MX": "El campo Cédula no puede ser vacio",
+        "en-US": "The Charter field can not be empty"
+    },
+    "CapturaSoldadorCertificacionEspesorVacio": {
+        "es-MX": "El campo Espesor no puede ser vacio",
+        "en-US": "The Thickness field can not be empty"
+    },
+    "CapturaSoldadorCertificacionDiametroVacio": {
+        "es-MX": "El campo diametro no puede ser vacio",
+        "en-US": "The Diameter field can not be empty"
+    },
+    "CapturaSoldadorCertificacionTipoPruebaVacio": {
+        "es-MX": "El campo tipo de prueba no puede ser vacio",
+        "en-US": "The Type of test field can not be empty"
+    },
+    "CapturaSoldadorCertificacionPosicionVacio": {
+        "es-MX": "El campo posición no puede ser vacio",
+        "en-US": "The Position field can not be empty"
     },
     //#endregion
 

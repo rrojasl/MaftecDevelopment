@@ -216,7 +216,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             (parseFloat($("#inputEspesorMaximo").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputEspesorMaximo").val() == "") ||
             (parseFloat($("#inputDiametroCalificado").data("kendoNumericTextBox").value()) == 0.0) ||
-            ($("#inputTipoPrueba").data("kendoComboBox").select() == -1) ||
+            ($("#inputTipoPrueba").data("kendoComboBox").select() <= 0) ||
             ($("#inputTipoPrueba").val() == "") ||
             (parseFloat($("#inputPosicionPQR").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputPosicionPQR").data("kendoNumericTextBox").value() == null) ||
@@ -226,16 +226,35 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             ($("#inputTipoPrueba").val() == '')
            ) {
 
-            if (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) <= 0)
-                displayNotify("CapturaSoldadorCertificacionNoPasosMsg", "", '2');
+            if (($("#inputSoldador").data("kendoComboBox").select() <= 0) || ($("#inputSoldador").val() == ''))
+                displayNotify("CapturaSoldadorCertificacionSoldadorVacio", "", '1');
+            else if (($("#inputNombrePQR").data("kendoComboBox").select() <= 0) || ($("#inputSoldador").val() == ''))
+                displayNotify("CapturaSoldadorCertificacionNombreVacio", "", '1');
+            else if (($("#inputProcesoSol").data("kendoComboBox").select() <= 0) || ($("#inputProcesoSol").val() == ""))
+                displayNotify("CapturaSoldadorCertificacionProcSolVacio", "", '1');
+            else if (($("#inputPasosSoldadura").data("kendoNumericTextBox").value() == null) || ($("#inputPasosSoldadura").val() == ''))
+                displayNotify("CapturaSoldadorCertificacionPasosVacio", "", '1');
+            else if (($("#inputCedulaTuboPQR").data("kendoComboBox").select() <= 0) || ($("#inputCedulaTuboPQR").val() == ''))
+                displayNotify("CapturaSoldadorCertificacionCedulaVacio", "", '1');
+            else if ((parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) == 0.0) || ($("#inputEspesorMinimo").val() == ""))
+                displayNotify("CapturaSoldadorCertificacionEspesorVacio", "", '1');
+            else if ((parseFloat($("#inputDiametroCalificado").data("kendoNumericTextBox").value()) == 0.0) || ($("#inputTipoPrueba").data("kendoComboBox").select() <= 0))
+                displayNotify("CapturaSoldadorCertificacionDiametroVacio", "", '1');
+            else if (($("#inputTipoPrueba").data("kendoComboBox").select() <= 0) || ($("#inputTipoPrueba").val() == ""))
+                displayNotify("CapturaSoldadorCertificacionTipoPruebaVacio", "", '1');
+            else if ((parseFloat($("#inputPosicionPQR").data("kendoNumericTextBox").value()) == 0.0) || ($("#inputPosicionPQR").data("kendoNumericTextBox").value() == null))
+                displayNotify("CapturaSoldadorCertificacionPosicionVacio", "", '1');
+
+            else if (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) <= 0)
+                displayNotify("CapturaSoldadorCertificacionNoPasosMsg", "", '1');
             else if (parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) <= 0)
-                displayNotify("CapturaSoldadorEspesorMsg", "", '2');
+                displayNotify("CapturaSoldadorEspesorMsg", "", '1');
             else if (parseFloat($("#inputDiametroCalificado").data("kendoNumericTextBox").value()) <= 0)
-                displayNotify("CapturaSoldadorCertificacionDiametroMsg", "", '2');
+                displayNotify("CapturaSoldadorCertificacionDiametroMsg", "", '1');
             else if (parseFloat($("#inputPosicionPQR").data("kendoNumericTextBox").value()) <= 0)
-                displayNotify("CapturaSoldadorCertificacionPosicionMsg", "", '2');
+                displayNotify("CapturaSoldadorCertificacionPosicionMsg", "", '1');
             else
-                displayNotify("MensajeCamposIncorrector", "", '2');
+                displayNotify("MensajeCamposIncorrector", "", '1');
             ListaDetalles[index].Estatus = 0;
         }
         else if ((parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) > parseFloat($("#inputEspesorMaximo").data("kendoNumericTextBox").value()))) {
