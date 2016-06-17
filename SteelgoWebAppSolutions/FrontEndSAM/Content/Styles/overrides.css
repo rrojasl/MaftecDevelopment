@@ -1204,3 +1204,10 @@ button[data-bind="visible:operatorVisible"] {
 .k-filter-row *{
     box-sizing:border-box !important;
 }
+
+
+.k-grid .ra,
+.k-numerictextbox .k-input
+{
+    text-align: right;
+}

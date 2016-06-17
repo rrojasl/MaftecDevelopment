@@ -7574,6 +7574,14 @@ _dictionary = {
         "es-MX": "Preheat no coincide",
         "en-US": "Do not match PreHeat"
     },
+    "WPSMensajeErrorPQRNoAplicaRelleno": {
+        "es-MX": "El PQR no aplica para relleno",
+        "en-US": "PQR dont apply to fill"
+    },
+    "WPSMensajeErrorPQRNoAplicaRaiz": {
+        "es-MX": "El PQR no aplica para raiz",
+        "en-US": "PQR dont apply to root"
+    },
     "WPSMensajeErrorPWHRelleno": {
         "es-MX": "PWH No coincide",
         "en-US": "Do not match PWH"
