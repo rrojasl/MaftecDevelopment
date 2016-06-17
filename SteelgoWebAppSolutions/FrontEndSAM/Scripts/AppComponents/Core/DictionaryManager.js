@@ -8371,6 +8371,14 @@ _dictionary = {
         "es-MX": "El espesor de raiz debe ser mayor a cero si el proceso de raiz es diferente a N/A",
         "en-US": "The root thickness must be greater greater than zero if the root process is different from N/A"
     },
+    "lblPQRNACeroRell": {
+        "es-MX": "El espesor relleno debe ser igual a cero si el proceso de relleno es N/A",
+        "en-US": "The padding thickness should be equal to zero if the filling process is N/A"
+    },
+    "lblPQRNACeroRaiz": {
+        "es-MX": "El espesor raiz debe ser igual a cero si el proceso de raiz es N/A",
+        "en-US": "The root thickness should be equal to zero if the root process is N/A"
+    },
     "SoldadorCertificacionFechaInicioCertificado": {
         "es-MX": "Desde:",
         "en-US": "From:"

@@ -61,6 +61,8 @@ function AjaxGuardarListado() {
             (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].ProcesoSoldaduraRellenoID == 6) ||
             (arregloCaptura[index].ProcesoSoldaduraRellenoID != 6 && arregloCaptura[index].EspesorRelleno <= 0) ||
             (arregloCaptura[index].ProcesoSoldaduraRaizID != 6 && arregloCaptura[index].EspesorRaiz <= 0) ||
+            (arregloCaptura[index].ProcesoSoldaduraRellenoID == 6 && arregloCaptura[index].EspesorRelleno > 0) ||
+            (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].EspesorRaiz > 0) ||
             (arregloCaptura[index].GrupoPMaterialBase1 == 0 || arregloCaptura[index].GrupoPMaterialBase1 == undefined || arregloCaptura[index].GrupoPMaterialBase1 == "" || arregloCaptura[index].GrupoPMaterialBase1 == null) ||
             (arregloCaptura[index].GrupoPMaterialBase2 == 0 || arregloCaptura[index].GrupoPMaterialBase2 == undefined || arregloCaptura[index].GrupoPMaterialBase2 == "" || arregloCaptura[index].GrupoPMaterialBase2 == null) ||
             (arregloCaptura[index].CodigoASMEID == 0 || arregloCaptura[index].CodigoASMEID == undefined || arregloCaptura[index].CodigoASMEID == "" || arregloCaptura[index].CodigoASMEID == null)) {
@@ -79,6 +81,14 @@ function AjaxGuardarListado() {
             else if (arregloCaptura[index].ProcesoSoldaduraRaizID != 6 && arregloCaptura[index].EspesorRaiz <= 0 && !desplegadoRaiz) {
                 desplegadoRaiz = true;
                 displayNotify("lblPQREspNARaiz", "", "1");
+            }
+            else if (arregloCaptura[index].ProcesoSoldaduraRellenoID == 6 && arregloCaptura[index].EspesorRelleno > 0) {
+                desplegadoRaiz = true;
+                displayNotify("lblPQRNACeroRell", "", "1");
+            }
+            else if (arregloCaptura[index].ProcesoSoldaduraRaizID == 6 && arregloCaptura[index].EspesorRaiz > 0) {
+                desplegadoRaiz = true;
+                displayNotify("lblPQRNACeroRaiz", "", "1");
             }
         }
         else {
