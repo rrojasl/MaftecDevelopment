@@ -18,8 +18,8 @@ function CargarGrid() {
                         FechaFinCertificado: { type: "date", editable: true },
                         PasosSoldadura: { type: "number", editable: true },
                         CedulaTuboCalificado: { type: "string", editable: true },
-                        EspesorMinimo: { type: "string", editable: true },
-                        EspesorMaximo: { type: "string", editable: false },
+                        EspesorMinimo: { type: "number", editable: true },
+                        EspesorMaximo: { type: "number", editable: false },
                         DiametroCalificado: { type: "number", editable: true },
                         TipoDePrueba: { type: "string" },
                         Posicion: { type: "number" }
