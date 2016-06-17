@@ -35,7 +35,7 @@ function AjaxGuardarInformacion(detalle,tipo) {
 
 function AjaxValidarExisteSoldadorCertificacion(detalle,tipo) {
     loadingStart();
-    $SoldadorCertificacion.SoldadorCertificacion.read({ obreroID: detalle.Detalles[0].ObreroID, pqrID: detalle.Detalles[0].PQRID, token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (existe) {
+    $SoldadorCertificacion.SoldadorCertificacion.read({ obreroID: detalle.Detalles[0].ObreroID, pqrID: detalle.Detalles[0].PQRID, procesoSoldaduraID: detalle.Detalles[0].ProcesoSoldaduraID, token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (existe) {
       
             detalle.Detalles[0].SoldadorCertificacionID = existe;
 

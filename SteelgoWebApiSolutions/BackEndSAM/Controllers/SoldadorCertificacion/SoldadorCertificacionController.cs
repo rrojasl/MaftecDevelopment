@@ -128,7 +128,7 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
             }
         }
 
-        public object Get(int obreroID,int pqrID, string token, string Lenguaje)
+        public object Get(int obreroID, int pqrID, int procesoSoldaduraID, string token, string Lenguaje)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
                 bool totokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
                 if (totokenValido)
                 {
-                    return SoldadorCertificacionBd.Instance.ObtenerIDSoldadorCertificacion(obreroID,pqrID,Lenguaje);
+                    return SoldadorCertificacionBd.Instance.ObtenerIDSoldadorCertificacion(obreroID,pqrID,procesoSoldaduraID, Lenguaje);
                 }
                 else
                 {

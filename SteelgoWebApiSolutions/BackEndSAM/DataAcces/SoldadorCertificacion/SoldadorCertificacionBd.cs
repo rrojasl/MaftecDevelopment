@@ -241,12 +241,12 @@ namespace BackEndSAM.DataAcces
 
         }
 
-        public object ObtenerIDSoldadorCertificacion(int obreroID, int pqrID, string lenguaje)
+        public object ObtenerIDSoldadorCertificacion(int obreroID, int pqrID, int procesoSoldaduraID, string lenguaje)
         {
             using (SamContext ctx = new SamContext())
             {
-                List<int?> idSoldadorCertificacion = ctx.Sam3_Soldador_Certificacion_Get_ID(obreroID, pqrID, lenguaje).ToList();
-                return idSoldadorCertificacion.Count==0 ?0: idSoldadorCertificacion[0]; 
+                List<int?> idSoldadorCertificacion = ctx.Sam3_Soldador_Certificacion_Get_ID(obreroID, pqrID, procesoSoldaduraID, lenguaje).ToList();
+                return idSoldadorCertificacion[0]==null ?0: idSoldadorCertificacion[0]; 
                 
                
             }
