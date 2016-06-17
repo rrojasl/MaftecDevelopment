@@ -14,7 +14,7 @@
 
 function AjaxGuardarInformacion(detalle,tipo) {
     loadingStart();
-    $SoldadorCertificacion.SoldadorCertificacion.create(detalle, { token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (data) {
+    $SoldadorCertificacion.SoldadorCertificacion.create(detalle, { token: Cookies.get("token"), Lenguaje: $("#language").val(), TipoCaptura:1 }).done(function (data) {
         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
             
             displayNotify("CapturaMensajeGuardadoExitoso", "", '0');

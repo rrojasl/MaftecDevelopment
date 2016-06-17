@@ -169,14 +169,14 @@ namespace BackEndSAM.DataAcces
 
 
 
-        public object AgregarSoldadorCertificacion(DataTable dtSoldadorCertificacion, Sam3_Usuario usuario, string lenguaje)
+        public object AgregarSoldadorCertificacion(DataTable dtSoldadorCertificacion, Sam3_Usuario usuario, string lenguaje,int TipoCaptura)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
                     ObjetosSQL _SQL = new ObjetosSQL();
-                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@Lenguaje", lenguaje } };
+                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@Lenguaje", lenguaje }, { "@TipoCaptura", TipoCaptura.ToString() } };
 
                     _SQL.Ejecuta(Stords.GUARDARSOLDADORCERTIFICACION, dtSoldadorCertificacion, "@Tabla", parametro);
 

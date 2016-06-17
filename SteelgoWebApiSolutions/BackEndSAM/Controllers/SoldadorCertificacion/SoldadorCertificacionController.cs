@@ -53,7 +53,7 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
         }
 
         //Agrega Soldador Certificacion, tipoGuardado se refiere si es nuevo o si es listado.
-        public object Post(Captura AddSC, string token, string Lenguaje)
+        public object Post(Captura AddSC, string token, string Lenguaje,int TipoCaptura)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace BackEndSAM.Controllers.SoldadorCertificacion
                     JavaScriptSerializer serializer = new JavaScriptSerializer();
                     Sam3_Usuario Usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                     DataTable dtDetalleCaptura = ArmadoController.ToDataTable(AddSC.Detalles);
-                    return SoldadorCertificacionBd.Instance.AgregarSoldadorCertificacion(dtDetalleCaptura, Usuario, Lenguaje);
+                    return SoldadorCertificacionBd.Instance.AgregarSoldadorCertificacion(dtDetalleCaptura, Usuario, Lenguaje, TipoCaptura);
                 }
                 else
                 {
