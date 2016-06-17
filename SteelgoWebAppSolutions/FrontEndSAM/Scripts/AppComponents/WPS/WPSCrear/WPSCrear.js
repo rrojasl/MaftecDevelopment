@@ -184,28 +184,37 @@ function ConvertirCombos() {
 
 function ContieneGruposMaterialBase(Base1Uno, Base2Uno, Base1Dos, Base2Dos) {
 
-    var arrayCombinacion = [];
 
-    arrayCombinacion[0] = Base1Dos + " " + Base2Dos;
-    arrayCombinacion[1] = Base2Dos + " " + Base1Dos;
-    arrayCombinacion[2] = Base2Dos + " " + Base2Dos;
-    arrayCombinacion[3] = Base1Dos + " " + Base1Dos;
-
-    var arrayCombinacionDos = [];
-
-    arrayCombinacionDos[0] = Base1Uno + " " + Base2Uno;
-    arrayCombinacionDos[1] = Base2Uno + " " + Base1Uno;
-    arrayCombinacionDos[2] = Base2Uno + " " + Base2Uno;
-    arrayCombinacionDos[3] = Base1Uno + " " + Base1Uno;
-
-    for (var i = 0; i < arrayCombinacion.length; i++) {
-        for (var j = 0; j < arrayCombinacionDos.length; j++) {
-            if (arrayCombinacion[i] == arrayCombinacionDos[j]) {
+    if (Base1Uno == Base1Dos) {
+        if (Base1Uno == Base2Dos) {
+            return true;
+        }
+        else {
+            if (Base2Uno == Base1Dos || Base2Uno == Base2Dos) {
+                return true;
+            }
+            else {
                 return false;
             }
         }
     }
-    return true;
+    else if (Base1Uno == Base2Dos) {
+            if (Base2Uno == Base1Dos || Base2Uno == Base2Dos) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    }
+    else {
+        if (Base2Uno == Base1Dos && Base2Uno == Base2Dos) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    return false;
 }
 
 
