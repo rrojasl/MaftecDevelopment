@@ -88,7 +88,7 @@ function AjaxGuardarCaptura() {
             ListaDetalles[index].Estatus = 0;//Informacion Incompleta.
             //$('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
         }
-        else if (ContieneGruposMaterialBase(arregloCaptura[index].GrupoMaterialBase1RaizUID, arregloCaptura[index].GrupoMaterialBase1RaizDID, arregloCaptura[index].GrupoMaterialBase1RellenoUID, arregloCaptura[index].GrupoMaterialBase1RellenoDID)) {
+        else if (!ContieneGruposMaterialBase(arregloCaptura[index].GrupoMaterialBase1RaizUID, arregloCaptura[index].GrupoMaterialBase1RaizDID, arregloCaptura[index].GrupoMaterialBase1RellenoUID, arregloCaptura[index].GrupoMaterialBase1RellenoDID)) {
             ListaDetalles[index].Estatus = -1;//se agrega esto para mostrar errores especificos
             //$('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
         }
