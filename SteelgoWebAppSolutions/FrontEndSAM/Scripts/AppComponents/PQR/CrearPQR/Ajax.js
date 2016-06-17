@@ -76,6 +76,11 @@ function AjaxGuardar(tipoGuardar) {
         correcto = false;
         displayNotify("lblPQRCodigoMandatorio", "", '1');
     }
+    else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A"
+      && $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A") {
+        correcto = false;
+        displayNotify("lblPQRDobleNA", "", '1');
+    }
     else if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo != "N/A"
           && parseFloat($('#EspesorRelleno').val()) <= 0) {
         correcto = false;
