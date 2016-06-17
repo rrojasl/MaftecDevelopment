@@ -44,21 +44,21 @@ namespace BackEndSAM.DataAcces
                                                                         {
                                                                             CedulaTuboCalificadoDesc = LCedulaTuboCalificado.CedulaTuboCalificadoDesc,
                                                                             CedulaTuboCalificadoID = LCedulaTuboCalificado.CedulaTuboCalificadoID.ToString()
-                                                                        }).AsParallel().ToList();
+                                                                        }).AsParallel().ToList().OrderBy(x => x.CedulaTuboCalificadoDesc).ToList<CedulaTuboCalificado>();
                 listaCedulaTuboCalificado.Insert(0, new CedulaTuboCalificado());
                 List<TipoProcesosSoldadura> listaTipoProcesosSoldadura = (from lTPS in ctx.Sam3_Soldadura_Get_TipoProcesoSoldadura()
                                                                           select new TipoProcesosSoldadura
                                                                           {
                                                                               TipoProcesoSoldaduraID = lTPS.TipoProcesoSoldaduraID.ToString(),
                                                                               TipoProcesoSoldaduraDesc = lTPS.TipoProcesoSoldaduraDesc
-                                                                          }).AsParallel().ToList();
+                                                                          }).AsParallel().ToList().OrderBy(x => x.TipoProcesoSoldaduraDesc).ToList<TipoProcesosSoldadura>();
                 listaTipoProcesosSoldadura.Insert(0, new TipoProcesosSoldadura());
                 List<TipoPrueba> listaTipoPrueba = (from lTPS in ctx.Sam3_Soldadura_Get_TipoPrueba()
                                                     select new TipoPrueba
                                                     {
                                                         TipoPruebaID = lTPS.TipoPruebaID.ToString(),
                                                         TipoDePrueba = lTPS.Nombre
-                                                    }).AsParallel().ToList();
+                                                    }).AsParallel().ToList().OrderBy(x => x.TipoDePrueba).ToList<TipoPrueba>();
                 listaTipoPrueba.Insert(0, new TipoPrueba());
                 List<SoldadorCertificacion> data = (from SC in ctx.Sam3_Soldadura_SoldadorCertificacion(Lenguaje)
                                                     select new SoldadorCertificacion
@@ -87,7 +87,7 @@ namespace BackEndSAM.DataAcces
                                                         Posicion = Convert.ToInt32(SC.Posicion),
                                                         listadoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
                                                         listaObreros = (List<Obrero>)ObtenerListaSoldadores(proyectoID,usuario.UsuarioID,patioID)
-                                                    }).AsParallel().ToList();
+                                                    }).AsParallel().ToList().OrderBy(x => x.NombrePQR).ToList<SoldadorCertificacion>();
                 return data;
 
 
@@ -106,7 +106,7 @@ namespace BackEndSAM.DataAcces
                                                  Codigo = item.Codigo,
                                                  ObreroID = item.ObreroID,
                                                  TipoObrero = item.TipoObrero
-                                             }).AsParallel().ToList();
+                                             }).AsParallel().ToList().OrderBy(x => x.Codigo).ToList<Obrero>();
                 listaObreros.Insert(0, new Obrero());
                 return listaObreros;
             }
@@ -126,21 +126,21 @@ namespace BackEndSAM.DataAcces
                                                                         {
                                                                             CedulaTuboCalificadoDesc = LCedulaTuboCalificado.CedulaTuboCalificadoDesc,
                                                                             CedulaTuboCalificadoID = LCedulaTuboCalificado.CedulaTuboCalificadoID.ToString()
-                                                                        }).AsParallel().ToList();
+                                                                        }).AsParallel().ToList().OrderBy(x => x.CedulaTuboCalificadoDesc).ToList<CedulaTuboCalificado>();
                 listaCedulaTuboCalificado.Insert(0, new CedulaTuboCalificado());
                 List<TipoProcesosSoldadura> listaTipoProcesosSoldadura = (from lTPS in ctx.Sam3_Soldadura_Get_TipoProcesoSoldadura()
                                                                           select new TipoProcesosSoldadura
                                                                           {
                                                                               TipoProcesoSoldaduraID = lTPS.TipoProcesoSoldaduraID.ToString(),
                                                                               TipoProcesoSoldaduraDesc = lTPS.TipoProcesoSoldaduraDesc
-                                                                          }).AsParallel().ToList();
+                                                                          }).AsParallel().ToList().OrderBy(x => x.TipoProcesoSoldaduraDesc).ToList<TipoProcesosSoldadura>();
                 listaTipoProcesosSoldadura.Insert(0, new TipoProcesosSoldadura());
                 List<TipoPrueba> listaTipoPrueba = (from lTPS in ctx.Sam3_Soldadura_Get_TipoPrueba()
                                                     select new TipoPrueba
                                                     {
                                                         TipoPruebaID = lTPS.TipoPruebaID.ToString(),
                                                         TipoDePrueba = lTPS.Nombre
-                                                    }).AsParallel().ToList();
+                                                    }).AsParallel().ToList().OrderBy(x => x.TipoDePrueba).ToList<TipoPrueba>();
                 listaTipoPrueba.Insert(0, new TipoPrueba());
 
                 List<Obrero> listaObreros = (from item in ctx.Sam3_Steelgo_Get_Obrero(4, "Soldador", proyectoID, usuarioID, patioID)
@@ -150,7 +150,7 @@ namespace BackEndSAM.DataAcces
                                                  Codigo = item.Codigo,
                                                  ObreroID = item.ObreroID,
                                                  TipoObrero = item.TipoObrero
-                                             }).AsParallel().ToList();
+                                             }).AsParallel().ToList().OrderBy(x => x.Codigo).ToList<Obrero>();
                 listaObreros.Insert(0, new Obrero());
 
                 NuevoSoldadorCertificacion nuevoSoldadorCertificacion = new NuevoSoldadorCertificacion
@@ -211,7 +211,7 @@ namespace BackEndSAM.DataAcces
                                                     {
                                                         TipoDePruebaID = SC.TipoPruebaID,
                                                         TipoDePrueba = SC.TipoPrueba
-                                                    }).AsParallel().ToList();
+                                                    }).AsParallel().ToList().OrderBy(x=> x.TipoDePrueba).ToList<SoldadorCertificacion>();
                 return data;
             }
 
@@ -232,7 +232,7 @@ namespace BackEndSAM.DataAcces
                                                         PosicionID = SC.PosicionID,
                                                         Posicion = Convert.ToInt32(SC.Posicion)
 
-                                                    }).AsParallel().ToList();
+                                                    }).AsParallel().ToList().OrderBy(x=> x.Posicion).ToList<SoldadorCertificacion>();
                 return data;
             }
 

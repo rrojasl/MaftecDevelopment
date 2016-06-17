@@ -189,7 +189,7 @@ namespace BackEndSAM.DataAcces
                         });
                     }
 
-                    return listaProcesosResult;
+                    return listaProcesosResult.OrderBy(x => x.Codigo).ToList<ListaProcesoSoldadura>();
                 }
             }
             catch (Exception ex)
@@ -222,7 +222,7 @@ namespace BackEndSAM.DataAcces
                         });
                     }
 
-                    return listaMaterialesResult;
+                    return listaMaterialesResult.OrderBy(x => x.GrupoP).ToList<ListaMaterialesBase>();
                 }
             }
             catch (Exception ex)
@@ -257,7 +257,7 @@ namespace BackEndSAM.DataAcces
                         });
                     }
 
-                    return listaCodigoResult;
+                    return listaCodigoResult.OrderBy(x => x.Especificacion).ToList<ListaCodigos>();
                 }
             }
             catch (Exception ex)
@@ -357,7 +357,7 @@ namespace BackEndSAM.DataAcces
                             });
                     }
 
-                    return listaPQR;
+                    return listaPQR.OrderBy(x => x.Nombre).ToList<PQRActivo>();
                 }
             }
             catch (Exception ex)
