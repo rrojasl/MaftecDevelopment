@@ -120,7 +120,7 @@ function RenderComboBoxPQRRelleno(container, options) {
                 e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined && dataItem.Nombre != "") {
-                    if (dataItem.CodigoRaiz != "N/A") {
+                    if (dataItem.CodigoRelleno != "N/A") {
                         options.model.NombrePQRRelleno = dataItem.Nombre;
                         options.model.PQRRellenoId = dataItem.PQRID;
                         var cadenaError = "";
