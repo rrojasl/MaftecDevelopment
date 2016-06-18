@@ -7880,6 +7880,10 @@ _dictionary = {
         "es-MX": "Especificación",
         "en-US": "Specification"
     },
+    "PQRNoAceptaAmbos": {
+        "es-MX": "No acepta el proceso de raiz y relleno",
+        "en-US": "No Takes Root Process and refilling"
+    },
     "lblValidaNombre": {
         "es-MX": "El nombre del PQR ya existe. No se puede agregar",
         "en-US": "PQR name already exists. You can not add"

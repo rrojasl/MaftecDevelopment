@@ -193,11 +193,13 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             Posicion: "",
             FechaInicioCertificado: "",
             FechaFinCertificado: "",
+            CedulaTuboCalificadoID:"",
             DiametroCalificado: "",
             EspesorMinimo: "",
             EspesorMaximo: "",
             PasosSoldadura: "",
             Estatus: 1
+            
         };
 
 
@@ -278,7 +280,8 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
         ListaDetalles[index].TipoDePruebaID = $("#inputTipoPrueba").val();
         ListaDetalles[index].Posicion = $("#inputPosicionPQR").val();
         ListaDetalles[index].FechaInicioCertificado = $("#inputFechaInicioCertificado").val().trim();
-        ListaDetalles[index].FechaFinCertificado =$("#inputFechaFinCertificado").val().trim();
+        ListaDetalles[index].FechaFinCertificado = $("#inputFechaFinCertificado").val().trim();
+        ListaDetalles[index].CedulaTuboCalificadoID = $("#inputCedulaTuboPQR").val();
         ListaDetalles[index].DiametroCalificado = $("#inputDiametroCalificado").val();
         ListaDetalles[index].EspesorMinimo = $("#inputEspesorMinimo").val();
         ListaDetalles[index].EspesorMaximo = $("#inputEspesorMaximo").val();

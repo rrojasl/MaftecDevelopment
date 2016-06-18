@@ -156,7 +156,7 @@ namespace BackEndSAM.DataAcces
                 NuevoSoldadorCertificacion nuevoSoldadorCertificacion = new NuevoSoldadorCertificacion
                 {
                     ListaCedulaTuboCalificado = listaCedulaTuboCalificado,
-                    ListaPQR = (List<PQRActivo>)PQRBd.ObtenerPQRActivo(),
+                    ListaPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
                     ListaTipoProcesosSoldadura = listaTipoProcesosSoldadura,
                     ListaTipoPrueba = listaTipoPrueba,
                     ListaObrero = listaObreros

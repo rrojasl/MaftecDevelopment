@@ -3,16 +3,7 @@ using System.Web.Http;
 
 namespace BackEndSAM.Models
 {
-    public class PQRActivo
-    {
-        public int PQRID { get; set; }
-        public string Nombre { get; set; }
-
-        public PQRActivo() {
-            PQRID = 0;
-            Nombre = "";
-        }
-    }
+    
 
     public class PQR
     {

@@ -29,7 +29,7 @@ function SuscribirEventoSoldador() {
             }
         }
     });
-    
+
 };
 
 function SuscriborEventoPosicion() {
@@ -182,6 +182,24 @@ function SuscribirEventoProcesoSoldadura() {
             if (dataItem == undefined) {
                 $("#inputProcesoSol").data("kendoComboBox").text("");
             }
+            else {
+                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 2 && $("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRaiz == 0)
+                {
+                    this.select(0);
+                    displayNotify("WPSMensajeErrorPQRNoAplicaRaiz", "", '2');
+                }
+                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 3 && $("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRelleno == 0)
+                {
+                    this.select(0);
+                    displayNotify("WPSMensajeErrorPQRNoAplicaRelleno", "", '2');
+                }
+                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 4 && ($("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRaiz == 0 || $("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRelleno == 0))
+                {
+                    this.select(0);
+                    displayNotify("PQRNoAceptaAmbos", "", '2');
+                }
+
+            }
         }
     });
 
@@ -201,6 +219,9 @@ function SuscribirEventoNomprePQR() {
             if (dataItem == undefined) {
                 $("#inputNombrePQR").data("kendoComboBox").text("");
             }
+            else {
+                $("#inputProcesoSol").data("kendoComboBox").select(0);
+            }
 
         }
     });
@@ -208,7 +229,7 @@ function SuscribirEventoNomprePQR() {
 }
 
 function suscribirEventoGuardarNuevoSoldadorCertificacion() {
-    
+
 
     $('.accionGuardar').click(function () {
         if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {

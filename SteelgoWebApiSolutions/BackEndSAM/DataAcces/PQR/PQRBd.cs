@@ -337,40 +337,7 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public static object ObtenerPQRActivo()
-        {
-            try
-            {
-                List<PQRActivo> listaPQR = new List<PQRActivo>();
-
-                using (SamContext ctx = new SamContext())
-                {
-                    List<Sam3_Soldadura_GET_PQRS_Result> listaPQRJson = ctx.Sam3_Soldadura_GET_PQRS("").ToList();
-                    listaPQR.Add(new PQRActivo());
-                    foreach (Sam3_Soldadura_GET_PQRS_Result item in listaPQRJson)
-                    {
-                        listaPQR.Add(
-                            new PQRActivo
-                            {
-                                Nombre = item.Nombre,
-                                PQRID = item.PQRID
-                            });
-                    }
-
-                    return listaPQR.OrderBy(x => x.Nombre).ToList<PQRActivo>();
-                }
-            }
-            catch (Exception ex)
-            {
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(ex.Message);
-                result.ReturnCode = 500;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = true;
-
-                return result;
-            }
-        }
+   
 
         public static object PQRExist(string nombre)
         {

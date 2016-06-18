@@ -279,3 +279,13 @@ function renderEmin(container, options) {
         }
     });
 }
+
+function renderDiametro(container, options) {
+    $('<input data-text-field="DiametroCalificado" id=' + options.model.uid + ' data-value-field="DiametroCalificado" data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+    .kendoNumericTextBox({
+        format: "#.0000",
+        decimals: 4,
+        min: 0
+    });
+}
