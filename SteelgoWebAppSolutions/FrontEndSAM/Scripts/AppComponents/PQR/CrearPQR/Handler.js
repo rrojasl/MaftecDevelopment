@@ -39,10 +39,11 @@ function opcionHabilitarView(valor, name) {
         $("#NombreId").attr('disabled', true);
         $("#chkPreheat").prop('disabled', true);
         $("#chkPwht").prop('disabled', true);
-        $("#EspesorRelleno").data("kendoNumericTextBox").readonly();
+        $("#EspesorRelleno").data("kendoNumericTextBox").readonly(true);
         $("#EspesorRelleno").data("kendoNumericTextBox").enable(false);
-        $("#EspesorRaiz").data("kendoNumericTextBox").readonly();
+        $("#EspesorRelleno").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").hide();
         $("#EspesorRaiz").data("kendoNumericTextBox").enable(false);
+        $("#EspesorRaiz").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").hide();
         $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").enable(false);
         $("#ProcesoSoldaduraRaizID").data("kendoComboBox").enable(false);
         $("#GrupoPMaterialBase1ID").data("kendoComboBox").enable(false);
@@ -63,12 +64,25 @@ function opcionHabilitarView(valor, name) {
         $("#chkPreheat").prop('disabled', false);
         $("#chkPwht").prop('disabled', false);
         if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo != "N/A") {
+            $("#EspesorRelleno").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").show();
             $("#EspesorRelleno").data("kendoNumericTextBox").readonly(false);
             $("#EspesorRelleno").data("kendoNumericTextBox").enable(true);
         }
+        else {
+            $("#EspesorRelleno").data("kendoNumericTextBox").readonly(true);
+            $("#EspesorRelleno").data("kendoNumericTextBox").enable(false);
+            $("#EspesorRelleno").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").hide();
+
+        }
         if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo != "N/A") {
+            $("#EspesorRaiz").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").show();
             $("#EspesorRaiz").data("kendoNumericTextBox").readonly(false);
             $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
+        }
+        else {
+            $("#EspesorRaiz").data("kendoNumericTextBox").readonly(true);
+            $("#EspesorRaiz").data("kendoNumericTextBox").enable(false);
+            $("#EspesorRaiz").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").hide();
         }
         $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").enable(true);
         $("#ProcesoSoldaduraRaizID").data("kendoComboBox").enable(true);

@@ -32,9 +32,14 @@ function ConvertirCombos() {
         change: function (e) {
             if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A") {
                 $('#EspesorRelleno').data("kendoNumericTextBox").value("0");
+                $("#EspesorRelleno").data("kendoNumericTextBox").readonly(true);
                 $("#EspesorRelleno").data("kendoNumericTextBox").enable(false);
+                $("#EspesorRelleno").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").hide();
+
             } else {
+                $("#EspesorRelleno").data("kendoNumericTextBox").readonly(false);
                 $("#EspesorRelleno").data("kendoNumericTextBox").enable(true);
+                $("#EspesorRelleno").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").show();
             }
         }
     });
@@ -59,8 +64,12 @@ function ConvertirCombos() {
         change: function (e) {
             if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo == "N/A") {
                 $('#EspesorRaiz').data("kendoNumericTextBox").value("0");
+                $("#EspesorRaiz").data("kendoNumericTextBox").readonly(true);
                 $("#EspesorRaiz").data("kendoNumericTextBox").enable(false);
+                $("#EspesorRaiz").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").hide();
             } else {
+                $("#EspesorRaiz").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").show();
+                $("#EspesorRaiz").data("kendoNumericTextBox").readonly(false);
                 $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
             }
         }
