@@ -105,7 +105,7 @@ function ConvertirCombos() {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
                 if (dataItem != undefined) {
-                    if (dataItem.CodigoRaiz != "N/A") {
+                    if (dataItem.CodigoRelleno != "N/A") {
                         if (dataItem.PREHEAT) {
                             var data = kendo.observable({
                                 optionCheck: true
