@@ -209,6 +209,7 @@ function ValidarInformacionEnviada() {
             Posicion: "",
             FechaInicioCertificado: "",
             FechaFinCertificado: "",
+            CedulaTuboCalificadoID: "", 
             DiametroCalificado: "",
             EspesorMinimo: "",
             EspesorMaximo: "",
@@ -262,6 +263,7 @@ function ValidarInformacionEnviada() {
         ListaDetalles[index].Posicion = arregloCaptura[index].Posicion;
         ListaDetalles[index].FechaInicioCertificado = arregloCaptura[index].FechaInicioCertificado == null ? "" : kendo.toString(arregloCaptura[index].FechaInicioCertificado, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
         ListaDetalles[index].FechaFinCertificado = arregloCaptura[index].FechaFinCertificado == null ? "" : kendo.toString(arregloCaptura[index].FechaFinCertificado, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
+        ListaDetalles[index].CedulaTuboCalificadoID = arregloCaptura[index].CedulaTuboCalificadoID;
         ListaDetalles[index].DiametroCalificado = arregloCaptura[index].DiametroCalificado;
         ListaDetalles[index].EspesorMinimo = arregloCaptura[index].EspesorMinimo;
         ListaDetalles[index].EspesorMaximo = arregloCaptura[index].EspesorMaximo;
