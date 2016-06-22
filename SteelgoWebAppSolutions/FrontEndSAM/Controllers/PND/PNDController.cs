@@ -38,5 +38,11 @@ namespace FrontEndSAM.Controllers.PND
         {
             return View();
         }
+
+        public ActionResult RequisicionesAsignadas()
+        {
+            return View();
+        }
+
     }
 }
