@@ -1,4 +1,5 @@
-﻿using DatabaseManager.Sam3;
+﻿using BackEndSAM.Models.GenerarRequisicion;
+using DatabaseManager.Sam3;
 using SecurityManager.Api.Models;
 using System;
 using System.Collections.Generic;
@@ -124,8 +125,18 @@ namespace BackEndSAM.DataAcces
             {
                 using (SamContext ctx = new SamContext())
                 {
+                    List<Proyecto> listaProyectos = new List<Proyecto>();
+                    listaProyectos.Add(new Proyecto());
                     List<Sam3_SteelGo_Get_Proyectos_Result> result = ctx.Sam3_SteelGo_Get_Proyectos().ToList();
-                    return result;
+                    foreach(Sam3_SteelGo_Get_Proyectos_Result item in result)
+                    {
+                        listaProyectos.Add(new Proyecto
+                        {
+                            Nombre = item.Nombre,
+                            ProyectoID = item.ProyectoID
+                        });
+                    }
+                    return listaProyectos.OrderBy(x => x.Nombre).ToList<Proyecto>();
                 }
             }
             catch (Exception ex)

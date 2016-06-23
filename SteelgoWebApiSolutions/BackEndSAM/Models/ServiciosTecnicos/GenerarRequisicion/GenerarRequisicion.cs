@@ -72,4 +72,14 @@ namespace BackEndSAM.Models.GenerarRequisicion
         public string IdentificadorForaneo { get; set; }
         public string PruebasClasificacionID { get; set; }
     }
+    public class Proyecto
+    {
+        public Proyecto()
+        {
+            Nombre = "";
+            ProyectoID = 0;
+        }
+        public string Nombre { get; set; }
+        public int ProyectoID { get; set; }
+    }
 }

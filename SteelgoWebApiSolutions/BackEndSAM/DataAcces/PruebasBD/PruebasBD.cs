@@ -36,17 +36,18 @@ namespace BackEndSAM.DataAcces.PruebasBD
                 using (SamContext ctx = new SamContext())
                 {
                     List<Pruebas> listaResult = new List<Pruebas>();
+                    listaResult.Add(new Pruebas());
                     List<Sam3_SteelGo_Get_TipoPruebas_Result> result = ctx.Sam3_SteelGo_Get_TipoPruebas(lenguaje).ToList();
                     foreach(Sam3_SteelGo_Get_TipoPruebas_Result item in  result)
                     {
-                        Pruebas renglon = new Pruebas
+                        listaResult.Add(new Pruebas
                         {
                             Clave = item.Nombre,
                             Nombre = item.Nombre,
                             PruebasID = item.TipoPruebaID
-                        };
+                        });
                     }
-                    return result;
+                    return listaResult.OrderBy(x => x.Nombre).ToList<Pruebas>();
                 }
             }
             catch (Exception ex)
