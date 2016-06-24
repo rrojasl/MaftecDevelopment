@@ -109,7 +109,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
 
 
         [HttpGet]
-        public object obtenerListaJuntasSoldadas(string token, int ProyectoID, string todos, string lenguaje, int reqID)
+        public object obtenerListaJuntasSoldadas(string token, int pruebaID, string todos, string lenguaje, int reqID)
         {
             string payload = "";
             string newToken = "";
@@ -118,7 +118,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
             if (tokenValido)
             {
                 List<JsonRequisicion> listaJson = new List<JsonRequisicion>();
-                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(ProyectoID, all, reqID);
+                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(pruebaID, all, reqID);
                 foreach (Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result item in lista)
                 {
                     JsonRequisicion elemento;
@@ -131,7 +131,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Accion =  1,
                             Agregar = false,
                             Clasificacion = item.ClasificacionPND,
-                            //Cuadrante = item.Cuadrante,
+                            Cuadrante = item.Cuadrante,
                             EtiquetaJunta = item.Etiqueta,
                             Folio = "",
                             //IdentificadorForaneo = item.IdentificadorForaneo,
@@ -140,10 +140,10 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Cedula = item.Cedula,
                             Diametro = item.Diametro,
                             Espesor = item.Espesor.GetValueOrDefault(),
-                            TipoJunta = item.TipoJunta
+                            TipoJunta = item.TipoJunta,
                             //Prioridad = item.Prioridad.GetValueOrDefault(),
-                            //Proyecto = item.Proyecto,
-                            //ProyectoID = item.ProyectoID,
+                            Proyecto = item.Proyecto,
+                            ProyectoID = item.ProyectoID,
                             //PruebaElementoID = item.PruebaElementoID,
                             //PruebasClasificacionID = int.Parse(item.PruebasClasificacionID.ToString()),
                             //PruebasID = item.PruebasID,
