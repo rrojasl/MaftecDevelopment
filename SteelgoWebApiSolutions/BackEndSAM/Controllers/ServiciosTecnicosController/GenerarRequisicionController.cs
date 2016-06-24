@@ -109,7 +109,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
 
 
         [HttpGet]
-        public object obtenerListaJuntasSoldadas(string token, int pruebaID, string todos, string lenguaje, int reqID)
+        public object obtenerListaJuntasSoldadas(string token, int proyectoID, string todos, string lenguaje, int reqID)
         {
             string payload = "";
             string newToken = "";
@@ -118,7 +118,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
             if (tokenValido)
             {
                 List<JsonRequisicion> listaJson = new List<JsonRequisicion>();
-                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(pruebaID, all, reqID);
+                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(proyectoID, all, reqID);
                 foreach (Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result item in lista)
                 {
                     JsonRequisicion elemento;
