@@ -109,7 +109,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
 
 
         [HttpGet]
-        public object obtenerListaJuntasSoldadas(string token, int pruebaID, string todos, string lenguaje, int reqID)
+        public object obtenerListaJuntasSoldadas(string token, int ProyectoID, string todos, string lenguaje, int reqID)
         {
             string payload = "";
             string newToken = "";
@@ -118,7 +118,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
             if (tokenValido)
             {
                 List<JsonRequisicion> listaJson = new List<JsonRequisicion>();
-                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(pruebaID, all, reqID);
+                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(ProyectoID, all, reqID);
                 foreach (Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result item in lista)
                 {
                     JsonRequisicion elemento;
@@ -128,24 +128,29 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
 
                         elemento = new JsonRequisicion
                         {
-                            Accion = item.RequisicionPruebaElementoID == null ? 1 : 2,
+                            Accion =  1,
                             Agregar = false,
-                            Clasificacion = item.Clasificacion,
-                            Cuadrante = item.Cuadrante,
-                            EtiquetaJunta = item.EtiquetaJunta,
-                            Folio = item.Folio == null ? "" : item.Folio,
-                            IdentificadorForaneo = item.IdentificadorForaneo,
+                            Clasificacion = item.ClasificacionPND,
+                            //Cuadrante = item.Cuadrante,
+                            EtiquetaJunta = item.Etiqueta,
+                            Folio = "",
+                            //IdentificadorForaneo = item.IdentificadorForaneo,
                             NumeroControl = item.NumeroControl,
-                            Prioridad = item.Prioridad.GetValueOrDefault(),
-                            Proyecto = item.Proyecto,
-                            ProyectoID = item.ProyectoID,
-                            PruebaElementoID = item.PruebaElementoID,
-                            PruebasClasificacionID = int.Parse(item.PruebasClasificacionID.ToString()),
-                            PruebasID = item.PruebasID,
-                            PruebasProyectoID = item.PruebasProyectoID,
-                            RequisicionID = item.RequisicionID == null ? 0 : int.Parse(item.RequisicionID.ToString()),
-                            RequisicionPruebaElementoID = item.RequisicionPruebaElementoID == null ? 0 : int.Parse(item.RequisicionPruebaElementoID.ToString()),
-                            listaClasificaciones = (List<Sam3_Steelgo_Get_Calsificaciones_Result>)GenerarRequisicionBD.Instance.getListaClasificaciones(item.PruebasProyectoID, lenguaje)
+                            SpoolID = item.SpoolID,
+                            Cedula = item.Cedula,
+                            Diametro = item.Diametro,
+                            Espesor = item.Espesor.GetValueOrDefault(),
+                            TipoJunta = item.TipoJunta
+                            //Prioridad = item.Prioridad.GetValueOrDefault(),
+                            //Proyecto = item.Proyecto,
+                            //ProyectoID = item.ProyectoID,
+                            //PruebaElementoID = item.PruebaElementoID,
+                            //PruebasClasificacionID = int.Parse(item.PruebasClasificacionID.ToString()),
+                            //PruebasID = item.PruebasID,
+                            //PruebasProyectoID = item.PruebasProyectoID,
+                            //RequisicionID = item.RequisicionID == null ? 0 : int.Parse(item.RequisicionID.ToString()),
+                            //RequisicionPruebaElementoID = item.RequisicionPruebaElementoID == null ? 0 : int.Parse(item.RequisicionPruebaElementoID.ToString()),
+                            //listaClasificaciones = (List<Sam3_Steelgo_Get_Calsificaciones_Result>)GenerarRequisicionBD.Instance.getListaClasificaciones(item.PruebasProyectoID, lenguaje)
                         };
                     }
                     catch (Exception ex)

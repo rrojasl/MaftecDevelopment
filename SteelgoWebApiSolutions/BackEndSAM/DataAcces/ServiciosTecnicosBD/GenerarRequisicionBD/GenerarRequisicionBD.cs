@@ -173,14 +173,14 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> getDetalleJuntas(int pruebaID, int todos,int reqID)
+        public List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> getDetalleJuntas(int proyectoID, int todos,int reqID)
         {
             List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> listaResult = null;
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                     listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(pruebaID,todos, reqID).ToList();
+                     listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID,todos, reqID).ToList();
                     return listaResult;
                 }
             }

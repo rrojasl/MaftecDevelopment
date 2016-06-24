@@ -29,6 +29,11 @@ namespace BackEndSAM.Models.GenerarRequisicion
         public int RequisicionID { get; set; }
         public string Folio { get; set; }
         public List<Sam3_Steelgo_Get_Calsificaciones_Result> listaClasificaciones { get; set; }
+        public int SpoolID { get; set; }
+        public decimal Diametro { get; set; }
+        public decimal Espesor { get; set; }
+        public string Cedula { get; set; }
+        public string TipoJunta { get; set; }
 
     }
     public class IdOrdenTrabajo
