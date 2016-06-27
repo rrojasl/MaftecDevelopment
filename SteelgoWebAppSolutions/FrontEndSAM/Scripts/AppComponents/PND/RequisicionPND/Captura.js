@@ -5,10 +5,9 @@ var requisicionID, pruebaProyID = 0;
 var ProyectoNombre = "";
 var PruebaNombre = "";
 var EstatusID = 1; // Capturada segun tabla Sam3_Estatus
-if ($("#idField").val() != null || $("#idField").val() != undefined){
+if ($("#idField").val() != null || $("#idField").val() != undefined) {
     requisicionID = $("#idField").val();
 }
-    
 else
     requisicionID = 0;
 
@@ -32,7 +31,7 @@ function changeLanguageCall() {
     $('#containerDiv').css('display', 'none');
     $('#grid').data('kendoGrid').dataSource.read();
     ajaxRequisicion();
-    
+
     ajaxObtenerProyectos();
     setTimeout(function () { AjaxCargarCamposPredeterminados() }, 1000);
     document.title = _dictionary.ServiciosTecnicosGenerarRequisicion[$("#language").data("kendoDropDownList").value()];
@@ -54,61 +53,85 @@ function CargarGrid() {
                 this.closeCell();
             }
         },
-        autoBind: true,
         dataSource: {
             data: '',
             schema: {
                 model: {
                     fields: {
-                        Clasificacion: { type: "string", editable: true },
-                        Prioridad: { type: "number", editable: false },
-                        Cuadrante: { type: "string", editable: false },
                         Proyecto: { type: "string", editable: false },
+                        Cuadrante: { type: "string", editable: false },
+                        Prioridad: { type: "number", editable: false },
+                        Clasificacion: { type: "string", editable: true },
                         Requisicion: { type: "string", editable: false },
-                        SpoolID: { type: "string", editable: false },
-                        Junta: { type: "string", editable: false },
+                        SpoolID: { type: "number", editable: false },
+                        EtiquetaJunta: { type: "string", editable: false },
+                        Diametro: { type: "number", editable: false },
+                        Espesor: { type: "number", editable: false },
+                        Cedula: { type: "string", editable: false },
+                        TipoJunta: { type: "string", editable: false },
+
                         CodigoAplicar: { type: "string", editable: false },
                         observacion: { type: "string", editable: false },
                         Folio: { type: "string", editable: false },
                         Agregar: { type: "boolean", editable: false },
-                        NumeroControl: {editable: false}
+                        NumeroControl: { editable: false }
                     }
                 }
             },
-            pageSize: 20,
+            filter: {
+                logic: "or",
+                filters: [
+                  { field: "Accion", operator: "eq", value: 1 },
+                  { field: "Accion", operator: "eq", value: 2 }
+                ]
+            },
+            pageSize: 10,
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false
         },
         navigatable: true,
-        filterable: {
-            extra: false
-        },
-        editable: true,
         autoHeight: true,
         sortable: true,
         scrollable: true,
+        editable: true,
+        selectable: true,
         pageable: {
             refresh: false,
-            pageSizes: [10, 15, 20],
+            pageSizes: [10, 25, 50, 100],
             info: false,
             input: false,
             numeric: true,
         },
+        filterable: getGridFilterableMaftec(),
         columns: [
-            { field: "Clasificacion", title: _dictionary.GenerarRequisicionClasificacion[$("#language").data("kendoDropDownList").value()], filterable: true, editor: RenderComboBoxClasificacion, width: "150px" },
-            { field: "Cuadrante", title: _dictionary.GenerarRequisicionCuadrante[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
-            { field: "Prioridad", title: _dictionary.GenerarRequisicionPrioridad[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px" },
-            { field: "Proyecto", title: _dictionary.GenerarRequisicionProyecto[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px" },
-            { field: "Folio", title: _dictionary.ServiciosTecnicosRequisicion[$("#language").data("kendoDropDownList").value()], filterable: true, width: "150px" },
-            { field: "NumeroControl", title: _dictionary.GenerarRequisicionNumeroControl[$("#language").data("kendoDropDownList").value()], filterable: true, width: "130px" },
-            { field: "Agregar", title: _dictionary.ServiciosTecnicosAgregar[$("#language").data("kendoDropDownList").value()], filterable: true, template: "<input name='fullyPaid' class='ob-paid' type='checkbox' data-bind='checked: Agregar' #= Agregar ? checked='checked' : '' #/>", width: "130px" }
+            { field: "Proyecto", title: _dictionary.GenerarRequisicionProyecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
+            { field: "Cuadrante", title: _dictionary.GenerarRequisicionCuadrante[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
+            { field: "Prioridad", title: _dictionary.GenerarRequisicionPrioridad[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "110px", attributes: { style: "text-align:right;" } },
+            { field: "Clasificacion", title: _dictionary.GenerarRequisicionClasificacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxClasificacion, width: "130px" },
+            { field: "Requisicion", title: _dictionary.ServiciosTecnicosRequisicion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
+            { field: "NumeroControl", title: _dictionary.GenerarRequisicionSpoolID[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px"},
+            { field: "EtiquetaJunta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "70px", attributes: { style: "text-align:right;" } },
+            { field: "Diametro", title: _dictionary.WPSLabelDiametro[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "80px", attributes: { style: "text-align:right;" } },
+            { field: "Espesor", title: _dictionary.WPSEspesorCabeceraGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "140px", attributes: { style: "text-align:right;" } },
+            { field: "Cedula", title: _dictionary.CapturaSoldaduraCedula[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px" },
+            { field: "TipoJunta", title: _dictionary.ServiciosTecnicosTipoJunta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "140px" },
+            {
+                field: "Agregar", title: _dictionary.ServiciosTecnicosAgregar[$("#language").data("kendoDropDownList").value()], filterable: {
+                    multi: true,
+                    messages: {
+                        isTrue: _dictionary.CheckBoxFilterPQRContiene[$("#language").data("kendoDropDownList").value()],
+                        isFalse: _dictionary.CheckBoxFilterPQRNoContiene[$("#language").data("kendoDropDownList").value()],
+                        style: "max-width:100px;"
+                    },
+                    dataSource: [{ Etiquetado: true }, { Etiquetado: false }]
+                }, template: "<input name='fullyPaid' class='ob-paid' type='checkbox' data-bind='checked: Agregar' #= Agregar ? checked='checked' : '' #/>", width: "100px"
+            },
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, width: "90px", title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()] }
         ],
         dataBound: function (a) {
             $(".ob-paid").bind("change", function (e) {
                 if ($('#botonGuardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
-
-
                     var grid = $("#grid").data("kendoGrid"),
                         dataItem = grid.dataItem($(e.target).closest("tr"));
                     if (dataItem.Folio == "" && e.target.checked == true) {
@@ -120,15 +143,11 @@ function CargarGrid() {
                 }
                 else
                     $("#grid").data("kendoGrid").closeCell();
-
                 $("#grid").data("kendoGrid").dataSource.sync();
-
             });
         }
     });
     CustomisaGrid($("#grid"));
-   
-
 };
 
 function AltaFecha() {
@@ -143,8 +162,8 @@ function ExisteJunta() {
     var jsonGrid = $("#grid").data("kendoGrid").dataSource._data;
 
     for (var i = 0; i < jsonGrid.length; i++) {
-        if (jsonGrid[i].IdentificadorForaneo  == $("#Junta").data("kendoComboBox").value()) {
-            
+        if (jsonGrid[i].IdentificadorForaneo == $("#Junta").data("kendoComboBox").value()) {
+
             $("#grid").data("kendoGrid").dataSource.sync();
             return false;
         }
@@ -210,7 +229,7 @@ function AgregarJuntaNueva() {
         });
     }
     else {
-        displayMessage("GenerarRequisicionMensajeJuntaAgregada", "", '1');
+        displayNotify("GenerarRequisicionMensajeJuntaAgregada", "", '1');
     }
 }
 
@@ -251,6 +270,46 @@ function ValidaFormatoFecha(FechaValidar, Idioma) {
     return bool;
 
 }
+
+function cancelarCaptura(e) {
+    e.preventDefault();
+    if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
+        e.preventDefault();
+        var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
+
+        windowTemplate = kendo.template($("#windowTemplate").html());
+
+        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+            iframe: true,
+            title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
+            visible: false, //the window will not appear before its .open method is called
+            width: "auto",
+            height: "auto",
+            modal: true,
+            animation: {
+                close: false,
+                open: false
+            }
+        }).data("kendoWindow");
+
+        ventanaConfirm.content(_dictionary.ServiciosTecnicosElm[$("#language").data("kendoDropDownList").value()] +
+                     "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
+
+        ventanaConfirm.open().center();
+
+        $("#yesButton").click(function () {
+
+            var dataSource = $("#grid").data("kendoGrid").dataSource;
+            dataItem.Accion = 3;
+            $("#grid").data("kendoGrid").dataSource.sync();
+
+            ventanaConfirm.close();
+        });
+        $("#noButton").click(function () {
+            ventanaConfirm.close();
+        });
+    }
+};
 
 function existeFechaMexicoFormato(fecha) {
     var fechaf = fecha.split("/");

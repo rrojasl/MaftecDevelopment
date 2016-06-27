@@ -59,18 +59,16 @@ function ajaxObtenerProyectos() {
 }
 
 
-function ajaxObtenerJuntasSoldadas(pruebaID) {
+function ajaxObtenerJuntasSoldadas(ProyectoID) {
     loadingStart();
     
-    $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), pruebaID: pruebaID, todos: $('input:radio[name=Muestra]:checked').val(), lenguaje: $("#language").val(), reqID: requisicionID }).done(function (data) {
+    $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), proyectoID: ProyectoID, todos: $('input:radio[name=Muestra]:checked').val(), lenguaje: $("#language").val(), reqID: requisicionID }).done(function (data) {
         $("#grid").data('kendoGrid').dataSource.data([]);
         var ds = $("#grid").data("kendoGrid").dataSource;
         var array = data;
         for (var i = 0; i < array.length; i++) {
             ds.add(array[i]);
         }
-        $("#Proyecto").data("kendoComboBox").enable(false);
-        $("#tipoPrueba").data("kendoComboBox").enable(false);
         $('#containerDiv').css('display', 'block');
         loadingStop();
     });
@@ -102,7 +100,7 @@ function AjaxJunta(spoolID) {
         $("#Junta").data("kendoComboBox").value("");
         $("#Junta").data("kendoComboBox").dataSource.data(data)
         if (data.length == 0) {
-            displayMessage("MensajeJuntasSoldadasReguisicion", "", '1');
+            displayNotify("MensajeJuntasSoldadasReguisicion", "", '1');
         }
             
         loadingStop();
@@ -113,7 +111,15 @@ function AjaxJunta(spoolID) {
 
 function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
     Captura = [];
-    Captura[0] = { listaRequisiciones: "", RequisicionID: "", Folio: "", PruebasID: "", FechaRequisicion: "", Observacion: "", EstatusID: "" };
+    Captura[0] = {
+        listaRequisiciones: "",
+        RequisicionID: "",
+        Folio: "",
+        PruebasID: "",
+        FechaRequisicion: "",
+        Observacion: "",
+        EstatusID: ""
+    };
     ListaDetalles = [];
 
 
@@ -168,13 +174,13 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                     
                 }
                 ajaxRequisicion();
-                displayMessage("CapturaSoldaduraMensajeGuardadoExitoso", "", "0");
+                displayNotify("CapturaSoldaduraMensajeGuardadoExitoso", "", "0");
                 loadingStop();
 
             }
             else  /*(data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") */ {
                 //mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2";
-                displayMessage("CapturaMensajeGuardadoErroneo", "", '1');
+                displayNotify("CapturaMensajeGuardadoErroneo", "", '1');
                 loadingStop();
 
             }
@@ -182,7 +188,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         });
     }
     else {
-        displayMessage("MensajeSeleccioneRequisiciones", "", "1");
+        displayNotify("MensajeSeleccioneRequisiciones", "", "1");
     }
 }
 

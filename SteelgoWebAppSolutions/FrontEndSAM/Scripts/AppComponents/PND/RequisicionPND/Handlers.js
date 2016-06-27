@@ -24,7 +24,7 @@ function suscribirEventoGuardar() {
                 AjaxGuardarCaptura(ds._data, 0);
             }
             else
-                displayMessage("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -39,7 +39,7 @@ function suscribirEventoGuardar() {
                 AjaxGuardarCaptura(ds._data, 0);
             }
             else
-                displayMessage("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -55,7 +55,7 @@ function suscribirEventoGuardar() {
                 //Limpiar();
             }
             else
-                displayMessage("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -72,7 +72,7 @@ function suscribirEventoGuardar() {
                 AjaxGuardarCaptura(ds._data, 0);
             }
             else
-                displayMessage("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -86,7 +86,7 @@ function suscribirEventoGuardar() {
                 AjaxGuardarCaptura(ds._data, 0);
             }
             else
-                displayMessage("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView");
@@ -101,7 +101,7 @@ function suscribirEventoGuardar() {
                 //Limpiar();
             }
             else
-                displayMessage("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -129,12 +129,13 @@ function suscribirEventoProyecto() {
     $("#Proyecto").kendoComboBox({
         dataTextField: "Nombre",
         dataValueField: "ProyectoID",
+        delay: 10,
         suggest: true,
         filter: "contains",
         index: 3,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
-            if (dataItem != undefined) {
+            if (dataItem != undefined && dataItem.Nombre != "") {
                 ajaxObtenerTipoPruebas();
             }
             else {
@@ -150,13 +151,14 @@ function suscribirEventoTipoPrueba() {
     $("#tipoPrueba").kendoComboBox({
         dataTextField: "Nombre",
         dataValueField: "PruebasID",
+        delay: 10,
         suggest: true,
         filter: "contains",
         index: 3,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
-            if (dataItem != undefined) {
-                ajaxObtenerJuntasSoldadas($("#tipoPrueba").data("kendoComboBox").value());
+            if (dataItem != undefined && dataItem.Nombre != "") {
+                ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
             }
             else {
                 $("#tipoPrueba").data("kendoComboBox").value("");
@@ -172,6 +174,7 @@ function SuscribirEventoSpoolID() {
     $("#InputID").kendoComboBox({
         dataTextField: "IDValido",
         dataValueField: "Valor",
+        delay: 10,
         suggest: true,
         filter: "contains",
         index: 3,
@@ -207,10 +210,10 @@ function SuscribirEventoSpoolID() {
                     loadingStop();
                 });
             } catch (e) {
-                displayMessage("Mensajes_error", e.message, '0');
+                displayNotify("Mensajes_error", e.message, '0');
             }
         } else {
-            displayMessage("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
+            displayNotify("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
             
         }
     });
@@ -242,6 +245,7 @@ function SuscribirEventosJunta() {
     $('#Junta').kendoComboBox({
         dataTextField: "Etiqueta",
         dataValueField: "JuntaSpoolID",
+        delay: 10,
         suggest: true,
         filter: "contains",
         index: 3
@@ -263,7 +267,7 @@ function SuscribirEventosJunta() {
             }
             else
                 $("#Junta").data("kendoComboBox").value("");
-                displayMessage("NoExisteJunta", '', '2');
+            displayNotify("NoExisteJunta", '', '2');
         }
     });
 }

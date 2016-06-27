@@ -136,8 +136,8 @@ _dictionary = {
         "en-US": "Set Request"
     },
     "ServiciosTecnicosGenerarRequisicion": {
-        "es-MX": "Generar Requisición",
-        "en-US": "Generate Request"
+        "es-MX": "Requisición PND",
+        "en-US": "Request PND"
     },
     "loginLabel0001": {
         "es-MX": "Inicio de Sesión",
@@ -7265,8 +7265,8 @@ _dictionary = {
         "en-US": "Visual and Dimensional"
     },
     "menuServiciosTecnicos": {
-        "es-MX": "Servicios Técnicos",
-        "en-US": "Technical Services"
+        "es-MX": "PND",
+        "en-US": "NDT"
     },
     "menuServiciosTecnicosAsignarRequisicion": {
         "es-MX": "Asignar Requisición",
@@ -7281,8 +7281,8 @@ _dictionary = {
         "en-US": "Delivering Results"
     },
     "menuServiciosTecnicosGenerarRequisicion": {
-        "es-MX": "Generar Requisición",
-        "en-US": "Generate Request"
+        "es-MX": "Requisición PND",
+        "en-US": "NDT Request"
     },
     "menuServiciosTecnicosGenerarImpresion": {
         "es-MX": "Impresión de Resultados",
@@ -8190,8 +8190,8 @@ _dictionary = {
 
     //#region ServiciosTecnicos
     "ServiciosTecnicosHeader": {
-        "es-MX": "Servicios Técnicos",
-        "en-US": "Technical Services"
+        "es-MX": "PND",
+        "en-US": "NDT"
     },
 
     "ServiciosTecnicosTipoPrueba": {
@@ -8233,6 +8233,14 @@ _dictionary = {
     "ServiciosTecnicosEliminar": {
         "es-MX": "Eliminar",
         "en-US": "Delete"
+    },
+    "ServiciosTecnicosTipoJunta": {
+        "es-MX": "Tipo de junta",
+        "en-US": "Joint type"
+    },
+    "ServiciosTecnicosElm": {
+        "es-MX": "¿Está seguro de cancelar el detalle de la captura de la requisición?",
+        "en-US": "Are you sure you want to cancel the detail of the requisition capture?"
     },
 
     //#endregion
@@ -8827,6 +8835,10 @@ _dictionary = {
     "GenerarRequisicionNumeroControl": {
         "es-MX": "Spool ID/Junta",
         "en-US": "Spool ID/Joint "
+    },
+    "GenerarRequisicionSpoolID": {
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID "
     },
     "GenerarRequisicionAsignarRequisicion": {
         "es-MX": "Asignar Requisición",
