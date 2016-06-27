@@ -59,28 +59,7 @@ namespace BackEndSAM.DataAcces.ArmadoBD
             }
         }
 
-        public object AgregarDetalleCapturaArmado(Sam3_Usuario usuario)
-        {
-            try
-            {
-                using (SamContext ctx = new SamContext())
-                {
-                    return new object();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(ex.Message);
-                result.ReturnCode = 500;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = true;
-
-                return result;
-            }
-
-        }
+       
 
         public object ObtenerIDOrdenTrabajo(Sam3_Usuario usuario, string ordentrabajo, int tipo,string lenguaje)
         {

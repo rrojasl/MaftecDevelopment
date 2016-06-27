@@ -33,7 +33,7 @@ namespace BackEndSAM.Models.Soldadura
         List<DetalleDatosJsonSoldadura> Detalles { get; set; }
     }
 
-    public class DetalleDatosJsonSoldadura
+    public class DetalleCapturaSoldadura
     {
         public int IDProyecto { get; set; }
         public string Proyecto { get; set; }
@@ -43,57 +43,51 @@ namespace BackEndSAM.Models.Soldadura
         public string idText { get; set; }
         public string SpoolID { get; set; }
         public string JuntaID { get; set; }
-        public string JuntaTrabajoID { get; set; }
         public string Junta { get; set; }
         public string FechaSoldadura { get; set; }
-        public string TallerID { get; set; }
-        public string Taller { get; set; }
+        public string SinCaptura { get; set; }
+        public int JuntaSoldaduraID { get; set; }
+    }
+
+    public class DetalleDatosJsonSoldadura
+    {
+        public int Accion { get; set; }
+        public int IDProyecto { get; set; }
+        public string Proyecto { get; set; }
+        public string IdOrdenTrabajo { get; set; }
+        public string OrdenTrabajo { get; set; }
+        public string idVal { get; set; }
+        public string idText { get; set; }
+        public string SpoolID { get; set; }
+        public string DetalleJunta { get; set; }
         public string TipoJuntaID { get; set; }
         public string TipoJunta { get; set; }
-        public string Cedula { get; set; }
-        public string Localizacion { get; set; }
-        public string TemplateMensajeTrabajosAdicionales { get; set; }
-        public string NumeroUnico1ID { get; set; }
-        public string NumeroUnico2ID { get; set; }
-        public List<TrabajosAdicionalesSoldadura> DetalleAdicional { get; set; }
-        public List<Raiz> Raiz { get; set; }
-        public List<Raiz> RaizDetalle { get; set; }
-        public List<Raiz> RaizInicial { get; set; }
-        public List<Raiz> Relleno { get; set; }
-        public List<Raiz> RellenoDetalle { get; set; }
-        public List<Raiz> RellenoInicial { get; set; }
-        public List<TrabajosAdicionalesSoldadura> listaTrabajosAdicionalesSoldadura { get; set; }
-        public List<SoldadorRaizCertificado> ListadoRaiz { get; set; }
-        public List<ProcesoSoldadura> ListadoProcesoSoldadura { get; set; }
-        public List<SoldadorRaizCertificado> ListadoRelleno { get; set; }
-        public List<ObreroSoldador> ListadoSoldadoresTrabajos { get; set; }
-        public string SinCaptura { get; set; }
-        public int juntaSpoolID { get; set; }
-        public int procesoSoldaduraRaizID { get; set; }
-        public int procesoSoldaduraRellenoID { get; set; }
-        public string procesoSoldaduraRaiz { get; set; }
-        public string procesoSoldaduraRelleno { get; set; }
-        public int Accion { get; set; }
-        public int JuntaSoldaduraID { get; set; }
-        public string Etiqueta { get; set; }
-        public string EtiquetaMaterial1 { get; set; }
-        public string EtiquetaMaterial2 { get; set; }
-        public string SoldadoresRaiz { get; set; }
-        public string TrabajosAdicionales { get; set; }
-        public string SoldadoresRelleno { get; set; }
+        public string TallerID { get; set; }
+        public string Taller { get; set; }
         public List<Taller> ListaTaller { get; set; }
-        public List<Colada> ListaColada { get; set; }
-        public int ColadaID { get; set; }
-        public string NumeroColada { get; set; }
-        public string DetalleJunta { get; set; }
-        public decimal Diametro { get; set; }
-        public decimal Espesor { get; set; }
-        public bool PermiteTerminadoRelleno { get; set; }
-        public bool PermiteTerminadoRaiz { get; set; }
-        public List<WPS.WPS> ListaWPS { get; set; }
         public int WPSID { get; set; }
         public string WPSNombre { get; set; }
-
+        public List<WPS.WPS> ListaWPS { get; set; }
+        public decimal Diametro { get; set; }
+        public string CedulaID { get; set; }
+        public string Cedula { get; set; }
+        public List<ListaCombos> ListaCedulas { get; set; }
+        public string FechaSoldadura { get; set; }
+        public int procesoSoldaduraRaizID { get; set; }
+        public string procesoSoldaduraRaiz { get; set; }
+        public List<ProcesoSoldadura> ListadoProcesoSoldaduraRaiz { get; set; }
+        public List<Soldadores> ListaSoldadoresRaizCapturados { get; set; }
+        public int procesoSoldaduraRellenoID { get; set; }
+        public string procesoSoldaduraRelleno { get; set; }
+        public List<ProcesoSoldadura> ListadoProcesoSoldaduraRelleno { get; set; }
+        public List<Soldadores> ListaSoldadoresRellenoCapturados { get; set; }
+        public string TemplateTrabajosAdicionales { get; set; }
+        public List<TrabajosAdicionalesSoldadura> listaTrabajosAdicionalesSoldadura { get; set; }
+        public string SinCaptura { get; set; }
+        public string JuntaID { get; set; }
+        public string Junta { get; set; }
+        public string TemplateSoldadoresRaiz { get; set; }
+        public string TemplateSoldadoresRelleno { get; set; }
     }
 
     public class Taller
@@ -129,6 +123,17 @@ namespace BackEndSAM.Models.Soldadura
         public string wps { get; set; }
     }
 
+    public class Soldadores {
+        public int Accion { get; set; }
+        public int ObreroID { get; set; }
+        public string Soldador { get; set; }
+        public List<ObreroSoldador> ListadoSoldadoresTrabajos { get; set; }
+        public int ColadaID { get; set; }
+        public string Colada { get; set; }
+        public List<Colada> ListaColada { get; set; }
+        public string Observaciones { get; set; }
+
+    }
     public class SoldadorRaizCertificado
     {
         public int Accion { get; set; }

@@ -17,31 +17,7 @@ namespace BackEndSAM.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ArmadoController : ApiController
     {
-        public object Get(string data)
-        {
-            //Create a generic return object
-
-
-            string payload = "";
-            string newToken = "";
-            bool tokenValido = ManageTokens.Instance.ValidateToken(/*token*/data, out payload, out newToken);
-            if (tokenValido)
-            {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                return CapturaArmadoBD.Instance.AgregarDetalleCapturaArmado(usuario);
-            }
-            else
-            {
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(payload);
-                result.ReturnCode = 401;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = false;
-                return result;
-            }
-
-        }
+        
         public object Get(string ordenTrabajo, int tipo, string token, string lenguaje)
         {
             //Create a generic return object

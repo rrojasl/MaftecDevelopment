@@ -8,7 +8,7 @@ var longitudSoldadoresRelleno;
 var listaRaizFiltro;
 var listaRellenoFiltro;
 var modeloRenglon;
-IniciarCapturaSoldadura();
+
 
 function FiltroMostrar(mostrar) {
     var ds = $("#grid").data("kendoGrid").dataSource;
@@ -87,12 +87,6 @@ function PlanchaRaiz() {
     $("#grid").data("kendoGrid").dataSource.sync();
 };
 
-function IniciarCapturaSoldadura() {
-
-    AltaFecha();
-    asignarProyecto();
-    SuscribirEventos();
-};
 
 function aplicarFiltro(listaRespaldo, listaConFiltro) {
     for (var i = 0; i < listaRespaldo.length ; i++) {
@@ -138,7 +132,7 @@ function ArregloListadoJuntasCapturadas() {
 
 function ArregloListadoCaptura() {
     JsonCaptura = [];
-    JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaSoldadura: "", tallerID: "", Taller: "", NumeroColada: "", ColadaID: "", sinCaptura: "", IDProyecto: "" };
+    JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaSoldadura: "", tallerID: "", Taller: "", sinCaptura: "", IDProyecto: "" };
     JsonCaptura[0].IDProyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).ProyectoID;
     JsonCaptura[0].Proyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Proyecto;
     JsonCaptura[0].IdOrdenTrabajo = $("#InputOrdenTrabajo").val();
@@ -149,10 +143,6 @@ function ArregloListadoCaptura() {
     JsonCaptura[0].JuntaID = $("#Junta").val();
     JsonCaptura[0].Junta = $("#Junta").data("kendoComboBox").text();
     JsonCaptura[0].FechaSoldadura = $("#FechaSoldadura").val();
-    JsonCaptura[0].tallerID = $("#inputTaller").val();
-    JsonCaptura[0].Taller = $("#inputTaller").data("kendoComboBox").text();
-    JsonCaptura[0].ColadaID = $("#inputColada").val() == "" ? 0 : $("#inputColada").val();
-    JsonCaptura[0].NumeroColada = $("#inputColada").data("kendoComboBox").text();
     JsonCaptura[0].sinCaptura = $('input:radio[name=Muestra]:checked').val();
 
     return JsonCaptura[0];
@@ -174,8 +164,6 @@ function ArregloListadoReporte() {
         JsonCaptura[i].JuntaID = lista[i].JuntaSpoolID;
         JsonCaptura[i].Junta = lista[i].Etiqueta;
         JsonCaptura[i].FechaSoldadura = $("#FechaSoldadura").val();
-        JsonCaptura[i].tallerID = $("#inputTaller").val();
-        JsonCaptura[i].Taller = $("#inputTaller").data("kendoComboBox").text();
         JsonCaptura[i].sinCaptura = "Todos";
     }
     return JsonCaptura;
@@ -237,7 +225,7 @@ function CargarGridSoldadura() {
             ItemSeleccionado = this.dataSource.view()[this.select().index()];
         },
         dataSource: {
-            data: '',//listadoJsonCaptura,//[{}],
+            data: '',
             schema: {
                 model: {
                     fields: {
@@ -255,20 +243,11 @@ function CargarGridSoldadura() {
                         JuntaID: { type: "string", editable: false },
                         Junta: { type: "string", editable: false },
                         TipoJunta: { type: "string", editable: false },
-                        Cedula: { type: "string", editable: false },
+                        Cedula: { type: "string", editable: true },
                         FechaSoldadura: { type: "date", editable: true },
                         TallerID: { type: "string", editable: true },
                         Taller: { type: "string", editable: true },
-                        WPS: { type: "string", editable: false },
-                        PQR: { type: "string", editable: false },
-                        WPSRaiz: { type: "string", editable: true },
-                        WPSRelleno: { type: "string", editable: true },
-                        Localizacion: { type: "string", editable: false },
-                        juntaSpoolID: { type: "int", editable: true },
                         DetalleJunta: { type: "string", editable: false },
-                        DetalleAdicional: { editable: false },
-                        Raiz: { editable: false },
-                        Relleno: { editable: false },
                         WPSNombre: { type: "string", editable: true }
                         
                     }
@@ -305,22 +284,15 @@ function CargarGridSoldadura() {
             { field: "Junta", title: _dictionary.JuntaGrid[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "70px" },
             { field: "DetalleJunta", title: _dictionary.CapturaSoldaduraDetalleJunta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "180px" },
             { field: "Taller", title: _dictionary.CapturaSoldaduraHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTaller, width: "130px" },
-
             { field: "WPSNombre", title: "WPS", editor: RenderComboBoxWPS, filterable: getGridFilterableCellMaftec(), width: "130px" },
-
             { field: "Diametro", title: "Diametro", filterable: getGridFilterableCellMaftec(), width: "130px" },
-            { field: "Cedula", title: "Cedula" , filterable: getGridFilterableCellMaftec(), width: "130px" },
+            { field: "Cedula", title: "Cedula" , filterable: getGridFilterableCellMaftec(), width: "130px" , editor: RenderComboBoxCedula },
             { field: "FechaSoldadura", title: _dictionary.CapturaSoldaduraHeaderFechaSoldadura[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, editor: RenderDatePicker, width: "160px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "procesoSoldaduraRaiz", title: _dictionary.CapturaSoldaduraProcesoRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldaduraRaiz },
-            { field: "Raiz", title: _dictionary.CapturaRaizHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonSoldadoresRaiz'><a href='\\#'  > <span>#=SoldadoresRaiz#</span></a></div>" },
-            //{ /*field: "ColadaRaiz",*/ title: "Colada Raiz", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
-            //{ field: "PQR", title: "PQR", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
-            { field: "procesoSoldaduraRelleno", title: _dictionary.CapturaSoldaduraProcesoRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldaduraRelleno },
-            { field: "Relleno", title: _dictionary.CapturaRellenoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonSoldadoresRelleno'><a href='\\#' > <span>#=SoldadoresRelleno#</span></a></div>" },
-           // { /*field: "ColadaRelleno",*/ title: "Colada Relleno", filterable: getGridFilterableCellMaftec(), filterable: getGridFilterableCellMaftec(), width: "130px" },
-            //{ field: "WPSRaiz", title: "WPS Raiz", filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxWPS },
-            //{ field: "WPSRelleno", title: "WPS Relleno", filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxWPS },
-            { field: "DetalleAdicional", title: _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonAdicionales'><a href='\\#' > <span>#=TrabajosAdicionales#</span></a></div>" },
+            { field: "Raiz", title: _dictionary.CapturaRaizHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonSoldadoresRaiz'><a href='\\#'  > <span>#=TemplateSoldadoresRaiz#</span></a></div>" },
+           { field: "procesoSoldaduraRelleno", title: _dictionary.CapturaSoldaduraProcesoRelleno[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldaduraRelleno },
+            { field: "Relleno", title: _dictionary.CapturaRellenoHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonSoldadoresRelleno'><a href='\\#' > <span>#=TemplateSoldadoresRelleno#</span></a></div>" },
+            { field: "DetalleAdicional", title: _dictionary.CapturaSoldaduraHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonAdicionales'><a href='\\#' > <span>#=TemplateTrabajosAdicionales#</span></a></div>" },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, filterable: false, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
             { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, filterable: false, title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()], width: "60px" }
         ],
@@ -966,21 +938,26 @@ function cancelarCaptura(e) {
 
 };
 
+
+
 function changeLanguageCall() {
-    endRangeDate.data("kendoDatePicker").setOptions({
-        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
-    });
+    AltaFecha();
+    asignarProyecto();
+    SuscribirEventos();
+
     AjaxCargarCamposPredeterminados();
     CargarGridSoldadura();
     CargarGridPopUp();
     opcionHabilitarView(false, "FieldSetView");
     document.title = _dictionary.CapturaSoldaduraSoldaduraSpool[$("#language").data("kendoDropDownList").value()];
+   
 };
 
 function AltaFecha() {
 
     endRangeDate = $("#FechaSoldadura").kendoDatePicker({
         max: new Date(),
+        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
     });
 
     //endRangeDate.on("keydown", function (e) {

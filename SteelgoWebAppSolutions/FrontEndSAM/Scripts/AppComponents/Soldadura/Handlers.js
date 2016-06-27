@@ -19,6 +19,8 @@
     GuardarRaizMultiselect();
     suscribirEventoSoldadoresRelleno();
     GuardarRellenoMultiselect();
+    SuscribirEventoProcesosRaiz();
+    SuscribirEventoProcesosRelleno();
 };
 
 function suscribirEventoAdicionales() {
@@ -121,8 +123,6 @@ function EventoGuardar() {
         opcionHabilitarView(false, "FieldSetView")
 }
 
-SuscribirEventoProcesosRaiz();
-SuscribirEventoProcesosRelleno();
 
 function SuscribirEventoProcesosRelleno() {
     $('#inputProcesoRelleno').kendoComboBox({
@@ -566,7 +566,41 @@ function SuscribirEventoSpoolID() {
                     //AjaxColada(); Agregar PQR y WPS
                 }
             }
+            else {
+                
+                $("#Junta").data("kendoComboBox").dataSource.data([]);
+                $("#Junta").data("kendoComboBox").value("");
+            }
         }
+    });
+
+    $('#InputID').blur(function (e) {
+        var spoollIDValue = $("#InputID").val();
+        var listaSpoolID = $("#InputID").data("kendoComboBox").dataSource._data;
+        var valorEncontrado = false;
+        if (listaSpoolID.length > 0) {
+            for (var i = 0; i < listaSpoolID.length; i++) {
+                var idvalSpoolID = listaSpoolID[i].IDValido + '';
+                if (idvalSpoolID.indexOf(spoollIDValue) > 0) {
+                    valorEncontrado = true;
+                    $("#InputID").data("kendoComboBox").select(0);
+                    AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                    if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
+                        $("#ButtonAgregar").trigger("click");
+                    }
+                    break;
+                }
+            }
+
+        }
+
+        dataItem = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select());
+        if (!valorEncontrado  && dataItem == undefined) {
+            $("#Junta").data("kendoComboBox").dataSource.data([]);
+            $("#Junta").data("kendoComboBox").value("");
+            displayNotify("SpoolIDNoValida", "", '1');
+        }
+        
     });
 };
 
@@ -583,13 +617,15 @@ $(document.body).keydown(function (e) {
 
 function suscribirEventoChangeRadio() {
     $('input:radio[name=Muestra]:nth(0)').change(function () {
-        if ($("#InputID").val() != "" && $("#inputordentrabajo").val() != "") {
+        dataItem = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select() );
+        if ($("#InputID").val() != "" && $("#inputordentrabajo").val() != "" && dataItem != undefined) {
             AjaxJunta($("#InputID").val());
         }
         FiltroMostrar(0);
     });
     $('input:radio[name=Muestra]:nth(1)').change(function () {
-        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val() != "") {
+        dataItem = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select());
+        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val() != "" && dataItem != undefined) {
             AjaxJunta($("#InputID").val());
         }
         FiltroMostrar(1);

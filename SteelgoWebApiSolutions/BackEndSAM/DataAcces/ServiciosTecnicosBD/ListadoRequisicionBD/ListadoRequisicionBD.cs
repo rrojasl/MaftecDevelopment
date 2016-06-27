@@ -20,20 +20,20 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.ListadoRequisicionBD
 
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_EstatusRequisiciones_Result> result = ctx.Sam3_ServiciosTecnicos_Get_EstatusRequisiciones(lenguaje).ToList();
-                    List<StatusRequisicion> ListadoStatusRequisicion = new List<StatusRequisicion>(); 
-                    foreach (Sam3_ServiciosTecnicos_Get_EstatusRequisiciones_Result item in result)
-                    {
-                        ListadoStatusRequisicion.Add(new StatusRequisicion
-                        {
-                          CantidadRegistros= item.Cuantos,
-                          Estatus=item.Estatus,
-                          EstatusID=item.EstatusID,
-                          Orden=item.Orden.GetValueOrDefault()
-                        });
-                    }
+                    //List<Sam3_ServiciosTecnicos_Get_EstatusRequisiciones_Result> result = ctx.Sam3_ServiciosTecnicos_Get_EstatusRequisiciones(lenguaje).ToList();
+                    //List<StatusRequisicion> ListadoStatusRequisicion = new List<StatusRequisicion>(); 
+                    //foreach (Sam3_ServiciosTecnicos_Get_EstatusRequisiciones_Result item in result)
+                    //{
+                    //    ListadoStatusRequisicion.Add(new StatusRequisicion
+                    //    {
+                    //      CantidadRegistros= item.Cuantos,
+                    //      Estatus=item.Estatus,
+                    //      EstatusID=item.EstatusID,
+                    //      Orden=item.Orden.GetValueOrDefault()
+                    //    });
+                    //}
 
-                    return ListadoStatusRequisicion;
+                    return new Object()  ;// ListadoStatusRequisicion;
                 }
             }
             catch (Exception ex)
@@ -57,23 +57,23 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.ListadoRequisicionBD
 
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_Requisiciones_Result> result = ctx.Sam3_ServiciosTecnicos_Get_Requisiciones(lenguaje,idStatus).ToList();
+                    //List<Sam3_ServiciosTecnicos_Get_Requisiciones_Result> result = ctx.Sam3_ServiciosTecnicos_Get_Requisiciones(lenguaje,idStatus).ToList();
                     List<InformacionRequisicionXID> ListadoRequisicion = new List<InformacionRequisicionXID>();
-                    foreach (Sam3_ServiciosTecnicos_Get_Requisiciones_Result item in result)
-                    {
-                        ListadoRequisicion.Add(new InformacionRequisicionXID
-                        {
-                            Estatus=item.Estatus,
-                            EstatusID=item.EstatusID.GetValueOrDefault(),
-                            FechaRequisicion=item.FechaRequisicion,
-                            Folio=item.Folio,
-                            Observacion=item.Observacion,
-                            Orden=item.Orden.GetValueOrDefault(),
-                            Prueba=item.Prueba,
-                            PruebasProyectoID = item.PruebasProyectoID,
-                            RequisicionID=item.RequisicionID
-                        });
-                    }
+                    //foreach (Sam3_ServiciosTecnicos_Get_Requisiciones_Result item in result)
+                    //{
+                    //    ListadoRequisicion.Add(new InformacionRequisicionXID
+                    //    {
+                    //        Estatus=item.Estatus,
+                    //        EstatusID=item.EstatusID.GetValueOrDefault(),
+                    //        FechaRequisicion=item.FechaRequisicion,
+                    //        Folio=item.Folio,
+                    //        Observacion=item.Observacion,
+                    //        Orden=item.Orden.GetValueOrDefault(),
+                    //        Prueba=item.Prueba,
+                    //        PruebasProyectoID = item.PruebasProyectoID,
+                    //        RequisicionID=item.RequisicionID
+                    //    });
+                    //}
 
                     return ListadoRequisicion;
                 }

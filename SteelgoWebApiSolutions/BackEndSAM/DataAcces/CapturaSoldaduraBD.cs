@@ -410,14 +410,14 @@ namespace BackEndSAM.DataAcces
         }
 
 
-        public object ObtenerDetalleSoldadura(DetalleDatosJsonSoldadura JsonCaptura, Sam3_Usuario usuario, string lenguaje)
+        public object ObtenerDetalleSoldadura(string JuntaID, Sam3_Usuario usuario, string lenguaje)
         {
 
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_Soldadura_Get_DetalleJunta_Result> listaDetalleDatosJson = ctx.Sam3_Soldadura_Get_DetalleJunta(int.Parse(JsonCaptura.JuntaID), lenguaje).ToList();
+                    List<Sam3_Soldadura_Get_DetalleJunta_Result> listaDetalleDatosJson = ctx.Sam3_Soldadura_Get_DetalleJunta(int.Parse(JuntaID), lenguaje).ToList();
                     return listaDetalleDatosJson;
                 }
             }

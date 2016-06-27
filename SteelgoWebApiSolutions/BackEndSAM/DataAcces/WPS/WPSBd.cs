@@ -97,7 +97,34 @@ namespace BackEndSAM.DataAcces
 
         }
 
+        //public object ObtenerJuntaWPS(int juntaID, Sam3_Usuario usuario)
+        //{
 
+        //    using (SamContext ctx = new SamContext())
+        //    {
+        //        List<WPS> data = (from WPS in ctx.Sam3_Soldadura_Get_WPSXJunta(juntaID, usuario)
+        //                          select new WPS
+        //                          {
+        //                              Accion = 2,
+        //                              WPSID = WPS.WPSID,
+        //                              WPSNombre = WPS.WPSNombre,
+
+                                    
+        //                              PQRRellenoId = Convert.ToInt32(WPS.PQRRellenoId),
+        //                              NombrePQRRelleno = WPS.NombrePQRRelleno,
+
+        //                              EspesorMaximo = WPS.EspesorMaximo.GetValueOrDefault(),
+        //                              EspesorMinimo = WPS.EspesorMinimo.GetValueOrDefault(),
+
+        //                              listadoRaizPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
+        //                              listadoRellenoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
+
+        //                          }).AsParallel().ToList();
+        //        return data.OrderBy(x => x.WPSNombre).ToList<WPS>();
+        //    }
+
+
+        //}
 
 
 

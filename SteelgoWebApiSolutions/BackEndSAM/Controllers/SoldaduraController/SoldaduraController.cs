@@ -1,4 +1,5 @@
 ﻿using BackEndSAM.DataAcces;
+using BackEndSAM.Models;
 using BackEndSAM.Models.Soldadura;
 using BackEndSAM.Models.WPS;
 using DatabaseManager.Sam3;
@@ -169,15 +170,11 @@ namespace BackEndSAM.Controllers.SoldaduraController
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
 
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                //JsonCaptura = JsonCaptura.Replace("[","");
-                //JsonCaptura = JsonCaptura.Replace("]", "");
-                //JsonCaptura = JsonCaptura.Replace("},", "}°");
-                //string[] jsonArray = JsonCaptura.Split('°');
                 List<DetalleDatosJsonSoldadura> listaDetalleDatos = new List<DetalleDatosJsonSoldadura>();
-                DetalleDatosJsonSoldadura capturaDatosJson = serializer.Deserialize<DetalleDatosJsonSoldadura>(JsonCaptura);
+                DetalleCapturaSoldadura capturaDatosJson = serializer.Deserialize<DetalleCapturaSoldadura>(JsonCaptura);
                 capturaDatosJson.SinCaptura = capturaDatosJson.SinCaptura == "Todos" ? "1" : "0";
 
-                List<WPS> listaWPS= (List<WPS>) WPSBd.Instance.ObtenerWPS(1, usuario);
+                
 
                 List<Sam3_Steelgo_Get_JuntaSpool_Result> listaJuntasXSpool = null;
                 if (isReporte)
@@ -196,9 +193,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                         capturaDatosJson.Junta = listaJuntasXSpool[i].Etiqueta.ToString();
                     }
 
-                    List<Sam3_Soldadura_Get_DetalleJunta_Result> detalle = (List<Sam3_Soldadura_Get_DetalleJunta_Result>)CapturaSoldaduraBD.Instance.ObtenerDetalleSoldadura(capturaDatosJson, usuario, lenguaje);
-
-                   
+                    List<Sam3_Soldadura_Get_DetalleJunta_Result> detalle = (List<Sam3_Soldadura_Get_DetalleJunta_Result>)CapturaSoldaduraBD.Instance.ObtenerDetalleSoldadura(capturaDatosJson.JuntaID, usuario, lenguaje);
 
                     IFormatProvider culture = new System.Globalization.CultureInfo("es-MX", true);
 
@@ -206,25 +201,15 @@ namespace BackEndSAM.Controllers.SoldaduraController
                     {
                         DetalleDatosJsonSoldadura detalleDatos = new DetalleDatosJsonSoldadura
                         {
-                            PermiteTerminadoRaiz = bool.Parse(item.PermiteTerminadoRaiz.ToString()),
-                            PermiteTerminadoRelleno = item.PermiteTerminadoRelleno,
                             DetalleJunta = "Tipo Junta: " + item.TipoJunta + " - " + "Cedula: " + item.Cedula + " - " + "Localización: " + item.Localizacion,
-                            EtiquetaMaterial1 = item.EtiquetaMaterial1,
-                            EtiquetaMaterial2 = item.EtiquetaMaterial2,
-                            Etiqueta = item.Etiqueta,
-                            JuntaTrabajoID = item.JuntaTrabajoID.ToString(),
-                            NumeroUnico1ID = item.NumeroUnico1ID == null ? "0" : item.NumeroUnico1ID.ToString(),
-                            NumeroUnico2ID = item.NumeroUnico2ID == null ? "0" : item.NumeroUnico2ID.ToString(),
-                            SoldadoresRaiz = item.SoldadoresRaiz,
-                            SoldadoresRelleno = item.SoldadoresRelleno,
+                            TemplateSoldadoresRaiz = item.SoldadoresRaiz,
+                            TemplateSoldadoresRelleno = item.SoldadoresRelleno,
                             TipoJuntaID = item.TipoJuntaID.ToString(),
-                            JuntaSoldaduraID = item.JuntaSoldaduraID == null ? 0 : int.Parse(item.JuntaSoldaduraID.ToString()),
                             Accion = item.JuntaSoldaduraID == null ? 1 : 2,
                             procesoSoldaduraRaizID = item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRaizID.ToString()),
                             procesoSoldaduraRellenoID = item.ProcesoSoldaduraRellenoID == null ? 0 : int.Parse(item.ProcesoSoldaduraRellenoID.ToString()),
                             procesoSoldaduraRaiz = item.CodigoRaiz == null ? "" : item.CodigoRaiz,
                             procesoSoldaduraRelleno = item.CodigoRelleno == null ? "" : item.CodigoRelleno,
-                            TrabajosAdicionales = item.TabajosAdicionales,
                             Proyecto = capturaDatosJson.Proyecto,
                             IDProyecto = capturaDatosJson.IDProyecto,
                             IdOrdenTrabajo = capturaDatosJson.IdOrdenTrabajo,
@@ -237,41 +222,20 @@ namespace BackEndSAM.Controllers.SoldaduraController
                             TipoJunta = item.TipoJunta,
                             Cedula = item.Cedula,
                             Diametro = item.Diametro,
-                            Espesor = decimal.Parse(item.Espesor.ToString()),
                             TallerID = item.TallerID.GetValueOrDefault().ToString(),
                             Taller = item.Taller,
-                            ColadaID = item.ColadaID.GetValueOrDefault(),
-                            NumeroColada = item.NumeroColada,
-                            Localizacion = item.Localizacion,
-                            TemplateMensajeTrabajosAdicionales = item.TabajosAdicionales,
-                            juntaSpoolID = item.JuntaSpoolID,
+                            TemplateTrabajosAdicionales = item.TabajosAdicionales,
                             FechaSoldadura = item.FechaSoldadura,
-                            DetalleAdicional = GenerarTrabajoAdicionalJson((List<Sam3_Soldadura_Get_DetalleTrabajoAdicional_Result>)CapturaSoldaduraBD.Instance.DetallaSoldaduraAdicional(capturaDatosJson.JuntaSoldaduraID, usuario), usuario),
-                            Raiz = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRaizAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                            RaizDetalle = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRaizAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                            RaizInicial = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRaizAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                            Relleno = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRellenoAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                            RellenoDetalle = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRellenoAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                            RellenoInicial = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRellenoAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
                             listaTrabajosAdicionalesSoldadura = (List<TrabajosAdicionalesSoldadura>)CapturaSoldaduraBD.Instance.ObtenerTrabajosAdicionales(item.JuntaSpoolID),
-                            ListadoRaiz = (List<SoldadorRaizCertificado>)CapturaSoldaduraBD.Instance.ObtenerListadoRaiz(item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRaizID.ToString()), item.TipoJunta, item.Diametro, decimal.Parse(item.Espesor.ToString()), item.Cedula, 0, capturaDatosJson.IDProyecto),
-                            ListadoRelleno = (List<SoldadorRaizCertificado>)CapturaSoldaduraBD.Instance.ObtenerListadoRelleno(item.ProcesoSoldaduraRellenoID == null ? 0 : int.Parse(item.ProcesoSoldaduraRellenoID.ToString()), item.TipoJunta, item.Diametro, decimal.Parse(item.Espesor.ToString()), item.Cedula, 1, capturaDatosJson.IDProyecto),
-                            ListadoSoldadoresTrabajos = (List<ObreroSoldador>)CapturaSoldaduraBD.Instance.ObtenerListadoSoldaduresTrabajo(),
                             ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
-                            ListadoProcesoSoldadura = (List<ProcesoSoldadura>)CapturaSoldaduraBD.Instance.ObtenerProcesosSoldadura(),
-                            ListaColada = (List<Colada>)CapturaSoldaduraBD.Instance.ObtenerListadoColada(capturaDatosJson.IDProyecto),
-                            ListaWPS= listaWPS
-                        };
-                        detalleDatos.listaTrabajosAdicionalesSoldadura.Insert(0, new TrabajosAdicionalesSoldadura
-                        {
-                            TrabajoAdicionalID = 0,
-                            TrabajoAdicional = "",
-                            SignoInformativo = ""
-                        });
+                            ListaWPS = null,// (List<WPS>)WPSBd.Instance.ObtenerWPS(1, usuario)
+                            ListaCedulas=(List<ListaCombos>) CedulasBd.Instance.obtenerCedulas()
+                    };
+                       
                         listaDetalleDatos.Add(detalleDatos);
                     }
                 }
-                return serializer.Serialize(listaDetalleDatos.OrderBy(x => int.Parse(x.Junta)));
+                return serializer.Serialize(listaDetalleDatos.OrderByDescending(x => int.Parse(x.Junta)));
 
             }
             else
@@ -321,7 +285,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                 DetalleDatosJsonSoldadura capturaDatosJson = serializer.Deserialize<DetalleDatosJsonSoldadura>(JsonEditar);
                 capturaDatosJson.SinCaptura = capturaDatosJson.SinCaptura == "Todos" ? "1" : "0";
                 List<DetalleDatosJsonSoldadura> listaDetalleDatos = new List<DetalleDatosJsonSoldadura>();
-                List<Sam3_Soldadura_Get_DetalleJunta_Result> detalle = (List<Sam3_Soldadura_Get_DetalleJunta_Result>)CapturaSoldaduraBD.Instance.ObtenerDetalleSoldadura(capturaDatosJson, usuario, lenguaje);
+                List<Sam3_Soldadura_Get_DetalleJunta_Result> detalle = (List<Sam3_Soldadura_Get_DetalleJunta_Result>)CapturaSoldaduraBD.Instance.ObtenerDetalleSoldadura(capturaDatosJson.JuntaID, usuario, lenguaje);
 
 
                 foreach (Sam3_Soldadura_Get_DetalleJunta_Result item in detalle)
@@ -329,17 +293,17 @@ namespace BackEndSAM.Controllers.SoldaduraController
                     DetalleDatosJsonSoldadura detalleDatos = new DetalleDatosJsonSoldadura
                     {
                         DetalleJunta = "Tipo Junta: " + item.TipoJunta + " - " + "Cedula: " + item.Cedula + " - " + "Localización: " + item.Localizacion,
-                        EtiquetaMaterial1 = item.EtiquetaMaterial1,
-                        EtiquetaMaterial2 = item.EtiquetaMaterial2,
-                        Etiqueta = item.Etiqueta,
-                        JuntaTrabajoID = item.JuntaTrabajoID.ToString(),
-                        NumeroUnico1ID = item.NumeroUnico1ID == null ? "0" : item.NumeroUnico1ID.ToString(),
-                        NumeroUnico2ID = item.NumeroUnico2ID == null ? "0" : item.NumeroUnico2ID.ToString(),
-                        SoldadoresRaiz = item.SoldadoresRaiz,
-                        SoldadoresRelleno = item.SoldadoresRelleno,
-                        TrabajosAdicionales = item.TabajosAdicionales,
+                        //EtiquetaMaterial1 = item.EtiquetaMaterial1,
+                        //EtiquetaMaterial2 = item.EtiquetaMaterial2,
+                        //Etiqueta = item.Etiqueta,
+                        //JuntaTrabajoID = item.JuntaTrabajoID.ToString(),
+                        //NumeroUnico1ID = item.NumeroUnico1ID == null ? "0" : item.NumeroUnico1ID.ToString(),
+                        //NumeroUnico2ID = item.NumeroUnico2ID == null ? "0" : item.NumeroUnico2ID.ToString(),
+                        TemplateSoldadoresRaiz = item.SoldadoresRaiz,
+                        TemplateSoldadoresRelleno = item.SoldadoresRelleno,
+                        //TrabajosAdicionales = item.TabajosAdicionales,
                         TipoJuntaID = item.TipoJuntaID.ToString(),
-                        JuntaSoldaduraID = item.JuntaSoldaduraID == null ? 0 : int.Parse(item.JuntaSoldaduraID.ToString()),
+                        //JuntaSoldaduraID = item.JuntaSoldaduraID == null ? 0 : int.Parse(item.JuntaSoldaduraID.ToString()),
                         Accion = item.JuntaSoldaduraID == null ? 1 : 2,
                         procesoSoldaduraRaizID = item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRaizID.ToString()),
                         procesoSoldaduraRellenoID = item.ProcesoSoldaduraRellenoID == null ? 0 : int.Parse(item.ProcesoSoldaduraRellenoID.ToString()),
@@ -357,24 +321,24 @@ namespace BackEndSAM.Controllers.SoldaduraController
                         TipoJunta = item.TipoJunta,
                         Cedula = item.Cedula,
                         Diametro = item.Diametro,
-                        Espesor = decimal.Parse(item.Espesor.ToString()),
+                        //Espesor = decimal.Parse(item.Espesor.ToString()),
                         FechaSoldadura = item.FechaSoldadura == null ? capturaDatosJson.FechaSoldadura : item.FechaSoldadura.ToString(),
                         TallerID = item.TallerID == null ? capturaDatosJson.TallerID : item.TallerID.ToString(),
                         Taller = item.Taller == null ? capturaDatosJson.Taller : item.Taller,
-                        Localizacion = item.Localizacion,
-                        TemplateMensajeTrabajosAdicionales = item.TabajosAdicionales,
-                        juntaSpoolID = item.JuntaSpoolID,
-                        DetalleAdicional = GenerarTrabajoAdicionalJson((List<Sam3_Soldadura_Get_DetalleTrabajoAdicional_Result>)CapturaSoldaduraBD.Instance.DetallaSoldaduraAdicional(int.Parse(item.JuntaSpoolID.ToString()), usuario), usuario),
-                        Raiz = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRaizAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                        RaizDetalle = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRaizAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                        Relleno = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRellenoAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
-                        RellenoDetalle = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRellenoAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
+                        //Localizacion = item.Localizacion,
+                        TemplateTrabajosAdicionales = item.TabajosAdicionales,
+                        //juntaSpoolID = item.JuntaSpoolID,
+                        //DetalleAdicional = GenerarTrabajoAdicionalJson((List<Sam3_Soldadura_Get_DetalleTrabajoAdicional_Result>)CapturaSoldaduraBD.Instance.DetallaSoldaduraAdicional(int.Parse(item.JuntaSpoolID.ToString()), usuario), usuario),
+                        //Raiz = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRaizAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
+                        //RaizDetalle = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRaizAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
+                        //Relleno = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRellenoAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
+                        //RellenoDetalle = GenerarRaizJson((List<Sam3_Soldadura_Get_DetalleSoldadorProceso_Result>)CapturaSoldaduraBD.Instance.DetallaRellenoAdicional(item.JuntaSoldaduraID.GetValueOrDefault(), usuario), item.JuntaSpoolID),
                         listaTrabajosAdicionalesSoldadura = (List<TrabajosAdicionalesSoldadura>)CapturaSoldaduraBD.Instance.ObtenerTrabajosAdicionales(item.JuntaSpoolID),
-                        ListadoRaiz = (List<SoldadorRaizCertificado>)CapturaSoldaduraBD.Instance.ObtenerListadoRaiz(item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRaizID.ToString()), item.TipoJunta, item.Diametro, decimal.Parse(item.Espesor.ToString()), item.Cedula, 1, capturaDatosJson.IDProyecto),
-                        ListadoRelleno = (List<SoldadorRaizCertificado>)CapturaSoldaduraBD.Instance.ObtenerListadoRelleno(item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRellenoID.ToString()), item.TipoJunta, item.Diametro, decimal.Parse(item.Espesor.ToString()), item.Cedula, 0, capturaDatosJson.IDProyecto),
-                        ListadoSoldadoresTrabajos = (List<ObreroSoldador>)CapturaSoldaduraBD.Instance.ObtenerListadoSoldaduresTrabajo(),
-                        ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
-                        ListadoProcesoSoldadura = (List<ProcesoSoldadura>)CapturaSoldaduraBD.Instance.ObtenerProcesosSoldadura()
+                        //ListadoRaiz = (List<SoldadorRaizCertificado>)CapturaSoldaduraBD.Instance.ObtenerListadoRaiz(item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRaizID.ToString()), item.TipoJunta, item.Diametro, decimal.Parse(item.Espesor.ToString()), item.Cedula, 1, capturaDatosJson.IDProyecto),
+                        //ListadoRelleno = (List<SoldadorRaizCertificado>)CapturaSoldaduraBD.Instance.ObtenerListadoRelleno(item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRellenoID.ToString()), item.TipoJunta, item.Diametro, decimal.Parse(item.Espesor.ToString()), item.Cedula, 0, capturaDatosJson.IDProyecto),
+                        //ListadoSoldadoresTrabajos = (List<ObreroSoldador>)CapturaSoldaduraBD.Instance.ObtenerListadoSoldaduresTrabajo(),
+                        ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto))//,
+                        //ListadoProcesoSoldadura = (List<ProcesoSoldadura>)CapturaSoldaduraBD.Instance.ObtenerProcesosSoldadura()
                     };
                     listaDetalleDatos.Add(detalleDatos);
                 }

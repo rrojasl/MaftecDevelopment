@@ -730,3 +730,50 @@ function tieneClase(item) {
     }
     return false
 }
+
+function RenderComboBoxCedula(container, options)
+{
+   
+    
+    $('<input data-text-field="value" id=' + options.model.uid + ' data-value-field="id" data-bind="value:' + options.field + '"/>')
+        .appendTo(container)
+        .kendoComboBox({
+            suggest: true,
+            delay: 10,
+            filter: "contains",
+            autoBind: false,
+            dataSource: options.model.ListaCedulas,
+            template: "<i class=\"fa fa-#=data.value#\"></i> #=data.value#",
+          
+            change: function (e) {
+                dataItem = this.dataItem(e.sender.selectedIndex);
+                if (dataItem != undefined) {
+                    options.model.Cedula = dataItem.value;
+                    options.model.CedulaID = dataItem.id;
+                }
+                else {
+                    options.model.Cedula = ObtenerDescCorrectaCedula(ItemSeleccionado.ListaColada, options.model.CedulaID);
+
+                }
+            }
+        }
+        );
+    $(".k-combobox").parent().on('mouseleave', function (send) {
+        var e = $.Event("keydown", { keyCode: 27 });
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
+        }
+    });
+    
+}
+
+function ObtenerDescCorrectaCedula(lista, CedulaID) {
+    for (var i = 0; i < lista.length; i++) {
+        if (lista[i].id == CedulaID)
+            return lista[i].idS;
+    }
+    return "";
+}
