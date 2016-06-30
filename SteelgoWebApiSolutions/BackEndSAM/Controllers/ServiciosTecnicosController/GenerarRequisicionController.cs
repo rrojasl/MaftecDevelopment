@@ -141,7 +141,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Diametro = item.Diametro,
                             Espesor = item.Espesor.GetValueOrDefault(),
                             TipoJunta = item.TipoJunta,
-                            //Prioridad = item.Prioridad.GetValueOrDefault(),
+                            Prioridad = item.Prioridad.GetValueOrDefault(),
                             Proyecto = item.Proyecto,
                             ProyectoID = item.ProyectoID,
                             //PruebaElementoID = item.PruebaElementoID,
