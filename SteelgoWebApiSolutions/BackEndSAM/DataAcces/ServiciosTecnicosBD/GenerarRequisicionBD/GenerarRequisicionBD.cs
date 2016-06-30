@@ -52,13 +52,13 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object getNuevaJunta(int juntaTrabajoID, int pruebaID, int proyectoID)
+        public object getNuevaJunta(int juntaTrabajoID, int proyectoID)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo_Result> result = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo(juntaTrabajoID,pruebaID,proyectoID).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo_Result> result = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo(juntaTrabajoID,proyectoID).ToList();
                     return result;
                 }
             }

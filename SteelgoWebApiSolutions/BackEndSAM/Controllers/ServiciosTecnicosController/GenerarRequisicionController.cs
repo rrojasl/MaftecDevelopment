@@ -94,7 +94,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
             bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
             if (tokenValido)
             {
-                return GenerarRequisicionBD.Instance.getNuevaJunta(juntaTrabajoID, pruebaID, proyectoID);
+                return GenerarRequisicionBD.Instance.getNuevaJunta(juntaTrabajoID, proyectoID);
             }
             else
             {
