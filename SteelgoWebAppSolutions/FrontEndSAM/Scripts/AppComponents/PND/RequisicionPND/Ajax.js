@@ -1,4 +1,6 @@
-﻿function ajaxObtenerTipoPruebas() {
+﻿var CampoFechaDimensionalPredeterminada = 2047;
+
+function ajaxObtenerTipoPruebas() {
     loadingStart();
     var proyecto = parseInt($("#Proyecto").val());
     $Pruebas.Pruebas.read({ token: Cookies.get("token"), proyectoID: proyecto, lenguaje: $("#language").val() }).done(function (data) {
@@ -51,6 +53,24 @@ function ajaxRequisicion() {
         
 }
 
+function AjaxObtenerSpoolID() {
+    var OrdenTrabajoOriginal = $("#InputOrdenTrabajo").val();
+    $GenerarRequisicion.GenerarRequisicion.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        if (Error(data)) {
+            if (data.OrdenTrabajo != "") {
+                $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
+            }
+            else {
+                $("#InputOrdenTrabajo").val(OrdenTrabajoOriginal);
+                displayNotify("CapturaArmadoMensajeOrdenTrabajoNoEncontrada", "", '1');
+            }
+
+            $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
+            Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
+        }
+    });
+}
+
 function ajaxObtenerProyectos() {
     $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token") }).done(function (data) {
         $("#Proyecto").data("kendoComboBox").value("");
@@ -76,8 +96,13 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
 
 
 function AjaxCargarCamposPredeterminados() {
-
     loadingStart();
+
+    $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoFechaDimensionalPredeterminada }).done(function (data) {
+        var NewDate = kendo.toString(data, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
+        endRangeDate.val(NewDate);
+    });
+
     $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
         if (data.Muestra == "Sincaptura") {
             $('input:radio[name=Muestra]:nth(0)').trigger("click");
@@ -96,14 +121,12 @@ function AjaxCargarCamposPredeterminados() {
 
 function AjaxJunta(spoolID) {
     loadingStart();
-    $CapturasRapidas.CapturasRapidas.read({ id: spoolID, sinCaptura: "otros", token: Cookies.get("token"), proceso: 3 }).done(function (data) {
-        $("#Junta").data("kendoComboBox").value("");
-        $("#Junta").data("kendoComboBox").dataSource.data(data)
-        if (data.length == 0) {
-            displayNotify("MensajeJuntasSoldadasReguisicion", "", '1');
+    $CapturasRapidas.CapturasRapidas.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: "otros", token: Cookies.get("token") }).done(function (data) {
+        if (Error(data)) {
+            $("#Junta").data("kendoComboBox").value("");
+            $("#Junta").data("kendoComboBox").dataSource.data(data);
+            loadingStop();
         }
-            
-        loadingStop();
     });
 }
 

@@ -76,7 +76,7 @@ namespace BackEndSAM.Controllers
         /// <param name="sinCaptura">muestra lso datos con o sin capturas</param>
         /// <param name="token">token</param>
         /// <returns></returns>
-        public object Get(string id, string sinCaptura, string token, int proceso)
+        public object Get(string ordenTrabajo, string id, string sinCaptura, string token)
         {
 
             string payload = "";
@@ -86,7 +86,7 @@ namespace BackEndSAM.Controllers
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                return CapturasRapidasBd.Instance.ObtenerJuntasXSpoolID(id, sinCaptura.ToLower() == "todos" ? 1 : 0, proceso);
+                return CapturasRapidasBd.Instance.ObtenerJuntasXSpoolID(usuario, ordenTrabajo, id, sinCaptura == "Todos" ? 1 : 0);
             }
             else
             {

@@ -8203,8 +8203,8 @@ _dictionary = {
         "en-US": "Priority"
     },
     "ServiciosTecnicosCuadrante": {
-        "es-MX": "Cuadrante",
-        "en-US": "Quadrant"
+        "es-MX": "CUAD",
+        "en-US": "QUAD"
     },
     "ServiciosTecnicosProyecto": {
         "es-MX": "Proyecto",
@@ -8235,8 +8235,8 @@ _dictionary = {
         "en-US": "Delete"
     },
     "ServiciosTecnicosTipoJunta": {
-        "es-MX": "Tipo de junta",
-        "en-US": "Joint type"
+        "es-MX": "T de Jta",
+        "en-US": "Jnt T"
     },
     "ServiciosTecnicosElm": {
         "es-MX": "¿Está seguro de cancelar el detalle de la captura de la requisición?",
@@ -8813,16 +8813,16 @@ _dictionary = {
         "en-US": "You must select at least 1 item"
     },
     "GenerarRequisicionClasificacion": {
-        "es-MX": "Clasificación",
-        "en-US": "Clasification"
+        "es-MX": "CLSF",
+        "en-US": "CLSF"
     },
     "GenerarRequisicionCuadrante": {
-        "es-MX": "Cuadrante",
-        "en-US": "Quadrant"
+        "es-MX": "CUAD",
+        "en-US": "QUAD"
     },
     "GenerarRequisicionPrioridad": {
-        "es-MX": "Prioridad",
-        "en-US": "Priority"
+        "es-MX": "PRIOR",
+        "en-US": "PRIOR"
     },
     "GenerarRequisicionProyecto": {
         "es-MX": "Proyecto",
@@ -8836,9 +8836,13 @@ _dictionary = {
         "es-MX": "Spool ID/Junta",
         "en-US": "Spool ID/Joint "
     },
-    "GenerarRequisicionSpoolID": {
-        "es-MX": "Spool ID",
-        "en-US": "Spool ID "
+    "GenerarRequisicionNumControl": {
+        "es-MX": "No Control",
+        "en-US": "Control Num"
+    },
+    "GenerarRequisicionEspesor": {
+        "es-MX": "E. (mm)",
+        "en-US": "T. (mm)"
     },
     "GenerarRequisicionAsignarRequisicion": {
         "es-MX": "Asignar Requisición",
@@ -9033,7 +9037,7 @@ _dictionary = {
         "en-US": "Step "
     },
     "EmbarqueConsultaCuadrante": {
-        "es-MX": "Cuadrante ",
+        "es-MX": "Cuadrante",
         "en-US": "Quadrant"
     },
     "EmbarqueConsultaTraveler": {
