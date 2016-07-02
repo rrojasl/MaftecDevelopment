@@ -70,6 +70,7 @@ function CargarGrid() {
                         Cedula: { type: "string", editable: false },
                         TipoJunta: { type: "string", editable: false },
 
+                        JuntaTrabajoID: {type: "number", editable: false},
                         CodigoAplicar: { type: "string", editable: false },
                         observacion: { type: "string", editable: false },
                         Folio: { type: "string", editable: false },
@@ -163,7 +164,7 @@ function ExisteJunta() {
     var jsonGrid = $("#grid").data("kendoGrid").dataSource._data;
 
     for (var i = 0; i < jsonGrid.length; i++) {
-        if (jsonGrid[i].IdentificadorForaneo == $("#Junta").data("kendoComboBox").value()) {
+        if (jsonGrid[i].JuntaTrabajoID == $("#Junta").data("kendoComboBox").value()) {
 
             $("#grid").data("kendoGrid").dataSource.sync();
             return false;
@@ -173,61 +174,9 @@ function ExisteJunta() {
 }
 
 function AgregarJuntaNueva() {
-
-
     if (ExisteJunta()) {
-
         loadingStart();
-        $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), juntaTrabajoID: $("#Junta").data("kendoComboBox").value(), pruebaID: $("#tipoPrueba").data("kendoComboBox").value(), proyectoID: $("#Proyecto").data("kendoComboBox").value() }).done(function (data) {
-            $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), pruebaID: $("#tipoPrueba").data("kendoComboBox").value(), lenguaje: $("#language").val(), pruebasProyectoID: data.PruebasProyectoID }).done(function (result) {
-
-                ArregloNuevoRenglon = [];
-                ArregloNuevoRenglon[0] = {
-                    Accion: "", Agregar: "",
-                    Clasificacion: "",
-                    PruebasClasificacionID: "",
-                    Cuadrante: "",
-                    Prioridad: "",
-                    Proyecto: "",
-                    ProyectoID: "",
-                    PruebaElementoID: "",
-                    EtiquetaJunta: "",
-                    IdentificadorForaneo: "",
-                    PruebasProyectoID: "",
-                    NumeroControl: "",
-                    Folio: "",
-                    PruebasID: "",
-                    RequisicionID: "",
-                    RequisicionPruebaElementoID: "",
-                    listaClasificaciones: "",
-                };
-                ArregloNuevoRenglon[0].Accion = 1;
-                ArregloNuevoRenglon[0].Agregar = true;
-                ArregloNuevoRenglon[0].Clasificacion = data[0].Clasificacion;
-                ArregloNuevoRenglon[0].PruebasClasificacionID = data[0].PruebasClasificacionID;
-                ArregloNuevoRenglon[0].Cuadrante = data[0].Cuadrante;
-                ArregloNuevoRenglon[0].Prioridad = data[0].Prioridad;
-                ArregloNuevoRenglon[0].Proyecto = data[0].Proyecto;
-                ArregloNuevoRenglon[0].ProyectoID = data[0].ProyectoID;
-                ArregloNuevoRenglon[0].PruebaElementoID = data[0].PruebaElementoID;
-                ArregloNuevoRenglon[0].IdentificadorForaneo = data[0].IdentificadorForaneo;
-                ArregloNuevoRenglon[0].PruebasProyectoID = data[0].PruebasProyectoID;
-                ArregloNuevoRenglon[0].NumeroControl = data[0].NumeroControl;
-                ArregloNuevoRenglon[0].EtiquetaJunta = data[0].EtiquetaJunta;
-
-                ArregloNuevoRenglon[0].Folio = $("#Folio").text();
-                ArregloNuevoRenglon[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
-                ArregloNuevoRenglon[0].RequisicionID = requisicionID;
-                ArregloNuevoRenglon[0].RequisicionPruebaElementoID = 0;
-                ArregloNuevoRenglon[0].listaClasificaciones = result;
-
-                var ds = $("#grid").data("kendoGrid").dataSource;
-                ds.add(ArregloNuevoRenglon[0]);
-                $("#Junta").data("kendoComboBox").value("");
-                AjaxJunta($("#InputID").data("kendoComboBox").value());
-                loadingStop();
-            });
-        });
+        AjaxObtenerJunta();
     }
     else {
         displayNotify("GenerarRequisicionMensajeJuntaAgregada", "", '1');

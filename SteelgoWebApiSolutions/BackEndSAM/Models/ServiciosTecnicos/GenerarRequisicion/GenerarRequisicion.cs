@@ -24,6 +24,7 @@ namespace BackEndSAM.Models.GenerarRequisicion
         public int PruebasProyectoID { get; set; }
         public string NumeroControl { get; set; }
         public string EtiquetaJunta { get; set; }
+        public int JuntaTrabajoID { get; set; }
         public bool Agregar { get; set; }
         public int RequisicionPruebaElementoID { get; set; }
         public int RequisicionID { get; set; }

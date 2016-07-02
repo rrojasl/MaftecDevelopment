@@ -39,7 +39,7 @@ function ajaxRequisicion() {
             $("#Observacion").val(data[0].Observacion);
             $("#Proyecto").data("kendoComboBox").value(data[0].proyectoID);
             loadingStop();
-            
+
         });
     }
     else {
@@ -50,7 +50,7 @@ function ajaxRequisicion() {
         $("#Observacion").val("");
         loadingStop();
     }
-        
+
 }
 
 function AjaxObtenerSpoolID() {
@@ -81,7 +81,7 @@ function ajaxObtenerProyectos() {
 
 function ajaxObtenerJuntasSoldadas(ProyectoID) {
     loadingStart();
-    
+
     $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), proyectoID: ProyectoID, todos: $('input:radio[name=Muestra]:checked').val(), lenguaje: $("#language").val(), reqID: requisicionID }).done(function (data) {
         $("#grid").data('kendoGrid').dataSource.data([]);
         var ds = $("#grid").data("kendoGrid").dataSource;
@@ -121,7 +121,7 @@ function AjaxCargarCamposPredeterminados() {
 
 function AjaxJunta(spoolID) {
     loadingStart();
-    $CapturasRapidas.CapturasRapidas.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: "otros", token: Cookies.get("token") }).done(function (data) {
+    $CapturasRapidas.CapturasRapidas.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: "otros", token: Cookies.get("token"), proceso: 3 }).done(function (data) {
         if (Error(data)) {
             $("#Junta").data("kendoComboBox").value("");
             $("#Junta").data("kendoComboBox").dataSource.data(data);
@@ -149,7 +149,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
     var cont = 0;
     for (index = 0; index < arregloCaptura.length; index++) {
         if (arregloCaptura[index].Agregar == true) {
-            
+
             ListaDetalles[cont] = {
                 Accion: "",
                 RequisicionPruebaElementoID: "",
@@ -167,7 +167,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
             ListaDetalles[cont].PruebasClasificacionID = arregloCaptura[index].PruebasClasificacionID;
             cont++;
         }
-        
+
     }
 
     if (ListaDetalles.length != 0) {
@@ -180,21 +180,21 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         Captura[0].RequisicionID = requisicionID;
 
         loadingStart();
-        $GenerarRequisicion.GenerarRequisicion.create(Captura[0],{ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        $GenerarRequisicion.GenerarRequisicion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0].split('|')[0] == "Ok") {
                 //mensaje = "Se guardo correctamente la informacion" + "-0";
                 if (tipoGuardar == 1) {
                     Limpiar();
                     opcionHabilitarView(false, "FieldSetView");
                     requisicionID = 0;
-                   
+
                 }
                 else {
                     requisicionID = data.ReturnMessage[0].split('|')[1];
                     ajaxObtenerJuntasSoldadas($("#tipoPrueba").data("kendoComboBox").value());
                     opcionHabilitarView(true, "FieldSetView");
-                   
-                    
+
+
                 }
                 ajaxRequisicion();
                 displayNotify("CapturaSoldaduraMensajeGuardadoExitoso", "", "0");
@@ -213,6 +213,63 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
     else {
         displayNotify("MensajeSeleccioneRequisiciones", "", "1");
     }
+}
+
+function AjaxObtenerJunta() {
+    $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), juntaTrabajoID: $("#Junta").data("kendoComboBox").value(), pruebaID: $("#tipoPrueba").data("kendoComboBox").value(), proyectoID: $("#Proyecto").data("kendoComboBox").value() }).done(function (data) {
+        $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), pruebaID: $("#tipoPrueba").data("kendoComboBox").value(), lenguaje: $("#language").val(), pruebasProyectoID: data.PruebasProyectoID }).done(function (result) {
+
+            ArregloNuevoRenglon = [];
+            ArregloNuevoRenglon[0] = {
+                Accion: "",
+                Agregar: "",
+                Cedula: "",
+                Clasificacion: "",
+                Cuadrante: "",
+                CuadranteID: "",
+                Diametro: "",
+                Espesor: "",
+                EtiquetaJunta: "",
+                JuntaSpoolID: "",
+                NumeroControl: "",
+                Prioridad: "",
+                Proyecto: "",
+                ProyectoID: "",
+                Requisicion: "",
+                SpoolID: "",
+                TipoJunta: ""
+            };
+            ArregloNuevoRenglon[0].Accion = 1;
+            ArregloNuevoRenglon[0].Agregar = true;
+            ArregloNuevoRenglon[0].Cedula = data[0].Cedula;
+            ArregloNuevoRenglon[0].Clasificacion = data[0].ClasificacionPND;
+            ArregloNuevoRenglon[0].Cuadrante = data[0].Cuadrante;
+            ArregloNuevoRenglon[0].CuadranteID = data[0].CuadranteID;
+            ArregloNuevoRenglon[0].Diametro = data[0].Diametro;
+            ArregloNuevoRenglon[0].Espesor = data[0].Espesor;
+            ArregloNuevoRenglon[0].EtiquetaJunta = data[0].Etiqueta;
+            ArregloNuevoRenglon[0].JuntaSpoolID = data[0].JuntaSpoolID;
+            ArregloNuevoRenglon[0].NumeroControl = data[0].NumeroControl;
+            ArregloNuevoRenglon[0].Prioridad = data[0].Prioridad;
+            ArregloNuevoRenglon[0].Proyecto = data[0].Proyecto;
+            ArregloNuevoRenglon[0].ProyectoID = data[0].ProyectoID;
+            ArregloNuevoRenglon[0].Requisicion = data[0].RequisicionJuntaSpoolID;
+            ArregloNuevoRenglon[0].SpoolID = data[0].SpoolID;
+            ArregloNuevoRenglon[0].TipoJunta = data[0].TipoJunta;
+
+            ArregloNuevoRenglon[0].Folio = $("#Folio").text();
+            ArregloNuevoRenglon[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
+            ArregloNuevoRenglon[0].RequisicionID = requisicionID;
+            ArregloNuevoRenglon[0].RequisicionPruebaElementoID = 0;
+            ArregloNuevoRenglon[0].listaClasificaciones = result;
+
+            var ds = $("#grid").data("kendoGrid").dataSource;
+            ds.add(ArregloNuevoRenglon[0]);
+            $("#Junta").data("kendoComboBox").value("");
+            AjaxJunta($("#InputID").data("kendoComboBox").value());
+            loadingStop();
+        });
+    });
 }
 
 

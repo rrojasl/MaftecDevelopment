@@ -124,8 +124,6 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                     JsonRequisicion elemento;
                     try
                     {
-
-
                         elemento = new JsonRequisicion
                         {
                             Accion =  1,
@@ -133,6 +131,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Clasificacion = item.ClasificacionPND,
                             Cuadrante = item.Cuadrante,
                             EtiquetaJunta = item.Etiqueta,
+                            JuntaTrabajoID = item.JuntaTrabajoID,
                             Folio = "",
                             //IdentificadorForaneo = item.IdentificadorForaneo,
                             NumeroControl = item.NumeroControl,
@@ -155,7 +154,6 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                     }
                     catch (Exception ex)
                     {
-
                         throw;
                     }
                     listaJson.Add(elemento);

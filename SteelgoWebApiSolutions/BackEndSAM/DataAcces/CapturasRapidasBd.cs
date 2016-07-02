@@ -91,6 +91,27 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        public object ObtenerJuntasXSpoolIDPNDs(Sam3_Usuario usuario, string ordenTrabajo, string id, int sinCaptura, int proceso)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Steelgo_Get_JuntaSpool_Result> lista = ctx.Sam3_Steelgo_Get_JuntaSpool(sinCaptura, int.Parse(id), proceso).ToList();
+                    return lista.OrderBy(x => int.Parse(x.Etiqueta)).ToList<Sam3_Steelgo_Get_JuntaSpool_Result>();
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+                return result;
+            }
+        }
+
         public object ObtenerDetalleDimensional(int id, string lenguaje)
         {
             try
