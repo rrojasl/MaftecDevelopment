@@ -71,12 +71,10 @@ namespace BackEndSAM.Models.GenerarRequisicion
     }
     public class DetalleGuardarJson
     {
-        public string Accion { get; set; }
-        public string RequisicionPruebaElementoID { get; set; }
-        public string PruebaElementoID { get; set; }
-        public string PruebasProyectoID { get; set; }
-        public string IdentificadorForaneo { get; set; }
-        public string PruebasClasificacionID { get; set; }
+        public int Accion { get; set; }
+        public int RequisicionJuntaSpoolID { get; set; }
+        public int JuntaSpoolID { get; set; }
+        public int RequisicionID { get; set; }
     }
     public class Proyecto
     {
