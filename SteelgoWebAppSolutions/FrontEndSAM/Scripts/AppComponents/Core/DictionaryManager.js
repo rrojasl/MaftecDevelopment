@@ -8853,8 +8853,8 @@ _dictionary = {
         "en-US": "Assign Requisition"
     },
     "GenerarRequisicionMensajeJuntaAgregada": {
-        "es-MX": "Junta agregada",
-        "en-US": "Agree Joint"
+        "es-MX": "Junta ya agregada",
+        "en-US": "Joint already added"
     },
     //#endregion
     //#region ListadoRequisicion
