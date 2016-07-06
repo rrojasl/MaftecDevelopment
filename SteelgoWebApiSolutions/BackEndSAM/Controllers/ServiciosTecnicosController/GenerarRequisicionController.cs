@@ -143,6 +143,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Prioridad = item.Prioridad.GetValueOrDefault(),
                             Proyecto = item.Proyecto,
                             ProyectoID = item.ProyectoID,
+                            NombrePrueba = item.NombrePrueba
                             //PruebaElementoID = item.PruebaElementoID,
                             //PruebasClasificacionID = int.Parse(item.PruebasClasificacionID.ToString()),
                             //PruebasID = item.PruebasID,

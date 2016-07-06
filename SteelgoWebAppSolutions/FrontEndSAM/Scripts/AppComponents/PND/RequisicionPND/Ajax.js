@@ -22,7 +22,6 @@ function ajaxObtenerTipoPruebasRequisicionEdicion() {
     });
 }
 
-
 function ajaxRequisicion() {
     loadingStart();
     if (requisicionID != 0) {
@@ -55,9 +54,20 @@ function ajaxRequisicion() {
 
 function AjaxObtenerSpoolID() {
     var OrdenTrabajoOriginal = $("#InputOrdenTrabajo").val();
+    var proyectoID = $("#Proyecto").data("kendoComboBox")._selectedValue;
+    var proyectoName = $("#Proyecto").data("kendoComboBox")._prev;
     $GenerarRequisicion.GenerarRequisicion.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-        if (Error(data)) {
-            if (data.OrdenTrabajo != "") {
+        if (Error(data)) {   
+            for (i = data.idStatus.length-1; i >= 0; i--) {
+                if(data.idStatus[i].ProyectoID != proyectoID)
+                    data.idStatus.splice(i,1);
+            }
+            if (data.idStatus.length == 0) {
+                data.OrdenTrabajo = "";
+                $("#InputOrdenTrabajo").val("");
+                displayNotify("", _dictionary.GenerarRequisicionExisteJunta1[$("#language").data("kendoDropDownList").value()] + OrdenTrabajoOriginal + _dictionary.GenerarRequisicionExisteJunta2[$("#language").data("kendoDropDownList").value()] + proyectoName, '1');
+            }
+            else if (data.OrdenTrabajo != "") {
                 $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
             }
             else {
@@ -78,7 +88,6 @@ function ajaxObtenerProyectos() {
     });
 }
 
-
 function ajaxObtenerJuntasSoldadas(ProyectoID) {
     loadingStart();
 
@@ -90,10 +99,19 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
             ds.add(array[i]);
         }
         $('#containerDiv').css('display', 'block');
+
+        var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
+        var tipoPrueba = $("#tipoPrueba").data("kendoComboBox").value();
+        for (i = jsonGridArmado.length - 1; i >= 0; i--) {
+            if (jsonGridArmado[i].NombrePrueba != tipoPrueba && tipoPrueba != 0)
+                jsonGridArmado.splice(i, 1);
+        }
+        var ds = $("#grid").data("kendoGrid").dataSource;
+        ds = jsonGridArmado;
+
         loadingStop();
     });
 }
-
 
 function AjaxCargarCamposPredeterminados() {
     loadingStart();
@@ -118,7 +136,6 @@ function AjaxCargarCamposPredeterminados() {
 
 };
 
-
 function AjaxJunta(spoolID) {
     loadingStart();
     $CapturasRapidas.CapturasRapidas.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: "otros", token: Cookies.get("token"), proceso: 3 }).done(function (data) {
@@ -129,8 +146,6 @@ function AjaxJunta(spoolID) {
         }
     });
 }
-
-
 
 function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
     Captura = [];
@@ -271,5 +286,3 @@ function AjaxObtenerJunta() {
         });
     });
 }
-
-

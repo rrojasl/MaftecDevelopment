@@ -9,11 +9,9 @@
     SuscribirEventoOcultarDivJunta();
 }
 
-
 function SuscribirEventoOcultarDivJunta() {
     $('#containerDiv').css('display', 'none');
 }
-
 
 function suscribirEventoGuardar() {
     $('#Guardar').click(function (e) {
@@ -137,6 +135,8 @@ function suscribirEventoProyecto() {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined && dataItem.Nombre != "") {
                 ajaxObtenerTipoPruebas();
+                ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
+                LimpiarRowJunta();
             }
             else {
                 $("#Proyecto").data("kendoComboBox").value("");
@@ -157,7 +157,7 @@ function suscribirEventoTipoPrueba() {
         index: 3,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
-            if (dataItem != undefined && dataItem.Nombre != "") {
+            if (dataItem != undefined) {
                 ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
             }
             else {
@@ -311,6 +311,12 @@ function Limpiar() {
 
 
     $("#grid").data('kendoGrid').dataSource.data([]);
+}
+
+function LimpiarRowJunta() {
+    $("#InputOrdenTrabajo").val("");
+    $("#InputID").data("kendoComboBox").value("");
+    $("#Junta").data("kendoComboBox").value("");
 }
 
 function opcionHabilitarView(valor, name) {

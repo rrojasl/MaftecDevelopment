@@ -8856,6 +8856,18 @@ _dictionary = {
         "es-MX": "Junta ya agregada",
         "en-US": "Joint already added"
     },
+    "GenerarRequisicionExisteJunta1": {
+        "es-MX": "No existe el Spool ",
+        "en-US": "The Spool "
+    },
+    "GenerarRequisicionExisteJunta2": {
+        "es-MX": " relacionado al proyecto ",
+        "en-US": " doesn't exite in the proyect "
+    },
+    "GenerarRequisicionNombrePrueba": {
+        "es-MX": "Prueba",
+        "en-US": "Test"
+    },
     //#endregion
     //#region ListadoRequisicion
     "ListaRequisicionFolio": {

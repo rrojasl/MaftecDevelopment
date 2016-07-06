@@ -35,6 +35,7 @@ namespace BackEndSAM.Models.GenerarRequisicion
         public decimal Espesor { get; set; }
         public string Cedula { get; set; }
         public string TipoJunta { get; set; }
+        public string NombrePrueba { get; set; }
 
     }
     public class IdOrdenTrabajo
