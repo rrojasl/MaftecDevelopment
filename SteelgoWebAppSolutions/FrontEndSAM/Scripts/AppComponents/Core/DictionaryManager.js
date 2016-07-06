@@ -8,7 +8,7 @@ _dictionary = {
 
     "SoldadorPQRExistente":
     {
-        "es-MX": "El soldador ya existe con el pqr seleccionado ¿Deseas Actualizarlo?",
+        "es-MX": "El soldador ya existe con el pqr seleccionado ¿Deseas AcAsignarRequisicionHeaderHerramientaPruebastualizarlo?",
         "en-US": "The welder already exists with selected PQR Want to upgrade?"
     },
     "MensajeCamposIncorrector":
@@ -8923,20 +8923,20 @@ _dictionary = {
         "en-US": "Provider"
     },
     "AsignarRequisicionHeaderCantidadJuntas": {
-        "es-MX": "Cantidad Juntas",
-        "en-US": "Total Joint"
+        "es-MX": "No. Jtas",
+        "en-US": "No. Jnts"
     },
     "AsignarRequisicionHeaderPrueba": {
         "es-MX": "Pruebas",
         "en-US": "Test"
     },
     "AsignarRequisicionHeaderHerramientaPruebas": {
-        "es-MX": "Herramientas de prueba",
-        "en-US": "Test tools"
+        "es-MX": "Fuente",
+        "en-US": "Source"
     },
     "AsignarRequisicionHeaderTurnoLaboral": {
-        "es-MX": "Turno Laboral",
-        "en-US": "Work shift"
+        "es-MX": "Turno",
+        "en-US": "Inning"
     },
 
 

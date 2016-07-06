@@ -28,7 +28,7 @@ function CargarGrid() {
                         Clave: { type: "string", editable: false },
                         Nombre: { type: "string", editable: false },
                         Observacion: { type: "string", editable: false },
-                        Fecha: { type: "date", editable: true },
+                        Fecha: { type: "date", editable: false },
                         RequisicionID: { type: "int", editable: false },
                         Requisicion: { type: "string", editable: false },
                         CantidadJuntas: { type: "number", editable: false },
