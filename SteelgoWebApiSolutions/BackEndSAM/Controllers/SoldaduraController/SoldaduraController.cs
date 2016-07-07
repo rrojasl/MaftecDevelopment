@@ -174,7 +174,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                 DetalleCapturaSoldadura capturaDatosJson = serializer.Deserialize<DetalleCapturaSoldadura>(JsonCaptura);
                 capturaDatosJson.SinCaptura = capturaDatosJson.SinCaptura == "Todos" ? "1" : "0";
 
-                
+                List<ProcesoSoldadura> ListadoProcesoSoldadura = (List<ProcesoSoldadura>)CapturaSoldaduraBD.Instance.ObtenerProcesosSoldadura();
 
                 List<Sam3_Steelgo_Get_JuntaSpool_Result> listaJuntasXSpool = null;
                 if (isReporte)
@@ -229,8 +229,10 @@ namespace BackEndSAM.Controllers.SoldaduraController
                             listaTrabajosAdicionalesSoldadura = (List<TrabajosAdicionalesSoldadura>)CapturaSoldaduraBD.Instance.ObtenerTrabajosAdicionales(item.JuntaSpoolID),
                             ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
                             ListaWPS = null,// (List<WPS>)WPSBd.Instance.ObtenerWPS(1, usuario)
-                            ListaCedulas=(List<ListaCombos>) CedulasBd.Instance.obtenerCedulas()
-                    };
+                            ListaCedulas=(List<ListaCombos>) CedulasBd.Instance.obtenerCedulas(),
+                            ListadoProcesoSoldaduraRaiz = ListadoProcesoSoldadura,
+                            ListadoProcesoSoldaduraRelleno= ListadoProcesoSoldadura
+                        };
                        
                         listaDetalleDatos.Add(detalleDatos);
                     }

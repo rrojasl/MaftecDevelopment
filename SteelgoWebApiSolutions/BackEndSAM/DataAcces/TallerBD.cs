@@ -48,6 +48,8 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
                     List<Sam3_SteelGo_Get_Taller_Result> lista = ctx.Sam3_SteelGo_Get_Taller(idProyecto).ToList();
+                    lista.Insert(0, new  Sam3_SteelGo_Get_Taller_Result());
+                    lista[0].Nombre = "";
                     return lista;
                 }
             }

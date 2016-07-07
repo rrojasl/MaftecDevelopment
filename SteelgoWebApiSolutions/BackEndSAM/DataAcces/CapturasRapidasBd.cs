@@ -133,5 +133,33 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        /// <summary>
+        /// obtiene las juntas que tiene la orden de trabajo
+        /// </summary>
+        /// <param name="usuario">usuario</param>
+        /// <param name="id">identificador de la Orden de trabajo Spool</param>
+        /// <param name="sinCaptura">indica si retorna todas las juntas o solo las pendientes de capturar</param>
+        /// <returns></returns>
+        public object ObtenerJuntasXSpoolID(string id, int sinCaptura, int proceso)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Steelgo_Get_JuntaSpool_Result> lista = ctx.Sam3_Steelgo_Get_JuntaSpool(sinCaptura, int.Parse(id), proceso).ToList();
+                    return lista;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+                return result;
+            }
+        }
+
     }
 }

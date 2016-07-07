@@ -494,7 +494,7 @@ function ObtenerDescCorrectaTaller(lista, TallerID) {
 
 function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
     loadingStart();
-    if (ItemSeleccionado.PermiteTerminadoRaiz) {
+    //if (ItemSeleccionado.PermiteTerminadoRaiz) {
         var dataItem;
         $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
@@ -503,7 +503,7 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: ItemSeleccionado.ListadoProcesoSoldadura,
+                dataSource: ItemSeleccionado.ListadoProcesoSoldaduraRaiz,
                 template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
                 select: function (e) {
                     dataItem = this.dataItem(e.item.index());
@@ -534,9 +534,9 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
             }
         });
 
-    }
-    else
-        displayNotify("CapturaSoldaduraMensajePermisoTerminadoRaiz", "", "1");
+    //}
+    //else
+    //    displayNotify("CapturaSoldaduraMensajePermisoTerminadoRaiz", "", "1");
     loadingStop();
 }
 
@@ -561,7 +561,7 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: ItemSeleccionado.ListadoProcesoSoldadura,
+                dataSource: ItemSeleccionado.ListadoProcesoSoldaduraRelleno,
                 template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
                 select: function (e) {
                     dataItem = this.dataItem(e.item.index());
