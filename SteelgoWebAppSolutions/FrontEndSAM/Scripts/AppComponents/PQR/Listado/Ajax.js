@@ -17,6 +17,7 @@ function LlenaGridAjax() {
 };
 
 function AjaxGuardarListado() {
+    $("#grid").data("kendoGrid").dataSource.sync();
     var dataSource = $("#grid").data("kendoGrid").dataSource;
     var filters = dataSource.filter();
     var arregloCaptura = dataSource.data();

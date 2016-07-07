@@ -339,7 +339,13 @@ function SuscribirEventosJunta() {
         suggest: true,
         delay: 10,
         filter: "contains",
-        index: 3
+        index: 3,
+        change: function (e) {
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem == undefined) {
+                $("#Junta").data("kendoComboBox").value("");
+            }
+        }
     });
 
     $('#Junta').closest('.k-widget').keydown(function (e) {

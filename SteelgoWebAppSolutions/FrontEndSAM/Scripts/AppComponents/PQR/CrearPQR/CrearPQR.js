@@ -41,6 +41,11 @@ function ConvertirCombos() {
                 $("#EspesorRelleno").data("kendoNumericTextBox").enable(true);
                 $("#EspesorRelleno").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").show();
             }
+
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem == undefined) {
+                $("#EspesorRelleno").data("kendoComboBox").value("");
+            }
         }
     });
 
@@ -71,6 +76,10 @@ function ConvertirCombos() {
                 $("#EspesorRaiz").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").show();
                 $("#EspesorRaiz").data("kendoNumericTextBox").readonly(false);
                 $("#EspesorRaiz").data("kendoNumericTextBox").enable(true);
+            }
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem == undefined) {
+                $("#EspesorRelleno").data("kendoComboBox").value("");
             }
         }
     });

@@ -8331,12 +8331,12 @@ _dictionary = {
         "en-US": "The field PQR name is mandatory"
     },
     "lblPQREspRellMandatorio": {
-        "es-MX": "El campo espesor relleno es mandatorio",
-        "en-US": "The field padding thickness is mandatory"
+        "es-MX": "El campo E. relleno es mandatorio",
+        "en-US": "The field padding thick is mandatory"
     },
     "lblPQREspRaizMandatorio": {
-        "es-MX": "El campo espesor raiz es mandatorio",
-        "en-US": "The field root thickness is mandatory"
+        "es-MX": "El campo E. raiz es mandatorio",
+        "en-US": "The field root thick is mandatory"
     },
     "lblPQRProcSoldMandatorio": {
         "es-MX": "El campo proceso de soldadura de relleno es mandatorio",
