@@ -21,7 +21,29 @@
     GuardarRellenoMultiselect();
     SuscribirEventoProcesosRaiz();
     SuscribirEventoProcesosRelleno();
+    SuscribirFechaSoldadura();
 };
+
+function SuscribirFechaSoldadura() {
+
+    endRangeDate = $("#FechaSoldadura").kendoDatePicker({
+        max: new Date(),
+        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()],
+        change: function (e) {
+            ValidarFecha(e.sender._value)
+        }
+    });
+
+    endRangeDate.on("keydown", function (e) {
+        if (e.keyCode == 9) {
+            ValidarFecha($("#FechaSoldadura").data("kendoDatePicker").value());
+        }
+    });
+
+    $("#FechaSoldadura").blur(function (e) {
+        ValidarFecha($("#FechaSoldadura").data("kendoDatePicker").value());
+    });
+}
 
 function suscribirEventoAdicionales() {
     $(document).on('click', '.botonAdicionales', function (e) {
@@ -341,6 +363,16 @@ function SuscribirEventoTaller() {
             }
 
         }
+    });
+
+    $('#inputTaller').blur(function (e) {
+        dataItem = $("#inputTaller").data("kendoComboBox").dataItem($("#inputTaller").data("kendoComboBox").select());
+        if ( dataItem == undefined) {
+            
+            $("#inputTaller").data("kendoComboBox").value("");
+            $("#inputTaller").data("kendoComboBox").select(0);
+        }
+
     });
 }
 

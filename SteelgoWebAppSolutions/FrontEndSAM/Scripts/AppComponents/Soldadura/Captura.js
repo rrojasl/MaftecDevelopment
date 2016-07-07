@@ -941,7 +941,7 @@ function cancelarCaptura(e) {
 
 
 function changeLanguageCall() {
-    AltaFecha();
+    
     asignarProyecto();
     SuscribirEventos();
 
@@ -953,20 +953,7 @@ function changeLanguageCall() {
    
 };
 
-function AltaFecha() {
 
-    endRangeDate = $("#FechaSoldadura").kendoDatePicker({
-        max: new Date(),
-        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
-    });
-
-    //endRangeDate.on("keydown", function (e) {
-    //    if (e.keyCode == 13) {
-    //        PlanchaFecha();
-    //    }
-    //});
-
-}
 
 function desplegarNotificacion() {
     var tipoCapturaSpool = $('input:radio[name=TipoAgregado]:checked').val() == "Listado" ? false : true;
@@ -1017,6 +1004,14 @@ function ExisteJunta(Row) {
         }
     }
     return false;
+}
+
+
+function ValidarFecha(valor) {
+    var fecha = kendo.toString(valor, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+    if (fecha == null) {
+        $("#FechaSoldadura").data("kendoDatePicker").value('');
+    }
 }
 
 function deshabilitarFechasFuturo() {
