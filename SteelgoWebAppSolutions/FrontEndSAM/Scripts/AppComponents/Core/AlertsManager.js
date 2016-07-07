@@ -118,7 +118,7 @@ function displayNotify( message, extraMessage, type) {
             in_class: 'slideInDown',
             out_class: 'slideOutUp'
         },
-        delay: 2000,
+        delay: 5000,
     };
 
     switch (type) {

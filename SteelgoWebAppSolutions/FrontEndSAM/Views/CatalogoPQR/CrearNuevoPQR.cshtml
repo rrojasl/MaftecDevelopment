@@ -10,6 +10,9 @@
     <li>
         <a href="#"><span id="SoldadorCertificacionConfiguracionSoldadura"></span></a>
     </li>
+    <li >
+        <a href="@Url.Action("PQR", "PQR")"><span id="lblPQRNavegacion"></span></a>
+    </li>
     <li class="active">
         <a href="@Url.Action("CrearNuevoPQR", "CatalogoPQR")"><span id="lblCrearPQRNavegacion"></span></a>
     </li>
@@ -205,5 +208,5 @@
     <script>
     @section JavascriptDocumentReadyFunctions {
         $authorizationModel["Edita PQR"] = $PQRModel;
-    }
+        }
     </script>
