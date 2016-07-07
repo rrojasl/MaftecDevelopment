@@ -143,10 +143,10 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Prioridad = item.Prioridad.GetValueOrDefault(),
                             Proyecto = item.Proyecto,
                             ProyectoID = item.ProyectoID,
+                            PruebasID = item.TipoPruebaID,
                             NombrePrueba = item.NombrePrueba
                             //PruebaElementoID = item.PruebaElementoID,
                             //PruebasClasificacionID = int.Parse(item.PruebasClasificacionID.ToString()),
-                            //PruebasID = item.PruebasID,
                             //PruebasProyectoID = item.PruebasProyectoID,
                             //RequisicionID = item.RequisicionID == null ? 0 : int.Parse(item.RequisicionID.ToString()),
                             //RequisicionPruebaElementoID = item.RequisicionPruebaElementoID == null ? 0 : int.Parse(item.RequisicionPruebaElementoID.ToString()),
