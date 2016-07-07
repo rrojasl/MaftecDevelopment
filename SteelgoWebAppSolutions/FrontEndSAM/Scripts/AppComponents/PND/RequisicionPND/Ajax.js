@@ -189,6 +189,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         Captura[0].ProyectoID = $("#Proyecto").data("kendoComboBox").value();
         Captura[0].EstatusID = EstatusID;
         Captura[0].RequisicionID = requisicionID;
+        Captura[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
 
         loadingStart();
         $GenerarRequisicion.GenerarRequisicion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
