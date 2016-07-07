@@ -254,7 +254,7 @@ namespace BackEndSAM.DataAcces
 
                     //ctx.Sam3_Armado_JuntaArmado()
                     ObjetosSQL _SQL = new ObjetosSQL();
-                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@Lenguaje", lenguaje }, { "@RequisicionID",requisicionID.ToString() } , {"@Folio",folio }, {"@PruebasProyectoID",pruebasID.ToString() }, { "@FechaRequisicion",fechaRequisicion.Trim() }, { "@Observacion", observacion==null?"": observacion }, { "@EstatusID",estatusID.ToString() } };
+                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@Lenguaje", lenguaje }, { "@RequisicionID",requisicionID.ToString() } , {"@Folio",folio }, {"@PruebaID",pruebasID.ToString() }, { "@FechaRequisicion",fechaRequisicion.Trim() }, { "@Observacion", observacion==null?"": observacion }, { "@EstatusID",estatusID.ToString() } };
                     DataTable dt = _SQL.Tabla(Stords.GUARDARGENERARREQUISICICION, dtDetalleRequisicion, "@Tabla", parametro);
 
                     TransactionalInformation result = new TransactionalInformation();

@@ -290,7 +290,6 @@ function SuscribirEventosJunta() {
             }
             else
                 $("#Junta").data("kendoComboBox").value("");
-            displayNotify("NoExisteJunta", '', '2');
         }
     });
 }
@@ -346,7 +345,6 @@ function opcionHabilitarView(valor, name) {
 
         $("#InputID").data("kendoComboBox").enable(true);
         $("#Junta").data("kendoComboBox").enable(true);
-        $("#Fecha").data("kendoDatePicker").enable(true);
         $('#botonGuardar').text("Guardar");
         $("#DetalleAvisoLlegada0017").text("Guardar");
 

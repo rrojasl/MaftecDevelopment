@@ -71,6 +71,7 @@ function CargarGrid() {
                         TipoJunta: { type: "string", editable: false },
                         NombrePrueba: {type: "string", editable: false},
 
+                        RequisicionJuntaSpoolID: {type: "number", editable: false},
                         JuntaTrabajoID: {type: "number", editable: false},
                         CodigoAplicar: { type: "string", editable: false },
                         observacion: { type: "string", editable: false },

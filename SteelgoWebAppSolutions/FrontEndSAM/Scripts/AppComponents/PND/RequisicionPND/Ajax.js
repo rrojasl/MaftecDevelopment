@@ -167,19 +167,15 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
 
             ListaDetalles[cont] = {
                 Accion: "",
-                RequisicionPruebaElementoID: "",
-                PruebaElementoID: "",
-                PruebasProyectoID: "",
-                IdentificadorForaneo: "",
-                PruebasClasificacionID: ""
+                RequisicionJuntaSpoolID: "",
+                JuntaSpoolID: "",
+                RequisicionID: ""
             };
 
             ListaDetalles[cont].Accion = arregloCaptura[index].Accion;
-            ListaDetalles[cont].RequisicionPruebaElementoID = arregloCaptura[index].RequisicionPruebaElementoID;
-            ListaDetalles[cont].PruebaElementoID = arregloCaptura[index].PruebaElementoID;
-            ListaDetalles[cont].PruebasProyectoID = arregloCaptura[index].PruebasProyectoID;
-            ListaDetalles[cont].IdentificadorForaneo = arregloCaptura[index].IdentificadorForaneo;
-            ListaDetalles[cont].PruebasClasificacionID = arregloCaptura[index].PruebasClasificacionID;
+            ListaDetalles[cont].JuntaSpoolID = arregloCaptura[index].JuntaSpoolID;
+            ListaDetalles[cont].RequisicionID = arregloCaptura[index].RequisicionID;
+            ListaDetalles[cont].RequisicionJuntaSpoolID = arregloCaptura[index].RequisicionJuntaSpoolID;
             cont++;
         }
 
@@ -190,7 +186,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         Captura[0].Folio = $("#Folio").text();
         Captura[0].FechaRequisicion = $("#Fecha").val();
         Captura[0].Observacion = $("#Observacion").val();
-        Captura[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
+        Captura[0].ProyectoID = $("#Proyecto").data("kendoComboBox").value();
         Captura[0].EstatusID = EstatusID;
         Captura[0].RequisicionID = requisicionID;
 
@@ -206,7 +202,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 }
                 else {
                     requisicionID = data.ReturnMessage[0].split('|')[1];
-                    ajaxObtenerJuntasSoldadas($("#tipoPrueba").data("kendoComboBox").value());
+                    ajaxObtenerJuntasSoldadas( $("#Proyecto").data("kendoComboBox").value());
                     opcionHabilitarView(true, "FieldSetView");
 
 
@@ -271,6 +267,7 @@ function AjaxObtenerJunta() {
             ArregloNuevoRenglon[0].Requisicion = data[0].RequisicionJuntaSpoolID;
             ArregloNuevoRenglon[0].SpoolID = data[0].SpoolID;
             ArregloNuevoRenglon[0].TipoJunta = data[0].TipoJunta;
+            ArregloNuevoRenglon[0].JuntaTrabajoID = data[0].JuntaTrabajoID;
 
             ArregloNuevoRenglon[0].Folio = $("#Folio").text();
             ArregloNuevoRenglon[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
