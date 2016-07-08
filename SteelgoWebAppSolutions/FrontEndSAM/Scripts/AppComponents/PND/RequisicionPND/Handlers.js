@@ -179,8 +179,8 @@ function suscribirEventoTipoPrueba() {
                 ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
             }
             else {
+                $("#tipoPrueba").data("kendoComboBox").select(0);
                 $("#tipoPrueba").data("kendoComboBox").value("");
-
             }
         }
 

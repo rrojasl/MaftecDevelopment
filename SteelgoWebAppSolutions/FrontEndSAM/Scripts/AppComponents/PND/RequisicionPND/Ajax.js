@@ -241,56 +241,60 @@ function AjaxObtenerJunta() {
     $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), juntaTrabajoID: $("#Junta").data("kendoComboBox").value(), pruebaID: $("#tipoPrueba").data("kendoComboBox").value(), proyectoID: $("#Proyecto").data("kendoComboBox").value() }).done(function (data) {
         $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), pruebaID: $("#tipoPrueba").data("kendoComboBox").value(), lenguaje: $("#language").val(), pruebasProyectoID: data.PruebasProyectoID }).done(function (result) {
 
-            ArregloNuevoRenglon = [];
-            ArregloNuevoRenglon[0] = {
-                Accion: "",
-                Agregar: "",
-                Cedula: "",
-                Clasificacion: "",
-                Cuadrante: "",
-                CuadranteID: "",
-                Diametro: "",
-                Espesor: "",
-                EtiquetaJunta: "",
-                JuntaSpoolID: "",
-                NumeroControl: "",
-                Prioridad: "",
-                Proyecto: "",
-                ProyectoID: "",
-                Requisicion: "",
-                SpoolID: "",
-                TipoJunta: ""
-            };
-            ArregloNuevoRenglon[0].Accion = 1;
-            ArregloNuevoRenglon[0].Agregar = true;
-            ArregloNuevoRenglon[0].Cedula = data[0].Cedula;
-            ArregloNuevoRenglon[0].Clasificacion = data[0].ClasificacionPND;
-            ArregloNuevoRenglon[0].Cuadrante = data[0].Cuadrante;
-            ArregloNuevoRenglon[0].CuadranteID = data[0].CuadranteID;
-            ArregloNuevoRenglon[0].Diametro = data[0].Diametro;
-            ArregloNuevoRenglon[0].Espesor = data[0].Espesor;
-            ArregloNuevoRenglon[0].EtiquetaJunta = data[0].Etiqueta;
-            ArregloNuevoRenglon[0].JuntaSpoolID = data[0].JuntaSpoolID;
-            ArregloNuevoRenglon[0].NumeroControl = data[0].NumeroControl;
-            ArregloNuevoRenglon[0].Prioridad = data[0].Prioridad;
-            ArregloNuevoRenglon[0].Proyecto = data[0].Proyecto;
-            ArregloNuevoRenglon[0].ProyectoID = data[0].ProyectoID;
-            ArregloNuevoRenglon[0].Requisicion = data[0].RequisicionJuntaSpoolID;
-            ArregloNuevoRenglon[0].SpoolID = data[0].SpoolID;
-            ArregloNuevoRenglon[0].TipoJunta = data[0].TipoJunta;
-            ArregloNuevoRenglon[0].JuntaTrabajoID = data[0].JuntaTrabajoID;
+            if (data[0].RequisicionJuntaSpoolID != 0)
+                displayNotify("", "La junta ya se encuentra asignada a una Requisición diferente", '1');
+            else {
+                ArregloNuevoRenglon = [];
+                ArregloNuevoRenglon[0] = {
+                    Accion: "",
+                    Agregar: "",
+                    Cedula: "",
+                    Clasificacion: "",
+                    Cuadrante: "",
+                    CuadranteID: "",
+                    Diametro: "",
+                    Espesor: "",
+                    EtiquetaJunta: "",
+                    JuntaSpoolID: "",
+                    NumeroControl: "",
+                    Prioridad: "",
+                    Proyecto: "",
+                    ProyectoID: "",
+                    Requisicion: "",
+                    SpoolID: "",
+                    TipoJunta: ""
+                };
+                ArregloNuevoRenglon[0].Accion = 1;
+                ArregloNuevoRenglon[0].Agregar = true;
+                ArregloNuevoRenglon[0].Cedula = data[0].Cedula;
+                ArregloNuevoRenglon[0].Clasificacion = data[0].ClasificacionPND;
+                ArregloNuevoRenglon[0].Cuadrante = data[0].Cuadrante;
+                ArregloNuevoRenglon[0].CuadranteID = data[0].CuadranteID;
+                ArregloNuevoRenglon[0].Diametro = data[0].Diametro;
+                ArregloNuevoRenglon[0].Espesor = data[0].Espesor;
+                ArregloNuevoRenglon[0].EtiquetaJunta = data[0].Etiqueta;
+                ArregloNuevoRenglon[0].JuntaSpoolID = data[0].JuntaSpoolID;
+                ArregloNuevoRenglon[0].NumeroControl = data[0].NumeroControl;
+                ArregloNuevoRenglon[0].Prioridad = data[0].Prioridad;
+                ArregloNuevoRenglon[0].Proyecto = data[0].Proyecto;
+                ArregloNuevoRenglon[0].ProyectoID = data[0].ProyectoID;
+                ArregloNuevoRenglon[0].Requisicion = data[0].RequisicionJuntaSpoolID;
+                ArregloNuevoRenglon[0].SpoolID = data[0].SpoolID;
+                ArregloNuevoRenglon[0].TipoJunta = data[0].TipoJunta;
+                ArregloNuevoRenglon[0].JuntaTrabajoID = data[0].JuntaTrabajoID;
 
-            ArregloNuevoRenglon[0].Folio = $("#Folio").text();
-            ArregloNuevoRenglon[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
-            ArregloNuevoRenglon[0].RequisicionID = requisicionID;
-            ArregloNuevoRenglon[0].RequisicionPruebaElementoID = 0;
-            ArregloNuevoRenglon[0].listaClasificaciones = result;
+                ArregloNuevoRenglon[0].Folio = $("#Folio").text();
+                ArregloNuevoRenglon[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
+                ArregloNuevoRenglon[0].RequisicionID = requisicionID;
+                ArregloNuevoRenglon[0].RequisicionPruebaElementoID = 0;
+                ArregloNuevoRenglon[0].listaClasificaciones = result;
 
-            var ds = $("#grid").data("kendoGrid").dataSource;
-            ds.add(ArregloNuevoRenglon[0]);
-            $("#Junta").data("kendoComboBox").value("");
-            AjaxJunta($("#InputID").data("kendoComboBox").value());
-            loadingStop();
+                var ds = $("#grid").data("kendoGrid").dataSource;
+                ds.add(ArregloNuevoRenglon[0]);
+                $("#Junta").data("kendoComboBox").value("");
+                AjaxJunta($("#InputID").data("kendoComboBox").value());
+                loadingStop();
+            }
         });
     });
 }
