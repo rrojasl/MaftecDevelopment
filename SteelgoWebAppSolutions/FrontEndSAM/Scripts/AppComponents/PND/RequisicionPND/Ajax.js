@@ -103,9 +103,19 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
         var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
         var tipoPrueba = $("#tipoPrueba").data("kendoComboBox").value();
         for (i = jsonGridArmado.length - 1; i >= 0; i--) {
-            if (jsonGridArmado[i].NombrePrueba != tipoPrueba && tipoPrueba != 0)
+            if (jsonGridArmado[i].PruebasID != tipoPrueba)
                 jsonGridArmado.splice(i, 1);
         }
+
+        if (jsonGridArmado.length > 0) {
+            if(jsonGridArmado[0].Folio!="")
+                $("#Folio").text(jsonGridArmado[0].Folio);
+            else
+                $("#Folio").text("SIN ASIGNAR");
+        }
+        else
+            $("#Folio").text("SIN ASIGNAR");
+
         var ds = $("#grid").data("kendoGrid").dataSource;
         ds = jsonGridArmado;
 
@@ -189,6 +199,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         Captura[0].ProyectoID = $("#Proyecto").data("kendoComboBox").value();
         Captura[0].EstatusID = EstatusID;
         Captura[0].RequisicionID = requisicionID;
+        Captura[0].PruebasID = $("#tipoPrueba").data("kendoComboBox").value();
 
         loadingStart();
         $GenerarRequisicion.GenerarRequisicion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {

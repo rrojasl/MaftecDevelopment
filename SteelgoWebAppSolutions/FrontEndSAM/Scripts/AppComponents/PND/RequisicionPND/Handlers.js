@@ -19,7 +19,10 @@ function suscribirEventoGuardar() {
         if ($('#botonGuardar').text() == "Guardar") {
             if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardarCaptura(ds._data, 0);
+                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                    AjaxGuardarCaptura(ds._data, 0);
+                else
+                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             }
             else
                 displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -34,10 +37,13 @@ function suscribirEventoGuardar() {
         if ($('#botonGuardar').text() == "Guardar") {
             if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 // opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardarCaptura(ds._data, 0);
+                if($("#tipoPrueba").data("kendoComboBox").value()!=0)
+                    AjaxGuardarCaptura(ds._data, 0);
+                else
+                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             }
             else
-                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+                displayNotify("", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -49,7 +55,10 @@ function suscribirEventoGuardar() {
         if ($('#botonGuardar').text() == "Guardar") {
             if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardarCaptura(ds._data, 1);
+                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                    AjaxGuardarCaptura(ds._data, 1);
+                else
+                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
                 //Limpiar();
             }
             else
@@ -67,7 +76,10 @@ function suscribirEventoGuardar() {
         if ($('#botonGuardar').text() == "Guardar") {
             if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardarCaptura(ds._data, 0);
+                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                    AjaxGuardarCaptura(ds._data, 0);
+                else
+                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             }
             else
                 displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -81,7 +93,10 @@ function suscribirEventoGuardar() {
         if ($('#botonGuardar').text() == "Guardar") {
             if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardarCaptura(ds._data, 0);
+                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                    AjaxGuardarCaptura(ds._data, 0);
+                else
+                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             }
             else
                 displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -95,7 +110,10 @@ function suscribirEventoGuardar() {
         if ($('#botonGuardar').text() == "Guardar") {
             if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardarCaptura(ds._data, 1);
+                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                    AjaxGuardarCaptura(ds._data, 0);
+                else
+                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
                 //Limpiar();
             }
             else
