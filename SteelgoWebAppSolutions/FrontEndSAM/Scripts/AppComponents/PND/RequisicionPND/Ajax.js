@@ -103,9 +103,19 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
         var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
         var tipoPrueba = $("#tipoPrueba").data("kendoComboBox").value();
         for (i = jsonGridArmado.length - 1; i >= 0; i--) {
-            if (jsonGridArmado[i].PruebasID != tipoPrueba && tipoPrueba != 0)
+            if (jsonGridArmado[i].PruebasID != tipoPrueba)
                 jsonGridArmado.splice(i, 1);
         }
+
+        if (jsonGridArmado.length > 0) {
+            if(jsonGridArmado[0].Folio!="")
+                $("#Folio").text(jsonGridArmado[0].Folio);
+            else
+                $("#Folio").text("SIN ASIGNAR");
+        }
+        else
+            $("#Folio").text("SIN ASIGNAR");
+
         var ds = $("#grid").data("kendoGrid").dataSource;
         ds = jsonGridArmado;
 

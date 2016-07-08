@@ -147,7 +147,7 @@ function CargarGrid() {
                 }
                 else
                     $("#grid").data("kendoGrid").closeCell();
-                $("#grid").data("kendoGrid").dataSource.sync();
+                //$("#grid").data("kendoGrid").dataSource.sync();
             });
         }
     });

@@ -132,7 +132,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Cuadrante = item.Cuadrante,
                             EtiquetaJunta = item.Etiqueta,
                             JuntaTrabajoID = item.JuntaTrabajoID,
-                            Folio = "",
+                            Folio = item.Folio,
                             //IdentificadorForaneo = item.IdentificadorForaneo,
                             NumeroControl = item.NumeroControl,
                             SpoolID = item.SpoolID,
