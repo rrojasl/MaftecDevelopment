@@ -8295,8 +8295,8 @@ _dictionary = {
         "en-US": "Diameter Q."
     },
     "SoldadorCertificacionProcesoSoldaduraPQR": {
-        "es-MX": "Proceso soldadura",
-        "en-US": "Start date of certificate"
+        "es-MX": "P. Soldadura",
+        "en-US": "Weldind P."
     },
     "SoldadorCertificacionConfiguracionSoldadura": {
         "es-MX": "Configuración de soldadura",
@@ -8488,20 +8488,20 @@ _dictionary = {
         "en-US": "The PQR name field can not be empty"
     },
     "CapturaSoldadorCertificacionPasosVacio": {
-        "es-MX": "El campo Número de pasos no puede ser vacio",
-        "en-US": "The Number of steps field can not be empty"
+        "es-MX": "El campo # Pasos no puede ser vacio",
+        "en-US": "The # Steps field can not be empty"
     },
     "CapturaSoldadorCertificacionCedulaVacio": {
-        "es-MX": "El campo Cédula no puede ser vacio",
-        "en-US": "The Charter field can not be empty"
+        "es-MX": "El campo Cédula Tubo no puede ser vacio",
+        "en-US": "The pipe charter field can not be empty"
     },
     "CapturaSoldadorCertificacionEspesorVacio": {
         "es-MX": "El campo Espesor no puede ser vacio",
         "en-US": "The Thickness field can not be empty"
     },
     "CapturaSoldadorCertificacionDiametroVacio": {
-        "es-MX": "El campo diametro no puede ser vacio",
-        "en-US": "The Diameter field can not be empty"
+        "es-MX": "El campo diametro c. no puede ser vacio",
+        "en-US": "The Q. Diameter field can not be empty"
     },
     "CapturaSoldadorCertificacionTipoPruebaVacio": {
         "es-MX": "El campo tipo de prueba no puede ser vacio",
