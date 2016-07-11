@@ -1160,3 +1160,7 @@ body.loading {
     padding: 4px;
     height:60px;
 }
+
+.botonSizeGeneral{
+    min-width: 87px;
+}

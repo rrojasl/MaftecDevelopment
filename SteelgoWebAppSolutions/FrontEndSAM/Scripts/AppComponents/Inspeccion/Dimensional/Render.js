@@ -37,6 +37,7 @@ function RenderOptionResultado(container, options) {
                         options.model.DefectosID = 0;
                         options.model.Defectos = "";
                     }
+                    
                 }
             },
             change: function (e) {
@@ -47,10 +48,11 @@ function RenderOptionResultado(container, options) {
                     if (options.model.ResultadoID == "1") {
                         options.model.DefectosID = 0;
                         options.model.Defectos = "";
-                        options.model.ListaJuntasSeleccionadas = undefined;
+                        options.model.ListaJuntasSeleccionadas = [];
                         options.model.TemplateRender = $("#language").data("kendoDropDownList").value() == "es-MX" ? "Existen " + (options.model.ListaJuntasSeleccionadas == undefined ? 0 : options.model.ListaJuntasSeleccionadas.length) + " Juntas" : "There are " + (options.model.ListaJuntasSeleccionadas == undefined ? 0 : options.model.ListaJuntasSeleccionadas.length) + " board";
                         $("#grid").data("kendoGrid").dataSource.sync();
                     }
+                    
                 }
                 else {
                     options.model.Resultado = ObtenerDescCorrectaResultado(options.model.ListaResultados, options.model.ResultadoID);
@@ -98,6 +100,9 @@ function RenderComboBoxDefectos(container, options) {
                     options.model.DefectosID = dataItem.DefectoID;
                     options.model.IDDEFECTOTIPO = dataItem.IDDEFECTOTIPO;
                     options.model.TIPO = dataItem.TIPO;
+                    options.model.ListaJuntasSeleccionadas = [];
+                    itemToClean.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
                     options.model.Defectos = ObtenerDescCorrectaDefectos(options.model.ListaDefectos, options.model.DefectoID);

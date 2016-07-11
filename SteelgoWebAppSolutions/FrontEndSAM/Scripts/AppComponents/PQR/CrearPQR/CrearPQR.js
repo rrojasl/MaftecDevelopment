@@ -44,7 +44,7 @@ function ConvertirCombos() {
 
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem == undefined) {
-                $("#EspesorRelleno").data("kendoComboBox").value("");
+                $("#ProcesoSoldaduraRellenoID").data("kendoComboBox").value("");
             }
         }
     });
@@ -79,7 +79,7 @@ function ConvertirCombos() {
             }
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem == undefined) {
-                $("#EspesorRelleno").data("kendoComboBox").value("");
+                $("#ProcesoSoldaduraRaizID").data("kendoComboBox").value("");
             }
         }
     });

@@ -116,8 +116,8 @@ function SuscribirEventoSpoolID() {
         ,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
-            if ($("#InputID").val().length == 1) {
-                $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
+            if (dataItem == undefined) {
+                $("#Junta").data("kendoComboBox").value("");
             }
             //if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
             //    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);   
@@ -149,8 +149,12 @@ function SuscribirEventoSpoolID() {
     $('#InputID').closest('.k-widget').keydown(function (e) {
 
         if (e.keyCode == 37) {
-
             $("#InputOrdenTrabajo").focus();
+        }
+        else if (e.keyCode == 9) {
+            if ( tieneClase(e.currentTarget)) {
+                $("#InputID").data("kendoComboBox").select(0);
+            }
         }
 
         else if (e.keyCode == 40) {

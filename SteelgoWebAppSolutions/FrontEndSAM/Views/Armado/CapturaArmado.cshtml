@@ -48,7 +48,7 @@
         </div>
     </div>
     @*Controles Superior*@
-    <div class="row" id="FieldSetView">
+    <div class="row addedSectionInLineWithoutColor" id="FieldSetView">
         <div class="col-sm-2 col-md-2 col-lg-3">
             <div class="btn-group " data-toggle="buttons" role="group">
                 <label>&nbsp;</label>
@@ -64,19 +64,24 @@
             <label id="CapturaArmadoHeaderSpoolID"></label>
             <input style="width:40%" id="InputOrdenTrabajo" class="item-select general-input"   />-<input id="InputID" placeholder="ID" style="width:40%;" />
         </div>
-        <div class="col-sm-2 col-md-2 col-lg-2 " id="JuntaDiv">
-            <label id="JuntaGrid"></label>
-            <input id="Junta" class="" />
+        <div id="JuntaDiv">
+            <div class="col-sm-2 col-md-2 col-lg-2 ">
+                <label id="JuntaGrid"></label>
+                <input id="Junta" class="" />
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1 ">
+                <label >&nbsp;</label>
+            </div>
         </div>
-        <div class="col-sm-3 col-md-3 col-lg-3" id="MuestraDiv">
+        <div class="col-sm-2 col-md-2 col-lg-2" id="MuestraDiv">
             <label id="CapturaArmadoHeaderMostrar"></label>
-            <input type="radio" name="Muestra" style=" width:auto;" value="Sin Capturar" /><span id="CapturaArmadSinCaptura"></span>
+            <input type="radio" name="Muestra" style=" width:auto;" value="Sin Capturar" /><span id="CapturaArmadSinCaptura"></span>&nbsp;&nbsp;
             <input type="radio" name="Muestra" style=" width:auto;" value="Todos" /><span id="CapturaArmadoTodos"> </span>
 
         </div>
         <div class="col-sm-1 col-md-1 col-lg-1">
             <label id="">&nbsp;</label>
-            <button type="button" id="ButtonAgregar" class="btn btn-blue"><span id="botonAgregar"></span></button>
+            <button type="button" id="ButtonAgregar" class="btn btn-blue botonSizeGeneral"><span id="botonAgregar"></span></button>
 
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
@@ -99,12 +104,12 @@
         </div>
         <div class="col-sm-2 col-md-2 col-lg-2" id="divLlenadoMasivo">
             <label id="CapturaArmadoHeaderLlenadoMasivo"></label>
-            <input type="radio" name="LLena" style="width:auto;" value="Todos" /><span id="CapturaArmadoTodos2"></span>
+            <input type="radio" name="LLena" style="width:auto;" value="Todos" /><span id="CapturaArmadoTodos2"></span>&nbsp;&nbsp;
             <input type="radio" name="LLena" style="width:auto;" value="Vacios" /><span id="CapturaArmadoVacios"></span>
         </div>
         <div class="col-sm-2 col-md-2 col-lg-2">
             <label id="">&nbsp;</label>
-            <button type="button" id="ButtonPlanchar" class="btn btn-blue"><span id="botonPlanchar"></span></button>
+            <button type="button" id="ButtonPlanchar" class="btn btn-blue botonSizeGeneral"><span id="botonPlanchar"></span></button>
         </div>
         <div id="ContenedorGrid" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div id="grid" data-role="grid" class="k-grid k-widget">
