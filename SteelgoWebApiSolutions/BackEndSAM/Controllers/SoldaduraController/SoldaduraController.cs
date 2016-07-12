@@ -220,7 +220,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                             JuntaID = capturaDatosJson.JuntaID,
                             Junta = capturaDatosJson.Junta,
                             TipoJunta = item.TipoJunta,
-                            Cedula = item.Cedula,
+                          
                             Diametro = item.Diametro,
                             TallerID = item.TallerID.GetValueOrDefault().ToString(),
                             Taller = item.Taller,
@@ -229,7 +229,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                             listaTrabajosAdicionalesSoldadura = (List<TrabajosAdicionalesSoldadura>)CapturaSoldaduraBD.Instance.ObtenerTrabajosAdicionales(item.JuntaSpoolID),
                             ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
                             ListaWPS = null,// (List<WPS>)WPSBd.Instance.ObtenerWPS(1, usuario)
-                            ListaCedulas=(List<ListaCombos>) CedulasBd.Instance.obtenerCedulas(),
+                            
                             ListadoProcesoSoldaduraRaiz = ListadoProcesoSoldadura,
                             ListadoProcesoSoldaduraRelleno= ListadoProcesoSoldadura
                         };
@@ -321,7 +321,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                         JuntaID = capturaDatosJson.JuntaID,
                         Junta = capturaDatosJson.Junta,
                         TipoJunta = item.TipoJunta,
-                        Cedula = item.Cedula,
+                       
                         Diametro = item.Diametro,
                         //Espesor = decimal.Parse(item.Espesor.ToString()),
                         FechaSoldadura = item.FechaSoldadura == null ? capturaDatosJson.FechaSoldadura : item.FechaSoldadura.ToString(),
