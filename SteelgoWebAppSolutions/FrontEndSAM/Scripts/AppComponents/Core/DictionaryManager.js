@@ -8185,7 +8185,10 @@ _dictionary = {
         "es-MX": "El taller es requerido",
         "en-US": "The workshop is required"
     },
-
+    "DimensionalVisualMensajeOrdenTrabajo": {
+        "es-MX": "Orden de trabajo no encontrada",
+        "en-US": "Work order is not found"
+    },
     //#endregion
 
     //#region ServiciosTecnicos

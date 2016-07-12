@@ -86,7 +86,8 @@ namespace BackEndSAM.Controllers
                     {
                         Codigo=item.Codigo,
                         TipoObrero=item.TipoObrero,
-                        ObreroID=item.ObreroID
+                        ObreroID=item.ObreroID,
+                        NombreCompleto=item.NombreCompleto
                     };
                     listaObreros.Add(obrero);
                 }

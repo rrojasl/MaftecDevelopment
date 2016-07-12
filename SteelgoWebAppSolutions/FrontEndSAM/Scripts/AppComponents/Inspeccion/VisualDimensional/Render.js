@@ -57,25 +57,25 @@ function RenderComboBoxInspector(container, options) {
     loadingStart();
     var dataItem;
 
-    $('<input required data-text-field="Codigo" data-value-field="ObreroID" data-bind="value:' + options.field + '"/>')
+    $('<input required data-text-field="NombreCompleto" data-value-field="ObreroID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
             autoBind: false,
             dataSource: options.model.ListaInspector,
             suggest: true,
             filter: "contains",
-            template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
+            template: "<i class=\"fa fa-#=data.NombreCompleto#\"></i> #=data.NombreCompleto#",
             select: function (e) {
                 dataItem = this.dataItem(e.item.index());
                 if (dataItem != undefined) {
-                    options.model.Inspector = dataItem.Codigo;
+                    options.model.Inspector = dataItem.NombreCompleto;
                     options.model.InspectorID = dataItem.ObreroID;
                 }
             },
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined) {
-                    options.model.Inspector = dataItem.Codigo;
+                    options.model.Inspector = dataItem.NombreCompleto;
                     options.model.InspectorID = dataItem.ObreroID;
                 }
                 else {
@@ -299,7 +299,7 @@ function ObtenerDescCorrectaDefectos(lista, DefectoID) {
 function ObtenerDescCorrectaInspector(lista, InspectorID) {
     for (var i = 0; i < lista.length; i++) {
         if (lista[i].ObreroID == InspectorID)
-            return lista[i].Codigo;
+            return lista[i].NombreCompleto;
     }
     return "";
 }

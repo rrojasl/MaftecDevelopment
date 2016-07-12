@@ -616,7 +616,6 @@ function opcionHabilitarView(valor, name) {
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
         $('#divLlenadoMasivo').find('*').attr('disabled', true);
-        $('#InputOrdenTrabajo').css('opacity', '0.6');
         $("#InputID").data("kendoComboBox").enable(false);
         $("#Junta").data("kendoComboBox").enable(false);
         $("#inputTubero").data("kendoComboBox").enable(false);
@@ -633,7 +632,6 @@ function opcionHabilitarView(valor, name) {
     else {
         $('#FieldSetView').find('*').attr('disabled', false);
         $('#divLlenadoMasivo').find('*').attr('disabled', false);
-        $('#InputOrdenTrabajo').css('opacity','1');
         $("#InputID").data("kendoComboBox").enable(true);
         $("#Junta").data("kendoComboBox").enable(true);
         $("#inputTubero").data("kendoComboBox").enable(true);

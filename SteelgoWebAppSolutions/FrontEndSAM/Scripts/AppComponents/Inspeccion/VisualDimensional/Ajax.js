@@ -13,7 +13,7 @@ function AjaxObtenerListaInspector() {
     loadingStart();
     $Obrero.Obrero.read({ idProyecto: 0, tipo: TipoConsultaObrero, token: Cookies.get("token"), TipoObrero: TipoObrero }).done(function (data) {
         $("#inputInspector").data("kendoComboBox").value("");
-        $("#inputInspector").data("kendoComboBox").dataSource.data(data)
+        $("#inputInspector").data("kendoComboBox").dataSource.data(data);
         loadingStop();
     });
 }
