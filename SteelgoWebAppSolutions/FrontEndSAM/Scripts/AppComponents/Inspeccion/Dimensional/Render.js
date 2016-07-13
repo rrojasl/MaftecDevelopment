@@ -101,7 +101,7 @@ function RenderComboBoxDefectos(container, options) {
                     options.model.IDDEFECTOTIPO = dataItem.IDDEFECTOTIPO;
                     options.model.TIPO = dataItem.TIPO;
                     options.model.ListaJuntasSeleccionadas = [];
-                    itemToClean.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    options.model.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
