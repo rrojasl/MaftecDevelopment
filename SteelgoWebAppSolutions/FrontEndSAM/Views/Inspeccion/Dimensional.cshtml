@@ -52,22 +52,20 @@
         </div>
     </div>
     @*Controles Superior*@
-    <div class="row" id="FieldSetView">
+    <div class="row addedSectionInLineWithoutColor" id="FieldSetView ">
         <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2" id="InputIDDiv">
-            
                 <label id="DimensionalVisualHeaderSpoolID"></label>
                 <input style="width:40%" id="InputOrdenTrabajo" class="item-select" />-<input id="InputID" placeholder="ID" style="width:40%;" />
-            
             <input type="hidden" id="InspeccionDimensionalID" />
         </div>
         <div class="col-sm-3 col-md-3 col-lg-3" id="MuestraDiv" style="display: block;">
-            <label id="CapturaArmadoHeaderMostrar">Mostrar</label>
-            <input type="radio" name="Muestra" style="width:auto;" value="Sin Capturar"><span id="CapturaArmadSinCaptura">Sin captura</span>
+            <label id="CapturaArmadoHeaderMostrar"></label>
+            <input type="radio" name="Muestra" style="width:auto;" value="Sin Capturar"><span id="CapturaArmadSinCaptura"></span>&nbsp;
             <input type="radio" name="Muestra" style="width:auto;" value="Todos"><span id="CapturaArmadoTodos">Todos</span>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
             <label id="">&nbsp;</label>
-            <button type="button" id="btnAgregar" class="btn btn-blue"><span id="botonAgregar"></span></button>
+            <button type="button" id="btnAgregar" class="btn btn-blue botonSizeGeneral"><span id="botonAgregar"></span></button>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-6 col-lg-10"></div>
     </div>
@@ -75,8 +73,8 @@
     <div class="row addedSectionInLine">
         <div class="col-sm-6 col-md-4 col-lg-2">
             <label id="DimensionalVisualHeaderResultadoDimesional"></label>
-            <input type="radio" name="ResultadoDimensional" id="ResultadoDimensionalAprobado" style=" width:auto;" value="Aprobado" /><span id="DimensionalVisualAporbadoDimensional"></span>
-            <input type="radio" name="ResultadoDimensional" id="ResultadoDimensionalRechazado" style=" width:auto;" value="Rechazado" /><span id="DimensionalVisualRechazadoDimensional"> </span>
+            <input type="radio" name="ResultadoDimensional" id="ResultadoDimensionalAprobado" style=" width:auto;" value="Aprobado" />&nbsp;<span id="DimensionalVisualAporbadoDimensional"></span>&nbsp;&nbsp;
+            <input type="radio" name="ResultadoDimensional" id="ResultadoDimensionalRechazado" style=" width:auto;" value="Rechazado" />&nbsp;<span id="DimensionalVisualRechazadoDimensional"> </span>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-2" id="inputDefectoDiv">
             <label id="DimensionalVisualHeaderDefectoDimesional"></label>
@@ -92,12 +90,12 @@
         </div>
         <div class="col-sm-6 col-md-4 col-lg-2">
             <label id="CapturaLlenadoMasivo"></label>
-            <input type="radio" name="LLena" style=" width:auto" value="Todos" /><span id="CapturaLlenadoMasivoTodos"></span>
-            <input type="radio" name="LLena" style=" width:auto" value="Vacios" /><span id="CapturaLlenadoMasivoVacios"></span>
+            <input type="radio" name="LLena" style=" width:auto" value="Todos" />&nbsp;<span id="CapturaLlenadoMasivoTodos"></span>&nbsp;
+            <input type="radio" name="LLena" style=" width:auto" value="Vacios" />&nbsp;<span id="CapturaLlenadoMasivoVacios"></span>
         </div>
         <div class="col-sm-6 col-md-4 col-lg-2">
             <label id="">&nbsp;</label>
-            <button type="button" id="btnAplicarCapturaRapida" class="btn btn-blue"><span id="botonAplicar"></span></button>
+            <button type="button" id="btnAplicarCapturaRapida" class="btn btn-blue botonSizeGeneral"><span id="botonAplicar"></span></button>
         </div>
 
         <div id="ContenedorGrid" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

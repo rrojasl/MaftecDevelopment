@@ -95,7 +95,7 @@ function SuscribirEventoSpoolID() {
         dataTextField: "IDValido",
         dataValueField: "Valor",
         suggest: true,
-        filter: "contains",
+        filter: "endswith",
         index: 3,
         delay: 10,
         select: function (e) {
@@ -381,6 +381,8 @@ function opcionHabilitarView(valor, name) {
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
         $("#InputID").data("kendoComboBox").enable(false);
+        $("#InputOrdenTrabajo").prop('disabled',true);
+        $('#InputOrdenTrabajo').css('opacity', '0.6');
         $("#inputDefecto").data("kendoComboBox").enable(false);
         $("#inputInspector").data("kendoComboBox").enable(false);
         $("#FechaInspeccion").data("kendoDatePicker").enable(false);
@@ -393,6 +395,8 @@ function opcionHabilitarView(valor, name) {
     else {
         $('#FieldSetView').find('*').attr('disabled', false);
         $("#InputID").data("kendoComboBox").enable(true);
+        $("#InputOrdenTrabajo").prop('disabled', false);
+        $('#InputOrdenTrabajo').css('opacity', '1');
         $("#inputDefecto").data("kendoComboBox").enable(true);
         $("#inputInspector").data("kendoComboBox").enable(true);
         $("#FechaInspeccion").data("kendoDatePicker").enable(true);

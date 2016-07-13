@@ -20,6 +20,8 @@ namespace BackEndSAM.Controllers
     public class InspeccionDimensionalController : ApiController
     {
 
+       
+
         [HttpGet]
         public object ObtieneCamposPredeterminados(string token, string lenguaje)
         {
@@ -71,7 +73,7 @@ namespace BackEndSAM.Controllers
 
                 List<Sam3_Inspeccion_Get_DetalleDimensional_Result> listaObtenerDetalleDimensional = (List<Sam3_Inspeccion_Get_DetalleDimensional_Result>)CapturasRapidasBd.Instance.ObtenerDetalleDimensional(int.Parse(capturaDatosJson.OrdenTrabajoSpoolID), Lenguaje);
 
-                List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaJuntasPorOrdenTrabajo = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(capturaDatosJson.OrdenTrabajoSpoolID, usuario, Lenguaje);
+                List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaJuntasPorOrdenTrabajo = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(int.Parse(capturaDatosJson.OrdenTrabajoSpoolID), usuario, Lenguaje);
 
                 List<InspeccionDimensional.JuntaXSpool> listJuntaXSpool = new List<InspeccionDimensional.JuntaXSpool>();
 
@@ -111,7 +113,7 @@ namespace BackEndSAM.Controllers
                         Resultado = "",
                         ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
                         ListaJuntas = listJuntaXSpool,
-                        TemplateRender = " "
+                        TemplateRender = Lenguaje == "es-MX" ? "No hay juntas seleccionadas" : "No joins are selected"
                     };
                     listaDetalleDatos.Add(detalleDatos);
                 }
@@ -290,6 +292,111 @@ namespace BackEndSAM.Controllers
                 dtDetalleCaptura.Columns.Remove("ListaJuntas");
 
                 return InspeccionDimensionalBD.Instance.InsertarCapturaInspeccion(dtDetalleCaptura, JuntasSeleccionadas, usuario, lenguaje);
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(payload);
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = false;
+                return result;
+            }
+        }
+
+        [HttpGet]
+        public object ObtenerGridGuardado(int OrdenTrabajoSpoolID,string OrdenTrabajoSpool, int ProyectoID, string token, string Lenguaje)
+        {
+            string payload = "";
+            string newToken = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+
+                
+                List<InspeccionDimensional.JuntaXSpool> listJuntaXSpool = new List<InspeccionDimensional.JuntaXSpool>();
+                List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaJuntasPorOrdenTrabajo = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(OrdenTrabajoSpoolID, usuario, Lenguaje);
+                foreach (Sam3_Inspeccion_Get_DetalleJunta_Result item in listaJuntasPorOrdenTrabajo)
+                {
+                    listJuntaXSpool.Add(new InspeccionDimensional.JuntaXSpool
+                    {
+                        Accion = 1,//por estar solo en la lista habilitado para seleccionar.
+                        Junta = item.Etiqueta,
+                        JuntaID = item.JuntaSpoolID
+                    });
+                }
+                List<InspeccionDimensional.DetalleDatosJson> listaDetalleDatos = new List<InspeccionDimensional.DetalleDatosJson>();
+                List<Sam3_Inspeccion_Get_DetalleDimensional_Result> listaObtenerDetalleDimensional = (List<Sam3_Inspeccion_Get_DetalleDimensional_Result>)CapturasRapidasBd.Instance.ObtenerDetalleDimensional(OrdenTrabajoSpoolID, Lenguaje);
+
+                if (listaObtenerDetalleDimensional.Count == 0)
+                {
+                    InspeccionDimensional.DetalleDatosJson detalleDatos = new InspeccionDimensional.DetalleDatosJson
+                    {
+                        Accion = 1,
+                        InspeccionDimensionalID = 0,
+                        ProyectoID = ProyectoID,
+                        OrdenTrabajoSpoolID = OrdenTrabajoSpoolID.ToString(),
+                        OrdenTrabajoSpool = OrdenTrabajoSpool,
+                        FechaInspeccion = null,
+                        DefectosID = "",
+                        Defectos = "",
+                        ListaDefectos = ObtenerListaDefectos((List<Sam3_Steelgo_Get_Defectos_Result>)DefectosBd.Instance.listadoDefectos(Lenguaje, "Inspección dimensional")),
+                        InspectorID = "",
+                        Inspector = "",
+                        ListaInspector = ObtenerListaInspector((List<Sam3_Steelgo_Get_Obrero_Result>)ObreroBD.Instance.ObtenerObrero(ProyectoID, 2, "Inspector Visual Dimensional")),
+                        ResultadoID = "",
+                        Resultado = "",
+                        ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
+                        ListaJuntas = listJuntaXSpool,
+                        TemplateRender = Lenguaje == "es-MX" ? "No hay juntas seleccionadas" : "No joins are selected"
+                    };
+                    listaDetalleDatos.Add(detalleDatos);
+                }
+                else
+                {
+                    foreach (Sam3_Inspeccion_Get_DetalleDimensional_Result item in listaObtenerDetalleDimensional)
+                    {
+                        List<int?> ListaJutasSeleccionadasXSpoolID = (List<int?>)InspeccionBD.Instance.ObtenerDetalleJuntaSeleccionada(OrdenTrabajoSpoolID.ToString(), item.DefectoID.GetValueOrDefault(), usuario, Lenguaje);
+                        List<InspeccionDimensional.JuntaXSpool> juntasSeleccionadas = ObtenerJuntasID(ListaJutasSeleccionadasXSpoolID);
+                        string idiomaMensaje = Lenguaje == "es-MX" ? "Existen ?1 juntas seleccionadas|No existen juntas seleccionadas" : "There are ?1 joint selected|There arent joint selected";
+                        InspeccionDimensional.DetalleDatosJson detalleDatos = new InspeccionDimensional.DetalleDatosJson
+                        {
+
+
+                            Accion = 2,
+                            InspeccionDimensionalID = item.InspeccionDimensionalID,
+                            ProyectoID = ProyectoID,
+                            OrdenTrabajoSpoolID = item.OrdenTrabajoSpoolID.ToString(),
+                            OrdenTrabajoSpool = OrdenTrabajoSpool,
+                            FechaInspeccion = item.FechaInspeccion,
+                            DefectosID = item.DefectoID.GetValueOrDefault().ToString(),
+                            Defectos = item.Defecto,
+                            ListaDefectos = ObtenerListaDefectos((List<Sam3_Steelgo_Get_Defectos_Result>)DefectosBd.Instance.listadoDefectos(Lenguaje, "Inspección dimensional")),
+                            InspectorID = item.ObreroID.ToString(),
+                            Inspector = item.Inspector,
+                            ListaInspector = ObtenerListaInspector((List<Sam3_Steelgo_Get_Obrero_Result>)ObreroBD.Instance.ObtenerObrero(ProyectoID, 2, "Inspector Visual Dimensional")),
+                            ResultadoID = item.ResultadoID.ToString(),
+                            Resultado = item.Resultado,
+                            ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
+                            ListaJuntas = listJuntaXSpool,
+                            IDDEFECTOTIPO = item.IdDefectoTipo.GetValueOrDefault(),
+                            ListaJuntasSeleccionadas = juntasSeleccionadas,
+                            TemplateRender = juntasSeleccionadas.Count > 0 ? idiomaMensaje.Split('|')[0].Replace("?1", juntasSeleccionadas.Count.ToString()) : idiomaMensaje.Split('|')[1],
+                            TIPO = item.Tipo
+                        };
+
+
+                        detalleDatos.ListaJuntas = ObtenerJuntasSeleccionadas(detalleDatos.ListaJuntas, detalleDatos.ListaJuntasSeleccionadas);
+                        listaDetalleDatos.Add(detalleDatos);
+                    }
+                }
+
+                return serializer.Serialize(listaDetalleDatos);
+
+
+                return listaDetalleDatos;
             }
             else
             {

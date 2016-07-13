@@ -949,10 +949,6 @@ header .menu > div {
 }
 .addedSectionInLineWithoutColor {
     margin: 20px 0;
-    padding-top: 31px;
-    padding-bottom: 20px;
-    border-top: 1px solid #CCCCCC;
-    border-bottom: 1px solid #CCCCCC;
 }
 
 .addedSectionInLineCatalogos {

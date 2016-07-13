@@ -12,6 +12,17 @@ namespace BackEndSAM.Models.InspeccionDimensional
             public string Llena { get; set; }
             public string Muestra { get; set; }
         }
+
+        public class SpoolGrid
+        {
+            public List<DetalleGridSpool> Detalles { get; set; }
+        }
+
+        public class DetalleGridSpool
+        {
+            public int OrdenTrabajoSpoool { get; set; }
+        }
+
         public class Captura
         {
             public List<DetalleGuardarJson> Detalles { get; set; }

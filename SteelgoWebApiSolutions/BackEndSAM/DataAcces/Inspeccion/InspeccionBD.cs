@@ -79,7 +79,7 @@ namespace BackEndSAM.DataAcces
         /// <param name="usuario"></param>
         /// <param name="Lenguaje"></param>
         /// <returns></returns>
-        public object ObtenerDetalleJunta(CapturaVisualDimensional.DetalleDatosJson JsonCaptura, Sam3_Usuario usuario, string Lenguaje)
+        public object ObtenerDetalleJunta(int OrdenTrabajoSpoolID, Sam3_Usuario usuario, string Lenguaje)
         {
 
             try
@@ -87,7 +87,7 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
 
-                    List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaDetalleDatosJson = ctx.Sam3_Inspeccion_Get_DetalleJunta(int.Parse(JsonCaptura.OrdenTrabajoSpoolID), Lenguaje).ToList();
+                    List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaDetalleDatosJson = ctx.Sam3_Inspeccion_Get_DetalleJunta(OrdenTrabajoSpoolID, Lenguaje).ToList();
                     return listaDetalleDatosJson;
                 }
             }

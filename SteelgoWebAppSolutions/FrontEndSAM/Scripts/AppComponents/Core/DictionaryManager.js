@@ -11254,9 +11254,8 @@ _dictionary = {
     },
 
     "NoExistenJuntasSel": {
-        "es-MX": "No existen juntas seleccionadas",
-        "en-US": "Dont exist joins selected"
-
+        "es-MX": "No hay juntas seleccionadas",
+        "en-US": "No joints are selected"
     },
 
     "DimensionalSpool": {
