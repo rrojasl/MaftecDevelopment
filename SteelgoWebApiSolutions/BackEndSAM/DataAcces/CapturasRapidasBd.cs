@@ -147,6 +147,8 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
                     List<Sam3_Steelgo_Get_JuntaSpool_Result> lista = ctx.Sam3_Steelgo_Get_JuntaSpool(sinCaptura, int.Parse(id), proceso).ToList();
+                    lista.Insert(0, new Sam3_Steelgo_Get_JuntaSpool_Result());
+                    lista[0].Etiqueta = "";
                     return lista;
                 }
             }

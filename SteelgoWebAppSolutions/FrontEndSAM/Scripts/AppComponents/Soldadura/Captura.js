@@ -243,7 +243,7 @@ function CargarGridSoldadura() {
                         JuntaID: { type: "string", editable: false },
                         Junta: { type: "string", editable: false },
                         TipoJunta: { type: "string", editable: false },
-                        Cedula: { type: "string", editable: true },
+                       
                         FechaSoldadura: { type: "date", editable: true },
                         TallerID: { type: "string", editable: true },
                         Taller: { type: "string", editable: true },
@@ -286,7 +286,6 @@ function CargarGridSoldadura() {
             { field: "Taller", title: _dictionary.CapturaSoldaduraHeaderTaller[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxTaller, width: "130px" },
             { field: "WPSNombre", title: "WPS", editor: RenderComboBoxWPS, filterable: getGridFilterableCellMaftec(), width: "130px" },
             { field: "Diametro", title: "Diametro", filterable: getGridFilterableCellMaftec(), width: "130px" },
-            { field: "Cedula", title: "Cedula" , filterable: getGridFilterableCellMaftec(), width: "130px" , editor: RenderComboBoxCedula },
             { field: "FechaSoldadura", title: _dictionary.CapturaSoldaduraHeaderFechaSoldadura[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, editor: RenderDatePicker, width: "160px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "procesoSoldaduraRaiz", title: _dictionary.CapturaSoldaduraProcesoRaiz[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldaduraRaiz },
             { field: "Raiz", title: _dictionary.CapturaRaizHeaderAdicionales[$("#language").data("kendoDropDownList").value()], filterable: false, width: "150px", template: "<div class='botonSoldadoresRaiz'><a href='\\#'  > <span>#=TemplateSoldadoresRaiz#</span></a></div>" },

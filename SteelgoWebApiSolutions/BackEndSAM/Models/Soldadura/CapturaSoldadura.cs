@@ -69,9 +69,6 @@ namespace BackEndSAM.Models.Soldadura
         public string WPSNombre { get; set; }
         public List<WPS.WPS> ListaWPS { get; set; }
         public decimal Diametro { get; set; }
-        public string CedulaID { get; set; }
-        public string Cedula { get; set; }
-        public List<ListaCombos> ListaCedulas { get; set; }
         public string FechaSoldadura { get; set; }
         public int procesoSoldaduraRaizID { get; set; }
         public string procesoSoldaduraRaiz { get; set; }

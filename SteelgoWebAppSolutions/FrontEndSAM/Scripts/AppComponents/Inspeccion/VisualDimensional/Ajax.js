@@ -27,7 +27,18 @@ function AjaxObtenerListaTaller() {
     catch (e) {
 
     }
+}
 
+function AjaxJunta(spoolID) {
+    loadingStart();
+    $('input:radio[name=Muestra]:checked').val();
+    $Inspeccion.Inspeccion.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token"), todos: 1 }).done(function (data) {
+        if (Error(data)) {
+            limpiarJuntaMultiselect();
+            $("#ListaJuntas").data("kendoMultiSelect").dataSource.data(data);
+            loadingStop();
+        }
+    });
 }
 
 function AjaxObtenerListaInspectorVisual() {
@@ -154,7 +165,7 @@ function AjaxobtenerDetalleDimensional(spoolID) {
             $("#InspeccionDimensionalID").val(data.ListaDetalleDimensional[0].InspeccionDimensionalID);
             endRangeDate.val(data.ListaDetalleDimensional[0].FechaInspeccion);
 
-            
+
             $("#ListaJuntas").data("kendoMultiSelect").dataSource.data([]);
             $("#ListaJuntas").data("kendoMultiSelect").dataSource.data(data.ListaDetalleDimensional[0].ListaJuntas);
 
@@ -163,7 +174,7 @@ function AjaxobtenerDetalleDimensional(spoolID) {
                 for (var i = 0; i < data.ListaDetalleDimensional[0].ListaJuntasSeleccionadas.length; i++) {
                     valores[i] = data.ListaDetalleDimensional[0].ListaJuntasSeleccionadas[i].JuntaID;
                 };
-                
+
                 $("#ListaJuntas").data("kendoMultiSelect").value(valores);
             }
 
@@ -180,13 +191,25 @@ function AjaxobtenerDetalleDimensional(spoolID) {
 function AjaxObtenerJSonGrid() {
 
     loadingStart();
-    //if (ExisteJunta()) {
     try {
-
         $Inspeccion.Inspeccion.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), Lenguaje: $("#language").val(), juntasSeleccionadas: $("#ListaJuntas").data("kendoMultiSelect").value().toString() }).done(function (data) {
 
             var ds = $("#grid").data("kendoGrid").dataSource;
             var array = JSON.parse(data);
+
+            var elements = $("#ListaJuntas").data("kendoMultiSelect").dataItems();
+
+            if (elements.length > 0) {
+                for (var x = array.length - 1; x >= 0; x--) {
+                    var exist = false;
+                    for (var j = 0; j < elements.length; j++) {
+                        if(array[x].JuntaID == elements[j].JuntaSpoolID)
+                            exist = true
+                    }
+                    if (!exist)
+                        array.splice(x,1);
+                }
+            }
 
             for (var i = 0; i < array.length; i++) {
                 if (ExisteJunta(array[i].JuntaID)) {
@@ -200,14 +223,9 @@ function AjaxObtenerJSonGrid() {
             }
             loadingStop();
         });
-
     } catch (e) {
         displayNotify("Mensajes_error", e.message, '2');
     }
-
-
-
-
 }
 
 function AjaxGuardar(jSonCaptura) {
@@ -222,7 +240,7 @@ function AjaxGuardar(jSonCaptura) {
 
     ListaDetalleGuardarInspeccionVisual = []
     for (index = 0; index < jSonCaptura.length; index++) {
-        ListaDetalleGuardarInspeccionVisual[index] = { Accion: "", OrdenTrabajoSpoolID: "", TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: "", InspectorID: "", FechaInspeccion: "", JuntaTrabajoID: "", ResultadoID: "", TallerID: "", NumeroUnico1ID: "", NumeroUnico2ID: "", InspeccionVisualID: ""};
+        ListaDetalleGuardarInspeccionVisual[index] = { Accion: "", OrdenTrabajoSpoolID: "", TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: "", InspectorID: "", FechaInspeccion: "", JuntaTrabajoID: "", ResultadoID: "", TallerID: "", NumeroUnico1ID: "", NumeroUnico2ID: "", InspeccionVisualID: "" };
         ListaDetalleGuardarInspeccionVisual[index].Accion = jSonCaptura[index].Accion;
         ListaDetalleGuardarInspeccionVisual[index].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID;
         ListaDetalleGuardarInspeccionVisual[index].TipoJuntaID = jSonCaptura[index].TipoJuntaID;
@@ -238,14 +256,14 @@ function AjaxGuardar(jSonCaptura) {
         ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID = jSonCaptura[index].NumeroUnico1ID;
         ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID = jSonCaptura[index].NumeroUnico2ID;
         ListaDetalleGuardarInspeccionVisual[index].InspeccionVisualID = jSonCaptura[index].InspeccionVisualID;
-        
+
     }
 
 
     if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined) {
         if ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined) {
 
-            inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas:"" }
+            inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
             inspeccionDimensional[0].Lenguaje = $("#language").val();
             inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
             inspeccionDimensional[0].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
@@ -280,7 +298,7 @@ function AjaxGuardar(jSonCaptura) {
                                     $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
 
                                         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                                            
+
                                             displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                                             AjaxobtenerDetalleDimensional($("#InputID").val());
                                             AjaxObtenerJSonGrid();
