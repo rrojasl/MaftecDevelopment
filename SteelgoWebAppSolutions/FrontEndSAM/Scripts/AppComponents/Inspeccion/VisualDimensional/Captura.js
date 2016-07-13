@@ -412,7 +412,7 @@ function limpiarCaptura(e) {
         itemToClean.NumeroUnico1ID = "";
         itemToClean.NumeroUnico2ID = "";
         itemToClean.Accion = 4;
-        
+
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         dataSource.sync();
 
@@ -529,7 +529,10 @@ function PlanchadoResultadoVisual() {
         for (var i = 0; i < data.length; i++) {
             if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 data[i].ResultadoID = $('input:radio[name=ResultadoVisual]:checked').val() == "Aprobado" ? 1 : 2;
-                data[i].Resultado = $('input:radio[name=ResultadoVisual]:checked').val();
+                if (data[i].ResultadoID == 1)
+                    data[i].Resultado = _dictionary.DimensionalVisualAporbadoVisual[$("#language").data("kendoDropDownList").value()];
+                else
+                    data[i].Resultado = _dictionary.DimensionalVisualRechazadoVisual[$("#language").data("kendoDropDownList").value()];
 
                 if (data[i].Resultado == "Aprobado") {
                     data[i].DefectosID = "";
@@ -539,13 +542,16 @@ function PlanchadoResultadoVisual() {
             else {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
                     data[i].ResultadoID = $('input:radio[name=ResultadoVisual]:checked').val() == "Aprobado" ? 1 : 2;
-                    data[i].Resultado = $('input:radio[name=ResultadoVisual]:checked').val();
+                    
+                    if (data[i].ResultadoID == 1)
+                        data[i].Resultado = _dictionary.DimensionalVisualAporbadoVisual[$("#language").data("kendoDropDownList").value()];
+                    else
+                        data[i].Resultado = _dictionary.DimensionalVisualRechazadoVisual[$("#language").data("kendoDropDownList").value()];
 
                     if (data[i].Resultado == "Aprobado") {
                         data[i].DefectosID = "";
                         data[i].Defectos = "";
                     }
-
                 }
             }
         }
