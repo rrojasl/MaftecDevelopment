@@ -292,6 +292,7 @@ function SuscribirEventoDefecto() {
         change: function (e) {
             if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()) == undefined)
                 $("#inputDefecto").data("kendoComboBox").value("");
+            $("#ListaJuntas").data("kendoMultiSelect").value("");
         }
     });
 
@@ -299,6 +300,9 @@ function SuscribirEventoDefecto() {
         if (e.keyCode == 13) {
             if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()) == undefined) {
                 $("#inputDefecto").data("kendoComboBox").value("");
+                $("#ListaJuntas").data("kendoMultiSelect").value("");
+            } else {
+                $("#ListaJuntas").data("kendoMultiSelect").value("");
             }
         }
     });
@@ -313,6 +317,7 @@ function SuscribirEventoDefectoVisual() {
         change: function (e) {
             if ($("#inputDefectosVisual").data("kendoComboBox").dataItem($("#inputDefectosVisual").data("kendoComboBox").select()) == undefined)
                 $("#inputDefectosVisual").data("kendoComboBox").value("");
+            $("#ListaJuntas").data("kendoMultiSelect").value("");
         }
     });
 
@@ -320,6 +325,9 @@ function SuscribirEventoDefectoVisual() {
         if (e.keyCode == 13) {
             if ($("#inputDefectosVisual").data("kendoComboBox").dataItem($("#inputDefectosVisual").data("kendoComboBox").select()) == undefined) {
                 $("#inputDefectosVisual").data("kendoComboBox").value("");
+                $("#ListaJuntas").data("kendoMultiSelect").value("");
+            } else {
+                $("#ListaJuntas").data("kendoMultiSelect").value("");
             }
         }
     });
@@ -332,8 +340,6 @@ function SuscribirEventoResultadoDimensional() {
     });
     $('input:radio[name=ResultadoDimensional]:nth(1)').change(function () {
         $("#inputDefecto").data("kendoComboBox").enable(true);
-        $("#inputDefecto").data("kendoComboBox").value("");
-        // 
     });
 };
 
