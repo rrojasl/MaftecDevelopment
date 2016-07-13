@@ -314,12 +314,12 @@ function AjaxGuardar(jSonCaptura) {
                                     });
                                 }
                                 else {
-                                    displayNotify("", "DimensionalVisualMensajeErrorNumeroUnico2", '2');
+                                    displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
                                     opcionHabilitarView(false, "FieldSetView")
                                 }
                             }
                             else {
-                                displayNotify("", "DimensionalVisualMensajeErrorNumeroUnico2", '2');
+                                displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
                                 opcionHabilitarView(false, "FieldSetView")
                             }
                         }
@@ -388,12 +388,12 @@ function AjaxGuardar(jSonCaptura) {
                                 });
                             }
                             else {
-                                displayNotify("", "DimensionalVisualMensajeErrorNumeroUnico2", '2');
+                                displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
                                 opcionHabilitarView(false, "FieldSetView")
                             }
                         }
                         else {
-                            displayNotify("", "DimensionalVisualMensajeErrorNumeroUnico2", '2');
+                            displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
                             opcionHabilitarView(false, "FieldSetView")
                         }
                     }
