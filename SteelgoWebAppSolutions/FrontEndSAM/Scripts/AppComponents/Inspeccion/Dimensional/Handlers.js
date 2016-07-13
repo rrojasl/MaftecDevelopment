@@ -264,12 +264,12 @@ function SuscribirEventoResultadoDimensional() {
     $('input:radio[name=ResultadoDimensional]:nth(0)').change(function () {
         $("#inputDefecto").data("kendoComboBox").enable(false);
         $("#inputDefecto").data("kendoComboBox").value("");
-        PlanchadoResultadoDimensional();
+        //PlanchadoResultadoDimensional();
     });
     $('input:radio[name=ResultadoDimensional]:nth(1)').change(function () {
         $("#inputDefecto").data("kendoComboBox").enable(true);
         $("#inputDefecto").data("kendoComboBox").value("");
-        PlanchadoResultadoDimensional();
+        //PlanchadoResultadoDimensional();
     });
 
 }
