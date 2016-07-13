@@ -144,8 +144,8 @@ function CargarGrid() {
              { field: "Inspector", title: _dictionary.DimensionalVisualHeaderInspectorDimesional[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxInspector, width: "50px" },
              { field: "FechaInspeccion", title: _dictionary.DimensionalVisualHeaderFechaDimesional[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, editor: RenderDatePicker, format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], width: "70px" },
              { field: "ListaJuntasSeleccionadas", title: _dictionary.DimensionalVisualHeaderListaJUnta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderMultiSelectJuntas, template: "#:TemplateRender#", width: "110px" },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "40px" },
-            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "40px" }
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: "", width: "25px" },
+            { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: "", width: "25px" }
         ],
         
         beforeEdit: function (e) {
@@ -226,6 +226,9 @@ function ArregloListadoCaptura() {
     JsonCaptura[0].FechaInspeccion = $("#FechaInspeccion").val();
     return JsonCaptura[0];
 }
+
+
+
 
 function cancelarCaptura(e) {
     e.preventDefault();
@@ -320,9 +323,12 @@ function limpiarRenglon(e) {
           
         var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
         itemToClean.Defectos = "";
-        itemToClean.DefectosID = "";
+        itemToClean.DefectosID = 0;
+        itemToClean.Resultado = "";
+        itemToClean.ResultadoID = 0;
+        
         itemToClean.FechaInspeccion = "";
-        itemToClean.InspectorID = "";
+        itemToClean.InspectorID = 0;
         itemToClean.Inspector = "";
         itemToClean.ListaJuntasSeleccionadas = [];
         itemToClean.Accion = 4;
