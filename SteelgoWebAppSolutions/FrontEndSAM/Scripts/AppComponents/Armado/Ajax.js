@@ -271,7 +271,9 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                        ListaDetalles[index].FechaArmado == ""
                     ) && (ListaDetalles[index].Accion != 3 && ListaDetalles[index].Accion != 4)
                    ) {
-                    if (ListaDetalles[index].Accion == 2) {
+                    if (ListaDetalles[index].Accion == 2 && ListaDetalles[index].FechaArmado == "" &&
+                        (ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0") &&
+                       (ListaDetalles[index].TuberoID == "" || ListaDetalles[index].TuberoID == "0")) {
                         ListaDetalles[index].Accion = 4;
                     }
                     else {

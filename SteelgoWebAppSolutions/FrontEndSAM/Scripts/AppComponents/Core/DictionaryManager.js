@@ -7978,8 +7978,8 @@ _dictionary = {
         "en-US": "Diam"
     },
     "CapturaArmadoPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de cancelar el detalle de la captura de armado?",
-        "en-US": "Are you sure you want to cancel the detail of the capture of armed ?"
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de armado?",
+        "en-US": "Are you sure you want to delete the detail of the capture of armed ?"
     },
     "CapturaArmadoMensajeJuntaExistente": {
         "es-MX": "La junta ya existe",
