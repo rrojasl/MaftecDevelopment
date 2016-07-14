@@ -457,6 +457,9 @@ function SuscribirEventoSpoolID() {
                 AjaxObtenerListaTubero();
                 AjaxObtenerListaTaller();
             }
+            else {
+                $("#InputID").data("kendoComboBox").value("");
+            }
 
         }
     });
@@ -496,29 +499,31 @@ function SuscribirEventoSpoolID() {
             AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
         }
         else if (e.keyCode == 13) {
-            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
-                if ($('input:radio[name=TipoAgregado]:checked').val() != undefined) {
-                    if ($('input:radio[name=Muestra]:checked').val() != undefined) {
-                        if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
-                            if ($("#InputID").data("kendoComboBox").select() != -1) {
-                                AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+            if ($("#InputID").data("kendoComboBox").text() != '') {
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
+                    if ($('input:radio[name=TipoAgregado]:checked').val() != undefined) {
+                        if ($('input:radio[name=Muestra]:checked').val() != undefined) {
+                            if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
+                                if ($("#InputID").data("kendoComboBox").select() != -1) {
+                                    AjaxJuntaModoSpool($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
 
-                                //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
+                                    //setTimeout(function () { AjaxCargarReporteJuntas(); }, 500);
+                                }
                             }
+                        }
+                        else {
+                            MensajesSteelGO('radioMostrar', '')
+
                         }
                     }
                     else {
-                        MensajesSteelGO('radioMostrar', '')
+                        MensajesSteelGO('radioTipoAgregado', '')
 
                     }
                 }
-                else {
-                    MensajesSteelGO('radioTipoAgregado', '')
-
-                }
+                else
+                    displayNotify("NoExisteSpoolID", '', '2');
             }
-            else
-                displayNotify("NoExisteSpoolID", '', '2');
         }
         else if (e.keyCode == 9) {
             if (tieneClase(e.currentTarget)) {

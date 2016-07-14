@@ -2234,7 +2234,7 @@ _dictionary = {
         "en-US": "All"
     },
     "Cuantificacion0027": {
-        "es-MX": "Vacios",
+        "es-MX": "Vacíos",
         "en-US": "Empty"
     },
     "Cuantificacion0028": {
@@ -4218,7 +4218,7 @@ _dictionary = {
         "en-US": "All"
     },
     "ComplementoRecepcion0018": {
-        "es-MX": "Vacios",
+        "es-MX": "Vacíos",
         "en-US": "Empty"
     },
     "ComplementoRecepcion0019": {
@@ -5027,7 +5027,7 @@ _dictionary = {
         "en-US": "All"
     },
     "Despacho0011": {
-        "es-MX": "Vacios",
+        "es-MX": "Vacíos",
         "en-US": "Empty"
     },
     "Despacho0012": {
@@ -7138,7 +7138,7 @@ _dictionary = {
         "en-US": "All"
     },
     "CapturaLlenadoMasivoVacios": {
-        "es-MX": "Vacios",
+        "es-MX": "Vacíos",
         "en-US": "Empty"
     },
     "MensajeAcciones": {
@@ -7274,8 +7274,8 @@ _dictionary = {
         "en-US": "Visual and Dimensional"
     },
     "menuServiciosTecnicos": {
-        "es-MX": "PND",
-        "en-US": "NDT"
+        "es-MX": "Servicios Técnicos",
+        "en-US": "Technical Services"
     },
     "menuServiciosTecnicosAsignarRequisicion": {
         "es-MX": "Asignar Requisición",
@@ -7942,7 +7942,7 @@ _dictionary = {
         "en-US": "All"
     },
     "CapturaArmadoVacios": {
-        "es-MX": "Vacios",
+        "es-MX": "Vacíos",
         "en-US": "Empty"
     },
     "CapturaArmadoHeaderFechaArmado": {
@@ -8738,7 +8738,7 @@ _dictionary = {
         "en-US": "Root welding process it's not permissable"
     },
     "CapturaSoldaduraCamposVacios": {
-        "es-MX": "No se permite capturar campos vacios",
+        "es-MX": "No se permite capturar campos vacíos",
         "en-US": "It is not allowed to capture empty fields"
     },
     "CapturaSoldaduraNoSoldadoresRaiz": {

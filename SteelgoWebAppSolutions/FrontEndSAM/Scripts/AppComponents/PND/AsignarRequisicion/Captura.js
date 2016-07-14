@@ -13,6 +13,29 @@ function IniciarAsignarRequisicion() {
 };
 
 function CargarGrid() {
+    kendo.ui.Grid.fn.editCell = (function (editCell) {
+        return function (cell) {
+            cell = $(cell);
+
+            var that = this,
+                column = that.columns[that.cellIndex(cell)],
+                model = that._modelForContainer(cell),
+                event = {
+                    container: cell,
+                    model: model,
+                    preventDefault: function () {
+                        this.isDefaultPrevented = true;
+                    }
+                };
+
+            if (model && typeof this.options.beforeEdit === "function") {
+                this.options.beforeEdit.call(this, event);
+                if (event.isDefaultPrevented) return;
+            }
+
+            editCell.call(this, cell);
+        };
+    })(kendo.ui.Grid.fn.editCell);
     $("#grid").kendoGrid({
         autoBind: true,
         edit: function (e) {
@@ -67,10 +90,26 @@ function CargarGrid() {
             { field: "Proveedor", title: _dictionary.AsignarRequisicionHeaderProveedor[$("#language").data("kendoDropDownList").value()], editor: RenderComboBoxProveedor, filterable: true, width: "140px" },
             { field: "HerramientadePrueba", title: _dictionary.AsignarRequisicionHeaderHerramientaPruebas[$("#language").data("kendoDropDownList").value()], editor: RenderComboBoxHerramientaPrueba, filterable: true, width: "150px" },
             { field: "TurnoLaboral", title: _dictionary.AsignarRequisicionHeaderTurnoLaboral[$("#language").data("kendoDropDownList").value()], editor: RenderComboBoxTurnoLaboral, filterable: true, width: "130px" }
-        ]
+        ],
+        beforeEdit: function (e) {
+            var columnIndex = this.cellIndex(e.container);
+            var fieldName = this.thead.find("th").eq(columnIndex).data("field");
+            if (!isEditable(fieldName, e.model)) {
+                e.preventDefault();
+            }
+        },
     });
     CustomisaGrid($("#grid"));
 };
+
+function isEditable(fieldName, model) {
+    if (fieldName === "TurnoLaboral" || fieldName === "HerramientadePrueba") {
+        var str = model.Nombre;
+        var respuesta = str.indexOf('RT') >= 0;
+        return respuesta;
+    }
+    return true; // default to editable
+}
 
 function PlanchaProveedor() {
     var dataSource = $("#grid").data("kendoGrid").dataSource;
