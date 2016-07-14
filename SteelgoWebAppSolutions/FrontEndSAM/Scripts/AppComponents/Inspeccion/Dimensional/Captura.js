@@ -199,6 +199,10 @@ function isEditable(fieldName, model) {
     else if (fieldName === "ListaJuntasSeleccionadas") {
         // condition for the field "ProductName"
         //alert(model.TIPO );
+        if (model.TIPO == "NoEspecificarJunta") {
+            displayNotify("mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto", '', '1');
+            
+        }
         return model.TIPO !== "NoEspecificarJunta" &&  model.TIPO !=null;
     }
 

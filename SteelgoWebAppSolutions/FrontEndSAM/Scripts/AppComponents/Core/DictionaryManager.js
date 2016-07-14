@@ -127,6 +127,11 @@ _dictionary = {
         "es-MX": "Estas seguro de eliminar la informacion?",
         "en-US": "do you want delete the row?"
     },
+    "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto": {
+        "es-MX": "No se pueden especificar juntas para el defecto",
+        "en-US": "Can't especify joint to deffect"
+    },
+    
     "RequisicionesAsignadas": {
         "es-MX": "Requisiciones Asignadas",
         "en-US": "Assigned Request"
