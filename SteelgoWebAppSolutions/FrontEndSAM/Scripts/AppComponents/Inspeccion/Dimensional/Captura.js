@@ -408,8 +408,8 @@ function PlanchadoResultadoDimensional() {
                 data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                 data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
 
-                if (data[i].Resultado == "Aprobado") {
-                    data[i].DefectosID = "";
+                if (data[i].ResultadoID == "1") {
+                    data[i].DefectosID = "0";
                     data[i].Defectos = "";
                 }
             }
@@ -418,8 +418,8 @@ function PlanchadoResultadoDimensional() {
                     data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                     data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
 
-                    if (data[i].Resultado == "Aprobado") {
-                        data[i].DefectosID = "";
+                    if (data[i].ResultadoID == "1") {
+                        data[i].DefectosID = "0";
                         data[i].Defectos = "";
                     }
 

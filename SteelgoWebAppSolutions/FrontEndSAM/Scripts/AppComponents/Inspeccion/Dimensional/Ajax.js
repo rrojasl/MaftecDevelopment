@@ -194,7 +194,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
     loadingStart();
     //if (InspectorCorrecto(jSonCaptura)) {
     for (index = 0; index < jSonCaptura.length; index++) {
-        inspeccionDimensional[index] = { Accion: "", InspeccionDimensionalID: "", FechaInspeccion: "", ResultadoID: "", Resultado: "", InspectorID: "", Inspector: "", DefectosID: "", Defectos: "", OrdenTrabajoSpoolID: "", ListaJuntas: "", Estatus: 1 }
+        inspeccionDimensional[index] = { Accion: "", InspeccionDimensionalID: "", FechaInspeccion: "", ResultadoID: "", Resultado: "", InspectorID: "", Inspector: "", DefectosID: "", Defectos: "", OrdenTrabajoSpoolID: "", ListaJuntas: [], Estatus: 1 }
         inspeccionDimensional[index].Accion = jSonCaptura[index].Accion;
         inspeccionDimensional[index].InspeccionDimensionalID = jSonCaptura[index].InspeccionDimensionalID;
         inspeccionDimensional[index].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID;
@@ -203,38 +203,79 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
         inspeccionDimensional[index].InspectorID = jSonCaptura[index].InspectorID;
         inspeccionDimensional[index].FechaInspeccion = jSonCaptura[index].FechaInspeccion == null ? "" : kendo.toString(jSonCaptura[index].FechaInspeccion, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
 
+        //................................juntas
 
-        if (jSonCaptura[index].ListaJuntasSeleccionadas != null) {
-            if (jSonCaptura[index].ListaJuntasSeleccionadas.length > 0) {
-                for (var r = 0; r < jSonCaptura[index].ListaJuntasSeleccionadas.length; r++) {
+        var listaFinalJuntas = [];
+        if (jSonCaptura[index].ListaJuntasSeleccionadasInicial != null && jSonCaptura[index].ListaJuntasSeleccionadas != null) {
+            for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length; i++) {
+                var bandera = false;
+                for (var j = 0 ; j < jSonCaptura[index].ListaJuntasSeleccionadas.length ; j++) {
+                    if (jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].JuntaID == jSonCaptura[index].ListaJuntasSeleccionadas[j].JuntaID) {
+                        listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadasInicial[i]);
+                        bandera = true;
+                    }
+                    if ((jSonCaptura[index].ListaJuntasSeleccionadas.length - 1) == j && bandera == false) {
+                        jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].Accion = 3;
+                        listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadasInicial[i]);
+                    }
+                }
+            }
+            if (jSonCaptura[index].ListaJuntasSeleccionadasInicial.length == 0) {
+                listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
+            }
+            else {
+                for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadas.length; i++) {
+                    var bandera = false;
+                    for (var j = 0 ; j < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length ; j++) {
+                        if (jSonCaptura[index].ListaJuntasSeleccionadas[i].JuntaID != jSonCaptura[index].ListaJuntasSeleccionadasInicial[j].JuntaID) {
+                            bandera = true;
+                        }
+                        if ((jSonCaptura[index].ListaJuntasSeleccionadasInicial.length - 1) == j && bandera == true && jSonCaptura[index].ListaJuntasSeleccionadas[i].Accion == 1) {
+                            listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadas[i]);
+                        }
+
+                    }
+                }
+            }
+        }
+ //.........................................
+
+        if (listaFinalJuntas != null) {
+            if (listaFinalJuntas.length > 0) {
+                inspeccionDimensional[index].ListaJuntas = [];
+                Juntas = [];
+                for (var r = 0; r < listaFinalJuntas.length; r++) {
                     Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
                     Juntas[r].DefectoID = jSonCaptura[index].DefectosID == "" ? 0 : jSonCaptura[index].DefectosID;
-                    Juntas[r].JuntaID = jSonCaptura[index].ListaJuntasSeleccionadas[r].JuntaID;
-                    Juntas[r].Accion = jSonCaptura[index].ListaJuntasSeleccionadas[r].Accion
+                    Juntas[r].JuntaID = listaFinalJuntas[r].JuntaID;
+                    Juntas[r].Accion = listaFinalJuntas[r].Accion
                     Juntas[r].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID
                 }
                 inspeccionDimensional[index].ListaJuntas = Juntas;
             }
             else { inspeccionDimensional[index].ListaJuntas = undefined; }
         }
+        else { inspeccionDimensional[index].ListaJuntas = undefined; }
 
         if (((inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID != "1") ||
             (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID != "1") ||
             (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID != "1") ||
-            (inspeccionDimensional[index].ResultadoID == "1" && (inspeccionDimensional[index].ListaJuntas == undefined || inspeccionDimensional[index].ListaJuntas == undefined) )||
+            (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined )||
             inspeccionDimensional[index].InspectorID == "" ||
             inspeccionDimensional[index].InspectorID == "0" ||
             inspeccionDimensional[index].InspectorID == 0 ||
             inspeccionDimensional[index].FechaInspeccion == "")
             && (inspeccionDimensional[index].Accion != 3 && inspeccionDimensional[index].Accion != 4)) {
-            if (inspeccionDimensional[index].Accion == 2 && !(inspeccionDimensional[index].ResultadoID == "1" && (inspeccionDimensional[index].ListaJuntas == undefined || inspeccionDimensional[index].ListaJuntas == undefined))) {
+         if (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined && jSonCaptura[index].TIPO == "NoEspecificarJunta") {}
+            else if (inspeccionDimensional[index].Accion == 2 && inspeccionDimensional[index].ResultadoID == "") {
                 inspeccionDimensional[index].Accion = 4;
             }
-            else {
+            else if(inspeccionDimensional[index].ResultadoID != "1"){
                 inspeccionDimensional[index].Estatus = 0;
                 $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
             }
         }
+        
     }
     Captura[0].Detalles = inspeccionDimensional;
 
