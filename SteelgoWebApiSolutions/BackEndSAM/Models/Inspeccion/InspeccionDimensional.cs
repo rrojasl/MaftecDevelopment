@@ -48,6 +48,7 @@ namespace BackEndSAM.Models.InspeccionDimensional
             public string FechaInspeccion { get; set; }
             public List<JuntaXSpool> ListaJuntas { get; set; }
             public List<JuntaXSpool> ListaJuntasSeleccionadas { get; set; }
+            public List<JuntaXSpool> ListaJuntasSeleccionadasInicial { get; set; }
             public string TemplateRender { get; set; }
             public int IDDEFECTOTIPO { get; set; }
             public string TIPO { get; set; }

@@ -123,7 +123,7 @@ namespace BackEndSAM.Controllers
                     {
                         List<int?> ListaJutasSeleccionadasXSpoolID = (List<int?>)InspeccionBD.Instance.ObtenerDetalleJuntaSeleccionada(capturaDatosJson.OrdenTrabajoSpoolID,item.DefectoID.GetValueOrDefault(), usuario, Lenguaje);
                         List<InspeccionDimensional.JuntaXSpool> juntasSeleccionadas = ObtenerJuntasID(ListaJutasSeleccionadasXSpoolID);
-                        string idiomaMensaje = Lenguaje == "es-MX" ? "Existen ?1 juntas seleccionadas|No existen juntas seleccionadas" : "There are ?1 joint selected|There arent joint selected";
+                        string idiomaMensaje = Lenguaje == "es-MX" ? "Existen ?1 juntas seleccionadas|No hay juntas seleccionadas" : "There are ?1 joint selected|No joins are selected";
                         InspeccionDimensional.DetalleDatosJson detalleDatos = new InspeccionDimensional.DetalleDatosJson
                         {
 
@@ -146,6 +146,7 @@ namespace BackEndSAM.Controllers
                             ListaJuntas = listJuntaXSpool,
                             IDDEFECTOTIPO = item.IdDefectoTipo.GetValueOrDefault(),
                             ListaJuntasSeleccionadas = juntasSeleccionadas,
+                            ListaJuntasSeleccionadasInicial = juntasSeleccionadas,
                             TemplateRender = juntasSeleccionadas.Count > 0 ? idiomaMensaje.Split('|')[0].Replace("?1", juntasSeleccionadas.Count.ToString()) : idiomaMensaje.Split('|')[1],
                             TIPO =item.Tipo
                         };
@@ -332,6 +333,7 @@ namespace BackEndSAM.Controllers
 
                 if (listaObtenerDetalleDimensional.Count == 0)
                 {
+                    List<InspeccionDimensional.JuntaXSpool> juntasSeleccionadas = new List<InspeccionDimensional.JuntaXSpool>();
                     InspeccionDimensional.DetalleDatosJson detalleDatos = new InspeccionDimensional.DetalleDatosJson
                     {
                         Accion = 1,
@@ -350,7 +352,11 @@ namespace BackEndSAM.Controllers
                         Resultado = "",
                         ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
                         ListaJuntas = listJuntaXSpool,
-                        TemplateRender = Lenguaje == "es-MX" ? "No hay juntas seleccionadas" : "No joins are selected"
+                        ListaJuntasSeleccionadasInicial = juntasSeleccionadas,
+                        ListaJuntasSeleccionadas = juntasSeleccionadas,
+                        TemplateRender = Lenguaje == "es-MX" ? "No hay juntas seleccionadas" : "No joins are selected",
+                        IDDEFECTOTIPO = 0,
+                        TIPO = "EspecificarJunta"
                     };
                     listaDetalleDatos.Add(detalleDatos);
                 }
@@ -382,6 +388,7 @@ namespace BackEndSAM.Controllers
                             ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
                             ListaJuntas = listJuntaXSpool,
                             IDDEFECTOTIPO = item.IdDefectoTipo.GetValueOrDefault(),
+                            ListaJuntasSeleccionadasInicial = juntasSeleccionadas,
                             ListaJuntasSeleccionadas = juntasSeleccionadas,
                             TemplateRender = juntasSeleccionadas.Count > 0 ? idiomaMensaje.Split('|')[0].Replace("?1", juntasSeleccionadas.Count.ToString()) : idiomaMensaje.Split('|')[1],
                             TIPO = item.Tipo

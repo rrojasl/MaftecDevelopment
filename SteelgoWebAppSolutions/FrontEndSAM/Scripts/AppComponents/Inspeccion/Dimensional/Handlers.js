@@ -264,12 +264,12 @@ function SuscribirEventoResultadoDimensional() {
     $('input:radio[name=ResultadoDimensional]:nth(0)').change(function () {
         $("#inputDefecto").data("kendoComboBox").enable(false);
         $("#inputDefecto").data("kendoComboBox").value("");
-        PlanchadoResultadoDimensional();
+        //PlanchadoResultadoDimensional();
     });
     $('input:radio[name=ResultadoDimensional]:nth(1)').change(function () {
         $("#inputDefecto").data("kendoComboBox").enable(true);
         $("#inputDefecto").data("kendoComboBox").value("");
-        PlanchadoResultadoDimensional();
+        //PlanchadoResultadoDimensional();
     });
 
 }
@@ -389,6 +389,9 @@ function opcionHabilitarView(valor, name) {
 
         $('#Guardar1').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
         $("#Guardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar1").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        
         $("#grid").children().prop('readonly', true);
         $('#btnAplicarCapturaRapida').prop('disabled', true);
     }
@@ -402,6 +405,8 @@ function opcionHabilitarView(valor, name) {
         $("#FechaInspeccion").data("kendoDatePicker").enable(true);
         $('#Guardar1').text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
         $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar1").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
         $("#grid").children().prop('readonly', false);
         $('#btnAplicarCapturaRapida').prop('disabled', false);
     }

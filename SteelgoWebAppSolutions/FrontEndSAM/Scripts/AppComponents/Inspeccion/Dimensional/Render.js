@@ -49,7 +49,7 @@ function RenderOptionResultado(container, options) {
                         options.model.DefectosID = 0;
                         options.model.Defectos = "";
                         options.model.ListaJuntasSeleccionadas = [];
-                        options.model.TemplateRender = $("#language").data("kendoDropDownList").value() == "es-MX" ? "Existen " + (options.model.ListaJuntasSeleccionadas == undefined ? 0 : options.model.ListaJuntasSeleccionadas.length) + " Juntas" : "There are " + (options.model.ListaJuntasSeleccionadas == undefined ? 0 : options.model.ListaJuntasSeleccionadas.length) + " board";
+                        options.model.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                         $("#grid").data("kendoGrid").dataSource.sync();
                     }
                     
