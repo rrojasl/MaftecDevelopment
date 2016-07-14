@@ -241,8 +241,7 @@ function RenderGridDetalle(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta
 
-    console.log("modelo de la fila seleccionada");
-    console.log(options.model.ListaDetalleTrabajoAdicional);
+    
 
 
     $('<div name=' + options.model.SpoolID + '' + options.model.Junta + '/>')
@@ -281,18 +280,9 @@ function RenderGridDetalle(container, options) {
 
       selectable: true,
       dataBinding: function (e) {
-          console.log("dataBinding");
+          
       },
       edit: function (e) {
-          //alert('xd');
-          //$(".k-grid").on('mouseleave', function (send) {
-          //var e = $.Event("keydown", { keyCode: 27 });
-          //var item = this;
-          //if (!tieneClase(item)) {
-          //    $(container).trigger(e);
-          //}
-
-          //});
       },
       change: function (e) {
 
@@ -378,9 +368,7 @@ function RenderComboBoxTrabajoAdicional(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta 
 
-    console.log("RenderComboBoxTrabajoAdicional la propiedad accion tiene el valor de:");
-    console.log(options.model.Accion);
-    console.log(options.model);
+   
 
     $('<input required data-text-field="NombreCorto" id=' + options.model.uid + ' data-value-field="NombreCorto" data-bind="value:' + options.field + '"/>')
         .appendTo(container)

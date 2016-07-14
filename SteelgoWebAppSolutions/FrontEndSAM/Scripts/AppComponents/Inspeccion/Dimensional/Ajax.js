@@ -187,7 +187,7 @@ function ExisteJunta() {
 function AjaxGuardar(jSonCaptura, tipoGuardado) {
     Captura = [];
     Captura[0] = { Detalles: "" };
-
+    $("#grid").data("kendoGrid").dataSource.sync();
     var mensaje = '';
     inspeccionDimensional = [];
     Juntas = [];
@@ -257,9 +257,9 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
         }
         else { inspeccionDimensional[index].ListaJuntas = undefined; }
 
-        if (((inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID != "1") ||
-            (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID != "1") ||
-            (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID != "1") ||
+        if (((inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID == "2") ||
+            (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID == "2") ||
+            (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID == "2") ||
             (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined )||
             inspeccionDimensional[index].InspectorID == "" ||
             inspeccionDimensional[index].InspectorID == "0" ||

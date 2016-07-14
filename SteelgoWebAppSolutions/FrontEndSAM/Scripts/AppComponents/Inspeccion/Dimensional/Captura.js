@@ -194,16 +194,19 @@ function FiltroMostrar(mostrar) {
 function isEditable(fieldName, model) {
     if (fieldName === "Defectos") {
         // condition for the field "ProductName"
-        return model.Resultado !== "Aprobado";
+        return model.ResultadoID !== "1";
     }
     else if (fieldName === "ListaJuntasSeleccionadas") {
         // condition for the field "ProductName"
         //alert(model.TIPO );
         if (model.TIPO == "NoEspecificarJunta") {
             displayNotify("mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto", '', '1');
-            
         }
-        return model.TIPO !== "NoEspecificarJunta" &&  model.TIPO !=null;
+        if (model.ResultadoID == "1") {
+            displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado', '', '1');
+        }
+
+        return model.TIPO !== "NoEspecificarJunta" && model.ResultadoID !== "1" && model.ResultadoID !== "0";
     }
 
     return true; // default to editable

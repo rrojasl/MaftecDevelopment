@@ -218,7 +218,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         Captura = [];
         Captura[0] = { Detalles: "" };
         ListaDetalles = [];
-
+        $("#grid").data("kendoGrid").dataSource.sync();
         for (index = 0; index < arregloCaptura.length; index++) {
             try {
                 ListaDetalles[index] = { Accion: "", IdVal: "", JuntaID: "", TipoJuntaID: "", Junta: "", Localizacion1: "", Localizacion2: "", JuntaArmadoID: "", JuntaTrabajoID: "", NumeroUnico1ID: "", NumeroUnico2ID: "", TallerID: "", TuberoID: "", FechaArmado: "", ListaDetalleTrabajoAdicional: "", Estatus: 1 };
@@ -262,8 +262,8 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                        ListaDetalles[index].Junta == "" ||
                        ListaDetalles[index].Localizacion1 == "" ||
                        ListaDetalles[index].Localizacion2 == "" ||
-                       ListaDetalles[index].NumeroUnico1ID == "" ||
-                       ListaDetalles[index].NumeroUnico2ID == "" ||
+                       ListaDetalles[index].NumeroUnico1ID == "" || ListaDetalles[index].NumeroUnico1ID == null ||
+                       ListaDetalles[index].NumeroUnico2ID == "" || ListaDetalles[index].NumeroUnico2ID == null ||
                        ListaDetalles[index].TallerID == "" ||
                        ListaDetalles[index].TallerID == "0" ||
                        ListaDetalles[index].TuberoID == "" ||

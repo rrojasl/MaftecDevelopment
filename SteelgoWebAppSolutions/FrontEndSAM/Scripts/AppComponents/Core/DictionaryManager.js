@@ -131,6 +131,10 @@ _dictionary = {
         "es-MX": "No se pueden especificar juntas para el defecto",
         "en-US": "Can't especify joint to deffect"
     },
+    "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado": {
+        "es-MX": "El spool esta aprobado, no puedes especificar juntas",
+        "en-US": "The spool is aproved, can´t  especify joint "
+    },
     
     "RequisicionesAsignadas": {
         "es-MX": "Requisiciones Asignadas",

@@ -128,7 +128,7 @@ function CargarGrid() {
                 anteriorlongitudTrabajosAdicionales = e.model.ListaDetalleTrabajoAdicional.length;
 
                 input.focus(function () {
-                    console.log(ItemSeleccionado.Accion);
+                    
                     if (ItemSeleccionado.JuntaArmadoID !== 0)
                     { ItemSeleccionado.Accion = 2; }
                 });
@@ -278,7 +278,7 @@ function CargarGridPopUp() {
 
         selectable: true,
         dataBinding: function (e) {
-            console.log("dataBinding");
+            
         },
         filterable: getGridFilterableMaftec(),
         edit: function (e) {
