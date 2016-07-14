@@ -9,6 +9,7 @@
         public bool Activo { get; set; }
         public int UsuarioModificacion { get; set; }
         public string TipoObrero { get; set; }
+        public string NombreCompleto { get; set; }
 
         public Obrero()
         {
@@ -19,6 +20,7 @@
             Activo = false;
             UsuarioModificacion = 0;
             TipoObrero = "";
+            NombreCompleto = "";
         }
 
     }

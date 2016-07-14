@@ -31,8 +31,7 @@ function AjaxObtenerListaTaller() {
 
 function AjaxJunta(spoolID) {
     loadingStart();
-    $('input:radio[name=Muestra]:checked').val();
-    $Inspeccion.Inspeccion.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token"), todos: 1 }).done(function (data) {
+    $Inspeccion.Inspeccion.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: 1, token: Cookies.get("token"), todos: 1 }).done(function (data) {
         if (Error(data)) {
             limpiarJuntaMultiselect();
             $("#ListaJuntas").data("kendoMultiSelect").dataSource.data(data);
@@ -54,10 +53,8 @@ function AjaxObtenerListaInspectorVisual() {
 function AjaxObtenerListaDefectosDimensionales() {
 
     $Defectos.Defectos.read({ lenguaje: $("#language").val(), TipoPrueba: TipoPruebaDimensional, token: Cookies.get("token") }).done(function (data) {
-
         $("#inputDefecto").data("kendoComboBox").value("");
         $("#inputDefecto").data("kendoComboBox").dataSource.data(data)
-
     });
 }
 function AjaxObtenerListaDefectosVisuales() {
@@ -74,18 +71,6 @@ function AjaxCargaCamposPredeterminados() {
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoFechaDimensionalPredeterminada }).done(function (data) {
         var NewDate = kendo.toString(data, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
         endRangeDate.val(NewDate);
-    });
-
-    $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: idMostrarInformacion }).done(function (data) {
-        if (data == "sin captura") {
-            $('input:radio[name=Muestra]:nth(0)').trigger("click");
-            //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
-
-        }
-        else if (data == "Todos") {
-            //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
-            $('input:radio[name=Muestra]:nth(1)').trigger("click");
-        }
     });
 
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoFechaVisualPredeterminada }).done(function (data) {
@@ -142,12 +127,9 @@ function AjaxObtenerSpoolID() {
 function AjaxobtenerDetalleDimensional(spoolID) {
     loadingStart();
 
-    $Inspeccion.Inspeccion.read({ id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-
-
-        if (data.ListaDetalleDimensional.length == 0) {
+    $Inspeccion.Inspeccion.read({ id: spoolID, sinCaptura: 1, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        if (data.ListaDetalleDimensional.length == 0)
             $("#InspeccionDimensionalID").val("")
-        }
         else {
             if (data.ListaDetalleDimensional[0].ResultadoID == 1) {//aprobado
                 $('input:radio[name=ResultadoDimensional]:nth(0)').trigger("click");
@@ -165,7 +147,6 @@ function AjaxobtenerDetalleDimensional(spoolID) {
             $("#InspeccionDimensionalID").val(data.ListaDetalleDimensional[0].InspeccionDimensionalID);
             endRangeDate.val(data.ListaDetalleDimensional[0].FechaInspeccion);
 
-
             $("#ListaJuntas").data("kendoMultiSelect").dataSource.data([]);
             $("#ListaJuntas").data("kendoMultiSelect").dataSource.data(data.ListaDetalleDimensional[0].ListaJuntas);
 
@@ -181,35 +162,17 @@ function AjaxobtenerDetalleDimensional(spoolID) {
             if ($("#ListaJuntas").data("kendoMultiSelect").value().length > 0) {
                 AjaxObtenerJSonGrid();
             }
-
         }
         loadingStop();
     });
 }
 
-
 function AjaxObtenerJSonGrid() {
-
     loadingStart();
     try {
         $Inspeccion.Inspeccion.read({ JsonCaptura: JSON.stringify(ArregloListadoCaptura()), token: Cookies.get("token"), Lenguaje: $("#language").val(), juntasSeleccionadas: $("#ListaJuntas").data("kendoMultiSelect").value().toString() }).done(function (data) {
-
             var ds = $("#grid").data("kendoGrid").dataSource;
             var array = JSON.parse(data);
-
-            var elements = $("#ListaJuntas").data("kendoMultiSelect").dataItems();
-
-            if (elements.length > 0) {
-                for (var x = array.length - 1; x >= 0; x--) {
-                    var exist = false;
-                    for (var j = 0; j < elements.length; j++) {
-                        if(array[x].JuntaID == elements[j].JuntaSpoolID)
-                            exist = true
-                    }
-                    if (!exist)
-                        array.splice(x,1);
-                }
-            }
 
             for (var i = 0; i < array.length; i++) {
                 if (ExisteJunta(array[i].JuntaID)) {
@@ -229,15 +192,14 @@ function AjaxObtenerJSonGrid() {
 }
 
 function AjaxGuardar(jSonCaptura) {
-
     Captura = [];
     Captura[0] = { Detalles: "" };
-
 
     inspeccionDimensional = [];
 
     Juntas = [];
 
+    // Elementos del grid
     ListaDetalleGuardarInspeccionVisual = []
     for (index = 0; index < jSonCaptura.length; index++) {
         ListaDetalleGuardarInspeccionVisual[index] = { Accion: "", OrdenTrabajoSpoolID: "", TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: "", InspectorID: "", FechaInspeccion: "", JuntaTrabajoID: "", ResultadoID: "", TallerID: "", NumeroUnico1ID: "", NumeroUnico2ID: "", InspeccionVisualID: "" };
@@ -256,13 +218,11 @@ function AjaxGuardar(jSonCaptura) {
         ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID = jSonCaptura[index].NumeroUnico1ID;
         ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID = jSonCaptura[index].NumeroUnico2ID;
         ListaDetalleGuardarInspeccionVisual[index].InspeccionVisualID = jSonCaptura[index].InspeccionVisualID;
-
     }
 
-
+    //Guardado módulo Dimensional
     if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined) {
         if ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined) {
-
             inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
             inspeccionDimensional[0].Lenguaje = $("#language").val();
             inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
@@ -285,7 +245,6 @@ function AjaxGuardar(jSonCaptura) {
             }
             else
                 inspeccionDimensional[0].ListaJuntas = undefined;
-
 
             if (validaTaller(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
                 if (validaDefectos(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
@@ -349,6 +308,8 @@ function AjaxGuardar(jSonCaptura) {
             opcionHabilitarView(false, "FieldSetView");
         }
     }
+
+    //Guardado módulo Visual
     else {
         inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "" }
         inspeccionDimensional[0].Lenguaje = $("#language").val();
@@ -369,22 +330,20 @@ function AjaxGuardar(jSonCaptura) {
                                 Captura[0].Detalles = inspeccionDimensional;
                                 loadingStart();
                                 $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-
                                     if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
                                         mensaje = "Se guardo correctamente la informacion" + "-0";
                                         displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                                         AjaxobtenerDetalleDimensional($("#InputID").val());
                                         AjaxObtenerJSonGrid();
-
                                     }
                                     else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                                         mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
                                         displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                                        opcionHabilitarView(false, "FieldSetView")
-
+                                        opcionHabilitarView(false, "FieldSetView");
                                     }
                                     loadingStop();
 
+                                    var newDataSource = $("#grid").data("kendoGrid").dataSource;
                                 });
                             }
                             else {
@@ -416,12 +375,8 @@ function AjaxGuardar(jSonCaptura) {
             displayNotify("DimensionalVisualMensajeErrorTaller", "", '2');
             opcionHabilitarView(false, "FieldSetView")
         }
-
     }
-
-
 }
-
 
 function ObtenerDato(fecha, tipoDatoObtener) {
     var cultura = $("#language").val();

@@ -63,7 +63,6 @@ function MostrarDetalleVisualDimensional() {
     AjaxobtenerDetalleDimensional($("#InputID").val());
     AjaxObtenerListaTaller();
     deshabilitaSpool();
-
 }
 
 function CargarGrid() {
@@ -127,6 +126,7 @@ function CargarGrid() {
                         Taller: { type: "string", editable: true },
                         DefectosID: { type: "string", editable: true },
                         Defectos: { type: "string", editable: true },
+                        
                         InspectorID: { type: "string", editable: true },
                         Inspector: { type: "string", editable: true },
                         FechaInspeccion: { type: "date", editable: true },

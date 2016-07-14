@@ -12,7 +12,6 @@
     SuscribirEventoTaller();
     SuscribirEventoAgregarCapturaRapida();
     SuscribirEventoListaJuntas();
-    SuscribirEventoChangeRadio();
     SuscribirEventoFecha();
 };
 
@@ -34,31 +33,10 @@ function SuscribirEventoFecha() {
 
 };
 
-
-function SuscribirEventoChangeRadio() {
-
-
-    $('input:radio[name=Muestra]:nth(0)').change(function () {
-        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
-            limpiarJuntaMultiselect();
-            MostrarDetalleVisualDimensional();
-            FiltroMostrar(0);
-        }
-    });
-    $('input:radio[name=Muestra]:nth(1)').change(function () {
-        if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
-            limpiarJuntaMultiselect();
-            MostrarDetalleVisualDimensional();
-            FiltroMostrar(1);
-        }
-    });
-
-}
-
 function SuscribirEventoListaJuntas() {
     $("#ListaJuntas").kendoMultiSelect({
-        dataTextField: "Etiqueta",
-        dataValueField: "JuntaSpoolID",
+        dataTextField: "Junta",
+        dataValueField: "JuntaID",
         suggest: true,
         filter: "contains",
         autoBind: false,
@@ -142,33 +120,33 @@ function SuscribirEventoSpoolID() {
         }
         else if (e.keyCode == 40) {
             $("#InputID").data("kendoComboBox").select();
-            AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+            //AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+            MostrarDetalleVisualDimensional();
         }
         else if (e.keyCode == 13) {
             if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
-                if ($('input:radio[name=Muestra]:checked').val() != undefined) {
-                    if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
-                        // AjaxobtenerDetalleDimensional($("#InputID").val());
-                        //// AjaxObtenerJSonGrid();
-                        // deshabilitaSpool();
-                        MostrarDetalleVisualDimensional();
-                    }
+                if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+                    // AjaxobtenerDetalleDimensional($("#InputID").val());
+                    //// AjaxObtenerJSonGrid();
+                    // deshabilitaSpool();
+                    MostrarDetalleVisualDimensional();
                 }
-                else MensajesSteelGO('radioMostrar', '');
             }
             else displayNotify("NoExisteSpoolID", '', '2');
         }
         else if (e.keyCode == 9) {
             if (tieneClase(e.currentTarget)) {
                 $("#InputID").data("kendoComboBox").select(0);
-                AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                //AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                MostrarDetalleVisualDimensional();
             }
             dataItem = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select());
             if (dataItem != undefined) {
                 if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
                     Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
                     $("#LabelProyecto").text(dataItem.Proyecto);
-                    AjaxJunta($("#InputID").val());
+                    //AjaxJunta($("#InputID").val());
+                    MostrarDetalleVisualDimensional();
                 }
             }
         }
@@ -182,7 +160,8 @@ function SuscribirEventoSpoolID() {
                 var idvalSpoolID = listaSpoolID[i].IDValido + '';
                 if (idvalSpoolID.indexOf(spoollIDValue) > 0) {
                     $("#InputID").data("kendoComboBox").select(0);
-                    AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                    //AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                    MostrarDetalleVisualDimensional();
                 }
             }
 
