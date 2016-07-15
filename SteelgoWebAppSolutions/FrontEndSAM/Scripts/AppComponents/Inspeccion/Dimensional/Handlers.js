@@ -380,6 +380,9 @@ function opcionHabilitarView(valor, name) {
 
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
+        $('#MuestraDiv').find('*').attr('disabled', true);
+        $('#DivResultadoDimensionalRadio').find('*').attr('disabled', true);
+        $('#DivLlenadoMasivoRadio').find('*').attr('disabled', true);
         $("#InputID").data("kendoComboBox").enable(false);
         $("#InputOrdenTrabajo").prop('disabled',true);
         $('#InputOrdenTrabajo').css('opacity', '0.6');
@@ -397,6 +400,9 @@ function opcionHabilitarView(valor, name) {
     }
     else {
         $('#FieldSetView').find('*').attr('disabled', false);
+        $('#MuestraDiv').find('*').attr('disabled', false);
+        $('#DivResultadoDimensionalRadio').find('*').attr('disabled', false);
+        $('#DivLlenadoMasivoRadio').find('*').attr('disabled', false);
         $("#InputID").data("kendoComboBox").enable(true);
         $("#InputOrdenTrabajo").prop('disabled', false);
         $('#InputOrdenTrabajo').css('opacity', '1');

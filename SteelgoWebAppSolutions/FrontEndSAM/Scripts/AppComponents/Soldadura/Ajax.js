@@ -833,6 +833,7 @@ function AjaxActualizaSoldadoresRaiz(ProcesoSoldaduraID, tipoJunta, diametro, es
         if (Error(data)) {
             ItemSeleccionado.ListadoRaiz = data;
         }
+        $("#grid").data("kendoGrid").dataSource.sync();
         loadingStop();
     });
 }
@@ -843,6 +844,7 @@ function AjaxActualizaSoldadoresRelleno(ProcesoSoldaduraID, tipoJunta, diametro,
         if (Error(data)) {
             ItemSeleccionado.ListadoRelleno = data;
         }
+        $("#grid").data("kendoGrid").dataSource.sync();
         loadingStop();
     });
 }

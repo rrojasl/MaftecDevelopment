@@ -113,7 +113,8 @@ namespace BackEndSAM.Controllers
                         Resultado = "",
                         ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
                         ListaJuntas = listJuntaXSpool,
-                        TemplateRender = Lenguaje == "es-MX" ? "No hay juntas seleccionadas" : "No joins are selected"
+                        TemplateRender = Lenguaje == "es-MX" ? "No hay juntas seleccionadas" : "No joins are selected",
+                        TIPO = "NoEspecificarJunta"
                     };
                     listaDetalleDatos.Add(detalleDatos);
                 }
@@ -356,7 +357,7 @@ namespace BackEndSAM.Controllers
                         ListaJuntasSeleccionadas = juntasSeleccionadas,
                         TemplateRender = Lenguaje == "es-MX" ? "No hay juntas seleccionadas" : "No joins are selected",
                         IDDEFECTOTIPO = 0,
-                        TIPO = "EspecificarJunta"
+                        TIPO = "NoEspecificarJunta"
                     };
                     listaDetalleDatos.Add(detalleDatos);
                 }

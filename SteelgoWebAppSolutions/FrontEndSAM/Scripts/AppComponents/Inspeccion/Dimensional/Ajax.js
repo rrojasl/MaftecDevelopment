@@ -266,11 +266,22 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
             inspeccionDimensional[index].InspectorID == 0 ||
             inspeccionDimensional[index].FechaInspeccion == "")
             && (inspeccionDimensional[index].Accion != 3 && inspeccionDimensional[index].Accion != 4)) {
-         if (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined && jSonCaptura[index].TIPO == "NoEspecificarJunta") {}
-            else if (inspeccionDimensional[index].Accion == 2 && inspeccionDimensional[index].ResultadoID == "") {
+            if (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined && jSonCaptura[index].TIPO == "NoEspecificarJunta") {
+                if (inspeccionDimensional[index].DefectosID == 0 || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == "") {
+                    inspeccionDimensional[index].Estatus = 0;
+                    $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                }
+            }
+         else if (inspeccionDimensional[index].Accion == 2 && inspeccionDimensional[index].ResultadoID == "" && inspeccionDimensional[index].FechaInspeccion == "" &&
+             (inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0 ) &&
+             (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) 
+             ) {
                 inspeccionDimensional[index].Accion = 4;
             }
-            else if(inspeccionDimensional[index].ResultadoID != "1"){
+         else if (inspeccionDimensional[index].ResultadoID != "1" || (
+             (inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID == "2") ||
+             (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID == "2") ||
+             (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID == "2"))) {
                 inspeccionDimensional[index].Estatus = 0;
                 $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
             }

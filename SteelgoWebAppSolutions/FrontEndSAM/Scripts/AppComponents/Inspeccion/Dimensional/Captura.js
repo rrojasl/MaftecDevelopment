@@ -354,20 +354,21 @@ function PlanchaDefecto() {
     var allData = dataSource.data();
     var query = new kendo.data.Query(allData);
     var data = query.filter(filters).data;
-
-    for (var i = 0; i < data.length; i++) {
-        if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            if (data[i].Resultado != "Aprobado") {
-                data[i].DefectosID = $("#inputDefecto").val();
-                data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
-            }
-            
-        }
-        else {
-            if (data[i].Defectos == "" || data[i].Defectos == null || data[i].Defectos == undefined) {
-                if (data[i].Resultado != "Aprobado") {
+    if ($("#inputDefecto").data("kendoComboBox").text() != "") {
+        for (var i = 0; i < data.length; i++) {
+            if ($('input:radio[name=LLena]:checked').val() === "Todos") {
+                if (data[i].ResultadoID != "1") {
                     data[i].DefectosID = $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                }
+
+            }
+            else {
+                if (data[i].Defectos == "" || data[i].Defectos == null || data[i].Defectos == undefined) {
+                    if (data[i].ResultadoID != "1") {
+                        data[i].DefectosID = $("#inputDefecto").val();
+                        data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                    }
                 }
             }
         }
@@ -415,20 +416,11 @@ function PlanchadoResultadoDimensional() {
                 data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                 data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
 
-                if (data[i].ResultadoID == "1") {
-                    data[i].DefectosID = "0";
-                    data[i].Defectos = "";
-                }
             }
             else {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
                     data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                     data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
-
-                    if (data[i].ResultadoID == "1") {
-                        data[i].DefectosID = "0";
-                        data[i].Defectos = "";
-                    }
 
                 }
             }
