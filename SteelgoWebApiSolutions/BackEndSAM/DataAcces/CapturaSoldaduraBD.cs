@@ -86,7 +86,7 @@ namespace BackEndSAM.DataAcces
                             Codigo = item.Codigo,
                         });
                     }
-
+                    listaProcesosSoldadura.Insert(0, new ProcesoSoldadura());
                     return listaProcesosSoldadura;
                 }
             }
@@ -203,19 +203,19 @@ namespace BackEndSAM.DataAcces
 
 
 
-        public object ObtenerListadoSoldaduresTrabajo()
+        public object ObtenerListadoSoldadores(int tipo)
         {
             try
             {
-                List<ObreroSoldador> listaTrabajosAdicionalesSoldadura = new List<ObreroSoldador>();
+                List<ObreroSoldador> listaSoldadura = new List<ObreroSoldador>();
 
                 using (SamContext ctx = new SamContext())
                 {
 
-                    List<Sam3_Steelgo_Get_Obrero_Result> listresult = ctx.Sam3_Steelgo_Get_Obrero(2, "Soldador", null, null,null).ToList();
+                    List<Sam3_Steelgo_Get_Obrero_Result> listresult = ctx.Sam3_Steelgo_Get_Obrero(tipo, "Soldador", null, null,null).ToList();
                     foreach (Sam3_Steelgo_Get_Obrero_Result item in listresult)
                     {
-                        listaTrabajosAdicionalesSoldadura.Add(new ObreroSoldador
+                        listaSoldadura.Add(new ObreroSoldador
                         {
                             ObreroID = item.ObreroID,
                             Soldador = item.Codigo,
@@ -223,7 +223,7 @@ namespace BackEndSAM.DataAcces
                     }
 
 
-                    return listaTrabajosAdicionalesSoldadura;
+                    return listaSoldadura;
                 }
             }
             catch (Exception ex)
