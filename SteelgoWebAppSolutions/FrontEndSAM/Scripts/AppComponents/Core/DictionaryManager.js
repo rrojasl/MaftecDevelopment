@@ -8079,8 +8079,8 @@ _dictionary = {
         "en-US": "Joint"
     },
     "DimensionalVisualHeaderSpoolID": {
-        "es-MX": "SpoolID",
-        "en-US": "SpoolID"
+        "es-MX": "Spool ID",
+        "en-US": "Spool ID"
     },
     "DimensionalVisualHeaderResultadoDimesional": {
         "es-MX": "Resultado dimensional",
@@ -8163,8 +8163,8 @@ _dictionary = {
         "en-US": "Unique 2"
     },
     "CapturaInspeccionPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de cancelar el detalle de la captura de Inspeccion?",
-        "en-US": "Are you sure you want to cancel the detail of the capture of Inspection?"
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de Inspeccion?",
+        "en-US": "Are you sure you want to delete the detail of the capture of Inspection?"
     },
     "DimensionalVisualInspeccionDimensional": {
         "es-MX": "Dimensional",
