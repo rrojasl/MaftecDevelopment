@@ -100,12 +100,10 @@ function SuscribirEventoSpoolID() {
         delay: 10,
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
-
             if (dataItem.Status != "1") {
                 e.preventDefault();
                 $("#InputID").val("");
                 console.log("borrar datos");
-                // displayNotify("Mensajes_error", dataItem.Status, '1');
             }
             else {
                 $("#InputID").val(dataItem.IDValido);
@@ -116,13 +114,6 @@ function SuscribirEventoSpoolID() {
         ,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
-            if (dataItem == undefined) {
-                $("#Junta").data("kendoComboBox").value("");
-            }
-            //if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
-            //    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);   
-            //}
-
         }
     });
 
@@ -138,12 +129,17 @@ function SuscribirEventoSpoolID() {
             MensajesSteelGO('InputOrdenTrabajo', '');
         }
     });
-
-
+    
     $("#InputOrdenTrabajo").focus(function (e) {
         $("#InputOrdenTrabajo").val("");
         $("#InputID").data("kendoComboBox").value("");
         $("#InputID").data("kendoComboBox").setDataSource();
+    });
+
+    $("#InputID").blur(function (e) {
+        if (tieneClase(e.currentTarget)) {
+            $("#InputID").data("kendoComboBox").select(0);
+        }
     });
 
     $('#InputID').closest('.k-widget').keydown(function (e) {
@@ -381,6 +377,7 @@ function opcionHabilitarView(valor, name) {
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
         $('#MuestraDiv').find('*').attr('disabled', true);
+        $("#btnAgregar").prop('disabled', true);
         $('#DivResultadoDimensionalRadio').find('*').attr('disabled', true);
         $('#DivLlenadoMasivoRadio').find('*').attr('disabled', true);
         $("#InputID").data("kendoComboBox").enable(false);
@@ -401,6 +398,7 @@ function opcionHabilitarView(valor, name) {
     else {
         $('#FieldSetView').find('*').attr('disabled', false);
         $('#MuestraDiv').find('*').attr('disabled', false);
+        $("#btnAgregar").prop('disabled', false);
         $('#DivResultadoDimensionalRadio').find('*').attr('disabled', false);
         $('#DivLlenadoMasivoRadio').find('*').attr('disabled', false);
         $("#InputID").data("kendoComboBox").enable(true);

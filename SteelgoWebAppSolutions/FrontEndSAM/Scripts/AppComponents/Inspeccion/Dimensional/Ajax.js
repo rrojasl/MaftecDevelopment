@@ -220,7 +220,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                     }
                 }
             }
-            if (jSonCaptura[index].ListaJuntasSeleccionadasInicial.length == 0) {
+            if (jSonCaptura[index].ListaJuntasSeleccionadasInicial.length == 0 || jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
                 listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
             }
             else {
@@ -239,7 +239,9 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
             }
         }
  //.........................................
-
+        if ( jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
+            listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
+        }
         if (listaFinalJuntas != null) {
             if (listaFinalJuntas.length > 0) {
                 inspeccionDimensional[index].ListaJuntas = [];

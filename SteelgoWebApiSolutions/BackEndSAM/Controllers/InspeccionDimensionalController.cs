@@ -367,7 +367,7 @@ namespace BackEndSAM.Controllers
                     {
                         List<int?> ListaJutasSeleccionadasXSpoolID = (List<int?>)InspeccionBD.Instance.ObtenerDetalleJuntaSeleccionada(OrdenTrabajoSpoolID.ToString(), item.DefectoID.GetValueOrDefault(), usuario, Lenguaje);
                         List<InspeccionDimensional.JuntaXSpool> juntasSeleccionadas = ObtenerJuntasID(ListaJutasSeleccionadasXSpoolID);
-                        string idiomaMensaje = Lenguaje == "es-MX" ? "Existen ?1 juntas seleccionadas|No existen juntas seleccionadas" : "There are ?1 joint selected|There arent joint selected";
+                        string idiomaMensaje = Lenguaje == "es-MX" ? "Existen ?1 juntas seleccionadas|No hay juntas seleccionadas" : "There are ?1 joint selected|No joints are selected";
                         InspeccionDimensional.DetalleDatosJson detalleDatos = new InspeccionDimensional.DetalleDatosJson
                         {
 
