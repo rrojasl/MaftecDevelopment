@@ -128,8 +128,10 @@ function AjaxobtenerDetalleDimensional(spoolID) {
     loadingStart();
 
     $Inspeccion.Inspeccion.read({ id: spoolID, sinCaptura: 1, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-        if (data.ListaDetalleDimensional.length == 0)
-            $("#InspeccionDimensionalID").val("")
+        if (data.ListaDetalleDimensional.length == 0) {
+            $("#InspeccionDimensionalID").val("");
+            AjaxJunta($("#InputID").val());
+        }
         else {
             if (data.ListaDetalleDimensional[0].ResultadoID == 1) {//aprobado
                 $('input:radio[name=ResultadoDimensional]:nth(0)').trigger("click");
@@ -221,106 +223,99 @@ function AjaxGuardar(jSonCaptura) {
     }
 
     //Guardado módulo Dimensional
-    if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined) {
-        if ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined) {
-            inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
-            inspeccionDimensional[0].Lenguaje = $("#language").val();
-            inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
-            inspeccionDimensional[0].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
-            inspeccionDimensional[0].FechaInspeccion = kendo.toString(new Date(), String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
-            inspeccionDimensional[0].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
-            inspeccionDimensional[0].ObreroID = $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID;
-            inspeccionDimensional[0].DefectoID = $("#inputDefecto").data("kendoComboBox").select() == -1 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
-            inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarInspeccionVisual;
+    if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined
+        && $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined
+        && String(endRangeDate.val()).trim() != ""
+        && $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
 
-            if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
-                for (var r = 0; r < $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length; r++) {
-                    Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
-                    Juntas[r].DefectoID = $("#inputDefecto").data("kendoComboBox").select() == -1 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
-                    Juntas[r].JuntaID = $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID;
-                    Juntas[r].Accion = $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].Accion;
-                    Juntas[r].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
-                }
-                inspeccionDimensional[0].ListaJuntas = Juntas;
-            }
-            else
-                inspeccionDimensional[0].ListaJuntas = undefined;
+        if ($('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID != 0
+            || $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID == 0) {
 
-            if (validaTaller(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                if (validaDefectos(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                    if (validaResultado(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                        if (validaInspector(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                            if (validaNumeroUnico1(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                                if (validaNumeroUnico2(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                                    Captura[0].Detalles = inspeccionDimensional;
-                                    loadingStart();
-                                    $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+            if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined) {
+                if ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined) {
+                    inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
+                    inspeccionDimensional[0].Lenguaje = $("#language").val();
+                    inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
+                    inspeccionDimensional[0].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
+                    inspeccionDimensional[0].FechaInspeccion = kendo.toString(new Date(), String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
+                    inspeccionDimensional[0].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
+                    inspeccionDimensional[0].ObreroID = $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID;
+                    inspeccionDimensional[0].DefectoID = $("#inputDefecto").data("kendoComboBox").select() == -1 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
+                    inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarInspeccionVisual;
 
-                                        if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-
-                                            displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                                            AjaxobtenerDetalleDimensional($("#InputID").val());
-                                            AjaxObtenerJSonGrid();
-
-                                        }
-                                        else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                                            displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                                            opcionHabilitarView(false, "FieldSetView")
-
-                                        }
-                                        loadingStop();
-
-                                    });
-                                }
-                                else {
-                                    displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
-                                    opcionHabilitarView(false, "FieldSetView")
-                                }
-                            }
-                            else {
-                                displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
-                                opcionHabilitarView(false, "FieldSetView")
-                            }
+                    if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
+                        for (var r = 0; r < $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length; r++) {
+                            Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
+                            Juntas[r].DefectoID = $("#inputDefecto").data("kendoComboBox").select() == -1 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
+                            Juntas[r].JuntaID = $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID;
+                            Juntas[r].Accion = $("#InspeccionDimensionalID").val() == 0 ? 1 : 2;
+                            Juntas[r].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
                         }
-                        else {
-                            displayNotify("DimensionalVisualMensajeErrorInspector", "", '2');
-                            opcionHabilitarView(false, "FieldSetView")
-                        }
+                        inspeccionDimensional[0].ListaJuntas = Juntas;
+                        Captura[0].Detalles = inspeccionDimensional;
                     }
-                    else {
-                        displayNotify("DimensionalVisualMensajeErrorResultado", "", '2');
-                        opcionHabilitarView(false, "FieldSetView")
-                    }
+                    else
+                        inspeccionDimensional[0].ListaJuntas = undefined;
+                    //if (validaTaller(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                    //    if (validaDefectos(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                    //        if (validaResultado(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                    //            if (validaInspector(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                    //                if (validaNumeroUnico1(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                    //                    if (validaNumeroUnico2(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                    //                        Captura[0].Detalles = inspeccionDimensional;
+                    //                    }
+                    //                    else {
+                    //                        displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
+                    //                        opcionHabilitarView(false, "FieldSetView")
+                    //                    }
+                    //                }
+                    //                else {
+                    //                    displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
+                    //                    opcionHabilitarView(false, "FieldSetView")
+                    //                }
+                    //            }
+                    //            else {
+                    //                displayNotify("DimensionalVisualMensajeErrorInspector", "", '2');
+                    //                opcionHabilitarView(false, "FieldSetView")
+                    //            }
+                    //        }
+                    //        else {
+                    //            displayNotify("DimensionalVisualMensajeErrorResultado", "", '2');
+                    //            opcionHabilitarView(false, "FieldSetView")
+                    //        }
+                    //    }
+                    //    else {
+                    //        displayNotify("DimensionalVisualMensajeErrorDefectos", "", '2');
+                    //        opcionHabilitarView(false, "FieldSetView")
+                    //    }
+                    //}
+                    //else {
+                    //    displayNotify("DimensionalVisualMensajeErrorTaller", "", '2');
+                    //    opcionHabilitarView(false, "FieldSetView")
+                    //}
+
                 }
                 else {
-                    displayNotify("DimensionalVisualMensajeErrorDefectos", "", '2');
-                    opcionHabilitarView(false, "FieldSetView")
+                    displayNotify("DimensionalVisualMensajeErrorInspector", "", '1');
+                    opcionHabilitarView(false, "FieldSetView");
                 }
             }
             else {
-                displayNotify("DimensionalVisualMensajeErrorTaller", "", '2');
+                displayNotify("DimensionalVisualMensajeErrorResultado", "", '1');
                 opcionHabilitarView(false, "FieldSetView")
             }
-
         }
         else {
-            displayNotify("DimensionalVisualMensajeErrorInspector", "", '2');
-            opcionHabilitarView(false, "FieldSetView");
+            displayNotify("DimensionalVisualMensajeDefectoRechazado", "", '1');
+            opcionHabilitarView(false, "FieldSetView")
         }
     }
-
-    //Guardado módulo Visual
-    else {
-        inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "" }
-        inspeccionDimensional[0].Lenguaje = $("#language").val();
-        inspeccionDimensional[0].InspeccionDimensionalID = 0;
-        inspeccionDimensional[0].OrdenTrabajoSpoolID = 0;
-        inspeccionDimensional[0].FechaInspeccion = "";
-        inspeccionDimensional[0].ResultadoID = 0;
-        inspeccionDimensional[0].ObreroID = 0;
-        inspeccionDimensional[0].DefectoID = 0;
-        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarInspeccionVisual;
-
+    else if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined) {
+        displayNotify("DimensionalVisualMensajeErrorDimensional", "", '1');
+        opcionHabilitarView(false, "FieldSetView")
+    }
+    //Guardado módulo Dimensional
+    if (inspeccionDimensional.length != 0 && inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual.length > 0) {
         if (validaTaller(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
             if (validaDefectos(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
                 if (validaResultado(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
@@ -328,23 +323,22 @@ function AjaxGuardar(jSonCaptura) {
                         if (validaNumeroUnico1(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
                             if (validaNumeroUnico2(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
                                 Captura[0].Detalles = inspeccionDimensional;
-                                loadingStart();
-                                $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-                                    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                                        mensaje = "Se guardo correctamente la informacion" + "-0";
-                                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                                        AjaxobtenerDetalleDimensional($("#InputID").val());
-                                        AjaxObtenerJSonGrid();
-                                    }
-                                    else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                                        mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
-                                        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                                        opcionHabilitarView(false, "FieldSetView");
-                                    }
-                                    loadingStop();
-
-                                    var newDataSource = $("#grid").data("kendoGrid").dataSource;
-                                });
+                                //loadingStart();
+                                //$Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+                                //    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+                                //        mensaje = "Se guardo correctamente la informacion" + "-0";
+                                //        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                                //        AjaxobtenerDetalleDimensional($("#InputID").val());
+                                //        AjaxObtenerJSonGrid();
+                                //    }
+                                //    else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
+                                //        mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
+                                //        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+                                //        opcionHabilitarView(false, "FieldSetView");
+                                //    }
+                                //    loadingStop();
+                                //    var newDataSource = $("#grid").data("kendoGrid").dataSource;
+                                //});
                             }
                             else {
                                 displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
@@ -376,6 +370,32 @@ function AjaxGuardar(jSonCaptura) {
             opcionHabilitarView(false, "FieldSetView")
         }
     }
+
+    if (inspeccionDimensional.length != 0 || ListaDetalleGuardarInspeccionVisual.length != 0) {
+        if (inspeccionDimensional.length == 0) {
+            inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: "", ResultadoID: 0, ObreroID: 0, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
+        } else if (ListaDetalleGuardarInspeccionVisual == 0) {
+            ListaDetalleGuardarInspeccionVisual[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, InspectorID: 0, FechaInspeccion: "", JuntaTrabajoID: 0, ResultadoID: "", TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
+        }
+
+        loadingStart();
+        $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+                displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                AjaxobtenerDetalleDimensional($("#InputID").val());
+                AjaxObtenerJSonGrid();
+            }
+            else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
+                displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+                opcionHabilitarView(false, "FieldSetView")
+            }
+            loadingStop();
+        });
+    }
+    else {
+        displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '1');
+        opcionHabilitarView(false, "FieldSetView")
+    }
 }
 
 function ObtenerDato(fecha, tipoDatoObtener) {
@@ -399,7 +419,6 @@ function ObtenerDato(fecha, tipoDatoObtener) {
             break;
     }
 }
-
 
 function validaTaller(ListaDetalleGuardar) {
     for (var i = 0; i < ListaDetalleGuardar.length; i++) {

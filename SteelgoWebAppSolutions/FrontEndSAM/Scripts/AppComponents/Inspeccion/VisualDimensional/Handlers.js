@@ -81,7 +81,7 @@ function SuscribirEventoSpoolID() {
                 }
                 if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
                     Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
-                    AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+                    //AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                     MostrarDetalleVisualDimensional();
                 }
             }
@@ -89,7 +89,6 @@ function SuscribirEventoSpoolID() {
     });
 
     $("#InputOrdenTrabajo").blur(function (e) {
-
         if ($("#InputOrdenTrabajo").val().match("^[a-zA-Z][0-9]*$")) {
             try {
                 AjaxObtenerSpoolID();
@@ -124,15 +123,16 @@ function SuscribirEventoSpoolID() {
             MostrarDetalleVisualDimensional();
         }
         else if (e.keyCode == 13) {
-            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
-                if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+            if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val()) {
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
                     // AjaxobtenerDetalleDimensional($("#InputID").val());
                     //// AjaxObtenerJSonGrid();
                     // deshabilitaSpool();
                     MostrarDetalleVisualDimensional();
                 }
+                else displayNotify("NoExisteSpoolID", '', '1');
             }
-            else displayNotify("NoExisteSpoolID", '', '2');
+            else displayNotify("NoExisteSpoolID", '', '1');
         }
         else if (e.keyCode == 9) {
             if (tieneClase(e.currentTarget)) {
@@ -360,19 +360,15 @@ function suscribirEventoGuardar() {
     $('.accionGuardar').click(function (e) {
         e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
-        if (ds._data.length > 0) {
-            if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-                opcionHabilitarView(true, "FieldSetView");
-                AjaxGuardar(ds._data);
-            }
-            else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
-                opcionHabilitarView(false, "FieldSetView")
-            }
+
+        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
+            opcionHabilitarView(true, "FieldSetView");
+            AjaxGuardar(ds._data);
+        }
+        else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
+            opcionHabilitarView(false, "FieldSetView")
         }
     });
-
-
-
 
     $('#btnGuardarYNuevo').click(function (e) {
         e.preventDefault();
@@ -380,8 +376,6 @@ function suscribirEventoGuardar() {
         AjaxGuardar(ds._data);
         limpiar();
     });
-
-
 
     $('#btnGuardarYNuevo1').click(function (e) {
         e.preventDefault();
@@ -486,7 +480,7 @@ function opcionHabilitarView(valor, name) {
 
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
-        $("#InputID").data("kendoComboBox").enable(false);
+        //$("#InputID").data("kendoComboBox").enable(false);
         $("#inputInspectorVisual").data("kendoComboBox").enable(false);
         $("#inputFechaVisual").data("kendoDatePicker").enable(false);
         $("#FechaInspeccion").data("kendoDatePicker").enable(false);
@@ -502,7 +496,7 @@ function opcionHabilitarView(valor, name) {
     }
     else {
         $('#FieldSetView').find('*').attr('disabled', false);
-        $("#InputID").data("kendoComboBox").enable(true);
+        //$("#InputID").data("kendoComboBox").enable(true);
         $("#inputInspectorVisual").data("kendoComboBox").enable(true);
         $("#inputFechaVisual").data("kendoDatePicker").enable(true);
         $("#inputTaller").data("kendoComboBox").enable(true);

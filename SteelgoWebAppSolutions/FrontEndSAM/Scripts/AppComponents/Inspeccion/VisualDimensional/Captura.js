@@ -405,6 +405,7 @@ function limpiarCaptura(e) {
         itemToClean.TallerID = "";
         itemToClean.Resultado = "";
         itemToClean.InspectorID = "";
+        itemToClean.Defectos = "";
         itemToClean.Inspector = "";
         itemToClean.FechaInspeccion = "";
         itemToClean.NumeroUnico1 = "";

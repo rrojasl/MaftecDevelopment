@@ -203,7 +203,10 @@ namespace BackEndSAM.Controllers
 
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                 DataTable dtDetalleListas = null;
-                DataTable dtDetalleCaptura = ArmadoController.ToDataTable(listaCapturaInspeccion.Detalles[0].ListaDetalleGuardarInspeccionVisual);
+                DataTable dtDetalleCaptura = null;
+
+                if (listaCapturaInspeccion.Detalles[0].ListaDetalleGuardarInspeccionVisual != null)
+                    dtDetalleCaptura = ArmadoController.ToDataTable(listaCapturaInspeccion.Detalles[0].ListaDetalleGuardarInspeccionVisual);
 
                 if (listaCapturaInspeccion.Detalles[0].ListaJuntas != null)
                     dtDetalleListas = ArmadoController.ToDataTable(listaCapturaInspeccion.Detalles[0].ListaJuntas);
@@ -230,7 +233,18 @@ namespace BackEndSAM.Controllers
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                return InspeccionBD.Instance.ObtenerJuntasXSpoolID(usuario, ordenTrabajo, id, sinCaptura == "Todos" ? 1 : 0);
+                List<Sam3_Steelgo_Get_JuntaSpool_Result> juntas = (List<Sam3_Steelgo_Get_JuntaSpool_Result>)InspeccionBD.Instance.ObtenerJuntasXSpoolID(usuario, ordenTrabajo, id, sinCaptura == "Todos" ? 1 : 0);
+                List<JuntaXSpoolIDModeloJunta> juntaCorrecta = new List<JuntaXSpoolIDModeloJunta>();
+                foreach (Sam3_Steelgo_Get_JuntaSpool_Result item in juntas)
+                {
+                    juntaCorrecta.Add(new JuntaXSpoolIDModeloJunta
+                    {
+                        Junta = item.Etiqueta,
+                        JuntaID = item.JuntaSpoolID
+                    });
+                }
+
+                return juntaCorrecta;
             }
             else
             {
@@ -321,9 +335,9 @@ namespace BackEndSAM.Controllers
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                
+
                 List<int?> ListaJutasSeleccionadasXSpoolID = (List<int?>)InspeccionBD.Instance.ObtenerDetalleJuntaSeleccionada(ordenTrabajo, DefectoID, usuario, Lenguaje);
-                juntasSeleccionadas = ObtenerJuntasID(ListaJutasSeleccionadasXSpoolID);   
+                juntasSeleccionadas = ObtenerJuntasID(ListaJutasSeleccionadasXSpoolID);
             }
             return juntasSeleccionadas;
         }

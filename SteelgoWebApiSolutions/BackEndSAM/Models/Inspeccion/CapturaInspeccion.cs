@@ -110,6 +110,12 @@ namespace BackEndSAM.Models.Inspeccion
         public int JuntaSpoolID { get; set; }
     }
 
+    public class JuntaXSpoolIDModeloJunta
+    {
+        public string Junta { get; set; }
+        public int JuntaID { get; set; }
+    }
+
     public class DetalleDimensional
     {
         public int InspeccionDimensionalID { get; set; }

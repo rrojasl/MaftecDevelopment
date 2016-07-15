@@ -8198,6 +8198,18 @@ _dictionary = {
         "es-MX": "Orden de trabajo no encontrada",
         "en-US": "Work order is not found"
     },
+    "DimensionalVisualMensajeErrorDimensional": {
+        "es-MX": "Faltan campos por capturar en el apartado Inspección Dimensional",
+        "en-US": "Missing fields to capture in Dimensional Inspection"
+    },
+    "DimensionalVisualMensajeNoHayDatosPorGuardar": {
+        "es-MX": "No hay datos por guardar",
+        "en-US": "No data to save"
+    },
+    "DimensionalVisualMensajeDefectoRechazado": {
+        "es-MX": "Selecciona un defecto si el resultado dimensional es Rechazado",
+        "en-US": "Select a dimensional defect if the result is Rejected"
+    },
     //#endregion
 
     //#region ServiciosTecnicos
