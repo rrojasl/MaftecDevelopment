@@ -500,7 +500,7 @@ function SuscribirEventoSpoolID() {
         }
         else if (e.keyCode == 13) {
             if ($("#InputID").data("kendoComboBox").text() != '') {
-                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select().Valor) != undefined) {
                     if ($('input:radio[name=TipoAgregado]:checked').val() != undefined) {
                         if ($('input:radio[name=Muestra]:checked').val() != undefined) {
                             if ($('input:radio[name=TipoAgregado]:checked').val() == "Reporte") {
