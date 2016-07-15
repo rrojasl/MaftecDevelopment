@@ -220,7 +220,6 @@ namespace BackEndSAM.Controllers.SoldaduraController
                             JuntaID = capturaDatosJson.JuntaID,
                             Junta = capturaDatosJson.Junta,
                             TipoJunta = item.TipoJunta,
-                          
                             Diametro = item.Diametro,
                             TallerID = item.TallerID.GetValueOrDefault().ToString(),
                             Taller = item.Taller,
@@ -229,9 +228,10 @@ namespace BackEndSAM.Controllers.SoldaduraController
                             listaTrabajosAdicionalesSoldadura = (List<TrabajosAdicionalesSoldadura>)CapturaSoldaduraBD.Instance.ObtenerTrabajosAdicionales(item.JuntaSpoolID),
                             ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
                             ListaWPS = null,// (List<WPS>)WPSBd.Instance.ObtenerWPS(1, usuario)
-                            
                             ListadoProcesoSoldaduraRaiz = ListadoProcesoSoldadura,
-                            ListadoProcesoSoldaduraRelleno= ListadoProcesoSoldadura
+                            ListadoSoldadoresRaiz = (List<ObreroSoldador>)CapturaSoldaduraBD.Instance.ObtenerListadoSoldadores(6),
+                            ListadoProcesoSoldaduraRelleno = ListadoProcesoSoldadura,
+                            ListadoSoldadoresRelleno = (List<ObreroSoldador>)CapturaSoldaduraBD.Instance.ObtenerListadoSoldadores(7)
                         };
                        
                         listaDetalleDatos.Add(detalleDatos);

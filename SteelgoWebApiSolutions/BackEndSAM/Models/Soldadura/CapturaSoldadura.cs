@@ -85,6 +85,8 @@ namespace BackEndSAM.Models.Soldadura
         public string Junta { get; set; }
         public string TemplateSoldadoresRaiz { get; set; }
         public string TemplateSoldadoresRelleno { get; set; }
+        public List<ObreroSoldador> ListadoSoldadoresRaiz { get; set; }
+        public List<ObreroSoldador> ListadoSoldadoresRelleno { get; set; }
     }
 
     public class Taller
@@ -97,6 +99,12 @@ namespace BackEndSAM.Models.Soldadura
     {
         public int ProcesoSoldaduraID { get; set; }
         public string Codigo { get; set; }
+
+        public ProcesoSoldadura()
+        {
+            ProcesoSoldaduraID = 0;
+            Codigo = "";
+        }
     }
 
     public class TrabajoAdicional

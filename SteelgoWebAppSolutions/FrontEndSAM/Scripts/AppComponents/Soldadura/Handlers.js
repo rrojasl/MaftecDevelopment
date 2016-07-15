@@ -51,7 +51,7 @@ function suscribirEventoAdicionales() {
 
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
 
-            var grid = $("#grid").data("kendoGrid"),
+            var grid = $("#grid").data("kendoGrid");
             dataItem = grid.dataItem($(e.target).closest("tr"));
             LlenarGridPopUp(dataItem);
         }
@@ -63,10 +63,11 @@ function suscribirEventoSoldadoresRaiz() {
     $(document).on('click', '.botonSoldadoresRaiz', function (e) {
         e.preventDefault();
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
-            var grid = $("#grid").data("kendoGrid"),
+            var grid = $("#grid").data("kendoGrid");
             dataItem = grid.dataItem($(e.target).closest("tr"));
             $("#contenedorMultiselect").empty();
-            LlenarGridPopUpMultiselet(dataItem);
+            if (dataItem.procesoSoldaduraRaiz != "N/A")
+                LlenarGridPopUpSoldadoresRaiz(dataItem);
         }
     });
 }
@@ -76,9 +77,10 @@ function suscribirEventoSoldadoresRelleno() {
     $(document).on('click', '.botonSoldadoresRelleno', function (e) {
         e.preventDefault();
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
-            var grid = $("#grid").data("kendoGrid"),
+            var grid = $("#grid").data("kendoGrid");
             dataItem = grid.dataItem($(e.target).closest("tr"));
             $("#contenedorMultiselectRelleno").empty();
+            if (dataItem.procesoSoldaduraRelleno != "N/A")
             LlenarGridPopUpMultiseletRelleno(dataItem);
         }
     });
@@ -267,10 +269,6 @@ function suscribirEventoAgregar() {
                     displayNotify("CapturaSoldaduraSpoolNoCapturado", "", '1');
                 }
                 else
-                    //    if ($('input:radio[name=Muestra]:checked').val() == "Todos") {
-                    //    displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
-                    //}
-                    //else
                     displayNotify("CapturaSoldaduraNoExisteSpoolID", "", '2');
             }
         }
