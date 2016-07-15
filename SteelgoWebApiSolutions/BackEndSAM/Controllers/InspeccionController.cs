@@ -303,6 +303,7 @@ namespace BackEndSAM.Controllers
                         ResultadoID = item.ResultadoID,
                         ListaJuntas = listJuntaXSpool,
                         ListaJuntasSeleccionadas = ObtenerJuntasSeleccionadas(id.ToString(), item.DefectoID.GetValueOrDefault(), token, lenguaje),
+                        ListaJuntasInicial = ObtenerJuntasSeleccionadas(id.ToString(), item.DefectoID.GetValueOrDefault(), token, lenguaje)
                     };
                     detalleDimensional.ListaJuntas = InspeccionDimensionalController.ObtenerJuntasSeleccionadas(detalleDimensional.ListaJuntas, detalleDimensional.ListaJuntasSeleccionadas);
 

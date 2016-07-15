@@ -137,6 +137,7 @@ namespace BackEndSAM.Models.Inspeccion
         public string Defecto { get; set; }
         public List<InspeccionDimensional.InspeccionDimensional.JuntaXSpool> ListaJuntas { get; set; }
         public List<InspeccionDimensional.InspeccionDimensional.JuntaXSpool> ListaJuntasSeleccionadas { get; set; }
+        public List<InspeccionDimensional.InspeccionDimensional.JuntaXSpool> ListaJuntasInicial { get; set; }
     }
 
     public class Captura
