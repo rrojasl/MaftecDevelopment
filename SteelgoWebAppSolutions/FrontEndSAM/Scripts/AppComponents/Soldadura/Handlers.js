@@ -203,7 +203,7 @@ function SuscribirEventoProcesosRaiz() {
         dataValueField: "ProcesoSoldaduraID",
         suggest: true,
         delay: 10,
-        filter: "contains",
+        filter: "contains"
 
     });
     $('#inputProcesoRaiz').closest('.k-widget').keydown(function (e) {

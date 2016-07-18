@@ -538,13 +538,14 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined && dataItem.ProcesoSoldaduraID != 0) {
                         if (dataItem.Codigo=="N/A" && options.model.procesoSoldaduraRelleno=="N/A")
-                        {$("#grid").data("kendoGrid").dataSource.sync();
+                        {
+                            $("#grid").data("kendoGrid").dataSource.sync();
                             options.model.procesoSoldaduraRelleno = "";
                             options.model.procesoSoldaduraRellenoID = 0;
                         }
                         options.model.procesoSoldaduraRaiz = dataItem.Codigo
                         options.model.procesoSoldaduraRaizID = dataItem.ProcesoSoldaduraID
-                        AjaxActualizaSoldadoresRaiz(dataItem.ProcesoSoldaduraID, ItemSeleccionado.TipoJunta, ItemSeleccionado.Diametro, ItemSeleccionado.Espesor, ItemSeleccionado.Cedula);
+                        
 
                     }
                     else {
@@ -588,11 +589,6 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
                 autoBind: false,
                 dataSource: ItemSeleccionado.ListadoProcesoSoldaduraRelleno,
                 template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
-                select: function (e) {
-                    dataItem = this.dataItem(e.item.index());
-                    options.model.procesoSoldaduraRelleno = dataItem.Codigo;
-                    options.model.procesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
-                },
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined && dataItem.ProcesoSoldaduraID != 0) {
@@ -603,7 +599,7 @@ function RenderComboBoxProcesoSoldaduraRelleno(container, options) {
 
                         options.model.procesoSoldaduraRelleno = dataItem.Codigo;
                         options.model.procesoSoldaduraRellenoID = dataItem.ProcesoSoldaduraID;
-                        AjaxActualizaSoldadoresRelleno(dataItem.ProcesoSoldaduraID, ItemSeleccionado.TipoJunta, ItemSeleccionado.Diametro, ItemSeleccionado.Espesor, ItemSeleccionado.Cedula);
+                        
                     }
                 }
             }
