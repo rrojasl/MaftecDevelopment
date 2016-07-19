@@ -8213,6 +8213,10 @@ _dictionary = {
         "es-MX": "Selecciona un defecto si el resultado dimensional es Rechazado",
         "en-US": "Select a dimensional defect if the result is Rejected"
     },
+    "DimensionalVisualMensajeJuntasAgregadas": {
+        "es-MX": "Se han agregado al grid las siguientes juntas: ",
+        "en-US": "Have been added to the grid the following boards: "
+    },
     //#endregion
 
     //#region ServiciosTecnicos
