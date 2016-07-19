@@ -52,6 +52,12 @@ namespace BackEndSAM.Models.Inspeccion
     }
     public class Inspector
     {
+        public Inspector()
+        {
+            ObreroID = 0;
+            Codigo = "";
+            NombreCompleto = "";
+        }
         public int ObreroID { get; set; }
         public string Codigo { get; set; }
         public string NombreCompleto { get; set; }
@@ -68,7 +74,7 @@ namespace BackEndSAM.Models.Inspeccion
             DefectoID = 0;
             Nombre = "";
             IDDEFECTOTIPO = 0;
-            TIPO = "";
+            TIPO = "NoEspecificarJunta";
         }
     }
     public class NumeroUnico
