@@ -164,7 +164,6 @@ function SuscribirEventoSpoolID() {
                     MostrarDetalleVisualDimensional();
                 }
             }
-
         }
     });
 };
@@ -187,16 +186,11 @@ function SuscribirEventosJunta() {
             $("#ButtonAgregar").focus();
         }
         else if (e.keyCode == 13) {
-
             AjaxobtenerDetalleDimensional($("#InputID").val());
             AjaxObtenerJSonGrid();
             deshabilitaSpool();
         }
-
-
     });
-
-
 }
 function SuscribirEventoTaller() {
     $('#inputTaller').kendoComboBox({
@@ -352,7 +346,6 @@ function suscribirEventoAgregar() {
             AjaxObtenerJSonGrid();
             deshabilitaSpool();
         }
-
     });
 }
 function SuscribirEventoEliminar(idtable) {
@@ -440,8 +433,6 @@ function SuscribirEventoAgregarCapturaRapida() {
 
             PlanchadoResultadoVisual();
         }
-
-
     });
 }
 function suscribirEventoCancelar() {
@@ -476,16 +467,13 @@ function limpiar() {
     for (var x = 0; x < radioButtons.length; x++) {
         if (radioButtons[x].checked) {
             radioButtons[x].checked = false;
-
         }
     }
     $("#grid").data('kendoGrid').dataSource.data([]);
-
 }
 function deshabilitaSpool() {
     $("#InputOrdenTrabajo").prop("disabled", true);
     $("#InputID").data("kendoComboBox").enable(false);
-
 }
 function opcionHabilitarView(valor, name) {
 
@@ -499,6 +487,7 @@ function opcionHabilitarView(valor, name) {
         $("#inputTaller").data("kendoComboBox").enable(false);
         $("#inputDefecto").data("kendoComboBox").enable(false);
         $("#ListaJuntas").data("kendoMultiSelect").enable(false);
+        $('input[type="radio"]').attr("disabled");
 
         $('#Guardar').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
         $('#btnGuardar').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
@@ -509,6 +498,7 @@ function opcionHabilitarView(valor, name) {
     else {
         //$('#FieldSetView').find('*').attr('disabled', false);
         //$("#InputID").data("kendoComboBox").enable(true);
+        $('input[type="radio"]').removeAttr("disabled");
         $("#inputInspectorVisual").data("kendoComboBox").enable(true);
         $("#inputFechaVisual").data("kendoDatePicker").enable(true);
         $("#inputTaller").data("kendoComboBox").enable(true);
