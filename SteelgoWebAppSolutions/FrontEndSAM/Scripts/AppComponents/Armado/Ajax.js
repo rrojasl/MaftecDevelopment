@@ -112,7 +112,7 @@ function ObtenerJSonGridArmado() {
                                 ds._data[i].FechaArmado = new Date(ObtenerDato(array[0].FechaArmado, 1), ObtenerDato(array[0].FechaArmado, 2), ObtenerDato(array[0].FechaArmado, 3));//año, mes, dia
                             }
 
-                           
+
 
                             if (array[0].ListaNumerosUnicos1.length > 2 && ExisteNUGrid(array[0].NumeroUnico1ID, ds._data, ds._data[i])) //valida NU1
                             {
@@ -132,7 +132,7 @@ function ObtenerJSonGridArmado() {
 
                             elementoNoEncontrado = true;
                         }
-                       
+
                     }
                     if (!elementoNoEncontrado)
                         displayNotify("",
@@ -192,6 +192,7 @@ function AjaxEjecutarGuardado(rows, tipoGuardar) {
             displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
 
             if (tipoGuardar == 1) {
+                opcionHabilitarView(false, "FieldSetView");
                 Limpiar();
                 AjaxCargarCamposPredeterminados();
             }
@@ -273,7 +274,10 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                    ) {
                     if (ListaDetalles[index].Accion == 2 && ListaDetalles[index].FechaArmado == "" &&
                         (ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0") &&
-                       (ListaDetalles[index].TuberoID == "" || ListaDetalles[index].TuberoID == "0")) {
+                       (ListaDetalles[index].TuberoID == "" || ListaDetalles[index].TuberoID == "0") &&
+                        (ListaDetalles[index].NumeroUnico1ID == "" || ListaDetalles[index].NumeroUnico1ID == null) &&
+                        (ListaDetalles[index].NumeroUnico2ID == "" || ListaDetalles[index].NumeroUnico2ID == null)
+                        ) {
                         ListaDetalles[index].Accion = 4;
                     }
                     else {
@@ -281,6 +285,15 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                         $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                     }
 
+                }
+                else if (ListaDetalles[index].Accion == 4 && ListaDetalles[index].FechaArmado == "" ||
+                        (ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0") ||
+                        (ListaDetalles[index].NumeroUnico1ID == "" || ListaDetalles[index].NumeroUnico1ID == null) ||
+                        (ListaDetalles[index].NumeroUnico2ID == "" || ListaDetalles[index].NumeroUnico2ID == null) ||
+                       (ListaDetalles[index].TuberoID == "" || ListaDetalles[index].TuberoID == "0"))
+                {
+                            ListaDetalles[index].Estatus = 0;
+                            $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                 }
             } catch (e) {
                 loadingStop();
@@ -565,8 +578,8 @@ function AjaxCargarReporteJuntas() {
         }
     }
     $('#ButtonAgregar').prop("disabled", false);
-    
-    
+
+
 
 }
 
@@ -610,7 +623,7 @@ function AjaxCambiarAccionAModificacion() {
                         array[i].FechaArmado = kendo.toString(array[i].FechaArmado, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
                         array[i].FechaArmado = new Date(ObtenerDato(array[i].FechaArmado, 1), ObtenerDato(array[i].FechaArmado, 2), ObtenerDato(array[i].FechaArmado, 3));//año, mes, dia
                     }
-                    ds.insert(array[i],0);
+                    ds.insert(array[i], 0);
                 }
             }
             loadingStop();
@@ -643,9 +656,9 @@ function AjaxObtenerDatoOriginalBorrado(dataItem, dataSource) {
             }
             loadingStop();
         });
-      
+
 
     } catch (e) {
-     
+
     }
 }

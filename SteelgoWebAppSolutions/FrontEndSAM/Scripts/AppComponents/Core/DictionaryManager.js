@@ -8061,7 +8061,10 @@ _dictionary = {
     },
     //#endregion
     //#region Inspeccion
-
+    "CapturaInspeccionDimensionalNoExisteLista": {
+        "es-MX": "La spool ya se encuentra capturado, revisar la opción Todos",
+        "en-US": "The spool already captured, check option All"
+    },
     "CapturaMensajeGuardadoExitoso": {
         "es-MX": "Datos guardados correctamente.",
         "en-US": "Data saved correctly."
