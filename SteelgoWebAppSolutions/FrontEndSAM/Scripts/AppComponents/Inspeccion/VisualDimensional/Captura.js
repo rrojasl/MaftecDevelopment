@@ -334,7 +334,7 @@ function cancelarCaptura(e) {
                 }
             }).data("kendoWindow");
 
-            ventanaConfirm.content(_dictionary.CapturaMensajeArmadoPlancharTodos[$("#language").data("kendoDropDownList").value()] +
+            ventanaConfirm.content(_dictionary.CapturaInspeccionPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
                          "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
 
             ventanaConfirm.open().center();
@@ -493,6 +493,11 @@ function PlanchaDefecto() {
         }
         else {
             if (data[i].Defectos == "" || data[i].Defectos == null || data[i].Defectos == undefined) {
+                data[i].ResultadoID = $('input:radio[name=ResultadoVisual]:checked').val() == "Aprobado" ? 1 : 2;
+                if (data[i].ResultadoID == 1)
+                    data[i].Resultado = _dictionary.DimensionalVisualAporbadoVisual[$("#language").data("kendoDropDownList").value()];
+                else
+                    data[i].Resultado = _dictionary.DimensionalVisualRechazadoVisual[$("#language").data("kendoDropDownList").value()];
                 data[i].DefectosID = $("#inputDefectosVisual").val();
                 data[i].Defectos = $("#inputDefectosVisual").data("kendoComboBox").text();
             }

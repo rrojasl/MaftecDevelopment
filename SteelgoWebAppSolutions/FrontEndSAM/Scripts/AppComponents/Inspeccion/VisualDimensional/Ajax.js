@@ -89,9 +89,7 @@ function AjaxCargaCamposPredeterminados() {
             $('input:radio[name=ResultadoVisual]:nth(0)').attr('checked', false);
             //$('input:radio[name=ResultadoVisual]:nth(1)').trigger("click");
             $("input:radio[name=ResultadoVisual]:checked").change();
-
         }
-
     });
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoLlenadoPredeterminada }).done(function (data) {
         if (data == "Todos") {
@@ -162,9 +160,9 @@ function AjaxobtenerDetalleDimensional(spoolID) {
                 $("#ListaJuntas").data("kendoMultiSelect").value(valores);
             }
 
-            if ($("#ListaJuntas").data("kendoMultiSelect").value().length > 0) {
-                AjaxObtenerJSonGrid();
-            }
+            //if ($("#ListaJuntas").data("kendoMultiSelect").value().length > 0) {
+            //    AjaxObtenerJSonGrid();
+            //}
         }
         loadingStop();
     });
@@ -224,7 +222,7 @@ function AjaxGuardar(jSonCaptura) {
 
         if (ListaDetalleGuardarInspeccionVisual[index].TallerID == "" || ListaDetalleGuardarInspeccionVisual[index].TallerID == "0" ||
             ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "" || ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "0" ||
-            ListaDetalleGuardarInspeccionVisual[index].DefectosID == "" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == "0" ||
+            ((ListaDetalleGuardarInspeccionVisual[index].DefectosID == "" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == "0" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == null) && ListaDetalleGuardarInspeccionVisual[index].ResultadoID == 2) ||
             ListaDetalleGuardarInspeccionVisual[index].InspectorID == "" || ListaDetalleGuardarInspeccionVisual[index].InspectorID == "0" ||
             ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "" || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0" ||
             ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "0" ||
@@ -244,8 +242,8 @@ function AjaxGuardar(jSonCaptura) {
         && (($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO != "NoEspecificarJunta" && $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) || 
             ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO == "NoEspecificarJunta" && $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length == 0))) {
 
-        if ($('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID != 0
-            || $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID == 0) {
+        if (($('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID != 0)
+            || ($('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID == 0)) {
 
             if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined) {
                 if ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined) {
@@ -387,7 +385,7 @@ function AjaxGuardar(jSonCaptura) {
         if (inspeccionDimensional.length == 0) {
             inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: "", ResultadoID: 0, ObreroID: 0, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
         } else if (ListaDetalleGuardarInspeccionVisual == 0) {
-            ListaDetalleGuardarInspeccionVisual[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, InspectorID: 0, FechaInspeccion: "", JuntaTrabajoID: 0, ResultadoID: "", TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
+            ListaDetalleGuardarInspeccionVisual[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, InspectorID: 0, FechaInspeccion: "", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
         }
 
         loadingStart();
