@@ -269,11 +269,13 @@ function cancelarCaptura(e) {
 
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
 
-                if (dataItem.Accion == 1)
+                if (dataItem.Accion == 1){
                     dataSource.remove(dataItem);
-                else
-                    dataItem.Accion == 2;
-                dataSource.remove(dataItem);
+                }
+                else {
+                    dataItem.Accion = 3;
+                }
+                    
                 $("#grid").data("kendoGrid").dataSource.sync();
 
                 ventanaConfirm.close();
@@ -364,6 +366,8 @@ function PlanchaDefecto() {
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                     data[i].ListaJuntasSeleccionadas = [];
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                    data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
                 }
 
             }
@@ -374,6 +378,8 @@ function PlanchaDefecto() {
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                         data[i].ListaJuntasSeleccionadas = [];
                         data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                        data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                        data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
                     }
                 }
             }
