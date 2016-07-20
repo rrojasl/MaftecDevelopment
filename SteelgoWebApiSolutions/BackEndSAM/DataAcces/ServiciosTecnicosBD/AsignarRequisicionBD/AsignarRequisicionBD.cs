@@ -118,7 +118,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             HerramientadePruebaID = item.HerramientaDePruebaID.GetValueOrDefault(),
                             TurnoLaboral = item.TurnoLaboral,
                             TurnoLaboralID = item.TurnoLaboralID.GetValueOrDefault(),
-                            ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, idPrueba, item.ProveedorID.GetValueOrDefault()),
+                            ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
                             ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, idPrueba, item.ProveedorID.GetValueOrDefault()),
 
                         });
@@ -144,11 +144,11 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_HerramientasDePrueba_Result> result = ctx.Sam3_ServiciosTecnicos_Get_HerramientasDePrueba(lenguaje, idPrueba, idProveedor).ToList();
+                    List<Sam3_SteelGo_Get_HerramientasDePrueba_Result> result = ctx.Sam3_SteelGo_Get_HerramientasDePrueba(lenguaje, idPrueba).ToList();
 
                     List<HerramientaPrueba> ListadoHerramientaPrueba = new List<HerramientaPrueba>();
 
-                    foreach (Sam3_ServiciosTecnicos_Get_HerramientasDePrueba_Result item in result)
+                    foreach (Sam3_SteelGo_Get_HerramientasDePrueba_Result item in result)
                     {
                         ListadoHerramientaPrueba.Add(new HerramientaPrueba
                         {

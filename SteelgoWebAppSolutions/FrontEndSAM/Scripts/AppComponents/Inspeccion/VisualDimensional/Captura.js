@@ -62,7 +62,6 @@ function DatoDefaultNumeroUnico2() {
 function MostrarDetalleVisualDimensional() {
     AjaxobtenerDetalleDimensional($("#InputID").val());
     AjaxObtenerListaTaller();
-    deshabilitaSpool();
 }
 
 function CargarGrid() {

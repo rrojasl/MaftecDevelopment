@@ -138,7 +138,7 @@ function SuscribirEventoSpoolID() {
             if (tieneClase(e.currentTarget)) {
                 $("#InputID").data("kendoComboBox").select(0);
                 //AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
-                MostrarDetalleVisualDimensional();
+                //MostrarDetalleVisualDimensional();
             }
             dataItem = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select());
             if (dataItem != undefined) {
