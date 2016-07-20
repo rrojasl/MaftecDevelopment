@@ -314,21 +314,25 @@ function AjaxGuardar(jSonCaptura) {
                 else {
                     displayNotify("DimensionalVisualMensajeErrorInspector", "", '1');
                     opcionHabilitarView(false, "FieldSetView");
+                    deshabilitaSpool();
                 }
             }
             else {
                 displayNotify("DimensionalVisualMensajeErrorResultado", "", '1');
-                opcionHabilitarView(false, "FieldSetView")
+                opcionHabilitarView(false, "FieldSetView");
+                deshabilitaSpool();
             }
         }
         else {
             displayNotify("DimensionalVisualMensajeDefectoRechazado", "", '1');
-            opcionHabilitarView(false, "FieldSetView")
+            opcionHabilitarView(false, "FieldSetView");
+            deshabilitaSpool();
         }
     }
     else if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined) {
         displayNotify("DimensionalVisualMensajeErrorDimensional", "", '1');
-        opcionHabilitarView(false, "FieldSetView")
+        opcionHabilitarView(false, "FieldSetView");
+        deshabilitaSpool();
     }
     //Guardado módulo Dimensional
     if (inspeccionDimensional.length != 0 && inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual.length > 0) {
@@ -358,32 +362,38 @@ function AjaxGuardar(jSonCaptura) {
                             }
                             else {
                                 displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
-                                opcionHabilitarView(false, "FieldSetView")
+                                opcionHabilitarView(false, "FieldSetView");
+                                deshabilitaSpool();
                             }
                         }
                         else {
                             displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
-                            opcionHabilitarView(false, "FieldSetView")
+                            opcionHabilitarView(false, "FieldSetView");
+                            deshabilitaSpool();
                         }
                     }
                     else {
                         displayNotify("DimensionalVisualMensajeErrorInspector", "", '2');
-                        opcionHabilitarView(false, "FieldSetView")
+                        opcionHabilitarView(false, "FieldSetView");
+                        deshabilitaSpool();
                     }
                 }
                 else {
                     displayNotify("DimensionalVisualMensajeErrorResultado", "", '2');
-                    opcionHabilitarView(false, "FieldSetView")
+                    opcionHabilitarView(false, "FieldSetView");
+                    deshabilitaSpool();
                 }
             }
             else {
                 displayNotify("DimensionalVisualMensajeErrorDefectos", "", '2');
-                opcionHabilitarView(false, "FieldSetView")
+                opcionHabilitarView(false, "FieldSetView");
+                deshabilitaSpool();
             }
         }
         else {
             displayNotify("DimensionalVisualMensajeErrorTaller", "", '2');
-            opcionHabilitarView(false, "FieldSetView")
+            opcionHabilitarView(false, "FieldSetView");
+            deshabilitaSpool();
         }
     }
 
@@ -409,14 +419,17 @@ function AjaxGuardar(jSonCaptura) {
             }
             else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                 displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                opcionHabilitarView(false, "FieldSetView")
+                opcionHabilitarView(false, "FieldSetView");
+                deshabilitaSpool();
+
             }
             loadingStop();
         });
     }
     else {
         displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '1');
-        opcionHabilitarView(false, "FieldSetView")
+        opcionHabilitarView(false, "FieldSetView");
+        deshabilitaSpool();
     }
 }
 
