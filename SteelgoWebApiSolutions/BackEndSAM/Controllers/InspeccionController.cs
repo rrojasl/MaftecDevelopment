@@ -27,9 +27,9 @@ namespace BackEndSAM.Controllers
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
 
-                CapturaVisualDimensional.DetalleDatosJson capturaDatosJson = serializer.Deserialize<CapturaVisualDimensional.DetalleDatosJson>(JsonCaptura);
+                CapturaVisualDimensional capturaDatosJson = serializer.Deserialize<CapturaVisualDimensional>(JsonCaptura);
 
-                List<CapturaVisualDimensional.DetalleDatosJson> listaDetalleDatos = new List<CapturaVisualDimensional.DetalleDatosJson>();
+                List<CapturaVisualDimensional> listaDetalleDatos = new List<CapturaVisualDimensional>();
 
                 List<Sam3_Inspeccion_Get_DetalleJunta_Result> detalle = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(capturaDatosJson, usuario, Lenguaje, juntasSeleccionadas);
                 string fecha = (string)CapturaArmadoBD.Instance.ObtenerValorFecha(usuario, Lenguaje, 16);
@@ -40,7 +40,7 @@ namespace BackEndSAM.Controllers
                     List<NumeroUnico> listNumeroUnico1 = GenerarListaNumerosUnicos(listaNumeroUnicos, 1);
                     List<NumeroUnico> listNumeroUnico2 = GenerarListaNumerosUnicos(listaNumeroUnicos, 2);
 
-                    CapturaVisualDimensional.DetalleDatosJson detalleDatos = new CapturaVisualDimensional.DetalleDatosJson
+                    CapturaVisualDimensional detalleDatos = new CapturaVisualDimensional
                     {
                         Accion = item.InspeccionVisualID == null ? 1 : 2,
                         JuntaTrabajoID = item.JuntaTrabajoID.GetValueOrDefault(),
@@ -58,18 +58,18 @@ namespace BackEndSAM.Controllers
                         TipoJuntaID = item.TipoJuntaID.ToString(),
                         Diametro = item.Diametro.ToString(),
                         FechaInspeccion = item.FechaInspeccion,
-                        Defectos = item.Defecto == null ? capturaDatosJson.Defectos : item.Defecto.ToString(),
-                        DefectosID = item.DefectoID == null ? capturaDatosJson.DefectosID : item.DefectoID.ToString(),
+                        Defectos = (item.Defecto == null ? "" : item.Defecto.ToString()),
+                        DefectosID = (item.DefectoID == null ? "0" : item.DefectoID.ToString()),
                         TallerID = item.TallerID == null ? capturaDatosJson.TallerID : item.TallerID.ToString(),
                         Taller = item.Taller == null ? capturaDatosJson.Taller : item.Taller,
 
                         Inspector = item.Inspector,
                         InspectorID = item.ObreroID.ToString(),
 
-                        NumeroUnico1 = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].Clave : "") : item.Clave1.ToString(),
-                        NumeroUnico2 = item.NumeroUnico2ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].Clave : "") : item.Clave2.ToString(),
-                        NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].NumeroUnicoID : 0) : item.NumeroUnico1ID.GetValueOrDefault(),
-                        NumeroUnico2ID = item.NumeroUnico2ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].NumeroUnicoID : 0) : item.NumeroUnico2ID.GetValueOrDefault(),
+                        NumeroUnico1 = (item.NumeroUnico1ID == null || item.NumeroUnico1ID == 0) ? (listNumeroUnico1.Count == 2 ? listNumeroUnico1[1].Clave : "") : item.Clave1.ToString(),
+                        NumeroUnico2 = (item.NumeroUnico2ID == null || item.NumeroUnico2ID == 0) ? (listNumeroUnico2.Count == 2 ? listNumeroUnico2[1].Clave : "") : item.Clave2.ToString(),
+                        NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 2 ? listNumeroUnico1[1].NumeroUnicoID.ToString() : "") : item.NumeroUnico1ID.ToString(),
+                        NumeroUnico2ID = item.NumeroUnico1ID == null ? (listNumeroUnico2.Count == 2 ? listNumeroUnico2[1].NumeroUnicoID.ToString() : "") : item.NumeroUnico2ID.ToString(),
                         ListaNumerosUnicos1 = listNumeroUnico1,
                         ListaNumerosUnicos2 = listNumeroUnico2,
                         ProyectoID = capturaDatosJson.ProyectoID,

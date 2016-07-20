@@ -172,7 +172,12 @@ function AjaxObtenerJSonGrid() {
             var ds = $("#grid").data("kendoGrid").dataSource;
             var array = JSON.parse(data);
 
+            var jointsAdded = [];
+
             for (var i = 0; i < array.length; i++) {
+                if (jointsAdded.indexOf(array[i].Junta) < 0)
+                    jointsAdded.push(array[i].Junta);
+
                 if (ExisteJunta(array[i].JuntaID)) {
                     array[i].NumeroUnico1 = array[i].NumeroUnico1 == "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
                     array[i].NumeroUnico2 = array[i].NumeroUnico2 == "" ? DatoDefaultNumeroUnico2() : array[i].NumeroUnico2;
@@ -182,6 +187,8 @@ function AjaxObtenerJSonGrid() {
                     ds.add(array[i]);
                 }
             }
+            if(array.length > 0)
+                displayNotify("", _dictionary.DimensionalVisualMensajeJuntasAgregadas[$("#language").data("kendoDropDownList").value()] + jointsAdded, '0');
             loadingStop();
         });
     } catch (e) {

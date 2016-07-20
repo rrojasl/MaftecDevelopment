@@ -48,7 +48,7 @@ namespace BackEndSAM.DataAcces
         /// <param name="usuario"></param>
         /// <param name="Lenguaje"></param>
         /// <returns></returns>
-        public object ObtenerDetalleJunta(CapturaVisualDimensional.DetalleDatosJson JsonCaptura, Sam3_Usuario usuario, string Lenguaje, string juntasSeleccionadas)
+        public object ObtenerDetalleJunta(CapturaVisualDimensional JsonCaptura, Sam3_Usuario usuario, string Lenguaje, string juntasSeleccionadas)
         {
 
             try

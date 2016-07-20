@@ -8214,8 +8214,8 @@ _dictionary = {
         "en-US": "Select a dimensional defect if the result is Rejected"
     },
     "DimensionalVisualMensajeJuntasAgregadas": {
-        "es-MX": "Se han agregado al grid las siguientes juntas: ",
-        "en-US": "Have been added to the grid the following boards: "
+        "es-MX": "Las siguientes juntas se han añadido al grid: ",
+        "en-US": "The following joints have been added to grid: "
     },
     //#endregion
 
