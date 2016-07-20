@@ -100,15 +100,17 @@ function SuscribirEventoSpoolID() {
         delay: 10,
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
-            if (dataItem.Status != "1") {
-                e.preventDefault();
-                $("#InputID").val("");
-                console.log("borrar datos");
-            }
-            else {
-                $("#InputID").val(dataItem.IDValido);
-                Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
-                $("#LabelProyecto").text(dataItem.Proyecto);
+            if (dataItem != undefined) {
+                if (dataItem.Status != "1") {
+                    e.preventDefault();
+                    $("#InputID").val("");
+                    console.log("borrar datos");
+                }
+                else {
+                    $("#InputID").val(dataItem.IDValido);
+                    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+                    $("#LabelProyecto").text(dataItem.Proyecto);
+                }
             }
         }
         ,

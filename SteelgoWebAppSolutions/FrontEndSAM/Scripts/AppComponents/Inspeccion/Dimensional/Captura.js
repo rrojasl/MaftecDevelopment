@@ -8,10 +8,10 @@ var anteriorlongitudTrabajosAdicionales;
 var actuallongitudTrabajosAdicionales;
 
 function IniciarCapturaInspecion() {
-  
+
     asignarProyecto();
     SuscribirEventos();
-    
+
 }
 
 IniciarCapturaInspecion();
@@ -20,9 +20,9 @@ IniciarPreCarga();
 
 function IniciarPreCarga() {
     setTimeout(function () { AjaxObtenerListaInspector() }, 1000);
-    setTimeout(function () { AjaxObtenerListaDefectos() }, 2000);    
+    setTimeout(function () { AjaxObtenerListaDefectos() }, 2000);
 }
-    
+
 
 function changeLanguageCall() {
     CargarGrid();
@@ -46,8 +46,7 @@ function asignarProyecto() {
 
 
 
-function ValidarFecha(valor)
-{
+function ValidarFecha(valor) {
     var fecha = kendo.toString(valor, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
     if (fecha == null) {
         $("#FechaInspeccion").data("kendoDatePicker").value('');
@@ -131,7 +130,7 @@ function CargarGrid() {
         selectable: true,
         pageable: {
             refresh: false,
-            pageSizes: [10, 25, 50,100],
+            pageSizes: [10, 25, 50, 100],
             info: false,
             input: false,
             numeric: true
@@ -144,10 +143,10 @@ function CargarGrid() {
              { field: "Inspector", title: _dictionary.DimensionalVisualHeaderInspectorDimesional[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderComboBoxInspector, width: "140px" },
              { field: "FechaInspeccion", title: _dictionary.DimensionalVisualHeaderFechaDimesional[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, editor: RenderDatePicker, format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], width: "200px" },
              { field: "ListaJuntasSeleccionadas", title: _dictionary.DimensionalVisualHeaderListaJUnta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: RenderMultiSelectJuntas, template: "#:TemplateRender#", width: "300px" },
-            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura },title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
+            { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
             { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ],
-        
+
         beforeEdit: function (e) {
             var columnIndex = this.cellIndex(e.container);
             var fieldName = this.thead.find("th").eq(columnIndex).data("field");
@@ -199,11 +198,14 @@ function isEditable(fieldName, model) {
     else if (fieldName === "ListaJuntasSeleccionadas") {
         // condition for the field "ProductName"
         //alert(model.TIPO );
-        if (model.TIPO == "NoEspecificarJunta") {
-            displayNotify("mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto", '', '1');
-        }
+        
         if (model.ResultadoID == "1") {
             displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado', '', '1');
+        }
+        else {
+            if (model.TIPO == "NoEspecificarJunta") {
+                displayNotify("mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto", '', '1');
+            }
         }
 
         return model.TIPO !== "NoEspecificarJunta" && model.ResultadoID !== "1" && model.ResultadoID !== "0";
@@ -264,14 +266,16 @@ function cancelarCaptura(e) {
             ventanaConfirm.open().center();
 
             $("#yesButton").click(function () {
-                
+
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
 
-                if (dataItem.Accion == 1)
+                if (dataItem.Accion == 1){
                     dataSource.remove(dataItem);
-                else
-                    dataItem.Accion == 2;
-                dataSource.remove(dataItem);
+                }
+                else {
+                    dataItem.Accion = 3;
+                }
+                    
                 $("#grid").data("kendoGrid").dataSource.sync();
 
                 ventanaConfirm.close();
@@ -321,19 +325,19 @@ function cancelarCaptura(e) {
             });
         }
     }
-        
+
 }
 
 function limpiarRenglon(e) {
     e.preventDefault();
     if ($('#Guardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
-          
+
         var itemToClean = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
         itemToClean.Defectos = "";
         itemToClean.DefectosID = 0;
         itemToClean.Resultado = "";
         itemToClean.ResultadoID = 0;
-        
+
         itemToClean.FechaInspeccion = "";
         itemToClean.InspectorID = 0;
         itemToClean.Inspector = "";
@@ -345,7 +349,7 @@ function limpiarRenglon(e) {
         //alert(itemToClean);
     }
 
-   
+
 }
 
 function PlanchaDefecto() {
@@ -360,6 +364,10 @@ function PlanchaDefecto() {
                 if (data[i].ResultadoID != "1") {
                     data[i].DefectosID = $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                    data[i].ListaJuntasSeleccionadas = [];
+                    data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                    data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
                 }
 
             }
@@ -368,6 +376,10 @@ function PlanchaDefecto() {
                     if (data[i].ResultadoID != "1") {
                         data[i].DefectosID = $("#inputDefecto").val();
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                        data[i].ListaJuntasSeleccionadas = [];
+                        data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                        data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                        data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
                     }
                 }
             }
@@ -389,7 +401,7 @@ function PlanchaInspector() {
                 data[i].InspectorID = $("#inputInspector").val();
                 data[i].Inspector = $("#inputInspector").data("kendoComboBox").text();
             }
-            
+
         }
         else {
             if (data[i].Inspector == "" || data[i].Inspector == undefined || data[i].Inspector == null) {
@@ -404,7 +416,7 @@ function PlanchaInspector() {
 }
 
 function PlanchadoResultadoDimensional() {
-    try{
+    try {
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         var filters = dataSource.filter();
         var allData = dataSource.data();
@@ -416,18 +428,31 @@ function PlanchadoResultadoDimensional() {
                 data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                 data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
 
+                data[i].DefectosID = $("#inputDefecto").val();
+                data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                data[i].ListaJuntasSeleccionadas = [];
+                data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
             }
             else {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
                     data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                     data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
 
+                    data[i].DefectosID = $("#inputDefecto").val();
+                    data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                    data[i].ListaJuntasSeleccionadas = [];
+                    data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                    data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+
                 }
             }
         }
         $("#grid").data("kendoGrid").dataSource.sync();
     }
-    catch (e){}
+    catch (e) { }
 }
 
 function PlanchaFecha() {
@@ -439,11 +464,11 @@ function PlanchaFecha() {
 
     for (var i = 0; i < data.length; i++) {
         var m = ObtenerDato(endRangeDate.val(), 2) - 1;
-        if ($('input:radio[name=LLena]:checked').val() === "Todos") { 
+        if ($('input:radio[name=LLena]:checked').val() === "Todos") {
             data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;           
         }
         else {
-            if (data[i].FechaInspeccion == "" || data[i].FechaInspeccion == null || data[i].FechaInspeccion == undefined) {                
+            if (data[i].FechaInspeccion == "" || data[i].FechaInspeccion == null || data[i].FechaInspeccion == undefined) {
                 data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;
             }
         }
@@ -451,10 +476,10 @@ function PlanchaFecha() {
     $("#grid").data("kendoGrid").dataSource.sync();
 }
 
-function MensajesSteelGO(control,mensajeExepcionTecnico) {
+function MensajesSteelGO(control, mensajeExepcionTecnico) {
 
     switch (control) {
-      
+
         case 'InputOrdenTrabajo':// el InputOrdenTrabajo no tiene el formato correcto.
             displayNotify("OrdenTrabajoNoValida", "", '1');
             break;

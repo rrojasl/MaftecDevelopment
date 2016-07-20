@@ -8061,7 +8061,10 @@ _dictionary = {
     },
     //#endregion
     //#region Inspeccion
-
+    "CapturaInspeccionDimensionalNoExisteLista": {
+        "es-MX": "La spool ya se encuentra capturado, revisar la opción Todos",
+        "en-US": "The spool already captured, check option All"
+    },
     "CapturaMensajeGuardadoExitoso": {
         "es-MX": "Datos guardados correctamente.",
         "en-US": "Data saved correctly."
@@ -8095,8 +8098,8 @@ _dictionary = {
         "en-US": "Approved"
     },
     "DimensionalVisualRechazadoDimensional": {
-        "es-MX": "Rechazado",
-        "en-US": "Rejected"
+        "es-MX": "  Rechazado",
+        "en-US": "  Rejected"
     },
     "DimensionalVisualAporbadoVisual": {
         "es-MX": "Aprobado",
@@ -8163,7 +8166,7 @@ _dictionary = {
         "en-US": "Unique 2"
     },
     "CapturaInspeccionPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de eliminar el detalle de la captura de Inspeccion?",
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de Inspección?",
         "en-US": "Are you sure you want to delete the detail of the capture of Inspection?"
     },
     "DimensionalVisualInspeccionDimensional": {
@@ -8209,6 +8212,10 @@ _dictionary = {
     "DimensionalVisualMensajeDefectoRechazado": {
         "es-MX": "Selecciona un defecto si el resultado dimensional es Rechazado",
         "en-US": "Select a dimensional defect if the result is Rejected"
+    },
+    "DimensionalVisualMensajeJuntasAgregadas": {
+        "es-MX": "Las siguientes juntas se han añadido al grid: ",
+        "en-US": "The following joints have been added to grid: "
     },
     //#endregion
 

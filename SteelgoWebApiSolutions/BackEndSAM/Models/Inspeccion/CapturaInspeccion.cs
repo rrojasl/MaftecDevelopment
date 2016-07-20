@@ -5,9 +5,6 @@ namespace BackEndSAM.Models.Inspeccion
 {
     public class CapturaVisualDimensional
     {
-        public class DetalleDatosJson
-        {
-
             public string EtiquetaMaterial1 { get; set; }
             public string EtiquetaMaterial2 { get; set; }
             public int Accion { get; set; }
@@ -39,19 +36,23 @@ namespace BackEndSAM.Models.Inspeccion
             public List<Inspector> ListaInspector { get; set; }
             public string FechaInspeccion { get; set; }
 
-            public int NumeroUnico1ID { get; set; }
-            public int NumeroUnico2ID { get; set; }
+            public string NumeroUnico1ID { get; set; }
+            public string NumeroUnico2ID { get; set; }
 
             public string NumeroUnico1 { get; set; }
             public string NumeroUnico2 { get; set; }
             public List<NumeroUnico> ListaNumerosUnicos1 { get; set; }
             public List<NumeroUnico> ListaNumerosUnicos2 { get; set; }
             public List<Resultado> ListaResultados { get; set; }
-
-        }
     }
     public class Inspector
     {
+        public Inspector()
+        {
+            ObreroID = 0;
+            Codigo = "";
+            NombreCompleto = "";
+        }
         public int ObreroID { get; set; }
         public string Codigo { get; set; }
         public string NombreCompleto { get; set; }
@@ -68,7 +69,7 @@ namespace BackEndSAM.Models.Inspeccion
             DefectoID = 0;
             Nombre = "";
             IDDEFECTOTIPO = 0;
-            TIPO = "";
+            TIPO = "NoEspecificarJunta";
         }
     }
     public class NumeroUnico

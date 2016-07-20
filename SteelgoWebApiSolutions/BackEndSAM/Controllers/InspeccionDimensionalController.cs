@@ -145,7 +145,7 @@ namespace BackEndSAM.Controllers
                             Resultado = item.Resultado,
                             ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
                             ListaJuntas = listJuntaXSpool,
-                            IDDEFECTOTIPO = item.IdDefectoTipo.GetValueOrDefault(),
+                            IDDEFECTOTIPO = item.IdDefectoTipo,
                             ListaJuntasSeleccionadas = juntasSeleccionadas,
                             ListaJuntasSeleccionadasInicial = juntasSeleccionadas,
                             TemplateRender = juntasSeleccionadas.Count > 0 ? idiomaMensaje.Split('|')[0].Replace("?1", juntasSeleccionadas.Count.ToString()) : idiomaMensaje.Split('|')[1],
@@ -220,6 +220,7 @@ namespace BackEndSAM.Controllers
         private List<Defectos> ObtenerListaDefectos(List<Sam3_Steelgo_Get_Defectos_Result> listaDefecto)
         {
             List<Defectos> listaDefectos = new List<Defectos>();
+            listaDefectos.Add(new Defectos());
             foreach (Sam3_Steelgo_Get_Defectos_Result item in listaDefecto)
             {
                 Defectos Defecto = new Defectos
@@ -251,6 +252,7 @@ namespace BackEndSAM.Controllers
         private List<Inspector> ObtenerListaInspector(List<Sam3_Steelgo_Get_Obrero_Result> listaInspector)
         {
             List<Inspector> listaInspectors = new List<Inspector>();
+            listaInspectors.Add(new Inspector());
             foreach (Sam3_Steelgo_Get_Obrero_Result item in listaInspector)
             {
                 Inspector tubero = new Inspector
@@ -388,7 +390,7 @@ namespace BackEndSAM.Controllers
                             Resultado = item.Resultado,
                             ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
                             ListaJuntas = listJuntaXSpool,
-                            IDDEFECTOTIPO = item.IdDefectoTipo.GetValueOrDefault(),
+                            IDDEFECTOTIPO = item.IdDefectoTipo,
                             ListaJuntasSeleccionadasInicial = juntasSeleccionadas,
                             ListaJuntasSeleccionadas = juntasSeleccionadas,
                             TemplateRender = juntasSeleccionadas.Count > 0 ? idiomaMensaje.Split('|')[0].Replace("?1", juntasSeleccionadas.Count.ToString()) : idiomaMensaje.Split('|')[1],

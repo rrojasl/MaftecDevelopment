@@ -27,29 +27,21 @@ namespace BackEndSAM.Controllers
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
 
-                CapturaVisualDimensional.DetalleDatosJson capturaDatosJson = serializer.Deserialize<CapturaVisualDimensional.DetalleDatosJson>(JsonCaptura);
+                CapturaVisualDimensional capturaDatosJson = serializer.Deserialize<CapturaVisualDimensional>(JsonCaptura);
 
-                List<CapturaVisualDimensional.DetalleDatosJson> listaDetalleDatos = new List<CapturaVisualDimensional.DetalleDatosJson>();
+                List<CapturaVisualDimensional> listaDetalleDatos = new List<CapturaVisualDimensional>();
 
                 List<Sam3_Inspeccion_Get_DetalleJunta_Result> detalle = (List<Sam3_Inspeccion_Get_DetalleJunta_Result>)InspeccionBD.Instance.ObtenerDetalleJunta(capturaDatosJson, usuario, Lenguaje, juntasSeleccionadas);
                 string fecha = (string)CapturaArmadoBD.Instance.ObtenerValorFecha(usuario, Lenguaje, 16);
 
-
                 foreach (Sam3_Inspeccion_Get_DetalleJunta_Result item in detalle)
                 {
-
-
-
                     List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)InspeccionBD.Instance.listaNumeroUnicos(item.JuntaSpoolID, usuario, 2);
-
                     List<NumeroUnico> listNumeroUnico1 = GenerarListaNumerosUnicos(listaNumeroUnicos, 1);
-
                     List<NumeroUnico> listNumeroUnico2 = GenerarListaNumerosUnicos(listaNumeroUnicos, 2);
 
-
-                    CapturaVisualDimensional.DetalleDatosJson detalleDatos = new CapturaVisualDimensional.DetalleDatosJson
+                    CapturaVisualDimensional detalleDatos = new CapturaVisualDimensional
                     {
-
                         Accion = item.InspeccionVisualID == null ? 1 : 2,
                         JuntaTrabajoID = item.JuntaTrabajoID.GetValueOrDefault(),
                         JuntaArmadoID = item.JuntaArmadoID == null ? 0 : int.Parse(item.JuntaArmadoID.ToString()),
@@ -66,38 +58,36 @@ namespace BackEndSAM.Controllers
                         TipoJuntaID = item.TipoJuntaID.ToString(),
                         Diametro = item.Diametro.ToString(),
                         FechaInspeccion = item.FechaInspeccion,
-                        Defectos = item.Defecto == null ? capturaDatosJson.Defectos : item.Defecto.ToString(),
-                        DefectosID = item.DefectoID == null ? capturaDatosJson.DefectosID : item.DefectoID.ToString(),
+                        Defectos = (item.Defecto == null ? "" : item.Defecto.ToString()),
+                        DefectosID = (item.DefectoID == null ? "0" : item.DefectoID.ToString()),
                         TallerID = item.TallerID == null ? capturaDatosJson.TallerID : item.TallerID.ToString(),
                         Taller = item.Taller == null ? capturaDatosJson.Taller : item.Taller,
 
                         Inspector = item.Inspector,
                         InspectorID = item.ObreroID.ToString(),
 
-                        NumeroUnico1 = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].Clave : "") : item.Clave1.ToString(),
-                        NumeroUnico2 = item.NumeroUnico2ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].Clave : "") : item.Clave2.ToString(),
-                        NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 1 ? listNumeroUnico1[0].NumeroUnicoID : 0) : item.NumeroUnico1ID.GetValueOrDefault(),
-                        NumeroUnico2ID = item.NumeroUnico2ID == null ? (listNumeroUnico2.Count == 1 ? listNumeroUnico2[0].NumeroUnicoID : 0) : item.NumeroUnico2ID.GetValueOrDefault(),
+                        NumeroUnico1 = (item.NumeroUnico1ID == null || item.NumeroUnico1ID == 0) ? (listNumeroUnico1.Count == 2 ? listNumeroUnico1[1].Clave : "") : item.Clave1.ToString(),
+                        NumeroUnico2 = (item.NumeroUnico2ID == null || item.NumeroUnico2ID == 0) ? (listNumeroUnico2.Count == 2 ? listNumeroUnico2[1].Clave : "") : item.Clave2.ToString(),
+                        NumeroUnico1ID = item.NumeroUnico1ID == null ? (listNumeroUnico1.Count == 2 ? listNumeroUnico1[1].NumeroUnicoID.ToString() : "") : item.NumeroUnico1ID.ToString(),
+                        NumeroUnico2ID = item.NumeroUnico1ID == null ? (listNumeroUnico2.Count == 2 ? listNumeroUnico2[1].NumeroUnicoID.ToString() : "") : item.NumeroUnico2ID.ToString(),
                         ListaNumerosUnicos1 = listNumeroUnico1,
                         ListaNumerosUnicos2 = listNumeroUnico2,
                         ProyectoID = capturaDatosJson.ProyectoID,
                         Resultado = item.Resultado == null ? capturaDatosJson.Resultado : item.Resultado.ToString(),
                         ResultadoID = item.ResultadoID == null ? capturaDatosJson.ResultadoID : item.ResultadoID.ToString(),
+
                         ListaInspector = ObtenerListaInspector((List<Sam3_Steelgo_Get_Obrero_Result>)ObreroBD.Instance.ObtenerObrero(capturaDatosJson.ProyectoID, 2, "Inspector Visual Dimensional")),
                         ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)TallerBD.Instance.ObtenerTallerXPoryecto(capturaDatosJson.ProyectoID)),
                         ListaDefectos = ObtenerListaDefectos((List<Sam3_Steelgo_Get_Defectos_Result>)DefectosBd.Instance.listadoDefectos(Lenguaje, "Inspección Visual")),
                         ListaResultados = ObtenerListaResultado((List<Sam3_Steelgo_Get_TipoResultado_Result>)TipoResultadoBd.Instance.ObtenerListadoResultados(Lenguaje)),
+
                         EtiquetaMaterial1 = item.EtiquetaMaterial1,
                         EtiquetaMaterial2 = item.EtiquetaMaterial2
-
                     };
+
                     listaDetalleDatos.Add(detalleDatos);
-
-
                 }
-
                 return serializer.Serialize(listaDetalleDatos);
-
             }
             else
             {
@@ -112,6 +102,13 @@ namespace BackEndSAM.Controllers
         public List<NumeroUnico> GenerarListaNumerosUnicos(List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumerosUnicos, int numeroSeleccionado)
         {
             List<NumeroUnico> numerosUnicos = new List<NumeroUnico>();
+
+            numerosUnicos.Add(new NumeroUnico {
+                NumeroUnicoID = 0,
+                Clave = "",
+                EtiquetaMaterial = 0,
+                Etiqueta = ""
+            });
 
             foreach (Sam3_Armado_Get_MaterialesSpool_Result item in listaNumerosUnicos)
             {
@@ -136,6 +133,13 @@ namespace BackEndSAM.Controllers
         private List<Inspector> ObtenerListaInspector(List<Sam3_Steelgo_Get_Obrero_Result> listaInspector)
         {
             List<Inspector> listaInspectors = new List<Inspector>();
+
+            listaInspectors.Add(new Inspector {
+                ObreroID = 0,
+                Codigo = "",
+                NombreCompleto = ""
+            });
+
             foreach (Sam3_Steelgo_Get_Obrero_Result item in listaInspector)
             {
                 Inspector tubero = new Inspector
@@ -151,6 +155,7 @@ namespace BackEndSAM.Controllers
         private List<Taller> ObtenerListaTaller(List<Sam3_SteelGo_Get_Taller_Result> listaTaller)
         {
             List<Taller> listaTalleres = new List<Taller>();
+
             foreach (Sam3_SteelGo_Get_Taller_Result item in listaTaller)
             {
                 Taller taller = new Taller
@@ -165,6 +170,12 @@ namespace BackEndSAM.Controllers
         private List<Defectos> ObtenerListaDefectos(List<Sam3_Steelgo_Get_Defectos_Result> listaDefecto)
         {
             List<Defectos> listaDefectos = new List<Defectos>();
+
+            listaDefectos.Add(new Defectos {
+                DefectoID = 0,
+                Nombre = ""
+            });
+
             foreach (Sam3_Steelgo_Get_Defectos_Result item in listaDefecto)
             {
                 Defectos Defecto = new Defectos
@@ -179,6 +190,12 @@ namespace BackEndSAM.Controllers
         private List<Resultado> ObtenerListaResultado(List<Sam3_Steelgo_Get_TipoResultado_Result> listaResultado)
         {
             List<Resultado> listaResultados = new List<Resultado>();
+
+            listaResultados.Add(new Resultado {
+                _Resultado = "",
+                _ResultadoID = "0"
+            });
+
             foreach (Sam3_Steelgo_Get_TipoResultado_Result item in listaResultado)
             {
                 Resultado resultado = new Resultado

@@ -115,24 +115,30 @@ function AjaxObtenerJSonGrid() {
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = JSON.parse(data);
                 if (array.length > 0) {//1.- ahora solo trae un registro por spool porque en una sola llamada trae la junta.
-                    for (var i = 0; i < array.length; i++) {
-                        if (!ExisteSpool(array[i])) {
-                            array[i].NumeroUnico1 = array[i].NumeroUnico1 == "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
-                            array[i].NumeroUnico2 = array[i].NumeroUnico2 == "" ? DatoDefaultNumeroUnico2() : array[i].NumeroUnico2;
-                            if (array[i].FechaInspeccion != null) {
-                                array[i].FechaInspeccion = new Date(ObtenerDato(array[i].FechaInspeccion, 1), ObtenerDato(array[i].FechaInspeccion, 2), ObtenerDato(array[i].FechaInspeccion, 3));//año, mes, dia
+                    if ($('input:radio[name=Muestra]:checked').val() == "Todos" || ($('input:radio[name=Muestra]:checked').val() == "Sin Capturar" && array[0].Accion == 1)) {
+                        for (var i = 0; i < array.length; i++) {
+
+                            if (!ExisteSpool(array[i])) {
+                                array[i].NumeroUnico1 = array[i].NumeroUnico1 == "" ? DatoDefaultNumeroUnico1() : array[i].NumeroUnico1;
+                                array[i].NumeroUnico2 = array[i].NumeroUnico2 == "" ? DatoDefaultNumeroUnico2() : array[i].NumeroUnico2;
+                                if (array[i].FechaInspeccion != null) {
+                                    array[i].FechaInspeccion = new Date(ObtenerDato(array[i].FechaInspeccion, 1), ObtenerDato(array[i].FechaInspeccion, 2), ObtenerDato(array[i].FechaInspeccion, 3));//año, mes, dia
+                                }
+                                ds.add(array[i]);
+                                MensajesSteelGO("", array[i].OrdenTrabajoSpool)
+                                //como trae solo un registro se sincroniza se explica en el punto del comentario 1
+                                $("#grid").data("kendoGrid").dataSource.sync();
+                                $("#InputID").data("kendoComboBox").value("");
                             }
-                            ds.add(array[i]);
-                            MensajesSteelGO("", array[i].OrdenTrabajoSpool)
-                            //como trae solo un registro se sincroniza se explica en el punto del comentario 1
-                            $("#grid").data("kendoGrid").dataSource.sync();
-                            $("#InputID").data("kendoComboBox").value("");
-                        }
-                        else {
-                            MensajesSteelGO("SpoolIDExistente", '');
+                            else {
+                                MensajesSteelGO("SpoolIDExistente", '');
+                            }
                         }
                     }
-
+                    else {
+                        displayNotify("CapturaInspeccionDimensionalNoExisteLista", '', '1');
+                        loadingStop();
+                    }
                 }
                 else {
                     //mensaje que no existe el spool.
@@ -238,8 +244,8 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                 }
             }
         }
- //.........................................
-        if ( jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
+        //.........................................
+        if (jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
             listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
         }
         if (listaFinalJuntas != null) {
@@ -259,39 +265,102 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
         }
         else { inspeccionDimensional[index].ListaJuntas = undefined; }
 
-        if (((inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID == "2") ||
-            (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID == "2") ||
-            (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID == "2") ||
-            (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined )||
-            inspeccionDimensional[index].InspectorID == "" ||
-            inspeccionDimensional[index].InspectorID == "0" ||
-            inspeccionDimensional[index].InspectorID == 0 ||
-            inspeccionDimensional[index].FechaInspeccion == "")
-            && (inspeccionDimensional[index].Accion != 3 && inspeccionDimensional[index].Accion != 4)) {
-            if (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined && jSonCaptura[index].TIPO == "NoEspecificarJunta") {
-                if (inspeccionDimensional[index].DefectosID == 0 || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == "") {
-                    inspeccionDimensional[index].Estatus = 0;
-                    $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
-                }
-            }
-         else if (inspeccionDimensional[index].Accion == 2 && inspeccionDimensional[index].ResultadoID == "" && inspeccionDimensional[index].FechaInspeccion == "" &&
-             (inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0 ) &&
-             (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) 
-             ) {
-                inspeccionDimensional[index].Accion = 4;
-            }
-         else if (inspeccionDimensional[index].ResultadoID != "1" || (
-             (inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID == "2") ||
-             (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID == "2") ||
-             (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID == "2"))) {
+
+
+        if(inspeccionDimensional[index].Accion == 4){
+            if ((inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0) &&
+                inspeccionDimensional[index].FechaInspeccion == "" &&
+                (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) &&
+                (inspeccionDimensional[index].ResultadoID == "" || inspeccionDimensional[index].ResultadoID == "0" || inspeccionDimensional[index].ResultadoID == 0) &&
+                inspeccionDimensional[index].ListaJuntas == undefined
+                ) { }
+            else {
                 inspeccionDimensional[index].Estatus = 0;
                 $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
             }
         }
-        
+        else {
+
+            if ((inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0) &&
+                inspeccionDimensional[index].FechaInspeccion == "" &&
+                (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) &&
+                (inspeccionDimensional[index].ResultadoID == "" || inspeccionDimensional[index].ResultadoID == "0" || inspeccionDimensional[index].ResultadoID == 0) &&
+                inspeccionDimensional[index].ListaJuntas == undefined && inspeccionDimensional[index].Accion == 2) {
+                inspeccionDimensional[index].Accion == 4
+            }
+            else {
+                if ((inspeccionDimensional[index].FechaInspeccion == "" ||
+                    (inspeccionDimensional[index].ResultadoID == "" || inspeccionDimensional[index].ResultadoID == "0" || inspeccionDimensional[index].ResultadoID == 0) ||
+                    (inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0)) &&
+                    (inspeccionDimensional[index].Accion == 2 || inspeccionDimensional[index].Accion == 1)
+                    ) {
+                    inspeccionDimensional[index].Estatus = 0;
+                    $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                }
+                else {
+                    if (inspeccionDimensional[index].ResultadoID == "1") {
+                        if (!((inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) &&
+                            inspeccionDimensional[index].ListaJuntas == undefined)
+                            ) {
+                            inspeccionDimensional[index].Estatus = 0;
+                            $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                        }
+                    }
+                    else if (inspeccionDimensional[index].ResultadoID == "2") {
+                        if (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) {
+                            inspeccionDimensional[index].Estatus = 0;
+                            $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                        }
+                        else {
+                            if (jSonCaptura[index].TIPO == "NoEspecificarJunta") {
+                                if (inspeccionDimensional[index].ListaJuntas != undefined) {
+                                    inspeccionDimensional[index].Estatus = 0;
+                                    $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                                }
+                            }
+                            else {
+                                if (inspeccionDimensional[index].ListaJuntas == undefined) {
+                                    inspeccionDimensional[index].Estatus = 0;
+                                    $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //if (((inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID == "2") ||
+        //    (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID == "2") ||
+        //    (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID == "2") ||
+        //    (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined) ||
+        //    inspeccionDimensional[index].InspectorID == "" ||
+        //    inspeccionDimensional[index].InspectorID == "0" ||
+        //    inspeccionDimensional[index].InspectorID == 0 ||
+        //    inspeccionDimensional[index].FechaInspeccion == "")
+        //    && (inspeccionDimensional[index].Accion != 3 && inspeccionDimensional[index].Accion != 4)) {
+        //    if (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined && jSonCaptura[index].TIPO == "NoEspecificarJunta") {
+        //        if (inspeccionDimensional[index].DefectosID == 0 || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == "") {
+        //            inspeccionDimensional[index].Estatus = 0;
+        //            $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+        //        }
+        //    }
+        //    if (inspeccionDimensional[index].Accion == 2 && inspeccionDimensional[index].ResultadoID == "" && inspeccionDimensional[index].FechaInspeccion == "" &&
+        //         (inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0) &&
+        //         (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0)
+        //         ) {
+        //        inspeccionDimensional[index].Accion = 4;
+        //    }
+            
+        //    else {
+        //        inspeccionDimensional[index].Estatus = 0;
+        //        $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+        //    }
+        //}
+
     }
     Captura[0].Detalles = inspeccionDimensional;
-
+    
     if (!ExistRowEmpty(inspeccionDimensional)) {
         if (Captura[0].Detalles.length > 0) {
             loadingStart();
@@ -303,6 +372,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                             AjaxGetSpoolGrid();
                         }
                         else if (tipoGuardado == 1) {
+                            opcionHabilitarView(false, "FieldSetView");
                             limpiar();
                             AjaxCargaCamposPredetrminados();
                         }
@@ -370,6 +440,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                                 AjaxGetSpoolGrid();
                             }
                             else if (tipoGuardado == 1) {
+                                opcionHabilitarView(false, "FieldSetView");
                                 limpiar();
                                 AjaxCargaCamposPredetrminados();
                             }
@@ -413,7 +484,7 @@ function InspectorCorrecto(array) {
 
 function AjaxGetSpoolGrid() {
     try {
-        
+
         var listadogrid = $("#grid").data("kendoGrid").dataSource._data;
         $("#grid").data("kendoGrid").dataSource.data([]);
 
@@ -448,7 +519,7 @@ function AjaxGetSpoolGrid() {
                     }
                 }
                 loadingStop();
-            });    
+            });
         }
 
     } catch (e) {

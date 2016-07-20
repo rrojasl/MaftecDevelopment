@@ -55,7 +55,14 @@ function RenderOptionResultado(container, options) {
                     
                 }
                 else {
-                    options.model.Resultado = ObtenerDescCorrectaResultado(options.model.ListaResultados, options.model.ResultadoID);
+                    options.model.Resultado = "";
+                    options.model.ResultadoID = 0;
+                    options.model.DefectosID = 0;
+                    options.model.Defectos = "";
+                    options.model.ListaJuntasSeleccionadas = [];
+                    options.model.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    $("#grid").data("kendoGrid").dataSource.sync();
+                    //options.model.Resultado = ObtenerDescCorrectaResultado(options.model.ListaResultados, options.model.ResultadoID);
                 }
 
             }
@@ -105,7 +112,14 @@ function RenderComboBoxDefectos(container, options) {
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
-                    options.model.Defectos = ObtenerDescCorrectaDefectos(options.model.ListaDefectos, options.model.DefectoID);
+                    //options.model.Defectos = ObtenerDescCorrectaDefectos(options.model.ListaDefectos, options.model.DefectoID);
+                    options.model.Defectos = "";
+                    options.model.DefectosID = 0;
+                    options.model.IDDEFECTOTIPO = 0;
+                    options.model.TIPO = "NoEspecificarJunta";
+                    options.model.ListaJuntasSeleccionadas = [];
+                    options.model.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
             }
         }
@@ -148,7 +162,9 @@ function RenderComboBoxInspector(container, options) {
                     options.model.InspectorID = dataItem.ObreroID;
                 }
                 else {
-                    options.model.Inspector = ObtenerDescCorrectaInspector(options.model.ListaInspector, options.model.InspectorID);
+                    options.model.Inspector = "";
+                    options.model.InspectorID = 0;
+                    //options.model.Inspector = ObtenerDescCorrectaInspector(options.model.ListaInspector, options.model.InspectorID);
                 }
             }
         }
