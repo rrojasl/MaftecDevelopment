@@ -353,12 +353,20 @@ function CargarGridPopUpRaiz() {
                     { field: "Accion", operator: "eq", value: 0 },
                     { field: "Accion", operator: "eq", value: undefined }
                 ]
-            }
+            },
+            pageSize: 10,
+            serverPaging: false,
+            serverFiltering: false,
+            serverSorting: false
         },
         selectable: true,
         filterable: getGridFilterableMaftec(),
-        dataBinding: function (e) {
-            console.log("dataBinding");
+        pageable: {
+            refresh: false,
+            pageSizes: [10, 25, 50, 100],
+            info: false,
+            input: false,
+            numeric: true
         },
         change: function (e) {
 

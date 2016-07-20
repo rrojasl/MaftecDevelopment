@@ -8545,6 +8545,18 @@ _dictionary = {
     //#endregion
 
     //#region Soldadura
+    "CapturaSoldaduraHeaderSoldadores": {
+        "es-MX": "Soldador",
+        "en-US": "Welders"
+    },
+    "CapturaSoldaduraHeaderDiametro": {
+        "es-MX": "Diametro",
+        "en-US": "Diameter"
+    },
+    "CapturaSoldaduraHeaderWPS": {
+        "es-MX": "WPS",
+        "en-US": "WPS"
+    },
     "CapturaSoldaduraSoldaduraSpool": {
         "es-MX": "Soldadura",
         "en-US": "Welding"
