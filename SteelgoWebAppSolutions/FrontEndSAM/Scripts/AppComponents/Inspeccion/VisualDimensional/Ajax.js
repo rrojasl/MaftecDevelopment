@@ -227,18 +227,20 @@ function AjaxGuardar(jSonCaptura) {
         ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID = jSonCaptura[index].NumeroUnico2ID;
         ListaDetalleGuardarInspeccionVisual[index].InspeccionVisualID = jSonCaptura[index].InspeccionVisualID;
 
-        if (ListaDetalleGuardarInspeccionVisual[index].TallerID == "" || ListaDetalleGuardarInspeccionVisual[index].TallerID == "0" ||
+        if ((ListaDetalleGuardarInspeccionVisual[index].TallerID == "" || ListaDetalleGuardarInspeccionVisual[index].TallerID == "0" ||
             ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "" || ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "0" ||
             ((ListaDetalleGuardarInspeccionVisual[index].DefectosID == "" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == "0" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == null) && ListaDetalleGuardarInspeccionVisual[index].ResultadoID == 2) ||
             ListaDetalleGuardarInspeccionVisual[index].InspectorID == "" || ListaDetalleGuardarInspeccionVisual[index].InspectorID == "0" ||
-            ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "" || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0" 
+            ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "" || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0"
             //ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "0" ||
             //ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "0"
-            ) {
+            ) && (ListaDetalleGuardarInspeccionVisual[index].Accion == 1 || ListaDetalleGuardarInspeccionVisual[index].Accion == 2)) {
 
+            ListaDetalleGuardarInspeccionVisual[index].Accion = 4;
             ListaDetalleGuardarInspeccionVisual[index].Estatus = 0;
             $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
             existRowEmpty = true;
+            ListaDetalleGuardarInspeccionVisual.pop();
         }
     }
 
@@ -341,37 +343,37 @@ function AjaxGuardar(jSonCaptura) {
             if (validaDefectos(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
                 if (validaResultado(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
                     if (validaInspector(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                        if (validaNumeroUnico1(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                            if (validaNumeroUnico2(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                                Captura[0].Detalles = inspeccionDimensional;
-                                //loadingStart();
-                                //$Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-                                //    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                                //        mensaje = "Se guardo correctamente la informacion" + "-0";
-                                //        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                                //        AjaxobtenerDetalleDimensional($("#InputID").val());
-                                //        AjaxObtenerJSonGrid();
-                                //    }
-                                //    else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                                //        mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
-                                //        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                                //        opcionHabilitarView(false, "FieldSetView");
-                                //    }
-                                //    loadingStop();
-                                //    var newDataSource = $("#grid").data("kendoGrid").dataSource;
-                                //});
-                            }
-                            else {
-                                displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
-                                opcionHabilitarView(false, "FieldSetView");
-                                deshabilitaSpool();
-                            }
-                        }
-                        else {
-                            displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
-                            opcionHabilitarView(false, "FieldSetView");
-                            deshabilitaSpool();
-                        }
+                        //if (validaNumeroUnico1(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                        //    if (validaNumeroUnico2(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+                        Captura[0].Detalles = inspeccionDimensional;
+                        //loadingStart();
+                        //$Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+                        //    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+                        //        mensaje = "Se guardo correctamente la informacion" + "-0";
+                        //        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                        //        AjaxobtenerDetalleDimensional($("#InputID").val());
+                        //        AjaxObtenerJSonGrid();
+                        //    }
+                        //    else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
+                        //        mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
+                        //        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+                        //        opcionHabilitarView(false, "FieldSetView");
+                        //    }
+                        //    loadingStop();
+                        //    var newDataSource = $("#grid").data("kendoGrid").dataSource;
+                        //});
+                        //    }
+                        //    else {
+                        //        displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
+                        //        opcionHabilitarView(false, "FieldSetView");
+                        //        deshabilitaSpool();
+                        //    }
+                        //}
+                        //else {
+                        //    displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
+                        //    opcionHabilitarView(false, "FieldSetView");
+                        //    deshabilitaSpool();
+                        //}
                     }
                     else {
                         displayNotify("DimensionalVisualMensajeErrorInspector", "", '2');
@@ -437,6 +439,7 @@ function AjaxGuardar(jSonCaptura) {
                 loadingStart();
                 $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
                     if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+                        $("#grid").data('kendoGrid').dataSource.data([]);
                         displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                         AjaxobtenerDetalleDimensional($("#InputID").val());
                         AjaxObtenerJSonGrid();
@@ -506,7 +509,7 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 
 function validaTaller(ListaDetalleGuardar) {
     for (var i = 0; i < ListaDetalleGuardar.length; i++) {
-        if (ListaDetalleGuardar[i].TallerID == null) {
+        if (ListaDetalleGuardar[i] == undefined || ListaDetalleGuardar[i].TallerID == null) {
             return false;
         }
     }

@@ -38,7 +38,7 @@ function IniciarPreCargas() {
 }
 
 function asignarProyecto() {
-    $("#InputOrdenTrabajo").val(Cookies.get('LetraProyecto') == undefined ? '' : Cookies.get('LetraProyecto'));
+    //    $("#InputOrdenTrabajo").val(Cookies.get('LetraProyecto') == undefined ? '' : Cookies.get('LetraProyecto'));
     $("#LabelProyecto").text('Proyecto :' + (Cookies.get('Proyecto') == undefined ? 'No hay ningun proyecto' : Cookies.get('Proyecto')));
 }
 
@@ -491,12 +491,7 @@ function PlanchaDefecto() {
             data[i].Defectos = $("#inputDefectosVisual").data("kendoComboBox").text();
         }
         else {
-            if (data[i].Defectos == "" || data[i].Defectos == null || data[i].Defectos == undefined) {
-                data[i].ResultadoID = $('input:radio[name=ResultadoVisual]:checked').val() == "Aprobado" ? 1 : 2;
-                if (data[i].ResultadoID == 1)
-                    data[i].Resultado = _dictionary.DimensionalVisualAporbadoVisual[$("#language").data("kendoDropDownList").value()];
-                else
-                    data[i].Resultado = _dictionary.DimensionalVisualRechazadoVisual[$("#language").data("kendoDropDownList").value()];
+            if ((data[i].Defectos == "" || data[i].Defectos == null || data[i].Defectos == undefined) && data[i].Resultado != "Aprobado") {
                 data[i].DefectosID = $("#inputDefectosVisual").val();
                 data[i].Defectos = $("#inputDefectosVisual").data("kendoComboBox").text();
             }
