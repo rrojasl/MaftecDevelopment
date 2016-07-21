@@ -8217,6 +8217,14 @@ _dictionary = {
         "es-MX": "Las siguientes juntas se han añadido al grid: ",
         "en-US": "The following joints have been added to grid: "
     },
+    "DimensionalVisualMensajeGuardadoDimensional": {
+        "es-MX": "Datos del apartado Inspección Dimensional guardados correctamente.",
+        "en-US": "Dimensional Inspection data saved correctly."
+    },
+    "DimensionalVisualMensajeGuardadoVisual": {
+        "es-MX": "Datos del apartado Inspección Visual guardados correctamente.",
+        "en-US": "Visual Inspection data saved correctly."
+    },
     //#endregion
 
     //#region ServiciosTecnicos
