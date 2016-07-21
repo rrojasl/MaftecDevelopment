@@ -119,7 +119,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             TurnoLaboral = item.TurnoLaboral,
                             TurnoLaboralID = item.TurnoLaboralID.GetValueOrDefault(),
                             ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
-                            ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, idPrueba, item.ProveedorID.GetValueOrDefault()),
+                            ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
 
                         });
                     }

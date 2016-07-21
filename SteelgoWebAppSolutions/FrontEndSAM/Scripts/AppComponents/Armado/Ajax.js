@@ -275,8 +275,8 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                     if (ListaDetalles[index].Accion == 2 && ListaDetalles[index].FechaArmado == "" &&
                         (ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0") &&
                        (ListaDetalles[index].TuberoID == "" || ListaDetalles[index].TuberoID == "0") &&
-                        (ListaDetalles[index].NumeroUnico1ID == "" || ListaDetalles[index].NumeroUnico1ID == null) &&
-                        (ListaDetalles[index].NumeroUnico2ID == "" || ListaDetalles[index].NumeroUnico2ID == null)
+                        (ListaDetalles[index].NumeroUnico1ID == "" || ListaDetalles[index].NumeroUnico1ID == null || ListaDetalles[index].NumeroUnico1ID == "0") &&
+                        (ListaDetalles[index].NumeroUnico2ID == "" || ListaDetalles[index].NumeroUnico2ID == null || ListaDetalles[index].NumeroUnico2ID == "0")
                         ) {
                         ListaDetalles[index].Accion = 4;
                     }
@@ -286,14 +286,15 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                     }
 
                 }
-                else if (ListaDetalles[index].Accion == 4 && ListaDetalles[index].FechaArmado == "" ||
-                        (ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0") ||
-                        (ListaDetalles[index].NumeroUnico1ID == "" || ListaDetalles[index].NumeroUnico1ID == null) ||
-                        (ListaDetalles[index].NumeroUnico2ID == "" || ListaDetalles[index].NumeroUnico2ID == null) ||
-                       (ListaDetalles[index].TuberoID == "" || ListaDetalles[index].TuberoID == "0"))
-                {
-                            ListaDetalles[index].Estatus = 0;
-                            $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                else if (ListaDetalles[index].Accion == 4) {
+                    if (!(ListaDetalles[index].FechaArmado == "" &&
+                        (ListaDetalles[index].TallerID == "" || ListaDetalles[index].TallerID == "0") &&
+                        (ListaDetalles[index].NumeroUnico1ID == "" || ListaDetalles[index].NumeroUnico1ID == null || ListaDetalles[index].NumeroUnico1ID == "0") &&
+                        (ListaDetalles[index].NumeroUnico2ID == "" || ListaDetalles[index].NumeroUnico2ID == null || ListaDetalles[index].NumeroUnico2ID == "0") &&
+                       (ListaDetalles[index].TuberoID == "" || ListaDetalles[index].TuberoID == "0"))) {
+                        ListaDetalles[index].Estatus = 0;
+                        $('tr[data-uid="' + arregloCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                    }
                 }
             } catch (e) {
                 loadingStop();
