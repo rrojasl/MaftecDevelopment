@@ -10148,7 +10148,11 @@ _dictionary = {
         "es-MX": "Avance",
         "en-US": "Progress"
     },
-    "PinturaBotonCerrarCarro1": {
+    "PinturaBotonCerrarCarroSup": {
+        "es-MX": "Cerrar carro",
+        "en-US": "Close cart"
+    },
+    "PinturaBotonCerrarCarroInf": {
         "es-MX": "Cerrar carro",
         "en-US": "Close cart"
     },
