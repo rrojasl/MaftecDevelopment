@@ -342,7 +342,9 @@ function limpiarRenglon(e) {
         itemToClean.InspectorID = 0;
         itemToClean.Inspector = "";
         itemToClean.ListaJuntasSeleccionadas = [];
-        itemToClean.Accion = 4;
+        if(itemToClean.Accion == 2)
+            itemToClean.Accion = 4;
+        else
         itemToClean.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         dataSource.sync();
