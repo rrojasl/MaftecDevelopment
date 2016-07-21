@@ -197,7 +197,7 @@ function AjaxObtenerJSonGrid() {
     }
 }
 
-function AjaxGuardar(jSonCaptura) {
+function AjaxGuardar(jSonCaptura, tipoGuardar) {
     Captura = [];
     Captura[0] = { Detalles: "" };
     var existRowEmpty = false;
@@ -456,10 +456,16 @@ function AjaxGuardar(jSonCaptura) {
                         else if (guardadoSinInspeccionVisual) {
                             displayNotify("DimensionalVisualMensajeGuardadoDimensional", "", '0');
                         }
-
-                        AjaxobtenerDetalleDimensional($("#InputID").val());
-                        AjaxObtenerJSonGrid();
-                        opcionHabilitarView(true, "FieldSetView");
+                        if (tipoGuardar == 1) {
+                            opcionHabilitarView(false, "FieldSetView");
+                            limpiar();
+                            habilitaSpool();
+                        }
+                        else {
+                            opcionHabilitarView(true, "FieldSetSetView");
+                            AjaxobtenerDetalleDimensional($("#InputID").val());
+                            AjaxObtenerJSonGrid();
+                        }
                     }
                     else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                         displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
