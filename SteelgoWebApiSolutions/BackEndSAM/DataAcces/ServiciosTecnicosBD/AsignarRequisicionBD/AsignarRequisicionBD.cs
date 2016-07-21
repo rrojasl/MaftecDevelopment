@@ -38,7 +38,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                                 //ListaHerramientaPrueba= ListadoHerramientasPrueba,
                                 //ListaTurnoLaboral= ListadoTurnos
                                 ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, idPrueba, item.ProveedorID),
-                                ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, idPrueba, item.ProveedorID)
+                                ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje)
                             });
                         }
                     }
@@ -119,7 +119,8 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             TurnoLaboral = item.TurnoLaboral,
                             TurnoLaboralID = item.TurnoLaboralID.GetValueOrDefault(),
                             ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
-                            ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
+                            ListaHerramientaPruebaProveedorPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
+                            ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje),
 
                         });
                     }
@@ -173,13 +174,13 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                 return result;
             }
         }
-        public object ObtenerListaTurnoLaboral(string lenguaje, int idPrueba, int idProveedor)
+        public object ObtenerListaTurnoLaboral(string lenguaje)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje, idPrueba, idProveedor).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje).ToList();
 
                     List<TurnoLaboral> ListadoTurnoLaboral = new List<TurnoLaboral>();
 
