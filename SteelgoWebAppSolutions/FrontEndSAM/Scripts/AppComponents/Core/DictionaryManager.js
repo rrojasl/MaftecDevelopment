@@ -10148,7 +10148,11 @@ _dictionary = {
         "es-MX": "Avance",
         "en-US": "Progress"
     },
-    "PinturaBotonCerrarCarro1": {
+    "PinturaBotonCerrarCarroSup": {
+        "es-MX": "Cerrar carro",
+        "en-US": "Close cart"
+    },
+    "PinturaBotonCerrarCarroInf": {
         "es-MX": "Cerrar carro",
         "en-US": "Close cart"
     },
@@ -10209,16 +10213,16 @@ _dictionary = {
         "en-US": "Car"
     },
     "PinturaCargaBackLogOrdenImportancia": {
-        "es-MX": "Orden Importancia",
-        "en-US": "Importance Order"
+        "es-MX": "Orden Impt",
+        "en-US": "Impt Order"
     },
     "PinturaCargaBackLogSpool": {
         "es-MX": "Spool",
         "en-US": "Spool"
     },
     "PinturaCargaBackLogSistemaPintura": {
-        "es-MX": "Sistema Pintura",
-        "en-US": "Paint System"
+        "es-MX": "Sist Pintura",
+        "en-US": "Paint Sys"
     },
     "PinturaCargaBackLogColor": {
         "es-MX": "Color",
