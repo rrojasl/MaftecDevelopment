@@ -18,9 +18,9 @@
                 if (dataItem != undefined) {
                     options.model.ProveedorID = dataItem.ProveedorID;
                     options.model.Proveedor = dataItem.Nombre;
-                    options.model.ListaHerramientaPrueba = null;
+                    options.model.ListaHerramientaPrueba = [];
                     options.model.ListaHerramientaPrueba = dataItem.ListaHerramientaPrueba;
-                    options.model.ListaTurnoLaboral = null;
+                    options.model.ListaTurnoLaboral = [];
                     options.model.ListaTurnoLaboral = dataItem.ListaTurnoLaboral;
 
                     options.model.HerramientadePruebaID = "";

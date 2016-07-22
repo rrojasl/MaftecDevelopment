@@ -331,14 +331,20 @@ function SuscribirEventoDefectoVisual() {
 
 function SuscribirEventoResultadoDimensional() {
     $('input:radio[name=ResultadoDimensional]:nth(0)').change(function () {
-        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save")
+        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
             $("#inputDefecto").data("kendoComboBox").enable(false);
+            $("#ListaJuntas").data("kendoMultiSelect").enable(false);
+        }
+        $("#ListaJuntas").data("kendoMultiSelect").value("");
         $("#inputDefecto").data("kendoComboBox").value("");
         $("#inputDefecto").data("kendoComboBox").select(0);
     });
     $('input:radio[name=ResultadoDimensional]:nth(1)').change(function () {
-        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save")
+        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
             $("#inputDefecto").data("kendoComboBox").enable(true);
+            $("#ListaJuntas").data("kendoMultiSelect").enable(true);
+        }
+            
         $("#inputDefecto").data("kendoComboBox").select(0);
     });
 };
