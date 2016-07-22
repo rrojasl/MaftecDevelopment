@@ -218,8 +218,8 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
         ListaDetalleGuardarInspeccionVisual[index].EtiquetaMaterial1 = jSonCaptura[index].EtiquetaMaterial1;
         ListaDetalleGuardarInspeccionVisual[index].EtiquetaMaterial2 = jSonCaptura[index].EtiquetaMaterial2;
         ListaDetalleGuardarInspeccionVisual[index].DefectosID = jSonCaptura[index].DefectosID == null ? 0 : jSonCaptura[index].DefectosID;
-        ListaDetalleGuardarInspeccionVisual[index].InspectorID = jSonCaptura[index].InspectorID == null ? 0 : jSonCaptura[index].InspectorID;
-        ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion = jSonCaptura[index].FechaInspeccion == null ? 0 : kendo.toString(jSonCaptura[index].FechaInspeccion, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
+        ListaDetalleGuardarInspeccionVisual[index].ObreroID = (jSonCaptura[index].InspectorID == null || jSonCaptura[index].InspectorID == "") ? 0 : jSonCaptura[index].InspectorID;
+        ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion = jSonCaptura[index].FechaInspeccion == null ? " " : kendo.toString(jSonCaptura[index].FechaInspeccion, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
         ListaDetalleGuardarInspeccionVisual[index].JuntaTrabajoID = jSonCaptura[index].JuntaTrabajoID == null ? 0 : jSonCaptura[index].JuntaTrabajoID;
         ListaDetalleGuardarInspeccionVisual[index].ResultadoID = jSonCaptura[index].ResultadoID == null ? 0 : jSonCaptura[index].ResultadoID;
         ListaDetalleGuardarInspeccionVisual[index].TallerID = jSonCaptura[index].TallerID == null ? 0 : jSonCaptura[index].TallerID;
@@ -230,7 +230,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
         if ((ListaDetalleGuardarInspeccionVisual[index].TallerID == "" || ListaDetalleGuardarInspeccionVisual[index].TallerID == "0" ||
             ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "" || ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "0" ||
             ((ListaDetalleGuardarInspeccionVisual[index].DefectosID == "" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == "0" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == null) && ListaDetalleGuardarInspeccionVisual[index].ResultadoID == 2) ||
-            ListaDetalleGuardarInspeccionVisual[index].InspectorID == "" || ListaDetalleGuardarInspeccionVisual[index].InspectorID == "0" ||
+            ListaDetalleGuardarInspeccionVisual[index].ObreroID == "" || ListaDetalleGuardarInspeccionVisual[index].ObreroID == "0" ||
             ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "" || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0"
             //ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "0" ||
             //ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "0"
@@ -305,7 +305,14 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
         inspeccionDimensional[0].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
         inspeccionDimensional[0].ObreroID = $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID == null ? 0 : $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID;
         inspeccionDimensional[0].DefectoID = $("#inputDefecto").data("kendoComboBox").select() <= 0 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
-        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarInspeccionVisual;
+
+        var ListaDetalleGuardarFiltroStatus = [];
+        for (var x = 0; x < ListaDetalleGuardarInspeccionVisual.length; x++) {
+            if (ListaDetalleGuardarInspeccionVisual[x].Estatus != 0) {
+                ListaDetalleGuardarFiltroStatus.push(ListaDetalleGuardarInspeccionVisual[x]);
+            }
+        }
+        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
 
         if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
             for (var r = 0; r < $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length; r++) {
@@ -427,15 +434,16 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
         if (inspeccionDimensional.length == 0) {
             inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: "", ResultadoID: 0, ObreroID: 0, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
             guardadoSinInspeccionDimensional = true;
-        } else if (ListaDetalleGuardarInspeccionVisual == 0) {
-            ListaDetalleGuardarInspeccionVisual[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, InspectorID: 0, FechaInspeccion: "", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
+        } else if (ListaDetalleGuardarFiltroStatus == 0) {
+            ListaDetalleGuardarFiltroStatus[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, ObreroID: 0, FechaInspeccion: "", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
             guardadoSinInspeccionVisual = true;
         }
         if (inspeccionDimensional[0].ListaJuntas == undefined || inspeccionDimensional[0].ListaJuntas.length == 0) {
-            inspeccionDimensional[0].ListaJuntas = { Accion: 0, OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" };
+            inspeccionDimensional[0].ListaJuntas = [];
+            inspeccionDimensional[0].ListaJuntas.push({ Accion: 0, OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" });
         }
 
-        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarInspeccionVisual;
+        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
         Captura[0].Detalles = inspeccionDimensional;
 
         loadingStop();
@@ -554,7 +562,7 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 
 function validaTaller(ListaDetalleGuardar) {
     for (var i = 0; i < ListaDetalleGuardar.length; i++) {
-        if (ListaDetalleGuardar[i] == undefined || ListaDetalleGuardar[i].TallerID == null) {
+        if (ListaDetalleGuardar[i] == undefined || ListaDetalleGuardar[i].TallerID == null || ListaDetalleGuardar[i].TallerID == 0) {
             return false;
         }
     }
@@ -581,7 +589,7 @@ function validaResultado(ListaDetalleGuardar) {
 
 function validaInspector(ListaDetalleGuardar) {
     for (var i = 0; i < ListaDetalleGuardar.length; i++) {
-        if (ListaDetalleGuardar[i].InspectorID == "") {
+        if (ListaDetalleGuardar[i].ObreroID == "") {
             return false;
         }
     }

@@ -176,7 +176,7 @@ namespace BackEndSAM.Models.Inspeccion
 
         public string DefectosID { get; set; }
 
-        public string InspectorID { get; set; }
+        public string ObreroID { get; set; }
         public string FechaInspeccion { get; set; }
 
         public int JuntaTrabajoID { get; set; }
