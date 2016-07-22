@@ -232,7 +232,7 @@ function AplicarAsignacionAutomaticaNumeroUnico(rowitem, textoAnterior, combobox
 
     //se asigna datos a nivel Etiqueta. NU1 NU2 1,1 -> 3,3 
     for (var i = 0; i < jsonGridVisualDimensional.length; i++) {
-        if (jsonGridVisualDimensional[i].IdOrdenTrabajo + '-' + jsonGridVisualDimensional[i].IdVal == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal)) {
+        if (jsonGridVisualDimensional[i].OrdenTrabajoID + '-' + jsonGridVisualDimensional[i].OrdenTrabajoSpool == (rowitem.OrdenTrabajoID + '-' + rowitem.OrdenTrabajoSpool)) {
 
             for (var j = 0; j < jsonGridVisualDimensional[i].ListaNumerosUnicos1.length; j++) {
                 if (combobox.EtiquetaMaterial == jsonGridVisualDimensional[i].ListaNumerosUnicos1[j].EtiquetaMaterial) {
@@ -318,7 +318,7 @@ function ExisteNUGrid(NumeroUnicoID, jsonGridVisualDimensional, rowitem) {
 
 function ExisteSpoolJuntaEnGrid(combobox, jsonGridVisualDimensional, rowitem) {
     for (var i = 0; i < jsonGridVisualDimensional.length; i++) {
-        if (jsonGridVisualDimensional[i].Accion != 3 && (jsonGridVisualDimensional[i].IdOrdenTrabajo + '-' + jsonGridVisualDimensional[i].IdVal + jsonGridVisualDimensional[i].Junta) == (rowitem.IdOrdenTrabajo + '-' + rowitem.IdVal + combobox.JuntasEncontradas.trim())) {
+        if (jsonGridVisualDimensional[i].Accion != 3 && (jsonGridVisualDimensional[i].OrdenTrabajoID + '-' + jsonGridVisualDimensional[i].OrdenTrabajoSpool + jsonGridVisualDimensional[i].Junta) == (rowitem.OrdenTrabajoID + '-' + rowitem.OrdenTrabajoSpool + combobox.JuntasEncontradas.trim())) {
             return true;
         }
     }

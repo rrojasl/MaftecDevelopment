@@ -514,10 +514,27 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
             loadingStart();
             $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
                 if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                    displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                    AjaxobtenerDetalleDimensional($("#InputID").val());
-                    AjaxObtenerJSonGrid();
-                    opcionHabilitarView(true, "FieldSetView");
+                    $("#grid").data('kendoGrid').dataSource.data([]);
+
+                    if (!guardadoSinInspeccionDimensional && !guardadoSinInspeccionVisual) {
+                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+                    }
+                    else if (guardadoSinInspeccionDimensional) {
+                        displayNotify("DimensionalVisualMensajeGuardadoVisual", "", '0');
+                    }
+                    else if (guardadoSinInspeccionVisual) {
+                        displayNotify("DimensionalVisualMensajeGuardadoDimensional", "", '0');
+                    }
+                    if (tipoGuardar == 1) {
+                        opcionHabilitarView(false, "FieldSetView");
+                        limpiar();
+                        habilitaSpool();
+                    }
+                    else {
+                        opcionHabilitarView(true, "FieldSetSetView");
+                        AjaxobtenerDetalleDimensional($("#InputID").val());
+                        AjaxObtenerJSonGrid();
+                    }
                 }
                 else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                     displayNotify("CapturaMensajeGuardadoErroneo", "", '2');

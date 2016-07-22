@@ -78,6 +78,16 @@ namespace BackEndSAM.Models.Inspeccion
         public string Clave { get; set; }
         public int EtiquetaMaterial { get; set; }
         public string Etiqueta { get; set; }
+        public string JuntasEncontradas { get; set; }
+
+        public NumeroUnico()
+        {
+            NumeroUnicoID = 0;
+            Clave = "";
+            EtiquetaMaterial = 0;
+            Etiqueta = "";
+            JuntasEncontradas = "";
+        }
     }
     public class Taller
     {

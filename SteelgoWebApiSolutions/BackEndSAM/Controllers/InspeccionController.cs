@@ -7,6 +7,7 @@ using SecurityManager.Api.Models;
 using SecurityManager.TokenHandler;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Script.Serialization;
@@ -87,7 +88,7 @@ namespace BackEndSAM.Controllers
 
                     listaDetalleDatos.Add(detalleDatos);
                 }
-                return serializer.Serialize(listaDetalleDatos);
+                return serializer.Serialize(listaDetalleDatos.OrderBy(x => int.Parse(x.Junta)));
             }
             else
             {
