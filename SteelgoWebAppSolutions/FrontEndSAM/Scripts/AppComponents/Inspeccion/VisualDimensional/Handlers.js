@@ -503,6 +503,7 @@ function opcionHabilitarView(valor, name) {
 
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
+        $('#divAplicarCapturaRapida').find('*').attr('disabled', true);
         $('#ResultadoVisualRadio').find('*').attr('disabled', true);
         $('#ResultadoLlenadoMasivoRadio').find('*').attr('disabled', true);
 
@@ -525,6 +526,7 @@ function opcionHabilitarView(valor, name) {
         $('#FieldSetView').find('*').attr('disabled', false);
         $('#ResultadoVisualRadio').find('*').attr('disabled', false);
         $('#ResultadoLlenadoMasivoRadio').find('*').attr('disabled', false);
+        $('#divAplicarCapturaRapida').find('*').attr('disabled', false);
 
         $("#inputInspectorVisual").data("kendoComboBox").enable(true);
         $("#inputFechaVisual").data("kendoDatePicker").enable(true);
