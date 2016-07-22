@@ -150,22 +150,26 @@ function RenderComboBoxNumeroUnico1(container, options) {
             select: function (e) {
                 dataItem = this.dataItem(e.item.index());
                 if (dataItem != undefined) {
-                    options.model.NumeroUnico1 = String(dataItem.Clave);
-                    options.model.NumeroUnico1ID = dataItem.NumeroUnicoID;
+                    dataItem = this.dataItem(e.item.index());
+                    //options.model.NumeroUnico1 = String(dataItem.Clave);
+                    //options.model.NumeroUnico1ID = dataItem.NumeroUnicoID;
                     textAnterior = e.sender._prev;
                 }
             }
             ,
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
-                if (dataItem != undefined) {
-                    options.model.NumeroUnico1 = String(dataItem.Clave)
+                if (dataItem != undefined && dataItem.Etiqueta != "") {
+                    //options.model.NumeroUnico1 = String(dataItem.Clave)
 
                     AplicarAsignacionAutomaticaNumeroUnico(options.model, textAnterior, dataItem, 0);
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else {
-                    options.model.NumeroUnico1 = ObtenerDescCorrectaNumeroUnico(options.model.ListaNumerosUnicos1, options.model.NumeroUnico1ID);
+                    //options.model.NumeroUnico1 = ObtenerDescCorrectaNumeroUnico(options.model.ListaNumerosUnicos1, options.model.NumeroUnico1ID);
+                    options.model.NumeroUnico1 = "";
+                    options.model.NumeroUnico1ID = null;
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
             }
         });
@@ -192,21 +196,24 @@ function RenderComboBoxNumeroUnico2(container, options) {
              select: function (e) {
                  dataItem = this.dataItem(e.item.index());
                  if (dataItem != undefined) {
-                     options.model.NumeroUnico2 = String(dataItem.Clave);
-                     options.model.NumeroUnico2ID = dataItem.NumeroUnicoID;
+                     dataItem = this.dataItem(e.item.index());
+                     //options.model.NumeroUnico2 = String(dataItem.Clave);
+                     //options.model.NumeroUnico2ID = dataItem.NumeroUnicoID;
                      textAnterior = e.sender._prev;
                  }
              },
              change: function (e) {
                  dataItem = this.dataItem(e.sender.selectedIndex);
-                 if (dataItem != undefined) {
-                     options.model.NumeroUnico2 = String(dataItem.Clave)
-
+                 if (dataItem != undefined && dataItem.Etiqueta != "") {
+                     //options.model.NumeroUnico2 = String(dataItem.Clave)
                      AplicarAsignacionAutomaticaNumeroUnico(options.model, textAnterior, dataItem, 0);
                      $("#grid").data("kendoGrid").dataSource.sync();
                  }
                  else {
-                     options.model.NumeroUnico1 = ObtenerDescCorrectaNumeroUnico(options.model.ListaNumerosUnicos2, options.model.NumeroUnico2ID);
+                     //options.model.NumeroUnico1 = ObtenerDescCorrectaNumeroUnico(options.model.ListaNumerosUnicos2, options.model.NumeroUnico2ID);
+                     options.model.NumeroUnico2 = "";
+                     options.model.NumeroUnico2ID = null;
+                     $("#grid").data("kendoGrid").dataSource.sync();
                  }
              }
          });
