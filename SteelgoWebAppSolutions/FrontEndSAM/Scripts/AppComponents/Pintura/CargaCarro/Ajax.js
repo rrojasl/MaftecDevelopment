@@ -76,17 +76,12 @@ function AjaxObtenerCatalogoClasificacion() {
 function AjaxObtenerCatalogoPersistencia() {
     $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), idCatalogo: 1 }).done(function (data) {
 
-        //Agregar todos los tipos de persistencia
         if (data.length > 0) {
             $("#inputPersistencia").data("kendoComboBox").value("");
             $("#inputPersistencia").data("kendoComboBox").dataSource.data(data);
         } else {
             $("#inputPersistencia").data("kendoComboBox").value("");
         };
-
-        //Agregar exclusivamente la persistencia de cantidad
-
-
         loadingStop();
     });
 }
@@ -101,6 +96,7 @@ function AjaxCargarCamposPredeterminados() {
             $("#stylePatio").removeClass("active");
             $("#contenedorPrincipalCargaCarro").show();
             $("#contenedorPrincipalCargaCarroBacklog").hide();
+            $("#chkCerrar2").attr("checked", false);
         }
         else if (data.Vista == "Patio") {
             $('input:radio[name=TipoVista]:nth(0)').attr('checked', false);
@@ -109,6 +105,7 @@ function AjaxCargarCamposPredeterminados() {
             $("#stylePatio").removeClass("active");
             $("#contenedorPrincipalCargaCarro").hide();
             $("#contenedorPrincipalCargaCarroBacklog").show();
+            $("#chkCerrar").attr("checked", false);
         }
 
         if (data.Opcion == "Spool") {
@@ -201,8 +198,7 @@ function AjaxAgregarCarga() {
 
             $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), TipoConsulta: ListaDetalles[index].TipoConsulta, OrdenTrabajoSpoolID: ListaDetalles[index].OrdenTrabajoSpoolID, Codigo: ListaDetalles[index].Codigo, lenguaje: $("#language").val(), medioTransporteID: $("#inputCarro").val() }).done(function (data) {
 
-                var ds = $("#grid").data("kendoGrid").dataSource;
-                //var carDataSourceSelected = $("#inputCarro").data("kendoDropDownList").dataItem($("#inputCarro").data("kendoDropDownList").select())
+                var ds = $("#grid").data("kendoGrid").dataSource;                
                 var carDataSourceSelected = $("#inputCarro").data("kendoComboBox").dataItem($("#inputCarro").data("kendoComboBox").select())
                 var array = data;
 
@@ -210,14 +206,6 @@ function AjaxAgregarCarga() {
 
                     for (var i = 0; i < array.length; i++) {
                         if (!validarInformacion(array[i])) {
-                            //if ((carDataSourceSelected.AreaPermitidoMedioTransporte) > (SumarArea() + array[i].Area))
-                            //    if ((carDataSourceSelected.PesoMaximoPermitido) > (SumarTonelada() + array[i].Peso))
-                            //    else {
-                            //        displayNotify("PinturaCargaSpoolToneladaSuperiorPermididoCarro", "", '2');
-                            //    }
-                            //else {
-                            //    displayNotify("PinturaCargaSpoolAreaSuperiorPermididoCarro", "", '2');
-                            //}
                             if (ds._data.length == 0) {
 
                                 if (array[i].ProyectoID == parseInt($("#inputProyecto").data("kendoComboBox").value()))
@@ -234,7 +222,8 @@ function AjaxAgregarCarga() {
                                         displayNotify("PinturaCargaCarroSpoolProyectoDiferente", "", '1');
                                 }
                                 else {
-                                    displayNotify("PinturaCargaSpoolCargadoEnCarro", "" + array[i].NombreMedioTransporte, '1');
+                                    displayNotify("PinturaCargaSpoolCargadoEnCarro", "" + array[i].NombreMedioTransporte, "1");// "" + array[i].NombreMedioTransporte,                                     
+                                    console.log("Modificar texto");
                                 }
                             }
                         }
@@ -359,7 +348,7 @@ function AjaxObtenerDetalleCarroCargado(MedioTransporteID) {
 
         var carDataSourceSelected = $("#inputCarro").data("kendoComboBox").dataItem($("#inputCarro").data("kendoComboBox").select())
         var array = data;
-
+        
         if (array.length > 0) {
 
             for (var i = 0; i < array.length; i++) {
@@ -437,7 +426,10 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
 
                 $("#grid").data("kendoGrid").dataSource.sync();
 
-                if (!guardarYNuevo) opcionHabilitarView(true, "FieldSetView");
+                if (!guardarYNuevo) {
+                    opcionHabilitarView(true, "FieldSetView");
+                }
+                    
                 loadingStop();
             });
         }
@@ -497,24 +489,28 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                     Captura[0].Detalles = ListaGuardarDetalles;
 
                     loadingStart();
-                    $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), medioTransporteID: $('#inputCarro').attr("mediotransporteid"), cerrar: disponible }).done(function (data) {
+
+                    console.log("idTransport: " + $('#inputCarro').attr("mediotransporteid"));
+                    $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), medioTransporteID: $('#inputCarroBacklog').attr("mediotransporteid"), cerrar: disponible }).done(function (data) {
 
                         displayNotify("PinturaCargaBackLogMensajeGuardadoExitoso", "", "0");
 
                         if (disponible == 0) {
                             AjaxPinturaCargaMedioTransporte();
-                            AjaxCargarSpoolBacklog(true, 0);
+                            AjaxCargarSpoolBacklog(true, MedioTransporteID);
 
                         }
                         else {
                             var guardar = false;
-                            if (!guardarYNuevo) {
+
+                            if (!guardarYNuevo)
+                            {
                                 guardar = true;
                             }
-                            AjaxCargarSpoolBacklog(true, 0);
+
+                            AjaxCargarSpoolBacklog(true, MedioTransporteID);
 
                         }
-
                         loadingStop();
                     });
                 }
@@ -524,7 +520,9 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
             }
         }
         else {
-            displayNotify("PinturaCargaBackLogMensajeSeleccionaSpool", "", "1");
+            displayNotify("PinturaGuardarGuardar", "", "0");
+            opcionHabilitarViewBacklog(true, "FieldSetView");
+
         }
 
     }
@@ -557,17 +555,14 @@ function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCarg
                     }
                 }
             },
-            pageSize: 20,
+            pageSize: 10,
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false
         });
 
         $("#grid[nombre='grid-backlog']").data("kendoGrid").setDataSource(localDataSource);
-        //for (var i = 0; i < array.length; i++) {
-        //    ds.add(array[i]);
-        //}
-
+        CustomisaGrid($("#grid[nombre='grid-backlog']"));
         if (cargarSpoolsDespuesDeCargar) {
             opcionHabilitarViewBacklog(true, "FieldSetView");
         }

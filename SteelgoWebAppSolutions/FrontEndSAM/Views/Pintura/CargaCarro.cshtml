@@ -45,7 +45,11 @@
                                     <span class="caretBlue"></span>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="Acciones">
-                                    <li><a href="#" id="btnCerrarCarro"><span id="PinturaBotonCerrarCarro1"></span></a></li>
+                                    <li>
+                                        <a href="#" id="btnCerrarCarro">
+                                            <span id="PinturaBotonCerrarCarroSup"></span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -61,7 +65,7 @@
             <input id="inputProyecto" />
         </div>
         <div class="col-sm-2 col-md-2 col-lg-3">
-            <div class="btn-group " data-toggle="buttons" role="group">
+            <div id="tipoVista" class="btn-group " data-toggle="buttons" role="group">
                 <label>&nbsp;</label>
                 <div class="btn btn-primary" id="styleEscritorio">
                     <input type="radio" name="TipoVista" style=" width:auto;" value="Escritorio" /><span id="PinturaCargaCarroEscritorio"></span>
@@ -143,21 +147,8 @@
     <div id="contenedorPrincipalCargaCarroBacklog">
         @*Controles Superior*@
         <div class="row addedSection" id="FieldSetView">
-            @*<div class="col-sm-2 col-md-2 col-lg-3">
-                <div class="btn-group " data-toggle="buttons" role="group">
-                    <label>&nbsp;</label>
-                    <div class="btn btn-primary" id="styleEscritorio2">
-                        <input type="radio" name="TipoVista" style=" width:auto;" value="Escritorio" /><span id="PinturaCargaCarroEscritorio2"></span>
-                    </div>
-                    <div class="btn btn-primary" id="stylePatio2">
-                        <input type="radio" name="TipoVista" style=" width:auto;" value="Patio" /><span id="PinturaCargaCarroPatio2"> </span>
-                    </div>
-                </div>
-            </div>*@
-
             <div class="col-sm-3 col-md-3 col-lg-3" id="InputCarroDiv">
                 <label id="PinturaCargaBackLogCarro"></label>
-                @*<span id="PinturaCargaBackLogCarro"></span></label>*@
                 <input id="inputCarroBacklog" class="" />
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
@@ -215,7 +206,7 @@
                             <span class="caretBlue"></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="Acciones">
-                            <li><a href="#" id="btnCerrarCarro1"><span id="PinturaBotonCerrarCarro2"></span></a></li>
+                            <li><a href="#" id="btnCerrarCarro1"><span id="PinturaBotonCerrarCarroInf"></span></a></li>
                         </ul>
                     </div>
                 </div>
