@@ -222,8 +222,8 @@ function AjaxAgregarCarga() {
                                         displayNotify("PinturaCargaCarroSpoolProyectoDiferente", "", '1');
                                 }
                                 else {
-                                    displayNotify("PinturaCargaSpoolCargadoEnCarro", "" + array[i].NombreMedioTransporte, "1");// "" + array[i].NombreMedioTransporte,                                     
-                                    console.log("Modificar texto");
+                                    displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
+                                    
                                 }
                             }
                         }
