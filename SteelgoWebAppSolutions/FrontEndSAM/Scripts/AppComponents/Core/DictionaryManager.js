@@ -10213,16 +10213,16 @@ _dictionary = {
         "en-US": "Car"
     },
     "PinturaCargaBackLogOrdenImportancia": {
-        "es-MX": "Orden Importancia",
-        "en-US": "Importance Order"
+        "es-MX": "Orden Impt",
+        "en-US": "Impt Order"
     },
     "PinturaCargaBackLogSpool": {
         "es-MX": "Spool",
         "en-US": "Spool"
     },
     "PinturaCargaBackLogSistemaPintura": {
-        "es-MX": "Sistema Pintura",
-        "en-US": "Paint System"
+        "es-MX": "Sist Pintura",
+        "en-US": "Paint Sys"
     },
     "PinturaCargaBackLogColor": {
         "es-MX": "Color",
