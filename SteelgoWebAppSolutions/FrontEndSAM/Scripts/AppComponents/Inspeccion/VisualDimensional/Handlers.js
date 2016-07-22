@@ -314,7 +314,6 @@ function SuscribirEventoDefectoVisual() {
         change: function (e) {
             if ($("#inputDefectosVisual").data("kendoComboBox").dataItem($("#inputDefectosVisual").data("kendoComboBox").select()) == undefined)
                 $("#inputDefectosVisual").data("kendoComboBox").value("");
-            $("#ListaJuntas").data("kendoMultiSelect").value("");
         }
     });
 
