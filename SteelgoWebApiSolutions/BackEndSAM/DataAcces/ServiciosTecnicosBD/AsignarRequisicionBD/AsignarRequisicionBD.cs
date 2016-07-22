@@ -90,14 +90,9 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                 using (SamContext ctx = new SamContext())
                 {
                     List<Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result> result = ctx.Sam3_ServiciosTecnicos_Get_RequisicionAsignacion(lenguaje, tipoVista).ToList();
-
                     List<RequisicionAsignacion> ListadoRequisicionAsignacion = new List<RequisicionAsignacion>();
-
-                    List<Proveedor> ListadoProveedores = (List<Proveedor>)ObtenerListaProveedores(lenguaje, idPrueba, 1);
-
-                    //List<HerramientaPrueba> ListadoHerramientasPrueba = 
-
-                    //List<TurnoLaboral> ListadoTurnos = ;
+                    
+                    
 
                     foreach (Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result item in result)
                     {
@@ -113,7 +108,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             Proveedor = item.Proveedor == null ? "" : item.Proveedor,
                             RequisicionID = item.RequisicionID,
                             Requisicion=item.Requisicion,
-                            ListaProveedor = ListadoProveedores,
+                            ListaProveedor = (List<Proveedor>)ObtenerListaProveedores(lenguaje, item.TipoPruebaID, 1),
                             HerramientadePrueba = item.HerramientadePrueba,
                             HerramientadePruebaID = item.HerramientaDePruebaID.GetValueOrDefault(),
                             TurnoLaboral = item.TurnoLaboral,
