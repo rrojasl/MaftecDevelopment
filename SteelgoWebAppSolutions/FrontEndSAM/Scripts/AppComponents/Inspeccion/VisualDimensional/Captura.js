@@ -125,7 +125,7 @@ function CargarGrid() {
                         Taller: { type: "string", editable: true },
                         DefectosID: { type: "string", editable: true },
                         Defectos: { type: "string", editable: true },
-                        
+
                         InspectorID: { type: "string", editable: true },
                         Inspector: { type: "string", editable: true },
                         FechaInspeccion: { type: "date", editable: true },
@@ -340,7 +340,8 @@ function cancelarCaptura(e) {
 
             $("#yesButton").click(function (handler) {
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
-                dataItem.Accion = 3;
+                if (dataItem.Accion == 2 || dataItem.Accion == 4)
+                    dataItem.Accion = 3;
                 if (dataItem.InspeccionVisualID == 0)
                     dataSource.remove(dataItem);
                 $("#grid").data("kendoGrid").dataSource.sync();
@@ -411,7 +412,11 @@ function limpiarCaptura(e) {
         itemToClean.NumeroUnico2 = "";
         itemToClean.NumeroUnico1ID = "";
         itemToClean.NumeroUnico2ID = "";
-        itemToClean.Accion = 4;
+
+        if (itemToClean.Accion == 1)
+            itemToClean.Accion = 1;
+        if (itemToClean.Accion == 2)
+            itemToClean.Accion = 4;
 
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         dataSource.sync();
@@ -542,7 +547,7 @@ function PlanchadoResultadoVisual() {
             else {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
                     data[i].ResultadoID = $('input:radio[name=ResultadoVisual]:checked').val() == "Aprobado" ? 1 : 2;
-                    
+
                     if (data[i].ResultadoID == 1)
                         data[i].Resultado = _dictionary.DimensionalVisualAporbadoVisual[$("#language").data("kendoDropDownList").value()];
                     else
