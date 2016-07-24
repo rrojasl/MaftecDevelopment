@@ -262,7 +262,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
                     }
                     else {
                         // Mensaje de defecto requiere especificar junta
-                        displayNotify("", "El defecto requiere especificar juntas", '1');
+                        displayNotify("DimensionalVisualMensajeRequiereJuntas", "", '1');
                         opcionHabilitarView(false, "FieldSetView");
                         deshabilitaSpool();
                     }
@@ -273,7 +273,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
                     }
                     else {
                         // Mensaje de defecto no requiere especificar juntas
-                        displayNotify("", "El defecto no requiere especificar juntas", '1');
+                        displayNotify("DimensionalVisualMensajeNoRequiereJuntas", "", '1');
                         opcionHabilitarView(false, "FieldSetView");
                         deshabilitaSpool();
                     }
@@ -285,13 +285,13 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
 
         }
         else {
-            displayNotify("", "Si el Resultado Visual es Rechazado debe seleccionar un Defecto", '1');
+            displayNotify("DimensionalVisualMensajeRechazadoDefecto", "", '1');
             opcionHabilitarView(false, "FieldSetView");
             deshabilitaSpool();
         }
     }
     else {
-        displayNotify("", "Los campos Resultado Dimensional, Inspector y Fecha deben ser capturados", '1');
+        displayNotify("DimensionalVisualMensajeRequeridos", "", '1');
         opcionHabilitarView(false, "FieldSetView");
         deshabilitaSpool();
     }
