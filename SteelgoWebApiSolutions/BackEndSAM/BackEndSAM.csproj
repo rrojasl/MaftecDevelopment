@@ -155,6 +155,7 @@
     <Compile Include="Controllers\CargaEmbarqueController.cs" />
     <Compile Include="Controllers\CargarGridCuantificacionController.cs" />
     <Compile Include="Controllers\CatalogoICSteelgoController.cs" />
+    <Compile Include="Controllers\CatalogosGenerales\CatalogosGeneralesController.cs" />
     <Compile Include="Controllers\CedulasController.cs" />
     <Compile Include="Controllers\ClasificacionController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
@@ -272,8 +273,8 @@
     <Compile Include="Controllers\ServiciosTecnicosController\GenerarRequisicionController.cs" />
     <Compile Include="Controllers\ServiciosTecnicosController\ListadoRequisicionController.cs" />
     <Compile Include="Controllers\ServiciosTecnicosController\RequisicionesAsignadasController.cs" />
-    <Compile Include="Controllers\SoldadorCertificacionController.cs" />
-    <Compile Include="Controllers\SoldaduraController.cs" />
+    <Compile Include="Controllers\SoldadorCertificacion\SoldadorCertificacionController.cs" />
+    <Compile Include="Controllers\SoldaduraController\SoldaduraController.cs" />
     <Compile Include="Controllers\TallerController.cs" />
     <Compile Include="Controllers\TipoAceroController.cs" />
     <Compile Include="Controllers\TipoArchivoController.cs" />
@@ -348,6 +349,8 @@
     <Compile Include="DataAcces\CapturaSoldaduraBD.cs" />
     <Compile Include="DataAcces\CapturasRapidasBd.cs" />
     <Compile Include="DataAcces\CatalogosBd.cs" />
+    <Compile Include="DataAcces\CatalogosGeneralesBD\ColadaBD.cs" />
+    <Compile Include="DataAcces\CatalogosGeneralesBD\ContactosBD.cs" />
     <Compile Include="DataAcces\CedulasBd.cs" />
     <Compile Include="DataAcces\ClienteBd.cs" />
     <Compile Include="DataAcces\ColadaBd.cs" />
