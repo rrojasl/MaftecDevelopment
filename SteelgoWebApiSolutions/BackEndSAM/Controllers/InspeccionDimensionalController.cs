@@ -351,6 +351,8 @@ namespace BackEndSAM.Controllers
                         FechaInspeccion = null,
                         DefectosID = "",
                         Defectos = "",
+                        DefectoInicialID = "",
+                        DefectoInicial = "",
                         ListaDefectos = ObtenerListaDefectos((List<Sam3_Steelgo_Get_Defectos_Result>)DefectosBd.Instance.listadoDefectos(Lenguaje, "Inspección dimensional")),
                         InspectorID = "",
                         Inspector = "",
@@ -386,6 +388,8 @@ namespace BackEndSAM.Controllers
                             FechaInspeccion = item.FechaInspeccion,
                             DefectosID = item.DefectoID.GetValueOrDefault().ToString(),
                             Defectos = item.Defecto,
+                            DefectoInicialID = item.DefectoID.GetValueOrDefault().ToString(),
+                            DefectoInicial = item.Defecto,
                             ListaDefectos = ObtenerListaDefectos((List<Sam3_Steelgo_Get_Defectos_Result>)DefectosBd.Instance.listadoDefectos(Lenguaje, "Inspección dimensional")),
                             InspectorID = item.ObreroID.ToString(),
                             Inspector = item.Inspector,
@@ -408,9 +412,6 @@ namespace BackEndSAM.Controllers
                 }
 
                 return serializer.Serialize(listaDetalleDatos);
-
-
-                return listaDetalleDatos;
             }
             else
             {
