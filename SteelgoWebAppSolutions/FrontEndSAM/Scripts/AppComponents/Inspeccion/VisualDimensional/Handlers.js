@@ -154,6 +154,7 @@ function SuscribirEventoSpoolID() {
         else if (e.keyCode == 9) {
             if (tieneClase(e.currentTarget)) {
                 $("#InputID").data("kendoComboBox").select(0);
+                var e = $.Event("keydown", { keyCode: 27 });
                 //AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                 //MostrarDetalleVisualDimensional();
             }
@@ -164,6 +165,11 @@ function SuscribirEventoSpoolID() {
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     //AjaxJunta($("#InputID").val());
                     MostrarDetalleVisualDimensional();
+                    e.preventDefault();
+                    if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val() != "") {
+                        AjaxobtenerDetalleDimensional($("#InputID").val());
+                        AjaxObtenerJSonGrid();
+                    }
                 }
             }
         }
@@ -400,16 +406,12 @@ function suscribirEventoGuardar() {
         e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardar(ds._data, 1);
-        limpiar();
-        LimpiarPlanchado();
     });
 
     $('#btnGuardarYNuevo1').click(function (e) {
         e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
         AjaxGuardar(ds._data, 1);
-        limpiar();
-        LimpiarPlanchado();
     });
 }
 function SuscribirEventoAgregarCapturaRapida() {

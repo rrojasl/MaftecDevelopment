@@ -175,19 +175,20 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje).ToList();
+                    //List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje).ToList();
 
-                    List<TurnoLaboral> ListadoTurnoLaboral = new List<TurnoLaboral>();
+                    //List<TurnoLaboral> ListadoTurnoLaboral = new List<TurnoLaboral>();
 
-                    foreach (Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result item in result)
-                    {
-                        ListadoTurnoLaboral.Add(new TurnoLaboral
-                        {
-                            Turno = item.Turno,
-                            TurnoLaboralID = item.TurnoLaboralID
-                        });
-                    }
-                    return ListadoTurnoLaboral;
+                    //foreach (Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result item in result)
+                    //{
+                    //    ListadoTurnoLaboral.Add(new TurnoLaboral
+                    //    {
+                    //        Turno = item.Turno,
+                    //        TurnoLaboralID = item.TurnoLaboralID
+                    //    });
+                    //}
+                    //return ListadoTurnoLaboral;
+                    return null;
                 }
             }
             catch (Exception ex)
