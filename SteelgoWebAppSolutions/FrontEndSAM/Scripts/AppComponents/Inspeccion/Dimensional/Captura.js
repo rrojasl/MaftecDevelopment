@@ -429,13 +429,16 @@ function PlanchadoResultadoDimensional() {
             if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                 data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
-
-                data[i].DefectosID = $("#inputDefecto").val();
-                data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
-                data[i].ListaJuntasSeleccionadas = [];
-                data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
-                data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
-                data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+                if ($("#inputDefecto").data("kendoComboBox").text() != "") {
+                    data[i].DefectosID = $("#inputDefecto").val();
+                    data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                    data[i].ListaJuntasSeleccionadas = [];
+                    data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                    data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                    data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+                }
+                
+                
             }
             else {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
@@ -444,13 +447,14 @@ function PlanchadoResultadoDimensional() {
                     if ($("#inputDefecto").val() != "") {
                         data[i].DefectosID = $("#inputDefecto").val();
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                        data[i].ListaJuntasSeleccionadas = [];
+                        data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
+                        data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
+                        data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+
                     }
                     
-                    data[i].ListaJuntasSeleccionadas = [];
-                    data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
-                    data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
-                    data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
-
+                    
                 }
             }
         }
