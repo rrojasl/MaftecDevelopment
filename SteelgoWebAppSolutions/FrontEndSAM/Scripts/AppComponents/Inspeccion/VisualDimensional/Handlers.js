@@ -154,6 +154,7 @@ function SuscribirEventoSpoolID() {
         else if (e.keyCode == 9) {
             if (tieneClase(e.currentTarget)) {
                 $("#InputID").data("kendoComboBox").select(0);
+                var e = $.Event("keydown", { keyCode: 27 });
                 //AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
                 //MostrarDetalleVisualDimensional();
             }
@@ -164,6 +165,11 @@ function SuscribirEventoSpoolID() {
                     $("#LabelProyecto").text(dataItem.Proyecto);
                     //AjaxJunta($("#InputID").val());
                     MostrarDetalleVisualDimensional();
+                    e.preventDefault();
+                    if ($("#InputID").val() != "" && $("#InputOrdenTrabajo").val() != "") {
+                        AjaxobtenerDetalleDimensional($("#InputID").val());
+                        AjaxObtenerJSonGrid();
+                    }
                 }
             }
         }
@@ -491,6 +497,13 @@ function limpiar() {
     }
     $("#grid").data('kendoGrid').dataSource.data([]);
 }
+
+function LimpiarPlanchado() {
+    $("#inputTaller").data("kendoComboBox").value("");
+    $("#inputDefectosVisual").data("kendoComboBox").value("");
+    $("#inputInspectorVisual").data("kendoComboBox").value("");
+}
+
 function deshabilitaSpool() {
     $("#InputOrdenTrabajo").prop("disabled", true);
     $("#InputID").data("kendoComboBox").enable(false);
@@ -518,6 +531,7 @@ function opcionHabilitarView(valor, name) {
         $("#inputInspector").data("kendoComboBox").enable(false);
         $("#inputTaller").data("kendoComboBox").enable(false);
         $("#inputDefecto").data("kendoComboBox").enable(false);
+        $("#inputDefectosVisual").data("kendoComboBox").enable(false);
         $("#ListaJuntas").data("kendoMultiSelect").enable(false);
 
         $('#Guardar').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
@@ -542,6 +556,13 @@ function opcionHabilitarView(valor, name) {
         else {
             $("#inputDefecto").data("kendoComboBox").enable(false);
             $("#ListaJuntas").data("kendoMultiSelect").enable(false);
+        }
+
+        if ($('input:radio[name=ResultadoVisual]:checked').val() != "Aprobado") {
+            $("#inputDefectosVisual").data("kendoComboBox").enable(true);
+        }
+        else {
+            $("#inputDefectosVisual").data("kendoComboBox").enable(false);
         }
         $("#FechaInspeccion").data("kendoDatePicker").enable(true);
         $("#inputInspector").data("kendoComboBox").enable(true);

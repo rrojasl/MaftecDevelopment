@@ -135,7 +135,7 @@ _dictionary = {
         "es-MX": "El spool esta aprobado, no puedes especificar juntas",
         "en-US": "The spool is aproved, can´t  especify joint "
     },
-    
+
     "RequisicionesAsignadas": {
         "es-MX": "Requisiciones Asignadas",
         "en-US": "Assigned Request"
@@ -8224,6 +8224,22 @@ _dictionary = {
     "DimensionalVisualMensajeGuardadoVisual": {
         "es-MX": "Datos del apartado Inspección Visual guardados correctamente.",
         "en-US": "Visual Inspection data saved correctly."
+    },
+    "DimensionalVisualMensajeRequiereJuntas": {
+        "es-MX": "El defecto requiere especificar juntas",
+        "en-US": "The defect requires specified joints"
+    },
+    "DimensionalVisualMensajeNoRequiereJuntas": {
+        "es-MX": "El defecto no requiere especificar juntas",
+        "en-US": "The defect does not requires specified joints"
+    },
+    "DimensionalVisualMensajeRechazadoDefecto": {
+        "es-MX": "Si el Resultado Visual es rechazado debe seleccionar un defecto",
+        "en-US": "If the visual result is rejected must select a defect"
+    },
+    "DimensionalVisualMensajeRequeridos": {
+        "es-MX": "Los campos Resultado Dimensional, Inspector y Fecha deben ser capturados",
+        "en-US": "The Result Dimensional, Inspector and Date fields should be captured"
     },
     //#endregion
 
