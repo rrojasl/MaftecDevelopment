@@ -231,9 +231,9 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
             ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "" || ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "0" ||
             ((ListaDetalleGuardarInspeccionVisual[index].DefectosID == "" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == "0" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == null) && ListaDetalleGuardarInspeccionVisual[index].ResultadoID == 2) ||
             ListaDetalleGuardarInspeccionVisual[index].ObreroID == "" || ListaDetalleGuardarInspeccionVisual[index].ObreroID == "0" ||
-            ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "" || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0"
-            //ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "0" ||
-            //ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "0"
+            ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == " " || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0" ||
+            ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "0" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == null ||
+            ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "0" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == null
             ) && ListaDetalleGuardarInspeccionVisual[index].Accion != 4) {
 
             if (ListaDetalleGuardarInspeccionVisual[index].Accion == 2)
@@ -402,25 +402,21 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
                         //}
                     }
                     else {
-                        displayNotify("DimensionalVisualMensajeErrorInspector", "", '2');
                         opcionHabilitarView(false, "FieldSetView");
                         deshabilitaSpool();
                     }
                 }
                 else {
-                    displayNotify("DimensionalVisualMensajeErrorResultado", "", '2');
                     opcionHabilitarView(false, "FieldSetView");
                     deshabilitaSpool();
                 }
             }
             else {
-                displayNotify("DimensionalVisualMensajeErrorDefectos", "", '2');
                 opcionHabilitarView(false, "FieldSetView");
                 deshabilitaSpool();
             }
         }
         else {
-            displayNotify("DimensionalVisualMensajeErrorTaller", "", '2');
             opcionHabilitarView(false, "FieldSetView");
             deshabilitaSpool();
         }
@@ -508,6 +504,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
 
             $("#noButton").click(function () {
                 ventanaConfirm.close();
+                opcionHabilitarView(false, "FieldSetView");
             });
         }
         else {

@@ -388,7 +388,6 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
 
         if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-            opcionHabilitarView(true, "FieldSetView");
             AjaxGuardar(ds._data, 0);
         }
         else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
@@ -434,9 +433,9 @@ function SuscribirEventoAgregarCapturaRapida() {
             ventanaConfirm.open().center();
 
             $("#yesButton").click(function (handler) {
-                if ($("#inputTaller").val() != "") PlanchaTaller();
-                if ($("#inputInspectorVisual").val() != "") PlanchaInspector();
-                if ($("#inputDefectosVisual").val() != "") PlanchaDefecto();
+                if ($("#inputTaller").val() != "" && $("#inputTaller").val() != 0) PlanchaTaller();
+                if ($("#inputInspectorVisual").val() != "" && $("#inputInspectorVisual").val() != 0) PlanchaInspector();
+                if ($("#inputDefectosVisual").val() != "" && $("#inputDefectosVisual").val() != 0) PlanchaDefecto();
                 if (String(endRangeDateV.val()).trim() != "") PlanchaFecha();
 
                 PlanchadoResultadoVisual();
@@ -447,9 +446,9 @@ function SuscribirEventoAgregarCapturaRapida() {
             });
         }
         else {
-            if ($("#inputTaller").val() != "") PlanchaTaller();
-            if ($("#inputInspectorVisual").val() != "") PlanchaInspector();
-            if ($("#inputDefectosVisual").val() != "") PlanchaDefecto();
+            if ($("#inputTaller").val() != "" && $("#inputTaller").val() != 0) PlanchaTaller();
+            if ($("#inputInspectorVisual").val() != "" && $("#inputInspectorVisual").val() != 0) PlanchaInspector();
+            if ($("#inputDefectosVisual").val() != "" && $("#inputDefectosVisual").val() != 0) PlanchaDefecto();
             if (String(endRangeDateV.val()).trim() != "") PlanchaFecha();
 
             PlanchadoResultadoVisual();
