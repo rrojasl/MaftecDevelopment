@@ -41,6 +41,8 @@ namespace BackEndSAM.Models.InspeccionDimensional
             public List<Resultado> ListaResultados { get; set; }
             public string DefectosID { get; set; }
             public string Defectos { get; set; }
+            public string DefectoInicialID { get; set; }
+            public string DefectoInicial { get; set; }
             public List<Defectos> ListaDefectos { get; set; }
             public string InspectorID { get; set; }
             public string Inspector { get; set; }

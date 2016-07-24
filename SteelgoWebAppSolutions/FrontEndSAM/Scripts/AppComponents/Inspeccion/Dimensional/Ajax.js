@@ -212,42 +212,59 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
         //................................juntas
 
         var listaFinalJuntas = [];
-        if (jSonCaptura[index].ListaJuntasSeleccionadasInicial != null && jSonCaptura[index].ListaJuntasSeleccionadas != null) {
-            for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length; i++) {
-                var bandera = false;
-                for (var j = 0 ; j < jSonCaptura[index].ListaJuntasSeleccionadas.length ; j++) {
-                    if (jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].JuntaID == jSonCaptura[index].ListaJuntasSeleccionadas[j].JuntaID) {
-                        listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadasInicial[i]);
-                        bandera = true;
-                    }
-                    if ((jSonCaptura[index].ListaJuntasSeleccionadas.length - 1) == j && bandera == false) {
-                        jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].Accion = 3;
-                        listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadasInicial[i]);
-                    }
-                }
-            }
-            if (jSonCaptura[index].ListaJuntasSeleccionadasInicial.length == 0 || jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
-                listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
-            }
-            else {
-                for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadas.length; i++) {
+
+        if (jSonCaptura[index].Defectos == jSonCaptura[index].DefectoInicial || jSonCaptura[index].DefectoInicial == "") {
+            if (jSonCaptura[index].ListaJuntasSeleccionadasInicial != null && jSonCaptura[index].ListaJuntasSeleccionadas != null) {
+                for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length; i++) {
                     var bandera = false;
-                    for (var j = 0 ; j < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length ; j++) {
-                        if (jSonCaptura[index].ListaJuntasSeleccionadas[i].JuntaID != jSonCaptura[index].ListaJuntasSeleccionadasInicial[j].JuntaID) {
+                    for (var j = 0 ; j < jSonCaptura[index].ListaJuntasSeleccionadas.length ; j++) {
+                        if (jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].JuntaID == jSonCaptura[index].ListaJuntasSeleccionadas[j].JuntaID) {
+                            listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadasInicial[i]);
                             bandera = true;
                         }
-                        if ((jSonCaptura[index].ListaJuntasSeleccionadasInicial.length - 1) == j && bandera == true && jSonCaptura[index].ListaJuntasSeleccionadas[i].Accion == 1) {
-                            listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadas[i]);
+                        if ((jSonCaptura[index].ListaJuntasSeleccionadas.length - 1) == j && bandera == false) {
+                            jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].Accion = 3;
+                            listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadasInicial[i]);
                         }
+                    }
+                }
+                if (jSonCaptura[index].ListaJuntasSeleccionadasInicial.length == 0 || jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
+                    listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
+                }
+                else {
+                    for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadas.length; i++) {
+                        var bandera = false;
+                        for (var j = 0 ; j < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length ; j++) {
+                            if (jSonCaptura[index].ListaJuntasSeleccionadas[i].JuntaID != jSonCaptura[index].ListaJuntasSeleccionadasInicial[j].JuntaID) {
+                                bandera = true;
+                            }
+                            if ((jSonCaptura[index].ListaJuntasSeleccionadasInicial.length - 1) == j && bandera == true && jSonCaptura[index].ListaJuntasSeleccionadas[i].Accion == 1) {
+                                listaFinalJuntas.push(jSonCaptura[index].ListaJuntasSeleccionadas[i]);
+                            }
 
+                        }
                     }
                 }
             }
+            //.........................................
+            if (jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
+                listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
+            }
+
         }
-        //.........................................
-        if (jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
-            listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
+        else {
+            var cont = 0;
+            for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadas.length; i++) {
+                listaFinalJuntas[cont] = jSonCaptura[index].ListaJuntasSeleccionadas[i];
+                cont++;
+            }
+            for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length; i++) {
+                jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].Accion = 3;
+                listaFinalJuntas[cont] = jSonCaptura[index].ListaJuntasSeleccionadasInicial[i];
+                cont++;
+            }
         }
+
         if (listaFinalJuntas != null) {
             if (listaFinalJuntas.length > 0) {
                 inspeccionDimensional[index].ListaJuntas = [];
@@ -265,9 +282,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
         }
         else { inspeccionDimensional[index].ListaJuntas = undefined; }
 
-
-
-        if(inspeccionDimensional[index].Accion == 4){
+        if (inspeccionDimensional[index].Accion == 4) {
             if ((inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0) &&
                 inspeccionDimensional[index].FechaInspeccion == "" &&
                 (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) &&
@@ -351,7 +366,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
         //         ) {
         //        inspeccionDimensional[index].Accion = 4;
         //    }
-            
+
         //    else {
         //        inspeccionDimensional[index].Estatus = 0;
         //        $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
@@ -360,7 +375,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
 
     }
     Captura[0].Detalles = inspeccionDimensional;
-    
+
     if (!ExistRowEmpty(inspeccionDimensional)) {
         if (Captura[0].Detalles.length > 0) {
             loadingStart();
