@@ -1020,3 +1020,494 @@ Exception Data: System.Collections.ListDictionaryInternal
 08/04/2016 10:46:43 - GUID devuelto: 
 08/04/2016 10:46:43 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
 08/04/2016 10:46:45 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1460132204,"ProveedorID":2}
+19/07/2016 12:04:43 - Usuario:samAdmin, pass: samadmin
+19/07/2016 12:04:43 - GUID devuelto: 
+19/07/2016 12:04:43 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 12:07:23 - Usuario:samAdmin, pass: samadmin
+19/07/2016 12:07:23 - Usuario:samAdmin, pass: samadmin
+19/07/2016 12:07:23 - GUID devuelto: 
+19/07/2016 12:07:23 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 12:07:31 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468949844,"ProveedorID":2}
+19/07/2016 12:09:01 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468949857,"ProveedorID":2}
+19/07/2016 12:51:49 - Usuario:samAdmin, pass: samadmin
+19/07/2016 12:51:49 - GUID devuelto: 
+19/07/2016 12:51:49 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 12:51:52 - Usuario:samAdmin, pass: samadmin
+19/07/2016 12:51:52 - GUID devuelto: 
+19/07/2016 12:51:52 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 12:51:54 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468952510,"ProveedorID":2}
+19/07/2016 12:53:39 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468952515,"ProveedorID":2}
+19/07/2016 12:53:54 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468952621,"ProveedorID":2}
+19/07/2016 12:54:29 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468952637,"ProveedorID":2}
+19/07/2016 13:07:53 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468952672,"ProveedorID":2}
+19/07/2016 13:08:53 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468953476,"ProveedorID":2}
+19/07/2016 13:19:44 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468953535,"ProveedorID":2}
+19/07/2016 13:29:14 - Usuario:samAdmin, pass: samadmin
+19/07/2016 13:29:14 - GUID devuelto: 
+19/07/2016 13:29:14 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 13:29:15 - Usuario:samAdmin, pass: samadmin
+19/07/2016 13:29:15 - GUID devuelto: 
+19/07/2016 13:29:15 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 13:29:19 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468954755,"ProveedorID":2}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+19/07/2016 14:23:43 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\cesarguadalupe\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Se denegó el permiso SELECT en el objeto 'Sam3_Usuario', base de datos 'steelgo-sam3', esquema 'dbo'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   en System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   en System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.RunTaskSynchronously(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+19/07/2016 14:23:49 - Usuario:samAdmin, pass: samadmin
+19/07/2016 14:23:49 - GUID devuelto: 
+19/07/2016 14:23:49 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+19/07/2016 14:39:46 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\cesarguadalupe\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Se denegó el permiso SELECT en el objeto 'Sam3_Usuario', base de datos 'steelgo-sam3', esquema 'dbo'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   en System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   en System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.<>c.<.cctor>b__10_0(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+19/07/2016 14:39:46 - Usuario:samAdmin, pass: samadmin
+19/07/2016 14:39:46 - GUID devuelto: 
+19/07/2016 14:39:46 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+19/07/2016 17:07:01 - EXCEPCION
+Message: Se han producido uno o varios errores.
+Source: System.Core
+TargetSite: Void QueryEnd(Boolean)
+StackTrace:    en System.Linq.Parallel.QueryTaskGroupState.QueryEnd(Boolean userInitiatedDispose)
+   en System.Linq.Parallel.SpoolingTask.SpoolStopAndGo[TInputOutput,TIgnoreKey](QueryTaskGroupState groupState, PartitionedStream`2 partitions, SynchronousChannel`1[] channels, TaskScheduler taskScheduler)
+   en System.Linq.Parallel.DefaultMergeHelper`2.System.Linq.Parallel.IMergeHelper<TInputOutput>.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute()
+   en System.Linq.Parallel.MergeExecutor`1.Execute[TKey](PartitionedStream`2 partitions, Boolean ignoreOutput, ParallelMergeOptions options, TaskScheduler taskScheduler, Boolean isOrdered, CancellationState cancellationState, Int32 queryId)
+   en System.Linq.Parallel.PartitionedStreamMerger`1.Receive[TKey](PartitionedStream`2 partitionedStream)
+   en System.Linq.Parallel.SingleQueryOperator`1.WrapPartitionedStream[TKey](PartitionedStream`2 inputStream, IPartitionedStreamRecipient`1 recipient, Boolean preferStriping, QuerySettings settings)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.ChildResultsRecipient.Receive[TKey](PartitionedStream`2 inputStream)
+   en System.Linq.Parallel.ScanQueryOperator`1.ScanEnumerableQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.UnaryQueryOperator`2.UnaryQueryOperatorResults.GivePartitionedStream(IPartitionedStreamRecipient`1 recipient)
+   en System.Linq.Parallel.QueryOperator`1.GetOpenedEnumerator(Nullable`1 mergeOptions, Boolean suppressOrder, Boolean forEffect, QuerySettings querySettings)
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.OpenQuery()
+   en System.Linq.Parallel.QueryOpeningEnumerator`1.MoveNext()
+   en System.Linq.ParallelEnumerable.GetOneWithPossibleDefault[TSource](QueryOperator`1 queryOp, Boolean throwIfTwo, Boolean defaultIfEmpty)
+   en System.Linq.ParallelEnumerable.SingleOrDefault[TSource](ParallelQuery`1 source)
+   en SecurityManager.Login.LoginSam2.Login(String usuario, String password) en C:\Users\cesarguadalupe\Source\Repos\MaftecDevelopment\SteelgoWebApiSolutions\SecurityManager\Login\LoginSam2.cs:línea 106
+InnerException: System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Se denegó el permiso SELECT en el objeto 'Sam3_Usuario', base de datos 'steelgo-sam3', esquema 'dbo'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   en System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   en System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Parallel.PartitionedDataSource`1.ContiguousChunkLazyEnumerator.MoveNext(T& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.SingleQueryOperator`1.SingleQueryOperatorEnumerator`1.MoveNext(TSource& currentElement, Int32& currentKey)
+   en System.Linq.Parallel.StopAndGoSpoolingTask`2.SpoolingWork()
+   en System.Linq.Parallel.SpoolingTaskBase.Work()
+   en System.Linq.Parallel.QueryTask.BaseWork(Object unused)
+   en System.Linq.Parallel.QueryTask.RunTaskSynchronously(Object o)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+Exception Data: System.Collections.ListDictionaryInternal
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+19/07/2016 17:07:01 - Usuario:samAdmin, pass: samadmin
+19/07/2016 17:07:01 - GUID devuelto: 
+19/07/2016 17:07:01 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 17:07:01 - Usuario:samAdmin, pass: samadmin
+19/07/2016 17:07:01 - GUID devuelto: 
+19/07/2016 17:07:01 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 17:43:25 - Usuario:samAdmin, pass: samadmin
+19/07/2016 17:43:25 - Usuario:samAdmin, pass: samadmin
+19/07/2016 17:43:25 - GUID devuelto: 
+19/07/2016 17:43:25 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 17:43:32 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468970005,"ProveedorID":2}
+19/07/2016 17:45:04 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468970018,"ProveedorID":2}
+19/07/2016 18:56:33 - Usuario:samAdmin, pass: samadmin
+19/07/2016 18:56:33 - GUID devuelto: 
+19/07/2016 18:56:33 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 18:56:33 - Usuario:samAdmin, pass: samadmin
+19/07/2016 18:56:33 - GUID devuelto: 
+19/07/2016 18:56:33 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 18:56:37 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468974394,"ProveedorID":2}
+19/07/2016 18:58:18 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468974410,"ProveedorID":2}
+19/07/2016 19:12:44 - Usuario:samAdmin, pass: samadmin
+19/07/2016 19:12:44 - GUID devuelto: 
+19/07/2016 19:12:44 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 19:12:44 - GUID devuelto: 
+19/07/2016 19:12:44 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+19/07/2016 19:12:48 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1468975364,"ProveedorID":2}
+20/07/2016 10:36:33 - Usuario:samAdmin, pass: samadmin
+20/07/2016 10:36:33 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 10:36:41 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469030793,"ProveedorID":2}
+20/07/2016 10:37:51 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469030811,"ProveedorID":2}
+20/07/2016 12:17:30 - Usuario:samAdmin, pass: samadmin
+20/07/2016 12:17:30 - GUID devuelto: 
+20/07/2016 12:17:30 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 12:17:30 - GUID devuelto: 
+20/07/2016 12:17:30 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 12:17:40 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469036850,"ProveedorID":2}
+20/07/2016 12:18:38 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469036862,"ProveedorID":2}
+20/07/2016 12:31:29 - Usuario:samAdmin, pass: samadmin
+20/07/2016 12:31:29 - GUID devuelto: 
+20/07/2016 12:31:29 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 12:31:29 - Usuario:samAdmin, pass: samadmin
+20/07/2016 12:31:29 - GUID devuelto: 
+20/07/2016 12:31:29 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 12:31:36 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469037689,"ProveedorID":2}
+20/07/2016 12:32:28 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469037701,"ProveedorID":2}
+20/07/2016 12:34:39 - Usuario:samAdmin, pass: samadmin
+20/07/2016 12:34:40 - Usuario:samAdmin, pass: samadmin
+20/07/2016 12:34:40 - GUID devuelto: 
+20/07/2016 12:34:40 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 12:34:40 - GUID devuelto: 
+20/07/2016 12:34:40 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 12:34:46 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469037880,"ProveedorID":2}
+20/07/2016 12:35:29 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469037891,"ProveedorID":2}
+20/07/2016 22:45:28 - Usuario:samAdmin, pass: samadmin
+20/07/2016 22:45:28 - GUID devuelto: 
+20/07/2016 22:45:28 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 22:45:28 - GUID devuelto: 
+20/07/2016 22:45:28 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 22:45:42 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469074528,"ProveedorID":2}
+20/07/2016 22:46:55 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469074549,"ProveedorID":2}
+20/07/2016 22:59:30 - Usuario:samAdmin, pass: samadmin
+20/07/2016 22:59:30 - GUID devuelto: 
+20/07/2016 22:59:30 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 22:59:30 - Usuario:samAdmin, pass: samadmin
+20/07/2016 22:59:30 - GUID devuelto: 
+20/07/2016 22:59:30 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 22:59:36 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469075370,"ProveedorID":2}
+20/07/2016 23:00:57 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469075382,"ProveedorID":2}
+20/07/2016 23:08:45 - Usuario:samAdmin, pass: samadmin
+20/07/2016 23:08:45 - GUID devuelto: 
+20/07/2016 23:08:45 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 23:08:45 - Usuario:samAdmin, pass: samadmin
+20/07/2016 23:08:45 - GUID devuelto: 
+20/07/2016 23:08:45 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+20/07/2016 23:08:52 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469075926,"ProveedorID":2}
+20/07/2016 23:10:16 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469075939,"ProveedorID":2}
+21/07/2016 0:39:49 - Usuario:samAdmin, pass: samadmin
+21/07/2016 0:39:49 - GUID devuelto: 
+21/07/2016 0:39:49 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 0:39:49 - GUID devuelto: 
+21/07/2016 0:39:49 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 0:40:02 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469081389,"ProveedorID":2}
+21/07/2016 0:40:50 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469081406,"ProveedorID":2}
+21/07/2016 0:48:25 - Usuario:samAdmin, pass: samadmin
+21/07/2016 0:48:25 - GUID devuelto: 
+21/07/2016 0:48:25 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 0:48:25 - Usuario:samAdmin, pass: samadmin
+21/07/2016 0:48:25 - GUID devuelto: 
+21/07/2016 0:48:26 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 0:48:31 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469081906,"ProveedorID":2}
+21/07/2016 0:49:15 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469081916,"ProveedorID":2}
+21/07/2016 8:21:16 - Usuario:samAdmin, pass: samadmin
+21/07/2016 8:21:16 - GUID devuelto: 
+21/07/2016 8:21:16 - Usuario:samAdmin, pass: samadmin
+21/07/2016 8:21:16 - GUID devuelto: 
+21/07/2016 8:21:16 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 8:21:25 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469109076,"ProveedorID":2}
+21/07/2016 8:22:22 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469109092,"ProveedorID":2}
+21/07/2016 9:16:14 - Usuario:samAdmin, pass: samadmin
+21/07/2016 9:16:14 - GUID devuelto: 
+21/07/2016 9:16:14 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 9:16:19 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469112374,"ProveedorID":2}
+21/07/2016 9:16:38 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469112381,"ProveedorID":2}
+21/07/2016 9:23:57 - Usuario:samAdmin, pass: samadmin
+21/07/2016 9:23:57 - GUID devuelto: 
+21/07/2016 9:23:57 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 9:23:57 - Usuario:samAdmin, pass: samadmin
+21/07/2016 9:23:57 - GUID devuelto: 
+21/07/2016 9:23:57 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 9:24:06 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469112837,"ProveedorID":2}
+21/07/2016 9:24:50 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469112852,"ProveedorID":2}
+21/07/2016 9:40:49 - Usuario:samAdmin, pass: samadmin
+21/07/2016 9:40:49 - GUID devuelto: 
+21/07/2016 9:40:49 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 9:40:56 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469113849,"ProveedorID":2}
+21/07/2016 9:41:31 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469113860,"ProveedorID":2}
+21/07/2016 18:25:00 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:25:00 - GUID devuelto: 
+21/07/2016 18:25:00 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:25:00 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:25:00 - GUID devuelto: 
+21/07/2016 18:25:00 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:25:12 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469145301,"ProveedorID":2}
+21/07/2016 18:26:36 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469145317,"ProveedorID":2}
+21/07/2016 18:39:19 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469145397,"ProveedorID":2}
+21/07/2016 18:40:00 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469146161,"ProveedorID":2}
+21/07/2016 18:41:52 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:41:52 - GUID devuelto: 
+21/07/2016 18:41:52 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:41:53 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:41:53 - GUID devuelto: 
+21/07/2016 18:41:53 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:42:01 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469146313,"ProveedorID":2}
+21/07/2016 18:42:21 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469146322,"ProveedorID":2}
+21/07/2016 18:48:31 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:48:31 - GUID devuelto: 
+21/07/2016 18:48:31 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:48:32 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:48:32 - GUID devuelto: 
+21/07/2016 18:48:32 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:48:38 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469146712,"ProveedorID":2}
+21/07/2016 18:49:16 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469146720,"ProveedorID":2}
+21/07/2016 18:59:07 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:59:07 - GUID devuelto: 
+21/07/2016 18:59:08 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:59:08 - Usuario:samAdmin, pass: samadmin
+21/07/2016 18:59:08 - GUID devuelto: 
+21/07/2016 18:59:08 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 18:59:13 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469147348,"ProveedorID":2}
+21/07/2016 18:59:32 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469147354,"ProveedorID":2}
+21/07/2016 19:17:42 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:17:42 - GUID devuelto: 
+21/07/2016 19:17:42 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:17:42 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:17:42 - GUID devuelto: 
+21/07/2016 19:17:42 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:17:54 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469148463,"ProveedorID":2}
+21/07/2016 19:18:29 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469148476,"ProveedorID":2}
+21/07/2016 19:26:55 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:26:55 - GUID devuelto: 
+21/07/2016 19:26:56 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:26:56 - GUID devuelto: 
+21/07/2016 19:26:56 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:27:01 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469149016,"ProveedorID":2}
+21/07/2016 19:27:21 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469149023,"ProveedorID":2}
+21/07/2016 19:34:09 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469149043,"ProveedorID":2}
+21/07/2016 19:47:12 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:47:13 - GUID devuelto: 
+21/07/2016 19:47:13 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:47:19 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150233,"ProveedorID":2}
+21/07/2016 19:48:04 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150241,"ProveedorID":2}
+21/07/2016 19:54:28 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:54:28 - GUID devuelto: 
+21/07/2016 19:54:28 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:54:33 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150668,"ProveedorID":2}
+21/07/2016 19:54:52 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150675,"ProveedorID":2}
+21/07/2016 19:56:52 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:56:52 - GUID devuelto: 
+21/07/2016 19:56:52 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:56:52 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:56:52 - GUID devuelto: 
+21/07/2016 19:56:52 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:57:00 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150812,"ProveedorID":2}
+21/07/2016 19:57:22 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150822,"ProveedorID":2}
+21/07/2016 19:59:36 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:59:36 - GUID devuelto: 
+21/07/2016 19:59:36 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:59:36 - Usuario:samAdmin, pass: samadmin
+21/07/2016 19:59:36 - GUID devuelto: 
+21/07/2016 19:59:37 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 19:59:50 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150977,"ProveedorID":2}
+21/07/2016 20:00:08 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469150992,"ProveedorID":2}
+21/07/2016 20:07:02 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:07:02 - GUID devuelto: 
+21/07/2016 20:07:02 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:07:04 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:07:04 - GUID devuelto: 
+21/07/2016 20:07:04 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:07:12 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469151425,"ProveedorID":2}
+21/07/2016 20:07:40 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469151434,"ProveedorID":2}
+21/07/2016 20:16:39 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:16:39 - GUID devuelto: 
+21/07/2016 20:16:39 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:16:39 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:16:39 - GUID devuelto: 
+21/07/2016 20:16:39 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:16:49 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469152000,"ProveedorID":2}
+21/07/2016 20:17:12 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469152011,"ProveedorID":2}
+21/07/2016 20:23:33 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:23:33 - GUID devuelto: 
+21/07/2016 20:23:33 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:23:33 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:23:33 - GUID devuelto: 
+21/07/2016 20:23:33 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:23:41 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469152414,"ProveedorID":2}
+21/07/2016 20:24:00 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469152423,"ProveedorID":2}
+21/07/2016 20:27:17 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:27:17 - GUID devuelto: 
+21/07/2016 20:27:17 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:27:19 - Usuario:samAdmin, pass: samadmin
+21/07/2016 20:27:19 - GUID devuelto: 
+21/07/2016 20:27:19 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 20:27:27 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469152640,"ProveedorID":2}
+21/07/2016 20:27:50 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469152650,"ProveedorID":2}
+21/07/2016 20:29:02 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469152672,"ProveedorID":2}
+21/07/2016 22:49:21 - Usuario:samAdmin, pass: samadmin
+21/07/2016 22:49:21 - GUID devuelto: 
+21/07/2016 22:49:21 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 22:49:32 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469161161,"ProveedorID":2}
+21/07/2016 22:50:39 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469161180,"ProveedorID":2}
+21/07/2016 23:12:44 - Usuario:samAdmin, pass: samadmin
+21/07/2016 23:12:44 - GUID devuelto: 
+21/07/2016 23:12:44 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+21/07/2016 23:12:51 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469162564,"ProveedorID":2}
+21/07/2016 23:13:42 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469162575,"ProveedorID":2}
+22/07/2016 15:41:44 - Usuario:samAdmin, pass: samadmin
+22/07/2016 15:41:44 - GUID devuelto: 
+22/07/2016 15:41:44 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+22/07/2016 15:41:44 - Usuario:samAdmin, pass: samadmin
+22/07/2016 15:41:44 - GUID devuelto: 
+22/07/2016 15:41:44 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+22/07/2016 15:41:55 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469221904,"ProveedorID":2}
+22/07/2016 15:43:39 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469221922,"ProveedorID":2}
+22/07/2016 16:20:20 - Usuario:samAdmin, pass: samadmin
+22/07/2016 16:20:20 - GUID devuelto: 
+22/07/2016 16:20:20 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+22/07/2016 16:20:20 - Usuario:samAdmin, pass: samadmin
+22/07/2016 16:20:20 - GUID devuelto: 
+22/07/2016 16:20:20 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+22/07/2016 16:20:26 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469224220,"ProveedorID":2}
+22/07/2016 16:21:03 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469224227,"ProveedorID":2}
+22/07/2016 16:38:45 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469224264,"ProveedorID":2}
+22/07/2016 16:52:35 - Usuario:samAdmin, pass: samadmin
+22/07/2016 16:52:35 - GUID devuelto: 
+22/07/2016 16:52:35 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+22/07/2016 16:52:35 - GUID devuelto: 
+22/07/2016 16:52:35 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+22/07/2016 16:52:40 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469226155,"ProveedorID":2}
+22/07/2016 16:53:49 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469226161,"ProveedorID":2}
+22/07/2016 16:58:01 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469226231,"ProveedorID":2}
+22/07/2016 17:12:42 - Usuario:samAdmin, pass: samadmin
+22/07/2016 17:12:42 - GUID devuelto: 
+22/07/2016 17:12:42 - {"UsuarioID":0,"PerfilID":0,"NombreUsuario":null,"ContrasenaHash":null,"Nombre":null,"ApellidoPaterno":null,"ApellidoMaterno":null,"BloqueadoPorAdministracion":false,"Activo":false,"UsuarioModificacion":null,"FechaModificacion":null,"Sam2UserID":null,"ProveedorID":null,"Sam3_Incidencia":[],"Sam3_Incidencia1":[],"Sam3_Incidencia2":[],"Sam3_Perfil":null,"Sam3_Rel_Usuario_Preferencia":[],"Sam3_Rel_Usuario_Proyecto":[],"Sam3_Sesion":[],"Sam3_ColaCreacionNumerosUnicos":[],"Sam3_UsuariosNotificaciones":[]}
+22/07/2016 17:12:46 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469227362,"ProveedorID":2}
+22/07/2016 17:13:12 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469227369,"ProveedorID":2}
+22/07/2016 17:14:48 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469227394,"ProveedorID":2}
+22/07/2016 17:16:07 - Resultado de validar el token: {"UsuarioID":1,"NombreUsuario":"samAdmin","ContrasenaHash":"samadmin","PerfilID":1,"BloqueadoPorAdministracion":false,"Activo":true,"exp":1469227490,"ProveedorID":2}

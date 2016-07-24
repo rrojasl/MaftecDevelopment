@@ -940,7 +940,13 @@
     <Compile Include="Sam3\Sam3_Armado_Get_DetalleTrabajoAdicional_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Armado_Get_MaterialesSpool2_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_Armado_Get_MaterialesSpool_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Articulos.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Bulto.cs">
@@ -977,6 +983,12 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Cat_PQR_GrupoP_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Cat_PQR_ListaCodigos_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Cat_PQR_ListaMateriales_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Cat_PQR_Mezcla_Result.cs">
@@ -1031,6 +1043,9 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Codigo.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_CodigoAsme.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_ColaCreacionNumerosUnicos.cs">
@@ -1297,6 +1312,12 @@
     <Compile Include="Sam3\Sam3_GetErrorInfo_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Get_Areas_Proyecto_Patio_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Get_Cuadrante_Proyecto_Patio_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_Grupo.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1316,6 +1337,12 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Inspeccion_Get_DetalleJunta_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Inspeccion_Get_DetalleXJunta_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_ItemCode.cs">
@@ -1801,9 +1828,6 @@
     <Compile Include="Sam3\Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sam3\Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados_Result.cs">
-      <DependentUpon>ModelSam3.tt</DependentUpon>
-    </Compile>
     <Compile Include="Sam3\Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1852,6 +1876,9 @@
     <Compile Include="Sam3\Sam3_ServTec_RequisicionAsignacion.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_ServTec_RequisicionJuntaSpool.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_ServTec_RequisicionPruebaElemento.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1873,6 +1900,9 @@
     <Compile Include="Sam3\Sam3_Soldadura_CertificacionPosicion_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_Get_CedulaTuboCalificado_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_Soldadura_Get_DetalleJunta_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1880,6 +1910,15 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Soldadura_Get_DetalleTrabajoAdicional_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_GET_PQR_WPS_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_Get_TipoProcesoSoldadura_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_Get_TipoPrueba_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Soldadura_PQR_Result.cs">
@@ -1922,6 +1961,9 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Steelgo_Get_Color_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Steelgo_Get_Contactos_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Steelgo_Get_Cuadrante_Result.cs">
@@ -1976,6 +2018,9 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_SteelGo_Get_Taller_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_SteelGo_Get_TipoPruebas_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Steelgo_Get_TipoResultado_Result.cs">
@@ -2038,6 +2083,9 @@
     <Compile Include="Sam3\Sam3_TipoPersistencia.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_TipoProcesoSoldadura.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_TipoPrueba.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -2066,6 +2114,9 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_TurnoLaboral.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_TurnoLaboralProveedor.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_UbicacionFisica.cs">
