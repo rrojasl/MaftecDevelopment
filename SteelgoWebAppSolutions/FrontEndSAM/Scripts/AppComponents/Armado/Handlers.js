@@ -101,7 +101,7 @@ function GuardarDetalleAdicional() {
         var ds = $("#gridPopUp").data("kendoGrid").dataSource;
 
         for (var i = 0; i < ds._data.length; i++) {
-            if (ds._data[i].TrabajoAdicional == "" && ds._data[i].Accion != 3)
+            if (ds._data[i].TrabajoAdicional == "" && !(ds._data[i].Accion == 3 || ds._data[i].Accion == 4))
                 trabajosCorrectos = false;
         }
         if (trabajosCorrectos) {

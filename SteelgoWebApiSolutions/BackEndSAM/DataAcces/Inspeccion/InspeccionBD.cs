@@ -87,7 +87,7 @@ namespace BackEndSAM.DataAcces
                 using (SamContext ctx = new SamContext())
                 {
 
-                    List<Sam3_Inspeccion_Get_DetalleJunta_Result> listaDetalleDatosJson = ctx.Sam3_Inspeccion_Get_DetalleJunta(OrdenTrabajoSpoolID, Lenguaje).ToList();
+                    List<Sam3_Steelgo_Get_JuntaSpool_Result> listaDetalleDatosJson = ctx.Sam3_Steelgo_Get_JuntaSpool(1,OrdenTrabajoSpoolID, null).ToList();
                     return listaDetalleDatosJson;
                 }
             }

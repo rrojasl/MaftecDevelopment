@@ -269,6 +269,7 @@ function CargarGridPopUp() {
                   { field: "Accion", operator: "eq", value: 1 },
                   { field: "Accion", operator: "eq", value: 2 },
                   { field: "Accion", operator: "eq", value: 0 },
+                  { field: "Accion", operator: "eq", value: 4 },
                   { field: "Accion", operator: "eq", value: undefined }
                 ]
             }
@@ -380,6 +381,8 @@ function CargarGridPopUp() {
                       itemToClean.TrabajoAdicional = "";
                       itemToClean.TrabajoAdicionalID = 0;
                       itemToClean.Observacion = "";
+                      if (itemToClean.Accion == 2)
+                          itemToClean.Accion = 4;
                       var dataSource = $("#gridPopUp").data("kendoGrid").dataSource;
                       dataSource.sync();
 

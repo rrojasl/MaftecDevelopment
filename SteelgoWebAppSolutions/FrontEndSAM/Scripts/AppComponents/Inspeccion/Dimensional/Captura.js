@@ -441,9 +441,11 @@ function PlanchadoResultadoDimensional() {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
                     data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                     data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
-
-                    data[i].DefectosID = $("#inputDefecto").val();
-                    data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                    if ($("#inputDefecto").val() != "") {
+                        data[i].DefectosID = $("#inputDefecto").val();
+                        data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
+                    }
+                    
                     data[i].ListaJuntasSeleccionadas = [];
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                     data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
