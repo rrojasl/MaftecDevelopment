@@ -544,3 +544,17 @@ function ObtenerDato(fecha, tipoDatoObtener) {
             break;
     }
 }
+
+function JuntasCorrectasGuardar(listaJuntas) {
+    if (listaJuntas == undefined) {
+        return true;
+    }
+    else {
+        for (var i = 0; i < listaJuntas.length; i++) {
+            if (listaJuntas[i].Accion != 3)
+                return false;
+        }
+        return true;
+    }
+    return true;
+}

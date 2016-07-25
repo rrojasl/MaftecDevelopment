@@ -11,7 +11,7 @@
     suscribirEventoChangeRadio();
     SuscribirEventoFecha();
 };
-
+var eventoAgreagarGridEscrito = true;
 
 
 function SuscribirEventoFecha() {
@@ -101,6 +101,7 @@ function SuscribirEventoSpoolID() {
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
+                eventoAgreagarGridEscrito = false;
                 if (dataItem.Status != "1") {
                     e.preventDefault();
                     $("#InputID").val("");
@@ -278,19 +279,37 @@ function suscribirEventoAgregar() {
     $('#btnAgregar').click(function (e) {
         e.preventDefault();
         if ($("#InputOrdenTrabajo").val() != "") {
-            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
-                if ($('input:radio[name=Muestra]:checked').val() != undefined) {
-                //AjaxobtenerDetalleDimensional($("#InputID").val());
-                    AjaxObtenerJSonGrid();
+            if (!eventoAgreagarGridEscrito) {
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+                    if ($('input:radio[name=Muestra]:checked').val() != undefined) {
+                        //AjaxobtenerDetalleDimensional($("#InputID").val());
+                        AjaxObtenerJSonGrid();
+                    }
+                    else {
+                        MensajesSteelGO('radioMostrar', '')
+
+                    }
+
                 }
                 else {
-                    MensajesSteelGO('radioMostrar', '')
-
+                    MensajesSteelGO('InputID-SelectInvalid', '')
                 }
-
             }
             else {
-                MensajesSteelGO('InputID-SelectInvalid', '')
+                if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
+                    if ($('input:radio[name=Muestra]:checked').val() != undefined) {
+                        //AjaxobtenerDetalleDimensional($("#InputID").val());
+                        AjaxObtenerJSonGrid();
+                    }
+                    else {
+                        MensajesSteelGO('radioMostrar', '')
+
+                    }
+
+                }
+                else {
+                    MensajesSteelGO('InputID-SelectInvalid', '')
+                }
             }
         }
         else

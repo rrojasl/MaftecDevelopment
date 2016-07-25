@@ -330,7 +330,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                         }
                         else {
                             if (jSonCaptura[index].TIPO == "NoEspecificarJunta") {
-                                if (inspeccionDimensional[index].ListaJuntas != undefined) {
+                                if (!JuntasCorrectasGuardar(inspeccionDimensional[index].ListaJuntas)) {
                                     inspeccionDimensional[index].Estatus = 0;
                                     $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                                 }
@@ -347,33 +347,6 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
             }
         }
 
-        //if (((inspeccionDimensional[index].DefectosID == "" && inspeccionDimensional[index].ResultadoID == "2") ||
-        //    (inspeccionDimensional[index].DefectosID == "0" && inspeccionDimensional[index].ResultadoID == "2") ||
-        //    (inspeccionDimensional[index].DefectosID == 0 && inspeccionDimensional[index].ResultadoID == "2") ||
-        //    (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined) ||
-        //    inspeccionDimensional[index].InspectorID == "" ||
-        //    inspeccionDimensional[index].InspectorID == "0" ||
-        //    inspeccionDimensional[index].InspectorID == 0 ||
-        //    inspeccionDimensional[index].FechaInspeccion == "")
-        //    && (inspeccionDimensional[index].Accion != 3 && inspeccionDimensional[index].Accion != 4)) {
-        //    if (inspeccionDimensional[index].ResultadoID == "2" && inspeccionDimensional[index].ListaJuntas == undefined && jSonCaptura[index].TIPO == "NoEspecificarJunta") {
-        //        if (inspeccionDimensional[index].DefectosID == 0 || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == "") {
-        //            inspeccionDimensional[index].Estatus = 0;
-        //            $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
-        //        }
-        //    }
-        //    if (inspeccionDimensional[index].Accion == 2 && inspeccionDimensional[index].ResultadoID == "" && inspeccionDimensional[index].FechaInspeccion == "" &&
-        //         (inspeccionDimensional[index].InspectorID == "" || inspeccionDimensional[index].InspectorID == "0" || inspeccionDimensional[index].InspectorID == 0) &&
-        //         (inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0)
-        //         ) {
-        //        inspeccionDimensional[index].Accion = 4;
-        //    }
-
-        //    else {
-        //        inspeccionDimensional[index].Estatus = 0;
-        //        $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
-        //    }
-        //}
 
     }
     Captura[0].Detalles = inspeccionDimensional;
