@@ -20,6 +20,7 @@ function SuscribirEventoCambiarVista() {
         $('#styleEscritorio2').addClass("active");
         $("#contenedorPrincipalCargaCarro").show();
         $("#contenedorPrincipalCargaCarroBacklog").hide();
+        $("#inputProyecto").data("kendoComboBox").value("");
         changeLanguageCall();
     });
     $('#stylePatio').click(function () {
@@ -27,6 +28,11 @@ function SuscribirEventoCambiarVista() {
         $('#styleEscritorio2').removeClass("active");
         $("#contenedorPrincipalCargaCarro").hide();
         $("#contenedorPrincipalCargaCarroBacklog").show();
+        $("#inputProyecto").data("kendoComboBox").value("");
+        $("#InputOrdenTrabajo").val("");
+        $("#InputID").data("kendoComboBox").dataSource.data([]);
+        $("#InputID").data("kendoComboBox").value("");
+
         IniciarBacklog();
     });
 
@@ -42,6 +48,9 @@ function SuscribirEventoCambiarVista() {
         
         $("#contenedorPrincipalCargaCarro").hide();
         $("#contenedorPrincipalCargaCarroBacklog").show();
+        $("#InputOrdenTrabajo").val("");
+        $("#InputID").data("kendoComboBox").dataSource.data([]);
+        $("#InputID").data("kendoComboBox").value("");
         IniciarBacklog();
     });
 }
@@ -118,7 +127,12 @@ function SuscribirEventoProyecto() {
                 $("#labelToneladas2").text('');
                 $("#chkCerrar").attr("checked", false);
                 $("#chkCerrar2").attr("checked", false);
+                $("#InputOrdenTrabajo").val("");
+                $("#InputID").data("kendoComboBox").dataSource.data([]);
+                $("#InputID").data("kendoComboBox").value("");
                 AjaxPinturaCargaMedioTransporte();
+            } else {
+                displayNotify("NoExisteProyecto", "", '2');
             }
         },
         select: function (e) {
@@ -135,6 +149,12 @@ function SuscribirEventoProyecto() {
                 $("#labelToneladas2").text('');
                 $("#chkCerrar").attr("checked", false);
                 $("#chkCerrar2").attr("checked", false);
+                $("#InputOrdenTrabajo").val("");
+                $("#InputID").data("kendoComboBox").dataSource.data([]);
+                $("#InputID").data("kendoComboBox").value("");
+            }
+            else {
+                displayNotify("NoExisteProyecto", "", '2');
             }
         }
     });
@@ -165,9 +185,16 @@ function SuscribirEventoAgregar() {
 }
  
 function SuscribirEventoGuardar() { 
-    $('#btnGuardarYNuevo,#btnGuardarYNuevo1').click(function (e) {
-       
-        ajaxGuardar($("#grid").data("kendoGrid").dataSource._data, true);
+    $('#btnGuardarYNuevo,#btnGuardarYNuevo1').click(function (e) {       
+        if ($("#styleEscritorio").hasClass("active")) {
+
+            ajaxGuardar($("#grid").data("kendoGrid").dataSource._data, true);
+        }
+        else if ($("#stylePatio").hasClass("active"))
+        {
+            var ds = $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource;
+            AjaxSubirSpool(ds._data, true);
+        }
         Limpiar();
     });
 
@@ -210,6 +237,8 @@ function opcionHabilitarView(valor, name) {
         $("#stylePatio").attr("disabled", true);
         $("#inputCarro").data("kendoComboBox").enable(false);
         $("#Guardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar1").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
         $('#botonGuardar3').text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
     }
     else {
@@ -249,6 +278,7 @@ function opcionHabilitarViewBacklog(valor, name) {
     }
 }
 
+//Valida el tipo de busqueda de un spool a agregar...
 function ObtenerTipoConsulta() {
     var radioButtonsLLena = document.getElementsByName('PinturaCargaTipoSeleccion');
 
@@ -313,7 +343,6 @@ function SuscribirEventoSpoolID() {
             }
         } else {
             displayNotify("CapturaArmadoMensajeOrdenTrabajo", "", '1');
-            //$("#InputOrdenTrabajo").focus();
         }
     });
 
@@ -347,13 +376,16 @@ function SuscribirEventoChangeRadioTipoListado() {
     $('input:radio[name=PinturaCargaTipoSeleccion]:nth(0)').change(function () {
         $("#InputIDDiv").show();
         $("#divCodigo").hide();
-
+        $("#inputCodigo").val("");
 
     });
 
     $('input:radio[name=PinturaCargaTipoSeleccion]:nth(1)').change(function () {
         $("#InputIDDiv").hide();
         $("#divCodigo").show();
+        $("#InputOrdenTrabajo").val("");
+        $("#InputID").data("kendoComboBox").dataSource.data([]);
+        $("#InputID").data("kendoComboBox").value("");
     });
 }
 
@@ -393,6 +425,10 @@ function SuscribirEventoCarro() {
 
                     AjaxObtenerDetalleCarroCargado(dataItem.MedioTransporteCargaID);
                 }
+                $("#chkCerrar2").attr("checked", false);
+                $("#InputOrdenTrabajo").val("");
+                $("#InputID").data("kendoComboBox").dataSource.data([]);
+                $("#InputID").data("kendoComboBox").value("");
             }
             else
                 displayNotify("NoExisteCarro", '', '2');
@@ -425,6 +461,9 @@ function SuscribirEventoCarro() {
                     AjaxObtenerDetalleCarroCargado(dataItem.MedioTransporteCargaID);
                 }                
                 $("#chkCerrar2").attr("checked", false);
+                $("#InputOrdenTrabajo").val("");
+                $("#InputID").data("kendoComboBox").dataSource.data([]);
+                $("#InputID").data("kendoComboBox").value("");
             }
             else
                 displayNotify("NoExisteCarro", '', '2');
@@ -528,9 +567,11 @@ function SuscribirEventoSpoolID() {
 
 function Limpiar() {
     $("#InputCarro").val("");
+    $("#inputCarroBacklog").val("");
     $("#labelM2").text("");
     $("#labelToneladas").text("");
     $("#InputID").data("kendoComboBox").dataSource.data([]);
+    $("#InputID").data("kendoComboBox").value("");
     AjaxPinturaCargaMedioTransporte();
     $("#grid").data('kendoGrid').dataSource.data([]);
     $("#chkCerrar").attr("checked", false);
@@ -578,6 +619,9 @@ function suscribirEventoCarroBacklog() {
                 AjaxCargarSpoolBacklog(false, dataItem.MedioTransporteCargaID);
             }
             $("#chkCerrar").attr("checked", false);
+            $("#InputOrdenTrabajo").val("");
+            $("#InputID").data("kendoComboBox").dataSource.data([]);
+            $("#InputID").data("kendoComboBox").value("");
         }
     });
 

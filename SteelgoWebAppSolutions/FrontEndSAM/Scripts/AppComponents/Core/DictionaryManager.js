@@ -111,6 +111,10 @@ _dictionary = {
         "es-MX": "No existe carro",
         "en-US": "No car"
     },
+    "NoExisteProyecto":{
+       "es-MX": "No existe proyecto",
+       "en-US": "No Proyect"
+    },
     "NoExisteCuadrante": {
         "es-MX": "No existe cuadrante",
         "en-US": "No quadrant"
@@ -10129,8 +10133,8 @@ _dictionary = {
         "en-US": "Tons"
     },
     "PinturaCargaSpoolNoEncontrado": {
-        "es-MX": "El spool fue embarcado",
-        "en-US": "the spool  was embarked"
+        "es-MX": "El spool no existe o fue embarcado",
+        "en-US": "the spool doesn´t exist or was embarked"
     }
     ,
     "PinturaCargaSpoolToneladaSuperiorPermididoCarro": {
@@ -10220,10 +10224,10 @@ _dictionary = {
         "es-MX": "Por favor seleccione un carro",
         "en-US": "Select a car please"
     },
-
-    //#endregion
-
-    //#region PinturaCargaBackLog
+    "PinturaSeleccionarProyecto":{
+        "es-MX": "Por favor seleccione un proyecto",
+        "en-US": "Select a proyect please"
+    },
     "PinturaCargaBackLogCarro": {
         "es-MX": "Carro",
         "en-US": "Car"
@@ -10280,6 +10284,11 @@ _dictionary = {
         "es-MX": "El servicio de pintura debe ser el mismo para los spools",
         "en-US": "The paint service should be equals for all spools"
     },
+    "PinturaAgregaCargaExito": {
+        "es-MX": "Se agregó el spool: ",
+        "en-US": "He added the spool: "
+    },
+
     //#endregion
     //#region PinturaCarga
 
@@ -10644,8 +10653,8 @@ _dictionary = {
     },
 
     "CapturaAvanceIntAcabadoPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de cancelar el detalle de la captura de pintura?",
-        "en-US": "Are you sure you want to cancel the detail of the capture of painting ?"
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de pintura?",
+        "en-US": "Are you sure you want to delete the detail of the capture of painting ?"
     },
 
     "CapturaAvanceIntAcabadoPintores": {
@@ -10687,8 +10696,8 @@ _dictionary = {
         "en-US": "Filling mass"
     },
     "CapturaAvanceIntAcabadoPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de cancelar el detalle de la captura de pintura?",
-        "en-US": "Are you sure you want to cancel the detail of the capture of paint ?"
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de pintura?",
+        "en-US": "Are you sure you want to delete the detail of the capture of painting ?"
 
     },
     "ErrorCapturaAvanceIntAcabadoSeleccionarCuadrante": {

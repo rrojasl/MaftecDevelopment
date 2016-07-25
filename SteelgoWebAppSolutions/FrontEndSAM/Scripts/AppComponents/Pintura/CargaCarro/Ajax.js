@@ -168,6 +168,8 @@ function AjaxCerrarCarro() {
 }
 
 function AjaxAgregarCarga() {
+
+    if ($("#inputProyecto").data("kendoComboBox").value() != "-1" && $("#inputProyecto").data("kendoComboBox").value() != "") {
     if ($("#inputCarro").data("kendoComboBox").value() != "-1" && $("#inputCarro").data("kendoComboBox").value() != "") {
         if (ObtenerTipoConsulta() == 1 && $("#InputID").val() > -1 || ObtenerTipoConsulta() == 2 && $("#inputCodigo").val() != "") {
             loadingStart();
@@ -181,11 +183,11 @@ function AjaxAgregarCarga() {
             ListaDetalles[index] = { TipoConsulta: "", OrdenTrabajoSpoolID: "", Codigo: "" };
             ListaDetalles[index].TipoConsulta = ObtenerTipoConsulta();
             switch (ListaDetalles[index].TipoConsulta) {
-                case 1: //spool
+                case 1: 
                     ListaDetalles[index].OrdenTrabajoSpoolID = $("#InputID").val();
                     ListaDetalles[index].Codigo = 0;
-                    break;//paquete
-                case 2://codigo
+                    break;
+                case 2:
                     ListaDetalles[index].OrdenTrabajoSpoolID = 0;
                     ListaDetalles[index].Codigo = $("#inputCodigo").val();
                     break;
@@ -208,25 +210,33 @@ function AjaxAgregarCarga() {
                         if (!validarInformacion(array[i])) {
                             if (ds._data.length == 0) {
 
-                                if (array[i].ProyectoID == parseInt($("#inputProyecto").data("kendoComboBox").value()))
+                                if (array[i].ProyectoID == parseInt($("#inputProyecto").data("kendoComboBox").value())) {
                                     ds.add(array[i]);
-                                else
+                                    displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
+                                } else {
                                     displayNotify("PinturaCargaCarroSpoolProyectoEquivocado", "", '1');
+                                }
+                                    
 
                             }
                             else {
                                 if (array[i].NombreMedioTransporte == "") {
-                                    if (array[i].ProyectoID == ds._data[0].ProyectoID)
+                                    if (array[i].ProyectoID == ds._data[0].ProyectoID) {
                                         ds.add(array[i]);
-                                    else
+                                        displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
+                                    } else {
                                         displayNotify("PinturaCargaCarroSpoolProyectoDiferente", "", '1');
+                                    }
                                 }
                                 else {
                                     displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
                                     
                                 }
                             }
+                        } else {
+                            displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
                         }
+
                     }
 
                     ImprimirAreaTonelada();
@@ -248,6 +258,9 @@ function AjaxAgregarCarga() {
     }
     else {
         displayNotify("PinturaSeleccionarCarro", "", '2');
+    }
+    } else {
+        displayNotify("PinturaSeleccionarProyecto", "", '2');
     }
 }
 
@@ -490,7 +503,6 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
 
                     loadingStart();
 
-                    console.log("idTransport: " + $('#inputCarro').attr("mediotransporteid"));
                     $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), medioTransporteID: $('#inputCarroBacklog').attr("mediotransporteid"), cerrar: disponible }).done(function (data) {
 
                         displayNotify("PinturaCargaBackLogMensajeGuardadoExitoso", "", "0");
