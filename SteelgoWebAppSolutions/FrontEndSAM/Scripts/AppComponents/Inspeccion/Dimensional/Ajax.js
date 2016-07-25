@@ -263,6 +263,8 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                 listaFinalJuntas[cont] = jSonCaptura[index].ListaJuntasSeleccionadasInicial[i];
                 cont++;
             }
+            if (jSonCaptura[index].Accion == 4)
+                listaFinalJuntas = [];
         }
 
         if (listaFinalJuntas != null) {

@@ -278,7 +278,7 @@ function suscribirEventoAgregar() {
     $('#btnAgregar').click(function (e) {
         e.preventDefault();
         if ($("#InputOrdenTrabajo").val() != "") {
-            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()) != undefined) {
+            if ($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select(0)) != undefined) {
                 if ($('input:radio[name=Muestra]:checked').val() != undefined) {
                 //AjaxobtenerDetalleDimensional($("#InputID").val());
                     AjaxObtenerJSonGrid();

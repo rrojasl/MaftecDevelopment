@@ -202,10 +202,14 @@ function isEditable(fieldName, model) {
         if (model.ResultadoID == "1") {
             displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado', '', '1');
         }
+        else if(model.Defectos == ""){
+            displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSeleccionarDefecto', '', '1');
+        }
         else {
             if (model.TIPO == "NoEspecificarJunta") {
                 displayNotify("mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto", '', '1');
             }
+            
         }
 
         return model.TIPO !== "NoEspecificarJunta" && model.ResultadoID !== "1" && model.ResultadoID !== "0";

@@ -132,12 +132,16 @@ _dictionary = {
         "en-US": "do you want delete the row?"
     },
     "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto": {
-        "es-MX": "No se pueden especificar juntas para el defecto",
-        "en-US": "Can't especify joint to deffect"
+        "es-MX": "El defecto seleccionado, no requiere que se especifiquen juntas",
+        "en-US": "The select deffect, it does not required specified joints"
+    },
+    "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSeleccionarDefecto": {
+        "es-MX": "Para especificar juntas, seleccione un defecto",
+        "en-US": "To specify joints, select a defect"
     },
     "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado": {
         "es-MX": "El spool esta aprobado, no puedes especificar juntas",
-        "en-US": "The spool is aproved, can´t  especify joint "
+        "en-US": "The spool is aproved, can´t  especify joint"
     },
 
     "RequisicionesAsignadas": {
