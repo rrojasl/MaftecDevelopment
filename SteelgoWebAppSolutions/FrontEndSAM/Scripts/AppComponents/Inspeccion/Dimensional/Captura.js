@@ -403,7 +403,7 @@ function PlanchaInspector() {
 
     for (var i = 0; i < data.length; i++) {
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            if ($("#inputInspector").data("kendoComboBox").selectedIndex != -1) {
+            if ($("#inputInspector").data("kendoComboBox").text() != "") {
                 data[i].InspectorID = $("#inputInspector").val();
                 data[i].Inspector = $("#inputInspector").data("kendoComboBox").text();
             }
@@ -411,7 +411,7 @@ function PlanchaInspector() {
         }
         else {
             if (data[i].Inspector == "" || data[i].Inspector == undefined || data[i].Inspector == null) {
-                if ($("#inputInspector").data("kendoComboBox").selectedIndex != -1) {
+                if ($("#inputInspector").data("kendoComboBox").text() != "") {
                     data[i].InspectorID = $("#inputInspector").val();
                     data[i].Inspector = $("#inputInspector").data("kendoComboBox").text();
                 }
@@ -433,7 +433,7 @@ function PlanchadoResultadoDimensional() {
             if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                 data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
-                if ($("#inputDefecto").data("kendoComboBox").text() != "") {
+                if ($("#inputDefecto").data("kendoComboBox").text() != "" || $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado") {
                     data[i].DefectosID = $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                     data[i].ListaJuntasSeleccionadas = [];
