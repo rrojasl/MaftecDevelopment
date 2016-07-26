@@ -319,7 +319,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                 else {
                     if (inspeccionDimensional[index].ResultadoID == "1") {
                         if (!((inspeccionDimensional[index].DefectosID == "" || inspeccionDimensional[index].DefectosID == "0" || inspeccionDimensional[index].DefectosID == 0) &&
-                            inspeccionDimensional[index].ListaJuntas == undefined)
+                            JuntasCorrectasGuardar(inspeccionDimensional[index].ListaJuntas))
                             ) {
                             inspeccionDimensional[index].Estatus = 0;
                             $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");

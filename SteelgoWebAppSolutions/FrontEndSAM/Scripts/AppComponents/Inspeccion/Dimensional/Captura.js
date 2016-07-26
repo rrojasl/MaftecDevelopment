@@ -449,10 +449,10 @@ function PlanchadoResultadoDimensional() {
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                     data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
                     data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
-                    if (data[i].Accion == 4)
-                        data[i].Accion = 2;
+                    
                 }
-
+                if (data[i].Accion == 4)
+                    data[i].Accion = 2;
 
             }
             else {
