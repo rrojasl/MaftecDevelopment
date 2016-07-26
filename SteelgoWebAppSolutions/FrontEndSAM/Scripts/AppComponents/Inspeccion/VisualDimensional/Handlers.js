@@ -394,7 +394,7 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
 
         if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
-            AjaxGuardar(ds._data, 0);
+            AjaxGuardado(ds._data, 0);
         }
         else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
             opcionHabilitarView(false, "FieldSetView");
@@ -405,13 +405,13 @@ function suscribirEventoGuardar() {
     $('#btnGuardarYNuevo').click(function (e) {
         e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
-        AjaxGuardar(ds._data, 1);
+        AjaxGuardado(ds._data, 1);
     });
 
     $('#btnGuardarYNuevo1').click(function (e) {
         e.preventDefault();
         var ds = $("#grid").data("kendoGrid").dataSource;
-        AjaxGuardar(ds._data, 1);
+        AjaxGuardado(ds._data, 1);
     });
 }
 function SuscribirEventoAgregarCapturaRapida() {

@@ -199,16 +199,87 @@ function AjaxObtenerJSonGrid() {
     }
 }
 
-function AjaxGuardar(jSonCaptura, tipoGuardar) {
+function AjaxGuardado(jSonCaptura, tipoGuardar) {
     Captura = [];
     Captura[0] = { Detalles: "" };
     var existRowEmpty = false;
+    var capturaSinDimensional = false;
+    var capturaSinVisual = false;
+
     inspeccionDimensional = [];
 
     Juntas = [];
 
     // Elementos del grid
     ListaDetalleGuardarInspeccionVisual = []
+
+    // Elementos Inspección Dimensional
+    inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
+    inspeccionDimensional[0].Lenguaje = $("#language").val();
+    inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
+    inspeccionDimensional[0].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
+    inspeccionDimensional[0].FechaInspeccion = kendo.toString(new Date(), String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
+
+    var ResultadoDimensional = $('input:radio[name=ResultadoDimensional]:checked').val();
+    var Defecto = $("#inputDefecto").data("kendoComboBox").select();
+    var Inspector = $("#inputInspector").data("kendoComboBox").select();
+
+    if (ResultadoDimensional == "Aprobado") inspeccionDimensional[0].ResultadoID = 1;
+    else if (ResultadoDimensional == "Rechazado") inspeccionDimensional[0].ResultadoID = 2;
+    else {
+        inspeccionDimensional[0].ResultadoID = 0;
+        capturaSinDimensional = true;
+    }
+
+    if (Defecto > 0) inspeccionDimensional[0].DefectoID = $("#inputDefecto").data("kendoComboBox").dataItem(Defecto).DefectoID;
+    else if (ResultadoDimensional == "Rechazado") capturaSinDimensional = true;
+
+    if (Inspector > 0) inspeccionDimensional[0].ObreroID = $("#inputInspector").data("kendoComboBox").dataItem(Inspector).ObreroID;
+    else capturaSinDimensional = true;
+
+    if (inspeccionDimensional[0].FechaInspeccion == "") capturaSinDimensional = true;
+
+    // Proceso Juntas Dimensional
+    var juntasListado = $("#ListaJuntas").data("kendoMultiSelect")._dataItems;
+    if (juntasListado.length > 0) {
+        for (var r = 0; r < juntasListado.length; r++) {
+            Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
+            Juntas[r].DefectoID = Defecto > 0 ? $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID : null;
+            Juntas[r].JuntaID = $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID;
+
+            if (listadoJuntasInicialGlobal.length == 0) Juntas[r].Accion = 1;
+            else {
+                var existeJunta = false;
+                for (var indexLista = 0; indexLista < listadoJuntasInicialGlobal.length; indexLista++)
+                    if (listadoJuntasInicialGlobal[indexLista].JuntaID == $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID) existeJunta = true;
+
+                if (existeJunta) Juntas[r].Accion = 2;
+                else Juntas[r].Accion = 1;
+            }
+
+            Juntas[r].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
+        }
+
+        for (var indexAccion3 = 0; indexAccion3 < listadoJuntasInicialGlobal.length; indexAccion3++) {
+            var existeJuntaGlobal = false;
+            for (var indexMultiSelect = 0; indexMultiSelect < juntasListado.length; indexMultiSelect++)
+                if (listadoJuntasInicialGlobal[indexAccion3].JuntaID == juntasListado[indexMultiSelect].JuntaID) existeJuntaGlobal = true;
+            if (!existeJuntaGlobal)
+                Juntas.push({
+                    Accion: 3,
+                    OrdenTrabajoSpoolID: $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor,
+                    DefectoID: Defecto > 0 ? $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID : null,
+                    JuntaID: listadoJuntasInicialGlobal[indexAccion3].JuntaID
+                });
+        }
+        inspeccionDimensional[0].ListaJuntas = Juntas;
+        Captura[0].Detalles = inspeccionDimensional;
+    }
+    else inspeccionDimensional[0].ListaJuntas = undefined;
+
+    // Finaliza captura datos Dimensional
+
+    // Comienza captura Visual
     for (index = 0; index < jSonCaptura.length; index++) {
         $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffffff");
 
@@ -238,338 +309,440 @@ function AjaxGuardar(jSonCaptura, tipoGuardar) {
             ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "0" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == null
             ) && ListaDetalleGuardarInspeccionVisual[index].Accion != 4) {
 
-            if (ListaDetalleGuardarInspeccionVisual[index].Accion == 2)
-                ListaDetalleGuardarInspeccionVisual[index].Accion = 4;
+            if (ListaDetalleGuardarInspeccionVisual[index].Accion == 2) ListaDetalleGuardarInspeccionVisual[index].Accion = 4;
 
             ListaDetalleGuardarInspeccionVisual[index].Estatus = 0;
             $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
             existRowEmpty = true;
             //ListaDetalleGuardarInspeccionVisual.pop();
         }
-    }
-    var procesoGuardado = true;
+        else if (ListaDetalleGuardarInspeccionVisual[index].Accion == 4) {
+            if (!(ListaDetalleGuardarInspeccionVisual[index].TallerID == "" || ListaDetalleGuardarInspeccionVisual[index].TallerID == "0" ||
+            ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "" || ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "0" ||
+            ((ListaDetalleGuardarInspeccionVisual[index].DefectosID == "" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == "0" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == null) && ListaDetalleGuardarInspeccionVisual[index].ResultadoID == 2) ||
+            ListaDetalleGuardarInspeccionVisual[index].ObreroID == "" || ListaDetalleGuardarInspeccionVisual[index].ObreroID == "0" ||
+            ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == " " || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0" ||
+            ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "0" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == null ||
+            ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "0" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == null)) {
 
-    //Guardado módulo Dimensional
-    if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined
-        && $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined
-        && String(endRangeDate.val()).trim() != "") {
-
-        if (($('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID != 0)
-            || ($('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID == 0)) {
-
-            if ($('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado") {
-                if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO != "NoEspecificarJunta") {
-                    if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
-                        procesoGuardado = true;
-                    }
-                    else {
-                        // Mensaje de defecto requiere especificar junta
-                        displayNotify("DimensionalVisualMensajeRequiereJuntas", "", '1');
-                        opcionHabilitarView(false, "FieldSetView");
-                        deshabilitaSpool();
-                    }
-                }
-                else if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO == "NoEspecificarJunta") {
-                    if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length == 0) {
-                        procesoGuardado = true;
-                    }
-                    else {
-                        // Mensaje de defecto no requiere especificar juntas
-                        displayNotify("DimensionalVisualMensajeNoRequiereJuntas", "", '1');
-                        opcionHabilitarView(false, "FieldSetView");
-                        deshabilitaSpool();
-                    }
-                }
+                ListaDetalleGuardarInspeccionVisual[index].Estatus = 0;
+                $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+                existRowEmpty = true;
             }
-            else {
-                procesoGuardado = true;
-            }
-
-        }
-        else {
-            displayNotify("DimensionalVisualMensajeRechazadoDefecto", "", '1');
-            opcionHabilitarView(false, "FieldSetView");
-            deshabilitaSpool();
         }
     }
-    else {
-        displayNotify("DimensionalVisualMensajeRequeridos", "", '1');
-        opcionHabilitarView(false, "FieldSetView");
-        deshabilitaSpool();
-    }
 
-    if (procesoGuardado) {
-        inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
-        inspeccionDimensional[0].Lenguaje = $("#language").val();
-        inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
-        inspeccionDimensional[0].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
-        inspeccionDimensional[0].FechaInspeccion = kendo.toString(new Date(), String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
-        inspeccionDimensional[0].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : $('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado" ? 2 : 0 ;
-        inspeccionDimensional[0].ObreroID = $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) == undefined ? null :
-            $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID == null ? null : $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID;
-        inspeccionDimensional[0].DefectoID = $("#inputDefecto").data("kendoComboBox").select() <= 0 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
+    // Finaliza captura Visual
 
-        if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
-            for (var r = 0; r < $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length; r++) {
-                Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
-                Juntas[r].DefectoID = $("#inputDefecto").data("kendoComboBox").select() <= 0 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
-                Juntas[r].JuntaID = $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID;
-
-                if (listadoJuntasInicialGlobal.length == 0) {
-                    Juntas[r].Accion = 1;
-                }
-                else {
-                    var existeJunta = false;
-                    for (var indexLista = 0; indexLista < listadoJuntasInicialGlobal.length; indexLista++) {
-                        if (listadoJuntasInicialGlobal[indexLista].JuntaID == $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID) {
-                            existeJunta = true;
-                        }
-                    }
-                    if (existeJunta)
-                        Juntas[r].Accion = 2;
-                    else Juntas[r].Accion = 1;
-                }
-
-                Juntas[r].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
-            }
-
-            var dataItemsMultiSelect = $("#ListaJuntas").data("kendoMultiSelect")._dataItems;
-
-            for (var indexAccion3 = 0; indexAccion3 < listadoJuntasInicialGlobal.length; indexAccion3++) {
-                var existeJuntaGlobal = false;
-                for (var indexMultiSelect = 0; indexMultiSelect < dataItemsMultiSelect.length; indexMultiSelect++) {
-                    if (listadoJuntasInicialGlobal[indexAccion3].JuntaID == dataItemsMultiSelect[indexMultiSelect].JuntaID) {
-                        existeJuntaGlobal = true;
-                    }
-                }
-                if (!existeJuntaGlobal) {
-                    Juntas.push({
-                        Accion: 3,
-                        OrdenTrabajoSpoolID: $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor,
-                        DefectoID: $("#inputDefecto").data("kendoComboBox").select() <= 0 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID,
-                        JuntaID: listadoJuntasInicialGlobal[indexAccion3].JuntaID
-                    });
-                }
-            }
-            inspeccionDimensional[0].ListaJuntas = Juntas;
-            Captura[0].Detalles = inspeccionDimensional;
-        }
-        else
-            inspeccionDimensional[0].ListaJuntas = undefined;
-    }
-
+    // Filtro grid por status
     var ListaDetalleGuardarFiltroStatus = [];
-    for (var x = 0; x < ListaDetalleGuardarInspeccionVisual.length; x++) {
-        if (ListaDetalleGuardarInspeccionVisual[x].Estatus != 0) {
-            ListaDetalleGuardarFiltroStatus.push(ListaDetalleGuardarInspeccionVisual[x]);
-        }
-    }
-    inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
+    for (var x = 0; x < ListaDetalleGuardarInspeccionVisual.length; x++)
+        if (ListaDetalleGuardarInspeccionVisual[x].Estatus != 0) ListaDetalleGuardarFiltroStatus.push(ListaDetalleGuardarInspeccionVisual[x]);
 
+    if (inspeccionDimensional.length > 0) inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
+    else capturaSinVisual = true;
 
-    //Guardado módulo Visual
-    if (inspeccionDimensional.length != 0 && inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual.length > 0) {
-        if (validaTaller(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-            if (validaDefectos(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                if (validaResultado(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                    if (validaInspector(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                        if (validaNumeroUnico1(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                            if (validaNumeroUnico2(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
-                                Captura[0].Detalles = inspeccionDimensional;
-                                //loadingStart();
-                                //$Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-                                //    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                                //        mensaje = "Se guardo correctamente la informacion" + "-0";
-                                //        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                                //        AjaxobtenerDetalleDimensional($("#InputID").val());
-                                //        AjaxObtenerJSonGrid();
-                                //    }
-                                //    else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                                //        mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
-                                //        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                                //        opcionHabilitarView(false, "FieldSetView");
-                                //    }
-                                //    loadingStop();
-                                //    var newDataSource = $("#grid").data("kendoGrid").dataSource;
-                                //});
-                                //    }
-                                //    else {
-                                //        displayNotify("DimensionalVisualMensajeErrorNumeroUnico2", "", '2');
-                                //        opcionHabilitarView(false, "FieldSetView");
-                                //        deshabilitaSpool();
-                                //    }
-                                //}
-                                //else {
-                                //    displayNotify("DimensionalVisualMensajeErrorNumeroUnico1", "", '2');
-                                //    opcionHabilitarView(false, "FieldSetView");
-                                //    deshabilitaSpool();
-                                //}
-                            }
-                            else {
-                                opcionHabilitarView(false, "FieldSetView");
-                                deshabilitaSpool();
-                            }
-                        }
-                        else {
-                            opcionHabilitarView(false, "FieldSetView");
-                            deshabilitaSpool();
-                        }
-                    }
-                    else {
-                        opcionHabilitarView(false, "FieldSetView");
-                        deshabilitaSpool();
-                    }
-                }
-                else {
-                    opcionHabilitarView(false, "FieldSetView");
-                    deshabilitaSpool();
-                }
-            }
-            else {
-                opcionHabilitarView(false, "FieldSetView");
-                deshabilitaSpool();
-            }
-        }
-        else {
-            opcionHabilitarView(false, "FieldSetView");
-            deshabilitaSpool();
-        }
+    if (inspeccionDimensional[0].ListaJuntas == undefined || inspeccionDimensional[0].ListaJuntas.length == 0) {
+        inspeccionDimensional[0].ListaJuntas = [];
+        inspeccionDimensional[0].ListaJuntas.push({ Accion: 0, OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" });
+        if ($("#inputDefecto").data("kendoComboBox").dataItem(Defecto) != undefined)
+            if ($("#inputDefecto").data("kendoComboBox").dataItem(Defecto).TIPO != "NoEspecificarJunta") capturaSinDimensional = true;
     }
 
-    var guardadoSinInspeccionVisual = false;
-    var guardadoSinInspeccionDimensional = false;
+    // Asignación de elementos vacios de prueba
+    if (capturaSinDimensional)
+        inspeccionDimensional[0] = { Lenguaje: $("#language").val(), InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: 0, ResultadoID: 0, ObreroID: null, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
+    if (capturaSinVisual)
+        ListaDetalleGuardarFiltroStatus[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, ObreroID: 0, FechaInspeccion: " ", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
+    else Captura[0].Detalles = inspeccionDimensional;
 
+    if (capturaSinDimensional && !capturaSinVisual) inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
 
-    if (inspeccionDimensional.length != 0 || ListaDetalleGuardarInspeccionVisual.length != 0) {
-        if (inspeccionDimensional.length == 0) {
-            inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: "", ResultadoID: 0, ObreroID: null, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
-            guardadoSinInspeccionDimensional = true;
+    windowTemplate = kendo.template($("#windowTemplate").html());
+    ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+        iframe: true,
+        title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
+        visible: false, //the window will not appear before its .open method is called
+        width: "auto",
+        height: "auto",
+        modal: true,
+        animation: {
+            close: false,
+            open: false
         }
-        if (ListaDetalleGuardarFiltroStatus == 0) {
-            ListaDetalleGuardarFiltroStatus[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, ObreroID: 0, FechaInspeccion: "", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
-            guardadoSinInspeccionVisual = true;
-        }
-        if (inspeccionDimensional[0].ListaJuntas == undefined || inspeccionDimensional[0].ListaJuntas.length == 0) {
-            inspeccionDimensional[0].ListaJuntas = [];
-            inspeccionDimensional[0].ListaJuntas.push({ Accion: 0, OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" });
-            if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()) == undefined ? false : 
-                $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO != "NoEspecificarJunta")
-                guardadoSinInspeccionDimensional = true;
-        }
-        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
-        Captura[0].Detalles = inspeccionDimensional;
+    }).data("kendoWindow");
 
-        loadingStop();
-        windowTemplate = kendo.template($("#windowTemplate").html());
+    ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
+             "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
 
-        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
-            iframe: true,
-            title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
-            visible: false, //the window will not appear before its .open method is called
-            width: "auto",
-            height: "auto",
-            modal: true,
-            animation: {
-                close: false,
-                open: false
-            }
-        }).data("kendoWindow");
+    if (existRowEmpty) {
+        ventanaConfirm.open().center();
 
-        ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
-                 "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
-
-        if (existRowEmpty) {
-            ventanaConfirm.open().center();
-
-            $("#yesButton").click(function () {
-                loadingStart();
-                $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-                    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                        $("#grid").data('kendoGrid').dataSource.data([]);
-
-                        if (!guardadoSinInspeccionDimensional && !guardadoSinInspeccionVisual) {
-                            displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                        }
-                        else if (guardadoSinInspeccionDimensional) {
-                            displayNotify("DimensionalVisualMensajeGuardadoVisual", "", '0');
-                        }
-                        else if (guardadoSinInspeccionVisual) {
-                            displayNotify("DimensionalVisualMensajeGuardadoDimensional", "", '0');
-                        }
-                        if (tipoGuardar == 1) {
-                            opcionHabilitarView(false, "FieldSetView");
-                            limpiar();
-                            LimpiarPlanchado();
-                            habilitaSpool();
-                        }
-                        else {
-                            opcionHabilitarView(true, "FieldSetSetView");
-                            AjaxobtenerDetalleDimensional($("#InputID").val());
-                            AjaxObtenerJSonGrid();
-                        }
-                    }
-                    else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                        opcionHabilitarView(false, "FieldSetView");
-                        deshabilitaSpool();
-
-                    }
-                    loadingStop();
-                });
-
-                ventanaConfirm.close();
-            });
-
-            $("#noButton").click(function () {
-                ventanaConfirm.close();
-                opcionHabilitarView(false, "FieldSetView");
-            });
-        }
-        else {
+        $("#yesButton").click(function () {
             loadingStart();
-            $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-                if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                    $("#grid").data('kendoGrid').dataSource.data([]);
+            ejecutaGuardado(Captura, capturaSinDimensional, capturaSinVisual, tipoGuardar);
 
-                    if (!guardadoSinInspeccionDimensional && !guardadoSinInspeccionVisual) {
-                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
-                    }
-                    else if (guardadoSinInspeccionDimensional) {
-                        displayNotify("DimensionalVisualMensajeGuardadoVisual", "", '0');
-                    }
-                    else if (guardadoSinInspeccionVisual) {
-                        displayNotify("DimensionalVisualMensajeGuardadoDimensional", "", '0');
-                    }
-                    if (tipoGuardar == 1) {
-                        opcionHabilitarView(false, "FieldSetView");
-                        limpiar();
-                        LimpiarPlanchado();
-                        habilitaSpool();
-                    }
-                    else {
-                        opcionHabilitarView(true, "FieldSetSetView");
-                        AjaxobtenerDetalleDimensional($("#InputID").val());
-                        AjaxObtenerJSonGrid();
-                    }
-                }
-                else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
-                    displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
-                    opcionHabilitarView(false, "FieldSetView");
-                    deshabilitaSpool();
+            ventanaConfirm.close();
+        });
 
-                }
-                loadingStop();
-            });
-        }
+        $("#noButton").click(function () {
+            ventanaConfirm.close();
+            opcionHabilitarView(false, "FieldSetView");
+        });
     }
     else {
-        displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '1');
-        opcionHabilitarView(false, "FieldSetView");
-        if ($("#InputID").val() != "")
-            deshabilitaSpool();
+        loadingStart();
+        ejecutaGuardado(Captura, capturaSinDimensional, capturaSinVisual, tipoGuardar);
     }
-
 }
+
+function ejecutaGuardado(Captura, guardadoSinInspeccionDimensional, guardadoSinInspeccionVisual, tipoGuardar) {
+    if (guardadoSinInspeccionDimensional && guardadoSinInspeccionVisual) displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '1');
+     else $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+            $("#grid").data('kendoGrid').dataSource.data([]);
+
+            if (!guardadoSinInspeccionDimensional && !guardadoSinInspeccionVisual) {
+                displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+            }
+            else if (guardadoSinInspeccionDimensional) {
+                displayNotify("DimensionalVisualMensajeGuardadoVisual", "", '0');
+            }
+            else if (guardadoSinInspeccionVisual) {
+                displayNotify("DimensionalVisualMensajeGuardadoDimensional", "", '0');
+            }
+            if (tipoGuardar == 1) {
+                opcionHabilitarView(false, "FieldSetView");
+                limpiar();
+                LimpiarPlanchado();
+                habilitaSpool();
+            }
+            else {
+                opcionHabilitarView(true, "FieldSetSetView");
+                AjaxobtenerDetalleDimensional($("#InputID").val());
+                AjaxObtenerJSonGrid();
+            }
+        }
+        else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
+            displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+            opcionHabilitarView(false, "FieldSetView");
+            deshabilitaSpool();
+
+        }
+        loadingStop();
+    });
+}
+
+//function AjaxGuardar(jSonCaptura, tipoGuardar) {
+//    Captura = [];
+//    Captura[0] = { Detalles: "" };
+//    var existRowEmpty = false;
+//    inspeccionDimensional = [];
+//    Juntas = [];
+//    // Elementos del grid
+//    ListaDetalleGuardarInspeccionVisual = []
+//    for (index = 0; index < jSonCaptura.length; index++) {
+//        $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffffff");
+//        ListaDetalleGuardarInspeccionVisual[index] = { Accion: "", OrdenTrabajoSpoolID: "", TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: "", InspectorID: "", FechaInspeccion: "", JuntaTrabajoID: "", ResultadoID: "", TallerID: "", NumeroUnico1ID: "", NumeroUnico2ID: "", InspeccionVisualID: "" };
+//        ListaDetalleGuardarInspeccionVisual[index].Accion = jSonCaptura[index].Accion;
+//        ListaDetalleGuardarInspeccionVisual[index].OrdenTrabajoSpoolID = jSonCaptura[index].OrdenTrabajoSpoolID == null ? 0 : jSonCaptura[index].OrdenTrabajoSpoolID;
+//        ListaDetalleGuardarInspeccionVisual[index].TipoJuntaID = jSonCaptura[index].TipoJuntaID == null ? 0 : jSonCaptura[index].TipoJuntaID;
+//        ListaDetalleGuardarInspeccionVisual[index].EtiquetaJunta = jSonCaptura[index].Junta;
+//        ListaDetalleGuardarInspeccionVisual[index].EtiquetaMaterial1 = jSonCaptura[index].EtiquetaMaterial1;
+//        ListaDetalleGuardarInspeccionVisual[index].EtiquetaMaterial2 = jSonCaptura[index].EtiquetaMaterial2;
+//        ListaDetalleGuardarInspeccionVisual[index].DefectosID = jSonCaptura[index].DefectosID == null ? 0 : jSonCaptura[index].DefectosID;
+//        ListaDetalleGuardarInspeccionVisual[index].ObreroID = (jSonCaptura[index].InspectorID == null || jSonCaptura[index].InspectorID == "") ? 0 : jSonCaptura[index].InspectorID;
+//        ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion = jSonCaptura[index].FechaInspeccion == null ? " " : kendo.toString(jSonCaptura[index].FechaInspeccion, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
+//        ListaDetalleGuardarInspeccionVisual[index].JuntaTrabajoID = jSonCaptura[index].JuntaTrabajoID == null ? 0 : jSonCaptura[index].JuntaTrabajoID;
+//        ListaDetalleGuardarInspeccionVisual[index].ResultadoID = jSonCaptura[index].ResultadoID == null ? 0 : jSonCaptura[index].ResultadoID;
+//        ListaDetalleGuardarInspeccionVisual[index].TallerID = jSonCaptura[index].TallerID == null ? 0 : jSonCaptura[index].TallerID;
+//        ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID = jSonCaptura[index].NumeroUnico1ID;
+//        ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID = jSonCaptura[index].NumeroUnico2ID;
+//        ListaDetalleGuardarInspeccionVisual[index].InspeccionVisualID = jSonCaptura[index].InspeccionVisualID;
+//        if ((ListaDetalleGuardarInspeccionVisual[index].TallerID == "" || ListaDetalleGuardarInspeccionVisual[index].TallerID == "0" ||
+//            ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "" || ListaDetalleGuardarInspeccionVisual[index].ResultadoID == "0" ||
+//            ((ListaDetalleGuardarInspeccionVisual[index].DefectosID == "" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == "0" || ListaDetalleGuardarInspeccionVisual[index].DefectosID == null) && ListaDetalleGuardarInspeccionVisual[index].ResultadoID == 2) ||
+//            ListaDetalleGuardarInspeccionVisual[index].ObreroID == "" || ListaDetalleGuardarInspeccionVisual[index].ObreroID == "0" ||
+//            ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == " " || ListaDetalleGuardarInspeccionVisual[index].FechaInspeccion == "0" ||
+//            ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == "0" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico1ID == null ||
+//            ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == "0" || ListaDetalleGuardarInspeccionVisual[index].NumeroUnico2ID == null
+//            ) && ListaDetalleGuardarInspeccionVisual[index].Accion != 4) {
+//            if (ListaDetalleGuardarInspeccionVisual[index].Accion == 2)
+//                ListaDetalleGuardarInspeccionVisual[index].Accion = 4;
+//            ListaDetalleGuardarInspeccionVisual[index].Estatus = 0;
+//            $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
+//            existRowEmpty = true;
+//            //ListaDetalleGuardarInspeccionVisual.pop();
+//        }
+//    }
+//    var procesoGuardado = false;
+//    //Guardado módulo Dimensional
+//    if ($('input:radio[name=ResultadoDimensional]:checked').val() != undefined
+//        && ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) != undefined && $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID != null)
+//        && String(endRangeDate.val()).trim() != "") {
+//        if (($('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID != 0)
+//            || ($('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" && $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID == 0)) {
+//            if ($('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado") {
+//                if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO != "NoEspecificarJunta") {
+//                    if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
+//                        procesoGuardado = true;
+//                    }
+//                    else {
+//                        // Mensaje de defecto requiere especificar junta
+//                        displayNotify("DimensionalVisualMensajeRequiereJuntas", "", '1');
+//                        opcionHabilitarView(false, "FieldSetView");
+//                        deshabilitaSpool();
+//                    }
+//                }
+//                else if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO == "NoEspecificarJunta") {
+//                    if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length == 0) {
+//                        procesoGuardado = true;
+//                    }
+//                    else {
+//                        // Mensaje de defecto no requiere especificar juntas
+//                        displayNotify("DimensionalVisualMensajeNoRequiereJuntas", "", '1');
+//                        opcionHabilitarView(false, "FieldSetView");
+//                        deshabilitaSpool();
+//                    }
+//                }
+//            }
+//            else {
+//                procesoGuardado = true;
+//            }
+//        }
+//        else {
+//            displayNotify("DimensionalVisualMensajeRechazadoDefecto", "", '1');
+//            opcionHabilitarView(false, "FieldSetView");
+//            deshabilitaSpool();
+//        }
+//    }
+//    else {
+//        displayNotify("DimensionalVisualMensajeRequeridos", "", '1');
+//        opcionHabilitarView(false, "FieldSetView");
+//        deshabilitaSpool();
+//    }
+//    if (procesoGuardado) {
+//        inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
+//        inspeccionDimensional[0].Lenguaje = $("#language").val();
+//        inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
+//        inspeccionDimensional[0].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
+//        inspeccionDimensional[0].FechaInspeccion = kendo.toString(new Date(), String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", ""))).trim();
+//        inspeccionDimensional[0].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : $('input:radio[name=ResultadoDimensional]:checked').val() == "Rechazado" ? 2 : 0;
+//        inspeccionDimensional[0].ObreroID = ($("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()) == undefined || $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID <= 0) ? null :
+//            $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID == null ? null : $("#inputInspector").data("kendoComboBox").dataItem($("#inputInspector").data("kendoComboBox").select()).ObreroID;
+//        inspeccionDimensional[0].DefectoID = $("#inputDefecto").data("kendoComboBox").select() <= 0 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
+//        if ($("#ListaJuntas").data("kendoMultiSelect")._dataItems.length > 0) {
+//            for (var r = 0; r < $("#ListaJuntas").data("kendoMultiSelect")._dataItems.length; r++) {
+//                Juntas[r] = { Accion: "", OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" }
+//                Juntas[r].DefectoID = $("#inputDefecto").data("kendoComboBox").select() <= 0 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID;
+//                Juntas[r].JuntaID = $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID;
+//                if (listadoJuntasInicialGlobal.length == 0) {
+//                    Juntas[r].Accion = 1;
+//                }
+//                else {
+//                    var existeJunta = false;
+//                    for (var indexLista = 0; indexLista < listadoJuntasInicialGlobal.length; indexLista++) {
+//                        if (listadoJuntasInicialGlobal[indexLista].JuntaID == $("#ListaJuntas").data("kendoMultiSelect")._dataItems[r].JuntaID) {
+//                            existeJunta = true;
+//                        }
+//                    }
+//                    if (existeJunta)
+//                        Juntas[r].Accion = 2;
+//                    else Juntas[r].Accion = 1;
+//                }
+//                Juntas[r].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
+//            }
+//            var dataItemsMultiSelect = $("#ListaJuntas").data("kendoMultiSelect")._dataItems;
+//            for (var indexAccion3 = 0; indexAccion3 < listadoJuntasInicialGlobal.length; indexAccion3++) {
+//                var existeJuntaGlobal = false;
+//                for (var indexMultiSelect = 0; indexMultiSelect < dataItemsMultiSelect.length; indexMultiSelect++) {
+//                    if (listadoJuntasInicialGlobal[indexAccion3].JuntaID == dataItemsMultiSelect[indexMultiSelect].JuntaID) {
+//                        existeJuntaGlobal = true;
+//                    }
+//                }
+//                if (!existeJuntaGlobal) {
+//                    Juntas.push({
+//                        Accion: 3,
+//                        OrdenTrabajoSpoolID: $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor,
+//                        DefectoID: $("#inputDefecto").data("kendoComboBox").select() <= 0 ? null : $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).DefectoID,
+//                        JuntaID: listadoJuntasInicialGlobal[indexAccion3].JuntaID
+//                    });
+//                }
+//            }
+//            inspeccionDimensional[0].ListaJuntas = Juntas;
+//            Captura[0].Detalles = inspeccionDimensional;
+//        }
+//        else
+//            inspeccionDimensional[0].ListaJuntas = undefined;
+//    }
+//    var ListaDetalleGuardarFiltroStatus = [];
+//    for (var x = 0; x < ListaDetalleGuardarInspeccionVisual.length; x++) {
+//        if (ListaDetalleGuardarInspeccionVisual[x].Estatus != 0) {
+//            ListaDetalleGuardarFiltroStatus.push(ListaDetalleGuardarInspeccionVisual[x]);
+//        }
+//    }
+//    if (inspeccionDimensional.length > 0)
+//        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
+//    //Guardado módulo Dimensional
+//    if (inspeccionDimensional.length != 0 && inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual.length > 0) {
+//        if (validaTaller(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+//            if (validaDefectos(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+//                if (validaResultado(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+//                    if (validaInspector(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+//                        if (validaNumeroUnico1(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+//                            if (validaNumeroUnico2(inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual)) {
+//                                Captura[0].Detalles = inspeccionDimensional;
+//                            }
+//                            else {
+//                                opcionHabilitarView(false, "FieldSetView");
+//                                deshabilitaSpool();
+//                            }
+//                        }
+//                        else {
+//                            opcionHabilitarView(false, "FieldSetView");
+//                            deshabilitaSpool();
+//                        }
+//                    }
+//                    else {
+//                        opcionHabilitarView(false, "FieldSetView");
+//                        deshabilitaSpool();
+//                    }
+//                }
+//                else {
+//                    opcionHabilitarView(false, "FieldSetView");
+//                    deshabilitaSpool();
+//                }
+//            }
+//            else {
+//                opcionHabilitarView(false, "FieldSetView");
+//                deshabilitaSpool();
+//            }
+//        }
+//        else {
+//            opcionHabilitarView(false, "FieldSetView");
+//            deshabilitaSpool();
+//        }
+//    }
+//    var guardadoSinInspeccionVisual = false;
+//    var guardadoSinInspeccionDimensional = false;
+//    if (inspeccionDimensional.length != 0 || ListaDetalleGuardarInspeccionVisual.length != 0) {
+//        if (inspeccionDimensional.length == 0) {
+//            inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: " ", ResultadoID: 0, ObreroID: null, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
+//            guardadoSinInspeccionDimensional = true;
+//        }
+//        if (ListaDetalleGuardarFiltroStatus == 0) {
+//            ListaDetalleGuardarFiltroStatus[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, ObreroID: 0, FechaInspeccion: " ", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
+//            guardadoSinInspeccionVisual = true;
+//        }
+//        if (inspeccionDimensional[0].ListaJuntas == undefined || inspeccionDimensional[0].ListaJuntas.length == 0) {
+//            inspeccionDimensional[0].ListaJuntas = [];
+//            inspeccionDimensional[0].ListaJuntas.push({ Accion: 0, OrdenTrabajoSpoolID: "", DefectoID: "", JuntaID: "" });
+//            if ($("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()) == undefined ? false :
+//                $("#inputDefecto").data("kendoComboBox").dataItem($("#inputDefecto").data("kendoComboBox").select()).TIPO != "NoEspecificarJunta")
+//                guardadoSinInspeccionDimensional = true;
+//        }
+//        inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
+//        Captura[0].Detalles = inspeccionDimensional;
+//        loadingStop();
+//        windowTemplate = kendo.template($("#windowTemplate").html());
+//        ventanaConfirm = $("#ventanaConfirm").kendoWindow({
+//            iframe: true,
+//            title: _dictionary.CapturaAvanceIntAcabadoMensajeErrorGuardado[$("#language").data("kendoDropDownList").value()],
+//            visible: false, //the window will not appear before its .open method is called
+//            width: "auto",
+//            height: "auto",
+//            modal: true,
+//            animation: {
+//                close: false,
+//                open: false
+//            }
+//        }).data("kendoWindow");
+//        ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
+//                 "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+//        if (existRowEmpty) {
+//            ventanaConfirm.open().center();
+//            $("#yesButton").click(function () {
+//                loadingStart();
+//                $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+//                    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+//                        $("#grid").data('kendoGrid').dataSource.data([]);
+//                        if (!guardadoSinInspeccionDimensional && !guardadoSinInspeccionVisual) {
+//                            displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+//                        }
+//                        else if (guardadoSinInspeccionDimensional) {
+//                            displayNotify("DimensionalVisualMensajeGuardadoVisual", "", '0');
+//                        }
+//                        else if (guardadoSinInspeccionVisual) {
+//                            displayNotify("DimensionalVisualMensajeGuardadoDimensional", "", '0');
+//                        }
+//                        if (tipoGuardar == 1) {
+//                            opcionHabilitarView(false, "FieldSetView");
+//                            limpiar();
+//                            LimpiarPlanchado();
+//                            habilitaSpool();
+//                        }
+//                        else {
+//                            opcionHabilitarView(true, "FieldSetSetView");
+//                            AjaxobtenerDetalleDimensional($("#InputID").val());
+//                            AjaxObtenerJSonGrid();
+//                        }
+//                    }
+//                    else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
+//                        displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+//                        opcionHabilitarView(false, "FieldSetView");
+//                        deshabilitaSpool();
+//                    }
+//                    loadingStop();
+//                });
+//                ventanaConfirm.close();
+//            });
+//            $("#noButton").click(function () {
+//                ventanaConfirm.close();
+//                opcionHabilitarView(false, "FieldSetView");
+//            });
+//        }
+//        else {
+//            loadingStart();
+//            $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+//                if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+//                    $("#grid").data('kendoGrid').dataSource.data([]);
+//                    if (!guardadoSinInspeccionDimensional && !guardadoSinInspeccionVisual) {
+//                        displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
+//                    }
+//                    else if (guardadoSinInspeccionDimensional) {
+//                        displayNotify("DimensionalVisualMensajeGuardadoVisual", "", '0');
+//                    }
+//                    else if (guardadoSinInspeccionVisual) {
+//                        displayNotify("DimensionalVisualMensajeGuardadoDimensional", "", '0');
+//                    }
+//                    if (tipoGuardar == 1) {
+//                        opcionHabilitarView(false, "FieldSetView");
+//                        limpiar();
+//                        LimpiarPlanchado();
+//                        habilitaSpool();
+//                    }
+//                    else {
+//                        opcionHabilitarView(true, "FieldSetSetView");
+//                        AjaxobtenerDetalleDimensional($("#InputID").val());
+//                        AjaxObtenerJSonGrid();
+//                    }
+//                }
+//                else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
+//                    displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
+//                    opcionHabilitarView(false, "FieldSetView");
+//                    deshabilitaSpool();
+//                }
+//                loadingStop();
+//            });
+//        }
+//    }
+//    else {
+//        displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '1');
+//        opcionHabilitarView(false, "FieldSetView");
+//        if ($("#InputID").val() != "")
+//            deshabilitaSpool();
+//    }
+//}
 
 function ObtenerDato(fecha, tipoDatoObtener) {
     var cultura = $("#language").val();

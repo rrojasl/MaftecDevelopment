@@ -37,7 +37,7 @@ namespace BackEndSAM.Controllers
 
                 foreach (Sam3_Inspeccion_Get_DetalleJunta_Result item in detalle)
                 {
-                    List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)InspeccionBD.Instance.listaNumeroUnicos(item.JuntaSpoolID, usuario, 2);
+                    List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)InspeccionBD.Instance.listaNumeroUnicos(item.JuntaSpoolID, usuario, 1);
                     List<NumeroUnico> listNumeroUnico1 = GenerarListaNumerosUnicos(listaNumeroUnicos, 1);
                     List<NumeroUnico> listNumeroUnico2 = GenerarListaNumerosUnicos(listaNumeroUnicos, 2);
 
