@@ -189,9 +189,8 @@ function CargarGridBacklog() {
     })(kendo.ui.Grid.fn.editCell);
      
     $("#grid[nombre='grid-backlog']").kendoGrid({
-        edit: function (e) { 
-            this.closeCell(); 
-        },
+        edit: false,
+        autoBind: true,
         dataSource: {
             data: [],
             schema: {
@@ -209,10 +208,6 @@ function CargarGridBacklog() {
                     }
                 }
             },
-            pageSize: 10,
-            serverPaging: false,
-            serverFiltering: false,
-            serverSorting: false,
             filter: {
                 logic: "or",
                 filters: [
@@ -220,9 +215,18 @@ function CargarGridBacklog() {
                   { field: "Accion", operator: "eq", value: 2 }
                 ]
             },
+            pageSize: 10,
+            serverPaging: false,
+            serverFiltering: false,
+            serverSorting: false,
+        },
+        beforeEdit: function (e) {
+            var columnIndex = this.cellIndex(e.container);
+            var fieldName = this.thead.find("th").eq(columnIndex).data("field");
+            var modelo = e.model;
         },
         navigatable: true,        
-        editable: false,
+        editable: true,
         autoHeight: true,
         sortable: true,
         scrollable: true,
@@ -313,12 +317,11 @@ function eliminarCapturaBack(e) {
             }
             else {
                 dataItem.Accion = 3;
-            }
-                
+            }               
 
             dataSource.sync();
 
-            ImprimirAreaTonelada();
+            ImprimirAreaToneladaBackLog();
             ventanaConfirm.close();
         });
         $("#noButton").click(function () {

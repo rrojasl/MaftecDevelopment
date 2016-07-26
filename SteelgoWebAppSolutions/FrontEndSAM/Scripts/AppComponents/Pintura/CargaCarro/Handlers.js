@@ -251,6 +251,8 @@ function opcionHabilitarView(valor, name) {
         $("#stylePatio").attr("disabled", false);
         $("#inputCarro").data("kendoComboBox").enable(true);
         $("#Guardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar1").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
         $('#botonGuardar3').text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
     }
 }
@@ -266,6 +268,8 @@ function opcionHabilitarViewBacklog(valor, name) {
         $("#inputCarroBacklog").data("kendoComboBox").enable(false);
         $("#chkCerrar").attr("disabled", true);
         $("#Guardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar1").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
         $('#GuardarPie').text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
     }
     else {
@@ -276,6 +280,8 @@ function opcionHabilitarViewBacklog(valor, name) {
         $("#inputCarroBacklog").data("kendoComboBox").enable(true);
         $("#chkCerrar").attr("disabled", false);
         $("#Guardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar1").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
         $('#GuardarPie').text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
     }
 }

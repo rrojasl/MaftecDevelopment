@@ -507,35 +507,39 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
             disponible = 0;
         }
 
-        //Incio de Validacion para el guardado de nuevos spool
-        if(countSelectedSpool>0){
-            if (ListaDetalles.length != 0) {
-                if (ServicioPinturaCorrecto(ListaDetalles)) {
-                    if (AreaYPesoPermitido(ListaDetalles)) {
-                        MedioTransporteID = $("#inputCarroBacklog").data("kendoComboBox").value();
-                        Captura[0].Detalles = ListaGuardarDetalles;
+       if(countSelectedSpool>0){
+        if (ListaDetalles.length != 0) {
+            if (ServicioPinturaCorrecto(ListaDetalles)) {
+                if (AreaYPesoPermitido(ListaDetalles)) {
+                    MedioTransporteID = $("#inputCarroBacklog").data("kendoComboBox").value();
+                    Captura[0].Detalles = ListaGuardarDetalles;
 
-                        loadingStart();
+                    loadingStart();
 
-                        $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), medioTransporteID: $('#inputCarroBacklog').attr("mediotransporteid"), cerrar: disponible }).done(function (data) {
+                    $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), medioTransporteID: $('#inputCarroBacklog').attr("mediotransporteid"), cerrar: disponible }).done(function (data) {
 
-                            displayNotify("PinturaCargaBackLogMensajeGuardadoExitoso", "", "0");
+                            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+                                
+                                if (disponible == 0) {
+                                    AjaxPinturaCargaMedioTransporte();
+                                    AjaxCargarSpoolBacklog(true, MedioTransporteID);
 
-                            if (disponible == 0) {
-                                AjaxPinturaCargaMedioTransporte();
-                                AjaxCargarSpoolBacklog(true, MedioTransporteID);
+                                }
+                                else {
+                                    var guardar = false;
+
+                                    if (!guardarYNuevo) {
+                                        guardar = true;
+                                    }
+
+                                    AjaxCargarSpoolBacklog(true, MedioTransporteID);
+
+                                }
+                                displayNotify("PinturaCargaBackLogMensajeGuardadoExitoso", "", '0');
 
                             }
-                            else {
-                                var guardar = false;
-
-                                if (!guardarYNuevo)
-                                {
-                                    guardar = true;
-                                }
-
-                                AjaxCargarSpoolBacklog(true, MedioTransporteID);
-
+                            else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
+                                displayNotify("PinturaGuardarErrorGuardar", "", '2');
                             }
                             loadingStop();
                         });
@@ -585,6 +589,13 @@ function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCarg
                         Seleccionado: { type: "bool", editable: false }
                     }
                 }
+            },
+            filter: {
+                logic: "or",
+                filters: [
+                  { field: "Accion", operator: "eq", value: 1 },
+                  { field: "Accion", operator: "eq", value: 2 }
+                ]
             },
             pageSize: 10,
             serverPaging: false,
