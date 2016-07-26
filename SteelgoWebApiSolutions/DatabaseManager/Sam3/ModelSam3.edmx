@@ -5,18 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Sam3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'steelgo-sam3.dbo.logTransacciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="logTransacciones">
-          <Property Name="TipoTrn" Type="char" MaxLength="1" />
-          <Property Name="Tabla" Type="varchar" MaxLength="128" />
-          <Property Name="PK" Type="varchar" MaxLength="1000" />
-          <Property Name="Campo" Type="varchar" MaxLength="128" />
-          <Property Name="ValorOriginal" Type="varchar" MaxLength="1000" />
-          <Property Name="ValorNuevo" Type="varchar" MaxLength="1000" />
-          <Property Name="FechaTrn" Type="datetime" />
-          <Property Name="Usuario" Type="varchar" MaxLength="128" />
-        </EntityType>-->
         <EntityType Name="Sam3_Acero">
           <Key>
             <PropertyRef Name="AceroID" />
@@ -38,16 +26,6 @@ warning 6013: The table/view 'steelgo-sam3.dbo.logTransacciones' does not have a
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Sam3_Articulos">
-          <Key>
-            <PropertyRef Name="ArticuloID" />
-          </Key>
-          <Property Name="ArticuloID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Articulo" Type="varchar" MaxLength="10" />
-          <Property Name="Activo" Type="int" />
-          <Property Name="UsuarioModificacion" Type="int" Nullable="false" />
-          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Sam3_Bulto">
           <Key>
@@ -212,28 +190,8 @@ warning 6013: The table/view 'steelgo-sam3.dbo.logTransacciones' does not have a
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime2" Precision="7" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_CodigoAsme' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Sam3_CodigoAsme">
-          <Key>
-            <PropertyRef Name="ProyectoId" />
-            <PropertyRef Name="Especificacion" />
-            <PropertyRef Name="Codigo" />
-            <PropertyRef Name="TipoPruebaId" />
-            <PropertyRef Name="CodigoAsmeID" />
-            <PropertyRef Name="Activo" />
-          </Key>
-          <Property Name="ProyectoId" Type="int" Nullable="false" />
-          <Property Name="Especificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TipoPruebaId" Type="int" Nullable="false" />
-          <Property Name="CodigoAsmeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Activo" Type="bit" Nullable="false" />
-          <Property Name="UsuarioModificacion" Type="int" />
-          <Property Name="FechaModificacion" Type="datetime" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ColaCreacionNumerosUnicos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_ColaCreacionNumerosUnicos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_ColaCreacionNumerosUnicos">
           <Key>
             <PropertyRef Name="ID" />
@@ -295,8 +253,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ColaCreacionNumerosUnicos' d
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_CondicionesClimatologicas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_CondicionesClimatologicas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_CondicionesClimatologicas">
           <Key>
             <PropertyRef Name="CondicionClimatologicaID" />
@@ -542,8 +500,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_CondicionesClimatologicas' d
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_EmbarquePaqueteSpool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_EmbarquePaqueteSpool' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_EmbarquePaqueteSpool">
           <Key>
             <PropertyRef Name="Activo" />
@@ -1344,7 +1302,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_EmbarquePaqueteSpool' does n
           <Property Name="FechaReporte" Type="datetime" />
           <Property Name="UsuarioModificacion" Type="int" Nullable="false" />
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
-          <Property Name="ColadaID" Type="int" />
         </EntityType>
         <EntityType Name="Sam3_JuntaSoldaduraSoldado">
           <Key>
@@ -1695,9 +1652,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_EmbarquePaqueteSpool' does n
           <Property Name="FechaModificacion" Type="datetime" />
           <Property Name="IdentificadorMigra" Type="int" />
           <Property Name="UsuarioID" Type="int" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
-          <Property Name="ApPaterno" Type="nvarchar" MaxLength="50" />
-          <Property Name="ApMaterno" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Sam3_ObreroUbicacion">
           <Key>
@@ -1967,8 +1921,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_EmbarquePaqueteSpool' does n
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_PinturaSpool_Obrero' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_PinturaSpool_Obrero' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_PinturaSpool_Obrero">
           <Key>
             <PropertyRef Name="PinturaSpoolObreroId" />
@@ -1995,17 +1949,16 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_PinturaSpool_Obrero' does no
           <Property Name="ProcesoSoldaduraRellenoID" Type="int" Nullable="false" />
           <Property Name="ProcesoSoldaduraRaizID" Type="int" />
           <Property Name="NumeroP" Type="int" />
-          <Property Name="GrupoPID" Type="int" />
-          <Property Name="Aporte" Type="varchar" MaxLength="250" />
-          <Property Name="Mezcla" Type="varchar" MaxLength="250" />
-          <Property Name="Respaldo" Type="varchar" MaxLength="250" />
-          <Property Name="GrupoF" Type="varchar" MaxLength="250" />
+          <Property Name="GrupoPMaterialBase1" Type="int" />
+          <Property Name="GrupoPMaterialBase2" Type="int" />
+          <Property Name="Aporte" Type="int" />
+          <Property Name="Mezcla" Type="int" />
+          <Property Name="Respaldo" Type="int" />
+          <Property Name="GrupoF" Type="int" />
           <Property Name="Codigo" Type="int" />
           <Property Name="Activo" Type="bit" />
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" />
-          <Property Name="GrupoPMaterialBase1" Type="int" />
-          <Property Name="GrupoPMaterialBase2" Type="int" />
         </EntityType>
         <EntityType Name="Sam3_PQR_Aporte">
           <Key>
@@ -2094,8 +2047,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_PinturaSpool_Obrero' does no
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ProcesoPintura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_ProcesoPintura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_ProcesoPintura">
           <Key>
             <PropertyRef Name="ProcesoID" />
@@ -2214,8 +2167,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ProcesoPintura' does not hav
           <Property Name="ConsecutivoOrdeRecepcion" Type="int" Nullable="false" />
           <Property Name="ConsecutivoOrdenAlmacenaje" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ProyectoSistemaPintura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_ProyectoSistemaPintura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_ProyectoSistemaPintura">
           <Key>
             <PropertyRef Name="ProyectoSistemaPinturaID" />
@@ -2823,8 +2776,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ProyectoSistemaPintura' does
           <Property Name="Rel_ItemCode_Diametro_ID" Type="int" />
           <Property Name="Cantidad" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_Rel_Perfil_Entidad_Pagina' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_Rel_Perfil_Entidad_Pagina' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_Rel_Perfil_Entidad_Pagina">
           <Key>
             <PropertyRef Name="PerfilID" />
@@ -2905,18 +2858,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_Rel_Perfil_Entidad_Pagina' d
           <Property Name="ContentType" Type="varchar(max)" />
           <Property Name="TipoArchivoID" Type="int" Nullable="false" />
           <Property Name="Rel_Permiso_Documento_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_Rel_ProveedorTipoPrueba' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Sam3_Rel_ProveedorTipoPrueba">
-          <Key>
-            <PropertyRef Name="ProveedorTipoPruebaID" />
-            <PropertyRef Name="TipoPruebaID" />
-            <PropertyRef Name="ProveedorID" />
-          </Key>
-          <Property Name="ProveedorTipoPruebaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoPruebaID" Type="int" Nullable="false" />
-          <Property Name="ProveedorID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Sam3_Rel_Proyecto_Correo">
           <Key>
@@ -3132,8 +3073,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_Rel_ProveedorTipoPrueba' doe
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_Pruebas_ReporteID_Impresion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_ServTec_Pruebas_ReporteID_Impresion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_ServTec_Pruebas_ReporteID_Impresion">
           <Key>
             <PropertyRef Name="Activo" />
@@ -3162,17 +3103,16 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_Pruebas_ReporteID_Im
           </Key>
           <Property Name="RequisicionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Folio" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="TipoPruebaID" Type="int" Nullable="false" />
+          <Property Name="PruebasProyectoID" Type="int" Nullable="false" />
           <Property Name="FechaRequisicion" Type="datetime" />
           <Property Name="Observacion" Type="varchar(max)" />
           <Property Name="EstatusID" Type="int" />
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
-          <Property Name="CodigoAsmeID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_RequisicionAsignacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_ServTec_RequisicionAsignacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_ServTec_RequisicionAsignacion">
           <Key>
             <PropertyRef Name="FechaAsignacion" />
@@ -3189,24 +3129,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_RequisicionAsignacio
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
           <Property Name="StatusID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_RequisicionJuntaSpool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Sam3_ServTec_RequisicionJuntaSpool">
-          <Key>
-            <PropertyRef Name="RequisicionJuntaSpoolID" />
-            <PropertyRef Name="JuntaSpoolID" />
-            <PropertyRef Name="RequisicionID" />
-            <PropertyRef Name="Activo" />
-            <PropertyRef Name="UsuarioModificacion" />
-            <PropertyRef Name="FechaModificacion" />
-          </Key>
-          <Property Name="RequisicionJuntaSpoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JuntaSpoolID" Type="int" Nullable="false" />
-          <Property Name="RequisicionID" Type="int" Nullable="false" />
-          <Property Name="Activo" Type="bit" Nullable="false" />
-          <Property Name="UsuarioModificacion" Type="int" Nullable="false" />
-          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="Sam3_ServTec_RequisicionPruebaElemento">
           <Key>
             <PropertyRef Name="RequisicionPruebaElementoID" />
@@ -3218,8 +3140,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_RequisicionJuntaSpoo
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_ValidacionResultados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_ServTec_ValidacionResultados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_ServTec_ValidacionResultados">
           <Key>
             <PropertyRef Name="ValidacionResultadosID" />
@@ -3277,7 +3199,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_ValidacionResultados
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" />
-          <Property Name="CedulaTuboCalificadoID" Type="int" />
         </EntityType>
         <EntityType Name="Sam3_Spool">
           <Key>
@@ -3522,16 +3443,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_ValidacionResultados
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="int" />
         </EntityType>
-        <EntityType Name="Sam3_TipoProcesoSoldadura">
-          <Key>
-            <PropertyRef Name="TipoProcesoSoldaduraID" />
-          </Key>
-          <Property Name="TipoProcesoSoldaduraID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoProcesoSoldadura" Type="varchar" MaxLength="10" />
-          <Property Name="Activo" Type="int" />
-          <Property Name="UsuarioModificacion" Type="int" Nullable="false" />
-          <Property Name="FechaModificacion" Type="datetime" />
-        </EntityType>
         <EntityType Name="Sam3_TipoPrueba">
           <Key>
             <PropertyRef Name="TipoPruebaID" />
@@ -3649,23 +3560,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_ServTec_ValidacionResultados
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_TurnoLaboralProveedor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Sam3_TurnoLaboralProveedor">
-          <Key>
-            <PropertyRef Name="TurnoLaboralProveedorID" />
-            <PropertyRef Name="ProveedorID" />
-            <PropertyRef Name="TurnoLaboralID" />
-            <PropertyRef Name="Activo" />
-            <PropertyRef Name="FechaModificacion" />
-          </Key>
-          <Property Name="TurnoLaboralProveedorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProveedorID" Type="int" Nullable="false" />
-          <Property Name="TurnoLaboralID" Type="int" Nullable="false" />
-          <Property Name="Activo" Type="bit" Nullable="false" />
-          <Property Name="UsuarioModificacion" Type="int" />
-          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="Sam3_UbicacionFisica">
           <Key>
             <PropertyRef Name="UbicacionFisicaID" />
@@ -3743,6 +3637,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_TurnoLaboralProveedor' does 
           <Property Name="WPSNombre" Type="varchar" MaxLength="250" />
           <Property Name="PQRRaizId" Type="int" />
           <Property Name="PQRRellenoId" Type="int" />
+          <Property Name="GrupoPId" Type="int" />
           <Property Name="PWHTId" Type="bit" />
           <Property Name="EspesorMaximoRelleno" Type="varchar" MaxLength="50" />
           <Property Name="EspesorMinimoRelleno" Type="varchar" MaxLength="50" />
@@ -3751,7 +3646,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_TurnoLaboralProveedor' does 
           <Property Name="Activo" Type="bit" />
           <Property Name="UsuarioModificacion" Type="int" />
           <Property Name="FechaModificacion" Type="varchar" MaxLength="50" />
-          <Property Name="PREHEAT" Type="bit" />
         </EntityType>
         <EntityType Name="tempInsert">
           <Key>
@@ -3760,8 +3654,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_TurnoLaboralProveedor' does 
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_V_InspeccionVisual' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.Sam3_V_InspeccionVisual' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Sam3_V_InspeccionVisual">
           <Key>
             <PropertyRef Name="JuntaTrabajoID" />
@@ -3792,8 +3686,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.Sam3_V_InspeccionVisual' does not
           <Property Name="ResultadoID" Type="int" />
           <Property Name="TallerID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.VW_AvisoEntrada' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.VW_AvisoEntrada' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VW_AvisoEntrada">
           <Key>
             <PropertyRef Name="FolioAvisoEntradaID" />
@@ -3808,8 +3702,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_AvisoEntrada' does not have a 
           <Property Name="FechaCreacion" Type="datetime" />
           <Property Name="Patio" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.VW_FolioCuantificacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.VW_FolioCuantificacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VW_FolioCuantificacion">
           <Key>
             <PropertyRef Name="FolioCuantificacionID" />
@@ -3827,8 +3721,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_FolioCuantificacion' does not 
           <Property Name="FechaCreacion" Type="datetime" />
           <Property Name="Patio" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.VW_ItemCodes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.VW_ItemCodes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VW_ItemCodes">
           <Key>
             <PropertyRef Name="ItemCodeID" />
@@ -3853,8 +3747,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_ItemCodes' does not have a pri
           <Property Name="Cliente" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'steelgo-sam3.dbo.VW_NumerosUnicos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VW_NumerosUnicos">
           <Key>
             <PropertyRef Name="NumeroUnicoID" />
@@ -6750,6 +6644,18 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sam3_InspeccionDimensional_Sam3_Defecto">
+          <End Role="Sam3_Defecto" Type="Self.Sam3_Defecto" Multiplicity="0..1" />
+          <End Role="Sam3_InspeccionDimensional" Type="Self.Sam3_InspeccionDimensional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sam3_Defecto">
+              <PropertyRef Name="DefectoID" />
+            </Principal>
+            <Dependent Role="Sam3_InspeccionDimensional">
+              <PropertyRef Name="DefectoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sam3_InspeccionDimensional_Sam3_Obrero">
           <End Role="Sam3_Obrero" Type="Self.Sam3_Obrero" Multiplicity="1" />
           <End Role="Sam3_InspeccionDimensional" Type="Self.Sam3_InspeccionDimensional" Multiplicity="*" />
@@ -7318,19 +7224,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="OrdenTrabajoSpoolID" Type="int" Mode="In" />
           <Parameter Name="EtiquetaMaterial" Type="int" Mode="In" />
         </Function>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="FN_WPS_ObtenerEspesorMaximo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
-          <Parameter Name="EspesorTotalT" Type="float" Mode="In" />
-          <Parameter Name="PWHT" Type="int" Mode="In" />
-          <Parameter Name="ProcesoSoldadura" Type="varchar" Mode="In" />
-          <Parameter Name="EsRaiz" Type="int" Mode="In" />
-        </Function>
-        <Function Name="FN_WPS_ObtenerEspesorMinimo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
-          <Parameter Name="EspesorTotalT" Type="float" Mode="In" />
-          <Parameter Name="PWHT" Type="int" Mode="In" />
-          <Parameter Name="ProcesoSoldadura" Type="varchar" Mode="In" />
-          <Parameter Name="EsRaiz" Type="int" Mode="In" />
-        </Function>
         <Function Name="Sam_Pintura_Get_Clasificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sam_Pintura_Guardar_NuevoMedioTransporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
@@ -7343,11 +7236,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="JuntaSpoolID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Armado_Get_MaterialesSpool" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="JuntaSpoolID" Type="int" Mode="In" />
-          <Parameter Name="Todos" Type="int" Mode="In" />
-          <Parameter Name="Pagina" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Armado_Get_MaterialesSpool2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="JuntaSpoolID" Type="int" Mode="In" />
           <Parameter Name="Todos" Type="int" Mode="In" />
           <Parameter Name="Pagina" Type="int" Mode="In" />
@@ -7416,13 +7304,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="Usuario" Type="int" Mode="In" />
           <Parameter Name="GrupoP" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="Sam3_Cat_PQR_ListaCodigos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PROYECTOID" Type="int" Mode="In" />
-          <Parameter Name="TIPOPRUEBA" Type="int" Mode="In" />
-          <Parameter Name="ESPECIFICACION" Type="varchar" Mode="In" />
-          <Parameter Name="CODIGO" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Cat_PQR_ListaMateriales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sam3_Cat_PQR_Mezcla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TIPO" Type="int" Mode="In" />
           <Parameter Name="ID" Type="int" Mode="In" />
@@ -7504,8 +7385,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Sam3_Embarque_Get_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ProyectoIDs" Type="varchar" Mode="In" />
-          <Parameter Name="PatioIDS" Type="varchar" Mode="In" />
           <Parameter Name="Area" Type="int" Mode="In" />
           <Parameter Name="Cuadrante" Type="int" Mode="In" />
         </Function>
@@ -7600,20 +7479,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <Function Name="Sam3_Embarque_Set_RevisionSpool" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
         </Function>
-        <Function Name="Sam3_FN_Armado_BuscarJuntasAsignadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-          <Parameter Name="OrdenTrabajoSpoolID" Type="int" Mode="In" />
-          <Parameter Name="numeroUnico" Type="int" Mode="In" />
-          <Parameter Name="EtiquetaMaterial" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Get_Areas_Proyecto_Patio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ProyectoIDs" Type="varchar" Mode="In" />
-          <Parameter Name="PatioIDS" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Get_Cuadrante_Proyecto_Patio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ProyectoIDs" Type="varchar" Mode="In" />
-          <Parameter Name="PatioIDS" Type="varchar" Mode="In" />
-          <Parameter Name="Area" Type="int" Mode="In" />
-        </Function>
         <Function Name="Sam3_GetErrorInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sam3_Inspeccion_Dimensional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
@@ -7631,16 +7496,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="OrdenTrabajoSpoolID" Type="int" Mode="In" />
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
           <Parameter Name="DefectoID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Inspeccion_Get_DetalleXJunta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="OrdenTrabajoSpoolID" Type="int" Mode="In" />
-          <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-          <Parameter Name="JuntaSpoolID" Type="nvarchar(max)" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Inspeccion_VD_Get_JuntasXSpoolID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="OrdenTrabajoSpoolID" Type="int" Mode="In" />
-          <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-          <Parameter Name="Todos" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Inspeccion_VisualDimensional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
@@ -7717,7 +7572,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         </Function>
         <Function Name="Sam3_Pintura_Get_MedioTransporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-          <Parameter Name="ProyectoID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Pintura_Get_MedioTransporteCargado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
@@ -7725,7 +7579,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <Function Name="Sam3_Pintura_Get_SistemaPintura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sam3_Pintura_Get_SpoolCarroBackLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MedioTransporteCargaID" Type="int" Mode="In" />
-          <Parameter Name="ProyectoID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Pintura_Get_Status_Spool" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SistemaPinturaID" Type="int" Mode="In" />
@@ -7822,13 +7675,13 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Sam3_ServiciosTecnicos_Get_JuntasXPrueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ProyectoID" Type="int" Mode="In" />
+          <Parameter Name="PruebaID" Type="int" Mode="In" />
           <Parameter Name="Todos" Type="int" Mode="In" />
           <Parameter Name="RequisicionID" Type="int" Mode="In" />
-          <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="JuntaTrabajoID" Type="int" Mode="In" />
+          <Parameter Name="PruebaID" Type="int" Mode="In" />
           <Parameter Name="ProyectoID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_ServiciosTecnicos_Get_Proveedores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -7921,49 +7774,28 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="Usuario" Type="int" Mode="In" />
           <Parameter Name="RequisicionID" Type="int" Mode="In" />
           <Parameter Name="Folio" Type="varchar" Mode="In" />
-          <Parameter Name="PruebaID" Type="int" Mode="In" />
+          <Parameter Name="PruebasProyectoID" Type="int" Mode="In" />
           <Parameter Name="FechaRequisicion" Type="varchar" Mode="In" />
           <Parameter Name="Observacion" Type="varchar(max)" Mode="In" />
           <Parameter Name="EstatusID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Sam3_Soldador_Certificacion_Get_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ObreroID" Type="int" Mode="In" />
-          <Parameter Name="PQRID" Type="int" Mode="In" />
-          <Parameter Name="procesoSoldaduraID" Type="int" Mode="In" />
-          <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Soldador_Certificacion_Set_Captura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="int" Mode="In" />
-          <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-          <Parameter Name="TipoCaptura" Type="int" Mode="In" />
-        </Function>
         <Function Name="Sam3_Soldadura_CertificacionPosicion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TIPO" Type="int" Mode="In" />
         </Function>
-        <Function Name="Sam3_Soldadura_Get_CedulaTuboCalificado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sam3_Soldadura_Get_DetalleJunta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="JuntaSpoolID" Type="int" Mode="In" />
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Sam3_Soldadura_Get_DetalleSoldadorProceso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="JuntaSoldaduraID" Type="int" Mode="In" />
+          <Parameter Name="JuntaSpoolID" Type="int" Mode="In" />
           <Parameter Name="Proceso" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Sam3_Soldadura_Get_DetalleTrabajoAdicional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="JuntaSpoolID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Sam3_Soldadura_GET_PQR_WPS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Soldadura_Get_TipoProcesoSoldadura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Sam3_Soldadura_Get_TipoPrueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sam3_Soldadura_JuntaSoldadura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Soldadura_New_PQR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="int" Mode="In" />
-          <Parameter Name="PQRID" Type="int" Mode="InOut" />
         </Function>
         <Function Name="Sam3_Soldadura_PQR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TIPO" Type="int" Mode="In" />
@@ -7975,31 +7807,44 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="ESPESORRELLENO" Type="decimal" Mode="In" />
           <Parameter Name="PROCESOSOLDADURARELLENO" Type="int" Mode="In" />
           <Parameter Name="PROCESOSOLDADURARAIZ" Type="int" Mode="In" />
-          <Parameter Name="NUMEROP" Type="varchar" Mode="In" />
+          <Parameter Name="NUMEROP" Type="int" Mode="In" />
           <Parameter Name="GRUPOPMATERIALBASE1" Type="int" Mode="In" />
           <Parameter Name="GRUPOPMATERIALBASE2" Type="int" Mode="In" />
-          <Parameter Name="APORTE" Type="varchar" Mode="In" />
-          <Parameter Name="MEZCLA" Type="varchar" Mode="In" />
-          <Parameter Name="RESPALDO" Type="varchar" Mode="In" />
-          <Parameter Name="GRUPOF" Type="varchar" Mode="In" />
+          <Parameter Name="APORTE" Type="int" Mode="In" />
+          <Parameter Name="MEZCLA" Type="int" Mode="In" />
+          <Parameter Name="RESPALDO" Type="int" Mode="In" />
+          <Parameter Name="GRUPOF" Type="int" Mode="In" />
           <Parameter Name="CODIGO" Type="int" Mode="In" />
           <Parameter Name="IDUSUARIO" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Soldadura_PQR_Existe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Retorna" Type="varchar" Mode="InOut" />
-        </Function>
-        <Function Name="Sam3_Soldadura_Set_PQR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Sam3_Soldadura_Set_WPS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Soldadura_Soldador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Soldadura_SoldadorCertificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TIPO" Type="int" Mode="In" />
+          <Parameter Name="SOLDADORCERTIFICACIONID" Type="int" Mode="In" />
+          <Parameter Name="OBREROID" Type="int" Mode="In" />
+          <Parameter Name="PQRID" Type="int" Mode="In" />
+          <Parameter Name="PROCESOSOLDADURAID" Type="int" Mode="In" />
+          <Parameter Name="TIPOPRUEBA" Type="int" Mode="In" />
+          <Parameter Name="POSICION" Type="int" Mode="In" />
+          <Parameter Name="FECHAINICIOCERTIFICADO" Type="varchar" Mode="In" />
+          <Parameter Name="FECHAFINCERTIFICADO" Type="varchar" Mode="In" />
+          <Parameter Name="CEDULATUBOCALIFICADO" Type="varchar" Mode="In" />
+          <Parameter Name="DIAMETROCALIFICADO" Type="decimal" Mode="In" />
+          <Parameter Name="ESPESORMINIMO" Type="decimal" Mode="In" />
+          <Parameter Name="ESPESORMAXIMO" Type="decimal" Mode="In" />
+          <Parameter Name="PORCENTAJEJUNTAS" Type="int" Mode="In" />
+          <Parameter Name="CERTIFICADOACTIVO" Type="bit" Mode="In" />
+          <Parameter Name="USUARIOMODIFICACION" Type="int" Mode="In" />
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
+          <Parameter Name="PASOSSOLDADURA" Type="int" Mode="In" />
+          <Parameter Name="IDUSUARIO" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Soldadura_TipoPruebas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TIPO" Type="int" Mode="In" />
@@ -8024,9 +7869,9 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="WPSID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_Soldadura_WPS_Existe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="WPSID" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Retorna" Type="varchar" Mode="InOut" />
+          <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_SP_ObtenerFoliosParaListado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FolioAvisoEntrada" Type="int" Mode="In" />
@@ -8061,13 +7906,9 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <Function Name="Sam3_Steelgo_Get_ChoferPorVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="VehiculoID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Sam3_Steelgo_Get_Colada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ProyectoID" Type="int" Mode="In" />
-        </Function>
         <Function Name="Sam3_Steelgo_Get_Color" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lenguaje" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="Sam3_Steelgo_Get_Contactos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sam3_Steelgo_Get_Cuadrante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AreaID" Type="int" Mode="In" />
         </Function>
@@ -8093,7 +7934,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Parameter Name="TipoObrero" Type="varchar" Mode="In" />
           <Parameter Name="ProyectoID" Type="int" Mode="In" />
           <Parameter Name="UsuarioID" Type="int" Mode="In" />
-          <Parameter Name="PatioID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sam3_SteelGo_Get_Patios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Tipo" Type="int" Mode="In" />
@@ -8142,9 +7982,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <Function Name="Sam3_SteelGo_Get_Taller_Patio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatioID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Sam3_SteelGo_Get_TipoPruebas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="Sam3_Steelgo_Get_TipoResultado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lenguaje" Type="varchar" Mode="In" />
         </Function>
@@ -8175,7 +8012,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <EntityContainer Name="Sam3StoreContainer">
           <EntitySet Name="Sam3_Acero" EntityType="Self.Sam3_Acero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_Area" EntityType="Self.Sam3_Area" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sam3_Articulos" EntityType="Self.Sam3_Articulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_Bulto" EntityType="Self.Sam3_Bulto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_CamposPredeterminados" EntityType="Self.Sam3_CamposPredeterminados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_CapacidadPorTurno" EntityType="Self.Sam3_CapacidadPorTurno" Schema="dbo" store:Type="Tables" />
@@ -8412,7 +8248,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <EntitySet Name="Sam3_TipoNotificacion" EntityType="Self.Sam3_TipoNotificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_TipoObrero" EntityType="Self.Sam3_TipoObrero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_TipoPersistencia" EntityType="Self.Sam3_TipoPersistencia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sam3_TipoProcesoSoldadura" EntityType="Self.Sam3_TipoProcesoSoldadura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_TipoPrueba" EntityType="Self.Sam3_TipoPrueba" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_TipoResultado" EntityType="Self.Sam3_TipoResultado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_TipoSoldadura" EntityType="Self.Sam3_TipoSoldadura" Schema="dbo" store:Type="Tables" />
@@ -8430,18 +8265,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <EntitySet Name="Sam3_Vehiculo" EntityType="Self.Sam3_Vehiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sam3_WPS" EntityType="Self.Sam3_WPS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tempInsert" EntityType="Self.tempInsert" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sam3_CodigoAsme" EntityType="Self.Sam3_CodigoAsme" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Sam3_CodigoAsme].[ProyectoId] AS [ProyectoId], 
-    [Sam3_CodigoAsme].[Especificacion] AS [Especificacion], 
-    [Sam3_CodigoAsme].[Codigo] AS [Codigo], 
-    [Sam3_CodigoAsme].[TipoPruebaId] AS [TipoPruebaId], 
-    [Sam3_CodigoAsme].[CodigoAsmeID] AS [CodigoAsmeID], 
-    [Sam3_CodigoAsme].[Activo] AS [Activo], 
-    [Sam3_CodigoAsme].[UsuarioModificacion] AS [UsuarioModificacion], 
-    [Sam3_CodigoAsme].[FechaModificacion] AS [FechaModificacion]
-    FROM [dbo].[Sam3_CodigoAsme] AS [Sam3_CodigoAsme]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="Sam3_ColaCreacionNumerosUnicos" EntityType="Self.Sam3_ColaCreacionNumerosUnicos" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Sam3_ColaCreacionNumerosUnicos].[ID] AS [ID], 
@@ -8530,13 +8353,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
     [Sam3_Rel_Perfil_Entidad_Pagina].[FechaModificacion] AS [FechaModificacion]
     FROM [dbo].[Sam3_Rel_Perfil_Entidad_Pagina] AS [Sam3_Rel_Perfil_Entidad_Pagina]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Sam3_Rel_ProveedorTipoPrueba" EntityType="Self.Sam3_Rel_ProveedorTipoPrueba" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Sam3_Rel_ProveedorTipoPrueba].[ProveedorTipoPruebaID] AS [ProveedorTipoPruebaID], 
-    [Sam3_Rel_ProveedorTipoPrueba].[TipoPruebaID] AS [TipoPruebaID], 
-    [Sam3_Rel_ProveedorTipoPrueba].[ProveedorID] AS [ProveedorID]
-    FROM [dbo].[Sam3_Rel_ProveedorTipoPrueba] AS [Sam3_Rel_ProveedorTipoPrueba]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="Sam3_ServTec_Pruebas_ReporteID_Impresion" EntityType="Self.Sam3_ServTec_Pruebas_ReporteID_Impresion" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Sam3_ServTec_Pruebas_ReporteID_Impresion].[RequisicionPruebaElementoID] AS [RequisicionPruebaElementoID], 
@@ -8559,16 +8375,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
     [Sam3_ServTec_RequisicionAsignacion].[StatusID] AS [StatusID]
     FROM [dbo].[Sam3_ServTec_RequisicionAsignacion] AS [Sam3_ServTec_RequisicionAsignacion]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Sam3_ServTec_RequisicionJuntaSpool" EntityType="Self.Sam3_ServTec_RequisicionJuntaSpool" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Sam3_ServTec_RequisicionJuntaSpool].[RequisicionJuntaSpoolID] AS [RequisicionJuntaSpoolID], 
-    [Sam3_ServTec_RequisicionJuntaSpool].[JuntaSpoolID] AS [JuntaSpoolID], 
-    [Sam3_ServTec_RequisicionJuntaSpool].[RequisicionID] AS [RequisicionID], 
-    [Sam3_ServTec_RequisicionJuntaSpool].[Activo] AS [Activo], 
-    [Sam3_ServTec_RequisicionJuntaSpool].[UsuarioModificacion] AS [UsuarioModificacion], 
-    [Sam3_ServTec_RequisicionJuntaSpool].[FechaModificacion] AS [FechaModificacion]
-    FROM [dbo].[Sam3_ServTec_RequisicionJuntaSpool] AS [Sam3_ServTec_RequisicionJuntaSpool]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="Sam3_ServTec_ValidacionResultados" EntityType="Self.Sam3_ServTec_ValidacionResultados" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Sam3_ServTec_ValidacionResultados].[ValidacionResultadosID] AS [ValidacionResultadosID], 
@@ -8580,16 +8386,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
     [Sam3_ServTec_ValidacionResultados].[UsuarioModificacion] AS [UsuarioModificacion], 
     [Sam3_ServTec_ValidacionResultados].[FechaModificacion] AS [FechaModificacion]
     FROM [dbo].[Sam3_ServTec_ValidacionResultados] AS [Sam3_ServTec_ValidacionResultados]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Sam3_TurnoLaboralProveedor" EntityType="Self.Sam3_TurnoLaboralProveedor" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Sam3_TurnoLaboralProveedor].[TurnoLaboralProveedorID] AS [TurnoLaboralProveedorID], 
-    [Sam3_TurnoLaboralProveedor].[ProveedorID] AS [ProveedorID], 
-    [Sam3_TurnoLaboralProveedor].[TurnoLaboralID] AS [TurnoLaboralID], 
-    [Sam3_TurnoLaboralProveedor].[Activo] AS [Activo], 
-    [Sam3_TurnoLaboralProveedor].[UsuarioModificacion] AS [UsuarioModificacion], 
-    [Sam3_TurnoLaboralProveedor].[FechaModificacion] AS [FechaModificacion]
-    FROM [dbo].[Sam3_TurnoLaboralProveedor] AS [Sam3_TurnoLaboralProveedor]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Sam3_V_InspeccionVisual" EntityType="Self.Sam3_V_InspeccionVisual" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -9623,6 +9419,10 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <End Role="Sam3_Rel_Proyecto_Entidad_Configuracion" EntitySet="Sam3_Rel_Proyecto_Entidad_Configuracion" />
             <End Role="Sam3_Incidencia" EntitySet="Sam3_Incidencia" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sam3_InspeccionDimensional_Sam3_Defecto" Association="Self.FK_Sam3_InspeccionDimensional_Sam3_Defecto">
+            <End Role="Sam3_Defecto" EntitySet="Sam3_Defecto" />
+            <End Role="Sam3_InspeccionDimensional" EntitySet="Sam3_InspeccionDimensional" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sam3_InspeccionDimensional_Sam3_Obrero" Association="Self.FK_Sam3_InspeccionDimensional_Sam3_Obrero">
             <End Role="Sam3_Obrero" EntitySet="Sam3_Obrero" />
             <End Role="Sam3_InspeccionDimensional" EntitySet="Sam3_InspeccionDimensional" />
@@ -9846,16 +9646,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="Int32" />
           <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="Sam3_Articulos">
-          <Key>
-            <PropertyRef Name="ArticuloID" />
-          </Key>
-          <Property Name="ArticuloID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Articulo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Int32" />
-          <Property Name="UsuarioModificacion" Type="Int32" Nullable="false" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Sam3_Bulto">
           <Key>
@@ -10199,6 +9989,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <NavigationProperty Name="Sam3_Defecto_Juntas1" Relationship="Self.FK__Sam3_Defe__Defec__234A136B" FromRole="Sam3_Defecto" ToRole="Sam3_Defecto_Juntas" />
           <NavigationProperty Name="Sam3_Defecto_Tipos" Relationship="Self.FK__Sam3_Defe__ID_DE__2161CAF9" FromRole="Sam3_Defecto" ToRole="Sam3_Defecto_Tipos" />
           <NavigationProperty Name="Sam3_ServTec_EntregaResultados" Relationship="Self.FK__Sam3_Serv__Defec__59A6241C" FromRole="Sam3_Defecto" ToRole="Sam3_ServTec_EntregaResultados" />
+          <NavigationProperty Name="Sam3_InspeccionDimensional" Relationship="Self.FK_Sam3_InspeccionDimensional_Sam3_Defecto" FromRole="Sam3_Defecto" ToRole="Sam3_InspeccionDimensional" />
           <NavigationProperty Name="Sam3_InspeccionVisual" Relationship="Self.FK_Sam3_InspeccionVisual_Sam3_Defecto" FromRole="Sam3_Defecto" ToRole="Sam3_InspeccionVisual" />
         </EntityType>
         <EntityType Name="Sam3_Defecto_Juntas">
@@ -11097,6 +10888,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="Int32" />
           <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Sam3_Defecto" Relationship="Self.FK_Sam3_InspeccionDimensional_Sam3_Defecto" FromRole="Sam3_InspeccionDimensional" ToRole="Sam3_Defecto" />
           <NavigationProperty Name="Sam3_Obrero" Relationship="Self.FK_Sam3_InspeccionDimensional_Sam3_Obrero" FromRole="Sam3_InspeccionDimensional" ToRole="Sam3_Obrero" />
           <NavigationProperty Name="Sam3_TipoResultado" Relationship="Self.FK_Sam3_InspeccionDimensional_Sam3_TipoResultado" FromRole="Sam3_InspeccionDimensional" ToRole="Sam3_TipoResultado" />
         </EntityType>
@@ -11227,7 +11019,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="FechaReporte" Type="DateTime" Precision="3" />
           <Property Name="UsuarioModificacion" Type="Int32" Nullable="false" />
           <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ColadaID" Type="Int32" />
           <NavigationProperty Name="Sam3_JuntaTrabajo" Relationship="Self.FK_sam3_JuntaSoldadura_sam3_Junta" FromRole="Sam3_JuntaSoldadura" ToRole="Sam3_JuntaTrabajo" />
           <NavigationProperty Name="Sam3_ProcesoSoldadura" Relationship="Self.FK_sam3_JuntaSoldadura_sam3_ProcesoSoldadura" FromRole="Sam3_JuntaSoldadura" ToRole="Sam3_ProcesoSoldadura" />
           <NavigationProperty Name="Sam3_ProcesoSoldadura1" Relationship="Self.FK_sam3_JuntaSoldadura_sam3_ProcesoSoldadura1" FromRole="Sam3_JuntaSoldadura" ToRole="Sam3_ProcesoSoldadura" />
@@ -11658,9 +11449,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="IdentificadorMigra" Type="Int32" />
           <Property Name="UsuarioID" Type="Int32" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ApMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sam3_InspeccionDimensional" Relationship="Self.FK_Sam3_InspeccionDimensional_Sam3_Obrero" FromRole="Sam3_Obrero" ToRole="Sam3_InspeccionDimensional" />
           <NavigationProperty Name="Sam3_InspeccionVisual" Relationship="Self.FK_Sam3_InspeccionVisual_Sam3_Obrero" FromRole="Sam3_Obrero" ToRole="Sam3_InspeccionVisual" />
           <NavigationProperty Name="Sam3_JuntaArmado" Relationship="Self.FK_sam3_JuntaArmado_sam3_Obrero" FromRole="Sam3_Obrero" ToRole="Sam3_JuntaArmado" />
@@ -12012,17 +11800,16 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="ProcesoSoldaduraRellenoID" Type="Int32" Nullable="false" />
           <Property Name="ProcesoSoldaduraRaizID" Type="Int32" />
           <Property Name="NumeroP" Type="Int32" />
-          <Property Name="GrupoPID" Type="Int32" />
-          <Property Name="Aporte" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Mezcla" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Respaldo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="GrupoF" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="GrupoPMaterialBase1" Type="Int32" />
+          <Property Name="GrupoPMaterialBase2" Type="Int32" />
+          <Property Name="Aporte" Type="Int32" />
+          <Property Name="Mezcla" Type="Int32" />
+          <Property Name="Respaldo" Type="Int32" />
+          <Property Name="GrupoF" Type="Int32" />
           <Property Name="Codigo" Type="Int32" />
           <Property Name="Activo" Type="Boolean" />
           <Property Name="UsuarioModificacion" Type="Int32" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-          <Property Name="GrupoPMaterialBase1" Type="Int32" />
-          <Property Name="GrupoPMaterialBase2" Type="Int32" />
           <NavigationProperty Name="Sam3_ProcesoSoldadura" Relationship="Self.FK_sam3_PQR_sam3_ProcesoSoldadura" FromRole="Sam3_PQR" ToRole="Sam3_ProcesoSoldadura" />
           <NavigationProperty Name="Sam3_SoldadorCertificacion" Relationship="Self.FK_sam3_SoldadorCertificacion_sam3_PQR" FromRole="Sam3_PQR" ToRole="Sam3_SoldadorCertificacion" />
         </EntityType>
@@ -13264,14 +13051,13 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           </Key>
           <Property Name="RequisicionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Folio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoPruebaID" Type="Int32" Nullable="false" />
+          <Property Name="PruebasProyectoID" Type="Int32" Nullable="false" />
           <Property Name="FechaRequisicion" Type="DateTime" Precision="3" />
           <Property Name="Observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EstatusID" Type="Int32" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="Int32" />
           <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CodigoAsmeID" Type="Int32" />
           <NavigationProperty Name="Sam3_ServTec_RequisicionAsignacion" Relationship="Self.FK__Sam3_Serv__Requi__5F5EFD72" FromRole="Sam3_ServTec_Requisicion" ToRole="Sam3_ServTec_RequisicionAsignacion" />
         </EntityType>
         <EntityType Name="Sam3_ServTec_RequisicionPruebaElemento">
@@ -13329,7 +13115,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="Int32" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-          <Property Name="CedulaTuboCalificadoID" Type="Int32" />
           <NavigationProperty Name="Sam3_Obrero" Relationship="Self.FK_sam3_SoldadorCertificacion_sam3_Obrero" FromRole="Sam3_SoldadorCertificacion" ToRole="Sam3_Obrero" />
           <NavigationProperty Name="Sam3_PQR" Relationship="Self.FK_sam3_SoldadorCertificacion_sam3_PQR" FromRole="Sam3_SoldadorCertificacion" ToRole="Sam3_PQR" />
         </EntityType>
@@ -13608,16 +13393,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="UsuarioModificacion" Type="Int32" />
           <NavigationProperty Name="Sam3_PersistenciaMedioTransporte" Relationship="Self.FK__Sam3_Pers__TipoP__42C2BEC4" FromRole="Sam3_TipoPersistencia" ToRole="Sam3_PersistenciaMedioTransporte" />
         </EntityType>
-        <EntityType Name="Sam3_TipoProcesoSoldadura">
-          <Key>
-            <PropertyRef Name="TipoProcesoSoldaduraID" />
-          </Key>
-          <Property Name="TipoProcesoSoldaduraID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoProcesoSoldadura" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="Int32" />
-          <Property Name="UsuarioModificacion" Type="Int32" Nullable="false" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Sam3_TipoPrueba">
           <Key>
             <PropertyRef Name="TipoPruebaID" />
@@ -13848,6 +13623,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="WPSNombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="PQRRaizId" Type="Int32" />
           <Property Name="PQRRellenoId" Type="Int32" />
+          <Property Name="GrupoPId" Type="Int32" />
           <Property Name="PWHTId" Type="Boolean" />
           <Property Name="EspesorMaximoRelleno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EspesorMinimoRelleno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -13856,7 +13632,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="Activo" Type="Boolean" />
           <Property Name="UsuarioModificacion" Type="Int32" />
           <Property Name="FechaModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PREHEAT" Type="Boolean" />
         </EntityType>
         <EntityType Name="tempInsert">
           <Key>
@@ -13864,24 +13639,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Sam3_CodigoAsme">
-          <Key>
-            <PropertyRef Name="ProyectoId" />
-            <PropertyRef Name="Especificacion" />
-            <PropertyRef Name="Codigo" />
-            <PropertyRef Name="TipoPruebaId" />
-            <PropertyRef Name="CodigoAsmeID" />
-            <PropertyRef Name="Activo" />
-          </Key>
-          <Property Name="ProyectoId" Type="Int32" Nullable="false" />
-          <Property Name="Especificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TipoPruebaId" Type="Int32" Nullable="false" />
-          <Property Name="CodigoAsmeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <Property Name="UsuarioModificacion" Type="Int32" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Sam3_ColaCreacionNumerosUnicos">
           <Key>
@@ -14022,16 +13779,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <NavigationProperty Name="Sam3_Pagina" Relationship="Self.FK__Sam3_Rel___Pagin__15DA3E5D" FromRole="Sam3_Rel_Perfil_Entidad_Pagina" ToRole="Sam3_Pagina" />
           <NavigationProperty Name="Sam3_Perfil" Relationship="Self.FK__Sam3_Rel___Perfi__13F1F5EB" FromRole="Sam3_Rel_Perfil_Entidad_Pagina" ToRole="Sam3_Perfil" />
         </EntityType>
-        <EntityType Name="Sam3_Rel_ProveedorTipoPrueba">
-          <Key>
-            <PropertyRef Name="ProveedorTipoPruebaID" />
-            <PropertyRef Name="TipoPruebaID" />
-            <PropertyRef Name="ProveedorID" />
-          </Key>
-          <Property Name="ProveedorTipoPruebaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoPruebaID" Type="Int32" Nullable="false" />
-          <Property Name="ProveedorID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Sam3_ServTec_Pruebas_ReporteID_Impresion">
           <Key>
             <PropertyRef Name="Activo" />
@@ -14063,22 +13810,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <NavigationProperty Name="Sam3_ServTec_Requisicion" Relationship="Self.FK__Sam3_Serv__Requi__5F5EFD72" FromRole="Sam3_ServTec_RequisicionAsignacion" ToRole="Sam3_ServTec_Requisicion" />
           <NavigationProperty Name="Sam3_TurnoLaboral" Relationship="Self.FK__Sam3_Serv__Turno__605321AB" FromRole="Sam3_ServTec_RequisicionAsignacion" ToRole="Sam3_TurnoLaboral" />
         </EntityType>
-        <EntityType Name="Sam3_ServTec_RequisicionJuntaSpool">
-          <Key>
-            <PropertyRef Name="RequisicionJuntaSpoolID" />
-            <PropertyRef Name="JuntaSpoolID" />
-            <PropertyRef Name="RequisicionID" />
-            <PropertyRef Name="Activo" />
-            <PropertyRef Name="UsuarioModificacion" />
-            <PropertyRef Name="FechaModificacion" />
-          </Key>
-          <Property Name="RequisicionJuntaSpoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JuntaSpoolID" Type="Int32" Nullable="false" />
-          <Property Name="RequisicionID" Type="Int32" Nullable="false" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <Property Name="UsuarioModificacion" Type="Int32" Nullable="false" />
-          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="Sam3_ServTec_ValidacionResultados">
           <Key>
             <PropertyRef Name="ValidacionResultadosID" />
@@ -14094,21 +13825,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Name="Activo" Type="Int32" Nullable="false" />
           <Property Name="UsuarioModificacion" Type="Int32" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="Sam3_TurnoLaboralProveedor">
-          <Key>
-            <PropertyRef Name="TurnoLaboralProveedorID" />
-            <PropertyRef Name="ProveedorID" />
-            <PropertyRef Name="TurnoLaboralID" />
-            <PropertyRef Name="Activo" />
-            <PropertyRef Name="FechaModificacion" />
-          </Key>
-          <Property Name="TurnoLaboralProveedorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProveedorID" Type="Int32" Nullable="false" />
-          <Property Name="TurnoLaboralID" Type="Int32" Nullable="false" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <Property Name="UsuarioModificacion" Type="Int32" />
-          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Sam3_V_InspeccionVisual">
           <Key>
@@ -14734,6 +14450,18 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               <PropertyRef Name="DefectoID" />
             </Principal>
             <Dependent Role="Sam3_ServTec_EntregaResultados">
+              <PropertyRef Name="DefectoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sam3_InspeccionDimensional_Sam3_Defecto">
+          <End Role="Sam3_Defecto" Type="Self.Sam3_Defecto" Multiplicity="0..1" />
+          <End Role="Sam3_InspeccionDimensional" Type="Self.Sam3_InspeccionDimensional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sam3_Defecto">
+              <PropertyRef Name="DefectoID" />
+            </Principal>
+            <Dependent Role="Sam3_InspeccionDimensional">
               <PropertyRef Name="DefectoID" />
             </Dependent>
           </ReferentialConstraint>
@@ -17657,7 +17385,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <EntityContainer Name="SamContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Sam3_Acero" EntityType="Self.Sam3_Acero" />
           <EntitySet Name="Sam3_Area" EntityType="Self.Sam3_Area" />
-          <EntitySet Name="Sam3_Articulos" EntityType="Self.Sam3_Articulos" />
           <EntitySet Name="Sam3_Bulto" EntityType="Self.Sam3_Bulto" />
           <EntitySet Name="Sam3_CamposPredeterminados" EntityType="Self.Sam3_CamposPredeterminados" />
           <EntitySet Name="Sam3_CapacidadPorTurno" EntityType="Self.Sam3_CapacidadPorTurno" />
@@ -17894,7 +17621,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <EntitySet Name="Sam3_TipoNotificacion" EntityType="Self.Sam3_TipoNotificacion" />
           <EntitySet Name="Sam3_TipoObrero" EntityType="Self.Sam3_TipoObrero" />
           <EntitySet Name="Sam3_TipoPersistencia" EntityType="Self.Sam3_TipoPersistencia" />
-          <EntitySet Name="Sam3_TipoProcesoSoldadura" EntityType="Self.Sam3_TipoProcesoSoldadura" />
           <EntitySet Name="Sam3_TipoPrueba" EntityType="Self.Sam3_TipoPrueba" />
           <EntitySet Name="Sam3_TipoResultado" EntityType="Self.Sam3_TipoResultado" />
           <EntitySet Name="Sam3_TipoSoldadura" EntityType="Self.Sam3_TipoSoldadura" />
@@ -17912,7 +17638,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <EntitySet Name="Sam3_Vehiculo" EntityType="Self.Sam3_Vehiculo" />
           <EntitySet Name="Sam3_WPS" EntityType="Self.Sam3_WPS" />
           <EntitySet Name="tempInsert" EntityType="Self.tempInsert" />
-          <EntitySet Name="Sam3_CodigoAsme" EntityType="Self.Sam3_CodigoAsme" />
           <EntitySet Name="Sam3_ColaCreacionNumerosUnicos" EntityType="Self.Sam3_ColaCreacionNumerosUnicos" />
           <EntitySet Name="Sam3_CondicionesClimatologicas" EntityType="Self.Sam3_CondicionesClimatologicas" />
           <EntitySet Name="Sam3_EmbarquePaqueteSpool" EntityType="Self.Sam3_EmbarquePaqueteSpool" />
@@ -17920,12 +17645,9 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <EntitySet Name="Sam3_ProcesoPintura" EntityType="Self.Sam3_ProcesoPintura" />
           <EntitySet Name="Sam3_ProyectoSistemaPintura" EntityType="Self.Sam3_ProyectoSistemaPintura" />
           <EntitySet Name="Sam3_Rel_Perfil_Entidad_Pagina" EntityType="Self.Sam3_Rel_Perfil_Entidad_Pagina" />
-          <EntitySet Name="Sam3_Rel_ProveedorTipoPrueba" EntityType="Self.Sam3_Rel_ProveedorTipoPrueba" />
           <EntitySet Name="Sam3_ServTec_Pruebas_ReporteID_Impresion" EntityType="Self.Sam3_ServTec_Pruebas_ReporteID_Impresion" />
           <EntitySet Name="Sam3_ServTec_RequisicionAsignacion" EntityType="Self.Sam3_ServTec_RequisicionAsignacion" />
-          <EntitySet Name="Sam3_ServTec_RequisicionJuntaSpool" EntityType="Self.Sam3_ServTec_RequisicionJuntaSpool" />
           <EntitySet Name="Sam3_ServTec_ValidacionResultados" EntityType="Self.Sam3_ServTec_ValidacionResultados" />
-          <EntitySet Name="Sam3_TurnoLaboralProveedor" EntityType="Self.Sam3_TurnoLaboralProveedor" />
           <EntitySet Name="Sam3_V_InspeccionVisual" EntityType="Self.Sam3_V_InspeccionVisual" />
           <EntitySet Name="VW_AvisoEntrada" EntityType="Self.VW_AvisoEntrada" />
           <EntitySet Name="VW_FolioCuantificacion" EntityType="Self.VW_FolioCuantificacion" />
@@ -18102,6 +17824,10 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <AssociationSet Name="FK__Sam3_Serv__Defec__59A6241C" Association="Self.FK__Sam3_Serv__Defec__59A6241C">
             <End Role="Sam3_Defecto" EntitySet="Sam3_Defecto" />
             <End Role="Sam3_ServTec_EntregaResultados" EntitySet="Sam3_ServTec_EntregaResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sam3_InspeccionDimensional_Sam3_Defecto" Association="Self.FK_Sam3_InspeccionDimensional_Sam3_Defecto">
+            <End Role="Sam3_Defecto" EntitySet="Sam3_Defecto" />
+            <End Role="Sam3_InspeccionDimensional" EntitySet="Sam3_InspeccionDimensional" />
           </AssociationSet>
           <AssociationSet Name="FK_Sam3_InspeccionVisual_Sam3_Defecto" Association="Self.FK_Sam3_InspeccionVisual_Sam3_Defecto">
             <End Role="Sam3_Defecto" EntitySet="Sam3_Defecto" />
@@ -19099,11 +18825,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="Todos" Mode="In" Type="Int32" />
             <Parameter Name="Pagina" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Armado_Get_MaterialesSpool2" ReturnType="Collection(Sam3.Sam3_Armado_Get_MaterialesSpool2_Result)">
-            <Parameter Name="JuntaSpoolID" Mode="In" Type="Int32" />
-            <Parameter Name="Todos" Mode="In" Type="Int32" />
-            <Parameter Name="Pagina" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Sam3_Armado_JuntaArmado">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
@@ -19168,13 +18889,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
             <Parameter Name="GrupoP" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Cat_PQR_ListaCodigos" ReturnType="Collection(Sam3.Sam3_Cat_PQR_ListaCodigos_Result)">
-            <Parameter Name="PROYECTOID" Mode="In" Type="Int32" />
-            <Parameter Name="TIPOPRUEBA" Mode="In" Type="Int32" />
-            <Parameter Name="ESPECIFICACION" Mode="In" Type="String" />
-            <Parameter Name="CODIGO" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Cat_PQR_ListaMateriales" ReturnType="Collection(Sam3.Sam3_Cat_PQR_ListaMateriales_Result)" />
           <FunctionImport Name="Sam3_Cat_PQR_Mezcla" ReturnType="Collection(Sam3.Sam3_Cat_PQR_Mezcla_Result)">
             <Parameter Name="TIPO" Mode="In" Type="Int32" />
             <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -19256,8 +18970,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Embarque_Get_Consulta" ReturnType="Collection(Sam3.Sam3_Embarque_Get_Consulta_Result)">
-            <Parameter Name="ProyectoIDs" Mode="In" Type="String" />
-            <Parameter Name="PatioIDS" Mode="In" Type="String" />
             <Parameter Name="Area" Mode="In" Type="Int32" />
             <Parameter Name="Cuadrante" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -19352,15 +19064,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <FunctionImport Name="Sam3_Embarque_Set_RevisionSpool">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Get_Areas_Proyecto_Patio" ReturnType="Collection(Sam3.Sam3_Get_Areas_Proyecto_Patio_Result)">
-            <Parameter Name="ProyectoIDs" Mode="In" Type="String" />
-            <Parameter Name="PatioIDS" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Get_Cuadrante_Proyecto_Patio" ReturnType="Collection(Sam3.Sam3_Get_Cuadrante_Proyecto_Patio_Result)">
-            <Parameter Name="ProyectoIDs" Mode="In" Type="String" />
-            <Parameter Name="PatioIDS" Mode="In" Type="String" />
-            <Parameter Name="Area" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Sam3_GetErrorInfo" ReturnType="Collection(Sam3.Sam3_GetErrorInfo_Result)" />
           <FunctionImport Name="Sam3_Inspeccion_Dimensional">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
@@ -19378,16 +19081,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="OrdenTrabajoSpoolID" Mode="In" Type="Int32" />
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
             <Parameter Name="DefectoID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Inspeccion_Get_DetalleXJunta" ReturnType="Collection(Sam3.Sam3_Inspeccion_Get_DetalleXJunta_Result)">
-            <Parameter Name="OrdenTrabajoSpoolID" Mode="In" Type="Int32" />
-            <Parameter Name="Lenguaje" Mode="In" Type="String" />
-            <Parameter Name="JuntaSpoolID" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Inspeccion_VD_Get_JuntasXSpoolID" ReturnType="Collection(Sam3.Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result)">
-            <Parameter Name="OrdenTrabajoSpoolID" Mode="In" Type="Int32" />
-            <Parameter Name="Lenguaje" Mode="In" Type="String" />
-            <Parameter Name="Todos" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Inspeccion_VisualDimensional">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
@@ -19464,7 +19157,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           </FunctionImport>
           <FunctionImport Name="Sam3_Pintura_Get_MedioTransporte" ReturnType="Collection(Sam3.Sam3_Pintura_Get_MedioTransporte_Result)">
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
-            <Parameter Name="ProyectoID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Pintura_Get_MedioTransporteCargado" ReturnType="Collection(Sam3.Sam3_Pintura_Get_MedioTransporteCargado_Result)">
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
@@ -19472,7 +19164,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <FunctionImport Name="Sam3_Pintura_Get_SistemaPintura" ReturnType="Collection(Sam3.Sam3_Pintura_Get_SistemaPintura_Result)" />
           <FunctionImport Name="Sam3_Pintura_Get_SpoolCarroBackLog" ReturnType="Collection(Sam3.Sam3_Pintura_Get_SpoolCarroBackLog_Result)">
             <Parameter Name="MedioTransporteCargaID" Mode="In" Type="Int32" />
-            <Parameter Name="ProyectoID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Pintura_Get_Status_Spool" ReturnType="Collection(Sam3.Sam3_Pintura_Get_Status_Spool_Result)">
             <Parameter Name="SistemaPinturaID" Mode="In" Type="Int32" />
@@ -19569,13 +19260,13 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Sam3_ServiciosTecnicos_Get_JuntasXPrueba" ReturnType="Collection(Sam3.Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result)">
-            <Parameter Name="ProyectoID" Mode="In" Type="Int32" />
+            <Parameter Name="PruebaID" Mode="In" Type="Int32" />
             <Parameter Name="Todos" Mode="In" Type="Int32" />
             <Parameter Name="RequisicionID" Mode="In" Type="Int32" />
-            <Parameter Name="Lenguaje" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo" ReturnType="Collection(Sam3.Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo_Result)">
             <Parameter Name="JuntaTrabajoID" Mode="In" Type="Int32" />
+            <Parameter Name="PruebaID" Mode="In" Type="Int32" />
             <Parameter Name="ProyectoID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_ServiciosTecnicos_Get_Proveedores" ReturnType="Collection(Sam3.Sam3_ServiciosTecnicos_Get_Proveedores_Result)">
@@ -19615,7 +19306,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="REQUISICIONID" Mode="In" Type="Int32" />
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados">
+          <FunctionImport Name="Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados" ReturnType="Collection(Sam3.Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados_Result)">
             <Parameter Name="FOLIO" Mode="In" Type="String" />
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
           </FunctionImport>
@@ -19668,49 +19359,28 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
             <Parameter Name="RequisicionID" Mode="In" Type="Int32" />
             <Parameter Name="Folio" Mode="In" Type="String" />
-            <Parameter Name="PruebaID" Mode="In" Type="Int32" />
+            <Parameter Name="PruebasProyectoID" Mode="In" Type="Int32" />
             <Parameter Name="FechaRequisicion" Mode="In" Type="String" />
             <Parameter Name="Observacion" Mode="In" Type="String" />
             <Parameter Name="EstatusID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Soldador_Certificacion_Get_ID" ReturnType="Collection(Int32)">
-            <Parameter Name="ObreroID" Mode="In" Type="Int32" />
-            <Parameter Name="PQRID" Mode="In" Type="Int32" />
-            <Parameter Name="procesoSoldaduraID" Mode="In" Type="Int32" />
-            <Parameter Name="Lenguaje" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Soldador_Certificacion_Set_Captura">
-            <Parameter Name="Usuario" Mode="In" Type="Int32" />
-            <Parameter Name="Lenguaje" Mode="In" Type="String" />
-            <Parameter Name="TipoCaptura" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_CertificacionPosicion" ReturnType="Collection(Sam3.Sam3_Soldadura_CertificacionPosicion_Result)">
             <Parameter Name="TIPO" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Soldadura_Get_CedulaTuboCalificado" ReturnType="Collection(Sam3.Sam3_Soldadura_Get_CedulaTuboCalificado_Result)" />
           <FunctionImport Name="Sam3_Soldadura_Get_DetalleJunta" ReturnType="Collection(Sam3.Sam3_Soldadura_Get_DetalleJunta_Result)">
             <Parameter Name="JuntaSpoolID" Mode="In" Type="Int32" />
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_Get_DetalleSoldadorProceso" ReturnType="Collection(Sam3.Sam3_Soldadura_Get_DetalleSoldadorProceso_Result)">
-            <Parameter Name="JuntaSoldaduraID" Mode="In" Type="Int32" />
+            <Parameter Name="JuntaSpoolID" Mode="In" Type="Int32" />
             <Parameter Name="Proceso" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_Get_DetalleTrabajoAdicional" ReturnType="Collection(Sam3.Sam3_Soldadura_Get_DetalleTrabajoAdicional_Result)">
             <Parameter Name="JuntaSpoolID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Soldadura_GET_PQR_WPS" ReturnType="Collection(Sam3.Sam3_Soldadura_GET_PQR_WPS_Result)">
-            <Parameter Name="Lenguaje" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Soldadura_Get_TipoProcesoSoldadura" ReturnType="Collection(Sam3.Sam3_Soldadura_Get_TipoProcesoSoldadura_Result)" />
-          <FunctionImport Name="Sam3_Soldadura_Get_TipoPrueba" ReturnType="Collection(Sam3.Sam3_Soldadura_Get_TipoPrueba_Result)" />
           <FunctionImport Name="Sam3_Soldadura_JuntaSoldadura">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Soldadura_New_PQR">
-            <Parameter Name="Usuario" Mode="In" Type="Int32" />
-            <Parameter Name="PQRID" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_PQR" ReturnType="Collection(Sam3.Sam3_Soldadura_PQR_Result)">
             <Parameter Name="TIPO" Mode="In" Type="Int32" />
@@ -19722,31 +19392,44 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="ESPESORRELLENO" Mode="In" Type="Decimal" />
             <Parameter Name="PROCESOSOLDADURARELLENO" Mode="In" Type="Int32" />
             <Parameter Name="PROCESOSOLDADURARAIZ" Mode="In" Type="Int32" />
-            <Parameter Name="NUMEROP" Mode="In" Type="String" />
+            <Parameter Name="NUMEROP" Mode="In" Type="Int32" />
             <Parameter Name="GRUPOPMATERIALBASE1" Mode="In" Type="Int32" />
             <Parameter Name="GRUPOPMATERIALBASE2" Mode="In" Type="Int32" />
-            <Parameter Name="APORTE" Mode="In" Type="String" />
-            <Parameter Name="MEZCLA" Mode="In" Type="String" />
-            <Parameter Name="RESPALDO" Mode="In" Type="String" />
-            <Parameter Name="GRUPOF" Mode="In" Type="String" />
+            <Parameter Name="APORTE" Mode="In" Type="Int32" />
+            <Parameter Name="MEZCLA" Mode="In" Type="Int32" />
+            <Parameter Name="RESPALDO" Mode="In" Type="Int32" />
+            <Parameter Name="GRUPOF" Mode="In" Type="Int32" />
             <Parameter Name="CODIGO" Mode="In" Type="Int32" />
             <Parameter Name="IDUSUARIO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_PQR_Existe">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Retorna" Mode="InOut" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Soldadura_Set_PQR">
-            <Parameter Name="Usuario" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_Soldadura_Set_WPS">
-            <Parameter Name="Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_Soldador">
             <Parameter Name="Usuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_SoldadorCertificacion" ReturnType="Collection(Sam3.Sam3_Soldadura_SoldadorCertificacion_Result)">
+            <Parameter Name="TIPO" Mode="In" Type="Int32" />
+            <Parameter Name="SOLDADORCERTIFICACIONID" Mode="In" Type="Int32" />
+            <Parameter Name="OBREROID" Mode="In" Type="Int32" />
+            <Parameter Name="PQRID" Mode="In" Type="Int32" />
+            <Parameter Name="PROCESOSOLDADURAID" Mode="In" Type="Int32" />
+            <Parameter Name="TIPOPRUEBA" Mode="In" Type="Int32" />
+            <Parameter Name="POSICION" Mode="In" Type="Int32" />
+            <Parameter Name="FECHAINICIOCERTIFICADO" Mode="In" Type="String" />
+            <Parameter Name="FECHAFINCERTIFICADO" Mode="In" Type="String" />
+            <Parameter Name="CEDULATUBOCALIFICADO" Mode="In" Type="String" />
+            <Parameter Name="DIAMETROCALIFICADO" Mode="In" Type="Decimal" />
+            <Parameter Name="ESPESORMINIMO" Mode="In" Type="Decimal" />
+            <Parameter Name="ESPESORMAXIMO" Mode="In" Type="Decimal" />
+            <Parameter Name="PORCENTAJEJUNTAS" Mode="In" Type="Int32" />
+            <Parameter Name="CERTIFICADOACTIVO" Mode="In" Type="Boolean" />
+            <Parameter Name="USUARIOMODIFICACION" Mode="In" Type="Int32" />
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
+            <Parameter Name="PASOSSOLDADURA" Mode="In" Type="Int32" />
+            <Parameter Name="IDUSUARIO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_TipoPruebas" ReturnType="Collection(Sam3.Sam3_Soldadura_TipoPruebas_Result)">
             <Parameter Name="TIPO" Mode="In" Type="Int32" />
@@ -19771,9 +19454,9 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="WPSID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Soldadura_WPS_Existe">
-            <Parameter Name="WPSID" Mode="In" Type="Int32" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Retorna" Mode="InOut" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_SP_ObtenerFoliosParaListado" ReturnType="Collection(Int32)">
             <Parameter Name="FolioAvisoEntrada" Mode="In" Type="Int32" />
@@ -19797,13 +19480,9 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <FunctionImport Name="Sam3_Steelgo_Get_ChoferPorVehiculo" ReturnType="Collection(Sam3.Sam3_Steelgo_Get_ChoferPorVehiculo_Result)">
             <Parameter Name="VehiculoID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Steelgo_Get_Colada" ReturnType="Collection(Sam3.Sam3_Steelgo_Get_Colada_Result)">
-            <Parameter Name="ProyectoID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Sam3_Steelgo_Get_Color" ReturnType="Collection(Sam3.Sam3_Steelgo_Get_Color_Result)">
             <Parameter Name="lenguaje" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Sam3_Steelgo_Get_Contactos" ReturnType="Collection(Sam3.Sam3_Steelgo_Get_Contactos_Result)" />
           <FunctionImport Name="Sam3_Steelgo_Get_Cuadrante" ReturnType="Collection(Sam3.Sam3_Steelgo_Get_Cuadrante_Result)">
             <Parameter Name="AreaID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -19829,7 +19508,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             <Parameter Name="TipoObrero" Mode="In" Type="String" />
             <Parameter Name="ProyectoID" Mode="In" Type="Int32" />
             <Parameter Name="UsuarioID" Mode="In" Type="Int32" />
-            <Parameter Name="PatioID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sam3_SteelGo_Get_Patios" ReturnType="Collection(Sam3.Sam3_SteelGo_Get_Patios_Result)">
             <Parameter Name="Tipo" Mode="In" Type="Int32" />
@@ -19877,9 +19555,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           </FunctionImport>
           <FunctionImport Name="Sam3_SteelGo_Get_Taller_Patio" ReturnType="Collection(Sam3.Sam3_SteelGo_Get_Taller_Patio_Result)">
             <Parameter Name="PatioID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Sam3_SteelGo_Get_TipoPruebas" ReturnType="Collection(Sam3.Sam3_SteelGo_Get_TipoPruebas_Result)">
-            <Parameter Name="Lenguaje" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Sam3_Steelgo_Get_TipoResultado" ReturnType="Collection(Sam3.Sam3_Steelgo_Get_TipoResultado_Result)">
             <Parameter Name="Lenguaje" Mode="In" Type="String" />
@@ -19938,14 +19613,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="NumeroUnicoID" Nullable="false" />
           <Property Type="String" Name="Clave" Nullable="false" MaxLength="20" />
           <Property Type="Int32" Name="EtiquetaMaterial" Nullable="false" />
-          <Property Type="String" Name="JuntasEntocontradas" Nullable="true" MaxLength="256" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Armado_Get_MaterialesSpool2_Result">
-          <Property Type="String" Name="Etiqueta" Nullable="false" MaxLength="1" />
-          <Property Type="Int32" Name="NumeroUnicoID" Nullable="false" />
-          <Property Type="String" Name="Clave" Nullable="false" MaxLength="20" />
-          <Property Type="Int32" Name="EtiquetaMaterial" Nullable="false" />
-          <Property Type="String" Name="JuntasEntocontradas" Nullable="true" MaxLength="256" />
         </ComplexType>
         <ComplexType Name="Sam3_Cat_CamposPredeterminados_Result">
           <Property Type="Int32" Name="ID_CampoPredeterminado" Nullable="false" />
@@ -19983,15 +19650,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="GrupoF" Nullable="true" MaxLength="250" />
         </ComplexType>
         <ComplexType Name="Sam3_Cat_PQR_GrupoP_Result">
-          <Property Type="Int32" Name="GrupoPID" Nullable="false" />
-          <Property Type="String" Name="GrupoP" Nullable="true" MaxLength="250" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Cat_PQR_ListaCodigos_Result">
-          <Property Type="Int32" Name="CodigoAsmeID" Nullable="false" />
-          <Property Type="Int32" Name="TipoPruebaId" Nullable="false" />
-          <Property Type="String" Name="Especificacion" Nullable="false" MaxLength="101" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Cat_PQR_ListaMateriales_Result">
           <Property Type="Int32" Name="GrupoPID" Nullable="false" />
           <Property Type="String" Name="GrupoP" Nullable="true" MaxLength="250" />
         </ComplexType>
@@ -20192,14 +19850,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="TipoReporteID" Nullable="true" />
           <Property Type="String" Name="TipoReporte" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="Sam3_Get_Areas_Proyecto_Patio_Result">
-          <Property Type="Int32" Name="AreaID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Get_Cuadrante_Proyecto_Patio_Result">
-          <Property Type="Int32" Name="CuadranteID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="150" />
-        </ComplexType>
         <ComplexType Name="Sam3_GetErrorInfo_Result">
           <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
           <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
@@ -20215,38 +19865,13 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="ResultadoID" Nullable="false" />
           <Property Type="String" Name="Resultado" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="ObreroID" Nullable="false" />
-          <Property Type="String" Name="Inspector" Nullable="false" MaxLength="203" />
+          <Property Type="String" Name="Inspector" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="DefectoID" Nullable="true" />
           <Property Type="String" Name="Defecto" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="IdDefectoTipo" Nullable="false" />
-          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdDefectoTipo" Nullable="true" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="Sam3_Inspeccion_Get_DetalleJunta_Result">
-          <Property Type="Int32" Name="JuntaSpoolID" Nullable="false" />
-          <Property Type="String" Name="Etiqueta" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="TipoJunta" Nullable="false" MaxLength="10" />
-          <Property Type="Int32" Name="TipoJuntaID" Nullable="false" />
-          <Property Type="Decimal" Name="Diametro" Nullable="false" Precision="7" Scale="4" />
-          <Property Type="Int32" Name="InspeccionVisualID" Nullable="true" />
-          <Property Type="Int32" Name="JuntaArmadoID" Nullable="true" />
-          <Property Type="Int32" Name="NumeroUnico1ID" Nullable="true" />
-          <Property Type="String" Name="Clave1" Nullable="true" MaxLength="121" />
-          <Property Type="Int32" Name="NumeroUnico2ID" Nullable="true" />
-          <Property Type="String" Name="Clave2" Nullable="true" MaxLength="121" />
-          <Property Type="Int32" Name="ResultadoID" Nullable="true" />
-          <Property Type="String" Name="Resultado" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="TallerID" Nullable="true" />
-          <Property Type="String" Name="Taller" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="ObreroID" Nullable="true" />
-          <Property Type="String" Name="Inspector" Nullable="true" MaxLength="203" />
-          <Property Type="String" Name="FechaInspeccion" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="DefectoID" Nullable="true" />
-          <Property Type="String" Name="Defecto" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="EtiquetaMaterial1" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="EtiquetaMaterial2" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="JuntaTrabajoID" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Inspeccion_Get_DetalleXJunta_Result">
           <Property Type="Int32" Name="JuntaSpoolID" Nullable="false" />
           <Property Type="String" Name="Etiqueta" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="TipoJunta" Nullable="false" MaxLength="10" />
@@ -20270,10 +19895,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="EtiquetaMaterial1" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="EtiquetaMaterial2" Nullable="true" MaxLength="10" />
           <Property Type="Int32" Name="JuntaTrabajoID" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result">
-          <Property Type="Int32" Name="JuntaSpoolID" Nullable="false" />
-          <Property Type="String" Name="Etiqueta" Nullable="true" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="Sam3_MedicionesClimatologicas_Guardar_Result">
           <Property Type="Int32" Name="CondicionClimatologicaID" Nullable="false" />
@@ -20342,7 +19963,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="MedioTransporteCargaID" Nullable="false" />
           <Property Type="String" Name="Cuadrante" Nullable="true" MaxLength="150" />
           <Property Type="Int32" Name="PasoID" Nullable="true" />
-          <Property Type="Int32" Name="ProyectoID" Nullable="false" />
           <Property Type="Int32" Name="ColorPinturaID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Sam3_Pintura_Get_DetalleSpool_Result">
@@ -20357,9 +19977,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="ProyectoID" Nullable="false" />
           <Property Type="Int32" Name="SistemaPinturaID" Nullable="false" />
-          <Property Type="Int32" Name="MedioTransporteCargaID" Nullable="true" />
           <Property Type="Int32" Name="Accion" Nullable="false" />
-          <Property Type="String" Name="NombreMedioTransporte" Nullable="false" MaxLength="128" />
         </ComplexType>
         <ComplexType Name="Sam3_Pintura_Get_DetalleSpoolAgregar_Result">
           <Property Type="String" Name="SpoolJunta" Nullable="true" MaxLength="50" />
@@ -20433,7 +20051,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="NumeroUsosOcupados" Nullable="false" />
           <Property Type="Decimal" Name="PesoMaximoOcupado" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="AreaMaximaOcupada" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Int32" Name="ProyectoID" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Sam3_Pintura_Get_MedioTransporteCargado_Result">
           <Property Type="Int32" Name="MedioTransporteCargaID" Nullable="true" />
@@ -20591,44 +20208,36 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="Defectos" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result">
-          <Property Type="Int32" Name="SpoolID" Nullable="false" />
-          <Property Type="String" Name="NumeroControl" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="JuntaSpoolID" Nullable="false" />
-          <Property Type="String" Name="Etiqueta" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="JuntaTrabajoID" Nullable="false" />
-          <Property Type="Decimal" Name="Espesor" Nullable="true" Precision="10" Scale="4" />
-          <Property Type="Decimal" Name="Diametro" Nullable="false" Precision="7" Scale="4" />
-          <Property Type="String" Name="Cedula" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="TipoJunta" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ClasificacionPND" Nullable="false" />
-          <Property Type="Int32" Name="ProyectoID" Nullable="false" />
-          <Property Type="String" Name="Proyecto" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="CuadranteID" Nullable="false" />
-          <Property Type="String" Name="Cuadrante" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="RequisicionID" Nullable="false" />
-          <Property Type="String" Name="Folio" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="RequisicionJuntaSpoolID" Nullable="false" />
-          <Property Type="Int32" Name="TipoPruebaID" Nullable="false" />
-          <Property Type="String" Name="NombrePrueba" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Clasificacion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PruebasClasificacionID" Nullable="true" />
+          <Property Type="String" Name="Cuadrante" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="Prioridad" Nullable="true" />
+          <Property Type="String" Name="Proyecto" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoID" Nullable="false" />
+          <Property Type="Int32" Name="PruebasID" Nullable="false" />
+          <Property Type="Int32" Name="PruebaElementoID" Nullable="false" />
+          <Property Type="Int32" Name="IdentificadorForaneo" Nullable="false" />
+          <Property Type="Int32" Name="PruebasProyectoID" Nullable="false" />
+          <Property Type="String" Name="NumeroControl" Nullable="true" MaxLength="71" />
+          <Property Type="String" Name="EtiquetaJunta" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Agregar" Nullable="false" />
+          <Property Type="Int32" Name="RequisicionPruebaElementoID" Nullable="true" />
+          <Property Type="Int32" Name="RequisicionID" Nullable="true" />
+          <Property Type="String" Name="Folio" Nullable="true" MaxLength="150" />
         </ComplexType>
         <ComplexType Name="Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo_Result">
-          <Property Type="Int32" Name="SpoolID" Nullable="false" />
+          <Property Type="String" Name="Clasificacion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PruebasClasificacionID" Nullable="false" />
+          <Property Type="String" Name="Cuadrante" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="Prioridad" Nullable="true" />
-          <Property Type="String" Name="NumeroControl" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="JuntaSpoolID" Nullable="false" />
-          <Property Type="String" Name="Etiqueta" Nullable="true" MaxLength="10" />
-          <Property Type="Decimal" Name="Espesor" Nullable="true" Precision="10" Scale="4" />
-          <Property Type="Decimal" Name="Diametro" Nullable="false" Precision="7" Scale="4" />
-          <Property Type="String" Name="Cedula" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="TipoJunta" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ClasificacionPND" Nullable="false" />
-          <Property Type="Int32" Name="ProyectoID" Nullable="false" />
           <Property Type="String" Name="Proyecto" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="CuadranteID" Nullable="false" />
-          <Property Type="String" Name="Cuadrante" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="RequisicionJuntaSpoolID" Nullable="false" />
-          <Property Type="Int32" Name="JuntaTrabajoID" Nullable="false" />
+          <Property Type="Int32" Name="ProyectoID" Nullable="false" />
+          <Property Type="Int32" Name="PruebasID" Nullable="false" />
+          <Property Type="Int32" Name="PruebaElementoID" Nullable="false" />
+          <Property Type="Int32" Name="IdentificadorForaneo" Nullable="false" />
+          <Property Type="Int32" Name="PruebasProyectoID" Nullable="false" />
+          <Property Type="String" Name="NumeroControl" Nullable="true" MaxLength="71" />
+          <Property Type="String" Name="EtiquetaJunta" Nullable="false" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="Sam3_ServiciosTecnicos_Get_Proveedores_Result">
           <Property Type="Int32" Name="ProveedorID" Nullable="false" />
@@ -20678,15 +20287,20 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <ComplexType Name="Sam3_ServiciosTecnicos_Get_Requisicion_Result">
           <Property Type="Int32" Name="RequisicionID" Nullable="false" />
           <Property Type="String" Name="Folio" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="TipoPruebaID" Nullable="false" />
-          <Property Type="String" Name="Prueba" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="PruebasProyectoID" Nullable="false" />
+          <Property Type="String" Name="Prueba" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="FechaRequisicion" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="Observacion" Nullable="true" />
           <Property Type="Int32" Name="EstatusID" Nullable="true" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="Orden" Nullable="true" />
+          <Property Type="Int32" Name="ProyectoID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="PruebasID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result">
           <Property Type="String" Name="Clave" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="Observacion" Nullable="true" />
           <Property Type="String" Name="Fecha" Nullable="true" MaxLength="10" />
           <Property Type="Int32" Name="RequisicionID" Nullable="false" />
@@ -20698,9 +20312,16 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="HerramientadePrueba" Nullable="true" />
           <Property Type="Int32" Name="TurnoLaboralID" Nullable="true" />
           <Property Type="String" Name="TurnoLaboral" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="TipoPruebaID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result">
+          <Property Type="String" Name="TipoPrueba" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NombrePrueba" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Requisicion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="HerramientaPrueba" Nullable="true" />
+          <Property Type="String" Name="TurnoLaboral" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados_Result">
           <Property Type="String" Name="TipoPrueba" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="NombrePrueba" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="Requisicion" Nullable="false" MaxLength="150" />
@@ -20749,10 +20370,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="PosicionID" Nullable="false" />
           <Property Type="Int32" Name="Posicion" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="Sam3_Soldadura_Get_CedulaTuboCalificado_Result">
-          <Property Type="Int32" Name="CedulaTuboCalificadoID" Nullable="false" />
-          <Property Type="String" Name="CedulaTuboCalificadoDesc" Nullable="false" MaxLength="20" />
-        </ComplexType>
         <ComplexType Name="Sam3_Soldadura_Get_DetalleJunta_Result">
           <Property Type="Int32" Name="JuntaSpoolID" Nullable="false" />
           <Property Type="String" Name="Etiqueta" Nullable="true" MaxLength="10" />
@@ -20778,8 +20395,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="JuntaTrabajoID" Nullable="true" />
           <Property Type="Boolean" Name="PermiteTerminadoRelleno" Nullable="false" />
           <Property Type="Boolean" Name="PermiteTerminadoRaiz" Nullable="true" />
-          <Property Type="Int32" Name="ColadaID" Nullable="true" />
-          <Property Type="String" Name="NumeroColada" Nullable="true" MaxLength="20" />
           <Property Type="Decimal" Name="Diametro" Nullable="false" Precision="7" Scale="4" />
           <Property Type="Decimal" Name="Espesor" Nullable="true" Precision="10" Scale="4" />
         </ComplexType>
@@ -20798,30 +20413,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="Soldador" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Observacion" Nullable="true" MaxLength="Max" />
         </ComplexType>
-        <ComplexType Name="Sam3_Soldadura_GET_PQR_WPS_Result">
-          <Property Type="Int32" Name="PQRID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
-          <Property Type="Boolean" Name="PREHEAT" Nullable="false" />
-          <Property Type="Boolean" Name="PWHT" Nullable="false" />
-          <Property Type="Decimal" Name="EspesorRelleno" Nullable="false" Precision="18" Scale="4" />
-          <Property Type="Decimal" Name="EspesorRaiz" Nullable="true" Precision="18" Scale="4" />
-          <Property Type="Int32" Name="GrupoPMaterialBase1" Nullable="true" />
-          <Property Type="String" Name="GrupoPMaterialBase1Nombre" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="GrupoPMaterialBase2" Nullable="true" />
-          <Property Type="String" Name="GrupoPMaterialBase2Nombre" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="ProcesoSoldaduraRellenoID" Nullable="false" />
-          <Property Type="String" Name="CodigoRelleno" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="ProcesoSoldaduraRaizID" Nullable="true" />
-          <Property Type="String" Name="CodigoRaiz" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Soldadura_Get_TipoProcesoSoldadura_Result">
-          <Property Type="Int32" Name="TipoProcesoSoldaduraID" Nullable="false" />
-          <Property Type="String" Name="TipoProcesoSoldaduraDesc" Nullable="true" MaxLength="10" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Soldadura_Get_TipoPrueba_Result">
-          <Property Type="Int32" Name="TipoPruebaID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="10" />
-        </ComplexType>
         <ComplexType Name="Sam3_Soldadura_PQR_Result">
           <Property Type="Int32" Name="PQRID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
@@ -20833,21 +20424,22 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="CodigoRelleno" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="ProcesoSoldaduraRaizID" Nullable="true" />
           <Property Type="String" Name="CodigoRaiz" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="NumeroPID" Nullable="false" />
-          <Property Type="String" Name="NumeroP" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="GrupoPID" Nullable="false" />
-          <Property Type="String" Name="GrupoP" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="NumeroPID" Nullable="true" />
+          <Property Type="String" Name="NumeroP" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="GrupoMaterialBase1PID" Nullable="true" />
+          <Property Type="String" Name="GrupoMaterialBase1" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="GrupoMaterialBase2PID" Nullable="true" />
+          <Property Type="String" Name="GrupoMaterialBase2" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="AporteID" Nullable="true" />
           <Property Type="String" Name="Aporte" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="MezclaID" Nullable="true" />
           <Property Type="String" Name="Mezcla" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="RespaldoID" Nullable="true" />
           <Property Type="String" Name="Respaldo" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="GrupoFID" Nullable="true" />
           <Property Type="String" Name="GrupoF" Nullable="true" MaxLength="250" />
           <Property Type="Int32" Name="CodigoID" Nullable="true" />
-          <Property Type="String" Name="Especificacion" Nullable="false" MaxLength="101" />
-          <Property Type="Int32" Name="GrupoPMaterialBase1" Nullable="true" />
-          <Property Type="String" Name="GrupoPMaterialBase1Nombre" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="GrupoPMaterialBase2" Nullable="true" />
-          <Property Type="String" Name="GrupoPMaterialBase2Nombre" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="RegistrosWPS" Nullable="true" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="Sam3_Soldadura_SoldadorCertificacion_Result">
           <Property Type="Int32" Name="SoldadorCertificacionID" Nullable="false" />
@@ -20855,16 +20447,15 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="CodigoObrero" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="PQRID" Nullable="false" />
           <Property Type="String" Name="NombrePQR" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="ProcesoSoldaduraID" Nullable="false" />
-          <Property Type="String" Name="ProcesoSoldadura" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="TipoDePruebaID" Nullable="false" />
-          <Property Type="String" Name="TipoPrueba" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="ProcesoSoldaduraID" Nullable="true" />
+          <Property Type="String" Name="ProcesoSoldadura" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="TipoDePruebaID" Nullable="true" />
+          <Property Type="String" Name="TipoPrueba" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="PosicionID" Nullable="true" />
           <Property Type="Int32" Name="Posicion" Nullable="true" />
           <Property Type="String" Name="FechaInicioCertificado" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="FechaFinCertificado" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="CedulaTuboCalificadoID" Nullable="true" />
-          <Property Type="String" Name="CedulaTuboCalificado" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CedulaTuboCalificado" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="DiametroCalificado" Nullable="true" Precision="18" Scale="4" />
           <Property Type="Decimal" Name="EspesorMinimo" Nullable="true" Precision="18" Scale="4" />
           <Property Type="Decimal" Name="EspesorMaximo" Nullable="true" Precision="18" Scale="4" />
@@ -20883,26 +20474,14 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="String" Name="NombrePQRRaiz" Nullable="true" MaxLength="250" />
           <Property Type="Int32" Name="PQRRellenoId" Nullable="true" />
           <Property Type="String" Name="NombrePQRRelleno" Nullable="true" MaxLength="250" />
-          <Property Type="Boolean" Name="PWHTId" Nullable="false" />
+          <Property Type="Int32" Name="GrupoPId" Nullable="true" />
+          <Property Type="String" Name="GrupoP" Nullable="true" MaxLength="250" />
+          <Property Type="Boolean" Name="PWHTId" Nullable="true" />
           <Property Type="String" Name="PWHT" Nullable="true" MaxLength="2" />
-          <Property Type="Boolean" Name="PREHEATId" Nullable="true" />
-          <Property Type="String" Name="PREHEAT" Nullable="true" MaxLength="2" />
-          <Property Type="Int32" Name="GrupoMaterialBase1RaizUID" Nullable="true" />
-          <Property Type="String" Name="GrupoMaterialBase1RaizU" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="GrupoMaterialBase1RaizDID" Nullable="true" />
-          <Property Type="String" Name="GrupoMaterialBase1RaizD" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="GrupoMaterialBase1RellenoUID" Nullable="true" />
-          <Property Type="String" Name="GrupoMaterialBase1RellenoU" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="GrupoMaterialBase1RellenoDID" Nullable="true" />
-          <Property Type="String" Name="GrupoMaterialBase1RellenoD" Nullable="true" MaxLength="250" />
-          <Property Type="Decimal" Name="RaizEspesorRaiz" Nullable="true" Precision="18" Scale="4" />
-          <Property Type="Decimal" Name="RaizEspesorRelleno" Nullable="false" Precision="18" Scale="4" />
-          <Property Type="Decimal" Name="RellenoEspesorRaiz" Nullable="true" Precision="18" Scale="4" />
-          <Property Type="Decimal" Name="RellenoEspesorRelleno" Nullable="false" Precision="18" Scale="4" />
-          <Property Type="String" Name="ProcesoSoldaduraRaiz" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="ProcesoSoldaduraRelleno" Nullable="false" MaxLength="50" />
-          <Property Type="Double" Name="EspesorMaximo" Nullable="true" />
-          <Property Type="Double" Name="EspesorMinimo" Nullable="true" />
+          <Property Type="String" Name="EspesorMinimoRaiz" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EspesorMaximoRaiz" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EspesorMinimoRelleno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EspesorMaximoRelleno" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="Sam3_Steelgo_Get_Area_Result">
           <Property Type="Int32" Name="AreaID" Nullable="false" />
@@ -20921,18 +20500,10 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Int32" Name="ChoferID" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="Sam3_Steelgo_Get_Colada_Result">
-          <Property Type="Int32" Name="ColadaID" Nullable="false" />
-          <Property Type="String" Name="NumeroColada" Nullable="false" MaxLength="20" />
-        </ComplexType>
         <ComplexType Name="Sam3_Steelgo_Get_Color_Result">
           <Property Type="Int32" Name="ColorID" Nullable="false" />
           <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="CodigoHexadecimal" Nullable="false" MaxLength="7" />
-        </ComplexType>
-        <ComplexType Name="Sam3_Steelgo_Get_Contactos_Result">
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="ContactoID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Sam3_Steelgo_Get_Cuadrante_Result">
           <Property Type="Int32" Name="CuadranteID" Nullable="false" />
@@ -20966,9 +20537,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         </ComplexType>
         <ComplexType Name="Sam3_Steelgo_Get_Obrero_Result">
           <Property Type="Int32" Name="ObreroID" Nullable="false" />
-          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="203" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="TipoObrero" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="152" />
         </ComplexType>
         <ComplexType Name="Sam3_SteelGo_Get_Patios_Result">
           <Property Type="Int32" Name="PatioID" Nullable="false" />
@@ -21033,11 +20603,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <Property Type="Decimal" Name="ProduccionManual" Nullable="false" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="ProduccionAutomatico" Nullable="false" Precision="38" Scale="2" />
         </ComplexType>
-        <ComplexType Name="Sam3_SteelGo_Get_TipoPruebas_Result">
-          <Property Type="Int32" Name="TipoPruebaID" Nullable="false" />
-          <Property Type="String" Name="Categoria" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="Sam3_Steelgo_Get_TipoResultado_Result">
           <Property Type="Int32" Name="TipoResultadoID" Nullable="false" />
           <Property Type="String" Name="Resultado" Nullable="false" MaxLength="50" />
@@ -21094,17 +20659,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               <MappingFragment StoreEntitySet="Sam3_Area">
                 <ScalarProperty Name="AreaID" ColumnName="AreaID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sam3_Articulos">
-            <EntityTypeMapping TypeName="Sam3.Sam3_Articulos">
-              <MappingFragment StoreEntitySet="Sam3_Articulos">
-                <ScalarProperty Name="ArticuloID" ColumnName="ArticuloID" />
-                <ScalarProperty Name="Articulo" ColumnName="Articulo" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
@@ -22405,7 +21959,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="FechaReporte" ColumnName="FechaReporte" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="ColadaID" ColumnName="ColadaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -22776,9 +22329,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
                 <ScalarProperty Name="IdentificadorMigra" ColumnName="IdentificadorMigra" />
                 <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ApPaterno" ColumnName="ApPaterno" />
-                <ScalarProperty Name="ApMaterno" ColumnName="ApMaterno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -23081,7 +22631,8 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="ProcesoSoldaduraRellenoID" ColumnName="ProcesoSoldaduraRellenoID" />
                 <ScalarProperty Name="ProcesoSoldaduraRaizID" ColumnName="ProcesoSoldaduraRaizID" />
                 <ScalarProperty Name="NumeroP" ColumnName="NumeroP" />
-                <ScalarProperty Name="GrupoPID" ColumnName="GrupoPID" />
+                <ScalarProperty Name="GrupoPMaterialBase1" ColumnName="GrupoPMaterialBase1" />
+                <ScalarProperty Name="GrupoPMaterialBase2" ColumnName="GrupoPMaterialBase2" />
                 <ScalarProperty Name="Aporte" ColumnName="Aporte" />
                 <ScalarProperty Name="Mezcla" ColumnName="Mezcla" />
                 <ScalarProperty Name="Respaldo" ColumnName="Respaldo" />
@@ -23090,8 +22641,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="GrupoPMaterialBase1" ColumnName="GrupoPMaterialBase1" />
-                <ScalarProperty Name="GrupoPMaterialBase2" ColumnName="GrupoPMaterialBase2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -24244,14 +23793,13 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               <MappingFragment StoreEntitySet="Sam3_ServTec_Requisicion">
                 <ScalarProperty Name="RequisicionID" ColumnName="RequisicionID" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
-                <ScalarProperty Name="TipoPruebaID" ColumnName="TipoPruebaID" />
+                <ScalarProperty Name="PruebasProyectoID" ColumnName="PruebasProyectoID" />
                 <ScalarProperty Name="FechaRequisicion" ColumnName="FechaRequisicion" />
                 <ScalarProperty Name="Observacion" ColumnName="Observacion" />
                 <ScalarProperty Name="EstatusID" ColumnName="EstatusID" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="CodigoAsmeID" ColumnName="CodigoAsmeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -24309,7 +23857,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="CedulaTuboCalificadoID" ColumnName="CedulaTuboCalificadoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -24573,17 +24120,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sam3_TipoProcesoSoldadura">
-            <EntityTypeMapping TypeName="Sam3.Sam3_TipoProcesoSoldadura">
-              <MappingFragment StoreEntitySet="Sam3_TipoProcesoSoldadura">
-                <ScalarProperty Name="TipoProcesoSoldaduraID" ColumnName="TipoProcesoSoldaduraID" />
-                <ScalarProperty Name="TipoProcesoSoldadura" ColumnName="TipoProcesoSoldadura" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sam3_TipoPrueba">
             <EntityTypeMapping TypeName="Sam3.Sam3_TipoPrueba">
               <MappingFragment StoreEntitySet="Sam3_TipoPrueba">
@@ -24792,6 +24328,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="WPSNombre" ColumnName="WPSNombre" />
                 <ScalarProperty Name="PQRRaizId" ColumnName="PQRRaizId" />
                 <ScalarProperty Name="PQRRellenoId" ColumnName="PQRRellenoId" />
+                <ScalarProperty Name="GrupoPId" ColumnName="GrupoPId" />
                 <ScalarProperty Name="PWHTId" ColumnName="PWHTId" />
                 <ScalarProperty Name="EspesorMaximoRelleno" ColumnName="EspesorMaximoRelleno" />
                 <ScalarProperty Name="EspesorMinimoRelleno" ColumnName="EspesorMinimoRelleno" />
@@ -24800,7 +24337,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="PREHEAT" ColumnName="PREHEAT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -24809,20 +24345,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               <MappingFragment StoreEntitySet="tempInsert">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sam3_CodigoAsme">
-            <EntityTypeMapping TypeName="Sam3.Sam3_CodigoAsme">
-              <MappingFragment StoreEntitySet="Sam3_CodigoAsme">
-                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
-                <ScalarProperty Name="Especificacion" ColumnName="Especificacion" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="TipoPruebaId" ColumnName="TipoPruebaId" />
-                <ScalarProperty Name="CodigoAsmeID" ColumnName="CodigoAsmeID" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -24928,15 +24450,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sam3_Rel_ProveedorTipoPrueba">
-            <EntityTypeMapping TypeName="Sam3.Sam3_Rel_ProveedorTipoPrueba">
-              <MappingFragment StoreEntitySet="Sam3_Rel_ProveedorTipoPrueba">
-                <ScalarProperty Name="ProveedorTipoPruebaID" ColumnName="ProveedorTipoPruebaID" />
-                <ScalarProperty Name="TipoPruebaID" ColumnName="TipoPruebaID" />
-                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sam3_ServTec_Pruebas_ReporteID_Impresion">
             <EntityTypeMapping TypeName="Sam3.Sam3_ServTec_Pruebas_ReporteID_Impresion">
               <MappingFragment StoreEntitySet="Sam3_ServTec_Pruebas_ReporteID_Impresion">
@@ -24963,18 +24476,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sam3_ServTec_RequisicionJuntaSpool">
-            <EntityTypeMapping TypeName="Sam3.Sam3_ServTec_RequisicionJuntaSpool">
-              <MappingFragment StoreEntitySet="Sam3_ServTec_RequisicionJuntaSpool">
-                <ScalarProperty Name="RequisicionJuntaSpoolID" ColumnName="RequisicionJuntaSpoolID" />
-                <ScalarProperty Name="JuntaSpoolID" ColumnName="JuntaSpoolID" />
-                <ScalarProperty Name="RequisicionID" ColumnName="RequisicionID" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sam3_ServTec_ValidacionResultados">
             <EntityTypeMapping TypeName="Sam3.Sam3_ServTec_ValidacionResultados">
               <MappingFragment StoreEntitySet="Sam3_ServTec_ValidacionResultados">
@@ -24983,18 +24484,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="Conciliado" ColumnName="Conciliado" />
                 <ScalarProperty Name="DefectoID" ColumnName="DefectoID" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sam3_TurnoLaboralProveedor">
-            <EntityTypeMapping TypeName="Sam3.Sam3_TurnoLaboralProveedor">
-              <MappingFragment StoreEntitySet="Sam3_TurnoLaboralProveedor">
-                <ScalarProperty Name="TurnoLaboralProveedorID" ColumnName="TurnoLaboralProveedorID" />
-                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
-                <ScalarProperty Name="TurnoLaboralID" ColumnName="TurnoLaboralID" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
@@ -25156,18 +24645,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="NumeroUnicoID" ColumnName="NumeroUnicoID" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="EtiquetaMaterial" ColumnName="EtiquetaMaterial" />
-                <ScalarProperty Name="JuntasEntocontradas" ColumnName="JuntasEntocontradas" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Armado_Get_MaterialesSpool2" FunctionName="Sam3.Store.Sam3_Armado_Get_MaterialesSpool2">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Armado_Get_MaterialesSpool2_Result">
-                <ScalarProperty Name="Etiqueta" ColumnName="Etiqueta" />
-                <ScalarProperty Name="NumeroUnicoID" ColumnName="NumeroUnicoID" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="EtiquetaMaterial" ColumnName="EtiquetaMaterial" />
-                <ScalarProperty Name="JuntasEntocontradas" ColumnName="JuntasEntocontradas" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -25236,23 +24713,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <FunctionImportMapping FunctionImportName="Sam3_Cat_PQR_GrupoP" FunctionName="Sam3.Store.Sam3_Cat_PQR_GrupoP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_Cat_PQR_GrupoP_Result">
-                <ScalarProperty Name="GrupoPID" ColumnName="GrupoPID" />
-                <ScalarProperty Name="GrupoP" ColumnName="GrupoP" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Cat_PQR_ListaCodigos" FunctionName="Sam3.Store.Sam3_Cat_PQR_ListaCodigos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Cat_PQR_ListaCodigos_Result">
-                <ScalarProperty Name="CodigoAsmeID" ColumnName="CodigoAsmeID" />
-                <ScalarProperty Name="TipoPruebaId" ColumnName="TipoPruebaId" />
-                <ScalarProperty Name="Especificacion" ColumnName="Especificacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Cat_PQR_ListaMateriales" FunctionName="Sam3.Store.Sam3_Cat_PQR_ListaMateriales">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Cat_PQR_ListaMateriales_Result">
                 <ScalarProperty Name="GrupoPID" ColumnName="GrupoPID" />
                 <ScalarProperty Name="GrupoP" ColumnName="GrupoP" />
               </ComplexTypeMapping>
@@ -25560,22 +25020,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <FunctionImportMapping FunctionImportName="Sam3_Embarque_Set_ListadoEmbarque" FunctionName="Sam3.Store.Sam3_Embarque_Set_ListadoEmbarque" />
           <FunctionImportMapping FunctionImportName="Sam3_Embarque_Set_Paquete" FunctionName="Sam3.Store.Sam3_Embarque_Set_Paquete" />
           <FunctionImportMapping FunctionImportName="Sam3_Embarque_Set_RevisionSpool" FunctionName="Sam3.Store.Sam3_Embarque_Set_RevisionSpool" />
-          <FunctionImportMapping FunctionImportName="Sam3_Get_Areas_Proyecto_Patio" FunctionName="Sam3.Store.Sam3_Get_Areas_Proyecto_Patio">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Get_Areas_Proyecto_Patio_Result">
-                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Get_Cuadrante_Proyecto_Patio" FunctionName="Sam3.Store.Sam3_Get_Cuadrante_Proyecto_Patio">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Get_Cuadrante_Proyecto_Patio_Result">
-                <ScalarProperty Name="CuadranteID" ColumnName="CuadranteID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_GetErrorInfo" FunctionName="Sam3.Store.Sam3_GetErrorInfo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_GetErrorInfo_Result">
@@ -25636,43 +25080,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_Inspeccion_Get_DetalleJuntaSeleccionada" FunctionName="Sam3.Store.Sam3_Inspeccion_Get_DetalleJuntaSeleccionada" />
-          <FunctionImportMapping FunctionImportName="Sam3_Inspeccion_Get_DetalleXJunta" FunctionName="Sam3.Store.Sam3_Inspeccion_Get_DetalleXJunta">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Inspeccion_Get_DetalleXJunta_Result">
-                <ScalarProperty Name="JuntaSpoolID" ColumnName="JuntaSpoolID" />
-                <ScalarProperty Name="Etiqueta" ColumnName="Etiqueta" />
-                <ScalarProperty Name="TipoJunta" ColumnName="TipoJunta" />
-                <ScalarProperty Name="TipoJuntaID" ColumnName="TipoJuntaID" />
-                <ScalarProperty Name="Diametro" ColumnName="Diametro" />
-                <ScalarProperty Name="InspeccionVisualID" ColumnName="InspeccionVisualID" />
-                <ScalarProperty Name="JuntaArmadoID" ColumnName="JuntaArmadoID" />
-                <ScalarProperty Name="NumeroUnico1ID" ColumnName="NumeroUnico1ID" />
-                <ScalarProperty Name="Clave1" ColumnName="Clave1" />
-                <ScalarProperty Name="NumeroUnico2ID" ColumnName="NumeroUnico2ID" />
-                <ScalarProperty Name="Clave2" ColumnName="Clave2" />
-                <ScalarProperty Name="ResultadoID" ColumnName="ResultadoID" />
-                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
-                <ScalarProperty Name="TallerID" ColumnName="TallerID" />
-                <ScalarProperty Name="Taller" ColumnName="Taller" />
-                <ScalarProperty Name="ObreroID" ColumnName="ObreroID" />
-                <ScalarProperty Name="Inspector" ColumnName="Inspector" />
-                <ScalarProperty Name="FechaInspeccion" ColumnName="FechaInspeccion" />
-                <ScalarProperty Name="DefectoID" ColumnName="DefectoID" />
-                <ScalarProperty Name="Defecto" ColumnName="Defecto" />
-                <ScalarProperty Name="EtiquetaMaterial1" ColumnName="EtiquetaMaterial1" />
-                <ScalarProperty Name="EtiquetaMaterial2" ColumnName="EtiquetaMaterial2" />
-                <ScalarProperty Name="JuntaTrabajoID" ColumnName="JuntaTrabajoID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Inspeccion_VD_Get_JuntasXSpoolID" FunctionName="Sam3.Store.Sam3_Inspeccion_VD_Get_JuntasXSpoolID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Inspeccion_VD_Get_JuntasXSpoolID_Result">
-                <ScalarProperty Name="JuntaSpoolID" ColumnName="JuntaSpoolID" />
-                <ScalarProperty Name="Etiqueta" ColumnName="Etiqueta" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_Inspeccion_VisualDimensional" FunctionName="Sam3.Store.Sam3_Inspeccion_VisualDimensional" />
           <FunctionImportMapping FunctionImportName="Sam3_MedicionesClimatologicas_Guardar" FunctionName="Sam3.Store.Sam3_MedicionesClimatologicas_Guardar">
             <ResultMapping>
@@ -25760,7 +25167,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="MedioTransporteCargaID" ColumnName="MedioTransporteCargaID" />
                 <ScalarProperty Name="Cuadrante" ColumnName="Cuadrante" />
                 <ScalarProperty Name="PasoID" ColumnName="PasoID" />
-                <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
                 <ScalarProperty Name="ColorPinturaID" ColumnName="ColorPinturaID" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -25779,9 +25185,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
                 <ScalarProperty Name="SistemaPinturaID" ColumnName="SistemaPinturaID" />
-                <ScalarProperty Name="MedioTransporteCargaID" ColumnName="MedioTransporteCargaID" />
                 <ScalarProperty Name="Accion" ColumnName="Accion" />
-                <ScalarProperty Name="NombreMedioTransporte" ColumnName="NombreMedioTransporte" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -25879,7 +25283,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="NumeroUsosOcupados" ColumnName="NumeroUsosOcupados" />
                 <ScalarProperty Name="PesoMaximoOcupado" ColumnName="PesoMaximoOcupado" />
                 <ScalarProperty Name="AreaMaximaOcupada" ColumnName="AreaMaximaOcupada" />
-                <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26120,48 +25523,40 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Get_JuntasXPrueba" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Get_JuntasXPrueba">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result">
-                <ScalarProperty Name="SpoolID" ColumnName="SpoolID" />
-                <ScalarProperty Name="NumeroControl" ColumnName="NumeroControl" />
-                <ScalarProperty Name="JuntaSpoolID" ColumnName="JuntaSpoolID" />
-                <ScalarProperty Name="Etiqueta" ColumnName="Etiqueta" />
-                <ScalarProperty Name="JuntaTrabajoID" ColumnName="JuntaTrabajoID" />
-                <ScalarProperty Name="Espesor" ColumnName="Espesor" />
-                <ScalarProperty Name="Diametro" ColumnName="Diametro" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="TipoJunta" ColumnName="TipoJunta" />
-                <ScalarProperty Name="ClasificacionPND" ColumnName="ClasificacionPND" />
-                <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
-                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
-                <ScalarProperty Name="CuadranteID" ColumnName="CuadranteID" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="PruebasClasificacionID" ColumnName="PruebasClasificacionID" />
                 <ScalarProperty Name="Cuadrante" ColumnName="Cuadrante" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+                <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
+                <ScalarProperty Name="PruebasID" ColumnName="PruebasID" />
+                <ScalarProperty Name="PruebaElementoID" ColumnName="PruebaElementoID" />
+                <ScalarProperty Name="IdentificadorForaneo" ColumnName="IdentificadorForaneo" />
+                <ScalarProperty Name="PruebasProyectoID" ColumnName="PruebasProyectoID" />
+                <ScalarProperty Name="NumeroControl" ColumnName="NumeroControl" />
+                <ScalarProperty Name="EtiquetaJunta" ColumnName="EtiquetaJunta" />
+                <ScalarProperty Name="Agregar" ColumnName="Agregar" />
+                <ScalarProperty Name="RequisicionPruebaElementoID" ColumnName="RequisicionPruebaElementoID" />
                 <ScalarProperty Name="RequisicionID" ColumnName="RequisicionID" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
-                <ScalarProperty Name="RequisicionJuntaSpoolID" ColumnName="RequisicionJuntaSpoolID" />
-                <ScalarProperty Name="TipoPruebaID" ColumnName="TipoPruebaID" />
-                <ScalarProperty Name="NombrePrueba" ColumnName="NombrePrueba" />
-                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo_Result">
-                <ScalarProperty Name="SpoolID" ColumnName="SpoolID" />
-                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
-                <ScalarProperty Name="NumeroControl" ColumnName="NumeroControl" />
-                <ScalarProperty Name="JuntaSpoolID" ColumnName="JuntaSpoolID" />
-                <ScalarProperty Name="Etiqueta" ColumnName="Etiqueta" />
-                <ScalarProperty Name="Espesor" ColumnName="Espesor" />
-                <ScalarProperty Name="Diametro" ColumnName="Diametro" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="TipoJunta" ColumnName="TipoJunta" />
-                <ScalarProperty Name="ClasificacionPND" ColumnName="ClasificacionPND" />
-                <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
-                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
-                <ScalarProperty Name="CuadranteID" ColumnName="CuadranteID" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="PruebasClasificacionID" ColumnName="PruebasClasificacionID" />
                 <ScalarProperty Name="Cuadrante" ColumnName="Cuadrante" />
-                <ScalarProperty Name="RequisicionJuntaSpoolID" ColumnName="RequisicionJuntaSpoolID" />
-                <ScalarProperty Name="JuntaTrabajoID" ColumnName="JuntaTrabajoID" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+                <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
+                <ScalarProperty Name="PruebasID" ColumnName="PruebasID" />
+                <ScalarProperty Name="PruebaElementoID" ColumnName="PruebaElementoID" />
+                <ScalarProperty Name="IdentificadorForaneo" ColumnName="IdentificadorForaneo" />
+                <ScalarProperty Name="PruebasProyectoID" ColumnName="PruebasProyectoID" />
+                <ScalarProperty Name="NumeroControl" ColumnName="NumeroControl" />
+                <ScalarProperty Name="EtiquetaJunta" ColumnName="EtiquetaJunta" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26240,11 +25635,16 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               <ComplexTypeMapping TypeName="Sam3.Sam3_ServiciosTecnicos_Get_Requisicion_Result">
                 <ScalarProperty Name="RequisicionID" ColumnName="RequisicionID" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
-                <ScalarProperty Name="TipoPruebaID" ColumnName="TipoPruebaID" />
+                <ScalarProperty Name="PruebasProyectoID" ColumnName="PruebasProyectoID" />
                 <ScalarProperty Name="Prueba" ColumnName="Prueba" />
                 <ScalarProperty Name="FechaRequisicion" ColumnName="FechaRequisicion" />
                 <ScalarProperty Name="Observacion" ColumnName="Observacion" />
                 <ScalarProperty Name="EstatusID" ColumnName="EstatusID" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PruebasID" ColumnName="PruebasID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26264,7 +25664,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="HerramientadePrueba" ColumnName="HerramientadePrueba" />
                 <ScalarProperty Name="TurnoLaboralID" ColumnName="TurnoLaboralID" />
                 <ScalarProperty Name="TurnoLaboral" ColumnName="TurnoLaboral" />
-                <ScalarProperty Name="TipoPruebaID" ColumnName="TipoPruebaID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26280,7 +25679,18 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados" />
+          <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Sam3.Sam3_ServiciosTecnicos_Get_RequisicionDetalleValidacionResultados_Result">
+                <ScalarProperty Name="TipoPrueba" ColumnName="TipoPrueba" />
+                <ScalarProperty Name="NombrePrueba" ColumnName="NombrePrueba" />
+                <ScalarProperty Name="Requisicion" ColumnName="Requisicion" />
+                <ScalarProperty Name="HerramientaPrueba" ColumnName="HerramientaPrueba" />
+                <ScalarProperty Name="TurnoLaboral" ColumnName="TurnoLaboral" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Get_Requisiciones" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Get_Requisiciones">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_ServiciosTecnicos_Get_Requisiciones_Result">
@@ -26344,21 +25754,11 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
           <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Guardar_RequisicionAsignacion" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Guardar_RequisicionAsignacion" />
           <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Guardar_ValidacionResultados" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Guardar_ValidacionResultados" />
           <FunctionImportMapping FunctionImportName="Sam3_ServiciosTecnicos_Requisicion" FunctionName="Sam3.Store.Sam3_ServiciosTecnicos_Requisicion" />
-          <FunctionImportMapping FunctionImportName="Sam3_Soldador_Certificacion_Get_ID" FunctionName="Sam3.Store.Sam3_Soldador_Certificacion_Get_ID" />
-          <FunctionImportMapping FunctionImportName="Sam3_Soldador_Certificacion_Set_Captura" FunctionName="Sam3.Store.Sam3_Soldador_Certificacion_Set_Captura" />
           <FunctionImportMapping FunctionImportName="Sam3_Soldadura_CertificacionPosicion" FunctionName="Sam3.Store.Sam3_Soldadura_CertificacionPosicion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_Soldadura_CertificacionPosicion_Result">
                 <ScalarProperty Name="PosicionID" ColumnName="PosicionID" />
                 <ScalarProperty Name="Posicion" ColumnName="Posicion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Soldadura_Get_CedulaTuboCalificado" FunctionName="Sam3.Store.Sam3_Soldadura_Get_CedulaTuboCalificado">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Soldadura_Get_CedulaTuboCalificado_Result">
-                <ScalarProperty Name="CedulaTuboCalificadoID" ColumnName="CedulaTuboCalificadoID" />
-                <ScalarProperty Name="CedulaTuboCalificadoDesc" ColumnName="CedulaTuboCalificadoDesc" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26389,8 +25789,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="JuntaTrabajoID" ColumnName="JuntaTrabajoID" />
                 <ScalarProperty Name="PermiteTerminadoRelleno" ColumnName="PermiteTerminadoRelleno" />
                 <ScalarProperty Name="PermiteTerminadoRaiz" ColumnName="PermiteTerminadoRaiz" />
-                <ScalarProperty Name="ColadaID" ColumnName="ColadaID" />
-                <ScalarProperty Name="NumeroColada" ColumnName="NumeroColada" />
                 <ScalarProperty Name="Diametro" ColumnName="Diametro" />
                 <ScalarProperty Name="Espesor" ColumnName="Espesor" />
               </ComplexTypeMapping>
@@ -26419,44 +25817,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Soldadura_GET_PQR_WPS" FunctionName="Sam3.Store.Sam3_Soldadura_GET_PQR_WPS">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Soldadura_GET_PQR_WPS_Result">
-                <ScalarProperty Name="PQRID" ColumnName="PQRID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="PREHEAT" ColumnName="PREHEAT" />
-                <ScalarProperty Name="PWHT" ColumnName="PWHT" />
-                <ScalarProperty Name="EspesorRelleno" ColumnName="EspesorRelleno" />
-                <ScalarProperty Name="EspesorRaiz" ColumnName="EspesorRaiz" />
-                <ScalarProperty Name="GrupoPMaterialBase1" ColumnName="GrupoPMaterialBase1" />
-                <ScalarProperty Name="GrupoPMaterialBase1Nombre" ColumnName="GrupoPMaterialBase1Nombre" />
-                <ScalarProperty Name="GrupoPMaterialBase2" ColumnName="GrupoPMaterialBase2" />
-                <ScalarProperty Name="GrupoPMaterialBase2Nombre" ColumnName="GrupoPMaterialBase2Nombre" />
-                <ScalarProperty Name="ProcesoSoldaduraRellenoID" ColumnName="ProcesoSoldaduraRellenoID" />
-                <ScalarProperty Name="CodigoRelleno" ColumnName="CodigoRelleno" />
-                <ScalarProperty Name="ProcesoSoldaduraRaizID" ColumnName="ProcesoSoldaduraRaizID" />
-                <ScalarProperty Name="CodigoRaiz" ColumnName="CodigoRaiz" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Soldadura_Get_TipoProcesoSoldadura" FunctionName="Sam3.Store.Sam3_Soldadura_Get_TipoProcesoSoldadura">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Soldadura_Get_TipoProcesoSoldadura_Result">
-                <ScalarProperty Name="TipoProcesoSoldaduraID" ColumnName="TipoProcesoSoldaduraID" />
-                <ScalarProperty Name="TipoProcesoSoldaduraDesc" ColumnName="TipoProcesoSoldaduraDesc" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Soldadura_Get_TipoPrueba" FunctionName="Sam3.Store.Sam3_Soldadura_Get_TipoPrueba">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Soldadura_Get_TipoPrueba_Result">
-                <ScalarProperty Name="TipoPruebaID" ColumnName="TipoPruebaID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_Soldadura_JuntaSoldadura" FunctionName="Sam3.Store.Sam3_Soldadura_JuntaSoldadura" />
-          <FunctionImportMapping FunctionImportName="Sam3_Soldadura_New_PQR" FunctionName="Sam3.Store.Sam3_Soldadura_New_PQR" />
           <FunctionImportMapping FunctionImportName="Sam3_Soldadura_PQR" FunctionName="Sam3.Store.Sam3_Soldadura_PQR">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_Soldadura_PQR_Result">
@@ -26472,25 +25833,24 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="CodigoRaiz" ColumnName="CodigoRaiz" />
                 <ScalarProperty Name="NumeroPID" ColumnName="NumeroPID" />
                 <ScalarProperty Name="NumeroP" ColumnName="NumeroP" />
-                <ScalarProperty Name="GrupoPID" ColumnName="GrupoPID" />
-                <ScalarProperty Name="GrupoP" ColumnName="GrupoP" />
+                <ScalarProperty Name="GrupoMaterialBase1PID" ColumnName="GrupoMaterialBase1PID" />
+                <ScalarProperty Name="GrupoMaterialBase1" ColumnName="GrupoMaterialBase1" />
+                <ScalarProperty Name="GrupoMaterialBase2PID" ColumnName="GrupoMaterialBase2PID" />
+                <ScalarProperty Name="GrupoMaterialBase2" ColumnName="GrupoMaterialBase2" />
+                <ScalarProperty Name="AporteID" ColumnName="AporteID" />
                 <ScalarProperty Name="Aporte" ColumnName="Aporte" />
+                <ScalarProperty Name="MezclaID" ColumnName="MezclaID" />
                 <ScalarProperty Name="Mezcla" ColumnName="Mezcla" />
+                <ScalarProperty Name="RespaldoID" ColumnName="RespaldoID" />
                 <ScalarProperty Name="Respaldo" ColumnName="Respaldo" />
+                <ScalarProperty Name="GrupoFID" ColumnName="GrupoFID" />
                 <ScalarProperty Name="GrupoF" ColumnName="GrupoF" />
                 <ScalarProperty Name="CodigoID" ColumnName="CodigoID" />
-                <ScalarProperty Name="Especificacion" ColumnName="Especificacion" />
-                <ScalarProperty Name="GrupoPMaterialBase1" ColumnName="GrupoPMaterialBase1" />
-                <ScalarProperty Name="GrupoPMaterialBase1Nombre" ColumnName="GrupoPMaterialBase1Nombre" />
-                <ScalarProperty Name="GrupoPMaterialBase2" ColumnName="GrupoPMaterialBase2" />
-                <ScalarProperty Name="GrupoPMaterialBase2Nombre" ColumnName="GrupoPMaterialBase2Nombre" />
-                <ScalarProperty Name="RegistrosWPS" ColumnName="RegistrosWPS" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_Soldadura_PQR_Existe" FunctionName="Sam3.Store.Sam3_Soldadura_PQR_Existe" />
-          <FunctionImportMapping FunctionImportName="Sam3_Soldadura_Set_PQR" FunctionName="Sam3.Store.Sam3_Soldadura_Set_PQR" />
-          <FunctionImportMapping FunctionImportName="Sam3_Soldadura_Set_WPS" FunctionName="Sam3.Store.Sam3_Soldadura_Set_WPS" />
           <FunctionImportMapping FunctionImportName="Sam3_Soldadura_Soldador" FunctionName="Sam3.Store.Sam3_Soldadura_Soldador" />
           <FunctionImportMapping FunctionImportName="Sam3_Soldadura_SoldadorCertificacion" FunctionName="Sam3.Store.Sam3_Soldadura_SoldadorCertificacion">
             <ResultMapping>
@@ -26508,7 +25868,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="Posicion" ColumnName="Posicion" />
                 <ScalarProperty Name="FechaInicioCertificado" ColumnName="FechaInicioCertificado" />
                 <ScalarProperty Name="FechaFinCertificado" ColumnName="FechaFinCertificado" />
-                <ScalarProperty Name="CedulaTuboCalificadoID" ColumnName="CedulaTuboCalificadoID" />
                 <ScalarProperty Name="CedulaTuboCalificado" ColumnName="CedulaTuboCalificado" />
                 <ScalarProperty Name="DiametroCalificado" ColumnName="DiametroCalificado" />
                 <ScalarProperty Name="EspesorMinimo" ColumnName="EspesorMinimo" />
@@ -26537,26 +25896,14 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="NombrePQRRaiz" ColumnName="NombrePQRRaiz" />
                 <ScalarProperty Name="PQRRellenoId" ColumnName="PQRRellenoId" />
                 <ScalarProperty Name="NombrePQRRelleno" ColumnName="NombrePQRRelleno" />
+                <ScalarProperty Name="GrupoPId" ColumnName="GrupoPId" />
+                <ScalarProperty Name="GrupoP" ColumnName="GrupoP" />
                 <ScalarProperty Name="PWHTId" ColumnName="PWHTId" />
                 <ScalarProperty Name="PWHT" ColumnName="PWHT" />
-                <ScalarProperty Name="PREHEATId" ColumnName="PREHEATId" />
-                <ScalarProperty Name="PREHEAT" ColumnName="PREHEAT" />
-                <ScalarProperty Name="GrupoMaterialBase1RaizUID" ColumnName="GrupoMaterialBase1RaizUID" />
-                <ScalarProperty Name="GrupoMaterialBase1RaizU" ColumnName="GrupoMaterialBase1RaizU" />
-                <ScalarProperty Name="GrupoMaterialBase1RaizDID" ColumnName="GrupoMaterialBase1RaizDID" />
-                <ScalarProperty Name="GrupoMaterialBase1RaizD" ColumnName="GrupoMaterialBase1RaizD" />
-                <ScalarProperty Name="GrupoMaterialBase1RellenoUID" ColumnName="GrupoMaterialBase1RellenoUID" />
-                <ScalarProperty Name="GrupoMaterialBase1RellenoU" ColumnName="GrupoMaterialBase1RellenoU" />
-                <ScalarProperty Name="GrupoMaterialBase1RellenoDID" ColumnName="GrupoMaterialBase1RellenoDID" />
-                <ScalarProperty Name="GrupoMaterialBase1RellenoD" ColumnName="GrupoMaterialBase1RellenoD" />
-                <ScalarProperty Name="RaizEspesorRaiz" ColumnName="RaizEspesorRaiz" />
-                <ScalarProperty Name="RaizEspesorRelleno" ColumnName="RaizEspesorRelleno" />
-                <ScalarProperty Name="RellenoEspesorRaiz" ColumnName="RellenoEspesorRaiz" />
-                <ScalarProperty Name="RellenoEspesorRelleno" ColumnName="RellenoEspesorRelleno" />
-                <ScalarProperty Name="ProcesoSoldaduraRaiz" ColumnName="ProcesoSoldaduraRaiz" />
-                <ScalarProperty Name="ProcesoSoldaduraRelleno" ColumnName="ProcesoSoldaduraRelleno" />
-                <ScalarProperty Name="EspesorMaximo" ColumnName="EspesorMaximo" />
-                <ScalarProperty Name="EspesorMinimo" ColumnName="EspesorMinimo" />
+                <ScalarProperty Name="EspesorMinimoRaiz" ColumnName="EspesorMinimoRaiz" />
+                <ScalarProperty Name="EspesorMaximoRaiz" ColumnName="EspesorMaximoRaiz" />
+                <ScalarProperty Name="EspesorMinimoRelleno" ColumnName="EspesorMinimoRelleno" />
+                <ScalarProperty Name="EspesorMaximoRelleno" ColumnName="EspesorMaximoRelleno" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26596,28 +25943,12 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Steelgo_Get_Colada" FunctionName="Sam3.Store.Sam3_Steelgo_Get_Colada">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Steelgo_Get_Colada_Result">
-                <ScalarProperty Name="ColadaID" ColumnName="ColadaID" />
-                <ScalarProperty Name="NumeroColada" ColumnName="NumeroColada" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_Steelgo_Get_Color" FunctionName="Sam3.Store.Sam3_Steelgo_Get_Color">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_Steelgo_Get_Color_Result">
                 <ScalarProperty Name="ColorID" ColumnName="ColorID" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="CodigoHexadecimal" ColumnName="CodigoHexadecimal" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_Steelgo_Get_Contactos" FunctionName="Sam3.Store.Sam3_Steelgo_Get_Contactos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_Steelgo_Get_Contactos_Result">
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ContactoID" ColumnName="ContactoID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26681,7 +26012,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
                 <ScalarProperty Name="ObreroID" ColumnName="ObreroID" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="TipoObrero" ColumnName="TipoObrero" />
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -26794,15 +26124,6 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sam3_SteelGo_Get_TipoPruebas" FunctionName="Sam3.Store.Sam3_SteelGo_Get_TipoPruebas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Sam3.Sam3_SteelGo_Get_TipoPruebas_Result">
-                <ScalarProperty Name="TipoPruebaID" ColumnName="TipoPruebaID" />
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Sam3_Steelgo_Get_TipoResultado" FunctionName="Sam3.Store.Sam3_Steelgo_Get_TipoResultado">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Sam3.Sam3_Steelgo_Get_TipoResultado_Result">
@@ -26876,7 +26197,7 @@ warning 6002: The table/view 'steelgo-sam3.dbo.VW_NumerosUnicos' does not have a
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
