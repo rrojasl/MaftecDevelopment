@@ -339,6 +339,8 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
     for (var x = 0; x < ListaDetalleGuardarInspeccionVisual.length; x++)
         if (ListaDetalleGuardarInspeccionVisual[x].Estatus != 0) ListaDetalleGuardarFiltroStatus.push(ListaDetalleGuardarInspeccionVisual[x]);
 
+    if (ListaDetalleGuardarFiltroStatus.length <= 0) capturaSinVisual = true;
+
     if (inspeccionDimensional.length > 0) inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
     else capturaSinVisual = true;
 
@@ -397,8 +399,11 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
 }
 
 function ejecutaGuardado(Captura, guardadoSinInspeccionDimensional, guardadoSinInspeccionVisual, tipoGuardar) {
-    if (guardadoSinInspeccionDimensional && guardadoSinInspeccionVisual) displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '1');
-     else $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+    if (guardadoSinInspeccionDimensional && guardadoSinInspeccionVisual) {
+        displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '1');
+        loadingStop();
+    }
+    else $Inspeccion.Inspeccion.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
         if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
             $("#grid").data('kendoGrid').dataSource.data([]);
 
