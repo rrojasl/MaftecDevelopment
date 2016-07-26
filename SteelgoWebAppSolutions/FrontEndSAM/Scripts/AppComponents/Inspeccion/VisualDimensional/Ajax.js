@@ -277,6 +277,11 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
     }
     else inspeccionDimensional[0].ListaJuntas = undefined;
 
+    if (inspeccionDimensional[0].ResultadoID == 2 && Defecto <= 0 && Inspector <= 0 && juntasListado.length == 0) {
+        capturaSinDimensional = false;
+        inspeccionDimensional[0].Accion = 3;
+    }
+
     // Finaliza captura datos Dimensional
 
     // Comienza captura Visual
@@ -354,9 +359,11 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
     // Asignación de elementos vacios de prueba
     if (capturaSinDimensional)
         inspeccionDimensional[0] = { Lenguaje: $("#language").val(), InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: 0, ResultadoID: 0, ObreroID: null, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
+    else Captura[0].Detalles = inspeccionDimensional;
+
     if (capturaSinVisual)
         ListaDetalleGuardarFiltroStatus[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, ObreroID: 0, FechaInspeccion: " ", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
-    else Captura[0].Detalles = inspeccionDimensional;
+    else Captura[0].Detalles.ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
 
     if (capturaSinDimensional && !capturaSinVisual) inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
 

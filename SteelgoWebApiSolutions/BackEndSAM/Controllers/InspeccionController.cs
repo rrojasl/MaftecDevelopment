@@ -229,7 +229,7 @@ namespace BackEndSAM.Controllers
                 if (listaCapturaInspeccion.Detalles[0].ListaJuntas != null)
                     dtDetalleListas = ArmadoController.ToDataTable(listaCapturaInspeccion.Detalles[0].ListaJuntas);
 
-                return InspeccionBD.Instance.InsertarCapturaInspeccion(dtDetalleCaptura, dtDetalleListas, usuario.UsuarioID, lenguaje, listaCapturaInspeccion.Detalles[0].InspeccionDimensionalID, listaCapturaInspeccion.Detalles[0].OrdenTrabajoSpoolID, listaCapturaInspeccion.Detalles[0].FechaInspeccion, listaCapturaInspeccion.Detalles[0].ResultadoID, listaCapturaInspeccion.Detalles[0].ObreroID, listaCapturaInspeccion.Detalles[0].DefectoID);
+                return InspeccionBD.Instance.InsertarCapturaInspeccion(dtDetalleCaptura, dtDetalleListas, usuario.UsuarioID, lenguaje, listaCapturaInspeccion.Detalles[0].InspeccionDimensionalID, listaCapturaInspeccion.Detalles[0].OrdenTrabajoSpoolID, listaCapturaInspeccion.Detalles[0].FechaInspeccion, listaCapturaInspeccion.Detalles[0].ResultadoID, listaCapturaInspeccion.Detalles[0].ObreroID, listaCapturaInspeccion.Detalles[0].DefectoID, listaCapturaInspeccion.Detalles[0].Accion);
             }
             else
             {

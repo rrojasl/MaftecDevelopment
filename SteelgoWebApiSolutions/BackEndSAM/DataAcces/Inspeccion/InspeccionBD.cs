@@ -277,7 +277,7 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object InsertarCapturaInspeccion(DataTable dtDetalleCaptura,DataTable dtJuntaLista, int usuario, string lenguaje, int inspeccionDimensionalID, int ordenTrabajoSpoolID, string fechaInspeccion, int resultadoID, int obreroID, int defectoID)
+        public object InsertarCapturaInspeccion(DataTable dtDetalleCaptura,DataTable dtJuntaLista, int usuario, string lenguaje, int inspeccionDimensionalID, int ordenTrabajoSpoolID, string fechaInspeccion, int resultadoID, int obreroID, int defectoID, int accion)
         {
             try
             {
@@ -294,7 +294,8 @@ namespace BackEndSAM.DataAcces
                         { "@FechaInspeccion", fechaInspeccion },
                         { "@ResultadoID", resultadoID.ToString() },
                         { "@ObreroID", obreroID.ToString() },
-                        { "@DefectoID", defectoID.ToString() }
+                        { "@DefectoID", defectoID.ToString() },
+                        { "@AccionDimensional", accion.ToString() }
                        
                     };
                     _SQL.Ejecuta(Stords.GUARDARCAPTURAINSPECCIONVISUALDIMENSIONAL, dtDetalleCaptura, "@Inspeccion", dtJuntaLista, "@juntas", parametro);
