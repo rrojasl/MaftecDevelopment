@@ -43,7 +43,6 @@ function CargarGrid() {
         edit: function (e) { 
             this.closeCell(); 
         },
-        autoBind: true,
         dataSource: { 
             schema: {
                 model: {
@@ -69,7 +68,7 @@ function CargarGrid() {
         },
         navigatable: true,
         filterable: getGridFilterableMaftec(),
-        editable: true,
+        editable: false,
         autoHeight: true,
         sortable: true,
         scrollable: true,
@@ -209,10 +208,6 @@ function CargarGridBacklog() {
                     }
                 }
             },
-            pageSize: 10,
-            serverPaging: false,
-            serverFiltering: false,
-            serverSorting: false,
             filter: {
                 logic: "or",
                 filters: [
@@ -220,6 +215,10 @@ function CargarGridBacklog() {
                   { field: "Accion", operator: "eq", value: 2 }
                 ]
             },
+            pageSize: 10,
+            serverPaging: false,
+            serverFiltering: false,
+            serverSorting: false,
         },
         beforeEdit: function (e) {
             var columnIndex = this.cellIndex(e.container);
@@ -318,12 +317,11 @@ function eliminarCapturaBack(e) {
             }
             else {
                 dataItem.Accion = 3;
-            }
-                
+            }               
 
             dataSource.sync();
 
-            ImprimirAreaTonelada();
+            ImprimirAreaToneladaBackLog();
             ventanaConfirm.close();
         });
         $("#noButton").click(function () {

@@ -135,7 +135,7 @@ namespace BackEndSAM.Controllers
 
                     List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result> detallaArmadoAdicional = (List<Sam3_Armado_Get_DetalleTrabajoAdicional_Result>)CapturaArmadoBD.Instance.DetallaArmadoAdicional(capturaDatosJson, usuario);
 
-                    List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)CapturaArmadoBD.Instance.listaNumeroUnicos(capturaDatosJson, usuario, 1);
+                    List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)CapturaArmadoBD.Instance.listaNumeroUnicos(capturaDatosJson, usuario, 2);
 
 
                     List<DetalleTrabajoAdicional> listDetalleTrabajoAdicional = GenerarDetalleAdicionalJson(detallaArmadoAdicional, usuario);

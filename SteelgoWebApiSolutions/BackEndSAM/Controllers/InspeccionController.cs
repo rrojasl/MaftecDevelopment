@@ -37,7 +37,7 @@ namespace BackEndSAM.Controllers
 
                 foreach (Sam3_Inspeccion_Get_DetalleJunta_Result item in detalle)
                 {
-                    List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)InspeccionBD.Instance.listaNumeroUnicos(item.JuntaSpoolID, usuario, 2);
+                    List<Sam3_Armado_Get_MaterialesSpool_Result> listaNumeroUnicos = (List<Sam3_Armado_Get_MaterialesSpool_Result>)InspeccionBD.Instance.listaNumeroUnicos(item.JuntaSpoolID, usuario, 1);
                     List<NumeroUnico> listNumeroUnico1 = GenerarListaNumerosUnicos(listaNumeroUnicos, 1);
                     List<NumeroUnico> listNumeroUnico2 = GenerarListaNumerosUnicos(listaNumeroUnicos, 2);
 
@@ -229,7 +229,7 @@ namespace BackEndSAM.Controllers
                 if (listaCapturaInspeccion.Detalles[0].ListaJuntas != null)
                     dtDetalleListas = ArmadoController.ToDataTable(listaCapturaInspeccion.Detalles[0].ListaJuntas);
 
-                return InspeccionBD.Instance.InsertarCapturaInspeccion(dtDetalleCaptura, dtDetalleListas, usuario.UsuarioID, lenguaje, listaCapturaInspeccion.Detalles[0].InspeccionDimensionalID, listaCapturaInspeccion.Detalles[0].OrdenTrabajoSpoolID, listaCapturaInspeccion.Detalles[0].FechaInspeccion, listaCapturaInspeccion.Detalles[0].ResultadoID, listaCapturaInspeccion.Detalles[0].ObreroID, listaCapturaInspeccion.Detalles[0].DefectoID);
+                return InspeccionBD.Instance.InsertarCapturaInspeccion(dtDetalleCaptura, dtDetalleListas, usuario.UsuarioID, lenguaje, listaCapturaInspeccion.Detalles[0].InspeccionDimensionalID, listaCapturaInspeccion.Detalles[0].OrdenTrabajoSpoolID, listaCapturaInspeccion.Detalles[0].FechaInspeccion, listaCapturaInspeccion.Detalles[0].ResultadoID, listaCapturaInspeccion.Detalles[0].ObreroID, listaCapturaInspeccion.Detalles[0].DefectoID, listaCapturaInspeccion.Detalles[0].Accion);
             }
             else
             {

@@ -160,6 +160,7 @@ namespace BackEndSAM.Models.Inspeccion
 
     public class DetalleGuardarJson
     {
+        public int Accion { get; set; }
         public string Lenguaje { get; set; }
         public int InspeccionDimensionalID { get; set; }
         public int OrdenTrabajoSpoolID { get; set; }

@@ -111,6 +111,10 @@ _dictionary = {
         "es-MX": "No existe carro",
         "en-US": "No car"
     },
+    "NoExisteProyecto":{
+       "es-MX": "No existe proyecto",
+       "en-US": "No Proyect"
+    },
     "NoExisteCuadrante": {
         "es-MX": "No existe cuadrante",
         "en-US": "No quadrant"
@@ -128,14 +132,18 @@ _dictionary = {
         "en-US": "do you want delete the row?"
     },
     "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto": {
-        "es-MX": "No se pueden especificar juntas para el defecto",
-        "en-US": "Can't especify joint to deffect"
+        "es-MX": "El defecto seleccionado, no requiere que se especifiquen juntas",
+        "en-US": "The select deffect, it does not required specified joints"
+    },
+    "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSeleccionarDefecto": {
+        "es-MX": "Para especificar juntas, seleccione un defecto",
+        "en-US": "To specify joints, select a defect"
     },
     "mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado": {
         "es-MX": "El spool esta aprobado, no puedes especificar juntas",
-        "en-US": "The spool is aproved, can´t  especify joint "
+        "en-US": "The spool is aproved, can´t  especify joint"
     },
-    
+
     "RequisicionesAsignadas": {
         "es-MX": "Requisiciones Asignadas",
         "en-US": "Assigned Request"
@@ -8225,6 +8233,22 @@ _dictionary = {
         "es-MX": "Datos del apartado Inspección Visual guardados correctamente.",
         "en-US": "Visual Inspection data saved correctly."
     },
+    "DimensionalVisualMensajeRequiereJuntas": {
+        "es-MX": "El defecto requiere especificar juntas",
+        "en-US": "The defect requires specified joints"
+    },
+    "DimensionalVisualMensajeNoRequiereJuntas": {
+        "es-MX": "El defecto no requiere especificar juntas",
+        "en-US": "The defect does not requires specified joints"
+    },
+    "DimensionalVisualMensajeRechazadoDefecto": {
+        "es-MX": "Si el Resultado Visual es rechazado debe seleccionar un defecto",
+        "en-US": "If the visual result is rejected must select a defect"
+    },
+    "DimensionalVisualMensajeRequeridos": {
+        "es-MX": "Los campos Resultado Dimensional, Inspector y Fecha deben ser capturados",
+        "en-US": "The Result Dimensional, Inspector and Date fields should be captured"
+    },
     //#endregion
 
     //#region ServiciosTecnicos
@@ -10113,8 +10137,8 @@ _dictionary = {
         "en-US": "Tons"
     },
     "PinturaCargaSpoolNoEncontrado": {
-        "es-MX": "El spool fue embarcado",
-        "en-US": "the spool  was embarked"
+        "es-MX": "El spool no existe o fue embarcado",
+        "en-US": "the spool doesn´t exist or was embarked"
     }
     ,
     "PinturaCargaSpoolToneladaSuperiorPermididoCarro": {
@@ -10204,10 +10228,10 @@ _dictionary = {
         "es-MX": "Por favor seleccione un carro",
         "en-US": "Select a car please"
     },
-
-    //#endregion
-
-    //#region PinturaCargaBackLog
+    "PinturaSeleccionarProyecto":{
+        "es-MX": "Por favor seleccione un proyecto",
+        "en-US": "Select a proyect please"
+    },
     "PinturaCargaBackLogCarro": {
         "es-MX": "Carro",
         "en-US": "Car"
@@ -10264,6 +10288,11 @@ _dictionary = {
         "es-MX": "El servicio de pintura debe ser el mismo para los spools",
         "en-US": "The paint service should be equals for all spools"
     },
+    "PinturaAgregaCargaExito": {
+        "es-MX": "Se agregó el spool: ",
+        "en-US": "He added the spool: "
+    },
+
     //#endregion
     //#region PinturaCarga
 
@@ -10628,8 +10657,8 @@ _dictionary = {
     },
 
     "CapturaAvanceIntAcabadoPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de cancelar el detalle de la captura de pintura?",
-        "en-US": "Are you sure you want to cancel the detail of the capture of painting ?"
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de pintura?",
+        "en-US": "Are you sure you want to delete the detail of the capture of painting ?"
     },
 
     "CapturaAvanceIntAcabadoPintores": {
@@ -10671,8 +10700,8 @@ _dictionary = {
         "en-US": "Filling mass"
     },
     "CapturaAvanceIntAcabadoPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de cancelar el detalle de la captura de pintura?",
-        "en-US": "Are you sure you want to cancel the detail of the capture of paint ?"
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de pintura?",
+        "en-US": "Are you sure you want to delete the detail of the capture of painting ?"
 
     },
     "ErrorCapturaAvanceIntAcabadoSeleccionarCuadrante": {
