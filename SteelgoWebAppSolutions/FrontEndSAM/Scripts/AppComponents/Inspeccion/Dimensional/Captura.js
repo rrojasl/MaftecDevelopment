@@ -88,7 +88,7 @@ function CargarGrid() {
         },
         change: function () {
             var dataItem = this.dataSource.view()[this.select().index()];
-            if(dataItem.Accion == 4)
+            if (dataItem.Accion == 4)
                 dataItem.Accion = 2;
         },
         dataSource: {
@@ -199,18 +199,18 @@ function isEditable(fieldName, model) {
     else if (fieldName === "ListaJuntasSeleccionadas") {
         // condition for the field "ProductName"
         //alert(model.TIPO );
-        
+
         if (model.ResultadoID == "1") {
             displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado', '', '1');
         }
-        else if(model.Defectos == ""){
+        else if (model.Defectos == "") {
             displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSeleccionarDefecto', '', '1');
         }
         else {
             if (model.TIPO == "NoEspecificarJunta") {
                 displayNotify("mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto", '', '1');
             }
-            
+
         }
 
         return model.TIPO !== "NoEspecificarJunta" && model.ResultadoID !== "1" && model.ResultadoID !== "0";
@@ -274,13 +274,13 @@ function cancelarCaptura(e) {
 
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
 
-                if (dataItem.Accion == 1){
+                if (dataItem.Accion == 1) {
                     dataSource.remove(dataItem);
                 }
                 else {
                     dataItem.Accion = 3;
                 }
-                    
+
                 $("#grid").data("kendoGrid").dataSource.sync();
 
                 ventanaConfirm.close();
@@ -347,9 +347,9 @@ function limpiarRenglon(e) {
         itemToClean.InspectorID = 0;
         itemToClean.Inspector = "";
         itemToClean.ListaJuntasSeleccionadas = [];
-        if(itemToClean.Accion == 2)
+        if (itemToClean.Accion == 2)
             itemToClean.Accion = 4;
-        
+
         itemToClean.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         dataSource.sync();
@@ -371,7 +371,7 @@ function PlanchaDefecto() {
                 if (data[i].ResultadoID != "1") {
                     if (data[i].Accion == 4)
                         data[i].Accion = 2;
-                    data[i].DefectosID = $("#inputDefecto").val();
+                    data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                     data[i].ListaJuntasSeleccionadas = [];
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
@@ -385,7 +385,7 @@ function PlanchaDefecto() {
                     if (data[i].ResultadoID != "1") {
                         if (data[i].Accion == 4)
                             data[i].Accion = 2;
-                        data[i].DefectosID = $("#inputDefecto").val();
+                        data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                         data[i].ListaJuntasSeleccionadas = [];
                         data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
@@ -443,7 +443,7 @@ function PlanchadoResultadoDimensional() {
                 data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                 data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
                 if ($("#inputDefecto").data("kendoComboBox").text() != "" || $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado") {
-                    data[i].DefectosID = $("#inputDefecto").val();
+                    data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                     data[i].ListaJuntasSeleccionadas = [];
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
@@ -452,15 +452,15 @@ function PlanchadoResultadoDimensional() {
                     if (data[i].Accion == 4)
                         data[i].Accion = 2;
                 }
-                
-                
+
+
             }
             else {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
                     data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                     data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
                     if ($("#inputDefecto").val() != "") {
-                        data[i].DefectosID = $("#inputDefecto").val();
+                        data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                         data[i].ListaJuntasSeleccionadas = [];
                         data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
@@ -470,8 +470,8 @@ function PlanchadoResultadoDimensional() {
                             data[i].Accion = 2;
 
                     }
-                    
-                    
+
+
                 }
             }
         }
