@@ -585,16 +585,25 @@ function SuscribirEventoSpoolID() {
 };
 
 function Limpiar() {
-    $("#InputCarro").val("");
-    $("#inputCarroBacklog").val("");
+    $("#inputProyecto").data("kendoComboBox").value("");
+    $("#inputCarro").data("kendoComboBox").dataSource.data([]);
+    $("#inputCarro").data("kendoComboBox").value("");
+    $("#inputCarroBacklog").data("kendoComboBox").dataSource.data([]);
+    $("#inputCarroBacklog").data("kendoComboBox").value("");
     $("#labelM2").text("");
+    $("#labelM22").text("");
     $("#labelToneladas").text("");
+    $("#labelToneladas2").text("");
     $("#InputID").data("kendoComboBox").dataSource.data([]);
     $("#InputID").data("kendoComboBox").value("");
-    AjaxPinturaCargaMedioTransporte();
+    $("#InputOrdenTrabajo").val("");
+    $('input:radio[name=TipoVista]:nth(0)').attr('checked', true);
+    $('input:radio[name=TipoVista]:nth(1)').attr('checked', false);
     $("#grid").data('kendoGrid').dataSource.data([]);
+    $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
     $("#chkCerrar").attr("checked", false);
     $("#chkCerrar2").attr("checked", false);
+    opcionHabilitarViewBacklog(false, "");
 }
 
 
