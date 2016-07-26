@@ -520,8 +520,9 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
                                 
                                 if (disponible == 0) {
-                                    AjaxPinturaCargaMedioTransporte();
+                                    
                                     AjaxCargarSpoolBacklog(true, MedioTransporteID);
+                                    Limpiar();
 
                                 }
                                 else {
@@ -530,8 +531,9 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                                     if (!guardarYNuevo) {
                                         guardar = true;
                                     }
-
+                                    //AjaxPinturaCargaMedioTransporte();
                                     AjaxCargarSpoolBacklog(true, MedioTransporteID);
+                                    
 
                                 }
                                 displayNotify("PinturaCargaBackLogMensajeGuardadoExitoso", "", '0');
