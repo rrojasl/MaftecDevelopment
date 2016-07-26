@@ -88,7 +88,8 @@ function CargarGrid() {
         },
         change: function () {
             var dataItem = this.dataSource.view()[this.select().index()];
-
+            if(dataItem.Accion == 4)
+                dataItem.Accion = 2;
         },
         dataSource: {
             data: '',
@@ -368,6 +369,8 @@ function PlanchaDefecto() {
         for (var i = 0; i < data.length; i++) {
             if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 if (data[i].ResultadoID != "1") {
+                    if (data[i].Accion == 4)
+                        data[i].Accion = 2;
                     data[i].DefectosID = $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                     data[i].ListaJuntasSeleccionadas = [];
@@ -380,6 +383,8 @@ function PlanchaDefecto() {
             else {
                 if (data[i].Defectos == "" || data[i].Defectos == null || data[i].Defectos == undefined) {
                     if (data[i].ResultadoID != "1") {
+                        if (data[i].Accion == 4)
+                            data[i].Accion = 2;
                         data[i].DefectosID = $("#inputDefecto").val();
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                         data[i].ListaJuntasSeleccionadas = [];
@@ -406,6 +411,8 @@ function PlanchaInspector() {
             if ($("#inputInspector").data("kendoComboBox").text() != "") {
                 data[i].InspectorID = $("#inputInspector").val();
                 data[i].Inspector = $("#inputInspector").data("kendoComboBox").text();
+                if (data[i].Accion == 4)
+                    data[i].Accion = 2;
             }
 
         }
@@ -414,6 +421,8 @@ function PlanchaInspector() {
                 if ($("#inputInspector").data("kendoComboBox").text() != "") {
                     data[i].InspectorID = $("#inputInspector").val();
                     data[i].Inspector = $("#inputInspector").data("kendoComboBox").text();
+                    if (data[i].Accion == 4)
+                        data[i].Accion = 2;
                 }
             }
         }
@@ -440,6 +449,8 @@ function PlanchadoResultadoDimensional() {
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                     data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
                     data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+                    if (data[i].Accion == 4)
+                        data[i].Accion = 2;
                 }
                 
                 
@@ -455,6 +466,8 @@ function PlanchadoResultadoDimensional() {
                         data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                         data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
                         data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+                        if (data[i].Accion == 4)
+                            data[i].Accion = 2;
 
                     }
                     
@@ -478,10 +491,14 @@ function PlanchaFecha() {
         var m = ObtenerDato(endRangeDate.val(), 2) - 1;
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
             data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;           
+            if (data[i].Accion == 4)
+                data[i].Accion = 2;
         }
         else {
             if (data[i].FechaInspeccion == "" || data[i].FechaInspeccion == null || data[i].FechaInspeccion == undefined) {
                 data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;
+                if (data[i].Accion == 4)
+                    data[i].Accion = 2;
             }
         }
     }

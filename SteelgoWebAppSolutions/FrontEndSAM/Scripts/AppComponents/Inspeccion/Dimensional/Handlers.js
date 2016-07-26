@@ -284,6 +284,7 @@ function suscribirEventoAgregar() {
                     if ($('input:radio[name=Muestra]:checked').val() != undefined) {
                         //AjaxobtenerDetalleDimensional($("#InputID").val());
                         AjaxObtenerJSonGrid();
+                        eventoAgreagarGridEscrito = true;
                     }
                     else {
                         MensajesSteelGO('radioMostrar', '')
