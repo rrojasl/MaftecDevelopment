@@ -43,7 +43,6 @@ function CargarGrid() {
         edit: function (e) { 
             this.closeCell(); 
         },
-        autoBind: true,
         dataSource: { 
             schema: {
                 model: {
@@ -69,7 +68,7 @@ function CargarGrid() {
         },
         navigatable: true,
         filterable: getGridFilterableMaftec(),
-        editable: true,
+        editable: false,
         autoHeight: true,
         sortable: true,
         scrollable: true,
@@ -190,8 +189,9 @@ function CargarGridBacklog() {
     })(kendo.ui.Grid.fn.editCell);
      
     $("#grid[nombre='grid-backlog']").kendoGrid({
-        edit: false,
-        autoBind: true,
+        edit: function (e) { 
+            this.closeCell(); 
+        },
         dataSource: {
             data: [],
             schema: {
@@ -221,13 +221,8 @@ function CargarGridBacklog() {
                 ]
             },
         },
-        beforeEdit: function (e) {
-            var columnIndex = this.cellIndex(e.container);
-            var fieldName = this.thead.find("th").eq(columnIndex).data("field");
-            var modelo = e.model;
-        },
         navigatable: true,        
-        editable: true,
+        editable: false,
         autoHeight: true,
         sortable: true,
         scrollable: true,
