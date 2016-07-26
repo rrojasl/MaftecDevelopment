@@ -412,62 +412,146 @@ function SuscribirEventosJunta() {
     });
 }
 
-
-
+var caracteresEscritosEnPagina = '';
+function reiniciaCaracteresPagina() {
+    caracteresEscritosEnPagina = '';
+}
 function SuscribirEventoSpoolID() {
     var dataItem;
     $("#InputID").kendoComboBox({
         dataTextField: "IDValido",
         dataValueField: "Valor",
-        suggest: true,
-        delay: 10,
+        suggest: false,
         filter: "contains",
         index: 3,
         delay: 10,
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
+            //alert(caracteresEscritosEnPagina);
+            //caracteresEscritosEnPagina
+            //var d = new Date();
+            //console.log('CaracteresEscritosEnPagina' + d.getHours() + d.getMinutes() + d.getSeconds() + ': ' + caracteresEscritosEnPagina);
+            //alert(caracteresEscritosEnPagina);
             if (dataItem != undefined) {
                 if (dataItem.Status != "1") {
                     e.preventDefault();
                     $("#InputID").val("");
                     displayNotify("Mensajes_error", dataItem.Status, '1');
+                    return;
+                }
+
+                //Si selecciono algun item
+                if (caracteresEscritosEnPagina == '') {
+                    for (i = 0; i < this.dataItems().length; i++) {
+                        if (dataItem.IDValido == this.dataItems()[i].IDValido) {
+                            $("#InputID").val(dataItem.IDValido);
+                            Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+                            $("#LabelProyecto").text(dataItem.Proyecto);
+                            AjaxObtenerListaTubero();
+                            AjaxObtenerListaTaller();
+                            return;
+                        }
+                    }
+                }
+
+                if (dataItem.IDValido != caracteresEscritosEnPagina) {
+                    for (i = 0; i < this.dataItems().length; i++) {
+                        if ($.isNumeric(caracteresEscritosEnPagina) && $.isNumeric(this.dataItems()[i].IDValido)) {//Evaluación si son numeros
+                            if (Number(caracteresEscritosEnPagina) == Number(this.dataItems()[i].IDValido)) {
+                                $("#InputID").val(dataItem.IDValido);
+                                Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+                                $("#LabelProyecto").text(dataItem.Proyecto);
+                                AjaxObtenerListaTubero();
+                                AjaxObtenerListaTaller();
+                                return;
+                            }
+
+                        }
+                        else {//Evaluación de caracteres
+                            if (caracteresEscritosEnPagina == this.dataItems()[i].IDValido) {
+                                $("#InputID").val(dataItem.IDValido);
+                                Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+                                $("#LabelProyecto").text(dataItem.Proyecto);
+                                AjaxObtenerListaTubero();
+                                AjaxObtenerListaTaller();
+                                return;
+                            }
+                        }
+                    }
+
+
+                    e.preventDefault();
+                    $("#InputID").val("");
+                    displayNotify("Mensajes_error", "", '1');
+
+                    //if (dataItem.Status != "1") {
+                    //    e.preventDefault();
+                    //    $("#InputID").val("");
+                    //    displayNotify("Mensajes_error", dataItem.Status, '1');
+                    //}
+                    //else {
+                    //    $("#InputID").val(dataItem.IDValido);
+                    //    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+                    //    $("#LabelProyecto").text(dataItem.Proyecto);
+                    //    AjaxObtenerListaTubero();
+                    //    AjaxObtenerListaTaller();
+                    //}
                 }
                 else {
-                    $("#InputID").val(dataItem.IDValido);
-                    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
-                    $("#LabelProyecto").text(dataItem.Proyecto);
-                    AjaxObtenerListaTubero();
-                    AjaxObtenerListaTaller();
+                    e.preventDefault();
+                    $("#InputID").val("");
+                    displayNotify("Mensajes_error", dataItem.Status, '1');
                 }
             }
         }
         ,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
-            if (dataItem != undefined) {
-                if ($("#InputID").val().length == 1) {
-                    $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
-                }
-                if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
-                    Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
-                    $("#LabelProyecto").text(dataItem.Proyecto);
-                    AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
-                }
+            //if (dataItem != undefined) {
+            //    if ($("#InputID").val().length == 1) {
+            //        $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
+            //    }
+            //    if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
+            //        Cookies.set("Proyecto", dataItem.ProyectoID + '°' + dataItem.Proyecto);
+            //        $("#LabelProyecto").text(dataItem.Proyecto);
+            //        AjaxJunta($("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor);
+            //    }
 
-                AjaxObtenerListaTubero();
-                AjaxObtenerListaTaller();
-            }
-            else {
-                $("#InputID").data("kendoComboBox").value("");
-            }
+            //    AjaxObtenerListaTubero();
+            //    AjaxObtenerListaTaller();
+            //}
+            //else {
+            //    $("#InputID").data("kendoComboBox").value("");
+            //}
 
         }
+
+    });
+
+    $("#InputID").data("kendoComboBox").input.on("focus", function () {
+        reiniciaCaracteresPagina();
+    });
+
+    $("#InputID").data("kendoComboBox").enable(false);
+
+    $(document).keypress(function (e) {
+        //var checkWebkitandIE=(e.which==26 ? 1 : 0);
+        //var checkMoz=(e.which==122 && e.ctrlKey ? 1 : 0);
+
+        //e.keyCode
+        if (((e.charCode >= 48) && (e.charCode <= 57)) || ((e.charCode >= 65) && (e.charCode <= 90)) || ((e.charCode >= 97) && (e.charCode <= 122)))
+            caracteresEscritosEnPagina += e.key;
+
+        if ((e.charCode == 8) && (caracteresEscritosEnPagina.length > 1))
+            caracteresEscritosEnPagina = caracteresEscritosEnPagina.substring(0, caracteresEscritosEnPagina.length);
+        //if (checkWebkitandIE || checkMoz) $("body").append("<p>ctrl+z detected!</p>");
     });
 
     $("#InputOrdenTrabajo").blur(function (e) {
 
         if ($("#InputOrdenTrabajo").val().match("^[a-zA-Z][0-9]*$")) {
             try {
+                $("#InputID").data("kendoComboBox").enable(false);
                 AjaxObtenerSpoolID();
             } catch (e) {
                 displayNotify("Mensajes_error", e.message, '2');
