@@ -40,6 +40,8 @@ function AjaxObtenerSpoolID() {
 
             $("#InputID").data("kendoComboBox").dataSource.data(data.idStatus);
             Cookies.set("LetraProyecto", data.OrdenTrabajo.substring(0, 1), { path: '/' });
+            $("#InputID").data("kendoComboBox").enable(true);
+            $("#InputID").data("kendoComboBox").input.focus();
         }
     });
 
