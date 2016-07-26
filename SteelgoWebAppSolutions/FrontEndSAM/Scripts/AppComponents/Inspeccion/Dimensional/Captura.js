@@ -88,7 +88,8 @@ function CargarGrid() {
         },
         change: function () {
             var dataItem = this.dataSource.view()[this.select().index()];
-
+            if (dataItem.Accion == 4)
+                dataItem.Accion = 2;
         },
         dataSource: {
             data: '',
@@ -198,18 +199,18 @@ function isEditable(fieldName, model) {
     else if (fieldName === "ListaJuntasSeleccionadas") {
         // condition for the field "ProductName"
         //alert(model.TIPO );
-        
+
         if (model.ResultadoID == "1") {
             displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSpoolAprobado', '', '1');
         }
-        else if(model.Defectos == ""){
+        else if (model.Defectos == "") {
             displayNotify('mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefectoSeleccionarDefecto', '', '1');
         }
         else {
             if (model.TIPO == "NoEspecificarJunta") {
                 displayNotify("mensajeInspeccionVisualDimensionalNoAdmiteJuntasDefecto", '', '1');
             }
-            
+
         }
 
         return model.TIPO !== "NoEspecificarJunta" && model.ResultadoID !== "1" && model.ResultadoID !== "0";
@@ -273,13 +274,13 @@ function cancelarCaptura(e) {
 
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
 
-                if (dataItem.Accion == 1){
+                if (dataItem.Accion == 1) {
                     dataSource.remove(dataItem);
                 }
                 else {
                     dataItem.Accion = 3;
                 }
-                    
+
                 $("#grid").data("kendoGrid").dataSource.sync();
 
                 ventanaConfirm.close();
@@ -346,9 +347,9 @@ function limpiarRenglon(e) {
         itemToClean.InspectorID = 0;
         itemToClean.Inspector = "";
         itemToClean.ListaJuntasSeleccionadas = [];
-        if(itemToClean.Accion == 2)
+        if (itemToClean.Accion == 2)
             itemToClean.Accion = 4;
-        
+
         itemToClean.TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
         var dataSource = $("#grid").data("kendoGrid").dataSource;
         dataSource.sync();
@@ -368,7 +369,9 @@ function PlanchaDefecto() {
         for (var i = 0; i < data.length; i++) {
             if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 if (data[i].ResultadoID != "1") {
-                    data[i].DefectosID = $("#inputDefecto").val();
+                    if (data[i].Accion == 4)
+                        data[i].Accion = 2;
+                    data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                     data[i].ListaJuntasSeleccionadas = [];
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
@@ -380,7 +383,9 @@ function PlanchaDefecto() {
             else {
                 if (data[i].Defectos == "" || data[i].Defectos == null || data[i].Defectos == undefined) {
                     if (data[i].ResultadoID != "1") {
-                        data[i].DefectosID = $("#inputDefecto").val();
+                        if (data[i].Accion == 4)
+                            data[i].Accion = 2;
+                        data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                         data[i].ListaJuntasSeleccionadas = [];
                         data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
@@ -403,17 +408,21 @@ function PlanchaInspector() {
 
     for (var i = 0; i < data.length; i++) {
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            if ($("#inputInspector").data("kendoComboBox").selectedIndex != -1) {
+            if ($("#inputInspector").data("kendoComboBox").text() != "") {
                 data[i].InspectorID = $("#inputInspector").val();
                 data[i].Inspector = $("#inputInspector").data("kendoComboBox").text();
+                if (data[i].Accion == 4)
+                    data[i].Accion = 2;
             }
 
         }
         else {
             if (data[i].Inspector == "" || data[i].Inspector == undefined || data[i].Inspector == null) {
-                if ($("#inputInspector").data("kendoComboBox").selectedIndex != -1) {
+                if ($("#inputInspector").data("kendoComboBox").text() != "") {
                     data[i].InspectorID = $("#inputInspector").val();
                     data[i].Inspector = $("#inputInspector").data("kendoComboBox").text();
+                    if (data[i].Accion == 4)
+                        data[i].Accion = 2;
                 }
             }
         }
@@ -433,32 +442,36 @@ function PlanchadoResultadoDimensional() {
             if ($('input:radio[name=LLena]:checked').val() === "Todos") {
                 data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                 data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
-                if ($("#inputDefecto").data("kendoComboBox").text() != "") {
-                    data[i].DefectosID = $("#inputDefecto").val();
+                if ($("#inputDefecto").data("kendoComboBox").text() != "" || $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado") {
+                    data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                     data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                     data[i].ListaJuntasSeleccionadas = [];
                     data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                     data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
                     data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+                    if (data[i].Accion == 4)
+                        data[i].Accion = 2;
                 }
-                
-                
+
+
             }
             else {
                 if (data[i].Resultado == "" || data[i].Resultado == null || data[i].Resultado == undefined) {
                     data[i].ResultadoID = $('input:radio[name=ResultadoDimensional]:checked').val() == "Aprobado" ? 1 : 2;
                     data[i].Resultado = $('input:radio[name=ResultadoDimensional]:checked').val();
                     if ($("#inputDefecto").val() != "") {
-                        data[i].DefectosID = $("#inputDefecto").val();
+                        data[i].DefectosID = $("#inputDefecto").data("kendoComboBox").text() == "" ? "" : $("#inputDefecto").val();
                         data[i].Defectos = $("#inputDefecto").data("kendoComboBox").text();
                         data[i].ListaJuntasSeleccionadas = [];
                         data[i].TemplateRender = _dictionary.NoExistenJuntasSel[$("#language").data("kendoDropDownList").value()];
                         data[i].IDDEFECTOTIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].IDDEFECTOTIPO;
                         data[i].TIPO = $('#inputDefecto').data("kendoComboBox").dataSource._data[$('#inputDefecto').data("kendoComboBox").selectedIndex].TIPO;
+                        if (data[i].Accion == 4)
+                            data[i].Accion = 2;
 
                     }
-                    
-                    
+
+
                 }
             }
         }
@@ -478,10 +491,14 @@ function PlanchaFecha() {
         var m = ObtenerDato(endRangeDate.val(), 2) - 1;
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
             data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;           
+            if (data[i].Accion == 4)
+                data[i].Accion = 2;
         }
         else {
             if (data[i].FechaInspeccion == "" || data[i].FechaInspeccion == null || data[i].FechaInspeccion == undefined) {
                 data[i].FechaInspeccion = new Date(ObtenerDato(endRangeDate.val(), 1), m, ObtenerDato(endRangeDate.val(), 3));//año, mes, dia;
+                if (data[i].Accion == 4)
+                    data[i].Accion = 2;
             }
         }
     }

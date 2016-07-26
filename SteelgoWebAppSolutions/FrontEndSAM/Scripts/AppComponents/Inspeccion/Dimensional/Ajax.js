@@ -250,6 +250,8 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
             if (jSonCaptura[index].ListaJuntasSeleccionadasInicial == null) {
                 listaFinalJuntas = jSonCaptura[index].ListaJuntasSeleccionadas;
             }
+            if (jSonCaptura[index].Accion == 4)
+                listaFinalJuntas = [];
 
         }
         else {
@@ -261,7 +263,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
             for (var i = 0; i < jSonCaptura[index].ListaJuntasSeleccionadasInicial.length; i++) {
                 jSonCaptura[index].ListaJuntasSeleccionadasInicial[i].Accion = 3;
                 listaFinalJuntas[cont] = jSonCaptura[index].ListaJuntasSeleccionadasInicial[i];
-                cont++;
+                cont++; 
             }
             if (jSonCaptura[index].Accion == 4)
                 listaFinalJuntas = [];
@@ -336,7 +338,7 @@ function AjaxGuardar(jSonCaptura, tipoGuardado) {
                                 }
                             }
                             else {
-                                if (inspeccionDimensional[index].ListaJuntas == undefined) {
+                                if (JuntasCorrectasGuardar(inspeccionDimensional[index].ListaJuntas)) {
                                     inspeccionDimensional[index].Estatus = 0;
                                     $('tr[data-uid="' + jSonCaptura[index].uid + '"] ').css("background-color", "#ffcccc");
                                 }
@@ -499,7 +501,7 @@ function AjaxGetSpoolGrid() {
                                 $("#InputID").data("kendoComboBox").value("");
                             }
                             else {
-                                MensajesSteelGO("SpoolIDExistente", '');
+                                //MensajesSteelGO("SpoolIDExistente", '');
                             }
                         }
                     }
