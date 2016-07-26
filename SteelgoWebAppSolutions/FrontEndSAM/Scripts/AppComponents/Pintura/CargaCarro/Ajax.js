@@ -211,14 +211,17 @@ function AjaxAgregarCarga() {
                     for (var i = 0; i < array.length; i++) {
                         if (!validarInformacion(array[i])) {
                             if (ds._data.length == 0) {
+                                if (array[i].NombreMedioTransporte == "") {
 
-                                if (array[i].ProyectoID == parseInt($("#inputProyecto").data("kendoComboBox").value())) {
-                                    ds.add(0, array[i]);
-                                    displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
+                                    if (array[i].ProyectoID == parseInt($("#inputProyecto").data("kendoComboBox").value())) {
+                                        ds.add(0, array[i]);
+                                        displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
+                                    } else {
+                                        displayNotify("PinturaCargaCarroSpoolProyectoEquivocado", "", '1');
+                                    }
                                 } else {
-                                    displayNotify("PinturaCargaCarroSpoolProyectoEquivocado", "", '1');
+                                    displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
                                 }
-                                    
 
                             }
                             else {
