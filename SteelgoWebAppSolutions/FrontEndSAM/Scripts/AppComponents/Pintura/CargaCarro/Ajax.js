@@ -370,17 +370,7 @@ function AjaxObtenerDetalleCarroCargado(MedioTransporteID) {
 
             for (var i = 0; i < array.length; i++) {
                 if (!validarInformacion(array[i])) {
-                    if (carDataSourceSelected.AreaPermitidoMedioTransporte > (SumarArea() + array[i].Area))
-                        if (carDataSourceSelected.PesoMaximoPermitido > (SumarTonelada() + array[i].Peso)) {
-                            ds.add(array[i]);
-                        }
-                        else {
-                            displayNotify("PinturaCargaSpoolToneladaSuperiorPermididoCarro", "", '2');
-                        }
-                    else {
-                        displayNotify("PinturaCargaSpoolAreaSuperiorPermididoCarro", "", '2');
-                    }
-
+                    ds.add(array[i]);
                 }
             }
 
@@ -520,8 +510,9 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
                                 
                                 if (disponible == 0) {
-                                    AjaxPinturaCargaMedioTransporte();
+                                    
                                     AjaxCargarSpoolBacklog(true, MedioTransporteID);
+                                    Limpiar();
 
                                 }
                                 else {
@@ -530,8 +521,9 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                                     if (!guardarYNuevo) {
                                         guardar = true;
                                     }
-
+                                    //AjaxPinturaCargaMedioTransporte();
                                     AjaxCargarSpoolBacklog(true, MedioTransporteID);
+                                    
 
                                 }
                                 displayNotify("PinturaCargaBackLogMensajeGuardadoExitoso", "", '0');
