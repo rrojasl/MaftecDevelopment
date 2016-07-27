@@ -7591,14 +7591,6 @@ _dictionary = {
         "es-MX": "Preheat no coincide",
         "en-US": "Do not match PreHeat"
     },
-    "WPSMensajeErrorPQRNoAplicaRelleno": {
-        "es-MX": "El PQR no aplica para relleno",
-        "en-US": "PQR dont apply to fill"
-    },
-    "WPSMensajeErrorPQRNoAplicaRaiz": {
-        "es-MX": "El PQR no aplica para raiz",
-        "en-US": "PQR dont apply to root"
-    },
     "WPSMensajeErrorPWHRelleno": {
         "es-MX": "PWH No coincide",
         "en-US": "Do not match PWH"
@@ -7784,7 +7776,22 @@ _dictionary = {
         "es-MX": "El nombre del WPS es mandatorio",
         "en-US": "WPS name is mandatory "
     },
-
+    "WPSMensajeErrorPQRNoAplicaRelleno": {
+        "es-MX": "El WPS no aplica para relleno",
+        "en-US": "WPS dont apply to fill"
+    },
+    "WPSMensajeErrorPQRNoAplicaRaiz": {
+        "es-MX": "El WPS no aplica para raiz",
+        "en-US": "WQR dont apply to root"
+    },
+    "WPSNoAceptaAmbos": {
+        "es-MX": "No acepta el proceso de raiz y relleno",
+        "en-US": "No Takes Root Process and refilling"
+    },
+    "SoldadorCertificacionNombreWPS": {
+        "es-MX": "Nombre WPS",
+        "en-US": "WPS name"
+    },
 
 
     //#endregion 
