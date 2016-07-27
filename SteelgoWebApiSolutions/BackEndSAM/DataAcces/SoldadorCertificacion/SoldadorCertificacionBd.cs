@@ -68,8 +68,8 @@ namespace BackEndSAM.DataAcces
                                                         SoldadorCertificacionID = SC.SoldadorCertificacionID,
                                                         ObreroID = SC.OBREROID,
                                                         CodigoObrero = SC.CodigoObrero,
-                                                        PQRID = SC.WPSID,
-                                                        NombrePQR = SC.NombreWPS,
+                                                        WPSID = SC.WPSID,
+                                                        NombreWPS = SC.NombreWPS,
                                                         ProcesoSoldaduraID = Convert.ToInt32(SC.ProcesoSoldaduraID),
                                                         ProcesoSoldadura = SC.ProcesoSoldadura,
                                                         ListaTipoProcesosSoldadura = listaTipoProcesosSoldadura,
@@ -88,7 +88,7 @@ namespace BackEndSAM.DataAcces
                                                         Posicion = Convert.ToInt32(SC.Posicion),
                                                         listadoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
                                                         listaObreros = (List<Obrero>)ObtenerListaSoldadores(proyectoID, usuario.UsuarioID, patioID)
-                                                    }).AsParallel().ToList().OrderBy(x => x.NombrePQR).ToList<SoldadorCertificacion>();
+                                                    }).AsParallel().ToList().OrderBy(x => x.NombreWPS).ToList<SoldadorCertificacion>();
                 return data;
 
 

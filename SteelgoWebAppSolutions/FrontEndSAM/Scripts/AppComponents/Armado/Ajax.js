@@ -331,40 +331,15 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 }
             }).data("kendoWindow");
 
-            ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
-                "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+            ventanaConfirm.content(_dictionary.CapturaGuardarInformacionConNumerosUnicos[$("#language").data("kendoDropDownList").value()] +
+                "</br><center><button class='btn btn-blue' id='noButton'> Ok</button></center>");
 
             ventanaConfirm.open().center();
 
 
             //RowEmpty($("#grid"));
 
-            $("#yesButton").click(function () {
-                loadingStart();
-
-                ArregloGuardado = [];
-                var indice = 0;
-                for (var i = 0; i < Captura[0].Detalles.length; i++) {
-                    if (Captura[0].Detalles[i].Estatus == 1) {
-                        ArregloGuardado[indice] = ListaDetalles[i];
-                        indice++;
-                    }
-                }
-
-                Captura[0].Detalles = [];
-                Captura[0].Detalles = ArregloGuardado;
-
-
-                if (ArregloGuardado.length > 0) {
-                    AjaxEjecutarGuardado(Captura[0], tipoGuardar);
-                }
-                else {
-                    loadingStop();
-                    displayNotify("AdverteciaExcepcionGuardado", "", '1');
-                }
-
-                ventanaConfirm.close();
-            });
+            
             $("#noButton").click(function () {
                 ventanaConfirm.close();
             });

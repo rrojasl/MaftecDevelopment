@@ -10690,6 +10690,10 @@ _dictionary = {
         "es-MX": "Los registros marcados no serán guardados. ¿Desea continuar?",
         "en-US": "Marked records will not be saved. Continue anyway?"
     },
+    "CapturaGuardarInformacionConNumerosUnicos": {
+        "es-MX": "No se puede guardar Spools  incompletos, elimina el spool o presiona el boton limpiar. gracias",
+        "en-US": "You can not save incomplete Spools , remove the spool or press the clean button. Thank you"
+    },
     "CapturaAvanceIntAcabadoMensajeErrorGuardadoComponente": {
         "es-MX": "Seleccione un componente para cada spool.",
         "en-US": "Set a component per spool."
