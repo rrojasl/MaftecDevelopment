@@ -11,8 +11,8 @@ namespace BackEndSAM.Models.SoldadorCertificacion
         public int SoldadorCertificacionID { get; set; }
         public int ObreroID { get; set; }
         public string CodigoObrero { get; set; }
-        public int PQRID { get; set; }
-        public string NombrePQR { get; set; }
+        public int WPSID { get; set; }
+        public string NombreWPS { get; set; }
         public int ProcesoSoldaduraID { get; set; }
         public string ProcesoSoldadura { get; set; }
         public List<TipoProcesosSoldadura> ListaTipoProcesosSoldadura { get; set; }

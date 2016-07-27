@@ -390,18 +390,18 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
         }
     }).data("kendoWindow");
 
-    ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoMensajePreguntaGuardado[$("#language").data("kendoDropDownList").value()] +
-             "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+    ventanaConfirm.content(_dictionary.CapturaGuardarInformacionConNumerosUnicos[$("#language").data("kendoDropDownList").value()] +
+             "</br><center><button class='btn btn-blue' id='noButton'>Ok</button></center>");
 
     if (existRowEmpty) {
         ventanaConfirm.open().center();
 
-        $("#yesButton").click(function () {
-            loadingStart();
-            ejecutaGuardado(Captura, capturaSinDimensional, capturaSinVisual, tipoGuardar);
+        //$("#yesButton").click(function () {
+        //    loadingStart();
+        //    ejecutaGuardado(Captura, capturaSinDimensional, capturaSinVisual, tipoGuardar);
 
-            ventanaConfirm.close();
-        });
+        //    ventanaConfirm.close();
+        //});
 
         $("#noButton").click(function () {
             ventanaConfirm.close();
