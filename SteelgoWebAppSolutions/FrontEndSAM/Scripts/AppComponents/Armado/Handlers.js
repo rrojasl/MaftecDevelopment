@@ -482,7 +482,7 @@ function SuscribirEventoSpoolID() {
 
                     e.preventDefault();
                     $("#InputID").val("");
-                    displayNotify("Mensajes_error", "", '1');
+                    displayNotify("", "No hay coincidencias en el spool", '1');
 
                     //if (dataItem.Status != "1") {
                     //    e.preventDefault();
@@ -530,6 +530,39 @@ function SuscribirEventoSpoolID() {
 
     $("#InputID").data("kendoComboBox").input.on("focus", function () {
         reiniciaCaracteresPagina();
+    });
+
+    $("#InputID").data("kendoComboBox").input.on("blur", function () {
+        var tem = $("#InputID");
+        var tem2 = $("#InputID").data("kendoComboBox");
+        for (i = 0; i < $("#InputID").data("kendoComboBox").dataItems().length; i++) {
+            if ($.isNumeric(caracteresEscritosEnPagina) && $.isNumeric($("#InputID").data("kendoComboBox").dataItems()[i].IDValido)) {//Evaluación si son numeros
+                if (Number(caracteresEscritosEnPagina) == Number($("#InputID").data("kendoComboBox").dataItems()[i].IDValido)) {
+                    $("#InputID").val($("#InputID").data("kendoComboBox").dataItems()[i].IDValido);
+                    Cookies.set("Proyecto", $("#InputID").data("kendoComboBox").dataItems()[i].ProyectoID + '°' + $("#InputID").data("kendoComboBox").dataItems()[i].Proyecto);
+                    $("#LabelProyecto").text($("#InputID").data("kendoComboBox").dataItems()[i].Proyecto);
+                    AjaxObtenerListaTubero();
+                    AjaxObtenerListaTaller();
+                    return;
+                }
+
+            }
+            else {//Evaluación de caracteres
+                if (caracteresEscritosEnPagina == $("#InputID").data("kendoComboBox").dataItems()[i].IDValido) {
+                    $("#InputID").val($("#InputID").data("kendoComboBox").dataItems()[i].IDValido);
+                    Cookies.set("Proyecto", $("#InputID").data("kendoComboBox").dataItems()[i].ProyectoID + '°' + $("#InputID").data("kendoComboBox").dataItems()[i].Proyecto);
+                    $("#LabelProyecto").text($("#InputID").data("kendoComboBox").dataItems()[i].Proyecto);//dataItem
+                    AjaxObtenerListaTubero();
+                    AjaxObtenerListaTaller();
+                    return;
+                }
+            }
+        }
+
+
+        //e.preventDefault();
+        $("#InputID").val("");
+        displayNotify("", "No hay coincidencias en el spool", '1');
     });
 
     $("#InputID").data("kendoComboBox").enable(false);
