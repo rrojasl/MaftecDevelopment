@@ -1,6 +1,6 @@
 ﻿function SuscribirEventos() {
     SuscribirEventoSoldador();
-    SuscribirEventoNomprePQR();
+    SuscribirEventoNompreWPS();
     SuscribirEventoProcesoSoldadura();
     SuscribirEventoNumeroPasos();
     SuscribirEventoEspesorMinimo();
@@ -191,20 +191,20 @@ function SuscribirEventoProcesoSoldadura() {
                 $("#inputProcesoSol").data("kendoComboBox").text("");
             }
             else {
-                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 2 && $("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRaiz == 0)
+                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 2 && $("#inputNombreWPS").data("kendoComboBox").dataItem($("#inputNombreWPS").data("kendoComboBox").select()).EspesorRaiz == 0)
                 {
                     this.select(0);
                     displayNotify("WPSMensajeErrorPQRNoAplicaRaiz", "", '2');
                 }
-                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 3 && $("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRelleno == 0)
+                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 3 && $("#inputNombreWPS").data("kendoComboBox").dataItem($("#inputNombreWPS").data("kendoComboBox").select()).EspesorRelleno == 0)
                 {
                     this.select(0);
                     displayNotify("WPSMensajeErrorPQRNoAplicaRelleno", "", '2');
                 }
-                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 4 && ($("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRaiz == 0 || $("#inputNombrePQR").data("kendoComboBox").dataItem($("#inputNombrePQR").data("kendoComboBox").select()).EspesorRelleno == 0))
+                if (parseInt(dataItem.TipoProcesoSoldaduraID) == 4 && ($("#inputNombreWPS").data("kendoComboBox").dataItem($("#inputNombreWPS").data("kendoComboBox").select()).EspesorRaiz == 0 || $("#inputNombreWPS").data("kendoComboBox").dataItem($("#inputNombreWPS").data("kendoComboBox").select()).EspesorRelleno == 0))
                 {
                     this.select(0);
-                    displayNotify("PQRNoAceptaAmbos", "", '2');
+                    displayNotify("WPSNoAceptaAmbos", "", '2');
                 }
 
             }
@@ -213,10 +213,10 @@ function SuscribirEventoProcesoSoldadura() {
 
 }
 
-function SuscribirEventoNomprePQR() {
-    $("#inputNombrePQR").kendoComboBox({
+function SuscribirEventoNompreWPS() {
+    $("#inputNombreWPS").kendoComboBox({
         dataTextField: "Nombre",
-        dataValueField: "PQRID",
+        dataValueField: "WPSID",
         suggest: true,
         delay: 10,
         filter: "contains",
@@ -225,7 +225,7 @@ function SuscribirEventoNomprePQR() {
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem == undefined) {
-                $("#inputNombrePQR").data("kendoComboBox").text("");
+                $("#inputNombreWPS").data("kendoComboBox").text("");
             }
             else {
                 $("#inputProcesoSol").data("kendoComboBox").select(0);

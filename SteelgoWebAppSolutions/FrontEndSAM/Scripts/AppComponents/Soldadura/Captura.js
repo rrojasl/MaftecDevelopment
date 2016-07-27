@@ -262,7 +262,7 @@ function CargarGridSoldadura() {
                   { field: "Accion", operator: "eq", value: 2 }
                 ]
             },
-            pageSize: 20,
+            pageSize: 10,
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false
@@ -276,7 +276,7 @@ function CargarGridSoldadura() {
         selectable: true,
         pageable: {
             refresh: false,
-            pageSizes: [10, 15, 20],
+            pageSizes: [10, 25, 50, 100],
             info: false,
             input: false,
             numeric: true,
@@ -484,38 +484,29 @@ function CargarGridPopUpRaiz() {
 
 function LlenarGridPopUp(data) {
     modeloRenglon = data;
-    if (modeloRenglon.Raiz.length > 0 && modeloRenglon.Raiz[0].Soldador != "") {
-        modeloRenglon.Raiz.unshift({
-            Accion: 3,
-            JuntaSoldaduraID: 0,
-            JuntaSoldaduraSoldadoID: 0,
-            ObreroID: 0,
-            Soldador: "",
-            wps: ""
-        });
-    }
+
     $("#gridPopUp").data('kendoGrid').dataSource.data([]);
     var ds = $("#gridPopUp").data("kendoGrid").dataSource;
     var array = data.DetalleAdicional;
-    for (var i = 0; i < array.length; i++) {
-        ds.add(array[i]);
-    }
+
     VentanaModal();
 }
 
 function LlenarGridPopUpSoldadoresRaiz(options) {
     modeloRenglon = options;
 
-    $("#contenedorMultiselect").append("<div id='inputSoldadoresRaiz' />")
 
 
     $("#inputSoldadoresRaiz").kendoGrid({
         dataSource: {
-            data: [],
+            data: modeloRenglon.ListaSoldadoresRaizCapturados,
             schema: {
                 model: {
                     fields: {
+                        Accion: { type: "int", editable: false },
+                        ObreroID: { type: "int", editable: false },
                         Soldador: { type: "string", editable: true },
+                        ColadaID: { type: "int", editable: false },
                         Colada: { type: "string", editable: true },
                         Observaciones: { type: "string", editable: true }
                     }
@@ -534,7 +525,7 @@ function LlenarGridPopUpSoldadoresRaiz(options) {
         filterable: getGridFilterableMaftec(),
         columns: [
           { field: "Soldador", title: _dictionary.CapturaSoldaduraHeaderSoldadores[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px", editor: RenderComboBoxSoldadoresRaiz },
-          { field: "Colada", title: _dictionary.ListadoCatalogos0046[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px", editor: RenderComboBoxSoldadorTrabajos },
+          { field: "Colada", title: _dictionary.ListadoCatalogos0046[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px", editor: RenderComboBoxColadas },
           { field: "Observaciones", title: _dictionary.CapturaSoldaduraHeaderObservacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftecpopUp(), width: "100px" },
 
          {
@@ -619,20 +610,17 @@ function LlenarGridPopUpSoldadoresRaiz(options) {
         ],
         editable: true,
         navigatable: true,
-        toolbar: [{ name: "create", }]
+        toolbar: [{ name: "create" }]
 
     });
 
     VentanaModalSoldadoresRaiz();
 }
 
-function LlenarGridPopUpSoldadoresRaiz(options) {
+function LlenarGridPopUpSoldadoresRelleno(options) {
     modeloRenglon = options;
 
-    $("#contenedorMultiselect").append("<div id='inputSoldadoresRaiz' />")
-
-
-    $("#inputSoldadoresRaiz").kendoGrid({
+    $("#inputSoldadoresRelleno").kendoGrid({
         dataSource: {
             data: [],
             schema: {
@@ -746,8 +734,9 @@ function LlenarGridPopUpSoldadoresRaiz(options) {
 
     });
 
-    VentanaModalSoldadoresRaiz();
+    VentanaModalSoldadoresRelleno();
 }
+
 
 
 function VentanaModal() {
@@ -804,8 +793,8 @@ function VentanaModalSoldadoresRaiz() {
 function VentanaModalSoldadoresRelleno() {
 
     var modalTitle = "";
-    modalTitle = _dictionary.CapturaSoldaduraSoldadoresRaiz[$("#language").data("kendoDropDownList").value()];
-    var window = $("#windowMultiselectSoldador");
+    modalTitle = _dictionary.CapturaSoldaduraSoldadoresRelleno[$("#language").data("kendoDropDownList").value()];
+    var window = $("#windowMultiselectSoldadorRelleno");
     var win = window.kendoWindow({
         modal: true,
         title: modalTitle,

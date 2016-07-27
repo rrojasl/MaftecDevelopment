@@ -370,17 +370,7 @@ function AjaxObtenerDetalleCarroCargado(MedioTransporteID) {
 
             for (var i = 0; i < array.length; i++) {
                 if (!validarInformacion(array[i])) {
-                    if (carDataSourceSelected.AreaPermitidoMedioTransporte > (SumarArea() + array[i].Area))
-                        if (carDataSourceSelected.PesoMaximoPermitido > (SumarTonelada() + array[i].Peso)) {
-                            ds.add(array[i]);
-                        }
-                        else {
-                            displayNotify("PinturaCargaSpoolToneladaSuperiorPermididoCarro", "", '2');
-                        }
-                    else {
-                        displayNotify("PinturaCargaSpoolAreaSuperiorPermididoCarro", "", '2');
-                    }
-
+                    ds.add(array[i]);
                 }
             }
 

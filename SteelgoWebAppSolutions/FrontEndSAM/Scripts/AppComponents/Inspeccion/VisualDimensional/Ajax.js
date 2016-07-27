@@ -217,7 +217,7 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
     ListaDetalleGuardarInspeccionVisual = []
 
     // Elementos Inspección Dimensional
-    inspeccionDimensional[0] = { Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
+    inspeccionDimensional[0] = { Accion: "", Lenguaje: "", InspeccionDimensionalID: "", OrdenTrabajoSpoolID: "", FechaInspeccion: "", ResultadoID: "", ObreroID: "", DefectoID: "", ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" }
     inspeccionDimensional[0].Lenguaje = $("#language").val();
     inspeccionDimensional[0].InspeccionDimensionalID = $("#InspeccionDimensionalID").val();
     inspeccionDimensional[0].OrdenTrabajoSpoolID = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Valor;
@@ -233,6 +233,10 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
         inspeccionDimensional[0].ResultadoID = 0;
         capturaSinDimensional = true;
     }
+
+    if (inspeccionDimensional[0].InspeccionDimensionalID == 0) inspeccionDimensional[0].Accion = 1;
+    else inspeccionDimensional[0].Accion = 2;
+
 
     if (Defecto > 0) inspeccionDimensional[0].DefectoID = $("#inputDefecto").data("kendoComboBox").dataItem(Defecto).DefectoID;
     else if (ResultadoDimensional == "Rechazado") capturaSinDimensional = true;
@@ -276,11 +280,11 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
                 });
         }
         inspeccionDimensional[0].ListaJuntas = Juntas;
-        Captura[0].Detalles = inspeccionDimensional;
+        Captura[0].Detalles[0] = inspeccionDimensional;
     }
     else inspeccionDimensional[0].ListaJuntas = undefined;
 
-    if (inspeccionDimensional[0].ResultadoID == 2 && Defecto <= 0 && Inspector <= 0 && juntasListado.length == 0) {
+    if (Defecto <= 0 && Inspector <= 0 && juntasListado.length == 0 && inspeccionDimensional[0].InspeccionDimensionalID != 0  ) {
         capturaSinDimensional = false;
         inspeccionDimensional[0].Accion = 3;
     }
@@ -361,14 +365,16 @@ function AjaxGuardado(jSonCaptura, tipoGuardar) {
 
     // Asignación de elementos vacios de prueba
     if (capturaSinDimensional)
-        inspeccionDimensional[0] = { Lenguaje: $("#language").val(), InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: 0, ResultadoID: 0, ObreroID: null, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: "", ListaJuntas: "" };
+        Captura[0].Detalles = [{ Lenguaje: "", InspeccionDimensionalID: 0, OrdenTrabajoSpoolID: 0, FechaInspeccion: "", ResultadoID: 0, ObreroID: 0, DefectoID: 0, ListaDetalleGuardarInspeccionVisual: undefined, ListaJuntas: undefined }];
     else Captura[0].Detalles = inspeccionDimensional;
 
     if (capturaSinVisual)
-        ListaDetalleGuardarFiltroStatus[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, ObreroID: 0, FechaInspeccion: " ", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
-    else Captura[0].Detalles.ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
+        ListaDetalleGuardarFiltroStatus[0] = { Accion: 0, OrdenTrabajoSpoolID: 0, TipoJuntaID: "", EtiquetaJunta: "", EtiquetaMaterial1: "", EtiquetaMaterial2: "", DefectosID: 0, ObreroID: 0, FechaInspeccion: "", JuntaTrabajoID: 0, ResultadoID: 0, TallerID: 0, NumeroUnico1ID: 0, NumeroUnico2ID: 0, InspeccionVisualID: 0 };
+    else Captura[0].Detalles[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
 
-    if (capturaSinDimensional && !capturaSinVisual) inspeccionDimensional[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
+    if (capturaSinDimensional && !capturaSinVisual) Captura[0].Detalles[0].ListaDetalleGuardarInspeccionVisual = ListaDetalleGuardarFiltroStatus;
+
+    Captura[0].Detalles[0].ListaJuntas = inspeccionDimensional[0].ListaJuntas;
 
     windowTemplate = kendo.template($("#windowTemplate").html());
     ventanaConfirm = $("#ventanaConfirm").kendoWindow({

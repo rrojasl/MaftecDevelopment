@@ -68,6 +68,78 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        //public object ObtenerColadas()
+        //{
+        //    try
+        //    {
+        //        List<Colada> listaProcesosSoldadura = new List<Colada>();
+
+        //        using (SamContext ctx = new SamContext())
+        //        {
+        //            //List<Sam3_Soldadura_GET_DetalleSoldadorColadas_Result> result = ctx.Sam3_Soldadura_GET_DetalleSoldadorColadas(idOrdenTrabajo, ordenTrabajoSpoolID, JuntaID, proyectoID).ToList();
+
+        //            //foreach (Sam3_Soldadura_GET_DetalleSoldadorColadas_Result item in result)
+        //            //{
+        //            //    //listaProcesosSoldadura.Add(new Soldadores
+        //            //    //{
+        //            //    //    Accion = 2,
+        //            //    //    Colada = item.COLADA,
+        //            //    //    ColadaID = item.COLADAID,
+        //            //    //    ObreroID = item.OBREROID,
+        //            //    //    Observaciones = item.COMENTARIO,
+        //            //    //    Soldador = item.OBRERO
+        //            //    //});
+        //            //}
+        //            //return listaProcesosSoldadura;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TransactionalInformation result = new TransactionalInformation();
+        //        result.ReturnMessage.Add(ex.Message);
+        //        result.ReturnCode = 500;
+        //        result.ReturnStatus = false;
+        //        result.IsAuthenicated = true;
+
+        //        return result;
+        //    }
+        //}
+        public object ObtenerSoldadoresRaizCapturados(string idOrdenTrabajo, string ordenTrabajoSpoolID, string JuntaID,int proyectoID)
+        {
+            try
+            {
+                List<Soldadores> listaProcesosSoldadura = new List<Soldadores>();
+
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_Soldadura_GET_DetalleSoldadorColadas_Result> result = ctx.Sam3_Soldadura_GET_DetalleSoldadorColadas(idOrdenTrabajo, ordenTrabajoSpoolID, JuntaID,proyectoID).ToList();
+
+                    foreach (Sam3_Soldadura_GET_DetalleSoldadorColadas_Result item in result)
+                    {
+                        listaProcesosSoldadura.Add(new Soldadores
+                        {
+                           Accion=2,
+                           Colada=item.COLADA,
+                           ColadaID=item.COLADAID,
+                           ObreroID=item.OBREROID,
+                           Observaciones=item.COMENTARIO,
+                           Soldador=item.OBRERO
+                        });
+                    }
+                    return listaProcesosSoldadura;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
         public object ObtenerProcesosSoldadura()
         {
             try
@@ -520,45 +592,6 @@ namespace BackEndSAM.DataAcces
                 return result;
             }
         }
-
-        public object ObtenerListadoColada(int proyecto)
-        {
-            try
-            {
-                List<Colada> listaColada = new List<Colada>();
-
-                using (SamContext ctx = new SamContext())
-                {
-                    List<Sam3_Steelgo_Get_Colada_Result> result = ctx.Sam3_Steelgo_Get_Colada(proyecto).ToList();
-                    listaColada.Add(new Colada
-                    {
-                        ColadaID = 0,
-                        NumeroColada = ""
-                    });
-                    foreach (Sam3_Steelgo_Get_Colada_Result item in result)
-                    {
-                        listaColada.Add(new Colada
-                        {
-                            ColadaID = item.ColadaID,
-                            NumeroColada = item.NumeroColada
-                        });
-                    }
-                    return listaColada;
-                }
-            }
-            catch (Exception ex)
-            {
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(ex.Message);
-                result.ReturnCode = 500;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = true;
-
-                return result;
-            }
-        }
-
-
 
         public object InsertarCapturaSoldadura(DataTable dtDetalleCaptura, DataTable dtTrabajosAdicionales, DataTable dtSoldaduraSoldado, Sam3_Usuario usuario, string lenguaje)
         {

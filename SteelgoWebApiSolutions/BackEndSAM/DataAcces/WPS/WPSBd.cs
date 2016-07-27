@@ -36,7 +36,22 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        public object ObtenerCatalogoWPS(int TipoDato)
+        {
+            using (SamContext ctx = new SamContext())
+            {
+                List<DetalleWPS> data = (from WPS in ctx.Sam3_Soldadura_SoldadorCertificacion_GET_WPS(TipoDato)
+                                  select new DetalleWPS
+                                  {
+                                      WPSID = WPS.WPSID,
+                                      Nombre = WPS.WPSNombre,
+                                      EspesorRaiz = WPS.EspesorRaiz,
+                                      EspesorRelleno = WPS.EspesorRelleno,
 
+                                  }).AsParallel().ToList();
+                return data.OrderBy(x => x.Nombre).ToList<DetalleWPS>();
+            }
+        }
         public object ObtenerWPS(int TipoDato, Sam3_Usuario usuario)
         {
 

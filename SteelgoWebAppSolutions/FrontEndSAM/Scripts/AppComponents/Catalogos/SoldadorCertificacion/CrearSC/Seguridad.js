@@ -15,10 +15,10 @@ var $SoldadorCertificacionSaveModel = {
             editable: "#inputSoldador",
             required: "#inputSoldador"
         },
-        NombrePQR: {
-            visible: "#SCNombrePQRDiv",
-            editable: "#inputNombrePQR",
-            required: "#inputNombrePQR"
+        NombreWPS: {
+            visible: "#SCNombreWPSDiv",
+            editable: "#inputNombreWPS",
+            required: "#inputNombreWPS"
         },
         FechaInicioCertificado: {
             visible: "#SCFechaInicioDiV",

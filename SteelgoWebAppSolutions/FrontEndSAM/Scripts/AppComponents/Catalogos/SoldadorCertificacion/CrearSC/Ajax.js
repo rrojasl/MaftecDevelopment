@@ -5,7 +5,7 @@
             $("#inputSoldador").data("kendoComboBox").dataSource.data(data.ListaObrero);
             $("#inputTipoPrueba").data("kendoComboBox").dataSource.data(data.ListaTipoPrueba);
             $("#inputProcesoSol").data("kendoComboBox").dataSource.data(data.ListaTipoProcesosSoldadura);
-            $("#inputNombrePQR").data("kendoComboBox").dataSource.data(data.ListaPQR);
+            $("#inputNombreWPS").data("kendoComboBox").dataSource.data(data.ListaWPS);
             $("#inputCedulaTuboPQR").data("kendoComboBox").dataSource.data(data.ListaCedulaTuboCalificado);
         }
     });
@@ -35,7 +35,7 @@ function AjaxGuardarInformacion(detalle,tipo) {
 
 function AjaxValidarExisteSoldadorCertificacion(detalle,tipo) {
     loadingStart();
-    $SoldadorCertificacion.SoldadorCertificacion.read({ obreroID: detalle.Detalles[0].ObreroID, pqrID: detalle.Detalles[0].PQRID, procesoSoldaduraID: detalle.Detalles[0].ProcesoSoldaduraID, token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (existe) {
+    $SoldadorCertificacion.SoldadorCertificacion.read({ obreroID: detalle.Detalles[0].ObreroID, WPSID: detalle.Detalles[0].WPSID, procesoSoldaduraID: detalle.Detalles[0].ProcesoSoldaduraID, token: Cookies.get("token"), Lenguaje: $("#language").val() }).done(function (existe) {
       
             detalle.Detalles[0].SoldadorCertificacionID = existe;
 

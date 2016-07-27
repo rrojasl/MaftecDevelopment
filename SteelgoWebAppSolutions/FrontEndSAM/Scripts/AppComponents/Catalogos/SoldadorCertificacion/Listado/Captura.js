@@ -12,7 +12,7 @@ function CargarGrid() {
                 model: {
                     fields: {
                         CodigoObrero: { type: "string", editable: true },
-                        NombrePQR: { type: "string", editable: true },
+                        NombreWPS: { type: "string", editable: true },
                         ProcesoSoldadura: { type: "string", editable: true },
                         FechaInicioCertificado: { type: "date", editable: true },
                         FechaFinCertificado: { type: "date", editable: true },
@@ -55,7 +55,7 @@ function CargarGrid() {
         filterable: getGridFilterableMaftec(),
         columns: [
             { field: "CodigoObrero", title: _dictionary.SoldadorCertificacionCodigoObrero[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "145px", editor: RenderComboBoxSoldador },
-            { field: "NombrePQR", title: _dictionary.SoldadorCertificacionNombrePQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px", editor: RenderComboBoxPQR },
+            { field: "NombreWPS", title: _dictionary.SoldadorCertificacionNombreWPS[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px", editor: RenderComboBoxWPS },
             { field: "ProcesoSoldadura", title: _dictionary.SoldadorCertificacionProcesoSoldaduraPQR[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", editor: RenderComboBoxProcesoSoldadura },
             { field: "FechaInicioCertificado", title: _dictionary.SoldadorCertificacionFechaInicioCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaInicio },
             { field: "FechaFinCertificado", title: _dictionary.SoldadorCertificacionFechaFinCertificado[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], editor: RenderFechaFin },
@@ -78,7 +78,7 @@ function EliminaSoldadorCertificacion(e) {
     if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
         e.preventDefault();
         var dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr"));
-        var PQRIDRegistro = dataItem.PQRID;
+        var WPSIDRegistro = dataItem.WPSID;
 
         //if (dataItem.RegistrosWPS == 0) {
 
@@ -203,7 +203,7 @@ function ValidarInformacionEnviada() {
             SoldadorCertificacionID: "",
             Accion: "",
             ObreroID: "",
-            PQRID: "",
+            WPSID: "",
             ProcesoSoldaduraID: "",
             TipoDePruebaID: "",
             Posicion: "",
@@ -219,7 +219,7 @@ function ValidarInformacionEnviada() {
 
         if (
             (arregloCaptura[index].CodigoObrero == "" || arregloCaptura[index].CodigoObrero == undefined || arregloCaptura[index].CodigoObrero == null) ||
-            (arregloCaptura[index].NombrePQR == "" || arregloCaptura[index].NombrePQR == undefined || arregloCaptura[index].NombrePQR == null) ||
+            (arregloCaptura[index].NombreWPS == "" || arregloCaptura[index].NombreWPS == undefined || arregloCaptura[index].NombreWPS == null) ||
             (arregloCaptura[index].ProcesoSoldadura == "" || arregloCaptura[index].ProcesoSoldadura == undefined || arregloCaptura[index].ProcesoSoldadura == null) ||
             (arregloCaptura[index].FechaInicioCertificado == "" || arregloCaptura[index].FechaInicioCertificado == undefined || arregloCaptura[index].FechaInicioCertificado == null) ||
             (arregloCaptura[index].FechaFinCertificado == "" || arregloCaptura[index].FechaFinCertificado == undefined || arregloCaptura[index].FechaFinCertificado == null) ||
@@ -257,7 +257,7 @@ function ValidarInformacionEnviada() {
         ListaDetalles[index].SoldadorCertificacionID = arregloCaptura[index].SoldadorCertificacionID;
         ListaDetalles[index].Accion = arregloCaptura[index].Accion;
         ListaDetalles[index].ObreroID = arregloCaptura[index].ObreroID;
-        ListaDetalles[index].PQRID = arregloCaptura[index].PQRID;
+        ListaDetalles[index].WPSID = arregloCaptura[index].WPSID;
         ListaDetalles[index].ProcesoSoldaduraID = arregloCaptura[index].ProcesoSoldaduraID;
         ListaDetalles[index].TipoDePruebaID = arregloCaptura[index].TipoDePruebaID;
         ListaDetalles[index].Posicion = arregloCaptura[index].Posicion;

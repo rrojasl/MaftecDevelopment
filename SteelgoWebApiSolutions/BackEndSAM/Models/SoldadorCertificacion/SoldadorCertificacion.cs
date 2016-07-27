@@ -1,5 +1,6 @@
 ﻿
 
+using BackEndSAM.Models.WPS;
 using System.Collections.Generic;
 
 namespace BackEndSAM.Models.SoldadorCertificacion
@@ -80,7 +81,7 @@ namespace BackEndSAM.Models.SoldadorCertificacion
         public int SoldadorCertificacionID { get; set; }
         public int Accion { get; set; }
         public int ObreroID { get; set; }
-        public int PQRID { get; set; }
+        public int WPSID { get; set; }
         public int ProcesoSoldaduraID { get; set; }
         public int TipoDePruebaID { get; set; }
         public int Posicion { get; set; }
@@ -106,7 +107,7 @@ namespace BackEndSAM.Models.SoldadorCertificacion
         public List<TipoProcesosSoldadura> ListaTipoProcesosSoldadura { get; set; }
         public List<CedulaTuboCalificado> ListaCedulaTuboCalificado { get; set; }
         public List<TipoPrueba> ListaTipoPrueba { get; set; }
-        public List<DetallePQR> ListaPQR { get; set; }
+        public List<DetalleWPS> ListaWPS { get; set; }
         public List<Obrero> ListaObrero { get; set; }
     }
 

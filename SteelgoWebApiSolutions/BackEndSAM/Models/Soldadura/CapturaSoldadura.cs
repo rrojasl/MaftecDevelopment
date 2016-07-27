@@ -33,6 +33,11 @@ namespace BackEndSAM.Models.Soldadura
         List<DetalleDatosJsonSoldadura> Detalles { get; set; }
     }
 
+    public class DetalleSoldadoresRaizCapturados
+    {
+        
+    }
+
     public class DetalleCapturaSoldadura
     {
         public int IDProyecto { get; set; }
@@ -70,12 +75,12 @@ namespace BackEndSAM.Models.Soldadura
         public List<WPS.WPS> ListaWPS { get; set; }
         public decimal Diametro { get; set; }
         public string FechaSoldadura { get; set; }
-        public int procesoSoldaduraRaizID { get; set; }
-        public string procesoSoldaduraRaiz { get; set; }
+        public int ProcesoSoldaduraRaizID { get; set; }
+        public string ProcesoSoldaduraRaiz { get; set; }
         public List<ProcesoSoldadura> ListadoProcesoSoldaduraRaiz { get; set; }
         public List<Soldadores> ListaSoldadoresRaizCapturados { get; set; }
-        public int procesoSoldaduraRellenoID { get; set; }
-        public string procesoSoldaduraRelleno { get; set; }
+        public int ProcesoSoldaduraRellenoID { get; set; }
+        public string ProcesoSoldaduraRelleno { get; set; }
         public List<ProcesoSoldadura> ListadoProcesoSoldaduraRelleno { get; set; }
         public List<Soldadores> ListaSoldadoresRellenoCapturados { get; set; }
         public string TemplateTrabajosAdicionales { get; set; }
@@ -87,6 +92,7 @@ namespace BackEndSAM.Models.Soldadura
         public string TemplateSoldadoresRelleno { get; set; }
         public List<ObreroSoldador> ListadoSoldadoresRaiz { get; set; }
         public List<ObreroSoldador> ListadoSoldadoresRelleno { get; set; }
+        public List<Colada> ListadoColadas { get; set; }
     }
 
     public class Taller
@@ -132,11 +138,11 @@ namespace BackEndSAM.Models.Soldadura
         public int Accion { get; set; }
         public int ObreroID { get; set; }
         public string Soldador { get; set; }
-        public List<ObreroSoldador> ListadoSoldadoresTrabajos { get; set; }
         public int ColadaID { get; set; }
         public string Colada { get; set; }
-        public List<Colada> ListaColada { get; set; }
         public string Observaciones { get; set; }
+
+        
 
     }
     public class SoldadorRaizCertificado

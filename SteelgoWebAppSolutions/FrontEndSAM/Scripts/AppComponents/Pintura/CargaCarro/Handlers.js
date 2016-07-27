@@ -603,6 +603,7 @@ function Limpiar() {
     $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
     $("#chkCerrar").attr("checked", false);
     $("#chkCerrar2").attr("checked", false);
+    opcionHabilitarView(false, "")
     opcionHabilitarViewBacklog(false, "");
 }
 
