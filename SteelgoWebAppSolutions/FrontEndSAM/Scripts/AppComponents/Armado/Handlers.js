@@ -481,7 +481,7 @@ function SuscribirEventoSpoolID() {
 
 
                     e.preventDefault();
-                    $("#InputID").val("");
+                    $("#InputID").data("kendoComboBox").text("");
                     displayNotify("", "No hay coincidencias en el spool", '1');
 
                     //if (dataItem.Status != "1") {
@@ -499,7 +499,7 @@ function SuscribirEventoSpoolID() {
                 }
                 else {
                     e.preventDefault();
-                    $("#InputID").val("");
+                    $("#InputID").data("kendoComboBox").text("");
                     displayNotify("Mensajes_error", dataItem.Status, '1');
                 }
             }
@@ -561,7 +561,8 @@ function SuscribirEventoSpoolID() {
 
 
         //e.preventDefault();
-        $("#InputID").val("");
+        //$("#InputID").data("kendoComboBox").value("");
+        $("#InputID").data("kendoComboBox").text("");
         displayNotify("", "No hay coincidencias en el spool", '1');
     });
 
