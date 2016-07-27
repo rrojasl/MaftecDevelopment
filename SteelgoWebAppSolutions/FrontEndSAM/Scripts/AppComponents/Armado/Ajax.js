@@ -44,7 +44,6 @@ function AjaxObtenerSpoolID() {
             $("#InputID").data("kendoComboBox").input.focus();
         }
     });
-
 }
 
 function AjaxObtenerListaTubero() {
