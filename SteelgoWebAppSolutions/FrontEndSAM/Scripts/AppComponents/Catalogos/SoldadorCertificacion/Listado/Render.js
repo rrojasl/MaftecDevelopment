@@ -37,7 +37,7 @@
 }
 
 function RenderComboBoxSoldador(container, options) {
-    loadingStart();
+    
     var dataItem;
     $('<input data-text-field="Codigo" id=' + options.model.uid + ' data-value-field="Codigo" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
@@ -70,31 +70,31 @@ function RenderComboBoxSoldador(container, options) {
             }
         }
     });
-    loadingStop();
+    
 }
 
-function RenderComboBoxPQR(container, options) {
-    loadingStart();
+function RenderComboBoxWPS(container, options) {
+    
     var dataItem;
-    $('<input data-text-field="Nombre" id=' + options.model.uid + ' data-value-field="PQRID" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Nombre" id=' + options.model.uid + ' data-value-field="WPSID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
         .kendoComboBox({
             suggest: true,
             delay: 10,
             filter: "contains",
             autoBind: false,
-            dataSource: options.model.listadoPQR,
+            dataSource: options.model.listadoWPS,
             template: "<i class=\"fa fa-#=data.Nombre#\"></i> #=data.Nombre#",
             change: function (e) {
                 e.preventDefault();
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 if (dataItem != undefined && dataItem.Nombre != "") {
-                    options.model.NombrePQR = dataItem.Nombre;
-                    options.model.PQRID = dataItem.PQRID;
+                    options.model.NombreWPS = dataItem.Nombre;
+                    options.model.WPSID = dataItem.WPSID;
                 }
                 else {
-                    options.model.NombrePQR = dataItem.Nombre;
-                    options.model.PQRID = dataItem.PQRID;
+                    options.model.NombreWPS = dataItem.Nombre;
+                    options.model.WPSID = dataItem.WPSID;
                 }
             }
         });
@@ -107,7 +107,7 @@ function RenderComboBoxPQR(container, options) {
             }
         }
     });
-    loadingStop();
+    
 }
 
 

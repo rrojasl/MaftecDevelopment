@@ -7,7 +7,7 @@
 IniciarCapturaSC();
 function AsignarEncabezados() {
     $("#lblSoldador").text(_dictionary.SoldadorCertificacionCodigoObrero[$("#language").data("kendoDropDownList").value()]);
-    $("#lblNombrePQR").text(_dictionary.SoldadorCertificacionNombrePQR[$("#language").data("kendoDropDownList").value()]);
+    $("#lblNombreWPS").text(_dictionary.SoldadorCertificacionNombreWPS[$("#language").data("kendoDropDownList").value()]);
     $("#lblProcesoSoldaduraPQR").text(_dictionary.SoldadorCertificacionProcesoSoldaduraPQR[$("#language").data("kendoDropDownList").value()]);
     $("#lblFechaInicioCertificado").text(_dictionary.SoldadorCertificacionFechaInicioCertificado[$("#language").data("kendoDropDownList").value()]);
     $("#lblFechaFinCertificado").text(_dictionary.SoldadorCertificacionFechaFinCertificado[$("#language").data("kendoDropDownList").value()]);
@@ -32,7 +32,7 @@ function AsignarEncabezados() {
 function limpiarCaptura() {
     
     $("#inputSoldador").data("kendoComboBox").select(0);
-    $("#inputNombrePQR").data("kendoComboBox").select(0);
+    $("#inputNombreWPS").data("kendoComboBox").select(0);
     $("#inputPasosSoldadura").data("kendoNumericTextBox").value('');
     $("#inputCedulaTuboPQR").data("kendoComboBox").select(0);
     $("#inputFechaInicioCertificado").val('');
@@ -124,7 +124,7 @@ function HabilitarCapturaNuevoSoldadorCertificacioon(valor, name)
         //$('#FieldSetView').find('*').attr('disabled', true);
 
         $("#inputSoldador").data("kendoComboBox").enable(false);
-        $("#inputNombrePQR").data("kendoComboBox").enable(false);
+        $("#inputNombreWPS").data("kendoComboBox").enable(false);
         $("#inputTipoPrueba").data("kendoComboBox").enable(false);
         $("#inputProcesoSol").data("kendoComboBox").enable(false);
         $("#inputFechaInicioCertificado").data("kendoDatePicker").enable(false);
@@ -150,7 +150,7 @@ function HabilitarCapturaNuevoSoldadorCertificacioon(valor, name)
     else {
         //$('#FieldSetView').find('*').attr('disabled', false);
         $("#inputSoldador").data("kendoComboBox").enable(true);
-        $("#inputNombrePQR").data("kendoComboBox").enable(true);
+        $("#inputNombreWPS").data("kendoComboBox").enable(true);
         $("#inputTipoPrueba").data("kendoComboBox").enable(true);
         $("#inputProcesoSol").data("kendoComboBox").enable(true);
         $("#inputCedulaTuboPQR").data("kendoComboBox").enable(true);
@@ -187,7 +187,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             SoldadorCertificacionID: "",
             Accion: "",
             ObreroID: "",
-            PQRID: "",
+            WPSID: "",
             ProcesoSoldaduraID: "",
             TipoDePruebaID: "",
             Posicion: "",
@@ -208,7 +208,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             ($("#inputSoldador").val() == '') ||
             (parseFloat($("#inputCedulaTuboPQR").data("kendoComboBox").value()) <= 0) ||
             ($("#inputCedulaTuboPQR").val() == '') ||
-            (parseFloat($("#inputNombrePQR").data("kendoComboBox").value()) <= 0) ||
+            (parseFloat($("#inputNombreWPS").data("kendoComboBox").value()) <= 0) ||
             ($("#inputSoldador").val() == '') ||
             (parseFloat($("#inputPasosSoldadura").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputPasosSoldadura").data("kendoNumericTextBox").value() == null) ||
@@ -232,7 +232,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
 
             if ((parseFloat($("#inputSoldador").data("kendoComboBox").value()) <= 0) || ($("#inputSoldador").val() == ''))
                 displayNotify("CapturaSoldadorCertificacionSoldadorVacio", "", '1');
-            else if ((parseFloat($("#inputNombrePQR").data("kendoComboBox").value()) <= 0) || ($("#inputSoldador").val() == ''))
+            else if ((parseFloat($("#inputNombreWPS").data("kendoComboBox").value()) <= 0) || ($("#inputSoldador").val() == ''))
                 displayNotify("CapturaSoldadorCertificacionNombreVacio", "", '1');
             else if ((parseFloat($("#inputProcesoSol").data("kendoComboBox").value()) <= 0) || ($("#inputProcesoSol").val() == ""))
                 displayNotify("CapturaSoldadorCertificacionProcSolVacio", "", '1');
@@ -275,7 +275,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
        // ListaDetalles[index].SoldadorCertificacionID =;
         ListaDetalles[index].Accion = 1;
         ListaDetalles[index].ObreroID = $("#inputSoldador").val();
-        ListaDetalles[index].PQRID = $("#inputNombrePQR").val();
+        ListaDetalles[index].WPSID = $("#inputNombreWPS").val();
         ListaDetalles[index].ProcesoSoldaduraID = $("#inputProcesoSol").val();
         ListaDetalles[index].TipoDePruebaID = $("#inputTipoPrueba").val();
         ListaDetalles[index].Posicion = $("#inputPosicionPQR").val();

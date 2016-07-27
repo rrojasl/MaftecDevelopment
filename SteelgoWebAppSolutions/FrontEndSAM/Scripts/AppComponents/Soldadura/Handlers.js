@@ -65,7 +65,6 @@ function suscribirEventoSoldadoresRaiz() {
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
             var grid = $("#grid").data("kendoGrid");
             dataItem = grid.dataItem($(e.target).closest("tr"));
-            $("#contenedorMultiselect").empty();
             if (dataItem.procesoSoldaduraRaiz != "N/A")
                 LlenarGridPopUpSoldadoresRaiz(dataItem);
         }
@@ -79,9 +78,8 @@ function suscribirEventoSoldadoresRelleno() {
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
             var grid = $("#grid").data("kendoGrid");
             dataItem = grid.dataItem($(e.target).closest("tr"));
-            $("#contenedorMultiselectRelleno").empty();
             if (dataItem.procesoSoldaduraRelleno != "N/A")
-            LlenarGridPopUpMultiseletRelleno(dataItem);
+                LlenarGridPopUpSoldadoresRelleno(dataItem);
         }
     });
 }
@@ -104,9 +102,6 @@ function SuscribirEventoCancelarAdicionales() {
 
 function GuardarRaizMultiselect() {
     $('#GuardarSoldadoresRaiz').click(function () {
-
-        modeloRenglon.Raiz = $("#inputSoldadoresRaiz").data("kendoMultiSelect")._dataItems;
-        $("#windowMultiselectSoldador").data("kendoWindow").close();
         $("#grid").data("kendoGrid").dataSource.sync();
     });
 }

@@ -18,7 +18,7 @@ namespace BackEndSAM.Models.WPS
         public string GrupoPRelleno { get; set; }
         public int GrupoPRaizId { get; set; }
         public string GrupoPRaiz { get; set; }
-        
+
         public int PWHTRaizId { get; set; }
         public bool PWHTRaiz { get; set; }
         public int PWHTRellenoId { get; set; }
@@ -51,13 +51,13 @@ namespace BackEndSAM.Models.WPS
 
         public List<DetallePQR> listadoRellenoPQR { get; set; }
         public List<DetallePQR> listadoRaizPQR { get; set; }
-        public List<DetallePQR> listadoGrupoP { get; set; } 
+        public List<DetallePQR> listadoGrupoP { get; set; }
     }
 
 
-   
 
-        public class Captura
+
+    public class Captura
     {
         public List<WPSGuardar> Detalles { get; set; }
     }
@@ -75,5 +75,20 @@ namespace BackEndSAM.Models.WPS
         public double EspesorMaximoRelleno { get; set; }
         public double EspesorMinimoRelleno { get; set; }
     }
-  
+
+    public class DetalleWPS
+    {
+        public DetalleWPS()
+        {
+            WPSID = 0;
+            Nombre = "";
+            EspesorRaiz = 0;
+            EspesorRelleno = 0;
+        }
+        public int WPSID { get; set; }
+        public string Nombre { get; set; }
+        public double EspesorRaiz { get; set; }
+        public double EspesorRelleno { get; set; }
+    }
+
 }

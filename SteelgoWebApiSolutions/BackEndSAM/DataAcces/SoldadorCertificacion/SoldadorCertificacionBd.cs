@@ -9,6 +9,7 @@ using System.Data.Entity.Core.Objects;
 using BackEndSAM.Models.SoldadorCertificacion;
 using SecurityManager.TokenHandler;
 using System.Data;
+using BackEndSAM.Models.WPS;
 
 namespace BackEndSAM.DataAcces
 {
@@ -86,7 +87,7 @@ namespace BackEndSAM.DataAcces
                                                         ListaTipoPrueba = listaTipoPrueba,
                                                         Posicion = Convert.ToInt32(SC.Posicion),
                                                         listadoPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
-                                                        listaObreros = (List<Obrero>)ObtenerListaSoldadores(proyectoID,usuario.UsuarioID,patioID)
+                                                        listaObreros = (List<Obrero>)ObtenerListaSoldadores(proyectoID, usuario.UsuarioID, patioID)
                                                     }).AsParallel().ToList().OrderBy(x => x.NombrePQR).ToList<SoldadorCertificacion>();
                 return data;
 
@@ -94,7 +95,7 @@ namespace BackEndSAM.DataAcces
             }
 
         }
-        public object ObtenerListaSoldadores(int proyectoID,int usuarioID, int patioID)
+        public object ObtenerListaSoldadores(int proyectoID, int usuarioID, int patioID)
         {
             using (SamContext ctx = new SamContext())
             {
@@ -110,9 +111,9 @@ namespace BackEndSAM.DataAcces
                 listaObreros.Insert(0, new Obrero());
                 return listaObreros;
             }
-            
+
         }
-        public object ObtenerNuevoSoldadorCertificacion( int proyectoID, int usuarioID,int patioID)
+        public object ObtenerNuevoSoldadorCertificacion(int proyectoID, int usuarioID, int patioID)
         {
 
 
@@ -156,7 +157,7 @@ namespace BackEndSAM.DataAcces
                 NuevoSoldadorCertificacion nuevoSoldadorCertificacion = new NuevoSoldadorCertificacion
                 {
                     ListaCedulaTuboCalificado = listaCedulaTuboCalificado,
-                    ListaPQR = (List<DetallePQR>)PQRBd.ObtenerListadoPQRActivos(),
+                    ListaWPS = (List<DetalleWPS>)WPSBd.Instance.ObtenerCatalogoWPS(1),
                     ListaTipoProcesosSoldadura = listaTipoProcesosSoldadura,
                     ListaTipoPrueba = listaTipoPrueba,
                     ListaObrero = listaObreros
@@ -169,7 +170,7 @@ namespace BackEndSAM.DataAcces
 
 
 
-        public object AgregarSoldadorCertificacion(DataTable dtSoldadorCertificacion, Sam3_Usuario usuario, string lenguaje,int TipoCaptura)
+        public object AgregarSoldadorCertificacion(DataTable dtSoldadorCertificacion, Sam3_Usuario usuario, string lenguaje, int TipoCaptura)
         {
             try
             {
@@ -211,7 +212,7 @@ namespace BackEndSAM.DataAcces
                                                     {
                                                         TipoDePruebaID = SC.TipoPruebaID,
                                                         TipoDePrueba = SC.TipoPrueba
-                                                    }).AsParallel().ToList().OrderBy(x=> x.TipoDePrueba).ToList<SoldadorCertificacion>();
+                                                    }).AsParallel().ToList().OrderBy(x => x.TipoDePrueba).ToList<SoldadorCertificacion>();
                 return data;
             }
 
@@ -232,7 +233,7 @@ namespace BackEndSAM.DataAcces
                                                         PosicionID = SC.PosicionID,
                                                         Posicion = Convert.ToInt32(SC.Posicion)
 
-                                                    }).AsParallel().ToList().OrderBy(x=> x.Posicion).ToList<SoldadorCertificacion>();
+                                                    }).AsParallel().ToList().OrderBy(x => x.Posicion).ToList<SoldadorCertificacion>();
                 return data;
             }
 
@@ -241,14 +242,14 @@ namespace BackEndSAM.DataAcces
 
         }
 
-        public object ObtenerIDSoldadorCertificacion(int obreroID, int pqrID, int procesoSoldaduraID, string lenguaje)
+        public object ObtenerIDSoldadorCertificacion(int obreroID, int WPSID, int procesoSoldaduraID, string lenguaje)
         {
             using (SamContext ctx = new SamContext())
             {
-                List<int?> idSoldadorCertificacion = ctx.Sam3_Soldador_Certificacion_Get_ID(obreroID, pqrID, procesoSoldaduraID, lenguaje).ToList();
-                return idSoldadorCertificacion[0]==null ?0: idSoldadorCertificacion[0]; 
-                
-               
+                List<int?> idSoldadorCertificacion = ctx.Sam3_Soldador_Certificacion_Get_ID(obreroID, WPSID, procesoSoldaduraID, lenguaje).ToList();
+                return idSoldadorCertificacion[0] == null ? 0 : idSoldadorCertificacion[0];
+
+
             }
         }
 
