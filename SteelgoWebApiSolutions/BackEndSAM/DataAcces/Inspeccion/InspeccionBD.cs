@@ -291,7 +291,7 @@ namespace BackEndSAM.DataAcces
                         { "@Lenguaje", lenguaje },
                         { "@InspeccionDimensionalID", inspeccionDimensionalID.ToString() },
                         { "@OrdenTrabajoSpoolID", ordenTrabajoSpoolID.ToString() },
-                        { "@FechaInspeccion", fechaInspeccion },
+                        { "@FechaInspeccion", fechaInspeccion == null ? "" : fechaInspeccion },
                         { "@ResultadoID", resultadoID.ToString() },
                         { "@ObreroID", obreroID.ToString() },
                         { "@DefectoID", defectoID.ToString() },
