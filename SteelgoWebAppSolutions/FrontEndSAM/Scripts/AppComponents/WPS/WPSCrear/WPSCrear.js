@@ -228,13 +228,14 @@ function Limpiar() {
     $('#grupoPRaiz').val("");
     document.getElementById("PREHEATRelleno").checked = false;
     document.getElementById("PWHRelleno").checked = false;
+    document.getElementById("PREHEATRaiz").checked = false;
+    document.getElementById("PWHRaiz").checked = false;
     $('#RellenoEspesorRaiz').text("0");
     $('#RellenoEspesorRelleno').text("0");
     $('#RaizEspesorRaiz').text("0");
     $('#RaizEspesorRelleno').text("0");
     $('#EspesorMaximoWPS').text("0");
     $('#EspesorMinimoWPS').text("0");
-
     $("#WPSID").val("0");
 
 };
@@ -249,6 +250,9 @@ function opcionHabilitarView(valor, name) {
         $('#grupoPRelleno').attr('disabled', true);
         $('#grupoPRaiz').attr('disabled', true);
         $("#Guardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar1").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar1").text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);
     }
     else {
         $('#NomnreWPS').attr('disabled', false);
@@ -257,6 +261,9 @@ function opcionHabilitarView(valor, name) {
         $('#grupoPRelleno').attr('disabled', false);
         $('#grupoPRaiz').attr('disabled', false);
         $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#Guardar1").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar1").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
     }
 }
 
