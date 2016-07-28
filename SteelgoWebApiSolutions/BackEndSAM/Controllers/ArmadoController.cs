@@ -36,7 +36,7 @@ namespace BackEndSAM.Controllers
                 {
                     foreach (var item in lista)
                     {
-                        listaAtatus.Add(new IDS { Status = item.status, IDValido = item.ID, Proyecto = item.NombreProyecto, Valor = item.OrdenTrabajoSpoolID, ProyectoID = item.ProyectoID, HabilitadoHoldFecha = item.HabilitadoHoldFecha.GetValueOrDefault() });
+                        listaAtatus.Add(new IDS { Status = item.status, IDValido = item.ID, Proyecto = item.NombreProyecto, Valor = item.OrdenTrabajoSpoolID, ProyectoID = item.ProyectoID, HabilitadoHoldFecha = item.HabilitadoHoldFecha });
                     }
 
                     idOrdenTrabajo = new IdOrdenTrabajo
