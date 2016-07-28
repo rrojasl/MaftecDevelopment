@@ -8417,11 +8417,11 @@ _dictionary = {
         "en-US": "The field ROOT PROC is mandatory"
     },
     "lblPQRGrpB1Mandatorio": {
-        "es-MX": "El campo GRUPO P BASE 1 es mandatorio",
+        "es-MX": "El campo GPO P BASE 1 es mandatorio",
         "en-US": "The field P GRP BASE 1 is mandatory"
     },
     "lblPQRGrpB2Mandatorio": {
-        "es-MX": "El campo GRUPO P BASE 2 es mandatorio",
+        "es-MX": "El campo GPO P BASE 2 es mandatorio",
         "en-US": "The field P GRP BASE 2 is mandatory"
     },
     "lblPQRCodigoMandatorio": {
