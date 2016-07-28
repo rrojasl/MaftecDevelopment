@@ -57,10 +57,10 @@ function AjaxObtenerSpoolID() {
     var proyectoID = $("#Proyecto").data("kendoComboBox")._selectedValue;
     var proyectoName = $("#Proyecto").data("kendoComboBox")._prev;
     $GenerarRequisicion.GenerarRequisicion.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-        if (Error(data)) {   
-            for (i = data.idStatus.length-1; i >= 0; i--) {
-                if(data.idStatus[i].ProyectoID != proyectoID)
-                    data.idStatus.splice(i,1);
+        if (Error(data)) {
+            for (i = data.idStatus.length - 1; i >= 0; i--) {
+                if (data.idStatus[i].ProyectoID != proyectoID)
+                    data.idStatus.splice(i, 1);
             }
             if (data.idStatus.length == 0) {
                 data.OrdenTrabajo = "";
@@ -101,14 +101,16 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
         $('#containerDiv').css('display', 'block');
 
         var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
+
         var tipoPrueba = $("#tipoPrueba").data("kendoComboBox").value();
-        for (i = jsonGridArmado.length - 1; i >= 0; i--) {
-            if (jsonGridArmado[i].PruebasID != tipoPrueba)
-                jsonGridArmado.splice(i, 1);
-        }
+        if (tipoPrueba != "" || tipoPrueba > 0)
+            for (i = jsonGridArmado.length - 1; i >= 0; i--) {
+                if (jsonGridArmado[i].PruebasID != tipoPrueba)
+                    jsonGridArmado.splice(i, 1);
+            }
 
         if (jsonGridArmado.length > 0) {
-            if(jsonGridArmado[0].Folio!="")
+            if (jsonGridArmado[0].Folio != "")
                 $("#Folio").text(jsonGridArmado[0].Folio);
             else
                 $("#Folio").text("SIN ASIGNAR");
@@ -213,7 +215,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                 }
                 else {
                     requisicionID = data.ReturnMessage[0].split('|')[1];
-                    ajaxObtenerJuntasSoldadas( $("#Proyecto").data("kendoComboBox").value());
+                    ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
                     opcionHabilitarView(true, "FieldSetView");
 
 
