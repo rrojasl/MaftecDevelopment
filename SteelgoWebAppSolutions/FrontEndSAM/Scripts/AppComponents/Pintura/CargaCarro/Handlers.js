@@ -215,12 +215,12 @@ function SuscribirEventoGuardar() {
         }
         else if ($("#stylePatio").hasClass("active")) {
              
-            if ($('#Guardar').text() == "Guardar") {
+            if ($('#Guardar').text() == _dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]) {
                 var ds = $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource;
                                 
                 AjaxSubirSpool(ds._data, false);
             }
-            else if ($('#Guardar').text() == "Editar") {
+            else if ($('#Guardar').text() == _dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]) {
                 SetDisabledBooleanEnGrid(false);
                 opcionHabilitarViewBacklog(false, "FieldSetView")
             }
@@ -238,6 +238,8 @@ function opcionHabilitarView(valor, name) {
         $("#styleEscritorio").attr("disabled", true);
         $("#stylePatio").attr("disabled", true);
         $("#inputCarro").data("kendoComboBox").enable(false);
+
+        $("#btnAgregar").attr("disabled", true);
         $("#Guardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
         $("#btnGuardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
         $("#Guardar1").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
@@ -250,6 +252,8 @@ function opcionHabilitarView(valor, name) {
         $("#styleEscritorio").attr("disabled", false);
         $("#stylePatio").attr("disabled", false);
         $("#inputCarro").data("kendoComboBox").enable(true);
+
+        $("#btnAgregar").attr("disabled", false);
         $("#Guardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
         $("#btnGuardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
         $("#Guardar1").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);

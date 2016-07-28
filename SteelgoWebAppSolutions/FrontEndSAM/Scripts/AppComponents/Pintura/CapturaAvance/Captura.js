@@ -10,6 +10,12 @@ function IniciarCapturaArmado() {
 }
 
 function changeLanguageCall() {
+    endRangeDateShotblast.data("kendoDatePicker").setOptions({
+        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
+    });
+    endRangeDatePrimario.data("kendoDatePicker").setOptions({
+        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
+    });
     CargarGrid();
     AjaxCargarCamposPredeterminados();
     AjaxCargarCarrosCargados();
@@ -25,24 +31,58 @@ function changeLanguageCall() {
 
 function AltaFecha() {
     endRangeDateShotblast = $("#FechaShotBlast").kendoDatePicker({
-        max: new Date()
+        max: new Date(),
+        change: function (e) {
+            ValidarFechaShot(e.sender._value);
+        }
     });
 
     endRangeDateShotblast.on("keydown", function (e) {
         if (e.keyCode == 13) {
             //PlanchaFechaShotblast();
         }
+        if(e.keyCode == 9){
+            ValidarFechaShot($("#FechaShotBlast").data("kendoDatePicker").value());
+        }
+    });
+
+    $("#FechaShotBlast").blur(function (e) {
+        ValidarFechaShot($("#FechaShotBlast").data("kendoDatePicker").value());
     });
 
     endRangeDatePrimario = $("#Fechaprimario").kendoDatePicker({
-        max: new Date()
+        max: new Date(),
+        change: function (e) {
+            ValidarFechaPrimario(e.sender._value);
+        }
     });
 
     endRangeDatePrimario.on("keydown", function (e) {
         if (e.keyCode == 13) {
             //PlanchaFechaPrimario();
         }
+        if(e.keyCode == 9){
+            ValidarFechaPrimario($("#Fechaprimario").data("kendoDatePicker").value());
+        }
+
+        $("#Fechaprimario").blur(function (e) {
+            ValidarFechaPrimario($("#Fechaprimario").data("kendoDatePicker").value());
+        });
     });
+}
+
+function ValidarFechaShot(valor) {
+    var fecha = kendo.toString(valor, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+    if (fecha == null) {
+        $("#FechaShotBlast").data("kendoDatePicker").value('');
+    }
+}
+
+function ValidarFechaPrimario(valor) {
+    var fecha = kendo.toString(valor, String(_dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()].replace('{', '').replace('}', '').replace("0:", "")));
+    if (fecha == null) {
+        $("#Fechaprimario").data("kendoDatePicker").value('');
+    }
 }
 
 function CargarGrid() {
@@ -99,10 +139,10 @@ function CargarGrid() {
             numeric: true,
         },
         columns: [
-            { field: "Spool", title: _dictionary.CapturaAvanceSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px" },
+            { field: "Spool", title: _dictionary.CapturaAvanceSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px" },
             { field: "SistemaPintura", title: _dictionary.CapturaAvanceSistemaPintura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
             { field: "Color", title: _dictionary.CapturaAvanceColor[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px" },
-            { field: "Metros2", title: _dictionary.CapturaAvanceM2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "100px" },
+            { field: "Metros2", title: _dictionary.CapturaAvanceM2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "100px", attributes: { style: "text-align:right;" }},
             { field: "FechaShotblast", title: _dictionary.CapturaAvanceFechaShotblast[$("#language").data("kendoDropDownList").value()], type: "date", filterable: { cell: { showOperators: false } }, width: "130px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "FechaPrimario", title: _dictionary.CapturaAvanceFechaPrimario[$("#language").data("kendoDropDownList").value()], type: "date", filterable: { cell: { showOperators: false } }, width: "140px", format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()] },
             { field: "ListaShotblasteroGuargado", title: _dictionary.CapturaAvanceShotBlastero[$("#language").data("kendoDropDownList").value()], filterable: false, editor: RendercomboBoxShotBlastero, template: "#:plantillaShotblastero#", width: "130px" },
@@ -297,11 +337,11 @@ function PlanchaFechaPrimario() {
 
     for (var i = 0; i < data.length; i++) {
         if ($('input:radio[name=LLena]:checked').val() === "Todos") {
-            data[i].FechaShotblast = String(endRangeDateShotblast.val()).trim();
+            data[i].FechaPrimario = String(endRangeDatePrimario.val()).trim();
         }
         else {
-            if (data[i].FechaShotblast === "" || data[i].FechaShotblast === null || data[i].FechaShotblast === undefined) {
-                data[i].FechaShotblast = String(endRangeDateShotblast.val()).trim();
+            if (data[i].FechaPrimario === "" || data[i].FechaPrimario === null || data[i].FechaPrimario === undefined) {
+                data[i].FechaPrimario = String(endRangeDatePrimario.val()).trim();
             }
         }
     }

@@ -24,7 +24,7 @@ function SuscribirEventoPlanchar() {
                 ventanaConfirm = $("#ventanaConfirm").kendoWindow({
                     iframe: true,
                     title: _dictionary.CapturaAvanceTitulo[$("#language").data("kendoDropDownList").value()],
-                    visible: false, //the window will not appear before its .open method is called
+                    visible: false,
                     width: "auto",
                     height: "auto",
                     modal: true
@@ -94,7 +94,7 @@ function suscribirEventoGuardarCarro() {
         e.stopPropagation();
 
 
-        if ($('#Guardar').text() == "Guardar" || $('#Guardar').text() == "Save") {
+        if ($('#Guardar').text() == _dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]) {
             if ($("#inputComponente").data("kendoComboBox").value() > 0) {
                 opcionHabilitarView(true, "FieldSetView");
                 var ds = $("#grid").data("kendoGrid").dataSource;
@@ -104,7 +104,7 @@ function suscribirEventoGuardarCarro() {
                 displayNotify("PinturaGuardarErrorComponente", "", '2');
             }
         }
-        else if ($('#Guardar').text() == "Editar" || $('#Guardar').text() == "Edit") {
+        else if ($('#Guardar').text() == _dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]) {
             opcionHabilitarView(false, "FieldSetView")
         }
     });
@@ -117,9 +117,19 @@ function opcionHabilitarView(valor, name) {
         $("#inputComponente").data("kendoComboBox").enable(false);
         $("#inputPintor").data("kendoMultiSelect").enable(false);
         $("#inputShotBlastero").data("kendoMultiSelect").enable(false);
-        
+        $("#InputOrdenTrabajo").attr('disabled', true);
+        $("#InputID").data("kendoComboBox").enable(false);
+        $("#FechaShotBlast").data("kendoDatePicker").enable(false);
+        $("#Fechaprimario").data("kendoDatePicker").enable(false);
+        $("#inputCuadrante1").data("kendoComboBox").enable(false);
+        $("input[name='LLena']").attr("disabled", true);
+        $("#ButtonAgregar").attr("disabled", true);
+        $("#ButtonPlanchar").attr("disabled", true);
+
         $("#Guardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
-        $("#Guardar1").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#GuardarPie").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar4").text(_dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]);
     }
     else {
         $('.FieldSetView').find('*').attr('disabled', false);
@@ -127,8 +137,19 @@ function opcionHabilitarView(valor, name) {
         $("#inputComponente").data("kendoComboBox").enable(true);
         $("#inputPintor").data("kendoMultiSelect").enable(true);
         $("#inputShotBlastero").data("kendoMultiSelect").enable(true);
+        $("#InputOrdenTrabajo").attr('disabled', false);
+        $("#InputID").data("kendoComboBox").enable(true);
+        $("#FechaShotBlast").data("kendoDatePicker").enable(true);
+        $("#Fechaprimario").data("kendoDatePicker").enable(true);
+        $("#inputCuadrante1").data("kendoComboBox").enable(true);
+        $("input[name='LLena']").attr("disabled", false);
+        $("#ButtonAgregar").attr("disabled", false);
+        $("#ButtonPlanchar").attr("disabled", false);
+
         $("#Guardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
-        $("#Guardar1").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#GuardarPie").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
+        $("#btnGuardar4").text(_dictionary.lblGuardar[$("#language").data("kendoDropDownList").value()]);
     }
 }
 
@@ -274,15 +295,20 @@ function suscribirEventoCarro() {
             index: 3,
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
-                if ($("#InputID").val().length == 1) {
-                    $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
-                }
-                if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
-                    if ($("#grid").data("kendoGrid").dataSource._data.length != 0) {
+                if (dataItem != undefined) {
+                    if ($("#InputID").val().length == 1) {
+                        $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
+                    }
+                    if ($("#InputID").val() != '' && $("#InputOrdenTrabajo").val() != '') {
+                        if ($("#grid").data("kendoGrid").dataSource._data.length != 0) {
+
+                        }
 
                     }
-
+                } else {
+                    $("#InputID").data("kendoComboBox").value("");
                 }
+                
             }
         });
 
@@ -301,6 +327,7 @@ function suscribirEventoCarro() {
                     displayNotify("Mensajes_error", e.message, '0');
                 }
             } else {
+                $("#InputOrdenTrabajo").val("");
                 displayNotify("CapturaSoldaduraMensajeOrdenTrabajo", "", '1');
             }
         });
@@ -333,8 +360,13 @@ function suscribirEventoCarro() {
     };
 
     function Limpiar() {
-        $("#InputCarro").val("");
+        $("#inputCarro").data("kendoComboBox").value("");
+        $("#inputComponente").data("kendoComboBox").value("");
+        $("#inputComponente").data("kendoComboBox").dataSource.data([]);
+        $("#InputOrdenTrabajo").val("");
+        $("#InputID").data("kendoComboBox").value("");
         $("#InputID").data("kendoComboBox").dataSource.data([]);
-
+        $("#Fechaprimario").data("kendoDatePicker").value(new Date());
         $("#grid").data('kendoGrid').dataSource.data([]);
+        opcionHabilitarView(false, "FieldSetView");
     }
