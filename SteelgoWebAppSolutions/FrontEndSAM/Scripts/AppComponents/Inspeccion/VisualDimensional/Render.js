@@ -1,6 +1,5 @@
 ﻿function RenderComboBoxTaller(container, options) {
 
-    loadingStart();
     var dataItem;
     $('<input required data-text-field="Nombre" data-value-field="TallerID" data-bind="value:' + options.field + '"/>')
         .appendTo(container)
@@ -29,9 +28,7 @@
             },
             open: function (e) {
             }
-        }
-        );
-    loadingStop();
+        });
     $(".k-combobox").on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
@@ -54,7 +51,6 @@ function tieneClase(item) {
 
 
 function RenderComboBoxInspector(container, options) {
-    loadingStart();
     var dataItem;
 
     $('<input required data-text-field="NombreCompleto" data-value-field="ObreroID" data-bind="value:' + options.field + '"/>')
@@ -84,7 +80,6 @@ function RenderComboBoxInspector(container, options) {
             }
         }
         );
-    loadingStop();
     $(".k-combobox").on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
@@ -95,7 +90,6 @@ function RenderComboBoxInspector(container, options) {
 };
 
 function RenderComboBoxDefectos(container, options) {
-    loadingStart();
     var dataItem;
 
     $('<input required data-text-field="Nombre" data-value-field="DefectoID" data-bind="value:' + options.field + '"/>')
@@ -126,7 +120,6 @@ function RenderComboBoxDefectos(container, options) {
             }
         }
         );
-    loadingStop();
     $(".k-combobox").on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;
@@ -227,7 +220,6 @@ function RenderComboBoxNumeroUnico2(container, options) {
 };
 
 function RenderOptionResultado(container, options) {
-    loadingStart();
     var dataItem;
     console.log(options);
     $('<input required data-text-field="_Resultado" data-value-field="DefectoID" data-bind="value:' + options.field + '"/>')
@@ -268,7 +260,6 @@ function RenderOptionResultado(container, options) {
             }
         }
         );
-    loadingStop();
     $(".k-combobox").on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = this;

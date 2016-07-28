@@ -30,7 +30,7 @@ function ConvertirCombos() {
             dataItem = this.dataItem(e.item.index());
         },
         change: function (e) {
-            if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A") {
+            if ($('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()) != undefined && $('#ProcesoSoldaduraRellenoID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRellenoID").data("kendoComboBox").select()).Codigo == "N/A") {
                 $('#EspesorRelleno').data("kendoNumericTextBox").value("0");
                 $("#EspesorRelleno").data("kendoNumericTextBox").readonly(true);
                 $("#EspesorRelleno").data("kendoNumericTextBox").enable(false);
@@ -67,7 +67,7 @@ function ConvertirCombos() {
             dataItem = this.dataItem(e.item.index());
         },
         change: function (e) {
-            if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo == "N/A") {
+            if ($('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()) != undefined && $('#ProcesoSoldaduraRaizID').data("kendoComboBox").dataItem($("#ProcesoSoldaduraRaizID").data("kendoComboBox").select()).Codigo == "N/A") {
                 $('#EspesorRaiz').data("kendoNumericTextBox").value("0");
                 $("#EspesorRaiz").data("kendoNumericTextBox").readonly(true);
                 $("#EspesorRaiz").data("kendoNumericTextBox").enable(false);
@@ -102,9 +102,27 @@ function ConvertirCombos() {
             dataItem = this.dataItem(e.item.index());
             var PQRIDBuscar = dataItem.PQRID;
         },
+        change: function (e) {
+            if (tieneClase(e.currentTarget)) {
+                $("#GrupoPMaterialBase1ID").data("kendoComboBox").select(0);
+            }
+            if ($('#GrupoPMaterialBase1ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase1ID").data("kendoComboBox").select()) == undefined) {
+                $("#GrupoPMaterialBase1ID").data("kendoComboBox").value("");
+            }
+        }
+    });
+
+    $('#GrupoPMaterialBase1ID').closest('.k-widget').keydown(function (e) {
+        if (e.keyCode == 9)
+            if (tieneClase(e.currentTarget)) {
+                $("#GrupoPMaterialBase1ID").data("kendoComboBox").select(0);
+            }
     });
 
     $("#GrupoPMaterialBase1ID").blur(function (e) {
+        if (tieneClase(e.currentTarget)) {
+            $("#GrupoPMaterialBase1ID").data("kendoComboBox").select(0);
+        }
         if ($("#GrupoPMaterialBase1ID").data("kendoComboBox").dataItem($("#GrupoPMaterialBase1ID").data("kendoComboBox").select()) == undefined) {
             $("#GrupoPMaterialBase1ID").val("");
             $("#GrupoPMaterialBase1ID").data("kendoComboBox").text("");
@@ -121,10 +139,27 @@ function ConvertirCombos() {
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
             var PQRIDBuscar = dataItem.PQRID;
-        },
+        }, change: function (e) {
+            if (tieneClase(e.currentTarget)) {
+                $("#GrupoPMaterialBase2ID").data("kendoComboBox").select(0);
+            }
+            if ($('#GrupoPMaterialBase2ID').data("kendoComboBox").dataItem($("#GrupoPMaterialBase2ID").data("kendoComboBox").select()) == undefined) {
+                $("#GrupoPMaterialBase2ID").data("kendoComboBox").value("");
+            }
+        }
+    });
+
+    $('#GrupoPMaterialBase2ID').closest('.k-widget').keydown(function (e) {
+        if (e.keyCode == 9)
+            if (tieneClase(e.currentTarget)) {
+                $("#GrupoPMaterialBase2ID").data("kendoComboBox").select(0);
+            }
     });
 
     $("#GrupoPMaterialBase2ID").blur(function (e) {
+        if (tieneClase(e.currentTarget)) {
+            $("#GrupoPMaterialBase1ID").data("kendoComboBox").select(0);
+        }
         if ($("#GrupoPMaterialBase2ID").data("kendoComboBox").dataItem($("#GrupoPMaterialBase2ID").data("kendoComboBox").select()) == undefined) {
             $("#GrupoPMaterialBase2ID").val("");
             $("#GrupoPMaterialBase2ID").data("kendoComboBox").text("");
@@ -140,7 +175,14 @@ function ConvertirCombos() {
         dataValueField: "CodigoAsmeID",
         select: function (e) {
             dataItem = this.dataItem(e.item.index());
-        },
+        }, change: function (e) {
+            if (tieneClase(e.currentTarget)) {
+                $("#CodigoID").data("kendoComboBox").select(0);
+            }
+            if ($('#CodigoID').data("kendoComboBox").dataItem($("#CodigoID").data("kendoComboBox").select()) == undefined) {
+                $("#CodigoID").data("kendoComboBox").value("");
+            }
+        }
     });
 
     $("#CodigoID").blur(function (e) {
@@ -148,6 +190,13 @@ function ConvertirCombos() {
             $("#CodigoID").val("");
             $("#CodigoID").data("kendoComboBox").text("");
         }
+    });
+
+    $('#CodigoID').closest('.k-widget').keydown(function (e) {
+        if (e.keyCode == 9)
+            if (tieneClase(e.currentTarget)) {
+                $("#CodigoID").data("kendoComboBox").select(0);
+            }
     });
 };
 
@@ -168,3 +217,9 @@ function Limpiar() {
     $('#CodigoID').data("kendoComboBox").value("");
     $("#PQRID").val("0");
 };
+
+function tieneClase(item) {
+
+    var tieneClass = $(item).hasClass("k-state-border-up") || $(item).hasClass("k-state-border-down");
+    return tieneClass;
+}

@@ -31,12 +31,10 @@ function AjaxObtenerListaTaller() {
 }
 
 function AjaxJunta(spoolID) {
-    loadingStart();
     $Inspeccion.Inspeccion.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: 1, token: Cookies.get("token"), todos: 1 }).done(function (data) {
         if (Error(data)) {
             limpiarJuntaMultiselect();
             $("#ListaJuntas").data("kendoMultiSelect").dataSource.data(data);
-            loadingStop();
         }
     });
 }
@@ -124,7 +122,6 @@ function AjaxObtenerSpoolID() {
 }
 
 function AjaxobtenerDetalleDimensional(spoolID) {
-    loadingStart();
 
     $Inspeccion.Inspeccion.read({ id: spoolID, sinCaptura: 1, token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
         if (data.ListaDetalleDimensional.length == 0) {
@@ -164,7 +161,6 @@ function AjaxobtenerDetalleDimensional(spoolID) {
             //    AjaxObtenerJSonGrid();
             //}
         }
-        loadingStop();
     });
 }
 

@@ -8397,36 +8397,36 @@ _dictionary = {
         "en-US": "THICKNESS (mm)"
     },
     "lblPQRNombreMandatorio": {
-        "es-MX": "El campo nombre del PQR es mandatorio",
-        "en-US": "The field PQR name is mandatory"
+        "es-MX": "El campo NOMBRE del PQR es mandatorio",
+        "en-US": "The field NAME of PQR is mandatory"
     },
     "lblPQREspRellMandatorio": {
-        "es-MX": "El campo E. relleno es mandatorio",
-        "en-US": "The field padding thick is mandatory"
+        "es-MX": "El campo E. RELLENO es mandatorio",
+        "en-US": "The field FILL THK is mandatory"
     },
     "lblPQREspRaizMandatorio": {
-        "es-MX": "El campo E. raiz es mandatorio",
-        "en-US": "The field root thick is mandatory"
+        "es-MX": "El campo E. RAIZ es mandatorio",
+        "en-US": "The field ROOT THK is mandatory"
     },
     "lblPQRProcSoldMandatorio": {
-        "es-MX": "El campo proceso de soldadura de relleno es mandatorio",
-        "en-US": "The field padding welding process is mandatory"
+        "es-MX": "El campo PROC RELLENO del PQR es mandatorio",
+        "en-US": "The field FILL PROC is mandatory"
     },
     "lblPQRProcRaizMandatorio": {
-        "es-MX": "El campo proceso de soldadura de raiz es mandatorio",
-        "en-US": "The field root welding process is mandatory"
+        "es-MX": "El campo PROC RAIZ del PQR es mandatorio",
+        "en-US": "The field ROOT PROC is mandatory"
     },
     "lblPQRGrpB1Mandatorio": {
-        "es-MX": "El campo Grupo Materiales Base 1 es mandatorio",
-        "en-US": "The field material base 1 is mandatory"
+        "es-MX": "El campo GRUPO P BASE 1 es mandatorio",
+        "en-US": "The field P GRP BASE 1 is mandatory"
     },
     "lblPQRGrpB2Mandatorio": {
-        "es-MX": "El campo Grupo Materiales Base 2 es mandatorio",
-        "en-US": "The field material base 2 is mandatory"
+        "es-MX": "El campo GRUPO P BASE 2 es mandatorio",
+        "en-US": "The field P GRP BASE 2 is mandatory"
     },
     "lblPQRCodigoMandatorio": {
-        "es-MX": "El campo código es mandatorio",
-        "en-US": "The field code is mandatory"
+        "es-MX": "El campo CÓdIGO es mandatorio",
+        "en-US": "The field CODE is mandatory"
     },
     "lblPQRNoRepetidos": {
         "es-MX": "El nombre del PQR no se puede repetir",
