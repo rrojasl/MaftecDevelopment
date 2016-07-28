@@ -18,20 +18,23 @@
                 if (dataItem != undefined) {
                     options.model.ProveedorID = dataItem.ProveedorID;
                     options.model.Proveedor = dataItem.Nombre;
-                    options.model.ListaHerramientaPrueba = [];
-                    options.model.ListaHerramientaPrueba = dataItem.ListaHerramientaPrueba;
                     options.model.ListaTurnoLaboral = [];
-                    options.model.ListaTurnoLaboral = dataItem.ListaTurnoLaboral;
+                    options.model.ListaTurnoLaboral = obtenerTurnoLaboralProveedor(options.model.ListaTurnoLaboralTotal, dataItem.ProveedorID);
 
-                    options.model.HerramientadePruebaID = "";
-                    options.model.HerramientadePrueba = "";
-
-                    options.model.TurnoLaboralID = "";
+                    options.model.TurnoLaboralID = 0;
                     options.model.TurnoLaboral = "";
                     $("#grid").data("kendoGrid").dataSource.sync();
                 }
                 else
-                    options.model.Proveedor = ObtenerDescCorrectaProveedor(options.model.ListaProveedor, options.model.ProveedorID);
+                {
+                    options.model.ProveedorID = 0;
+                    options.model.Proveedor = dataItem.Nombre;
+                    options.model.ListaTurnoLaboral = [];
+
+                    options.model.TurnoLaboralID = 0;
+                    options.model.TurnoLaboral = "";
+                }
+                    //options.model.Proveedor = ObtenerDescCorrectaProveedor(options.model.ListaProveedor, options.model.ProveedorID);
 
             },
                 dataBound: function () {
@@ -151,12 +154,17 @@ function RenderComboBoxTurnoLaboral(container, options) {
     });
 };
 
-function ObtenerDescCorrectaTurnoLaboral(lista, TurnoLaboralID) {
+function obtenerTurnoLaboralProveedor(lista, ProveedorID) {
+    var listaFinalTurnoLaboral = [];
+    var cont = 0;
+
     for (var i = 0; i < lista.length; i++) {
-        if (lista[i].TurnoLaboralID == TurnoLaboralID)
-            return lista[i].Turno;
+        if (lista[i].ProveedorID == ProveedorID) {
+            listaFinalTurnoLaboral[cont] = lista[i];
+            cont++;
+        }
     }
-    return "";
+    return listaFinalTurnoLaboral;
 }
 
 

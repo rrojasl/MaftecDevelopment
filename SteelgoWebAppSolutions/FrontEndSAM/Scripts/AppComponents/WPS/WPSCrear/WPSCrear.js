@@ -237,7 +237,10 @@ function Limpiar() {
     $('#EspesorMaximoWPS').text("0");
     $('#EspesorMinimoWPS').text("0");
     $("#WPSID").val("0");
-
+    $("#Guardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+    $("#btnGuardar").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+    $("#Guardar1").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
+    $("#btnGuardar1").text(_dictionary.textoGuardar[$("#language").data("kendoDropDownList").value()]);
 };
 
 

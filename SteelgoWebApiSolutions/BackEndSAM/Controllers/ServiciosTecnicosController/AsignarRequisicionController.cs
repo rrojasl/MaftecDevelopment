@@ -38,7 +38,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
         }
 
         //Carga los datos del grid
-        public object Get(string lenguaje, string token, string mostrar, int idPrueba, int idProveedor)
+        public object Get(string lenguaje, string token, string mostrar, int idPrueba)
         {
             //Create a generic return object
             string payload = "";
@@ -49,7 +49,8 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                 int tipoVista = mostrar == "Todos" ? 1 : 2;
-                return AsignarRequisicionBD.Instance.ObtenerRequisicionAsignacion(lenguaje, tipoVista, idPrueba, idProveedor);
+                
+                return AsignarRequisicionBD.Instance.ObtenerRequisicionAsignacion(lenguaje, tipoVista, idPrueba);
             }
             else
             {

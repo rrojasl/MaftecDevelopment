@@ -435,7 +435,15 @@ function SuscribirEventoSpoolID() {
                 if (dataItem.Status != "1") {
                     e.preventDefault();
                     $("#InputID").val("");
-                    displayNotify("Mensajes_error", dataItem.Status, '1');
+                    var cadenaError = "";
+                    if (dataItem.HabilitadoHoldFecha == 0) {
+                        cadenaError = _dictionary.MensajeErrorSpoolHold[$("#language").data("kendoDropDownList").value()];
+                    }
+                    else
+                        cadenaError = dataItem.Status;
+                        
+
+                    displayNotify("",  cadenaError, '1');
                     return;
                 }
 
@@ -510,7 +518,9 @@ function SuscribirEventoSpoolID() {
         ,
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
-            //if (dataItem != undefined) {
+            if (dataItem != undefined) {
+
+            }
             //    if ($("#InputID").val().length == 1) {
             //        $("#InputID").data("kendoComboBox").value(("00" + $("#InputID").val()).slice(-3));
             //    }

@@ -35,6 +35,7 @@ namespace BackEndSAM.Models.Armado
         public string Proyecto { get; set; }
 
         public int ProyectoID { get; set; }
+        public int HabilitadoHoldFecha { get; set; }
     }
 
     public class CamposPredeterminados

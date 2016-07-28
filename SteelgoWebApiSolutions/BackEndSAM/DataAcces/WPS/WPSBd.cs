@@ -86,9 +86,9 @@ namespace BackEndSAM.DataAcces
                                       PWHTRelleno = WPS.PWHTId,
 
                                       PREHEATRaizId = Convert.ToInt32(WPS.PREHEATId),
-                                      PREHEATRaiz = WPS.PREHEATId.GetValueOrDefault(),
+                                      PREHEATRaiz = WPS.PREHEATId,
                                       PREHEATRellenoId = Convert.ToInt32(WPS.PREHEATId),
-                                      PREHEATRelleno = WPS.PREHEATId.GetValueOrDefault(),
+                                      PREHEATRelleno = WPS.PREHEATId,
 
                                       GrupoMaterialBase1RaizD = WPS.GrupoMaterialBase1RaizD,
                                       GrupoMaterialBase1RaizDID = WPS.GrupoMaterialBase1RaizDID.GetValueOrDefault(),

@@ -37,6 +37,7 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
         public int TurnoLaboralID { get; set; }
         public string TurnoLaboral { get; set; }
         public List<TurnoLaboral> ListaTurnoLaboral { get; set; }
+        public List<TurnoLaboral> ListaTurnoLaboralTotal { get; set; }
     }
 
     public class HerramientaPrueba
@@ -51,9 +52,8 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
     {
         public int TurnoLaboralID { get; set; }
         public string Turno { get; set; }
-        public int HerramientaDePruebaID { get; set; }
         public int ProveedorID { get; set; }
-        public int Capacidad { get; set; }
+        
     }
 
     public class GuardarRequisicionAsignacion

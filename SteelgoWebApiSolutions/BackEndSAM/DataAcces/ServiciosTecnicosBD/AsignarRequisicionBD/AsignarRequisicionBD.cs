@@ -83,23 +83,23 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                 return _instance;
             }
         }
-        public object ObtenerRequisicionAsignacion(string lenguaje,int tipoVista, int idPrueba, int idProveedor)
+        public object ObtenerRequisicionAsignacion(string lenguaje, int tipoVista, int idPrueba)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result> result = ctx.Sam3_ServiciosTecnicos_Get_RequisicionAsignacion(lenguaje, tipoVista).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result> result = ctx.Sam3_ServiciosTecnicos_Get_RequisicionAsignacion(lenguaje, tipoVista,idPrueba).ToList();
                     List<RequisicionAsignacion> ListadoRequisicionAsignacion = new List<RequisicionAsignacion>();
-                    
-                    
+
+
 
                     foreach (Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result item in result)
                     {
                         ListadoRequisicionAsignacion.Add(new RequisicionAsignacion
                         {
-                            Accion = item.ProveedorID == null ? 1 : 2,
-                            Nombre=item.Nombre,
+                            Accion = item.RequisicionAsignacionID == 0 ? 1 : 2,
+                            Nombre = item.Nombre,
                             Clave = item.Clave,
                             Observacion = item.Observacion,
                             Fecha = item.Fecha,
@@ -107,7 +107,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             ProveedorID = item.ProveedorID.GetValueOrDefault(),
                             Proveedor = item.Proveedor == null ? "" : item.Proveedor,
                             RequisicionID = item.RequisicionID,
-                            Requisicion=item.Requisicion,
+                            Requisicion = item.Requisicion,
                             ListaProveedor = (List<Proveedor>)ObtenerListaProveedores(lenguaje, item.TipoPruebaID, 1),
                             HerramientadePrueba = item.HerramientadePrueba,
                             HerramientadePruebaID = item.HerramientaDePruebaID.GetValueOrDefault(),
@@ -116,7 +116,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
                             ListaHerramientaPruebaProveedorPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID, item.ProveedorID.GetValueOrDefault()),
                             ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje),
-
+                            ListaTurnoLaboralTotal = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje)
                         });
                     }
 
@@ -175,7 +175,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje,0,0).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje).ToList();
 
                     List<TurnoLaboral> ListadoTurnoLaboral = new List<TurnoLaboral>();
 
@@ -184,7 +184,8 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                         ListadoTurnoLaboral.Add(new TurnoLaboral
                         {
                             Turno = item.Turno,
-                            TurnoLaboralID = item.TurnoLaboralID
+                            TurnoLaboralID = item.TurnoLaboralID,
+                            ProveedorID = item.ProveedorID
                         });
                     }
                     return ListadoTurnoLaboral;
