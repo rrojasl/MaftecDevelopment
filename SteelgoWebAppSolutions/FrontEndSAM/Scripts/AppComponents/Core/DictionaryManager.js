@@ -5,11 +5,15 @@ _languageOrder = {
 }
 
 _dictionary = {
-
+    "MensajeErrorSpoolHold":
+    {
+        "es-MX": "No se permite su captura, debido a que transcurrieron 2 dias despues de salir de retención",
+        "en-US": "capture is not allowed , because they passed two days after leaving retention"
+    },
     "SoldadorPQRExistente":
     {
-        "es-MX": "El soldador ya existe con el pqr seleccionado ¿Deseas AcAsignarRequisicionHeaderHerramientaPruebastualizarlo?",
-        "en-US": "The welder already exists with selected PQR Want to upgrade?"
+        "es-MX": "El soldador ya existe con el WPS seleccionado ¿Deseas actualizarlo?",
+        "en-US": "The welder already exists with selected WPS Want to upgrade?"
     },
     "MensajeCamposIncorrector":
     {
@@ -10691,8 +10695,8 @@ _dictionary = {
         "en-US": "Marked records will not be saved. Continue anyway?"
     },
     "CapturaGuardarInformacionConNumerosUnicos": {
-        "es-MX": "No se puede guardar Spools  incompletos, elimina el spool o presiona el boton limpiar. gracias",
-        "en-US": "You can not save incomplete Spools , remove the spool or press the clean button. Thank you"
+        "es-MX": "Los spools marcados en rojo no se pueden guardar favor de eliminarlos y/o limpiarlos.",
+        "en-US": "The spools marked in red can not be saved please remove them and/or clean them."
     },
     "CapturaAvanceIntAcabadoMensajeErrorGuardadoComponente": {
         "es-MX": "Seleccione un componente para cada spool.",
