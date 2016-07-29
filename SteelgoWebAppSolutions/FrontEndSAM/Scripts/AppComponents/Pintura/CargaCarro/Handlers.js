@@ -114,7 +114,8 @@ function SuscribirEventoProyecto() {
         index: 3,
         change: function (e) {
             var dataItem = this.dataItem(e.sender.selectedIndex);
-            if (dataItem != undefined && dataItem.ProyectoID != 0) {
+            if (dataItem != undefined) {
+                if (dataItem.ProyectoID != 0){
                 $("#grid").data('kendoGrid').dataSource.data([]);
                 if ($("#grid[nombre='grid-backlog']").data('kendoGrid') != undefined) {
                     $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
@@ -130,6 +131,7 @@ function SuscribirEventoProyecto() {
                 $("#InputID").data("kendoComboBox").dataSource.data([]);
                 $("#InputID").data("kendoComboBox").value("");
                 AjaxPinturaCargaMedioTransporte();
+                }
             } else {
                 $("#inputProyecto").data("kendoComboBox").value("");
                 //displayNotify("NoExisteProyecto", "", '2');
@@ -410,6 +412,7 @@ function SuscribirEventoCarro() {
         select: function (e) { 
             var dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
+                if(dataItem.MedioTransporteID!=0){
                 $('#inputCarro').attr("mediotransporteid", dataItem.MedioTransporteID);
                 if (dataItem.MedioTransporteID == "-1") {
                     LimpiarCarro();
@@ -441,6 +444,7 @@ function SuscribirEventoCarro() {
                 $("#InputID").data("kendoComboBox").dataSource.data([]);
                 $("#InputID").data("kendoComboBox").value("");
             }
+            }
             else {
                 $("#inputCarro").data("kendoComboBox").value("");
                 displayNotify("NoExisteCarro", '', '2');
@@ -450,34 +454,36 @@ function SuscribirEventoCarro() {
         change: function (e) {  
             var dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
-                $('#inputCarro').attr("mediotransporteid", dataItem.MedioTransporteID);
-                if (dataItem.MedioTransporteID == "-1") {
-                    LimpiarCarro();
-                    windowNewCarriage = $("#divNuevoMedioTransporte").kendoWindow({
-                        modal: true,
-                        resizable: false,
-                        visible: true,
-                        width: "auto",
-                        minWidth: "20%",
-                        position: {
-                            top: "1%",
-                            left: "1%"
-                        },
-                        actions: [
-                            "Close"
-                        ],
-                    }).data("kendoWindow");
-                    $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
-                    $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
+                if (dataItem.MedioTransporteID != 0) {
+                    $('#inputCarro').attr("mediotransporteid", dataItem.MedioTransporteID);
+                    if (dataItem.MedioTransporteID == "-1") {
+                        LimpiarCarro();
+                        windowNewCarriage = $("#divNuevoMedioTransporte").kendoWindow({
+                            modal: true,
+                            resizable: false,
+                            visible: true,
+                            width: "auto",
+                            minWidth: "20%",
+                            position: {
+                                top: "1%",
+                                left: "1%"
+                            },
+                            actions: [
+                                "Close"
+                            ],
+                        }).data("kendoWindow");
+                        $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
+                        $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
+                    }
+                    else {
+                        $("#inputCarro").val(dataItem.MedioTransporteCargaID);
+                        AjaxObtenerDetalleCarroCargado(dataItem.MedioTransporteCargaID);
+                    }
+                    $("#chkCerrar2").attr("checked", false);
+                    $("#InputOrdenTrabajo").val("");
+                    $("#InputID").data("kendoComboBox").dataSource.data([]);
+                    $("#InputID").data("kendoComboBox").value("");
                 }
-                else {
-                    $("#inputCarro").val(dataItem.MedioTransporteCargaID);
-                    AjaxObtenerDetalleCarroCargado(dataItem.MedioTransporteCargaID);
-                }
-                $("#chkCerrar2").attr("checked", false);
-                $("#InputOrdenTrabajo").val("");
-                $("#InputID").data("kendoComboBox").dataSource.data([]);
-                $("#InputID").data("kendoComboBox").value("");
             }
             else {
                 $("#inputCarro").data("kendoComboBox").value("");

@@ -52,7 +52,8 @@ function AjaxPinturaCargaMedioTransporte() {
         $("#inputCarro").data("kendoComboBox").value("");
         $("#inputCarroBacklog").data("kendoComboBox").value("");
         if (data.length > 0) {
-            data.unshift({ MedioTransporteID: -1, NombreMedioTransporte: _dictionary.PinturaCargaAgregarNuevoCarro[$("#language").data("kendoDropDownList").value()] });
+            //data.unshift({ MedioTransporteID: -1, NombreMedioTransporte: _dictionary.PinturaCargaAgregarNuevoCarro[$("#language").data("kendoDropDownList").value()] });
+            data.splice(1, 0, { MedioTransporteID: -1, NombreMedioTransporte: _dictionary.PinturaCargaAgregarNuevoCarro[$("#language").data("kendoDropDownList").value()] });
 
             $("#inputCarro").data("kendoComboBox").dataSource.data(data);
             $("#inputCarroBacklog").data("kendoComboBox").dataSource.data(data);
