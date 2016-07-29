@@ -8574,8 +8574,8 @@ _dictionary = {
         "en-US": "The Thickness field must be greater than zero"
     },
     "CapturaSoldadorCertificacionDiametroVacio": {
-        "es-MX": "El campo diametro c. no puede ser vacio",
-        "en-US": "The Q. Diameter field can not be empty"
+        "es-MX": "El campo diametro c. debe ser mayor a cero",
+        "en-US": "The Q. Diameter field must be greater than zero"
     },
     "CapturaSoldadorCertificacionTipoPruebaVacio": {
         "es-MX": "El campo tipo de prueba no puede ser vacio",
