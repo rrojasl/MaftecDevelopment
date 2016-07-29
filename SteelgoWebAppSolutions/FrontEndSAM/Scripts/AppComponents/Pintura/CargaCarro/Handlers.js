@@ -56,14 +56,24 @@ function SuscribirEventoCambiarVista() {
 
 function SuscribirEventoGuardarCrearMedioTransporte() {
     $('#btnGuardarCrearMedioTransporte').click(function (e) {
-        AjaxGuardarNuevoCarro()
+        AjaxGuardarNuevoCarro();
     });
+    $('#InputNombre').keydown(function (e) {
+        if ($('#InputNombre').val() != "") {
+            if (e.keyCode == 13) {
+                AjaxGuardarNuevoCarro();
+            }
+        }
+        
+    });
+
+    
 }
 
 function SuscribirEventoCerrarCrearMedioTransporte() {
     $('#btnCerrarVentanaCrearMedioTransporte').click(function (e) {
-        $("#inputCarro").data("kendoComboBox").value("0");
-        $("#inputCarroBacklog").data("kendoComboBox").value("0");
+        $("#inputCarro").data("kendoComboBox").value("");
+        $("#inputCarroBacklog").data("kendoComboBox").value("");
         windowNewCarriage.close();
     });
 }
@@ -422,16 +432,19 @@ function SuscribirEventoCarro() {
                         modal: true,
                         resizable: false,
                         visible: true,
-                        width: "400px",
-                        minWidth: 660,
+                        width: "500px",
+                        height: "auto",
                         position: {
                             top: "1%",
                             left: "1%"
                         },
-                        actions: false,
                         actions: [
                             "Close"
                         ],
+                        close: function () {
+                            $("#inputCarro").data("kendoComboBox").value("");
+                            $("#inputCarroBacklog").data("kendoComboBox").value("");
+                        }
                     }).data("kendoWindow");
                     $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
                     $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
@@ -464,8 +477,8 @@ function SuscribirEventoCarro() {
                             modal: true,
                             resizable: false,
                             visible: true,
-                            width: "auto",
-                            minWidth: "20%",
+                            width: "500px",
+                            height: "auto",
                             position: {
                                 top: "1%",
                                 left: "1%"
@@ -473,6 +486,10 @@ function SuscribirEventoCarro() {
                             actions: [
                                 "Close"
                             ],
+                            close: function () {
+                                $("#inputCarro").data("kendoComboBox").value("");
+                                $("#inputCarroBacklog").data("kendoComboBox").value("");
+                            }
                         }).data("kendoWindow");
                         $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
                         $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
@@ -652,9 +669,8 @@ function suscribirEventoCarroBacklog() {
                         modal: true,
                         resizable: false,
                         visible: true,
-                        width: "400px",
-                        minWidth: "600",
-
+                        width: "500px",
+                        height: "auto",
                         position: {
                             top: "1%",
                             left: "1%"
@@ -662,6 +678,10 @@ function suscribirEventoCarroBacklog() {
                         actions: [
                             "Close"
                         ],
+                        close: function () {
+                            $("#inputCarro").data("kendoComboBox").value("");
+                            $("#inputCarroBacklog").data("kendoComboBox").value("");
+                        }
                     }).data("kendoWindow");
                     $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
                     $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
@@ -689,9 +709,8 @@ function suscribirEventoCarroBacklog() {
                         modal: true,
                         resizable: false,
                         visible: true,
-                        width: "auto",
-                        minWidth: "20%",
-
+                        width: "500px",
+                        height: "auto",
                         position: {
                             top: "1%",
                             left: "1%"
@@ -699,6 +718,10 @@ function suscribirEventoCarroBacklog() {
                         actions: [
                             "Close"
                         ],
+                        close: function () {
+                            $("#inputCarro").data("kendoComboBox").value("");
+                            $("#inputCarroBacklog").data("kendoComboBox").value("");
+                        }
                     }).data("kendoWindow");
                     $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
                     $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
