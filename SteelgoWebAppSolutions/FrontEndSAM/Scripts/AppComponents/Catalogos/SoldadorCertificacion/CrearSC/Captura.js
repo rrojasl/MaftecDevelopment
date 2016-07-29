@@ -218,7 +218,7 @@ function ValidarInformacionNuevoSoldadorCertificacion(tipo) {
             (parseFloat($("#inputEspesorMinimo").data("kendoNumericTextBox").value()) == 0.0) ||
             ($("#inputEspesorMinimo").val() == "") ||
             (parseFloat($("#inputEspesorMaximo").data("kendoNumericTextBox").value()) == 0.0) ||
-            ($("#inputEspesorMaximo").val() == "") ||
+            ($("#inputEspesorMaximo").val() == "") || $("#inputDiametroCalificado").val()==''||
             (parseFloat($("#inputDiametroCalificado").data("kendoNumericTextBox").value()) == 0.0) ||
             (parseFloat($("#inputTipoPrueba").data("kendoComboBox").value()) <= 0) ||
             ($("#inputTipoPrueba").val() == "") ||
