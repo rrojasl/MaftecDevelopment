@@ -71,6 +71,18 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                     List<Sam3_Pintura_Get_MedioTransporte_Result> result = ctx.Sam3_Pintura_Get_MedioTransporte(lenguaje,proyectoID).ToList();
 
                     List<MedioTransporte> ListadoMedioTransporte = new List<MedioTransporte>();
+                    ListadoMedioTransporte.Add(new MedioTransporte
+                    {
+                        MedioTransporteID = 0,
+                        MedioTransporteCargaID = 0,
+                        NombreMedioTransporte = "",
+                        PesoMaximoPermitido = 0,
+                        PesoMaximoOcupado = 0,
+                        AreaPermitidoMedioTransporte = 0,
+                        AreaMaximoOcupado = 0,
+                        NumeroUsosPermitidos = 0,
+                        NumeroUsosOcupados = 0
+                });
 
                     foreach (Sam3_Pintura_Get_MedioTransporte_Result item in result)
                     {
@@ -476,6 +488,12 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                 {
                     List<Sam3_SteelGo_Get_Proyectos_Result> result = ctx.Sam3_SteelGo_Get_Proyectos().ToList();
                     List<Proyecto> lista = new List<Proyecto>();
+                    lista.Add(new Proyecto
+                    {
+                        Letra = "",
+                        Nombre = "",
+                        ProyectoID = 0
+                    });
                     foreach(Sam3_SteelGo_Get_Proyectos_Result item in result)
                     {
                         lista.Add(new Proyecto {

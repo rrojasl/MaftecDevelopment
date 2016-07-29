@@ -18,12 +18,32 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int NumeroUsosPermitidos { get; set; }
         public int NumeroUsosOcupados { get; set; }
 
+        public MedioTransporte()
+        {
+            MedioTransporteID = 0;
+            MedioTransporteCargaID = 0;
+            NombreMedioTransporte = "";
+            PesoMaximoPermitido = 0;
+            PesoMaximoOcupado = 0;
+            AreaPermitidoMedioTransporte = 0;
+            AreaMaximoOcupado = 0;
+            NumeroUsosPermitidos = 0;
+            NumeroUsosOcupados = 0;
+
+        }
+
     }
 
     public class MedioTransporteCarga
     {
         public int MedioTransporteCargaID { get; set; }
         public string NombreMedioTransporte { get; set; }
+
+        public MedioTransporteCarga() {
+            MedioTransporteCargaID = 0;
+            NombreMedioTransporte = "";
+         }
+
     }
 
     public class DetalleSpool
@@ -131,6 +151,13 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int ProyectoID { get; set; }
         public string Nombre { get; set; }
         public string Letra { get; set; }
+
+        public Proyecto()
+        {
+            ProyectoID = 0;
+            Nombre = "";
+            Letra = "";
+        }
     }
 
 }

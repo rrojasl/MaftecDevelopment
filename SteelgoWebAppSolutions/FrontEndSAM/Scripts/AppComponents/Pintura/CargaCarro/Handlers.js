@@ -114,7 +114,7 @@ function SuscribirEventoProyecto() {
         index: 3,
         change: function (e) {
             var dataItem = this.dataItem(e.sender.selectedIndex);
-            if (dataItem != undefined) {
+            if (dataItem != undefined && dataItem.ProyectoID != 0) {
                 $("#grid").data('kendoGrid').dataSource.data([]);
                 if ($("#grid[nombre='grid-backlog']").data('kendoGrid') != undefined) {
                     $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
@@ -132,13 +132,13 @@ function SuscribirEventoProyecto() {
                 AjaxPinturaCargaMedioTransporte();
             } else {
                 $("#inputProyecto").data("kendoComboBox").value("");
-                displayNotify("NoExisteProyecto", "", '2');
+                //displayNotify("NoExisteProyecto", "", '2');
 
             }
         },
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
-            if (dataItem != undefined) {
+            if (dataItem != undefined && dataItem.ProyectoID != 0) {
                 $("#grid").data('kendoGrid').dataSource.data([]);
                 if ($("#grid[nombre='grid-backlog']").data('kendoGrid') != undefined) {
                     $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
@@ -156,7 +156,7 @@ function SuscribirEventoProyecto() {
             }
             else {
                 $("#inputProyecto").data("kendoComboBox").value("");
-                displayNotify("NoExisteProyecto", "", '2');
+               // displayNotify("NoExisteProyecto", "", '2');
             }
         }
     });
@@ -487,11 +487,7 @@ function SuscribirEventoCarro() {
     });
 
 
-    $("#inputCarro").blur(function () { 
-        //$("#inputCarro").data("kendoComboBox").trigger("change");
-    });
-
-    $('#inputCarro').closest('.k-widget').keydown(function (e) {
+   $('#inputCarro').closest('.k-widget').keydown(function (e) {
         if (e.keyCode == 13) {
             if ($("#inputCarro").data("kendoComboBox").dataItem($("#inputCarro").data("kendoComboBox").select()) != undefined) {
                 
