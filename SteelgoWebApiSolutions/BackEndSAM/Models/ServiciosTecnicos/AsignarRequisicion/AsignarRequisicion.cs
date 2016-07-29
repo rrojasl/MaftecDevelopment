@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BackEndSAM.Models.GenerarRequisicion;
+using System.Collections.Generic;
 
 namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
 {
@@ -9,6 +10,12 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
 
     public class Proveedor
     {
+        public Proveedor()
+        {
+            ProveedorID = 0;
+            Nombre = "";
+            Capacidad = "";
+        }
         public int ProveedorID { get; set; }
         public string Nombre { get; set; }
         public string Capacidad { get; set; }
@@ -19,12 +26,13 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
     public class RequisicionAsignacion
     {
         public int Accion { get; set; }
+        public int RequisicionAsignacionID { get; set; }
         public string Nombre { get; set; }
         public string Clave { get; set; }
         public string Observacion { get; set; }
         public string Fecha { get; set; }
         public int RequisicionID { get; set; }
-
+        public int ProyectoID { get; set; }
         public string Requisicion { get; set; }
         public int CantidadJuntas { get; set; }
         public int ProveedorID { get; set; }
@@ -38,10 +46,19 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
         public string TurnoLaboral { get; set; }
         public List<TurnoLaboral> ListaTurnoLaboral { get; set; }
         public List<TurnoLaboral> ListaTurnoLaboralTotal { get; set; }
+        public List<JsonRequisicion> ListadoDetalleJuntasRequisicion { get; set; }
     }
 
     public class HerramientaPrueba
     {
+        public HerramientaPrueba()
+        {
+            HerramientadePruebaID = 0;
+            HerramientadePrueba = "";
+            DescHerramientaPrueba = "";
+            Modelo = "";
+        }
+
         public int HerramientadePruebaID { get; set; }
         public string HerramientadePrueba { get; set; }
         public string DescHerramientaPrueba { get; set; }
@@ -59,6 +76,7 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
     public class GuardarRequisicionAsignacion
     {
         public int Accion { get; set; }
+        public int RequisicionAsignacionID { get; set; }
         public int RequisicionID { get; set; }
         public int ProveedorID { get; set; }
         public int HerramientadePruebaID { get; set; }

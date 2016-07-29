@@ -9021,8 +9021,8 @@ _dictionary = {
         "en-US": "Provider"
     },
     "AsignarRequisicionHeaderCantidadJuntas": {
-        "es-MX": "No. Jtas",
-        "en-US": "No. Jnts"
+        "es-MX": "Jtas",
+        "en-US": "Jnts"
     },
     "AsignarRequisicionHeaderPrueba": {
         "es-MX": "Pruebas",

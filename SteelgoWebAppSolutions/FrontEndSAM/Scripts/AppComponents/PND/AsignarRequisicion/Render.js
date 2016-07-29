@@ -19,16 +19,20 @@
                     options.model.ProveedorID = dataItem.ProveedorID;
                     options.model.Proveedor = dataItem.Nombre;
                     options.model.ListaTurnoLaboral = [];
-                    options.model.ListaTurnoLaboral = obtenerTurnoLaboralProveedor(options.model.ListaTurnoLaboralTotal, dataItem.ProveedorID);
+                    if(dataItem.Nombre != "")
+                        options.model.ListaTurnoLaboral = obtenerTurnoLaboralProveedor(options.model.ListaTurnoLaboralTotal, dataItem.ProveedorID);
 
                     options.model.TurnoLaboralID = 0;
                     options.model.TurnoLaboral = "";
+                    if (options.model.Accion == 4)
+                        options.model.Accion = 2;
                     $("#grid").data("kendoGrid").dataSource.sync();
+
                 }
                 else
                 {
                     options.model.ProveedorID = 0;
-                    options.model.Proveedor = dataItem.Nombre;
+                    options.model.Proveedor = "";
                     options.model.ListaTurnoLaboral = [];
 
                     options.model.TurnoLaboralID = 0;
@@ -45,22 +49,32 @@
                 }
         }
       );
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
 };
 
-
-function ObtenerDescCorrectaProveedor(lista, ProveedorID) {
+function obtenerTurnoLaboralProveedor(lista, ProveedorID) {
+    var listaFinalTurnoLaboral = [];
+    listaFinalTurnoLaboral[0] = { TurnoLaboralID: "", ProveedorID: "", Turno: "" };
+    var cont = 1;
+    listaFinalTurnoLaboral[0].TurnoLaboralID = 0;
+    listaFinalTurnoLaboral[0].ProveedorID = 0;
+    listaFinalTurnoLaboral[0].Turno = "";
     for (var i = 0; i < lista.length; i++) {
-        if (lista[i].ProveedorID == ProveedorID)
-            return lista[i].Nombre;
+        if (lista[i].ProveedorID == ProveedorID) {
+            listaFinalTurnoLaboral[cont] = lista[i];
+            cont++;
+        }
     }
-    return "";
+
+    return listaFinalTurnoLaboral;
 }
 
 
@@ -85,8 +99,10 @@ function RenderComboBoxHerramientaPrueba(container, options) {
                     options.model.HerramientadePruebaID = dataItem.HerramientadePruebaID;
                     options.model.HerramientadePrueba = dataItem.HerramientadePrueba;
                 }
-                else
-                    options.model.HerramientadePrueba = ObtenerDescCorrectaHerramienta(options.model.ListaHerramientaPrueba, options.model.HerramientadePruebaID);
+                else {
+                    options.model.HerramientadePruebaID = 0;
+                    options.model.HerramientadePrueba = "";
+                }
 
             },
             dataBound: function () {
@@ -99,22 +115,17 @@ function RenderComboBoxHerramientaPrueba(container, options) {
         }
       );
 
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
 };
 
-function ObtenerDescCorrectaHerramienta(lista, HerramientadePruebaID) {
-    for (var i = 0; i < lista.length; i++) {
-        if (lista[i].HerramientadePruebaID == HerramientadePruebaID)
-            return lista[i].HerramientadePrueba;
-    }
-    return "";
-}
 
 
 function RenderComboBoxTurnoLaboral(container, options) {
@@ -138,34 +149,26 @@ function RenderComboBoxTurnoLaboral(container, options) {
                     options.model.TurnoLaboralID = dataItem.TurnoLaboralID;
                     options.model.TurnoLaboral = dataItem.Turno;
                 }
-                else
-                    options.model.TurnoLaboral = ObtenerDescCorrectaTurnoLaboral(options.model.ListaTurnoLaboral, options.model.TurnoLaboralID);
+                else{
+                    options.model.TurnoLaboralID = 0;
+                    options.model.TurnoLaboral = "";
+                }
 
             }
         }
       );
 
-    $(".k-combobox").on('mouseleave', function (send) {
+    $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
-        var item = this;
-        if (!tieneClase(item)) {
-            $(container).trigger(e);
+        var item = $(this).find(".k-combobox")[0];
+        if (item != undefined) {
+            if (!tieneClase(item)) {
+                $(container).trigger(e);
+            }
         }
     });
 };
 
-function obtenerTurnoLaboralProveedor(lista, ProveedorID) {
-    var listaFinalTurnoLaboral = [];
-    var cont = 0;
-
-    for (var i = 0; i < lista.length; i++) {
-        if (lista[i].ProveedorID == ProveedorID) {
-            listaFinalTurnoLaboral[cont] = lista[i];
-            cont++;
-        }
-    }
-    return listaFinalTurnoLaboral;
-}
 
 
 function tieneClase(item) {
