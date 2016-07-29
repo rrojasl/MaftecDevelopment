@@ -62,6 +62,8 @@ function SuscribirEventoGuardarCrearMedioTransporte() {
 
 function SuscribirEventoCerrarCrearMedioTransporte() {
     $('#btnCerrarVentanaCrearMedioTransporte').click(function (e) {
+        $("#inputCarro").data("kendoComboBox").value("0");
+        $("#inputCarroBacklog").data("kendoComboBox").value("0");
         windowNewCarriage.close();
     });
 }
@@ -420,7 +422,7 @@ function SuscribirEventoCarro() {
                         modal: true,
                         resizable: false,
                         visible: true,
-                        width: "32.6%",
+                        width: "400px",
                         minWidth: 660,
                         position: {
                             top: "1%",
@@ -650,8 +652,8 @@ function suscribirEventoCarroBacklog() {
                         modal: true,
                         resizable: false,
                         visible: true,
-                        width: "auto",
-                        minWidth: "20%",
+                        width: "400px",
+                        minWidth: "600",
 
                         position: {
                             top: "1%",
