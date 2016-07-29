@@ -66,7 +66,7 @@ function suscribirEventoSoldadoresRaiz() {
             var grid = $("#grid").data("kendoGrid");
             dataItem = grid.dataItem($(e.target).closest("tr"));
             if (dataItem.procesoSoldaduraRaiz != "N/A")
-                LlenarGridPopUpSoldadoresRaiz(dataItem);
+                PopUpLlenarGridSoldadoresRaizCapturados(dataItem);
         }
     });
 }

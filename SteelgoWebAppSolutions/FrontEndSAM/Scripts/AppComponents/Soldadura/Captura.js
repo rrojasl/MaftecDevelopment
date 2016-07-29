@@ -331,7 +331,6 @@ function CargarGridPopUpRaiz() {
 
     $("#gridPopUp").kendoGrid({
         dataSource: {
-            // batch: true,
             data: [],
             schema: {
                 model: {
@@ -492,8 +491,8 @@ function LlenarGridPopUp(data) {
     VentanaModal();
 }
 
-function LlenarGridPopUpSoldadoresRaiz(options) {
-    modeloRenglon = options;
+function PopUpLlenarGridSoldadoresRaizCapturados(row) {
+    modeloRenglon = row;
 
 
 
@@ -890,7 +889,7 @@ function changeLanguageCall() {
 
     AjaxCargarCamposPredeterminados();
     CargarGridSoldadura();
-    CargarGridPopUpRaiz();
+    //CargarGridPopUpRaiz();
     opcionHabilitarView(false, "FieldSetView");
     document.title = _dictionary.CapturaSoldaduraSoldaduraSpool[$("#language").data("kendoDropDownList").value()];
 
