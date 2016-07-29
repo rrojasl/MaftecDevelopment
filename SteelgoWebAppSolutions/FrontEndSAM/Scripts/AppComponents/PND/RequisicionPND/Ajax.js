@@ -103,7 +103,7 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
         var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
 
         var tipoPrueba = $("#tipoPrueba").data("kendoComboBox").value();
-        if (tipoPrueba != "" || tipoPrueba > 0)
+        if (tipoPrueba != "" && tipoPrueba > 0)
             for (i = jsonGridArmado.length - 1; i >= 0; i--) {
                 if (jsonGridArmado[i].PruebasID != tipoPrueba)
                     jsonGridArmado.splice(i, 1);
