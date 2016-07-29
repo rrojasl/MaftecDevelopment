@@ -49,6 +49,8 @@ namespace BackEndSAM.DataAcces
                                       EspesorRelleno = WPS.EspesorRelleno,
 
                                   }).AsParallel().ToList();
+                data.Insert(0, new DetalleWPS());
+
                 return data.OrderBy(x => x.Nombre).ToList<DetalleWPS>();
             }
         }

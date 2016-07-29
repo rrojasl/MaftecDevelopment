@@ -8508,8 +8508,8 @@ _dictionary = {
         "en-US": "CERTIFICATION DATE"
     },
     "SoldadorCertificacionPreguntaBorradoCaptura": {
-        "es-MX": "¿Está seguro de cancelar el detalle de la captura de Soldador Certificación?",
-        "en-US": "Are you sure you want to cancel the detail of the capture of Certification Welder?"
+        "es-MX": "¿Está seguro de eliminar el detalle de la captura de Soldador Certificación?",
+        "en-US": "You are sure to delete the capture detail Welder Certification?"
     },
     "lblValidaEspesorMaximoSoldadorCertificación": {
         "es-MX": "El Campo 'ESPESOR MÁXIMO', solo acepta valores numéricos'",
@@ -8570,20 +8570,20 @@ _dictionary = {
         "en-US": "The pipe charter field can not be empty"
     },
     "CapturaSoldadorCertificacionEspesorVacio": {
-        "es-MX": "El campo Espesor no puede ser vacio",
-        "en-US": "The Thickness field can not be empty"
+        "es-MX": "El campo Espesor tiene que ser mayor a cero",
+        "en-US": "The Thickness field must be greater than zero"
     },
     "CapturaSoldadorCertificacionDiametroVacio": {
-        "es-MX": "El campo diametro c. no puede ser vacio",
-        "en-US": "The Q. Diameter field can not be empty"
+        "es-MX": "El campo diametro c. debe ser mayor a cero",
+        "en-US": "The Q. Diameter field must be greater than zero"
     },
     "CapturaSoldadorCertificacionTipoPruebaVacio": {
         "es-MX": "El campo tipo de prueba no puede ser vacio",
         "en-US": "The Type of test field can not be empty"
     },
     "CapturaSoldadorCertificacionPosicionVacio": {
-        "es-MX": "El campo posición no puede ser vacio",
-        "en-US": "The Position field can not be empty"
+        "es-MX": "El campo posición tiene que ser mayor a cero",
+        "en-US": "The field position must be greater than zero"
     },
     //#endregion
 

@@ -328,7 +328,7 @@ function RenderComboBoxSoldadoresRaiz(container, options) {
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: ItemSeleccionado.ListadoSoldadoresRaiz,
+                dataSource: options.model.ListadoSoldadoresRaiz,
                 template: '<span class="#: data.Soldador #">#: data.Soldador #</span> ',
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
@@ -496,7 +496,7 @@ function RenderComboBoxProcesoSoldaduraRaiz(container, options) {
             delay: 10,
             filter: "contains",
             autoBind: false,
-            dataSource: ItemSeleccionado.ListadoProcesoSoldaduraRaiz,
+            dataSource: options.model.ListadoProcesoSoldaduraRaiz,
             template: "<i class=\"fa fa-#=data.Codigo#\"></i> #=data.Codigo#",
             select: function (e) {
                 dataItem = this.dataItem(e.item.index());
