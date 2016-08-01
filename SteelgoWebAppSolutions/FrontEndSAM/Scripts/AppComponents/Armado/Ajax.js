@@ -10,7 +10,7 @@
     });
 }
 
-function AjaxJuntaModoSpool(spoolID) {
+function AjaxJuntaModoSpool(spoolID, ejecusionTotal) {
     loadingStart();
     $('input:radio[name=Muestra]:checked').val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token") }).done(function (data) {
@@ -19,16 +19,18 @@ function AjaxJuntaModoSpool(spoolID) {
             $("#Junta").data("kendoComboBox").dataSource.data(data);
 
             loadingStop();
-            AjaxCargarReporteJuntas();
+            if (ejecusionTotal)
+                AjaxCargarReporteJuntas();
         }
     });
 }
 
-
+var dataSpoolArray = null;
 function AjaxObtenerSpoolID() {
 
     var OrdenTrabajoOrigianl = $("#InputOrdenTrabajo").val();
     $CapturaArmado.Armado.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), tipo: '1', token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        dataSpoolArray = data;
         if (Error(data)) {
             if (data.OrdenTrabajo != "") {
                 $("#InputOrdenTrabajo").val(data.OrdenTrabajo);
@@ -339,7 +341,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
 
             //RowEmpty($("#grid"));
 
-            
+
             $("#noButton").click(function () {
                 ventanaConfirm.close();
             });
