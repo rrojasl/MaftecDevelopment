@@ -59,7 +59,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.CargaCarroBackLogBD
                         };
                         lista.Add(elemento);
                     }
-                    return lista;
+                    return lista.OrderByDescending(x => x.OrdenImportancia);
 
                 }
             }

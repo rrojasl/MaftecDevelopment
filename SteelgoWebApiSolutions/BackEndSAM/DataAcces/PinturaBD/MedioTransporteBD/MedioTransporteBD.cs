@@ -314,7 +314,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                         });
 
                     }
-                    return ListadoDetalleMedioTransporteCarga;
+                    return ListadoDetalleMedioTransporteCarga.OrderByDescending(x => x.SpoolID);
                     //
                 }
             }
