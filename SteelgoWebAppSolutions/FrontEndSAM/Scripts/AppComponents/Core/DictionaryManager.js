@@ -10303,6 +10303,10 @@ _dictionary = {
         "es-MX": "Se agregó el spool: ",
         "en-US": "He added the spool: "
     },
+    "PinturaCarroCerrado": {
+        "es-MX": "El carro no se puede editar porque esta cerrado ",
+        "en-US": "The car can not be edited because is closed"
+    },
 
     //#endregion
     //#region PinturaCarga
