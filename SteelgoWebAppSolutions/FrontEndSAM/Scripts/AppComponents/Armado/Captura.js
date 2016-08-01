@@ -72,8 +72,15 @@ function ArregloListadoCaptura() {
     JsonCaptura[0] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", IdVal: "", IdText: "", SpoolID: "", JuntaID: "", Junta: "", FechaArmado: "", TuberoID: "", Tubero: "", TallerID: "", Taller: "", SinCaptura: "" };
     //combobox.text()
     var fechaArmado = new Date($("#FechaArmado").data("kendoDatePicker").value());
-    JsonCaptura[0].IDProyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).ProyectoID;
-    JsonCaptura[0].Proyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Proyecto;
+
+    try {
+        JsonCaptura[0].IDProyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).ProyectoID;
+        JsonCaptura[0].Proyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Proyecto;
+    } catch (e) {
+        JsonCaptura[0].IDProyecto = dataSpoolArray.idStatus[spoolIDSelectTemp].ProyectoID;
+        JsonCaptura[0].Proyecto = dataSpoolArray.idStatus[spoolIDSelectTemp].Proyecto;
+    }
+
     JsonCaptura[0].IdOrdenTrabajo = $("#InputOrdenTrabajo").val();
     JsonCaptura[0].OrdenTrabajo = $("#InputOrdenTrabajo").val();
     JsonCaptura[0].IdVal = $("#InputID").val();
@@ -771,11 +778,18 @@ function ArregloListadoReporte() {
 
     for (var i = 0; i < lista.length ; i++) {
         JsonCaptura[i] = { IDProyecto: "", Proyecto: "", IdOrdenTrabajo: "", OrdenTrabajo: "", idVal: "", idText: "", SpoolID: "", JuntaID: "", Junta: "", FechaArmado: "", TuberoID: "", Tubero: "", TallerID: "", Taller: "", sinCaptura: "" };
-        JsonCaptura[i].IDProyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).ProyectoID;
-        JsonCaptura[i].Proyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Proyecto;
+        try {
+            JsonCaptura[i].IDProyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).ProyectoID;
+            JsonCaptura[i].Proyecto = $("#InputID").data("kendoComboBox").dataItem($("#InputID").data("kendoComboBox").select()).Proyecto;
+            JsonCaptura[i].idVal = $("#InputID").val();
+        } catch (e) {
+            JsonCaptura[i].IDProyecto = dataSpoolArray.idStatus[spoolIDSelectTemp].ProyectoID;
+            JsonCaptura[i].Proyecto = dataSpoolArray.idStatus[spoolIDSelectTemp].Proyecto;
+            JsonCaptura[i].idVal = dataSpoolArray.idStatus[spoolIDSelectTemp].Valor;
+        }
         JsonCaptura[i].IdOrdenTrabajo = $("#InputOrdenTrabajo").val();
         JsonCaptura[i].OrdenTrabajo = $("#InputOrdenTrabajo").val();
-        JsonCaptura[i].idVal = $("#InputID").val();
+
         JsonCaptura[i].idText = $("#InputID").data("kendoComboBox").text();
         JsonCaptura[i].SpoolID = $("#InputOrdenTrabajo").val() + '-' + $("#InputID").val();
         JsonCaptura[i].JuntaID = lista[i].JuntaSpoolID;
@@ -791,7 +805,7 @@ function ArregloListadoReporte() {
 }
 
 function tieneClase(item) {
-    
+
     var tieneClass = $(item).hasClass("k-state-border-up") || $(item).hasClass("k-state-border-down");
     return tieneClass;
 }
