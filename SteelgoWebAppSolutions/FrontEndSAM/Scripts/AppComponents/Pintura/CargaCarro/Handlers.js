@@ -85,6 +85,7 @@ function SuscribirEventoPersistencia() {
         suggest: true,
         filter: "contains",
         index: 3,
+        delay:10,
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
 
@@ -124,6 +125,7 @@ function SuscribirEventoProyecto() {
         suggest: true,
         filter: "contains",
         index: 3,
+        delay:10,
         change: function (e) {
             var dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
@@ -184,7 +186,8 @@ function SuscribirEventoClasificacion() {
         dataValueField: "ClasificacionPersistenciaID ",
         suggest: true,
         filter: "contains",
-        index: 3
+        index: 3,
+        delay:10
     });
 }
  
@@ -325,6 +328,7 @@ function SuscribirEventoSpoolID() {
         suggest: true,
         filter: "contains",
         index: 3,
+        delay:10,
         select: function (e) {
 
             dataItem = this.dataItem(e.item.index());
@@ -424,6 +428,7 @@ function SuscribirEventoCarro() {
         suggest: true,
         filter: "contains",
         index: 3,
+        delay:10,
         select: function (e) { 
             var dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
@@ -535,6 +540,7 @@ function SuscribirEventoSpoolID() {
         suggest: true,
         filter: "contains",
         index: 3,
+        delay:10,
         select: function (e) {
 
             dataItem = this.dataItem(e.item.index());
@@ -662,6 +668,7 @@ function suscribirEventoCarroBacklog() {
         dataValueField: "MedioTransporteID",
         suggest: true,
         filter: "contains",
+        delay:10,
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
