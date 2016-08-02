@@ -1211,3 +1211,37 @@ button[data-bind="visible:operatorVisible"] {
 {
     text-align: right;
 }
+
+.k-input-filter{
+    height: 40px;
+    min-height: 40px;
+    color: #1B3F70;
+    border: 1px solid #666;
+    border-radius: 0;
+    font-size: 14px;
+    padding: 0 5px;
+    z-index: 1;
+    -webkit-appearance: none;
+    
+}
+
+.k-input-filter:focus{
+    border-color: #828282;
+    -moz-box-shadow: 0px 0px 3px #828282; /* FF3.5+ */
+    -webkit-box-shadow: 0px 0px 3px #828282; /* Saf3.0+, Chrome */
+    box-shadow: 0px 0px 3px #828282; /* Opera 10.5, IE9, Chrome 10+ */
+    z-index: 3;
+}
+.k-input-filter .k-state-focused{
+    box-shadow:none;
+    -moz-box-shadow: none; /* FF3.5+ */
+    -webkit-box-shadow: none; 
+}
+.k-input-filter span{
+    border:none!important;
+}
+
+.k-input-filter span input[type="text"]:focus{
+    border:none!important;
+    box-shadow:none;
+}

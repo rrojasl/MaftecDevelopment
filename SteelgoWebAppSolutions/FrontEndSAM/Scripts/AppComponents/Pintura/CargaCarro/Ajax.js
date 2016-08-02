@@ -169,11 +169,7 @@ function AjaxCerrarCarro(spoolsSeleccionados, mediotransporteid, guardarYNuevo) 
 
             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
 
-                if (!guardarYNuevo) {
-                    opcionHabilitarViewBacklog(true, "FieldSetView");
-                } else {
-                    Limpiar();
-                }
+                Limpiar();
                 displayNotify("PinturaCerrarCarro", "", '0');
 
             } else {
@@ -451,19 +447,13 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
 
                     if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
                         if (disponible == 0) {
-                            if (!guardarYNuevo) {
-                                opcionHabilitarView(true, "FieldSetView");
-                                $("#grid").data("kendoGrid").dataSource.sync();
-                            } else {
-                                Limpiar();
-                            }
+                            Limpiar();
                             displayNotify("PinturaCerrarCarro", "", '0');
                         } else {
                             if (!guardarYNuevo) {
                                 opcionHabilitarView(true, "FieldSetView");
                                 $("#grid").data("kendoGrid").dataSource.sync();
                             } else {
-
                                 Limpiar();
                             }
                             displayNotify("PinturaGuardarGuardar", "", '0');
@@ -474,7 +464,6 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
                     }
                     loadingStop();
                 });
-                SistemaPintura
         }
         else {
             loadingStop();
@@ -491,7 +480,6 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
 function AjaxSubirSpool(listaSpool, guardarYNuevo) {
     var contSave = 0;
     var medioTransporteID;
-    //Contador de Spool's seleccionados en el Grid
     var countSelectedSpool = 0;
     var count = 0;
     Captura = [];
@@ -501,7 +489,7 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
 
     if ($('#inputCarroBacklog').attr("mediotransporteid") != undefined) {
         for (var index = 0 ; index < listaSpool.length; index++) {
-            if ((listaSpool[index].Seleccionado && !listaSpool[index].Status) || listaSpool[index].Accion==3) {                
+            if ((listaSpool[index].Seleccionado && !listaSpool[index].Status) || listaSpool[index].Accion==3) {
 
                 ListaGuardarDetalles[contSave] = {
                     Accion: listaSpool[index].Accion,
@@ -526,7 +514,8 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                 count++;
                 ++countSelectedSpool;
             }
-        }        
+        }
+
         var disponible = 1;
         if ($('#chkCerrar').is(':checked')) {
             disponible = 0;
@@ -545,15 +534,9 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
 
                     $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), medioTransporteID: MedioTransporteID, cerrar: disponible }).done(function (data) {
 
-                            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                                
+                            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {                                
                                 if (disponible == 0) {
-                                    if (!guardarYNuevo) {
-                                       opcionHabilitarViewBacklog(true, "FieldSetView");
-                                       
-                                    } else {
-                                        Limpiar();
-                                    }
+                                    Limpiar();
                                     displayNotify("PinturaCerrarCarro", "", '0');
                                 }
                                 else {
@@ -563,9 +546,8 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                                     } else {
                                         Limpiar();
                                     }
-                                    displayNotify("PinturaCargaBackLogMensajeGuardadoExitoso", "", '0');
-
-                                }                  
+                                    displayNotify("PinturaGuardarGuardar", "", '0');
+                                }
 
                             }
                             else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
@@ -584,12 +566,12 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                 } else {
                     if(!guardarYNuevo){                        
                         opcionHabilitarViewBacklog(true, "FieldSetView");
-                        displayNotify("PinturaGuardarGuardar", "", "0");
                     } else {
                         Limpiar();
                     } 
                     displayNotify("PinturaGuardarGuardar", "", "0");
-                }
+               }
+               loadingStop();
             }
         } else {
             displayNotify("PinturaCargaBackLogMensajeSeleccionaSpool", "", "1");
