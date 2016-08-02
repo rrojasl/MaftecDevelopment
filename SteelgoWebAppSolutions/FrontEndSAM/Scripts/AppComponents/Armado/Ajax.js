@@ -533,7 +533,7 @@ function AjaxCargarReporteJuntas() {
 
 
                 $("#InputID").data("kendoComboBox").value("");
-
+                caracteresEscritosEnPagina = '';
 
                 if (elementosModificados != "") {
                     displayNotify("", _dictionary.CapturaArmadoMsgExiste[$("#language").data("kendoDropDownList").value()] +
