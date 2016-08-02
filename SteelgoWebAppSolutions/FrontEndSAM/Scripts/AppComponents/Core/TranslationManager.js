@@ -156,7 +156,7 @@ function getGridFilterableCellMaftec() {
         cell: {
             operator: "contains",
             template: function (args) {
-                args.css("width", "95%").addClass("general-input").keydown(function (e) {
+                args.css("width", "95%").addClass("k-input-filter").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -173,7 +173,7 @@ function getGridFilterableCellNumberMaftec() {
             operator: "eq",
             template: function (args) {
                 //$(args).prop('type', 'number');
-                args.css("width", "95%").addClass("general-input").keydown(function (e) {
+                args.css("width", "95%").addClass("k-input-filter").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -190,7 +190,7 @@ function getGridFilterableCellMaftecpopUp() {
         cell: {
             operator: "contains",
             template: function (args) {
-                args.css("width", "95%").addClass("k-input").keydown(function (e) {
+                args.css("width", "95%").addClass("k-input-filter").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -201,20 +201,18 @@ function getGridFilterableCellMaftecpopUp() {
     }
 }
 
-
-
-//function getKendoGridFilterable(val) {
-//    return {
-//        extra: false,
-//        operators: {
-//            string: {
-//                startswith: _dictionary.KendoGridFilterable0001[val],
-//                eq: _dictionary.KendoGridFilterable0002[val],
-//                neq: _dictionary.KendoGridFilterable0003[val],
-//            }
-//        }
-//    }
-//}
+function getKendoGridFilterableDateMaftec() {
+    return {
+        cell: {
+            template: function (args) {
+                args.addClass("k-input-filter").kendoDatePicker({
+                    format: "dd/MM/yyyy"
+                });
+            },
+            showOperators: false
+        }
+    }
+}
 
 function getKendoGridFilterableComplementoRecepcion(val) {
     return {
