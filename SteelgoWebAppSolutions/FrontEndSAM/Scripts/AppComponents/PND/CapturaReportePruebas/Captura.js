@@ -3,6 +3,7 @@ var ItemSeleccionado;
 var comboDefectos;
 var modeloRenglon;
 var NumeroPlacasActual;
+
 function changeLanguageCall() {
     CargarGrid();
     CargarGridPopUp();
@@ -17,7 +18,6 @@ function changeLanguageCall() {
 
 
 function CargarGrid() {
-
     kendo.ui.Grid.fn.editCell = (function (editCell) {
         return function (cell) {
             cell = $(cell);
@@ -32,7 +32,6 @@ function CargarGrid() {
                         this.isDefaultPrevented = true;
                     }
                 };
-
             if (model && typeof this.options.beforeEdit === "function") {
                 this.options.beforeEdit.call(this, event);
                 if (event.isDefaultPrevented) return;
@@ -141,9 +140,6 @@ function CargarGrid() {
                             ds.push(detallePruebas[index]);
                         }
                     }
-
-
-
                 }
             }
         },
