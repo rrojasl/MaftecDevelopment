@@ -203,20 +203,13 @@ function SuscribirEventoAgregar() {
 function SuscribirEventoGuardar() { 
     $('#btnGuardarYNuevo,#btnGuardarYNuevo1').click(function (e) {       
         if ($("#styleEscritorio").hasClass("active")) {
-            if (!$('#chkCerrar2').is(':checked')) {
+            
                 ajaxGuardar($("#grid").data("kendoGrid").dataSource._data, true);
-            } else {
-                Limpiar();
-            }
         }
         else if ($("#stylePatio").hasClass("active"))
         {
-            if (!$('#chkCerrar').is(':checked')) {
                 var ds = $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource;
                 AjaxSubirSpool(ds._data, true);
-            } else {
-                Limpiar();
-            }
         }        
     });
 
@@ -230,11 +223,7 @@ function SuscribirEventoGuardar() {
 
             }
             else if ($('#Guardar').text() == _dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]) {
-                if ($('#chkCerrar2').is(':checked')) {
-                    displayNotify("PinturaCarroCerrado", "", "1");
-                } else {
-                    opcionHabilitarView(false, "FieldSetView")
-                }                
+                opcionHabilitarView(false, "FieldSetView")
             }
         }
         else if ($("#stylePatio").hasClass("active")) {
@@ -244,12 +233,8 @@ function SuscribirEventoGuardar() {
                 AjaxSubirSpool(ds._data, false);
             }
             else if ($('#Guardar').text() == _dictionary.PinturaCargaEditar[$("#language").data("kendoDropDownList").value()]) {
-                if ($('#chkCerrar').is(':checked')) {                    
-                    displayNotify("PinturaCarroCerrado", "", "1");
-                } else {
                     SetDisabledBooleanEnGrid(false);
                     opcionHabilitarViewBacklog(false, "FieldSetView");
-                }       
                 
             }
         } 
@@ -680,37 +665,39 @@ function suscribirEventoCarroBacklog() {
         select: function (e) {
             var dataItem = this.dataItem(e.item.index());
             if (dataItem != undefined) {
-                $('#inputCarroBacklog').attr("mediotransporteid", dataItem.MedioTransporteCargaID);
-                if (dataItem.MedioTransporteID == "-1") {
-                    LimpiarCarro();
-                    windowNewCarriage = $("#divNuevoMedioTransporte").kendoWindow({
-                        modal: true,
-                        resizable: false,
-                        visible: true,
-                        width: "500px",
-                        height: "auto",
-                        position: {
-                            top: "1%",
-                            left: "1%"
-                        },
-                        actions: [
-                            "Close"
-                        ],
-                        close: function () {
-                            $("#inputCarroBacklog").data("kendoComboBox").value("");
-                        }
-                    }).data("kendoWindow");
-                    $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
-                    $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
-                }
-                else {
+                if (dataItem.MedioTransporteID != 0) {
+                    $('#inputCarroBacklog').attr("mediotransporteid", dataItem.MedioTransporteCargaID);
+                    if (dataItem.MedioTransporteID == "-1") {
+                        LimpiarCarro();
+                        windowNewCarriage = $("#divNuevoMedioTransporte").kendoWindow({
+                            modal: true,
+                            resizable: false,
+                            visible: true,
+                            width: "500px",
+                            height: "auto",
+                            position: {
+                                top: "1%",
+                                left: "1%"
+                            },
+                            actions: [
+                                "Close"
+                            ],
+                            close: function () {
+                                $("#inputCarroBacklog").data("kendoComboBox").value("");
+                            }
+                        }).data("kendoWindow");
+                        $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
+                        $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
+                    }
+                    else {
 
-                    AjaxCargarSpoolBacklog(false, dataItem.MedioTransporteCargaID);
+                        AjaxCargarSpoolBacklog(false, dataItem.MedioTransporteCargaID);
+                    }
+                    $("#chkCerrar").attr("checked", false);
+                    $("#InputOrdenTrabajo").val("");
+                    $("#InputID").data("kendoComboBox").dataSource.data([]);
+                    $("#InputID").data("kendoComboBox").value("");
                 }
-                $("#chkCerrar").attr("checked", false);
-                $("#InputOrdenTrabajo").val("");
-                $("#InputID").data("kendoComboBox").dataSource.data([]);
-                $("#InputID").data("kendoComboBox").value("");
             } else {
                 $("#inputCarroBacklog").data("kendoComboBox").value("");
                 displayNotify("NoExisteCarro", '', '2');
@@ -718,39 +705,41 @@ function suscribirEventoCarroBacklog() {
         },
         change: function(e) {
             var dataItem = this.dataItem(e.sender.selectedIndex);
-            if(dataItem != undefined){
-                $('#inputCarroBacklog').attr("mediotransporteid", dataItem.MedioTransporteCargaID);
-                if (dataItem.MedioTransporteID == "-1") {
-                    LimpiarCarro();
-                    windowNewCarriage = $("#divNuevoMedioTransporte").kendoWindow({
-                        modal: true,
-                        resizable: false,
-                        visible: true,
-                        width: "500px",
-                        height: "auto",
-                        position: {
-                            top: "1%",
-                            left: "1%"
-                        },
-                        actions: [
-                            "Close"
-                        ],
-                        close: function () {
-                            $("#inputCarro").data("kendoComboBox").value("");
-                            $("#inputCarroBacklog").data("kendoComboBox").value("");
-                        }
-                    }).data("kendoWindow");
-                    $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
-                    $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
-                }
-                else {
+            if (dataItem != undefined) {
+                if (dataItem.MedioTransporteID != 0) {
+                    $('#inputCarroBacklog').attr("mediotransporteid", dataItem.MedioTransporteCargaID);
+                    if (dataItem.MedioTransporteID == "-1") {
+                        LimpiarCarro();
+                        windowNewCarriage = $("#divNuevoMedioTransporte").kendoWindow({
+                            modal: true,
+                            resizable: false,
+                            visible: true,
+                            width: "500px",
+                            height: "auto",
+                            position: {
+                                top: "1%",
+                                left: "1%"
+                            },
+                            actions: [
+                                "Close"
+                            ],
+                            close: function () {
+                                $("#inputCarro").data("kendoComboBox").value("");
+                                $("#inputCarroBacklog").data("kendoComboBox").value("");
+                            }
+                        }).data("kendoWindow");
+                        $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
+                        $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
+                    }
+                    else {
 
-                    AjaxCargarSpoolBacklog(false, dataItem.MedioTransporteCargaID);
+                        AjaxCargarSpoolBacklog(false, dataItem.MedioTransporteCargaID);
+                    }
+                    $("#chkCerrar").attr("checked", false);
+                    $("#InputOrdenTrabajo").val("");
+                    $("#InputID").data("kendoComboBox").dataSource.data([]);
+                    $("#InputID").data("kendoComboBox").value("");
                 }
-                $("#chkCerrar").attr("checked", false);
-                $("#InputOrdenTrabajo").val("");
-                $("#InputID").data("kendoComboBox").dataSource.data([]);
-                $("#InputID").data("kendoComboBox").value("");
             } else {
                 $("#inputCarroBacklog").data("kendoComboBox").value("");
                 displayNotify("NoExisteCarro", '', '2');
