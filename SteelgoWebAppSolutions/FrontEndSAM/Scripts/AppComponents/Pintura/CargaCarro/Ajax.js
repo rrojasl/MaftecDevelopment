@@ -541,7 +541,6 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                                 else {
                                     if (!guardarYNuevo) {
                                         AjaxObtieneMedioTransporteCargado(MedioTransporteID, "Patio");
-                                        opcionHabilitarViewBacklog(true, "FieldSetView");
                                     } else {
                                         Limpiar();
                                     }

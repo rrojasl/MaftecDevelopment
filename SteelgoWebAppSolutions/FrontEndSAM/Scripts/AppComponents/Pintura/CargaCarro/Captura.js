@@ -256,28 +256,18 @@ function CargarGridBacklog() {
         if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
             var grid = $("#grid[nombre='grid-backlog']").data("kendoGrid"),
             dataItem = grid.dataItem($(e.target).closest("tr"));
-            if ($(this)[0].checked) {
-                dataItem.Seleccionado = true;
-            }
-            else {
-                if (dataItem.Status) {
+            
+            if (!dataItem.Status) {
+                if($(this)[0].checked){
                     dataItem.Seleccionado = true;
-                    $(this)[0].checked = true;
-                }
-                else {
+                }else{
                     dataItem.Seleccionado = false;
-                }
-            }
-            ImprimirAreaToneladaBackLog();
-            $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource.sync();
-        }
-        else {
-            if ($(this)[0].checked) {
-                $(this)[0].checked = false;
-            }
-            else {
+                }                
+            } else {
                 $(this)[0].checked = true;
             }
+
+            ImprimirAreaToneladaBackLog();
         }
     });
     CustomisaGrid($("#grid[nombre='grid-backlog']"));
