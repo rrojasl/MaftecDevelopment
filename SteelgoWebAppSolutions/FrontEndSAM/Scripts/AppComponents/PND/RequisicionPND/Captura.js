@@ -5,12 +5,11 @@ var requisicionID, pruebaProyID = 0;
 var ProyectoNombre = "";
 var PruebaNombre = "";
 var EstatusID = 1; // Capturada segun tabla Sam3_Estatus
-if ($("#idField").val() != null || $("#idField").val() != undefined) {
+
+if ($("#idField").val() != null || $("#idField").val() != undefined)
     requisicionID = $("#idField").val();
-}
 else
     requisicionID = 0;
-
 
 IniciarCaptura();
 
@@ -69,10 +68,10 @@ function CargarGrid() {
                         Espesor: { type: "number", editable: false },
                         Cedula: { type: "string", editable: false },
                         TipoJunta: { type: "string", editable: false },
-                        NombrePrueba: {type: "string", editable: false},
+                        NombrePrueba: { type: "string", editable: false },
 
-                        RequisicionJuntaSpoolID: {type: "number", editable: false},
-                        JuntaTrabajoID: {type: "number", editable: false},
+                        RequisicionJuntaSpoolID: { type: "number", editable: false },
+                        JuntaTrabajoID: { type: "number", editable: false },
                         CodigoAplicar: { type: "string", editable: false },
                         observacion: { type: "string", editable: false },
                         Folio: { type: "string", editable: false },
@@ -120,8 +119,7 @@ function CargarGrid() {
             { field: "Cedula", title: _dictionary.CapturaSoldaduraCedula[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "90px" },
             { field: "TipoJunta", title: _dictionary.ServiciosTecnicosTipoJunta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px" },
             { field: "NombrePrueba", title: _dictionary.GenerarRequisicionNombrePrueba[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px" },
-            {
-                field: "Agregar", title: _dictionary.ServiciosTecnicosAgregar[$("#language").data("kendoDropDownList").value()], filterable: {
+            { field: "Agregar", title: _dictionary.ServiciosTecnicosAgregar[$("#language").data("kendoDropDownList").value()], filterable: {
                     multi: true,
                     messages: {
                         isTrue: _dictionary.CheckBoxFilterPQRContiene[$("#language").data("kendoDropDownList").value()],
@@ -129,8 +127,7 @@ function CargarGrid() {
                         style: "max-width:100px;"
                     },
                     dataSource: [{ Etiquetado: true }, { Etiquetado: false }]
-                }, template: "<input name='fullyPaid' class='ob-paid' type='checkbox' data-bind='checked: Agregar' #= Agregar ? checked='checked' : '' #/>", width: "100px"
-            },
+                }, template: "<input name='fullyPaid' class='ob-paid' type='checkbox' data-bind='checked: Agregar' #= Agregar ? checked='checked' : '' #/>", width: "100px"},
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, width: "50px", title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()] }
         ],
         dataBound: function (a) {
@@ -138,12 +135,10 @@ function CargarGrid() {
                 if ($('#botonGuardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
                     var grid = $("#grid").data("kendoGrid"),
                         dataItem = grid.dataItem($(e.target).closest("tr"));
-                    if (dataItem.Folio == "" && e.target.checked == true) {
+                    if (dataItem.Folio == "" && e.target.checked == true)
                         dataItem.Agregar = true;
-                    }
-                    else {
+                    else
                         dataItem.Agregar = false;
-                    }
                 }
                 else
                     $("#grid").data("kendoGrid").closeCell();
@@ -151,24 +146,43 @@ function CargarGrid() {
             });
         }
     });
+
+    $("#grid").on("change", ":checkbox", function (e) {
+        if ($('#Guardar').text() == _dictionary.MensajeGuardar[$("#language").data("kendoDropDownList").value()]) {
+            var grid = $("#grid").data("kendoGrid"),
+            dataItem = grid.dataItem($(e.target).closest("tr"));
+            if (dataItem.PruebasID!=0) {
+                dataItem.Seleccionado = false;
+                displayNotify("", "Este elemento no puede ser asignado a otra requisición", '1');
+            }
+
+            $("#grid").data("kendoGrid").dataSource.sync();
+        }
+        //else {
+        //    if ($(this)[0].checked) {
+        //        $(this)[0].checked = false;
+        //    }
+        //    else {
+        //        $(this)[0].checked = true;
+        //    }
+        //}
+    });
+
     CustomisaGrid($("#grid"));
 };
 
 function AltaFecha() {
-
     endRangeDate = $("#Fecha").kendoDatePicker({
         max: new Date(),
     });
     $("#Fecha").data("kendoDatePicker").enable(false);
 }
 
-
 function ExisteJunta() {
     var jsonGrid = $("#grid").data("kendoGrid").dataSource._data;
 
     for (var i = 0; i < jsonGrid.length; i++) {
         if (jsonGrid[i].JuntaTrabajoID == $("#Junta").data("kendoComboBox").value()) {
-
             $("#grid").data("kendoGrid").dataSource.sync();
             return false;
         }
@@ -181,14 +195,9 @@ function AgregarJuntaNueva() {
         loadingStart();
         AjaxObtenerJunta();
     }
-    else {
+    else 
         displayNotify("GenerarRequisicionMensajeJuntaAgregada", "", '1');
-    }
 }
-
-
-
-
 
 function ValidaFormatoFecha(FechaValidar, Idioma) {
 
@@ -198,7 +207,6 @@ function ValidaFormatoFecha(FechaValidar, Idioma) {
     if ((String(FechaValidar).trim().match(RegExPattern)) && (FechaValidar != '')) {
 
         if (Idioma == 'es-MX') {
-
             if (existeFechaMexicoFormato(FechaValidar) && existeFechaMexico(FechaValidar)) {
                 bool = true;
             }
@@ -208,18 +216,13 @@ function ValidaFormatoFecha(FechaValidar, Idioma) {
         }
         else if (Idioma == 'en-US') {
 
-            if (existeFechaEUFormato(FechaValidar) && existeFechaEU(FechaValidar)) {
+            if (existeFechaEUFormato(FechaValidar) && existeFechaEU(FechaValidar))
                 bool = true;
-            }
-            else {
+            else 
                 bool = false
-            }
-
         }
-    } else {
-
+    } else
         bool = false;
-    }
     return bool;
 
 }
@@ -251,11 +254,9 @@ function cancelarCaptura(e) {
         ventanaConfirm.open().center();
 
         $("#yesButton").click(function () {
-
             var dataSource = $("#grid").data("kendoGrid").dataSource;
             dataItem.Accion = 3;
             $("#grid").data("kendoGrid").dataSource.sync();
-
             ventanaConfirm.close();
         });
         $("#noButton").click(function () {
@@ -271,8 +272,6 @@ function existeFechaMexicoFormato(fecha) {
     var y = fechaf[2];
 
     return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
-
-
 }
 
 function existeFechaMexico(FechaValidar) {
@@ -281,9 +280,8 @@ function existeFechaMexico(FechaValidar) {
     var month = FechaValidar[1];
     var year = FechaValidar[2];
     var date = new Date(year, month, '0');
-    if ((day - 0) > (date.getDate() - 0)) {
+    if ((day - 0) > (date.getDate() - 0))
         return false;
-    }
     return true;
 }
 
@@ -302,17 +300,15 @@ function existeFechaEU(FechaValidar) {
     var month = FechaValidar[0];
     var year = FechaValidar[2];
     var date = new Date(year, month, '0');
-    if ((day - 0) > (date.getDate() - 0)) {
+    if ((day - 0) > (date.getDate() - 0))
         return false;
-    }
     return true;
 }
 
 function tieneClase(item) {
     for (var i = 0; i < item.classList.length; i++) {
-        if (item.classList[i] == "k-state-border-up" || item.classList[i] == "k-state-border-down") {
+        if (item.classList[i] == "k-state-border-up" || item.classList[i] == "k-state-border-down")
             return true;
-        }
     }
     return false;
 }

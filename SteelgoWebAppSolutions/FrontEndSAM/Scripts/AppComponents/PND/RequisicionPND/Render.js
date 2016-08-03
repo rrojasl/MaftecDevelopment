@@ -21,9 +21,7 @@ function RenderComboBoxClasificacion(container, options) {
 
                
             }
-        }
-        );
-    
+        });
 }
 
 
