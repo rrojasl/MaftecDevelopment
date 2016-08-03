@@ -1,15 +1,13 @@
 ﻿function SuscribirEventos() {
     suscribirEventoGuardar();
     suscribirEventoCancelar();
+    suscribirEventoProveedor();
+    suscribirEventoRequisicion();
 }
 
 SuscribirEventos();
 
 function suscribirEventoGuardar() {
-
-
-
-
 
     $('#Guardar').click(function (e) {
         if ($('#botonGuardar').text() == _dictionary.DetalleAvisoLlegada0017[$("#language").data("kendoDropDownList").value()]) {
@@ -84,6 +82,47 @@ function suscribirEventoGuardar() {
             opcionHabilitarView(false, "FieldSetView")
     });
 
+}
+
+
+function suscribirEventoProveedor() {
+    $('#inputProveedor').kendoComboBox({
+        dataTextField: "Nombre",
+        dataValueField: "ProveedorID",
+        suggest: true,
+        filter: "contains",
+        index: 3,
+        change: function (e) {
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem != undefined && dataItem.Nombre != "") {
+                AjaxComboRequisicion($("#inputProveedor").data("kendoComboBox").value());
+            }
+            else {
+                $("#inputProveedor").data("kendoComboBox").value("");
+
+            }
+        }
+    });
+}
+
+function suscribirEventoRequisicion() {
+    $('#inputRequisicion').kendoComboBox({
+        dataTextField: "Folio",
+        dataValueField: "RequisicionID",
+        suggest: true,
+        filter: "contains",
+        index: 3,
+        change: function (e) {
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem != undefined && dataItem.Folio != "") {
+                AjaxRequisicionDetalle($("#inputRequisicion").data("kendoComboBox").value());
+            }
+            else {
+                $("#inputRequisicion").data("kendoComboBox").value("");
+
+            }
+        }
+    });
 }
 
 

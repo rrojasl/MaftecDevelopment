@@ -43,6 +43,30 @@ namespace BackEndSAM.Models.ServiciosTecnicos.CapturaReportePruebas
         public string Nombre { get; set; }
     }
 
+    public class Proveedor    {
+        public Proveedor()
+        {
+            ProveedorID = 0;
+            Nombre = "";
+        }
+
+        public int ProveedorID { get; set; }
+        public string Nombre { get; set; }
+    }
+
+    public class Requisicion
+    {
+        public Requisicion()
+        {
+            RequisicionID = 0;
+            Folio = "";
+        }
+
+        public int RequisicionID { get; set; }
+        public string Folio { get; set; }
+    }
+
+
     public class DetalleDefectos
     {
         public int Accion { get; set; }

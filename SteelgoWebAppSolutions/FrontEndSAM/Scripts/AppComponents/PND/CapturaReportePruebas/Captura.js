@@ -11,6 +11,7 @@ function changeLanguageCall() {
     $('#gridPopUp').data('kendoGrid').dataSource.read();
     requisicionID = $("#RequisicionID").val();
     AjaxRequisicionDetalle(requisicionID);
+    AjaxComboProveedor();
     document.title = _dictionary.CapturaReporteHeader[$("#language").data("kendoDropDownList").value()];
 };
 
