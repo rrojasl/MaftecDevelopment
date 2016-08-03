@@ -96,6 +96,7 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
     {
         public int CerrarCarro { get; set; }
         public int MedioTransporteID { get; set; }
+        public int MedioTransporteCargaID { get; set; }
     }
 
     public class CapturaDescarga
