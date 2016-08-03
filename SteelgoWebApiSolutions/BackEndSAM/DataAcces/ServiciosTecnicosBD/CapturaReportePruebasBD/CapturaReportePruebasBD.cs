@@ -53,6 +53,70 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.CapturaReportePruebasBD
             }
         }
 
+        public object getRequisicionesXProveedor(string lenguaje, int proveedorID)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Requisicion> listadoRequisiciones = new List<Requisicion>();
+                    listadoRequisiciones.Add(new Requisicion());
+                    List<Sam3_ServiciosTecnicos_Get_RequisicionesAsignadasProveedor_Result> result = ctx.Sam3_ServiciosTecnicos_Get_RequisicionesAsignadasProveedor(lenguaje,proveedorID).ToList();
+                    foreach (Sam3_ServiciosTecnicos_Get_RequisicionesAsignadasProveedor_Result item in result)
+                    {
+                        listadoRequisiciones.Add(new Requisicion
+                        { 
+                            Folio = item.Folio,
+                            RequisicionID = item.RequisicionID
+                        });
+                    }
+                    return listadoRequisiciones;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+
+        public object getProveedorXUsuario(int usuarioID, string lenguaje)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Proveedor> ListaProveedor = new List<Proveedor>();
+                    ListaProveedor.Add(new Proveedor());
+                    List<Sam3_Steelgo_Get_ProveedoresXUsuario_Result> result = ctx.Sam3_Steelgo_Get_ProveedoresXUsuario(lenguaje,usuarioID).ToList();
+                    foreach (Sam3_Steelgo_Get_ProveedoresXUsuario_Result item  in result)
+                    {
+                        ListaProveedor.Add(new Proveedor {
+                            Nombre = item.Nombre,
+                            ProveedorID = item.ProveedorID
+                        });
+                    }
+                    return ListaProveedor;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
         public object getReportePruebasDetalle(int requisicionID, string lenguaje)
         {
             try

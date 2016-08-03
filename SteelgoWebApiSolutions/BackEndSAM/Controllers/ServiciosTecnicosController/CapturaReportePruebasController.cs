@@ -125,6 +125,59 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
             }
         }
 
+        [HttpGet]
+        public object ObtenerProveedoresXUsuario(string token, string lenguaje)
+        {
+            string payload = "";
+            string newToken = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                string tipoPrueba = "";
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                List<Proveedor> listaResult = new List<Proveedor>();
+                listaResult = (List<Proveedor>)CapturaReportePruebasBD.Instance.getProveedorXUsuario(usuario.UsuarioID, lenguaje);
+                return listaResult;
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(payload);
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = false;
+                return result;
+            }
+        }
+
+        [HttpGet]
+        public object ObtenerRequisicionesXProveedor(string token, string lenguaje, int ProveedorID)
+        {
+            string payload = "";
+            string newToken = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                List<Requisicion> listaResult = new List<Requisicion>();
+                listaResult = (List<Requisicion>)CapturaReportePruebasBD.Instance.getRequisicionesXProveedor(lenguaje,ProveedorID);
+                return listaResult;
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(payload);
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = false;
+                return result;
+            }
+        }
+
+
         [HttpPost]
         public object post(Captura listaCaptura, string token, string lenguaje,int reqID)
         {

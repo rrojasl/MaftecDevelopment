@@ -223,3 +223,23 @@ function NumeroPlacasCorrecto(ListaNumeroPlacas) {
     }
     return bandera;
 }
+
+
+function AjaxComboProveedor() {
+    loadingStart();
+    $CapturaReportePruebas.CapturaReportePruebas.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
+        $("#inputProveedor").data("kendoComboBox").value("");
+        $("#inputProveedor").data("kendoComboBox").dataSource.data(data);
+        loadingStop();
+    });
+
+};
+
+function AjaxComboRequisicion(proveedorID) {
+    loadingStart();
+    $CapturaReportePruebas.CapturaReportePruebas.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), ProveedorID: proveedorID }).done(function (data) {
+        $("#inputRequisicion").data("kendoComboBox").value("");
+        $("#inputRequisicion").data("kendoComboBox").dataSource.data(data);
+        loadingStop();
+    });
+};
