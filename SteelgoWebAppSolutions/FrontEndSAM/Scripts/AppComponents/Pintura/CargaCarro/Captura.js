@@ -1,6 +1,4 @@
-﻿var ventanaConfirmBack;
-//----------------------------------------CargaCarro---------------------------------------------------------------
-IniciarCapturaPinturaCarga();
+﻿IniciarCapturaPinturaCarga();
 function IniciarCapturaPinturaCarga() {
     SuscribirEventos();
     
@@ -15,9 +13,7 @@ function changeLanguageCall() {
 }
  
 function IniciarBacklog() {
-    CargarGridBacklog();
-    //AjaxCargarCamposPredeterminadosBacklog();
-    
+    CargarGridBacklog();   
 }
 
 function LimpiarCarro() {
@@ -199,7 +195,7 @@ function CargarGridBacklog() {
                         Nombre: { type: "string", editable: false },
                         Metros2: { type: "number", editable: false },
                         Peso: { type: "number", editable: false },
-                        Seleccionado: { type: "bool", editable: false }
+                        Seleccionado: { type: "boolean", editable: false }
                     }
                 }
             },
@@ -225,6 +221,7 @@ function CargarGridBacklog() {
         autoHeight: true,
         sortable: true,
         scrollable: true,
+        selectable: true,
         pageable: {
             refresh: false,
             pageSizes: [10, 25, 50, 100],
@@ -234,7 +231,7 @@ function CargarGridBacklog() {
         },
         filterable: getGridFilterableMaftec(),
         columns: [
-            { field: "OrdenImportancia", title: _dictionary.PinturaCargaBackLogOrdenImportancia[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px", attributes: { style: "text-align:right;" } },
+            { field: "OrdenImportancia", title: _dictionary.PinturaCargaBackLogOrdenImportancia[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", attributes: { style: "text-align:right;" } },
             { field: "SpoolJunta", title: _dictionary.PinturaCargaBackLogSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px" },
             { field: "SistemaPintura", title: _dictionary.PinturaCargaBackLogSistemaPintura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
             { field: "Color", title: _dictionary.PinturaCargaBackLogColor[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px" },
@@ -242,7 +239,15 @@ function CargarGridBacklog() {
             { field: "Metros2", title: _dictionary.PinturaCargaBackLogM2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "95px", attributes: { style: "text-align:right;" } },
             { field: "Peso", title: _dictionary.PinturaCargaBackLogPeso[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "95px", attributes: { style: "text-align:right;" } },
             { field: "Nombre", title: _dictionary.PinturaCargaBackLogProyecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "140px" },
-            { field: "Seleccionado", title: _dictionary.PinturaCargaBackLogSeleccionado[$("#language").data("kendoDropDownList").value()], filterable: false, template: '<input type="checkbox" #= Seleccionado ? "checked=checked" : "" # class="chkbx"  ></input>  ', width: "100px", attributes: { style: "text-align:center;" }},
+            { field: "Seleccionado", title: _dictionary.PinturaCargaBackLogSeleccionado[$("#language").data("kendoDropDownList").value()], filterable: {
+                    multi: true,
+                    messages: {
+                        isTrue: _dictionary.CheckBoxFilterPQRContiene[$("#language").data("kendoDropDownList").value()],
+                        isFalse: _dictionary.CheckBoxFilterPQRNoContiene[$("#language").data("kendoDropDownList").value()],
+                        style: "max-width:100px;"
+                    },
+                    dataSource: [{ Seleccionado: true }, { Seleccionado: false }]
+                }, template: '<input type="checkbox" #= Seleccionado ? "checked=checked" : "" # class="chkbx"  ></input>  ', width: "130px"},
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCapturaBack }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px", attributes: { style: "text-align:center;" } }
         ]
     });

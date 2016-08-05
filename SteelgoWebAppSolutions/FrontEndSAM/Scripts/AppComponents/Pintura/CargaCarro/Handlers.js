@@ -63,6 +63,7 @@ function SuscribirEventoCerrarCrearMedioTransporte() {
     $('#btnCerrarVentanaCrearMedioTransporte').click(function (e) {
         $("#inputCarro").data("kendoComboBox").value("");
         $("#inputCarroBacklog").data("kendoComboBox").value("");
+        $("#InputNombre").val("");
         windowNewCarriage.close();
     });
 }
@@ -388,7 +389,7 @@ function SuscribirEventoCarro() {
                         ],
                         close: function () {
                             $("#inputCarro").data("kendoComboBox").value("");
-                            $("#inputCarroBacklog").data("kendoComboBox").value("");
+                            $("#InputNombre").val("");
                         }
                     }).data("kendoWindow");
                     $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
@@ -433,7 +434,7 @@ function SuscribirEventoCarro() {
                             ],
                             close: function () {
                                 $("#inputCarro").data("kendoComboBox").value("");
-                                $("#inputCarroBacklog").data("kendoComboBox").value("");
+                                $("#InputNombre").val("");
                             }
                         }).data("kendoWindow");
                         $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
@@ -629,6 +630,7 @@ function suscribirEventoCarroBacklog() {
                             ],
                             close: function () {
                                 $("#inputCarroBacklog").data("kendoComboBox").value("");
+                                $("#InputNombre").val("");
                             }
                         }).data("kendoWindow");
                         $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
@@ -669,8 +671,8 @@ function suscribirEventoCarroBacklog() {
                                 "Close"
                             ],
                             close: function () {
-                                $("#inputCarro").data("kendoComboBox").value("");
                                 $("#inputCarroBacklog").data("kendoComboBox").value("");
+                                $("#InputNombre").val("");
                             }
                         }).data("kendoWindow");
                         $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
