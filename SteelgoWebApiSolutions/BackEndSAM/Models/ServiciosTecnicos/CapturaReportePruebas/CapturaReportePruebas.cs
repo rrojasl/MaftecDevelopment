@@ -13,6 +13,7 @@ namespace BackEndSAM.Models.ServiciosTecnicos.CapturaReportePruebas
         public string Tamano { get; set; }
         public string Densidad { get; set; }
         public List<DetallePruebas> listaDetallePruebas { get; set; }
+        public List<DetalleDefectosNoRT> listaDefectosNoRT { get; set; }
     }
 
     public class ReportePruebasCabecera
@@ -39,6 +40,11 @@ namespace BackEndSAM.Models.ServiciosTecnicos.CapturaReportePruebas
 
     public class Defectos
     {
+        public Defectos()
+        {
+            DefectoID = 0;
+            Nombre = "";
+        }
         public int DefectoID { get; set; }
         public string Nombre { get; set; }
     }
@@ -77,6 +83,16 @@ namespace BackEndSAM.Models.ServiciosTecnicos.CapturaReportePruebas
         public int PruebaElementoDefectoID { get; set; }
         public string InicioDefecto { get; set; }
         public string FinDefecto { get; set; }
+    }
+
+    public class DetalleDefectosNoRT
+    {
+        public int Accion { get; set; }
+        public int CapturaReporteDefectoNoRTID { get; set; }
+        public int CapturaReporteRequisicionID { get; set; }
+        public int DefectoID { get; set; }
+        public string Nombre { get; set; }
+        public List<Defectos> listadoDefectos { get; set; }
     }
 
 

@@ -3,10 +3,13 @@
 function AjaxPruebas() {
     loadingStart();
     $Pruebas.Pruebas.read({ token: Cookies.get("token"), proyectoID: 0, lenguaje: $("#language").val() }).done(function (data) {
-        $("#inputPrueba").data("kendoComboBox").value("");
-        $("#inputPrueba").data("kendoComboBox").dataSource.data(data);
-        //$("#inputPrueba").data("kendoComboBox").trigger("change");
+        if (Error(data)) {
+            $("#inputPrueba").data("kendoComboBox").value("");
+            $("#inputPrueba").data("kendoComboBox").dataSource.data(data);
+            //$("#inputPrueba").data("kendoComboBox").trigger("change");
+        }
         loadingStop();
+
     });
 
 };
@@ -38,21 +41,23 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 function AjaxCargarRequisicionAsignacion() {
     loadingStart();
     $AsignarRequisicion.AsignarRequisicion.read({ lenguaje: $("#language").val(), token: Cookies.get("token"), mostrar: $('input:radio[name=Muestra]:checked').val(), idPrueba: $("#inputPrueba").val() == "" ? 0 : $("#inputPrueba").val() }).done(function (data) {
-        $("#grid").data("kendoGrid").dataSource.data([]);
-        //$("#grid").data("kendoGrid").dataSource.data(data);
+        if (Error(data)) {
+            $("#grid").data("kendoGrid").dataSource.data([]);
+            //$("#grid").data("kendoGrid").dataSource.data(data);
 
-        var ds = $("#grid").data("kendoGrid").dataSource;
-        var array = data;
+            var ds = $("#grid").data("kendoGrid").dataSource;
+            var array = data;
 
-        for (var i = 0; i < array.length; i++) {
-            loadingStart();
-            array[i].Fecha = new Date(ObtenerDato(array[i].Fecha, 1), ObtenerDato(array[i].Fecha, 2), ObtenerDato(array[i].Fecha, 3));//año, mes, dia
-            ds.add(array[i]);
+            for (var i = 0; i < array.length; i++) {
+                loadingStart();
+                array[i].Fecha = new Date(ObtenerDato(array[i].Fecha, 1), ObtenerDato(array[i].Fecha, 2), ObtenerDato(array[i].Fecha, 3));//año, mes, dia
+                ds.add(array[i]);
+            }
+
+
+            if ($("#inputProveedor").val() == "")
+                AjaxProveedor(0);
         }
-
-
-        if ($("#inputProveedor").val() == "")
-            AjaxProveedor(0);
         loadingStop();
 
     });
@@ -62,20 +67,21 @@ function AjaxCargarRequisicionAsignacion() {
 function AjaxCargarCamposPredeterminados() {
 
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoMuestra }).done(function (data) {
-
-        if (data == "sin captura") {
-            $('input:radio[name=Muestra]:nth(0)').trigger("click");
-            //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
-            $("#styleSinCaptura").addClass("active");
-            $("#styleTodos").removeClass("active");
+        if (Error(data)) {
+            if (data == "sin captura") {
+                $('input:radio[name=Muestra]:nth(0)').trigger("click");
+                //$('input:radio[name=Muestra]:nth(1)').attr('checked', false);
+                $("#styleSinCaptura").addClass("active");
+                $("#styleTodos").removeClass("active");
+            }
+            else if (data == "Todos") {
+                //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
+                $('input:radio[name=Muestra]:nth(1)').trigger("click");
+                $("#styleTodos").addClass("active");
+                $("#styleSinCaptura").removeClass("active");
+            }
+            // AjaxCargarRequisicionAsignacion();
         }
-        else if (data == "Todos") {
-            //$('input:radio[name=Muestra]:nth(0)').attr('checked', false);
-            $('input:radio[name=Muestra]:nth(1)').trigger("click");
-            $("#styleTodos").addClass("active");
-            $("#styleSinCaptura").removeClass("active");
-        }
-        // AjaxCargarRequisicionAsignacion();
     });
 
 }

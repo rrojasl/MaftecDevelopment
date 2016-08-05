@@ -1,14 +1,23 @@
 ﻿function AjaxRequisicionDetalle(requisicionID) {
     loadingStart();
     $CapturaReportePruebas.CapturaReportePruebas.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), requisicion: requisicionID }).done(function (data) {
-        if (data.length > 0) {
-            $("#TipoPrueba").text(data[0].Nombre);
-            $("#Requisicion").text(data[0].Requisicion);
-            $("#TurnoLaboral").text(data[0].TurnoLaboral);
-            $("#HerramientaPrueba").text(data[0].HerramientaPrueba);
-            AjaxReportePruebasDetalle(requisicionID);
+        if (Error(data)) {
+            if (data.length > 0) {
+                $("#TipoPrueba").text(data[0].Nombre);
+                $("#Requisicion").text(data[0].Requisicion);
+                $("#TurnoLaboral").text(data[0].TurnoLaboral);
+                $("#HerramientaPrueba").text(data[0].HerramientaPrueba);
+                if (data[0].Nombre.indexOf('RT') >= 0) {
+                    $("#gridNoRT").css('display', 'none');
+                    $("#gridRT").css('display', 'block');
+                }
+                else {
+                    $("#gridNoRT").css('display', 'block');
+                    $("#gridRT").css('display', 'none');
+                }
+                AjaxReportePruebasDetalle(requisicionID);
+            }
         }
-        
         loadingStop();
     });
 }
@@ -16,12 +25,14 @@
 function AjaxReportePruebasDetalle(requisicionID) {
     loadingStart();
     $CapturaReportePruebas.CapturaReportePruebas.read({ token: Cookies.get("token"), requisicionID: requisicionID, lenguaje: $("#language").val() }).done(function (data) {
-        $("#grid").data('kendoGrid').dataSource.data([]);
-        var ds = $("#grid").data("kendoGrid").dataSource;
-        var array = data;
-        for (var i = 0; i < array.length; i++) {
-            ds.add(array[i]);
-            comboDefectos = array[0].listaDetallePruebas[0].ListaDefectos;
+        if (Error(data)) {
+            $("#grid").data('kendoGrid').dataSource.data([]);
+            var ds = $("#grid").data("kendoGrid").dataSource;
+            var array = data;
+            for (var i = 0; i < array.length; i++) {
+                ds.add(array[i]);
+                comboDefectos = array[0].listaDetallePruebas[0].ListaDefectos;
+            }
         }
         loadingStop();
     });
@@ -133,25 +144,28 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
 
                 loadingStart();
                 $CapturaReportePruebas.CapturaReportePruebas.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), reqID: requisicionID }).done(function (data) {
-                    if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                        //mensaje = "Se guardo correctamente la informacion" + "-0";
-                        displayMessage("CapturaSoldaduraMensajeGuardadoExitoso", "", "0");
+                    if (Error(data)) {
+                        if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
+                            //mensaje = "Se guardo correctamente la informacion" + "-0";
+                            displayMessage("CapturaSoldaduraMensajeGuardadoExitoso", "", "0");
 
-                        if (tipoGuardar == 1) {
-                            Limpiar();
-                            AjaxCargarCamposPredeterminados();
+                            if (tipoGuardar == 1) {
+                                Limpiar();
+                                AjaxCargarCamposPredeterminados();
+                            }
+                            else {
+                                opcionHabilitarView(true, "FieldSetView");
+                                AjaxReportePruebasDetalle(requisicionID);
+                            }
+                            loadingStop();
+
                         }
                         else {
-                            opcionHabilitarView(true, "FieldSetView");
-                            AjaxReportePruebasDetalle(requisicionID);
+                            displayMessage("CapturaMensajeGuardadoErroneo", "", '1');
+                            loadingStop();
                         }
-                        loadingStop();
-
                     }
-                    else  {
-                        displayMessage("CapturaMensajeGuardadoErroneo", "", '1');
-                        loadingStop();
-                    }
+                    loadingStop();
                 });
             }
             else {
@@ -228,8 +242,10 @@ function NumeroPlacasCorrecto(ListaNumeroPlacas) {
 function AjaxComboProveedor() {
     loadingStart();
     $CapturaReportePruebas.CapturaReportePruebas.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
-        $("#inputProveedor").data("kendoComboBox").value("");
-        $("#inputProveedor").data("kendoComboBox").dataSource.data(data);
+        if (Error(data)) {
+            $("#inputProveedor").data("kendoComboBox").value("");
+            $("#inputProveedor").data("kendoComboBox").dataSource.data(data);
+        }
         loadingStop();
     });
 
@@ -238,8 +254,10 @@ function AjaxComboProveedor() {
 function AjaxComboRequisicion(proveedorID) {
     loadingStart();
     $CapturaReportePruebas.CapturaReportePruebas.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), ProveedorID: proveedorID }).done(function (data) {
-        $("#inputRequisicion").data("kendoComboBox").value("");
-        $("#inputRequisicion").data("kendoComboBox").dataSource.data(data);
+        if (Error(data)) {
+            $("#inputRequisicion").data("kendoComboBox").value("");
+            $("#inputRequisicion").data("kendoComboBox").dataSource.data(data);
+        }
         loadingStop();
     });
 };

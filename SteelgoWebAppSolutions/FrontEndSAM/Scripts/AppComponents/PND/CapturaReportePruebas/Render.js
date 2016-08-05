@@ -84,9 +84,9 @@ function CargarGridPopUp() {
         sortable: true,
         scrollable: true,
         columns: [
-                { field: "Nombre", title: _dictionary.CapturaReportePruebasHeaderDefecto[$("#language").data("kendoDropDownList").value()], filterable: true, editor: comboBoxDefectos, width: "20px" },
-                { field: "InicioDefecto", title: _dictionary.CapturaReportePruebasHeaderInicio[$("#language").data("kendoDropDownList").value()], filterable: true, width: "15px" },
-                { field: "FinDefecto", title: _dictionary.CapturaReportePruebasHeaderFin[$("#language").data("kendoDropDownList").value()], filterable: true, width: "15px" },
+                { field: "Nombre", title: _dictionary.CapturaReportePruebasHeaderDefecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: comboBoxDefectos, width: "20px" },
+                { field: "InicioDefecto", title: _dictionary.CapturaReportePruebasHeaderInicio[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "15px" },
+                { field: "FinDefecto", title: _dictionary.CapturaReportePruebasHeaderFin[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "15px" },
             {
                 command: {
                     name: "",
@@ -226,3 +226,65 @@ function ObtenerDescCorrectaResultados(lista, Resultado) {
     }
     return "";
 }
+
+
+
+function RenderGridNoRT(container, options) {
+    $('<div name=' + options.model.SpoolJunta + '/>')
+  .appendTo(container)
+  .kendoGrid({
+      dataSource: {
+          data: options.model.listaDefectosNoRT,
+          dataSource: {
+              data: [],
+              schema: {
+                  model: {
+                      fields: {
+                          Nombre: { type: "string", editable: true },
+                      }
+                  }
+              }, filter: {
+                  logic: "or",
+                  filters: [
+                    { field: "Accion", operator: "eq", value: 1 },
+                    { field: "Accion", operator: "eq", value: 2 },
+                      { field: "Accion", operator: "eq", value: 0 },
+                      { field: "Accion", operator: "eq", value: undefined }
+                  ]
+              },
+
+          },
+          navigatable: true,
+          filterable: {
+              extra: false
+          },
+          editable: true,
+          autoHeight: true,
+          sortable: true,
+          scrollable: true,
+          columns: [
+                  { field: "Nombre", title: _dictionary.CapturaReportePruebasHeaderDefecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), editor: comboBoxDefectos, width: "20px" },
+              {
+                  command: {
+                      name: "",
+                      title: "",
+                      text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()],
+                      click: function (e) {
+                          e.preventDefault();
+                          var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                          var dataSource = this.dataSource;
+                          if (confirm(_dictionary.CapturaReportePruebasMensajeEliminarDefecto[$("#language").data("kendoDropDownList").value()])) {
+                              dataItem.Accion = 3;
+                          }
+                          dataSource.sync();
+                      }
+                  },
+                  width: "10px"
+              }
+          ],
+          editable: "incell",
+          toolbar: [{ name: "create" }],
+      }
+  });
+
+};

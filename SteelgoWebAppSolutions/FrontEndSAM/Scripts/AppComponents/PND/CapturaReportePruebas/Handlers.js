@@ -101,6 +101,12 @@ function suscribirEventoProveedor() {
                 $("#inputProveedor").data("kendoComboBox").value("");
 
             }
+            $("#grid").data('kendoGrid').dataSource.data([]);
+            $("#inputRequisicion").data("kendoComboBox").value("");
+            $("#TipoPrueba").text("");
+            $("#Requisicion").text("");
+            $("#TurnoLaboral").text("");
+            $("#HerramientaPrueba").text("");
         }
     });
 }
@@ -121,6 +127,11 @@ function suscribirEventoRequisicion() {
                 $("#inputRequisicion").data("kendoComboBox").value("");
 
             }
+            $("#grid").data('kendoGrid').dataSource.data([]);
+            $("#TipoPrueba").text("");
+            $("#Requisicion").text("");
+            $("#TurnoLaboral").text("");
+            $("#HerramientaPrueba").text("");
         }
     });
 }
