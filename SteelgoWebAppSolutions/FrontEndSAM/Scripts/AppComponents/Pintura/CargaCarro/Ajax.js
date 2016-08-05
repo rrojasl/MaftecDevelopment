@@ -81,32 +81,6 @@ function AjaxPinturaCargaMedioTransporte() {
     });
 }
 
-function AjaxObtenerCatalogoClasificacion() {
-    $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), idCatalogo: 0 }).done(function (data) {
-        if (data.length > 0) {
-            $("#inputClasificacion").data("kendoComboBox").text("");
-            $("#inputClasificacion").data("kendoComboBox").dataSource.data(data);
-        } else {
-            $("#inputClasificacion").data("kendoComboBox").text("");
-        };
-
-        loadingStop();
-    });
-}
-
-function AjaxObtenerCatalogoPersistencia() {
-    $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), idCatalogo: 1 }).done(function (data) {
-
-        if (data.length > 0) {
-            $("#inputPersistencia").data("kendoComboBox").value("");
-            $("#inputPersistencia").data("kendoComboBox").dataSource.data(data);
-        } else {
-            $("#inputPersistencia").data("kendoComboBox").value("");
-        };
-        loadingStop();
-    });
-}
-
 function AjaxCargarCamposPredeterminados() {
     loadingStart();
     $MedioTransporte.MedioTransporte.read({ predeterminado: "", token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
@@ -117,16 +91,12 @@ function AjaxCargarCamposPredeterminados() {
             $("#stylePatio").removeClass("active");
             $("#contenedorPrincipalCargaCarro").show();
             $("#contenedorPrincipalCargaCarroBacklog").hide();
-            $("#chkCerrar2").attr("checked", false);
         }
         else if (data.Vista == "Patio") {
+            $("#styleEscritorio").removeClass("active");
+            $("#stylePatio").addClass("active");
             $('input:radio[name=TipoVista]:nth(0)').attr('checked', false);
-            $('input:radio[name=TipoVista]:nth(1)').attr('checked', true);
-            $("#styleEscritorio").addClass("active");
-            $("#stylePatio").removeClass("active");
-            $("#contenedorPrincipalCargaCarro").hide();
-            $("#contenedorPrincipalCargaCarroBacklog").show();
-            $("#chkCerrar").attr("checked", false);
+            $('input:radio[name=TipoVista]:nth(1)').attr('checked', true);            
         }
 
         if (data.Opcion == "Spool") {
@@ -155,33 +125,6 @@ function AjaxObtenerListaProyectos() {
         $("#inputProyecto").data("kendoComboBox").dataSource.data([]);
         $("#inputProyecto").data("kendoComboBox").dataSource.data(data);
     });
-}
-
-
-function AjaxCerrarCarro(spoolsSeleccionados, mediotransporteid, medioTransporteCargaID, guardarYNuevo) {
-
-    var ListaDetalles = [];
-
-    ListaDetalles[0] = { MedioTransporteID: mediotransporteid, MedioTransporteCargaID: medioTransporteCargaID, CerrarCarro: 0 };
-
-    if (spoolsSeleccionados.length > 0) {
-        $MedioTransporte.MedioTransporte.update(ListaDetalles[0], { token: Cookies.get("token") }).done(function (data) {
-
-            if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-
-                Limpiar();
-                displayNotify("PinturaCerrarCarro", "", '0');
-
-            } else {
-                displayNotify("PinturaGuardarErrorGuardar", "", '2');
-            }
-           
-        });
-    }
-    else {
-        loadingStop();
-        displayNotify("PinturaCargaNoHaySpoolsEnElCarro", "", '2');
-    }
 }
 
 function AjaxAgregarCarga() {
@@ -261,6 +204,7 @@ function AjaxAgregarCarga() {
                             }
                         } else {
                             displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
+                            //Cambiar Mensaje
                         }
 
                     }

@@ -1,4 +1,4 @@
-﻿
+﻿var ventanaConfirmBack;
 //----------------------------------------CargaCarro---------------------------------------------------------------
 IniciarCapturaPinturaCarga();
 function IniciarCapturaPinturaCarga() {
@@ -7,27 +7,17 @@ function IniciarCapturaPinturaCarga() {
 }
 
 function changeLanguageCall() {
-    $("#inputCarro").data("kendoComboBox").text("");
-    $("#inputCarroBacklog").data("kendoComboBox").text("");
-    AjaxObtenerCatalogoClasificacion();
-    AjaxObtenerCatalogoPersistencia();
     AjaxObtenerListaProyectos();
-        CargarGrid();
-        AjaxCargarCamposPredeterminados();  
- 
+    CargarGrid();
+    CargarGridBacklog();
+    AjaxCargarCamposPredeterminados(); 
     document.title = _dictionary.PinturaHeaderCargaCarro[$("#language").data("kendoDropDownList").value()];
 }
  
 function IniciarBacklog() {
-    $("#inputCarro").data("kendoComboBox").text("");
-    $("#inputCarroBacklog").data("kendoComboBox").text("");
-    $("#inputPesoMaximo2").val('');
-    $("#inputArea2").val('');
     CargarGridBacklog();
-    AjaxCargarCamposPredeterminadosBacklog();
-    AjaxCargarSpool(false, 0);
-    AjaxObtenerCatalogoClasificacion();
-    AjaxObtenerCatalogoPersistencia();
+    //AjaxCargarCamposPredeterminadosBacklog();
+    
 }
 
 function LimpiarCarro() {
@@ -108,11 +98,14 @@ function eliminarCaptura(e) {
             animation: {
                 close: false,
                 open: false
-            }
+            },
+            actions: [
+                "Close"
+            ],
         }).data("kendoWindow");
           
         ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
-                "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+                "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
 
         ventanaConfirm.open().center();
 
@@ -132,6 +125,8 @@ function eliminarCaptura(e) {
         });
         $("#noButton").click(function () {
             ventanaConfirm.close();
+
+           
         });
     }
 }
@@ -290,11 +285,14 @@ function eliminarCapturaBack(e) {
             animation: {
                 close: false,
                 open: false
-            }
+            },
+            actions: [
+                "Close"
+            ],
         }).data("kendoWindow");
 
         ventanaConfirm.content(_dictionary.CapturaAvanceIntAcabadoPreguntaBorradoCaptura[$("#language").data("kendoDropDownList").value()] +
-                "</br><center><button class='btn btn-blue' id='yesButton'>Si</button><button class='btn btn-blue' id='noButton'> No</button></center>");
+                "</br><center><button class='confirm_yes btn btn-blue' id='yesButton'>Si</button><button class='confirm_yes btn btn-blue' id='noButton'> No</button></center>");
 
         ventanaConfirm.open().center();
 
@@ -316,6 +314,7 @@ function eliminarCapturaBack(e) {
         });
         $("#noButton").click(function () {
             ventanaConfirm.close();
+            
         });
     }
 }
