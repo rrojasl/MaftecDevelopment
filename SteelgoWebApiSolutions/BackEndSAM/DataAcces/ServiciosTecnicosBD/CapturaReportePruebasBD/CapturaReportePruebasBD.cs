@@ -216,12 +216,12 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.CapturaReportePruebasBD
                     {
                         DetalleDefectos elemento = new DetalleDefectos
                         {
-                            PruebaElementoDefectoID = item.PruebaElementoDefectoID,
+                            PruebaElementoDefectoID = item.CapturaReportePlacaID,
                             Accion = 2,
-                            DefectoID = item.DefectoID.GetValueOrDefault(),
+                            DefectoID = item.DefectoID,
                             Nombre = item.Nombre,
-                            InicioDefecto = item.InicioDefecto,
-                            FinDefecto = item.FinDefecto
+                            InicioDefecto = item.Inicio,
+                            FinDefecto = item.Fin
                         };
                         lista.Add(elemento);
                     }

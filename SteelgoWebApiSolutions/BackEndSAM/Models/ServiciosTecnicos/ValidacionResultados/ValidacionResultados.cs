@@ -23,8 +23,8 @@ namespace BackEndSAM.Models.ServiciosTecnicos.ValidacionResultados
         public int PruebaElementoResultadoID { get; set; }
         public int DefectoID { get; set; }
         public string Nombre { get; set; }
-        public string InicioDefecto { get; set; }
-        public string FinDefecto { get; set; }
+        public double InicioDefecto { get; set; }
+        public double FinDefecto { get; set; }
         public List<RazonesRechazo> Defectos { get; set; }
     }
 

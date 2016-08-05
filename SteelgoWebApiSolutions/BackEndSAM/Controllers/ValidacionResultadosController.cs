@@ -46,7 +46,7 @@ namespace BackEndSAM.Controllers
                         IdentificadorForaneo = item.IdentificadorForaneo.ToString(),
                         PruebaElementoResultadoID = item.PruebaElementoResultadoID,
                         DatosDefecto = item.Defectos,
-                        Defectos = (List<RazonesRechazo>)ValidacionResultadosBD.Instance.getListadoDefectos(lenguaje, "Validacion Resultados")
+                        Defectos = (List<RazonesRechazo>)ValidacionResultadosBD.Instance.getListadoDefectos(lenguaje,0)
 
                     };
                     listaResult.Add(resultado);
@@ -76,12 +76,12 @@ namespace BackEndSAM.Controllers
                 RenglonEdicion resultado = new RenglonEdicion();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 List<RenglonEdicion> listaResult = new List<RenglonEdicion>();
-                string tipoPrueba = "";
+                int tipoPrueba = 0;
                 List<Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result> listaTipoPrueba = (List<Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result>)ValidacionResultadosBD.Instance.getListadoTipoPrueba(requisicionID, lenguaje);
 
                 foreach (Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result item in listaTipoPrueba)
                 {
-                    tipoPrueba = item.NombrePrueba;
+                    tipoPrueba = item.TipoPruebaID;
                 }
                 List<Sam3_ServiciosTecnicos_Get_ValidacionResultadosDetalle_Result> result = (List<Sam3_ServiciosTecnicos_Get_ValidacionResultadosDetalle_Result>)ValidacionResultadosBD.Instance.getRenglonEditar(requisicionID, Ubicacion);
                 foreach (Sam3_ServiciosTecnicos_Get_ValidacionResultadosDetalle_Result item in result)
@@ -123,7 +123,7 @@ namespace BackEndSAM.Controllers
                 string tipoPrueba = "";
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 List<DetalleDefectos> listaResult = new List<DetalleDefectos>();
-                listaResult = (List<DetalleDefectos>)ValidacionResultadosBD.Instance.getListadoDetalleDefectos(PruebaElementoResultadoID, tipoPrueba, lenguaje, RequisicionID);
+                listaResult = (List<DetalleDefectos>)ValidacionResultadosBD.Instance.getListadoDetalleDefectos(PruebaElementoResultadoID, 0, lenguaje, RequisicionID);
                 return listaResult;
             }
             else

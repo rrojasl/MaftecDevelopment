@@ -81,8 +81,8 @@ namespace BackEndSAM.Models.ServiciosTecnicos.CapturaReportePruebas
         public Nullable<int> RequisicionPruebaElementoID { get; set; }
         public int PruebaElementoResultadoID { get; set; }
         public int PruebaElementoDefectoID { get; set; }
-        public string InicioDefecto { get; set; }
-        public string FinDefecto { get; set; }
+        public double InicioDefecto { get; set; }
+        public double FinDefecto { get; set; }
     }
 
     public class DetalleDefectosNoRT

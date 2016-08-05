@@ -99,7 +99,6 @@ function suscribirEventoProveedor() {
             }
             else {
                 $("#inputProveedor").data("kendoComboBox").value("");
-
             }
             $("#grid").data('kendoGrid').dataSource.data([]);
             $("#inputRequisicion").data("kendoComboBox").value("");

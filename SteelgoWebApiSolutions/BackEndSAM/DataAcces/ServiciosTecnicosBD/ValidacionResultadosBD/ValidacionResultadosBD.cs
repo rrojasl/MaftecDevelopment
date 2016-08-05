@@ -54,15 +54,15 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.ValidacionResultadosBD
             }
         }
 
-        public object getListadoDefectos(string lenguaje, string tipoPrueba)
+        public object getListadoDefectos(string lenguaje, int tipoPrueba)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_Steelgo_Get_Defectos_Result> result = ctx.Sam3_Steelgo_Get_Defectos(lenguaje,tipoPrueba).ToList();
+                    List<Sam3_ServTec_Get_DefectosTipoPrueba_Result> result = ctx.Sam3_ServTec_Get_DefectosTipoPrueba(lenguaje,tipoPrueba).ToList();
                     List<RazonesRechazo> lista = new List<RazonesRechazo>();
-                    foreach(Sam3_Steelgo_Get_Defectos_Result item in result)
+                    foreach(Sam3_ServTec_Get_DefectosTipoPrueba_Result item in result)
                     {
                         RazonesRechazo objeto = new RazonesRechazo {
                             DefectoID = item.DefectoID,
@@ -86,7 +86,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.ValidacionResultadosBD
         }
 
 
-        public object getListadoDetalleDefectos(int pruebaElementoResultadoID, string tipoPrueba, string lenguaje, int requisicionID)
+        public object getListadoDetalleDefectos(int pruebaElementoResultadoID, int tipoPrueba, string lenguaje, int requisicionID)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.ValidacionResultadosBD
 
                     foreach (Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result item in listaTipoPrueba)
                     {
-                        tipoPrueba = item.NombrePrueba;
+                        tipoPrueba = item.TipoPruebaID;
                     }
 
                     List<Sam3_ServiciosTecnicos_Get_DefectosEditarValidacionResultados_Result> result = ctx.Sam3_ServiciosTecnicos_Get_DefectosEditarValidacionResultados(pruebaElementoResultadoID).ToList();
@@ -105,13 +105,13 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.ValidacionResultadosBD
                     {
                         DetalleDefectos objeto = new DetalleDefectos
                         {
-                            PruebaElementoDefectoID = item.PruebaElementoDefectoID,
+                            PruebaElementoDefectoID = item.CapturaReportePlacaID,
                             Accion = 2,
-                            DefectoID = item.DefectoID == null ? 0: int.Parse( item.DefectoID.ToString()),
+                            DefectoID = item.DefectoID,
                             Nombre = item.Nombre,
-                            InicioDefecto = item.InicioDefecto,
-                            FinDefecto = item.FinDefecto,
-                            PruebaElementoResultadoID = int.Parse( item.PruebaElementoResultadoID.ToString()),
+                            InicioDefecto = item.Inicio,
+                            FinDefecto = item.Fin,
+                            PruebaElementoResultadoID = int.Parse( item.CapturaReportePlacaID.ToString()),
                             Defectos = (List<RazonesRechazo>)ValidacionResultadosBD.Instance.getListadoDefectos(lenguaje, tipoPrueba)
                         };
                         lista.Add(objeto);
