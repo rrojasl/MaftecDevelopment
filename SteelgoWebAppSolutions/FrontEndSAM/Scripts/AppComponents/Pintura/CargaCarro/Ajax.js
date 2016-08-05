@@ -532,7 +532,7 @@ function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCarg
                         Nombre: { type: "string", editable: false },
                         Metros2: { type: "number", editable: false },
                         Peso: { type: "number", editable: false },
-                        Seleccionado: { type: "bool", editable: false }
+                        Seleccionado: { type: "boolean", editable: false }
                     }
                 }
             },
