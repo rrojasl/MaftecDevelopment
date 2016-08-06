@@ -10410,20 +10410,20 @@ _dictionary = {
         "en-US": "Spool"
     },
     "CapturaAvanceSistemaPintura": {
-        "es-MX": "Sistema Pintura",
-        "en-US": "Paint System"
+        "es-MX": "Sist Pintura",
+        "en-US": "Paint Sys"
     },
     "CapturaAvanceColor": {
         "es-MX": "Color",
         "en-US": "Color"
     },
     "CapturaAvanceShotBlastero": {
-        "es-MX": "Shotblastero Seleccionado",
-        "en-US": "Shotblastero Selected"
+        "es-MX": "Shotblastero",
+        "en-US": "Shotblaster"
     },
     "CapturaAvancePintor": {
-        "es-MX": "Pintor Seleccionado",
-        "en-US": "Painter Selected"
+        "es-MX": "Pintor",
+        "en-US": "Painter"
     },
     "CapturaAvanceM2": {
         "es-MX": "M2",
@@ -10463,8 +10463,8 @@ _dictionary = {
     },
 
     "CapturaAvanceCuadrante": {
-        "es-MX": "Cuadrante de descarga",
-        "en-US": "Quadrant of discharge"
+        "es-MX": "Cuad descarga",
+        "en-US": "Quad of discharge"
     },
 
     "CapturaAvancePintoresShotblastNoExistentes": {
