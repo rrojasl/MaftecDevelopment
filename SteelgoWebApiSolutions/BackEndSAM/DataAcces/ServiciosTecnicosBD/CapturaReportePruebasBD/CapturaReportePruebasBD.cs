@@ -145,12 +145,12 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.CapturaReportePruebasBD
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    string tipoPrueba = "";
+                    int tipoPrueba = 0;
                     List<Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result> listaTipoPrueba = (List<Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result>)getListadoTipoPrueba(requisicionID, lenguaje);
 
                     foreach (Sam3_ServiciosTecnicos_Get_RequisicionDetalle_Result item in listaTipoPrueba)
                     {
-                        tipoPrueba = item.Nombre;
+                        tipoPrueba = item.TipoPruebaID;
                     }
                     List<DetallePruebas> lista = new List<DetallePruebas>();
                     List<Sam3_ServiciosTecnicos_Get_PruebasResultadoDetalle_Result> result = ctx.Sam3_ServiciosTecnicos_Get_PruebasResultadoDetalle(requisicionPruebaElementoID,lenguaje).ToList();
@@ -163,12 +163,12 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.CapturaReportePruebasBD
                             DetallePruebas elemento = new DetallePruebas
                             {
                                 Accion = 2,
-                                PruebaElementoResultadoID = item.PruebaElementoResultadoID,
+                                PruebaElementoResultadoID = item.CapturaReportePlacaID,
                                 Ubicacion = item.Ubicacion,
-                                Resultado = item.Resultado.GetValueOrDefault() == true ? 1 : 0,
+                                Resultado = item.Resultado == true ? 1 : 0,
                                 Nombre = item.Nombre,
-                                RequisicionPruebaElementoID = item.RequisicionPruebaElementoID.GetValueOrDefault(),
-                                ListaDetalleDefectos = (List<DetalleDefectos>)getListaDetalleDefectos(item.PruebaElementoResultadoID, lenguaje),
+                                RequisicionPruebaElementoID = item.CapturaReporteRequisicionID,
+                                ListaDetalleDefectos = (List<DetalleDefectos>)getListaDetalleDefectos(item.CapturaReportePlacaID, lenguaje),
                                 ListaDefectos = listaDefectos
                             };
                             lista.Add(elemento);
@@ -240,15 +240,15 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.CapturaReportePruebasBD
             }
         }
 
-        public object getListadoDefectos(string lenguaje, string tipoPrueba)
+        public object getListadoDefectos(string lenguaje, int tipoPrueba)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_Steelgo_Get_Defectos_Result> result = ctx.Sam3_Steelgo_Get_Defectos(lenguaje, tipoPrueba).ToList();
+                    List<Sam3_ServTec_Get_DefectosTipoPrueba_Result> result = ctx.Sam3_ServTec_Get_DefectosTipoPrueba(lenguaje, tipoPrueba).ToList();
                     List<Defectos> lista = new List<Defectos>();
-                    foreach (Sam3_Steelgo_Get_Defectos_Result item in result)
+                    foreach (Sam3_ServTec_Get_DefectosTipoPrueba_Result item in result)
                     {
                         Defectos objeto = new Defectos
                         {
