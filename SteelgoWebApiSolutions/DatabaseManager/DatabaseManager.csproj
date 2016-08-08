@@ -914,18 +914,18 @@
       <DependentUpon>ModelSam2.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\ModelSam3.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>ModelSam3.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Sam3\ModelSam3.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>ModelSam3.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Sam3\ModelSam3.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>ModelSam3.edmx</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Acero.cs">
@@ -1750,6 +1750,9 @@
     <Compile Include="Sam3\Sam3_Rel_PermisoAduana_Documento.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Rel_ProveedorTipoPrueba.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_Rel_Proyecto_Correo.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1760,6 +1763,9 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Rel_Usuario_Preferencia.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Rel_Usuario_Proveedor.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Rel_Usuario_Proyecto.cs">
@@ -1900,10 +1906,16 @@
     <Compile Include="Sam3\Sam3_Soldadura_CertificacionPosicion_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_ColadasXSoldadorXJunta.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_Soldadura_Get_CedulaTuboCalificado_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Soldadura_Get_DetalleJunta_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_GET_DetalleSoldadorColadas_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_Soldadura_Get_DetalleSoldadorProceso_Result.cs">
@@ -1924,6 +1936,9 @@
     <Compile Include="Sam3\Sam3_Soldadura_PQR_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sam3\Sam3_Soldadura_SoldadorCertificacion_GET_WPS_Result.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sam3\Sam3_Soldadura_SoldadorCertificacion_Result.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
@@ -1940,6 +1955,9 @@
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_SpoolHold.cs">
+      <DependentUpon>ModelSam3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sam3\Sam3_SpoolHoldhistorial.cs">
       <DependentUpon>ModelSam3.tt</DependentUpon>
     </Compile>
     <Compile Include="Sam3\Sam3_SteelGo_GetMenu_Result.cs">
@@ -2240,13 +2258,13 @@
     <Content Include="obj\Debug\TempPE\Sam3.ModelSam3.Designer.cs.dll" />
     <Content Include="Sam3\ModelSam3.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSam3.edmx</DependentUpon>
       <LastGenOutput>ModelSam3.Context.cs</LastGenOutput>
+      <DependentUpon>ModelSam3.edmx</DependentUpon>
     </Content>
     <Content Include="Sam3\ModelSam3.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSam3.edmx</DependentUpon>
       <LastGenOutput>ModelSam3.cs</LastGenOutput>
+      <DependentUpon>ModelSam3.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup />
