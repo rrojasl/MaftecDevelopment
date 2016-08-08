@@ -412,12 +412,12 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
         }
         else {
             loadingStop();
-            displayNotify("PinturaCargaNoHaySpoolsEnElCarro", "", '2');
+            displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", '2');
 
         }
     } catch (e) {
         loadingStop();
-        displayNotify("Mensajes_error", e.message, '2');
+        displayNotify("", _dictionary.Mensajes_error[$("#language").data("kendoDropDownList").value()] + e.message, '2');
 
     }
 };
@@ -432,7 +432,7 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
     ListaDetalles = [];
     ListaGuardarDetalles = [];
 
-    if ($('#inputCarroBacklog').attr("mediotransporteid") != undefined) {
+    if (listaSpool.length>0) {
         for (var index = 0 ; index < listaSpool.length; index++) {
             if (listaSpool[index].Seleccionado) {
 
@@ -506,6 +506,8 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
             displayNotify("PinturaCargaBackLogMensajeSeleccionaSpool", "", "1");
         }
 
+    } else {
+        displayNotify("DimensionalVisualMensajeNoHayDatosPorGuardar", "", "2");
     }
 }
 
