@@ -8429,7 +8429,7 @@ _dictionary = {
         "en-US": "The field P GRP BASE 2 is mandatory"
     },
     "lblPQRCodigoMandatorio": {
-        "es-MX": "El campo CÓdIGO es mandatorio",
+        "es-MX": "El campo CÓDIGO es mandatorio",
         "en-US": "The field CODE is mandatory"
     },
     "lblPQRNoRepetidos": {
@@ -8976,11 +8976,18 @@ _dictionary = {
         "es-MX": "Ver Detalle",
         "en-US": "See Detail"
     },
+    "ListaRequisicionClasificacion": {
+        "es-MX": "Clasificación",
+        "en-US": "Clasification"
+    },
+    "ListaRequisicionCodigo": {
+        "es-MX": "Código",
+        "en-US": "Code"
+    },
     "botonDetalle": {
         "es-MX": "Detalle",
         "en-US": "Detail"
-    }
-    ,
+    },
     "spanAddReguisicion": {
         "es-MX": "Agregar Requisición",
         "en-US": "Add requisition"
