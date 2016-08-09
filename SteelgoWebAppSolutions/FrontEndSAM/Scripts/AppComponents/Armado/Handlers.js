@@ -463,7 +463,7 @@ function SuscribirEventoSpoolID() {
             //}
             vengoEventoChange = true;
             ultimoModoInteraccion = 1;//Seleccion
-
+            
         }
     });
 
@@ -502,7 +502,7 @@ function SuscribirEventoSpoolID() {
                 ////    }
                 ////}
                 ////if (!encontradoTemp)
-                $("#InputID").data("kendoComboBox").value(caracteresEscritosEnPagina);
+                    $("#InputID").data("kendoComboBox").value(caracteresEscritosEnPagina);
                 vengoEventoChange = false;
             }
             else if (vengoEventoChange && (caracteresEscritosEnPagina == '')) {
@@ -548,7 +548,7 @@ function SuscribirEventoSpoolID() {
         }
         else if (((e.keyCode >= 48) && (e.keyCode <= 57))) {
             var x = $("#InputID").data("kendoComboBox");
-
+            
             caracteresEscritosEnPagina += e.key;
 
             //displayNotify("", "Captura: " + caracteresEscritosEnPagina, '1');
