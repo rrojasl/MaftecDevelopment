@@ -156,7 +156,7 @@ function getGridFilterableCellMaftec() {
         cell: {
             operator: "contains",
             template: function (args) {
-                args.css("width", "95%").addClass("k-input-filter").keydown(function (e) {
+                args.css("width", "95%").addClass("general-input").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -173,7 +173,7 @@ function getGridFilterableCellNumberMaftec() {
             operator: "eq",
             template: function (args) {
                 //$(args).prop('type', 'number');
-                args.css("width", "95%").addClass("k-input-filter").keydown(function (e) {
+                args.css("width", "95%").addClass("general-input").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -190,7 +190,7 @@ function getGridFilterableCellMaftecpopUp() {
         cell: {
             operator: "contains",
             template: function (args) {
-                args.css("width", "95%").addClass("k-input-filter").keydown(function (e) {
+                args.css("width", "95%").addClass("general-input").keydown(function (e) {
                     setTimeout(function () {
                         $(e.target).trigger("change");
                     });
@@ -205,7 +205,7 @@ function getKendoGridFilterableDateMaftec() {
     return {
         cell: {
             template: function (args) {
-                args.addClass("k-input-filter").kendoDatePicker({
+                args.kendoDatePicker({
                     format: "dd/MM/yyyy"
                 });
             },

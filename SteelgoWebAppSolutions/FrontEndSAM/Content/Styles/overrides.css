@@ -384,13 +384,17 @@
     background-color: #FFFFFF;
 }
 
-    .k-grid tr.k-alt {
+.k-grid tr.k-alt {
         background-color: #F5F5F5;
-    }
+}
 
-    .k-grid tr:not(.k-detail-row):hover {
+.k-grid tr:not(.k-detail-row):hover {
         background-color: #FCEED9;
-    }
+}
+
+.k-grid tr.k-filter-row{
+    background-color:#E3E3E3!important;
+}
 
 .k-grid .k-grid-header tr,
 .k-grid tbody .k-grouping-row > td {

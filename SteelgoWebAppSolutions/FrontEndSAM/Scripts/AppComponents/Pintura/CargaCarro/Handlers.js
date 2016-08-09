@@ -583,12 +583,8 @@ function Limpiar() {
     $("#InputOrdenTrabajo").val("");
     $('input:radio[name=TipoVista]:nth(0)').attr('checked', true);
     $('input:radio[name=TipoVista]:nth(1)').attr('checked', false);
-    if ($("#styleEscritorio").hasClass("active")) {
-        $("#grid").data('kendoGrid').dataSource.data([]);
-    } else {
-        $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
-    }      
-    
+    $("#grid").data('kendoGrid').dataSource.data([]);
+    $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);    
     $("#chkCerrar").attr("checked", false);
     $("#chkCerrar2").attr("checked", false);
     AjaxCargarCamposPredeterminados();
