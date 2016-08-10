@@ -157,6 +157,7 @@ function CargarGrid() {
         autoHeight: true,
         sortable: true,
         scrollable: false,
+        selectable: true,
         pageable: {
             refresh: false,
             pageSizes: [10, 25, 50, 100],
@@ -194,6 +195,7 @@ function CargarGrid() {
             $(".k-grid td:first-child, .k-grid td:last-child").css('text-overflow', 'clip');
         }
     });
+    CustomisaGrid($("#grid"));
 };
 function isEditable(fieldName, model) {
     if (fieldName === "Defectos") {

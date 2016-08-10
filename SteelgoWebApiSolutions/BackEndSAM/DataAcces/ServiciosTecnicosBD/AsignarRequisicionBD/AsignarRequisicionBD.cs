@@ -209,7 +209,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID, todos, requisicionID, lenguaje).ToList();
+                    listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID, todos, requisicionID, 1, lenguaje).ToList();
                     List<JsonRequisicion> listaJson = new List<JsonRequisicion>();
                     List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(proyectoID, todos, requisicionID, lenguaje);
                     foreach (Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result item in lista)

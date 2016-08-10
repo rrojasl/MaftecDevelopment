@@ -36,7 +36,8 @@ namespace BackEndSAM.Models.GenerarRequisicion
         public string Cedula { get; set; }
         public string TipoJunta { get; set; }
         public string NombrePrueba { get; set; }
-
+        public int CodigoAsmeID { get; set; }
+        public List<Sam3_Cat_PQR_ListaCodigos_Result> listaCodigo { get; set; }
     }
     public class IdOrdenTrabajo
     {
@@ -62,6 +63,14 @@ namespace BackEndSAM.Models.GenerarRequisicion
 
     public class Captura
     {
+        public Captura() {
+            Folio = "";
+            Observacion = "";
+            PruebasID = 0;
+            EstatusID = 0;
+            RequisicionID = 0;
+
+        }
         public List<DetalleGuardarJson> listaRequisiciones { get; set; }
         public string Folio { get; set; }
         public string FechaRequisicion { get; set; }

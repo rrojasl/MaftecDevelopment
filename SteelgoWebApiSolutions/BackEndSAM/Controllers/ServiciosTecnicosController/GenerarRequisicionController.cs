@@ -21,6 +21,29 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GenerarRequisicionController : ApiController
     {
+        public object Get(string lenguaje, string token, int status, int ProyectoID)
+        {
+            //Create a generic return object
+            string payload = "";
+            string newToken = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
+                return GenerarRequisicionBD.Instance.getListaRequisiciones(lenguaje, status, ProyectoID);
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(payload);
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = false;
+                return result;
+            }
+
+        }
 
         [HttpGet]
         public object ObtenerListaProyectos(string token)
@@ -63,7 +86,26 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                 return result;
             }
         }
-
+        
+        public object Get(string token, int proyectoID)
+        {
+            string payload = "";
+            string newToken = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                return GenerarRequisicionBD.Instance.getListaCodigos(proyectoID, 2, "", ""); // Proyecto, TipoPuebaID
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(payload);
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = false;
+                return result;
+            }
+        }
 
         [HttpGet]
         public object ObtenerRequisicion(string token, string lenguaje, int requisicionID)
@@ -126,7 +168,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                     {
                         elemento = new JsonRequisicion
                         {
-                            Accion =  1,
+                            Accion = 1,
                             Agregar = false,
                             Clasificacion = item.ClasificacionPND,
                             Cuadrante = item.Cuadrante,
@@ -144,7 +186,9 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             Proyecto = item.Proyecto,
                             ProyectoID = item.ProyectoID,
                             PruebasID = item.TipoPruebaID,
-                            NombrePrueba = item.NombrePrueba
+                            NombrePrueba = item.NombrePrueba,
+                            //CodigoAsmeID = item.CodigoAsmeID.GetValueOrDefault(),
+                            //listaCodigo = (List<Sam3_Cat_PQR_ListaCodigos_Result>)GenerarRequisicionBD.Instance.getListaCodigos(28, item.TipoPruebaID, "", "")
                             //PruebaElementoID = item.PruebaElementoID,
                             //PruebasClasificacionID = int.Parse(item.PruebasClasificacionID.ToString()),
                             //PruebasProyectoID = item.PruebasProyectoID,

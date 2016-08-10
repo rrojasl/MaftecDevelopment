@@ -151,6 +151,42 @@ namespace BackEndSAM.DataAcces
             }
         }
 
+        public object getListaRequisiciones(string lenguaje, int status, int ProyectoID)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Captura> listaRequisiciones = new List<Captura>();
+                    listaRequisiciones.Add(new Captura());
+                    List<Sam3_ServiciosTecnicos_Get_Requisiciones_Result> result = ctx.Sam3_ServiciosTecnicos_Get_Requisiciones(lenguaje, status, ProyectoID).ToList();
+                    foreach (Sam3_ServiciosTecnicos_Get_Requisiciones_Result item in result)
+                    {
+                        listaRequisiciones.Add(new Captura
+                        {
+                            Folio = item.Folio,
+                            FechaRequisicion = item.FechaRequisicion,
+                            Observacion = item.Observacion,
+                            PruebasID = item.PruebasProyectoID.GetValueOrDefault(),
+                            EstatusID = item.EstatusID.GetValueOrDefault(),
+                            RequisicionID = item.RequisicionID
+                        });
+                    }
+                    return listaRequisiciones.OrderBy(x => x.Folio).ToList<Captura>();
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
         public object getJuntaApta(int todos, int ordenTrabajoSpoolID, int proceso)
         {
             try
@@ -180,7 +216,7 @@ namespace BackEndSAM.DataAcces
             {
                 using (SamContext ctx = new SamContext())
                 {
-                     listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID,todos, reqID,lenguaje).ToList();
+                     listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID,todos, reqID, 1,lenguaje).ToList();
                     return listaResult;
                 }
             }
@@ -194,6 +230,29 @@ namespace BackEndSAM.DataAcces
                 return listaResult;
             }
         }
+
+        public List<Sam3_Cat_PQR_ListaCodigos_Result> getListaCodigos(int proyectoID, int pruebaID, string especificacion, string codigo)
+        {
+            List<Sam3_Cat_PQR_ListaCodigos_Result> listaResult = null;
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    listaResult = ctx.Sam3_Cat_PQR_ListaCodigos(proyectoID, pruebaID, especificacion, codigo).ToList();
+                    return listaResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+                return listaResult;
+            }
+        }
+
         public object getListaClasificaciones(int pruebaProyectoID, string lenguaje)
             {
             try

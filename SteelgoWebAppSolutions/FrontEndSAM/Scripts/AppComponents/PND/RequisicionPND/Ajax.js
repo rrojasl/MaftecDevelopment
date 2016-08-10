@@ -35,7 +35,6 @@ function ajaxRequisicion() {
             ProyectoID = data[0].ProyectoID;
             PruebaNombre = data[0].Prueba;
             $("#Folio").text(data[0].Folio);
-            $("#Observacion").val(data[0].Observacion);
             $("#Proyecto").data("kendoComboBox").value(data[0].proyectoID);
             loadingStop();
 
@@ -46,7 +45,6 @@ function ajaxRequisicion() {
         EstatusID = 1;
         $("#Folio").text("Sin asignar");
         $("#Fecha").data("kendoDatePicker").value("");
-        $("#Observacion").val("");
         loadingStop();
     }
 
@@ -113,10 +111,10 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
             if (jsonGridArmado[0].Folio != "")
                 $("#Folio").text(jsonGridArmado[0].Folio);
             else
-                $("#Folio").text("SIN ASIGNAR");
+                $("#Folio").text(_dictionary.CapturaSinAsinar[$("#language").data("kendoDropDownList").value()]);
         }
-        else
-            $("#Folio").text("SIN ASIGNAR");
+        else 
+            $("#Folio").text(_dictionary.CapturaSinAsinar[$("#language").data("kendoDropDownList").value()]);
 
         var ds = $("#grid").data("kendoGrid").dataSource;
         ds = jsonGridArmado;
@@ -146,14 +144,26 @@ function AjaxCargarCamposPredeterminados() {
         cargaInicialRequisicionEditar();
     });
 
+    AjaxListaRequisiciones(0);
 };
 
 function AjaxJunta(spoolID) {
     loadingStart();
-    $CapturasRapidas.CapturasRapidas.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: "otros", token: Cookies.get("token"), proceso: 3 }).done(function (data) {
+    $CapturasRapidas.CapturasRapidas.read({ ordenTrabajo: $("#InputOrdenTrabajo").val(), id: spoolID, sinCaptura: $('input:radio[name=Muestra]:checked').val(), token: Cookies.get("token"), proceso: 3 }).done(function (data) {
         if (Error(data)) {
             $("#Junta").data("kendoComboBox").value("");
             $("#Junta").data("kendoComboBox").dataSource.data(data);
+            loadingStop();
+        }
+    });
+}
+
+function AjaxListaRequisiciones(proyectoID) {
+    loadingStart();
+    $GenerarRequisicion.GenerarRequisicion.read({ lenguaje: $("#language").val(), token: Cookies.get("token"), status: 1, ProyectoID: proyectoID}).done(function (data) {
+        if (Error(data)) {
+            $("#listaFolio").data("kendoComboBox").value("");
+            $("#listaFolio").data("kendoComboBox").dataSource.data(data);
             loadingStop();
         }
     });

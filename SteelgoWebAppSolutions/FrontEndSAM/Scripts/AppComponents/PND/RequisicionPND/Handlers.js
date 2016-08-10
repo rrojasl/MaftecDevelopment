@@ -1,6 +1,7 @@
 ﻿function SuscribirEventos() {
     suscribirEventoGuardar();
     suscribirEventoAgregar();
+    suscribirEventoFolio();
     suscribirEventoCancelar();
     suscribirEventoTipoPrueba();
     suscribirEventoProyecto();
@@ -152,16 +153,19 @@ function suscribirEventoProyecto() {
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined && dataItem.Nombre != "") {
+                $("#listaFolio").data("kendoComboBox").value("");
                 ajaxObtenerTipoPruebas();
                 ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
+                AjaxListaRequisiciones($("#Proyecto").data("kendoComboBox").value());
                 LimpiarRowJunta();
             }
             else {
                 $("#Proyecto").data("kendoComboBox").value("");
-
+                AjaxListaRequisiciones(0);
             }
         }
     });
+    $("#Proyecto").data("kendoComboBox").select(0);
 }
 
 function suscribirEventoTipoPrueba() {
@@ -183,7 +187,26 @@ function suscribirEventoTipoPrueba() {
                 $("#tipoPrueba").data("kendoComboBox").value("");
             }
         }
+    });
+}
 
+function suscribirEventoFolio() {
+    var dataItem;
+    $("#listaFolio").kendoComboBox({
+        suggest: true,
+        delay: 10,
+        filter: "contains",
+        autoBind: false,
+        dataTextField: "Folio",
+        dataValueField: "RequisicionID",
+        select: function (e) {
+            dataItem = this.dataItem(e.item.index());
+        }, change: function (e) {
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem == undefined) {
+                $("#listaFolio").data("kendoComboBox").value("");
+            }
+        }
     });
 }
 
@@ -315,17 +338,12 @@ function SuscribirEventosJunta() {
 function Limpiar() {
 
     $("#InputOrdenTrabajo").val("");
-    $("#Observacion").val("");
     $("#Folio").text("");
     $("#InputID").data("kendoComboBox").value("");
     $("#Junta").data("kendoComboBox").value("");
     $("#Proyecto").data("kendoComboBox").value("");
     $("#tipoPrueba").data("kendoComboBox").value("");
-
-
-
     $("#Fecha").data("kendoDatePicker").value("");
-
 
     $("#grid").data('kendoGrid').dataSource.data([]);
 }
