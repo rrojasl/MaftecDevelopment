@@ -142,7 +142,7 @@ namespace BackEndSAM.Controllers.MedioTransporteController
 
         }
 
-        public object Get(int idMedioTransporteCarga, string token, string lenguaje, int statusCarga)
+        public object Get(int proyectoID, string token, string lenguaje, int todos)
         {
             string payload = "";
             string newToken = "";
@@ -151,10 +151,7 @@ namespace BackEndSAM.Controllers.MedioTransporteController
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                //if (idMedioTransporteCarga == 0)
-                //    return MedioTransporteBD.Instance.ObtenerMedioTransporteCargado(lenguaje);
-                //else
-                return MedioTransporteBD.Instance.ObtenerMedioTransporteDetalleCargado(lenguaje, idMedioTransporteCarga, statusCarga);
+                return MedioTransporteBD.Instance.ObtenerMedioTransporteDetalleCargado(lenguaje, proyectoID, todos);
             }
             else
             {

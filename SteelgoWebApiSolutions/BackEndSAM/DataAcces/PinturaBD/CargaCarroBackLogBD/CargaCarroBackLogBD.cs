@@ -30,13 +30,13 @@ namespace BackEndSAM.DataAcces.PinturaBD.CargaCarroBackLogBD
             }
         }
 
-        public object ObtenerListadoSpool(int medioTransporteID,int  proyectoID)
+        public object ObtenerListadoSpool(int medioTransporteID,int  proyectoID, int todos)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 { 
-                    List<Sam3_Pintura_Get_SpoolCarroBackLog_Result> result = ctx.Sam3_Pintura_Get_SpoolCarroBackLog(medioTransporteID, proyectoID).ToList();
+                    List<Sam3_Pintura_Get_SpoolCarroBackLog_Result> result = ctx.Sam3_Pintura_Get_SpoolCarroBackLog(medioTransporteID, proyectoID, todos).ToList();
                     List<CargaCarroBackLog> lista = new List<CargaCarroBackLog>();
                     foreach(Sam3_Pintura_Get_SpoolCarroBackLog_Result item in result)
                     {
@@ -45,8 +45,9 @@ namespace BackEndSAM.DataAcces.PinturaBD.CargaCarroBackLogBD
                             Accion = item.StatusCarga.GetValueOrDefault() ? 2 : 1,
                             Metros2 = item.Area.GetValueOrDefault(),
                             Color = item.ColorPintura,
-                            Cuadrante = item.Cuadrante,
-                            Nombre = item.Nombre,
+                            CuadranteSpool = item.Cuadrante,
+                            CuadranteMedioTransporte = item.StatusCarga.GetValueOrDefault()?item.NombreMedioTransporte:item.Cuadrante,
+                            Nombre = item.Proyecto,
                             OrdenImportancia = item.OrdenImportancia.GetValueOrDefault(),
                             Peso = item.Peso.GetValueOrDefault()/1000,
                             ProyectoID = item.ProyectoID,

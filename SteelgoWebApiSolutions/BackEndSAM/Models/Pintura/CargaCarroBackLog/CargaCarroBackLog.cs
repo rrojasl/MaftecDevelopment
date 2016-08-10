@@ -12,7 +12,8 @@ namespace BackEndSAM.Models.Pintura.CargaCarroBackLog
         public string SistemaPintura { get; set; }
         public string Color { get; set; }
         public int SpoolID { get; set; }
-        public string Cuadrante { get; set; }
+        public string CuadranteSpool { get; set; }
+        public string CuadranteMedioTransporte { get; set; }
         public string Nombre { get; set; }
         public int ProyectoID { get; set; }
         public int SistemaPinturaID { get; set; }

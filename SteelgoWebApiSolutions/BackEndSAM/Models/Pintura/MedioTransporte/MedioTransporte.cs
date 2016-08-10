@@ -87,7 +87,8 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int MedioTransporteID { get; set; }
         public int MedioTransporteCargaID { get; set; }
         public int CuadranteID { get; set; }
-        public string Cuadrante { get; set; }
+        public string CuadranteSpool { get; set; }
+        public string CuadranteMedioTransporte { get; set; }
         public int ProyectoID { get; set; }
         public List<Cuadrante.Cuadrante> ListaCuandrantes { get; set; }
     }

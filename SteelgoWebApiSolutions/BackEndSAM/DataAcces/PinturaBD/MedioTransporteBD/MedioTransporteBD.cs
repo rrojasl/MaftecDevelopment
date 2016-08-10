@@ -260,14 +260,14 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
             }
         }
 
-        public object ObtenerMedioTransporteDetalleCargado(string lenguaje, int idMedioTransporteCarga, int statusCarga)
+        public object ObtenerMedioTransporteDetalleCargado(string lenguaje, int proyectoID, int todos)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
                     //
-                    List<Sam3_Pintura_Get_DetalleCarrosCargados_Result> result = ctx.Sam3_Pintura_Get_DetalleCarrosCargados(idMedioTransporteCarga, statusCarga).ToList();
+                    List<Sam3_Pintura_Get_DetalleCarrosCargados_Result> result = ctx.Sam3_Pintura_Get_DetalleCarrosCargados(proyectoID, todos).ToList();
 
                     List<Sam3_Steelgo_Get_Cuadrante_Result> GetlistaCuandrantes = (List<Sam3_Steelgo_Get_Cuadrante_Result>)CuadranteBD.Instance.ObtenerCuadrante(0);
 
@@ -294,7 +294,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             MedioTransporteID = item.MedioTransporteID.GetValueOrDefault(),
                             Area = item.Area.GetValueOrDefault(),
                             ColorPintura = item.ColorPintura,
-                            MedioTransporteCargaID = item.MedioTransporteCargaID,
+                            MedioTransporteCargaID = item.MedioTransporteCargaID.GetValueOrDefault(),
                             OrdenImportancia = item.OrdenImportancia.GetValueOrDefault(),
                             Peso = item.Peso.GetValueOrDefault()/1000,
                             SistemaPintura = item.SistemaPintura,
@@ -302,7 +302,8 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             SpoolID = item.SpoolID,
                             SpoolJunta = item.SpoolJunta,
                             CuadranteID = item.CuadranteID.GetValueOrDefault(),
-                            Cuadrante = item.Cuadrante,
+                            CuadranteSpool=item.Cuadrante,
+                            CuadranteMedioTransporte = item.StatusCarga.GetValueOrDefault()?item.NombreMedioTransporte:item.Cuadrante,
                             ListaCuandrantes = ListaCuandrantes,
                             ProyectoID = item.ProyectoID
 
