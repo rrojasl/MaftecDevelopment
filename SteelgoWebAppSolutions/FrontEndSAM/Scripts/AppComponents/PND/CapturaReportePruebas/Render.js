@@ -1,4 +1,34 @@
-﻿function RenderGridDetalle(container, options) {
+﻿function RenderNumeroPlacas(container, options) {
+    var dataItem;
+    $('<input data-text-field="NumeroPlacas" id=' + options.model.uid + ' data-value-field="NumeroPlacas" data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+    .kendoNumericTextBox({
+        format: "#",
+        min: 0
+    });
+}
+
+function RenderTamano(container, options) {
+    var dataItem;
+    $('<input data-text-field="Tamano" id=' + options.model.uid + ' data-value-field="Tamano" data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+    .kendoNumericTextBox({
+        format: "#.0000",
+        min: 0
+    });
+}
+
+function RenderDensidad(container, options) {
+    var dataItem;
+    $('<input data-text-field="Densidad" id=' + options.model.uid + ' data-value-field="Densidad" data-bind="value:' + options.field + '"/>')
+    .appendTo(container)
+    .kendoNumericTextBox({
+        format: "#.0000",
+        min: 0
+    });
+}
+
+function RenderGridDetalle(container, options) {
     $('<div name=' + options.model.SpoolJunta  + '/>')
   .appendTo(container)
   .kendoGrid({

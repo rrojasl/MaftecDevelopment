@@ -194,9 +194,9 @@ function CargarGrid() {
         columns: [
 
             { field: "SpoolJunta", title: _dictionary.CapturaReportePruebasHeaderSpoolJunta[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "100px" },
-             { field: "NumeroPlacas", title: _dictionary.CapturaReportePruebasHeaderNumeroPlacas[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "90px" },
-             { field: "Tamano", title: _dictionary.CapturaReportePruebasHeaderTamano[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "90px" },
-             { field: "Densidad", title: _dictionary.CapturaReportePruebasHeaderDensidad[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "100px" },
+             { field: "NumeroPlacas", title: _dictionary.CapturaReportePruebasHeaderNumeroPlacas[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "90px", editor: RenderNumeroPlacas, attributes: { style: "text-align:right;" } },
+             { field: "Tamano", title: _dictionary.CapturaReportePruebasHeaderTamano[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "90px", editor: RenderTamano, format: "{0:n4}", attributes: { style: "text-align:right;" } },
+             { field: "Densidad", title: _dictionary.CapturaReportePruebasHeaderDensidad[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellNumberMaftec(), width: "100px", editor: RenderDensidad, format: "{0:n4}", attributes: { style: "text-align:right;" } },
             { field: "InformacionResultados", title: _dictionary.CapturaReportePruebasHeaderDetallePruebas[$("#language").data("kendoDropDownList").value()], filterable: false, width: "500px", editor: RenderGridDetalle, template: "Tiene:  Numero de placas" },
 
         ],
