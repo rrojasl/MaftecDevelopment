@@ -10303,8 +10303,8 @@ _dictionary = {
         "en-US": "Select at least one Spool"
     },
     "PinturaCargaBackLogMensajeErrorServicioPintura": {
-        "es-MX": "El servicio de pintura debe ser el mismo para los spools",
-        "en-US": "The paint service should be equals for all spools"
+        "es-MX": "El sistema de pintura debe ser ",
+        "en-US": "The paint system should be "
     },
     "PinturaAgregaCargaExito": {
         "es-MX": "Se agregó el spool: ",
@@ -10316,7 +10316,7 @@ _dictionary = {
     },
 
     //#endregion
-    //#region PinturaCarga
+    //#region PinturaDescargaCarro
 
     "PinturaDescargaCarro": {
         "es-MX": "Carro",
