@@ -35,6 +35,7 @@ function CargarGrid() {
                     fields: {
                         SpoolID: { type: "string", editable: false },
                         SistemaPintura: { type: "string", editable: false },
+                        CuadranteMedioTransporte: { type: "string", editable: false },
                         Area: { type: "number", editable: false },
                         Peso: { type: "number", editable: false }
                     }
@@ -68,6 +69,7 @@ function CargarGrid() {
         columns: [
             { field: "SpoolJunta", title: _dictionary.PinturaCargaSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
             { field: "SistemaPintura", title: _dictionary.PinturaCargaBackLogSistemaPintura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
+            { field: "CuadranteMedioTransporte", title: _dictionary.PinturaCargaBackLogQuadrant[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
             { field: "Area", type: 'number', title: _dictionary.PinturaCargaBackLogM2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", attributes: { style: "text-align:right;" } },
             { field: "Peso", type: 'number', title: _dictionary.PinturaCargaBackLogPeso[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", attributes: { style: "text-align:right;" } },
             { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: eliminarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px", attributes: { style: "text-align:center;" } }
@@ -191,8 +193,8 @@ function CargarGridBacklog() {
                         SpoolJunta: { type: "string", editable: false },
                         SistemaPintura: { type: "string", editable: false },
                         Color: { type: "string", editable: false },
-                        Cuadrante: { type: "string", editable: false },
-                        Nombre: { type: "string", editable: false },
+                        CuadranteMedioTransporte: { type: "string", editable: false },
+                        NombreMedioTransporte: { type: "string", editable: false },
                         Metros2: { type: "number", editable: false },
                         Peso: { type: "number", editable: false },
                         Seleccionado: { type: "boolean", editable: false }
@@ -210,6 +212,7 @@ function CargarGridBacklog() {
             serverPaging: false,
             serverFiltering: false,
             serverSorting: false,
+            aggregate: [{ field: "Metros2", aggregate: "sum" }]
         },
         beforeEdit: function (e) {
             var columnIndex = this.cellIndex(e.container);
@@ -235,10 +238,10 @@ function CargarGridBacklog() {
             { field: "SpoolJunta", title: _dictionary.PinturaCargaBackLogSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px" },
             { field: "SistemaPintura", title: _dictionary.PinturaCargaBackLogSistemaPintura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
             { field: "Color", title: _dictionary.PinturaCargaBackLogColor[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "110px" },
-            { field: "Cuadrante", title: _dictionary.PinturaCargaBackLogQuadrant[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
-            { field: "Metros2", title: _dictionary.PinturaCargaBackLogM2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "95px", attributes: { style: "text-align:right;" } },
+            { field: "CuadranteMedioTransporte", title: _dictionary.PinturaCargaBackLogQuadrant[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
+            { field: "Metros2", title: _dictionary.PinturaCargaBackLogM2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "95px", attributes: { style: "text-align:right;" }, aggregates: ["sum"], footerTemplate: "<div>Total: #= kendo.toString(sum, '0.00') #</div>" },
             { field: "Peso", title: _dictionary.PinturaCargaBackLogPeso[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "95px", attributes: { style: "text-align:right;" } },
-            { field: "Nombre", title: _dictionary.PinturaCargaBackLogProyecto[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "140px" },
+            { field: "NombreMedioTransporte", title: _dictionary.PinturaCargaBackLogCarro[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "140px" },
             { field: "Seleccionado", title: _dictionary.PinturaCargaBackLogSeleccionado[$("#language").data("kendoDropDownList").value()], filterable: {
                     multi: true,
                     messages: {

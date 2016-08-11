@@ -89,8 +89,8 @@ function AjaxCargarCamposPredeterminados() {
             $('input:radio[name=TipoVista]:nth(1)').attr('checked', false);
             $("#styleEscritorio").addClass("active");
             $("#stylePatio").removeClass("active");
-            $("#contenedorPrincipalCargaCarro").show();
-            $("#contenedorPrincipalCargaCarroBacklog").hide();
+            $("#contenedorPrincipalCargaCarroBacklog").show();
+            $("#contenedorPrincipalCargaCarro").hide();
         }
         else if (data.Vista == "Patio") {
             $("#styleEscritorio").removeClass("active");
@@ -204,7 +204,6 @@ function AjaxAgregarCarga() {
                             }
                         } else {
                             displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
-                            //Cambiar Mensaje
                         }
 
                     }
@@ -323,7 +322,7 @@ function SumarToneladaBacklog() {
 function AjaxObtenerDetalleCarroCargado(MedioTransporteID) {
     loadingStart();
 
-    $MedioTransporte.MedioTransporte.read({ idMedioTransporteCarga: MedioTransporteID, token: Cookies.get("token"), lenguaje: $("#language").val(), statusCarga: 0 }).done(function (data) {
+    $MedioTransporte.MedioTransporte.read({ medioTransporteID: MedioTransporteID, proyectoID: $("#inputProyecto").data("kendoComboBox").value(), token: Cookies.get("token"), lenguaje: $("#language").val(), todos: 1 }).done(function (data) {
         $("#grid").data('kendoGrid').dataSource.data([]);
         $("#labelM2").text('');
         $("#labelToneladas").text('');
@@ -513,10 +512,10 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
 
 function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCargaID) {
     loadingStart();
-
+    var MedioTransporteID = $("#inputCarroBacklog").data("kendoComboBox").value();
     if (MedioTransporteCargaID == 0 && $('#inputCarro').val() != "") MedioTransporteCargaID = $('#inputCarro').val();
 
-    $CargaCarroBackLog.CargaCarroBackLog.read({ medioTransporteID: MedioTransporteCargaID, token: Cookies.get("token"), proyectoID: $("#inputProyecto").data("kendoComboBox").value() }).done(function (data) {
+    $CargaCarroBackLog.CargaCarroBackLog.read({ medioTransporteCargaID: MedioTransporteCargaID, medioTransporteID: MedioTransporteID, token: Cookies.get("token"), proyectoID: $("#inputProyecto").data("kendoComboBox").value(), todos: 1 }).done(function (data) {
         $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
         var ds = $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource;
         var array = data;
@@ -530,8 +529,8 @@ function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCarg
                         SpoolJunta: { type: "string", editable: false },
                         SistemaPintura: { type: "string", editable: false },
                         Color: { type: "string", editable: false },
-                        Cuadrante: { type: "string", editable: false },
-                        Nombre: { type: "string", editable: false },
+                        CuadranteMedioTransporte: { type: "string", editable: false },
+                        NombreMedioTransporte: { type: "string", editable: false },
                         Metros2: { type: "number", editable: false },
                         Peso: { type: "number", editable: false },
                         Seleccionado: { type: "boolean", editable: false }
@@ -548,7 +547,8 @@ function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCarg
             pageSize: 10,
             serverPaging: false,
             serverFiltering: false,
-            serverSorting: false
+            serverSorting: false,
+            aggregate: [{ field: "Metros2", aggregate: "sum" }]
         });
 
         $("#grid[nombre='grid-backlog']").data("kendoGrid").setDataSource(localDataSource);
