@@ -1,6 +1,7 @@
 ﻿using BackEndSAM.DataAcces.PinturaBD.CargaCarroBackLogBD;
 using BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD;
 using BackEndSAM.Models.Pintura.CargaCarroBackLog;
+using BackEndSAM.Models.Pintura.MedioTransporte;
 using DatabaseManager.Sam3;
 using SecurityManager.Api.Models;
 using SecurityManager.TokenHandler;
@@ -21,7 +22,7 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
     public class CargaCarroBackLogController : ApiController
     {
         [HttpGet]
-        public object ObtieneListadoSpool(int medioTransporteID, string token, int proyectoID, int todos)
+        public object ObtieneListadoSpool(int medioTransporteCargaID, int medioTransporteID, string token, int proyectoID, int todos)
         {
             string payload = "";
             string newToken = "";
@@ -30,7 +31,7 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                return CargaCarroBackLogBD.Instance.ObtenerListadoSpool(medioTransporteID, proyectoID, todos);
+                return CargaCarroBackLogBD.Instance.ObtenerListadoSpool(medioTransporteCargaID, medioTransporteID ,proyectoID, todos);
             }
             else
             {
@@ -55,10 +56,10 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                 string cerrar = (string)CargaCarroBackLogBD.Instance.ObtenerValorCerrarCarro(usuario, lenguaje, 37);
-                
-                CamposPredeterminados cargarCarroBackLogCamposPredeterminados = new CamposPredeterminados();
 
-                cargarCarroBackLogCamposPredeterminados = new CamposPredeterminados
+                CamposPredeterminadosBacklog cargarCarroBackLogCamposPredeterminados = new CamposPredeterminadosBacklog();
+
+                cargarCarroBackLogCamposPredeterminados = new CamposPredeterminadosBacklog
                 {
                     Cerrar = cerrar
                 };
@@ -77,7 +78,7 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
         }
 
 
-        [HttpPost]
+        /*[HttpPost]
         public object GuardarCargaCarroBackLog(Captura listaCapturasRequisicion, string token, string lenguaje, int medioTransporteID, int cerrar)
         {
             string payload = "";
@@ -95,9 +96,7 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
                 if (listaCapturasRequisicion.ListaDetalles != null)
                 {
                     dtDetalleSpool = ToDataTable(listaCapturasRequisicion.ListaDetalles);
-                }
-
-                //return CargaCarroBackLogBD.Instance.InsertarCargaCarroBackLog(dtDetalleSpool, usuario,medioTransporteID,cerrar);
+                }                
                 return MedioTransporteBD.Instance.GuardarMedioTransporte(dtDetalleSpool, usuario, lenguaje, medioTransporteID,listaCapturasRequisicion.ListaDetalles[0].MedioTransporteCargaID, cerrar);
             }
             else
@@ -109,7 +108,7 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
                 result.IsAuthenicated = false;
                 return result;
             }
-        }
+        }*/
 
         public static DataTable ToDataTable<T>(List<T> l_oItems)
         {

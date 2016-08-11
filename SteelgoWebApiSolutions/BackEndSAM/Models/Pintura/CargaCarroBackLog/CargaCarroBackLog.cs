@@ -14,8 +14,8 @@ namespace BackEndSAM.Models.Pintura.CargaCarroBackLog
         public int SpoolID { get; set; }
         public string CuadranteSpool { get; set; }
         public string CuadranteMedioTransporte { get; set; }
-        public string Nombre { get; set; }
         public int ProyectoID { get; set; }
+        public string NombreMedioTransporte { get; set; }
         public int SistemaPinturaID { get; set; }
         public bool Seleccionado { get; set; }
         public bool Status { get; set; }
@@ -32,7 +32,7 @@ namespace BackEndSAM.Models.Pintura.CargaCarroBackLog
         public int MedioTransporteCargaID { get; set; }
     }
 
-    public class CamposPredeterminados
+    public class CamposPredeterminadosBacklog
     {
         public string Cerrar { get; set; }
     }
