@@ -6988,6 +6988,10 @@ _dictionary = {
         "es-MX": "DSCG",
         "en-US": "DL"
     },
+    "tituloDescargarBack": {
+        "es-MX": "DSCG",
+        "en-US": "DL"
+     },
     "botonEdtar": {
         "es-MX": "Editar",
         "en-US": "Edit"
@@ -10153,12 +10157,12 @@ _dictionary = {
     }
     ,
     "PinturaCargaArea": {
-        "es-MX": "Área",
-        "en-US": "Area"
+        "es-MX": "M2",
+        "en-US": "M2"
     },
     "PinturaCargaArea2": {
-        "es-MX": "Área",
-        "en-US": "Area"
+        "es-MX": "M2",
+        "en-US": "M2"
     }
     ,
     "PinturaCargaPeso": {
@@ -10336,6 +10340,10 @@ _dictionary = {
     "PinturaCargaTodos": {
         "es-MX": "Todos",
         "en-US": "All"
+    },
+    "PinturaCargaDescargar": {
+        "es-MX": "Descargar",
+        "en-US": "Discharge"
     },
     //#endregion
     //#region PinturaDescargaCarro
