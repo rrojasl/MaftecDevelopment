@@ -18,15 +18,15 @@ function suscribirEventoGuardar() {
     $('#Guardar').click(function (e) {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
-            if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
+            //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
                 if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
                     AjaxGuardarCaptura(ds._data, 0);
                 else
                     displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
-            }
-            else
-                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+            //}
+            //else
+            //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -36,15 +36,15 @@ function suscribirEventoGuardar() {
     $('#btnGuardar').click(function (e) {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
-            if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
+            //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 // opcionHabilitarView(true, "FieldSetView");
                 if($("#tipoPrueba").data("kendoComboBox").value()!=0)
                     AjaxGuardarCaptura(ds._data, 0);
                 else
                     displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
-            }
-            else
-                displayNotify("", "El campo fecha no puede estar vacio", '1');
+            //}
+            //else
+            //    displayNotify("", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -54,16 +54,16 @@ function suscribirEventoGuardar() {
     $('#btnGuardarYNuevo').click(function (e) {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
-            if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
+            //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
                 if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
                     AjaxGuardarCaptura(ds._data, 1);
                 else
                     displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
                 //Limpiar();
-            }
-            else
-                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+            //}
+            //else
+            //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -75,15 +75,15 @@ function suscribirEventoGuardar() {
     $('#GuardarPie').click(function (e) {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
-            if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
+            //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
                 if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
                     AjaxGuardarCaptura(ds._data, 0);
                 else
                     displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
-            }
-            else
-                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+            //}
+            //else
+            //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -92,15 +92,15 @@ function suscribirEventoGuardar() {
     $('#btnGuardar1').click(function (e) {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
-            if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
+            //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
                 if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
                     AjaxGuardarCaptura(ds._data, 0);
                 else
                     displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
-            }
-            else
-                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+            //}
+            //else
+            //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView");
@@ -109,16 +109,16 @@ function suscribirEventoGuardar() {
     $('#btnGuardarYNuevo1').click(function (e) {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
-            if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
+            //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
                 //opcionHabilitarView(true, "FieldSetView");
                 if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
                     AjaxGuardarCaptura(ds._data, 0);
                 else
                     displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
                 //Limpiar();
-            }
-            else
-                displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
+            //}
+            //else
+            //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
         }
         else if ($('#botonGuardar').text() == "Editar")
             opcionHabilitarView(false, "FieldSetView")
@@ -343,7 +343,7 @@ function Limpiar() {
     $("#Junta").data("kendoComboBox").value("");
     $("#Proyecto").data("kendoComboBox").value("");
     $("#tipoPrueba").data("kendoComboBox").value("");
-    $("#Fecha").data("kendoDatePicker").value("");
+    //$("#Fecha").data("kendoDatePicker").value("");
 
     $("#grid").data('kendoGrid').dataSource.data([]);
 }
@@ -363,7 +363,7 @@ function opcionHabilitarView(valor, name) {
 
         $("#InputID").data("kendoComboBox").enable(false);
         $("#Junta").data("kendoComboBox").enable(false);
-        $("#Fecha").data("kendoDatePicker").enable(false);
+        //$("#Fecha").data("kendoDatePicker").enable(false);
         $('#botonGuardar').text("Editar");
         $("#DetalleAvisoLlegada0017").text("Editar");
 

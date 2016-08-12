@@ -1,4 +1,4 @@
-﻿var CampoFechaDimensionalPredeterminada = 2047;
+﻿//var CampoFechaDimensionalPredeterminada = 2047;
 
 function ajaxObtenerTipoPruebas() {
     loadingStart();
@@ -44,7 +44,7 @@ function ajaxRequisicion() {
         requisicionID = 0;
         EstatusID = 1;
         $("#Folio").text("Sin asignar");
-        $("#Fecha").data("kendoDatePicker").value("");
+        //$("#Fecha").data("kendoDatePicker").value("");
         loadingStop();
     }
 
@@ -89,7 +89,7 @@ function ajaxObtenerProyectos() {
 function ajaxObtenerJuntasSoldadas(ProyectoID) {
     loadingStart();
 
-    $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), proyectoID: ProyectoID, todos: $('input:radio[name=Muestra]:checked').val(), lenguaje: $("#language").val(), reqID: requisicionID }).done(function (data) {
+    $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), proyectoID: ProyectoID, pruebaID: $("#tipoPrueba").data("kendoComboBox").value() == "" ? 0 : $("#tipoPrueba").data("kendoComboBox").value(), todos: $('input:radio[name=Muestra]:checked').val(), lenguaje: $("#language").val() }).done(function (data) {
         $("#grid").data('kendoGrid').dataSource.data([]);
         var ds = $("#grid").data("kendoGrid").dataSource;
         var array = data;
@@ -100,21 +100,20 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
 
         var jsonGridArmado = $("#grid").data("kendoGrid").dataSource._data;
 
-        var tipoPrueba = $("#tipoPrueba").data("kendoComboBox").value();
-        if (tipoPrueba != "" && tipoPrueba > 0)
-            for (i = jsonGridArmado.length - 1; i >= 0; i--) {
-                if (jsonGridArmado[i].PruebasID != tipoPrueba)
-                    jsonGridArmado.splice(i, 1);
-            }
-
-        if (jsonGridArmado.length > 0) {
-            if (jsonGridArmado[0].Folio != "")
-                $("#Folio").text(jsonGridArmado[0].Folio);
-            else
-                $("#Folio").text(_dictionary.CapturaSinAsinar[$("#language").data("kendoDropDownList").value()]);
-        }
-        else 
-            $("#Folio").text(_dictionary.CapturaSinAsinar[$("#language").data("kendoDropDownList").value()]);
+        //var tipoPrueba = $("#tipoPrueba").data("kendoComboBox").value();
+        //if (tipoPrueba != "" && tipoPrueba > 0)
+        //    for (i = jsonGridArmado.length - 1; i >= 0; i--) {
+        //        if (jsonGridArmado[i].PruebasID != tipoPrueba)
+        //            jsonGridArmado.splice(i, 1);
+        //    }
+        //if (jsonGridArmado.length > 0) {
+        //    if (jsonGridArmado[0].Folio != "")
+        //        $("#Folio").text(jsonGridArmado[0].Folio);
+        //    else
+        //        $("#Folio").text(_dictionary.CapturaSinAsinar[$("#language").data("kendoDropDownList").value()]);
+        //}
+        //else 
+        //    $("#Folio").text(_dictionary.CapturaSinAsinar[$("#language").data("kendoDropDownList").value()]);
 
         var ds = $("#grid").data("kendoGrid").dataSource;
         ds = jsonGridArmado;
@@ -126,10 +125,10 @@ function ajaxObtenerJuntasSoldadas(ProyectoID) {
 function AjaxCargarCamposPredeterminados() {
     loadingStart();
 
-    $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoFechaDimensionalPredeterminada }).done(function (data) {
-        var NewDate = kendo.toString(data, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
-        endRangeDate.val(NewDate);
-    });
+    //$ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoFechaDimensionalPredeterminada }).done(function (data) {
+    //    var NewDate = kendo.toString(data, _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]);
+    //    endRangeDate.val(NewDate);
+    //});
 
     $GenerarRequisicion.GenerarRequisicion.read({ token: Cookies.get("token"), lenguaje: $("#language").val() }).done(function (data) {
         if (data.Muestra == "Sincaptura") {

@@ -14,14 +14,14 @@ else
 IniciarCaptura();
 
 function IniciarCaptura() {
-    AltaFecha();
+    //AltaFecha();
     SuscribirEventos();
 };
 
 function changeLanguageCall() {
-    endRangeDate.data("kendoDatePicker").setOptions({
-        format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
-    });
+    //endRangeDate.data("kendoDatePicker").setOptions({
+    //    format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()]
+    //});
     CargarGrid();
     $("#tipoPrueba").data("kendoComboBox").value("");
     $("#Proyecto").data("kendoComboBox").value("");
