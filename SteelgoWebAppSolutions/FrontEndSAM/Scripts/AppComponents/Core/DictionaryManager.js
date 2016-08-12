@@ -6984,7 +6984,10 @@ _dictionary = {
         "es-MX": "LMP",
         "en-US": "CLN"
     },
-
+    "tituloDescargar": {
+        "es-MX": "DSCG",
+        "en-US": "DL"
+    },
     "botonEdtar": {
         "es-MX": "Editar",
         "en-US": "Edit"
@@ -10287,8 +10290,8 @@ _dictionary = {
         "en-US": "M2"
     },
     "PinturaCargaBackLogPeso": {
-        "es-MX": "Peso",
-        "en-US": "Weight"
+        "es-MX": "KG",
+        "en-US": "KG"
     },
     "PinturaCargaBackLogProyecto": {
         "es-MX": "Proyecto",
@@ -10322,7 +10325,18 @@ _dictionary = {
         "es-MX": "El carro no se puede editar porque esta cerrado ",
         "en-US": "The car can not be edited because is closed"
     },
-
+    "PinturaCargaMostrar": {
+        "es-MX": "Mostrar",
+        "en-US": "Show"
+    },
+    "PinturaCargaSinCaptura": {
+        "es-MX": "Sin captura",
+        "en-US": "Empty capture"
+    },
+    "PinturaCargaTodos": {
+        "es-MX": "Todos",
+        "en-US": "All"
+    },
     //#endregion
     //#region PinturaDescargaCarro
 
