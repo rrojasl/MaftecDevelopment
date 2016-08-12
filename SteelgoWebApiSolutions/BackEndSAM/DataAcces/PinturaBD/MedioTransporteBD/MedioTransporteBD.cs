@@ -296,7 +296,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             ColorPintura = item.ColorPintura,
                             MedioTransporteCargaID = item.MedioTransporteCargaID.GetValueOrDefault(),
                             OrdenImportancia = item.OrdenImportancia.GetValueOrDefault(),
-                            Peso = item.Peso.GetValueOrDefault()/1000,
+                            Peso = item.Peso.GetValueOrDefault(),
                             SistemaPintura = item.SistemaPintura,
                             SistemaPinturaID = item.SistemaPinturaID,
                             SpoolID = item.SpoolID,
@@ -310,8 +310,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                         });
 
                     }
-                    return ListadoDetalleMedioTransporteCarga.OrderByDescending(x => x.SpoolID);
-                    //
+                    return ListadoDetalleMedioTransporteCarga.OrderByDescending(x => x.SpoolJunta);
                 }
             }
             catch (Exception ex)

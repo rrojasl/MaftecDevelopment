@@ -146,6 +146,7 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
     {
         public string Vista { get; set; }
         public string Opcion { get; set; }
+        public string Muestra { get; set; }
     }
 
     public partial class Proyecto

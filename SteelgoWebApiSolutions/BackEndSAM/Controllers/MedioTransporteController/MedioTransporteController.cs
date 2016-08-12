@@ -26,13 +26,15 @@ namespace BackEndSAM.Controllers.MedioTransporteController
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                 string vista = (string)MedioTransporteBD.Instance.ObtenerCampoPredeterminado(usuario, lenguaje, 46);
                 string opcion = (string)MedioTransporteBD.Instance.ObtenerCampoPredeterminado(usuario, lenguaje, 34);
+                string muestra = (string)MedioTransporteBD.Instance.ObtenerCampoPredeterminado(usuario, lenguaje, 2048);
 
                 CamposPredeterminados medioTransporteCamposPredeterminados = new CamposPredeterminados();
 
                 medioTransporteCamposPredeterminados = new CamposPredeterminados
                 {
                     Vista = vista,
-                    Opcion = opcion
+                    Opcion = opcion,
+                    Muestra = muestra
                 };
 
                 return medioTransporteCamposPredeterminados;

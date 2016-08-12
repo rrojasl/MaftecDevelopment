@@ -105,6 +105,13 @@ function AjaxCargarCamposPredeterminados() {
         else if (data.Opcion == "Codigo") {
             $('input:radio[name=EmbarqueCargaTipoSeleccion]:nth(1)').attr('checked', true).trigger("change");
         }
+
+        if (data.Muestra == "sin Captura") {
+            $('input:radio[name=Muestra]:nth(0)').trigger("click");
+        } else if (data.Muestra == "Todos") {
+            $('input:radio[name=Muestra]:nth(1)').trigger("click");
+        }
+
         loadingStop();
     });
 
@@ -191,7 +198,7 @@ function AjaxAgregarCarga() {
                                             ds.insert(0, array[i]);
                                             displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
                                         } else {
-                                            displayNotify("PinturaCargaBackLogMensajeErrorServicioPintura", "", "1");
+                                            displayNotify("", _dictionary.PinturaCargaBackLogMensajeErrorServicioPintura[$("#language").data("kendoDropDownList").value()] + ds._data[0].SistemaPintura, "1");
                                         }
                                     } else {
                                         displayNotify("PinturaCargaCarroSpoolProyectoDiferente", "", '1');
@@ -244,9 +251,11 @@ function ImprimirAreaTonelada() {
             totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
         }
     }
-
+    totalToneladasCargadas = totalToneladasCargadas / 1000;
+    $("#labelM2").css('text-align', 'right');
+    $("#labelToneladas").css('text-align', 'right');
     $("#labelM2").text(totalAreaCargada.toFixed(2));
-    $("#labelToneladas").text(totalToneladasCargadas.toFixed(4));
+    $("#labelToneladas").text(totalToneladasCargadas.toFixed(2));
     return totalAreaCargada;
 }
 
@@ -261,9 +270,12 @@ function ImprimirAreaToneladaBackLog() {
             totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
         }
     }
+    totalToneladasCargadas = totalToneladasCargadas / 1000;
 
+    $("#labelM22").css('text-align', 'right');
+    $("#labelToneladas2").css('text-align', 'right');
     $("#labelM22").text(totalAreaCargada.toFixed(2));
-    $("#labelToneladas2").text(totalToneladasCargadas.toFixed(4));
+    $("#labelToneladas2").text(totalToneladasCargadas.toFixed(2));
     return totalAreaCargada;
 }
 
@@ -498,7 +510,7 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                         });                   
                 }
                 else {
-                    displayNotify("PinturaCargaBackLogMensajeErrorServicioPintura", "", "1");
+                    displayNotify("", _dictionary.PinturaCargaBackLogMensajeErrorServicioPintura[$("#language").data("kendoDropDownList").value()] + ListaDetalles[0].SistemaPintura, "1");
                 }
             }
         } else {
@@ -513,9 +525,13 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
 function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCargaID) {
     loadingStart();
     var MedioTransporteID = $("#inputCarroBacklog").data("kendoComboBox").value();
-    if (MedioTransporteCargaID == 0 && $('#inputCarro').val() != "") MedioTransporteCargaID = $('#inputCarro').val();
+    if (MedioTransporteCargaID == undefined) {
+        MedioTransporteCargaID = 0;
+        MedioTransporteID = 0;
+    }
+    var muestra = $('input:radio[name=Muestra]:checked').val();
 
-    $CargaCarroBackLog.CargaCarroBackLog.read({ medioTransporteCargaID: MedioTransporteCargaID, medioTransporteID: MedioTransporteID, token: Cookies.get("token"), proyectoID: $("#inputProyecto").data("kendoComboBox").value(), todos: 1 }).done(function (data) {
+    $CargaCarroBackLog.CargaCarroBackLog.read({ medioTransporteCargaID: MedioTransporteCargaID, medioTransporteID: MedioTransporteID, token: Cookies.get("token"), proyectoID: $("#inputProyecto").data("kendoComboBox").value(), todos: muestra }).done(function (data) {
         $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
         var ds = $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource;
         var array = data;
@@ -552,11 +568,11 @@ function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCarg
         });
 
         $("#grid[nombre='grid-backlog']").data("kendoGrid").setDataSource(localDataSource);
+        //$("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource.data(data);
         CustomisaGrid($("#grid[nombre='grid-backlog']"));
         if (cargarSpoolsDespuesDeCargar) {
             opcionHabilitarViewBacklog(true, "FieldSetView");
         }
-
         ImprimirAreaToneladaBackLog();
         loadingStop();
     });
@@ -634,5 +650,15 @@ function AjaxObtieneMedioTransporteCargado(medioTransporteId, tipoVista) {
             
             
         }
+    });
+}
+
+
+// ICD Carga el catalogo de Cuadrantes para la descarga de Spools en el carrito
+function AjaxCargarCuadrante(area) {
+    $Cuadrante.Cuadrante.read({ token: Cookies.get("token"), AreaID: area }).done(function (data) {
+        $("#inputCuadrantePopup").data("kendoComboBox").value("");
+        $("#inputCuadrantePopup").data("kendoComboBox").dataSource.data(data);
+        
     });
 }
