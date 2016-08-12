@@ -24,6 +24,8 @@
 
                     options.model.TurnoLaboralID = 0;
                     options.model.TurnoLaboral = "";
+                    options.model.Capacidad = "";
+                    options.model.JuntasAsignadas = "";
                     if (options.model.Accion == 4)
                         options.model.Accion = 2;
                     $("#grid").data("kendoGrid").dataSource.sync();
@@ -37,6 +39,8 @@
 
                     options.model.TurnoLaboralID = 0;
                     options.model.TurnoLaboral = "";
+                    options.model.Capacidad = "";
+                    options.model.JuntasAsignadas = "";
                 }
                     //options.model.Proveedor = ObtenerDescCorrectaProveedor(options.model.ListaProveedor, options.model.ProveedorID);
 
@@ -146,14 +150,21 @@ function RenderComboBoxTurnoLaboral(container, options) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
                 
                 if (dataItem != undefined) {
-                    options.model.TurnoLaboralID = dataItem.TurnoLaboralID;
-                    options.model.TurnoLaboral = dataItem.Turno;
+                    var juntasSuma = parseInt(dataItem.JuntasAsignadas) + parseInt(options.model.CantidadJuntas);
+                    if (juntasSuma < dataItem.Capacidad) {
+                        options.model.TurnoLaboralID = dataItem.TurnoLaboralID;
+                        options.model.TurnoLaboral = dataItem.Turno;
+                        options.model.Capacidad = dataItem.Capacidad;
+                        options.model.JuntasAsignadas = juntasSuma;
+                    }
                 }
                 else{
                     options.model.TurnoLaboralID = 0;
                     options.model.TurnoLaboral = "";
+                    options.model.Capacidad = "";
+                    options.model.JuntasAsignadas = "";
                 }
-
+                $("#grid").data("kendoGrid").dataSource.sync();
             }
         }
       );

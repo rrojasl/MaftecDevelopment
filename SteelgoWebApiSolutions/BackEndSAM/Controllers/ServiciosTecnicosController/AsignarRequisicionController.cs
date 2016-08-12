@@ -13,6 +13,29 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AsignarRequisicionController : ApiController
     {
+
+
+        [HttpGet]
+        public object ObtenerListaProyectos(string token)
+        {
+            string payload = "";
+            string newToken = "";
+            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
+            if (tokenValido)
+            {
+                return AsignarRequisicionBD.Instance.getListaProyectos();
+            }
+            else
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(payload);
+                result.ReturnCode = 401;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = false;
+                return result;
+            }
+        }
+
         public object Get(string lenguaje, string token, int idPrueba, int ConsultaDetalle)
         {
             //Create a generic return object
@@ -38,7 +61,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
         }
 
         //Carga los datos del grid
-        public object Get(string lenguaje, string token, string mostrar, int idPrueba)
+        public object Get(string lenguaje, string token, string mostrar, int idPrueba, int proyectoID)
         {
             //Create a generic return object
             string payload = "";
@@ -50,7 +73,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
                 int tipoVista = mostrar == "Todos" ? 1 : 2;
                 
-                return AsignarRequisicionBD.Instance.ObtenerRequisicionAsignacion(lenguaje, tipoVista, idPrueba);
+                return AsignarRequisicionBD.Instance.ObtenerRequisicionAsignacion(lenguaje, tipoVista, idPrueba, proyectoID);
             }
             else
             {

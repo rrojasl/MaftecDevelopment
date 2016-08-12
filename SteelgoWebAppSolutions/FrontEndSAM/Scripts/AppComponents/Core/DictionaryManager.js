@@ -9043,6 +9043,14 @@ _dictionary = {
         "es-MX": "Turno",
         "en-US": "Inning"
     },
+    "AsignarRequisicionHeaderJuntasAsignadas": {
+        "es-MX": "Jts Asg",
+        "en-US": "Jnts Asg"
+    },
+    "AsignarRequisicionHeaderCapacidad": {
+        "es-MX": "Cap",
+        "en-US": "Cap"
+    },
 
 
     //#endregion

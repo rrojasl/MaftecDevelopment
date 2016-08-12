@@ -1,7 +1,9 @@
 ﻿function AjaxObtenerStatus() {
     
     $RequisicionesAsignadas.RequisicionesAsignadas.read({ lenguaje: $("#language").val(), token: Cookies.get("token") }).done(function (data) {
-        AgregarStatusDinamicos(data)
+        if (Error(data)) {
+            AgregarStatusDinamicos(data);
+        }
     });
 }
 
@@ -9,23 +11,25 @@ function AjaxAccionesListado(idStatus) {
     loadingStart();
 
     $RequisicionesAsignadas.RequisicionesAsignadas.read({ lenguaje: $("#language").val(), token: Cookies.get("token"), idStatus: idStatus, }).done(function (data) {
-        if (data.length > 0) {
-            $("#grid").data("kendoGrid").dataSource.data([]);
-            //$("#grid").data("kendoGrid").dataSource.data(data);
+        if (Error(data)) {
+            if (data.length > 0) {
+                $("#grid").data("kendoGrid").dataSource.data([]);
+                //$("#grid").data("kendoGrid").dataSource.data(data);
 
-            var ds = $("#grid").data("kendoGrid").dataSource;
-            var array = data;
+                var ds = $("#grid").data("kendoGrid").dataSource;
+                var array = data;
 
-            for (var i = 0; i < array.length; i++) {
-                array[i].FechaAsignacion = new Date(ObtenerDato(array[i].FechaAsignacion, 1), ObtenerDato(array[i].FechaAsignacion, 2), ObtenerDato(array[i].FechaAsignacion, 3));//año, mes, dia
-                ds.add(array[i]);
-            }
+                for (var i = 0; i < array.length; i++) {
+                    array[i].FechaAsignacion = new Date(ObtenerDato(array[i].FechaAsignacion, 1), ObtenerDato(array[i].FechaAsignacion, 2), ObtenerDato(array[i].FechaAsignacion, 3));//año, mes, dia
+                    ds.add(array[i]);
+                }
 
-            $("#grid").data("kendoGrid").dataSource.page(1);
-        } else {
-            $("#grid").data("kendoGrid").dataSource.data([]);
-            $("#grid").data("kendoGrid").dataSource.page(0);
-        };
+                $("#grid").data("kendoGrid").dataSource.page(1);
+            } else {
+                $("#grid").data("kendoGrid").dataSource.data([]);
+                $("#grid").data("kendoGrid").dataSource.page(0);
+            };
+        }
         loadingStop();
     });
 };

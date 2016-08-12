@@ -34,7 +34,7 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                                 Capacidad = item.Capacidad,
                                 
                                 ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, idPrueba, item.ProveedorID),
-                                ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje)
+                                ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje,item.ProveedorID)
                             });
                         }
                     }
@@ -79,13 +79,47 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                 return _instance;
             }
         }
-        public object ObtenerRequisicionAsignacion(string lenguaje, int tipoVista, int idPrueba)
+
+
+        public object getListaProyectos()
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result> result = ctx.Sam3_ServiciosTecnicos_Get_RequisicionAsignacion(lenguaje, tipoVista,idPrueba).ToList();
+                    List<Proyecto> listaProyectos = new List<Proyecto>();
+                    listaProyectos.Add(new Proyecto());
+                    List<Sam3_SteelGo_Get_Proyectos_Result> result = ctx.Sam3_SteelGo_Get_Proyectos().ToList();
+                    foreach (Sam3_SteelGo_Get_Proyectos_Result item in result)
+                    {
+                        listaProyectos.Add(new Proyecto
+                        {
+                            Nombre = item.Nombre,
+                            ProyectoID = item.ProyectoID
+                        });
+                    }
+                    return listaProyectos.OrderBy(x => x.Nombre).ToList<Proyecto>();
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+
+                return result;
+            }
+        }
+
+        public object ObtenerRequisicionAsignacion(string lenguaje, int tipoVista, int idPrueba, int proyectoID)
+        {
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    List<Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result> result = ctx.Sam3_ServiciosTecnicos_Get_RequisicionAsignacion(lenguaje, tipoVista,idPrueba,proyectoID).ToList();
                     List<RequisicionAsignacion> ListadoRequisicionAsignacion = new List<RequisicionAsignacion>();
 
 
@@ -101,6 +135,8 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             Observacion = item.Observacion,
                             Fecha = item.Fecha,
                             CantidadJuntas = item.CantidadJuntas,
+                            Capacidad = item.Capacidad == 0 ? "" : item.Capacidad.ToString(),
+                            JuntasAsignadas = item.JuntasAsignadas.GetValueOrDefault() == 0 ? "" : item.JuntasAsignadas.GetValueOrDefault().ToString(),
                             ProveedorID = item.ProveedorID.GetValueOrDefault(),
                             Proveedor = item.Proveedor == null ? "" : item.Proveedor,
                             RequisicionID = item.RequisicionID,
@@ -113,8 +149,8 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             TurnoLaboralID = item.TurnoLaboralID.GetValueOrDefault(),
                             ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID.GetValueOrDefault(), item.ProveedorID.GetValueOrDefault()),
                             ListaHerramientaPruebaProveedorPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID.GetValueOrDefault(), item.ProveedorID.GetValueOrDefault()),
-                            ListaTurnoLaboral =  new List<TurnoLaboral>(),
-                            ListaTurnoLaboralTotal = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje),
+                            ListaTurnoLaboral =  (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, item.ProveedorID.GetValueOrDefault()),
+                            ListaTurnoLaboralTotal = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, 0),
                             ListadoDetalleJuntasRequisicion = (List<JsonRequisicion>)getDetalleJuntas(item.ProyectoID.GetValueOrDefault(),1,item.RequisicionID,lenguaje)
                         });
                     }
@@ -168,15 +204,19 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                 return result;
             }
         }
-        public object ObtenerListaTurnoLaboral(string lenguaje)
+        public object ObtenerListaTurnoLaboral(string lenguaje, int ProveedorID)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje,ProveedorID).ToList();
 
                     List<TurnoLaboral> ListadoTurnoLaboral = new List<TurnoLaboral>();
+                    if(ProveedorID != 0)
+                    {
+                        ListadoTurnoLaboral.Add(new TurnoLaboral());
+                    }
 
                     foreach (Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result item in result)
                     {
@@ -184,7 +224,9 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                         {
                             Turno = item.Turno,
                             TurnoLaboralID = item.TurnoLaboralID,
-                            ProveedorID = item.ProveedorID
+                            ProveedorID = item.ProveedorID,
+                            Capacidad = item.Capacidad.GetValueOrDefault(),
+                            JuntasAsignadas = item.JuntasAsignadas
                         });
                     }
                     return ListadoTurnoLaboral;
@@ -202,17 +244,39 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
             }
         }
 
-        public object getDetalleJuntas(int proyectoID, int todos, int requisicionID, string lenguaje)
+        public List<Sam3_ServiciosTecnicos_Get_DetalleJuntasXRequisicion_Result> getDetalleJuntasRequisicion( int reqID, string lenguaje)
         {
-            List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> listaResult = null;
+            List<Sam3_ServiciosTecnicos_Get_DetalleJuntasXRequisicion_Result> listaResult = null;
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID, todos, requisicionID, 1, lenguaje).ToList();
+                    listaResult = ctx.Sam3_ServiciosTecnicos_Get_DetalleJuntasXRequisicion( reqID,lenguaje).ToList();
+                    return listaResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                TransactionalInformation result = new TransactionalInformation();
+                result.ReturnMessage.Add(ex.Message);
+                result.ReturnCode = 500;
+                result.ReturnStatus = false;
+                result.IsAuthenicated = true;
+                return listaResult;
+            }
+        }
+
+        public object getDetalleJuntas(int proyectoID, int todos, int requisicionID, string lenguaje)
+        {
+            List<Sam3_ServiciosTecnicos_Get_DetalleJuntasXRequisicion_Result> listaResult = null;
+            try
+            {
+                using (SamContext ctx = new SamContext())
+                {
+                    listaResult = ctx.Sam3_ServiciosTecnicos_Get_DetalleJuntasXRequisicion(requisicionID,lenguaje).ToList();
                     List<JsonRequisicion> listaJson = new List<JsonRequisicion>();
-                    List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(proyectoID, todos, requisicionID, lenguaje);
-                    foreach (Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result item in lista)
+                    List<Sam3_ServiciosTecnicos_Get_DetalleJuntasXRequisicion_Result> lista = AsignarRequisicionBD.Instance.getDetalleJuntasRequisicion(requisicionID, lenguaje);
+                    foreach (Sam3_ServiciosTecnicos_Get_DetalleJuntasXRequisicion_Result item in lista)
                     {
                         JsonRequisicion elemento;
                         try

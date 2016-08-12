@@ -4,6 +4,7 @@
     suscribirEventoChangeRadio();
     suscribirEventoJuntas();
     SuscribirEventoCerrarPopUpJuntas();
+    SuscribirEventoComboProyecto();
 };
 
 
@@ -50,7 +51,8 @@ function SuscribirEventoComboPrueba() {
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
-                setTimeout(function () { AjaxCargarRequisicionAsignacion() }, 500);
+                AjaxCargarRequisicionAsignacion();
+
             }
             else {
                 $("#inputPrueba").data("kendoComboBox").value("");
@@ -60,6 +62,29 @@ function SuscribirEventoComboPrueba() {
     });
     
 };
+
+function SuscribirEventoComboProyecto() {
+    $('#inputProyecto').kendoComboBox({
+        dataTextField: "Nombre",
+        dataValueField: "ProyectoID",
+        suggest: true,
+        filter: "contains",
+        index: 3,
+        change: function (e) {
+            dataItem = this.dataItem(e.sender.selectedIndex);
+            if (dataItem != undefined) {
+                AjaxCargarRequisicionAsignacion();
+                AjaxPruebas();
+            }
+            else {
+                $("#inputPrueba").data("kendoComboBox").value("");
+
+            }
+        }
+    });
+
+};
+
 
 function Limpiar() {
     $("#inputProveedor").data("kendoComboBox").value("")

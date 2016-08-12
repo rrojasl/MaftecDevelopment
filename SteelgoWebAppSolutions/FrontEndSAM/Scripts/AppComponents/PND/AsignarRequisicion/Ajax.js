@@ -1,5 +1,15 @@
 ﻿var CampoMuestra = 29;
 
+
+function AjaxObtenerProyectos() {
+    $AsignarRequisicion.AsignarRequisicion.read({ token: Cookies.get("token") }).done(function (data) {
+        $("#inputProyecto").data("kendoComboBox").value("");
+        $("#inputProyecto").data("kendoComboBox").dataSource.data(data);
+    });
+}
+
+
+
 function AjaxPruebas() {
     loadingStart();
     $Pruebas.Pruebas.read({ token: Cookies.get("token"), proyectoID: 0, lenguaje: $("#language").val() }).done(function (data) {
@@ -40,28 +50,29 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 
 function AjaxCargarRequisicionAsignacion() {
     loadingStart();
-    $AsignarRequisicion.AsignarRequisicion.read({ lenguaje: $("#language").val(), token: Cookies.get("token"), mostrar: $('input:radio[name=Muestra]:checked').val(), idPrueba: $("#inputPrueba").val() == "" ? 0 : $("#inputPrueba").val() }).done(function (data) {
-        if (Error(data)) {
-            $("#grid").data("kendoGrid").dataSource.data([]);
-            //$("#grid").data("kendoGrid").dataSource.data(data);
+    if ($("#inputProyecto").data("kendoComboBox").value() != "") {
+        $AsignarRequisicion.AsignarRequisicion.read({ lenguaje: $("#language").val(), token: Cookies.get("token"), mostrar: $('input:radio[name=Muestra]:checked').val(), idPrueba: $("#inputPrueba").val() == "" ? 0 : $("#inputPrueba").val(), proyectoID: $("#inputProyecto").data("kendoComboBox").value() }).done(function (data) {
+            if (Error(data)) {
+                $("#grid").data("kendoGrid").dataSource.data([]);
+                //$("#grid").data("kendoGrid").dataSource.data(data);
 
-            var ds = $("#grid").data("kendoGrid").dataSource;
-            var array = data;
+                var ds = $("#grid").data("kendoGrid").dataSource;
+                var array = data;
 
-            for (var i = 0; i < array.length; i++) {
-                loadingStart();
-                array[i].Fecha = new Date(ObtenerDato(array[i].Fecha, 1), ObtenerDato(array[i].Fecha, 2), ObtenerDato(array[i].Fecha, 3));//año, mes, dia
-                ds.add(array[i]);
+                for (var i = 0; i < array.length; i++) {
+
+                    array[i].Fecha = new Date(ObtenerDato(array[i].Fecha, 1), ObtenerDato(array[i].Fecha, 2), ObtenerDato(array[i].Fecha, 3));//año, mes, dia
+                    ds.add(array[i]);
+                }
+
+
+                if ($("#inputProveedor").val() == "")
+                    AjaxProveedor(0);
             }
+            loadingStop();
 
-
-            if ($("#inputProveedor").val() == "")
-                AjaxProveedor(0);
-        }
-        loadingStop();
-
-    });
-
+        });
+    }
 }
 
 function AjaxCargarCamposPredeterminados() {
@@ -96,7 +107,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
         var i = 0;
 
         for (index = 0; index < arregloCaptura.length; index++) {
-            ListaDetalles[i] = { Accion: "",RequisicionAsignacionID : "", RequisicionID: "", ProveedorID: "", HerramientadePruebaID: "", TurnoLaboralID: "", Fecha: "", Estatus: 1 };
+            ListaDetalles[i] = { Accion: "", RequisicionAsignacionID: "", RequisicionID: "", ProveedorID: "", HerramientadePruebaID: "", TurnoLaboralID: "", Fecha: "", Estatus: 1 };
 
             ListaDetalles[i].Accion = arregloCaptura[index].Accion;
             ListaDetalles[i].RequisicionAsignacionID = arregloCaptura[index].RequisicionAsignacionID;
@@ -126,7 +137,7 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                     }
                 }
             }
-            
+
             i++;
 
         }

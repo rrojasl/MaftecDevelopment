@@ -15,6 +15,8 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
             ProveedorID = 0;
             Nombre = "";
             Capacidad = "";
+            ListaHerramientaPrueba = new List<HerramientaPrueba>();
+            ListaTurnoLaboral = new List<TurnoLaboral>();
         }
         public int ProveedorID { get; set; }
         public string Nombre { get; set; }
@@ -37,6 +39,7 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
         public int CantidadJuntas { get; set; }
         public int ProveedorID { get; set; }
         public string Proveedor { get; set; }
+        public string Capacidad { get; set; }
         public List<Proveedor> ListaProveedor { get; set; }
         public int HerramientadePruebaID { get; set; }
         public string HerramientadePrueba { get; set; }
@@ -47,6 +50,7 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
         public List<TurnoLaboral> ListaTurnoLaboral { get; set; }
         public List<TurnoLaboral> ListaTurnoLaboralTotal { get; set; }
         public List<JsonRequisicion> ListadoDetalleJuntasRequisicion { get; set; }
+        public string JuntasAsignadas { get; set; }
     }
 
     public class HerramientaPrueba
@@ -67,10 +71,20 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
 
     public class TurnoLaboral
     {
+        public TurnoLaboral()
+        {
+            TurnoLaboralID = 0;
+            Turno = "";
+            ProveedorID = 0;
+            Capacidad = 0;
+            JuntasAsignadas = 0;
+        }
+
         public int TurnoLaboralID { get; set; }
         public string Turno { get; set; }
         public int ProveedorID { get; set; }
-        
+        public int Capacidad { get; set; }
+        public int JuntasAsignadas { get; set; }
     }
 
     public class GuardarRequisicionAsignacion
@@ -88,4 +102,5 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
     {
         public List<GuardarRequisicionAsignacion> Detalles { get; set; }
     }
+
 }
