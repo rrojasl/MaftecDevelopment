@@ -1249,3 +1249,7 @@ button[data-bind="visible:operatorVisible"] {
     border:none!important;
     box-shadow:none;
 }
+
+.k-grid-footer{
+    padding-right: 0px!important;
+}

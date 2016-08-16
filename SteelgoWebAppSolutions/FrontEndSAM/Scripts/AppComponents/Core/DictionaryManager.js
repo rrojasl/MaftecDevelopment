@@ -7341,8 +7341,8 @@ _dictionary = {
         "en-US": "You can not add Spools of different projects"
     },
     "PinturaCargaSpoolCargadoEnCarro": {
-        "es-MX": "El spool ya fue cargado en el carro: ",
-        "en-US": "The spool is charged in the car"
+        "es-MX": "El spool ya fue cargado en el carro ",
+        "en-US": "The spool is charged in the car "
     },
     "PinturaCargaCarroMensajeErrorNombreCarro": {
         "es-MX": "El nombre del carro es mandatorio",
@@ -10345,6 +10345,20 @@ _dictionary = {
         "es-MX": "Descargar",
         "en-US": "Discharge"
     },
+    "PinturaCargaCerrarPopup": {
+        "es-MX": "Cerrar",
+        "en-US": "Close"
+    },
+    "mensajeDescargaSpoolPinturaCarga": {
+        "es-MX": "El spool será descargado del carrito. Seleccione el cuadrante de descarga",
+        "en-US": "The spool will discharge cart. Select the quadrant discharge"
+
+    },
+    "PinturaSpoolErrorCabina": {
+        "es-MX": "El spool no está disponible, esta en proceso de pintura",
+        "en-US": "The spool is unavailable, this in the process of painting"
+
+    },
     //#endregion
     //#region PinturaDescargaCarro
 
@@ -10399,8 +10413,8 @@ _dictionary = {
         "en-US": "The carr was created sucessfull"
     },
     "PinturaErrorGuardarNuevoCarro": {
-        "es-MX": "¿Cuantas veces puede ser ocupado el carro?",
-        "en-US": "how many times the car can be used?"
+        "es-MX": "El carro ya existe",
+        "en-US": "The car already exists"
     },
     "labelNumeroVeces": {
         "es-MX": "¿Cuantas veces puede ser ocupado el carro?",
