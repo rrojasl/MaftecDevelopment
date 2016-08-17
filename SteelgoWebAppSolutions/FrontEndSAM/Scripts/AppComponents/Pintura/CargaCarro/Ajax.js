@@ -44,7 +44,7 @@
 }
 
 function AjaxPinturaCargaMedioTransporte() {
-    loadingStart();
+   
 
     $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), proyectoID: $("#inputProyecto").data("kendoComboBox").value() }).done(function (data) {
         $("#inputCarro").data("kendoComboBox").dataSource.data([]);
@@ -72,12 +72,13 @@ function AjaxPinturaCargaMedioTransporte() {
                 } else {
                     $("#inputCarroBacklog").data("kendoComboBox").value(newCar.MedioTransporteID);
                     $("#inputCarroBacklog").data("kendoComboBox").trigger("change");
-                    AjaxCargarSpoolBacklog(false, newCar.MedioTransporteCargaID);
+                    AjaxCargarSpoolBacklog(false, newCar.MedioTransporteID);
                 }                
                 $("#InputNombre").val("");
             }
         }
-        loadingStop();
+        $("#inputCarroBacklog").data("kendoComboBox").value(0);
+        
     });
 }
 
@@ -135,18 +136,22 @@ function AjaxObtenerListaProyectos() {
 }
 
 function AjaxAgregarCarga() {
+    
 
-    if ($("#inputProyecto").data("kendoComboBox").value() != "-1" && $("#inputProyecto").data("kendoComboBox").value() != "") {
-    if ($("#inputCarro").data("kendoComboBox").value() != "-1" && $("#inputCarro").data("kendoComboBox").value() != "") {
+    if ($("#inputProyecto").data("kendoComboBox").value() != "-1" && $("#inputProyecto").data("kendoComboBox").value() != "" &&
+            $("#inputProyecto").data("kendoComboBox").value() != "0") {
+        if ($("#inputCarro").data("kendoComboBox").value() != "-1" && $("#inputCarro").data("kendoComboBox").value() != "" &&
+            $("#inputCarro").data("kendoComboBox").value() != "0") {
 
         if ((ObtenerTipoConsulta() == 1 && $("#InputID").data("kendoComboBox").value() !="") || (ObtenerTipoConsulta() == 2 && $("#inputCodigo").val() != "")) {
             loadingStart();
-
+            var proyectoID = parseInt($("#inputProyecto").data("kendoComboBox").value());
             Captura = [];
             Captura[0] = { Detalles: "" };
             ListaDetalles = [];
 
             var index = 0;
+
 
             ListaDetalles[index] = { TipoConsulta: "", OrdenTrabajoSpoolID: "", Codigo: "" };
             ListaDetalles[index].TipoConsulta = ObtenerTipoConsulta();
@@ -177,38 +182,43 @@ function AjaxAgregarCarga() {
 
                     for (var i = 0; i < array.length; i++) {
                         if (!validarInformacion(array[i])) {
-                            if (ds._data.length == 0) {
-                                if (array[i].NombreMedioTransporte == "") {
+                            if (array[i].SpoolID != 0) {
+                                if (ds._data.length == 0) {
+                                    if (array[i].NombreMedioTransporte == "") {
 
-                                    if (array[i].ProyectoID == parseInt($("#inputProyecto").data("kendoComboBox").value())) {
-                                        ds.insert(0, array[i]);
-                                        displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
-                                    } else {
-                                        displayNotify("PinturaCargaCarroSpoolProyectoEquivocado", "", '1');
-                                    }
-                                } else {
-                                    displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
-                                }
-
-                            }
-                            else {
-                                if (array[i].NombreMedioTransporte == "") {
-                                    if (array[i].ProyectoID == ds._data[0].ProyectoID) {
-                                        if (array[i].SistemaPintura == ds._data[0].SistemaPintura) {
+                                        if (array[i].ProyectoID == proyectoID) {
                                             ds.insert(0, array[i]);
                                             displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
                                         } else {
-                                            displayNotify("", _dictionary.PinturaCargaBackLogMensajeErrorServicioPintura[$("#language").data("kendoDropDownList").value()] + ds._data[0].SistemaPintura, "1");
+                                            displayNotify("PinturaCargaCarroSpoolProyectoEquivocado", "", '1');
                                         }
                                     } else {
-                                        displayNotify("PinturaCargaCarroSpoolProyectoDiferente", "", '1');
+                                        displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
                                     }
+
                                 }
                                 else {
-                                    displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
-                                    
+                                    if (array[i].NombreMedioTransporte == "") {
+                                        if (array[i].ProyectoID == proyectoID) {
+                                            if (array[i].SistemaPintura == ds._data[0].SistemaPintura) {
+                                                ds.insert(0, array[i]);
+                                                displayNotify("", _dictionary.PinturaAgregaCargaExito[$("#language").data("kendoDropDownList").value()] + array[i].SpoolJunta, '0');
+                                            } else {
+                                                displayNotify("", _dictionary.PinturaCargaBackLogMensajeErrorServicioPintura[$("#language").data("kendoDropDownList").value()] + ds._data[0].SistemaPintura, "1");
+                                            }
+                                        } else {
+                                            displayNotify("PinturaCargaCarroSpoolProyectoDiferente", "", '1');
+                                        }
+                                    }
+                                    else {
+                                        displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
+
+                                    }
                                 }
+                            } else {
+
                             }
+                            
                         } else {
                             displayNotify("", _dictionary.PinturaCargaSpoolCargadoEnCarro[$("#language").data("kendoDropDownList").value()] + array[i].NombreMedioTransporte, "1");
                         }
@@ -245,17 +255,32 @@ function ImprimirAreaTonelada() {
     var array = ds._data;
     var totalAreaCargada = 0;
     var totalToneladasCargadas = 0;
-    for (var i = 0; i < array.length; i++) {
-        if (array[i]["Accion"] == 1 || array[i]["Accion"] == 2) {
-            totalAreaCargada += parseFloat(array[i]["Area"], 10);
-            totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
+    var curr_filters = ds.filter().filters;
+
+    if (ds._data.length > 0) {
+
+        for (var i = 0; i < array.length; i++) {
+            if(curr_filters.length>1){
+                if (array[i]["Accion"] == 1 || array[i]["Accion"] == 2) {
+                    totalAreaCargada += parseFloat(array[i]["Area"], 10);
+                    totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
+                }
+            } else {
+                if (array[i]["Accion"] == 1) {
+                    totalAreaCargada += parseFloat(array[i]["Area"], 10);
+                    totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
+                }
+            }
         }
+
+        totalToneladasCargadas = totalToneladasCargadas / 1000;
+
+        $("#labelM2").css('text-align', 'right');
+        $("#labelToneladas").css('text-align', 'right');
+        $("#labelM2").text(totalAreaCargada.toFixed(2));
+        $("#labelToneladas").text(totalToneladasCargadas.toFixed(2));
     }
-    totalToneladasCargadas = totalToneladasCargadas / 1000;
-    $("#labelM2").css('text-align', 'right');
-    $("#labelToneladas").css('text-align', 'right');
-    $("#labelM2").text(totalAreaCargada.toFixed(2));
-    $("#labelToneladas").text(totalToneladasCargadas.toFixed(2));
+    
     return totalAreaCargada;
 }
 
@@ -264,18 +289,29 @@ function ImprimirAreaToneladaBackLog() {
     var array = ds._data;
     var totalAreaCargada = 0;
     var totalToneladasCargadas = 0;
-    for (var i = 0; i < array.length; i++) {
-        if ((array[i]["Accion"] == 1 || array[i]["Accion"] == 2) && array[i].Seleccionado) {
-            totalAreaCargada += parseFloat(array[i]["Metros2"], 10);
-            totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
-        }
-    }
-    totalToneladasCargadas = totalToneladasCargadas / 1000;
+    var curr_filters = ds.filter().filters;
 
-    $("#labelM22").css('text-align', 'right');
-    $("#labelToneladas2").css('text-align', 'right');
-    $("#labelM22").text(totalAreaCargada.toFixed(2));
-    $("#labelToneladas2").text(totalToneladasCargadas.toFixed(2));
+    if (ds._data.length > 0) {
+        for (var i = 0; i < array.length; i++) {
+            if(curr_filters.length>1){                
+                if ((array[i]["Accion"] == 1 || array[i]["Accion"] == 2) && array[i].Seleccionado) {
+                    totalAreaCargada += parseFloat(array[i]["Metros2"], 10);
+                    totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
+                }
+            } else {
+                if (array[i]["Accion"] == 1 && array[i].Seleccionado) {
+                    totalAreaCargada += parseFloat(array[i]["Metros2"], 10);
+                    totalToneladasCargadas += parseFloat(array[i]["Peso"], 10);
+                }
+            }
+        }
+        totalToneladasCargadas = totalToneladasCargadas / 1000;
+
+        $("#labelM22").css('text-align', 'right');
+        $("#labelToneladas2").css('text-align', 'right');
+        $("#labelM22").text(totalAreaCargada!=0?totalAreaCargada.toFixed(2):"");
+        $("#labelToneladas2").text(totalToneladasCargadas!=0?totalToneladasCargadas.toFixed(2):"");
+    }
     return totalAreaCargada;
 }
 
@@ -334,7 +370,7 @@ function SumarToneladaBacklog() {
 function AjaxObtenerDetalleCarroCargado(MedioTransporteID) {
     loadingStart();
 
-    $MedioTransporte.MedioTransporte.read({ medioTransporteID: MedioTransporteID, proyectoID: $("#inputProyecto").data("kendoComboBox").value(), token: Cookies.get("token"), lenguaje: $("#language").val(), todos: 1 }).done(function (data) {
+    $MedioTransporte.MedioTransporte.read({ medioTransporteCargaID: 0, medioTransporteID: MedioTransporteID, proyectoID: $("#inputProyecto").data("kendoComboBox").value(), token: Cookies.get("token"), lenguaje: $("#language").val(), todos: 1 }).done(function (data) {
         $("#grid").data('kendoGrid').dataSource.data([]);
         $("#labelM2").text('');
         $("#labelToneladas").text('');
@@ -349,6 +385,12 @@ function AjaxObtenerDetalleCarroCargado(MedioTransporteID) {
                 if (!validarInformacion(array[i])) {
                     ds.add(array[i]);
                 }
+            }
+
+            if(array[0].CarroCerrado){
+                $("#chkCerrar2")[0].checked = true;
+            } else {
+                $("#chkCerrar2")[0].checked = false;
             }
 
             ImprimirAreaTonelada();
@@ -375,23 +417,26 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
     try {
         var guardadoExitoso = false;
         var mediosDeTransporteEnElGrid = $("#grid").data("kendoGrid").dataSource._data;
+        var carroCerrado = $("#inputCarro").attr("mediotransportecerrado");
+        
         if (mediosDeTransporteEnElGrid.length > 0) {
             loadingStart();
             Captura = [];
             Captura[0] = { Detalles: "" };
             ListaGuardarDetalles = [];
 
-
             for (index = 0; index < arregloCaptura.length; index++) {
-                ListaGuardarDetalles[index] = { SpoolID: "", MedioTransporteCargaID: $("#inputCarro").attr("mediotransporteid"), Accion: "" };
+                ListaGuardarDetalles[index] = { SpoolID: "", MedioTransporteCargaID: 0, Accion: "", CuadranteID: 0 };
                 ListaGuardarDetalles[index].Accion = arregloCaptura[index].Accion;
                 ListaGuardarDetalles[index].SpoolID = arregloCaptura[index].SpoolID;
+                ListaGuardarDetalles[index].CuadranteID = arregloCaptura[index].CuadranteID;
+                ListaGuardarDetalles[index].MedioTransporteCargaID = arregloCaptura[index].MedioTransporteCargaID;
             }
 
             Captura[0].Detalles = ListaGuardarDetalles;
 
                 var disponible = 1;
-                if ($('#chkCerrar2').is(':checked')) {
+                if ($('#chkCerrar2').is(':checked') && !carroCerrado) {
                     disponible = 0;
                 }
                 var medioTransporteID = $("#inputCarro").data("kendoComboBox").value();
@@ -402,18 +447,18 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
                 }).done(function (data) {
 
                     if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                        if (disponible == 0) {
-                            Limpiar();
-                            displayNotify("PinturaCerrarCarro", "", '0');
+                        if (!guardarYNuevo) {
+                           opcionHabilitarView(true, "FieldSetView");
+                           AjaxObtenerDetalleCarroCargado(medioTransporteID);
+                           if(disponible=0){
+                               displayNotify("PinturaCerrarCarro", "", '0');
+                           } else {
+                               displayNotify("PinturaGuardarGuardar", "", '0');
+                           }
                         } else {
-                            if (!guardarYNuevo) {
-                                opcionHabilitarView(true, "FieldSetView");
-                                $("#grid").data("kendoGrid").dataSource.sync();
-                            } else {
-                                Limpiar();
-                            }
+                            Limpiar();
                             displayNotify("PinturaGuardarGuardar", "", '0');
-                        }
+                        }                            
 
                     } else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                         displayNotify("PinturaGuardarErrorGuardar", "", '2');
@@ -438,6 +483,7 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
     var medioTransporteID;
     var countSelectedSpool = 0;
     var count = 0;
+    var carroCerrado = $("#inputCarroBacklog").attr("mediotransportecerrado");
     Captura = [];
     Captura[0] = { Detalles: "" };
     ListaDetalles = [];
@@ -447,11 +493,13 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
         for (var index = 0 ; index < listaSpool.length; index++) {
             if (listaSpool[index].Seleccionado) {
 
-                ListaGuardarDetalles[contSave] = {SpoolID: "", MedioTransporteCargaID: $('#inputCarroBacklog').attr("mediotransporteid"),
-                    Accion: ""
+                ListaGuardarDetalles[contSave] = {SpoolID: "", MedioTransporteCargaID: 0,
+                    Accion: "", CuadranteID : 0
                 };          
                 ListaGuardarDetalles[contSave].Accion = listaSpool[index].Accion;
                 ListaGuardarDetalles[contSave].SpoolID = listaSpool[index].SpoolID;
+                ListaGuardarDetalles[contSave].CuadranteID = listaSpool[index].CuadranteID
+                ListaGuardarDetalles[contSave].MedioTransporteCargaID = listaSpool[index].MedioTransporteCargaID
                 contSave++;
 
             }
@@ -467,11 +515,12 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                 ListaDetalles[count].Seleccionado = listaSpool[index].Seleccionado;
                 count++;
                 ++countSelectedSpool;
+
             }
         }
 
         var disponible = 1;
-        if ($('#chkCerrar').is(':checked')) {
+        if ($('#chkCerrar').is(':checked') && carroCerrado=="false") {
             disponible = 0;
         }
 
@@ -489,18 +538,18 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                     $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token"), lenguaje: $("#language").val(), medioTransporteID: MedioTransporteID, medioTransporteCargaID: MedioTransporteCargaID, cerrar: disponible }).done(function (data) {
 
                             if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {                                
-                                if (disponible == 0) {
-                                    Limpiar();
-                                    displayNotify("PinturaCerrarCarro", "", '0');
-                                }
-                                else {
-                                    if (!guardarYNuevo) {
-                                        AjaxObtieneMedioTransporteCargado(MedioTransporteID, "Patio");
+                                   
+                                if (!guardarYNuevo) {
+                                    AjaxObtieneMedioTransporteCargado(MedioTransporteID, "Patio");
+                                    if(disponible == 0){
+                                        displayNotify("PinturaCerrarCarro", "", '0');
                                     } else {
-                                        Limpiar();
-                                    }
+                                        displayNotify("PinturaGuardarGuardar", "", '0');
+                                    }                                   
+                                } else {
+                                    Limpiar();
                                     displayNotify("PinturaGuardarGuardar", "", '0');
-                                }
+                                }                                    
 
                             }
                             else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
@@ -522,58 +571,63 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
     }
 }
 
-function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteCargaID) {
+function AjaxCargarSpoolBacklog(cargarSpoolsDespuesDeCargar, MedioTransporteID) {
     loadingStart();
-    var MedioTransporteID = $("#inputCarroBacklog").data("kendoComboBox").value();
-    if (MedioTransporteCargaID == undefined) {
+    var MedioTransporteCargaID = $("#inputCarroBacklog").attr("mediotransporteid");
+    if (MedioTransporteID == 0) {
         MedioTransporteCargaID = 0;
-        MedioTransporteID = 0;
     }
-    var muestra = $('input:radio[name=Muestra]:checked').val();
 
-    $CargaCarroBackLog.CargaCarroBackLog.read({ medioTransporteCargaID: MedioTransporteCargaID, medioTransporteID: MedioTransporteID, token: Cookies.get("token"), proyectoID: $("#inputProyecto").data("kendoComboBox").value(), todos: muestra }).done(function (data) {
+   $CargaCarroBackLog.CargaCarroBackLog.read({ medioTransporteCargaID: MedioTransporteCargaID, medioTransporteID: MedioTransporteID, token: Cookies.get("token"), proyectoID: $("#inputProyecto").data("kendoComboBox").value(), todos: 1 }).done(function (data) {
         $("#grid[nombre='grid-backlog']").data('kendoGrid').dataSource.data([]);
         var ds = $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource;
         var array = data;
-
-        var localDataSource = new kendo.data.DataSource({
-            data: data,
-            schema: {
-                model: {
-                    fields: {
-                        OrdenImportancia: { type: "number", editable: false },
-                        SpoolJunta: { type: "string", editable: false },
-                        SistemaPintura: { type: "string", editable: false },
-                        Color: { type: "string", editable: false },
-                        CuadranteMedioTransporte: { type: "string", editable: false },
-                        NombreMedioTransporte: { type: "string", editable: false },
-                        Metros2: { type: "number", editable: false },
-                        Peso: { type: "number", editable: false },
-                        Seleccionado: { type: "boolean", editable: false }
+        if (data.length > 0) {
+            var localDataSource = new kendo.data.DataSource({
+                data: data,
+                schema: {
+                    model: {
+                        fields: {
+                            OrdenImportancia: { type: "number", editable: false },
+                            SpoolJunta: { type: "string", editable: false },
+                            SistemaPintura: { type: "string", editable: false },
+                            Color: { type: "string", editable: false },
+                            CuadranteMedioTransporte: { type: "string", editable: false },
+                            NombreMedioTransporte: { type: "string", editable: false },
+                            Metros2: { type: "number", editable: false },
+                            Peso: { type: "number", editable: false },
+                            Seleccionado: { type: "boolean", editable: false }
+                        }
                     }
-                }
-            },
-            filter: {
-                logic: "or",
-                filters: [
-                  { field: "Accion", operator: "eq", value: 1 },
-                  { field: "Accion", operator: "eq", value: 2 }
+                },
+                filter: {
+                    logic: "or",
+                    filters: [
+                      { field: "Accion", operator: "eq", value: 1 },
+                      { field: "Accion", operator: "eq", value: 2 }
+                    ]
+                },
+                pageSize: 10,
+                serverPaging: false,
+                serverFiltering: false,
+                serverSorting: false,
+                aggregate: [
+                    { field: "Metros2", aggregate: "sum" },
+                    { field: "Peso", aggregate: "sum" }
                 ]
-            },
-            pageSize: 10,
-            serverPaging: false,
-            serverFiltering: false,
-            serverSorting: false,
-            aggregate: [{ field: "Metros2", aggregate: "sum" }]
-        });
+            });
 
-        $("#grid[nombre='grid-backlog']").data("kendoGrid").setDataSource(localDataSource);
-        //$("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource.data(data);
-        CustomisaGrid($("#grid[nombre='grid-backlog']"));
-        if (cargarSpoolsDespuesDeCargar) {
-            opcionHabilitarViewBacklog(true, "FieldSetView");
+            $("#grid[nombre='grid-backlog']").data("kendoGrid").setDataSource(localDataSource);
+            CustomisaGrid($("#grid[nombre='grid-backlog']"));
+            if (array[0].CarroCerrado && MedioTransporteID!=0) {
+                $("#chkCerrar")[0].checked = true;
+            }
+            if (cargarSpoolsDespuesDeCargar) {
+                opcionHabilitarViewBacklog(true, "FieldSetView");
+            }
+            ImprimirAreaToneladaBackLog();
         }
-        ImprimirAreaToneladaBackLog();
+        
         loadingStop();
     });
 }
@@ -624,7 +678,7 @@ function SetDisabledBooleanEnGrid(deshabilitar) {
     });
 }
 function AjaxObtieneMedioTransporteCargado(medioTransporteId, tipoVista) {
-
+    
     $MedioTransporte.MedioTransporte.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), proyectoID: $("#inputProyecto").data("kendoComboBox").value() }).done(function (data) {
               
         if (data.length > 0) {
@@ -644,7 +698,7 @@ function AjaxObtieneMedioTransporteCargado(medioTransporteId, tipoVista) {
 
                 $("#inputCarroBacklog").data("kendoComboBox").value(medioTransporteId);
                 $("#inputCarroBacklog").data("kendoComboBox").trigger("change");
-                AjaxCargarSpoolBacklog(true, $('#inputCarroBacklog').attr("mediotransporteid"));
+                AjaxCargarSpoolBacklog(true, medioTransporteId);
             }
 
             

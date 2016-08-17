@@ -11,24 +11,14 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int MedioTransporteID { get; set; }
         public int MedioTransporteCargaID { get; set; }
         public string NombreMedioTransporte { get; set; }
-        public decimal PesoMaximoPermitido { get; set; }
-        public decimal PesoMaximoOcupado { get; set; }
-        public int AreaPermitidoMedioTransporte { get; set; }
-        public decimal AreaMaximoOcupado { get; set; }
-        public int NumeroUsosPermitidos { get; set; }
-        public int NumeroUsosOcupados { get; set; }
+        public bool CarroCerrado { get; set; }
 
         public MedioTransporte()
         {
             MedioTransporteID = 0;
             MedioTransporteCargaID = 0;
             NombreMedioTransporte = "";
-            PesoMaximoPermitido = 0;
-            PesoMaximoOcupado = 0;
-            AreaPermitidoMedioTransporte = 0;
-            AreaMaximoOcupado = 0;
-            NumeroUsosPermitidos = 0;
-            NumeroUsosOcupados = 0;
+            CarroCerrado = false;
 
         }
 
@@ -57,8 +47,13 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int SpoolID { get; set; }
         public int SistemaPinturaID { get; set; }
         public int MedioTransporteCargaID { get; set; }
+        public int CuadranteID { get; set; }
         public int ProyectoID { get; set; }
         public string NombreMedioTransporte { get; set; }
+        public string CuadranteMedioTransporte { get; set; }
+        public string ColorPintura { get; set; }
+        public int PinturaSpoolID { get; set; }
+
     }
 
     public class Captura
@@ -71,6 +66,7 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public int Accion { get; set; }
         public int SpoolID { get; set; }
         public int MedioTransporteCargaID { get; set; }
+        public int CuadranteID { set; get; }
     }
 
     public class DetalleMedioTransporteCarga
@@ -90,6 +86,7 @@ namespace BackEndSAM.Models.Pintura.MedioTransporte
         public string CuadranteSpool { get; set; }
         public string CuadranteMedioTransporte { get; set; }
         public int ProyectoID { get; set; }
+        public bool CarroCerrado { get; set; }
         public List<Cuadrante.Cuadrante> ListaCuandrantes { get; set; }
     }
 

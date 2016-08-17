@@ -20,6 +20,8 @@ namespace BackEndSAM.Models.Pintura.CargaCarroBackLog
         public int SistemaPinturaID { get; set; }
         public bool Seleccionado { get; set; }
         public bool Status { get; set; }
+        public bool CarroCerrado { get; set; }
+        public int MedioTransporteCargaID { get; set; }
     }
 
     public class Captura

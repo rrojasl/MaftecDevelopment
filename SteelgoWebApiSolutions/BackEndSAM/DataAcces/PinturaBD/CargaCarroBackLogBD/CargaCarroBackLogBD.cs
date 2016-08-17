@@ -46,22 +46,25 @@ namespace BackEndSAM.DataAcces.PinturaBD.CargaCarroBackLogBD
                             Metros2 = item.Area.GetValueOrDefault(),
                             Color = item.ColorPintura,
                             CuadranteSpool = item.Cuadrante,
-                            CuadranteMedioTransporte = item.StatusCarga.GetValueOrDefault()?item.NombreMedioTransporte:item.Cuadrante,
+                            CuadranteMedioTransporte = item.StatusCarga.GetValueOrDefault() ? item.NombreMedioTransporte : item.Cuadrante,
                             CuadranteID = item.CuadranteID.GetValueOrDefault(),
                             NombreMedioTransporte = item.NombreMedioTransporte,
                             OrdenImportancia = item.OrdenImportancia.GetValueOrDefault(),
-                            Peso = Math.Round( item.Peso.GetValueOrDefault(), 2),
+                            Peso = Math.Round(item.Peso.GetValueOrDefault(), 2),
                             ProyectoID = item.ProyectoID,
                             SistemaPintura = item.SistemaPintura,
                             SistemaPinturaID = item.SistemaPinturaID,
                             SpoolID = item.SpoolID,
                             SpoolJunta = item.SpoolJunta,
                             Seleccionado = item.StatusCarga.GetValueOrDefault(),
-                            Status = item.StatusCarga.GetValueOrDefault()
+                            Status = item.StatusCarga.GetValueOrDefault(),
+                            CarroCerrado = item.CarroCerrado.GetValueOrDefault(),
+                            MedioTransporteCargaID = item.MedioTransporteCargaID.GetValueOrDefault()
                         };
                         lista.Add(elemento);
                     }
-                    return lista.OrderByDescending(x => x.OrdenImportancia);
+                        
+                    return lista.OrderByDescending(x => x.Status).ToList<CargaCarroBackLog>();
 
                 }
             }
