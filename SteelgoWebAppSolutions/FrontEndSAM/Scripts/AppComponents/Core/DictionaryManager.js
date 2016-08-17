@@ -5,6 +5,21 @@ _languageOrder = {
 }
 
 _dictionary = {
+    "InventarioXNU":
+  {
+      "es-MX": "InventarioXNU",
+      "en-US": "unique inventory number"
+  },
+    "Materiales":
+    {
+        "es-MX": "Materiales",
+        "en-US": "Materials"
+    },
+    "Reportes":
+    {
+        "es-MX": "Reportes",
+        "en-US": "Reports"
+    },
     "MensajeErrorSpoolHold":
     {
         "es-MX": "No se permite su captura, debido a que transcurrieron 2 dias despues de salir de retención",
