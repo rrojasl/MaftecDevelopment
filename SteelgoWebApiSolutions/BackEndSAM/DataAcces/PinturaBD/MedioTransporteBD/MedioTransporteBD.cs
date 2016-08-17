@@ -67,7 +67,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    //
+                    
                     List<Sam3_Pintura_Get_MedioTransporte_Result> result = ctx.Sam3_Pintura_Get_MedioTransporte(lenguaje,proyectoID).ToList();
 
                     List<MedioTransporte> ListadoMedioTransporte = new List<MedioTransporte>();
@@ -76,27 +76,18 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                         MedioTransporteID = 0,
                         MedioTransporteCargaID = 0,
                         NombreMedioTransporte = "",
-                        PesoMaximoPermitido = 0,
-                        PesoMaximoOcupado = 0,
-                        AreaPermitidoMedioTransporte = 0,
-                        AreaMaximoOcupado = 0,
-                        NumeroUsosPermitidos = 0,
-                        NumeroUsosOcupados = 0
+                        CarroCerrado = false
+                        
                 });
 
                     foreach (Sam3_Pintura_Get_MedioTransporte_Result item in result)
                     {
                         ListadoMedioTransporte.Add(new MedioTransporte
                         {
-                            AreaPermitidoMedioTransporte = item.AreaPermitidoMedioTransporte.GetValueOrDefault(),
                             MedioTransporteID = item.MedioTransporteID,
                             MedioTransporteCargaID = item.MedioTransporteCargaID.GetValueOrDefault(),
                             NombreMedioTransporte = item.NombreMedioTransporte,
-                            NumeroUsosOcupados = item.NumeroUsosOcupados,
-                            NumeroUsosPermitidos = item.NumeroUsosPermitidas,
-                            PesoMaximoPermitido = item.PesoMaximoPermitiido.GetValueOrDefault(),
-                            PesoMaximoOcupado = item.PesoMaximoOcupado.GetValueOrDefault(),
-                            AreaMaximoOcupado = item.AreaMaximaOcupada.GetValueOrDefault()
+                            CarroCerrado = item.CarroCerrado.GetValueOrDefault()
                         });
 
                     }
@@ -170,7 +161,11 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             SpoolID = item.SpoolID,
                             SpoolJunta = item.SpoolJunta,
                             ProyectoID = item.ProyectoID,
-                            NombreMedioTransporte = item.NombreMedioTransporte
+                            CuadranteID = item.CuadranteID.GetValueOrDefault(),
+                            NombreMedioTransporte = item.NombreMedioTransporte,
+                            CuadranteMedioTransporte = item.Cuadrante,
+                            ColorPintura = item.ColorPintura,
+                            PinturaSpoolID = item.PinturaSpoolID.GetValueOrDefault()
                         });
                     }
                     return ListadoDetalleSpool;
@@ -228,7 +223,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    //
+                    
                     List<Sam3_Pintura_Get_MedioTransporteCargado_Result> result = ctx.Sam3_Pintura_Get_MedioTransporteCargado(lenguaje).ToList();
 
                     List<MedioTransporteCarga> ListadoMedioTransporteCarga = new List<MedioTransporteCarga>();
@@ -245,7 +240,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
 
                     }
                     return ListadoMedioTransporteCarga;
-                    //
+                    
                 }
             }
             catch (Exception ex)
@@ -260,14 +255,14 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
             }
         }
 
-        public object ObtenerMedioTransporteDetalleCargado(int medioTransporteID,string lenguaje, int proyectoID, int todos)
+        public object ObtenerMedioTransporteDetalleCargado(int medioTransporteCargaID, int medioTransporteID,string lenguaje, int proyectoID, int todos)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    //
-                    List<Sam3_Pintura_Get_DetalleCarrosCargados_Result> result = ctx.Sam3_Pintura_Get_DetalleCarrosCargados(medioTransporteID, proyectoID, todos).ToList();
+                   
+                    List<Sam3_Pintura_Get_DetalleCarrosCargados_Result> result = ctx.Sam3_Pintura_Get_DetalleCarrosCargados(medioTransporteCargaID, medioTransporteID, proyectoID, todos).ToList();
 
                     List<Sam3_Steelgo_Get_Cuadrante_Result> GetlistaCuandrantes = (List<Sam3_Steelgo_Get_Cuadrante_Result>)CuadranteBD.Instance.ObtenerCuadrante(0);
 
@@ -290,7 +285,7 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                     {
                         ListadoDetalleMedioTransporteCarga.Add(new DetalleMedioTransporteCarga
                         { 
-                            Accion = 2, //no es nuevo solo se pone para tener una bandera por si el usuario hace un cambio se actualiza la accion.
+                            Accion = 2, 
                             MedioTransporteID = item.MedioTransporteID.GetValueOrDefault(),
                             Area = item.Area.GetValueOrDefault(),
                             ColorPintura = item.ColorPintura,
@@ -305,8 +300,9 @@ namespace BackEndSAM.DataAcces.PinturaBD.MedioTransporteBD
                             CuadranteSpool=item.Cuadrante,
                             CuadranteMedioTransporte = item.StatusCarga.GetValueOrDefault()?item.NombreMedioTransporte:item.Cuadrante,
                             ListaCuandrantes = ListaCuandrantes,
-                            ProyectoID = item.ProyectoID
-
+                            ProyectoID = item.ProyectoID,
+                            CarroCerrado = item.CarroCerrado.GetValueOrDefault()
+                            
                         });
 
                     }

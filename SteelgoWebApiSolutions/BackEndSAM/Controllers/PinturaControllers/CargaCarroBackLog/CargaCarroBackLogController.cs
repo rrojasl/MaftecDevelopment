@@ -77,39 +77,6 @@ namespace BackEndSAM.Controllers.PinturaControllers.CargaCarroBackLog
             }
         }
 
-
-        /*[HttpPost]
-        public object GuardarCargaCarroBackLog(Captura listaCapturasRequisicion, string token, string lenguaje, int medioTransporteID, int cerrar)
-        {
-            string payload = "";
-            string newToken = "";
-
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-             
-            bool tokenValido = ManageTokens.Instance.ValidateToken(token, out payload, out newToken);
-            if (tokenValido)
-            {
-
-                Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-
-                DataTable dtDetalleSpool = new DataTable();
-                if (listaCapturasRequisicion.ListaDetalles != null)
-                {
-                    dtDetalleSpool = ToDataTable(listaCapturasRequisicion.ListaDetalles);
-                }                
-                return MedioTransporteBD.Instance.GuardarMedioTransporte(dtDetalleSpool, usuario, lenguaje, medioTransporteID,listaCapturasRequisicion.ListaDetalles[0].MedioTransporteCargaID, cerrar);
-            }
-            else
-            {
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(payload);
-                result.ReturnCode = 401;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = false;
-                return result;
-            }
-        }*/
-
         public static DataTable ToDataTable<T>(List<T> l_oItems)
         {
             DataTable oReturn = new DataTable(typeof(T).Name);
