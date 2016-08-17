@@ -58,7 +58,7 @@ namespace BackEndSAM.DataAcces
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo_Result> result = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo(juntaTrabajoID,proyectoID).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo_Result> result = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPruebaNuevo(juntaTrabajoID, proyectoID).ToList();
                     return result;
                 }
             }
@@ -151,7 +151,7 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object getListaRequisiciones(string lenguaje, int status, int ProyectoID)
+        public object getListaRequisiciones(string lenguaje, int ProyectoID, int PruebaID)
         {
             try
             {
@@ -159,16 +159,14 @@ namespace BackEndSAM.DataAcces
                 {
                     List<Captura> listaRequisiciones = new List<Captura>();
                     listaRequisiciones.Add(new Captura());
-                    List<Sam3_ServiciosTecnicos_Get_Requisiciones_Result> result = ctx.Sam3_ServiciosTecnicos_Get_Requisiciones(lenguaje, status, ProyectoID).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_Requisiciones_Result> result = ctx.Sam3_ServiciosTecnicos_Get_Requisiciones(lenguaje, ProyectoID, PruebaID).ToList();
                     foreach (Sam3_ServiciosTecnicos_Get_Requisiciones_Result item in result)
                     {
                         listaRequisiciones.Add(new Captura
                         {
                             Folio = item.Folio,
-                            FechaRequisicion = item.FechaRequisicion,
                             Observacion = item.Observacion,
                             PruebasID = item.PruebasProyectoID.GetValueOrDefault(),
-                            EstatusID = item.EstatusID.GetValueOrDefault(),
                             RequisicionID = item.RequisicionID
                         });
                     }
@@ -209,14 +207,14 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> getDetalleJuntas(int proyectoID, int pruebaID, int todos, string lenguaje)
+        public List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> getDetalleJuntas(int proyectoID, int pruebaID, int RequisicionID, int todos, string lenguaje)
         {
             List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> listaResult = null;
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                     listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID, pruebaID, todos, lenguaje).ToList();
+                     listaResult = ctx.Sam3_ServiciosTecnicos_Get_JuntasXPrueba(proyectoID, pruebaID, RequisicionID, todos, lenguaje).ToList();
                     return listaResult;
                 }
             }
@@ -304,7 +302,7 @@ namespace BackEndSAM.DataAcces
             }
         }
 
-        public object InsertarGenerarRequisicion(DataTable dtDetalleRequisicion, Sam3_Usuario usuario, string lenguaje, int requisicionID, string folio, int pruebasID, string fechaRequisicion, string observacion, int estatusID)
+        public object InsertarGenerarRequisicion(DataTable dtDetalleRequisicion, Sam3_Usuario usuario, string lenguaje, int requisicionID, int proyectoID, int pruebasID, string observacion, int codigoAsmeID)
         {
             try
             {
@@ -313,7 +311,7 @@ namespace BackEndSAM.DataAcces
 
                     //ctx.Sam3_Armado_JuntaArmado()
                     ObjetosSQL _SQL = new ObjetosSQL();
-                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@Lenguaje", lenguaje }, { "@RequisicionID",requisicionID.ToString() } , {"@Folio",folio }, {"@PruebaID",pruebasID.ToString() }, { "@FechaRequisicion",fechaRequisicion.Trim() }, { "@Observacion", observacion==null?"": observacion }, { "@EstatusID",estatusID.ToString() } };
+                    string[,] parametro = { { "@Usuario", usuario.UsuarioID.ToString() }, { "@Lenguaje", lenguaje }, { "@RequisicionID",requisicionID.ToString() }, { "@ProyectoID", proyectoID.ToString() }, { "@PruebaID", pruebasID.ToString() }, { "@Observacion", observacion==null?"": observacion }, { "@CodigoAsmeID",codigoAsmeID.ToString() } };
                     DataTable dt = _SQL.Tabla(Stords.GUARDARGENERARREQUISICICION, dtDetalleRequisicion, "@Tabla", parametro);
 
                     TransactionalInformation result = new TransactionalInformation();

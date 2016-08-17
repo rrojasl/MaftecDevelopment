@@ -20,6 +20,7 @@ namespace BackEndSAM.Models.GenerarRequisicion
         public int ProyectoID { get; set; }
         public int PruebasID { get; set; }
         public int PruebaElementoID { get; set; }
+        public int JuntaSpoolID { get; set; }
         public int IdentificadorForaneo { get; set; }
         public int PruebasProyectoID { get; set; }
         public string NumeroControl { get; set; }
@@ -65,19 +66,19 @@ namespace BackEndSAM.Models.GenerarRequisicion
     {
         public Captura() {
             Folio = "";
-            Observacion = "";
             PruebasID = 0;
-            EstatusID = 0;
+            ProyectoID = 0;
+            CodigoAsmeID = 0;
+            Observacion = "";
             RequisicionID = 0;
-
         }
-        public List<DetalleGuardarJson> listaRequisiciones { get; set; }
         public string Folio { get; set; }
-        public string FechaRequisicion { get; set; }
+        public List<DetalleGuardarJson> listaRequisiciones { get; set; }
         public string Observacion { get; set; }
         public int PruebasID { get; set; }
-        public int EstatusID { get; set; }
         public int RequisicionID { get; set; }
+        public int ProyectoID { get; set; }
+        public int CodigoAsmeID { get; set; }
     }
     public class DetalleGuardarJson
     {
@@ -85,6 +86,8 @@ namespace BackEndSAM.Models.GenerarRequisicion
         public int RequisicionJuntaSpoolID { get; set; }
         public int JuntaSpoolID { get; set; }
         public int RequisicionID { get; set; }
+        public string ClasificacionPND { get; set; }
+        public int ClasificacionPNDID { get; set; }
     }
     public class Proyecto
     {

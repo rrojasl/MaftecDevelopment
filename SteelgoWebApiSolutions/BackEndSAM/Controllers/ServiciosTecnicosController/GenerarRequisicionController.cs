@@ -21,7 +21,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GenerarRequisicionController : ApiController
     {
-        public object Get(string lenguaje, string token, int status, int ProyectoID)
+        public object Get(string lenguaje, string token, int ProyectoID, int PruebaID)
         {
             //Create a generic return object
             string payload = "";
@@ -31,7 +31,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Sam3_Usuario usuario = serializer.Deserialize<Sam3_Usuario>(payload);
-                return GenerarRequisicionBD.Instance.getListaRequisiciones(lenguaje, status, ProyectoID);
+                return GenerarRequisicionBD.Instance.getListaRequisiciones(lenguaje, ProyectoID, PruebaID);
             }
             else
             {
@@ -151,7 +151,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
 
 
         [HttpGet]
-        public object obtenerListaJuntasSoldadas(string token, int proyectoID, int pruebaID, string todos, string lenguaje)
+        public object obtenerListaJuntasSoldadas(string token, int proyectoID, int pruebaID, int requisicionID, string todos, string lenguaje)
         {
             string payload = "";
             string newToken = "";
@@ -160,7 +160,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
             if (tokenValido)
             {
                 List<JsonRequisicion> listaJson = new List<JsonRequisicion>();
-                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(proyectoID, pruebaID, all, lenguaje);
+                List<Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result> lista = GenerarRequisicionBD.Instance.getDetalleJuntas(proyectoID, pruebaID, requisicionID, all, lenguaje);
                 foreach (Sam3_ServiciosTecnicos_Get_JuntasXPrueba_Result item in lista)
                 {
                     JsonRequisicion elemento;
@@ -175,7 +175,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                             EtiquetaJunta = item.Etiqueta,
                             JuntaTrabajoID = item.JuntaTrabajoID,
                             Folio = item.Folio,
-                            //IdentificadorForaneo = item.IdentificadorForaneo,
+                            JuntaSpoolID = item.JuntaSpoolID,
                             NumeroControl = item.NumeroControl,
                             SpoolID = item.SpoolID,
                             Cedula = item.Cedula,
@@ -348,7 +348,7 @@ namespace BackEndSAM.Controllers.ServiciosTecnicosController
                 }
 
                 return GenerarRequisicionBD.Instance.InsertarGenerarRequisicion(dtDetalleCaptura, usuario, lenguaje, listaCapturasRequisicion.RequisicionID,
-                    listaCapturasRequisicion.Folio, listaCapturasRequisicion.PruebasID, listaCapturasRequisicion.FechaRequisicion, listaCapturasRequisicion.Observacion, listaCapturasRequisicion.EstatusID);
+                    listaCapturasRequisicion.ProyectoID,listaCapturasRequisicion.PruebasID, listaCapturasRequisicion.Observacion, listaCapturasRequisicion.CodigoAsmeID);
             }
             else
             {

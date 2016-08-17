@@ -19,11 +19,11 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
-                //opcionHabilitarView(true, "FieldSetView");
-                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
-                    AjaxGuardarCaptura(ds._data, 0);
-                else
-                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            //opcionHabilitarView(true, "FieldSetView");
+            if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                AjaxGuardarCaptura(ds._data, 0);
+            else
+                displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             //}
             //else
             //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -37,11 +37,11 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
-                // opcionHabilitarView(true, "FieldSetView");
-                if($("#tipoPrueba").data("kendoComboBox").value()!=0)
-                    AjaxGuardarCaptura(ds._data, 0);
-                else
-                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            // opcionHabilitarView(true, "FieldSetView");
+            if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                AjaxGuardarCaptura(ds._data, 0);
+            else
+                displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             //}
             //else
             //    displayNotify("", "El campo fecha no puede estar vacio", '1');
@@ -55,12 +55,12 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
-                //opcionHabilitarView(true, "FieldSetView");
-                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
-                    AjaxGuardarCaptura(ds._data, 1);
-                else
-                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
-                //Limpiar();
+            //opcionHabilitarView(true, "FieldSetView");
+            if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                AjaxGuardarCaptura(ds._data, 1);
+            else
+                displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            //Limpiar();
             //}
             //else
             //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -76,11 +76,11 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
-                //opcionHabilitarView(true, "FieldSetView");
-                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
-                    AjaxGuardarCaptura(ds._data, 0);
-                else
-                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            //opcionHabilitarView(true, "FieldSetView");
+            if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                AjaxGuardarCaptura(ds._data, 0);
+            else
+                displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             //}
             //else
             //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -93,11 +93,11 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
-                //opcionHabilitarView(true, "FieldSetView");
-                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
-                    AjaxGuardarCaptura(ds._data, 0);
-                else
-                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            //opcionHabilitarView(true, "FieldSetView");
+            if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                AjaxGuardarCaptura(ds._data, 0);
+            else
+                displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
             //}
             //else
             //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -110,12 +110,12 @@ function suscribirEventoGuardar() {
         var ds = $("#grid").data("kendoGrid").dataSource;
         if ($('#botonGuardar').text() == "Guardar") {
             //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
-                //opcionHabilitarView(true, "FieldSetView");
-                if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
-                    AjaxGuardarCaptura(ds._data, 0);
-                else
-                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
-                //Limpiar();
+            //opcionHabilitarView(true, "FieldSetView");
+            if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
+                AjaxGuardarCaptura(ds._data, 0);
+            else
+                displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            //Limpiar();
             //}
             //else
             //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -154,12 +154,15 @@ function suscribirEventoProyecto() {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined && dataItem.Nombre != "") {
                 $("#listaFolio").data("kendoComboBox").value("");
+                $("#tipoPrueba").data("kendoComboBox").value("");
                 ajaxObtenerTipoPruebas();
                 ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
                 AjaxListaRequisiciones($("#Proyecto").data("kendoComboBox").value());
                 LimpiarRowJunta();
             }
             else {
+                $("#listaFolio").data("kendoComboBox").value("");
+                $("#tipoPrueba").data("kendoComboBox").value("");
                 $("#Proyecto").data("kendoComboBox").value("");
                 AjaxListaRequisiciones(0);
             }
@@ -180,11 +183,15 @@ function suscribirEventoTipoPrueba() {
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
+                $("#listaFolio").data("kendoComboBox").value("");
+                AjaxListaRequisiciones($("#Proyecto").data("kendoComboBox").value());
                 ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
             }
             else {
+                $("#listaFolio").data("kendoComboBox").value("");
                 $("#tipoPrueba").data("kendoComboBox").select(0);
-                $("#tipoPrueba").data("kendoComboBox").value("");
+                AjaxListaRequisiciones($("#Proyecto").data("kendoComboBox").value());
+                //$("#tipoPrueba").data("kendoComboBox").value("");
             }
         }
     });
@@ -205,6 +212,19 @@ function suscribirEventoFolio() {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem == undefined) {
                 $("#listaFolio").data("kendoComboBox").value("");
+            }
+            else {
+                if (dataItem.RequisicionID == 0) {
+                    $('#containerDiv').css('display', 'none');
+                } else {
+                    $('#containerDiv').css('display', 'block');
+                }
+                ajaxObtenerTipoPruebas();
+
+                if ($("#Proyecto").data("kendoComboBox").value() == "")
+                    ajaxObtenerJuntasSoldadas(0);
+                else
+                    ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
             }
         }
     });
