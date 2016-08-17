@@ -1,5 +1,7 @@
 ﻿using BackEndSAM.DataAcces;
+using BackEndSAM.DataAcces.ConsumibleBD;
 using BackEndSAM.Models;
+using BackEndSAM.Models.Consumible;
 using BackEndSAM.Models.Soldadura;
 using BackEndSAM.Models.WPS;
 using DatabaseManager.Sam3;
@@ -177,6 +179,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                 capturaDatosJson.SinCaptura = capturaDatosJson.SinCaptura == "Todos" ? "1" : "0";
 
                 List<ProcesoSoldadura> ListadoProcesoSoldadura = (List<ProcesoSoldadura>)CapturaSoldaduraBD.Instance.ObtenerProcesosSoldadura();
+                List<Models.Consumible.Consumible> ListaConsumible = (List<Models.Consumible.Consumible>)ConsumibleBD.Instance.ObtenerConsumibles(0);
 
 
                 List<Sam3_Steelgo_Get_JuntaSpool_Result> listaJuntasXSpool = null;
@@ -197,7 +200,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                     }
 
                     List<Sam3_Soldadura_Get_DetalleJunta_Result> detalle = (List<Sam3_Soldadura_Get_DetalleJunta_Result>)CapturaSoldaduraBD.Instance.ObtenerDetalleSoldadura(capturaDatosJson.JuntaID, usuario, lenguaje);
-
+                   
                     IFormatProvider culture = new System.Globalization.CultureInfo("es-MX", true);
 
                     foreach (Sam3_Soldadura_Get_DetalleJunta_Result item in detalle)
@@ -222,7 +225,7 @@ namespace BackEndSAM.Controllers.SoldaduraController
                             ListaTaller = ObtenerListaTaller((List<Sam3_SteelGo_Get_Taller_Result>)CapturaSoldaduraBD.Instance.ObtenerTallerXPoryecto(usuario, capturaDatosJson.IDProyecto)),
                             Diametro = item.Diametro,
                             FechaSoldadura = item.FechaSoldadura,
-                            ListadoColadas = null,//CapturaSoldaduraBD.Instance.ObtenerColadas(),   //coladas iguales para raiz y relleno.
+                            ListadoColadas = ListaConsumible,   //coladas iguales para raiz y relleno. se le dice consumible por el negocio que se tiene.
                             //Proceso Raiz
                             ProcesoSoldaduraRaizID = item.ProcesoSoldaduraRaizID == null ? 0 : int.Parse(item.ProcesoSoldaduraRaizID.ToString()),
                             ProcesoSoldaduraRaiz = item.CodigoRaiz == null ? "" : item.CodigoRaiz,

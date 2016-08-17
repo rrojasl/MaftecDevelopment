@@ -92,7 +92,7 @@ namespace BackEndSAM.Models.Soldadura
         public string TemplateSoldadoresRelleno { get; set; }
         public List<ObreroSoldador> ListadoSoldadoresRaiz { get; set; }
         public List<ObreroSoldador> ListadoSoldadoresRelleno { get; set; }
-        public List<Colada> ListadoColadas { get; set; }
+        public List<Consumible.Consumible> ListadoColadas { get; set; }
     }
 
     public class Taller
@@ -241,9 +241,5 @@ namespace BackEndSAM.Models.Soldadura
         public string Observacion { get; set; }
     }
 
-    public class Colada
-    {
-        public int ColadaID { get; set; }
-        public string NumeroColada { get; set;  }
-    }
+  
 }

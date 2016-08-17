@@ -328,7 +328,7 @@ function RenderComboBoxSoldadoresRaiz(container, options) {
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: options.model.ListadoSoldadoresRaiz,
+                dataSource: modeloRenglon.ListadoSoldadoresRaiz,
                 template: '<span class="#: data.Soldador #">#: data.Soldador #</span> ',
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
@@ -338,8 +338,7 @@ function RenderComboBoxSoldadoresRaiz(container, options) {
                     }
 
                 }
-            }
-            );
+            });
     $(".k-combobox").parent().on('mouseleave', function (send) {
         var e = $.Event("keydown", { keyCode: 27 });
         var item = $(this).find(".k-combobox")[0];
@@ -352,24 +351,24 @@ function RenderComboBoxSoldadoresRaiz(container, options) {
 
 }
 
-function RenderComboBoxColadas(container, option)
+function RenderComboBoxColadas(container, options)
 {
     var dataItem;
 
-    $('<input data-text-field="Colada" data-value-field="ColadaID" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Codigo" data-value-field="ConsumibleID" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoComboBox({
                 suggest: true,
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: ItemSeleccionado.ListadoSoldadoresRaiz,
-                template: '<span class="#: data.Colada #">#: data.Colada #</span> ',
+                dataSource: ItemSeleccionado.ListadoColadas,
+                template: '<span class="#: data.Codigo #">#: data.Codigo #</span> ',
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);
                     if (dataItem != undefined && dataItem.Soldador != "") {
-                        options.model.Colada = dataItem.Colada;
-                        options.model.ColadaID = dataItem.ColadaID;
+                        options.model.Colada = dataItem.Codigo;
+                        options.model.ColadaID = dataItem.ConsumibleID;
                     }
 
                 }
@@ -397,7 +396,7 @@ function RenderComboBoxSoldadoresRelleno(container, options) {
                 delay: 10,
                 filter: "contains",
                 autoBind: false,
-                dataSource: ItemSeleccionado.ListadoSoldadoresRelleno,
+                dataSource: modeloRenglon.ListadoSoldadoresRelleno,
                 template: "<i class=\"fa fa-#=data.Soldador.toLowerCase()#\"></i> #=data.Soldador#",
                 change: function (e) {
                     dataItem = this.dataItem(e.sender.selectedIndex);

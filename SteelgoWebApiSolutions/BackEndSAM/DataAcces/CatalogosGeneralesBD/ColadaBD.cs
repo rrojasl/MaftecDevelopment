@@ -28,32 +28,6 @@ namespace BackEndSAM.DataAcces.CatalogosGeneralesBD
             }
         }
 
-        public object ObtenerListadoColada(int proyecto)
-        {
-            try
-            {
-                List<Colada> listaColada = new List<Colada>();
-
-                using (SamContext ctx = new SamContext())
-                {
-                    List<Sam3_Steelgo_Get_Colada_Result> result = ctx.Sam3_Steelgo_Get_Colada(proyecto).ToList();
-                    foreach (Sam3_Steelgo_Get_Colada_Result item in result)
-                    {
-                        listaColada.Add(new Colada());
-                    }
-                    return listaColada;
-                }
-            }
-            catch (Exception ex)
-            {
-                TransactionalInformation result = new TransactionalInformation();
-                result.ReturnMessage.Add(ex.Message);
-                result.ReturnCode = 500;
-                result.ReturnStatus = false;
-                result.IsAuthenicated = true;
-
-                return result;
-            }
-        }
+       
     }
 }

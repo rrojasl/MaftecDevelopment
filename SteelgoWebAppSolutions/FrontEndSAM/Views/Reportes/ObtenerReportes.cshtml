@@ -1,0 +1,67 @@
+﻿@using ReportViewerForMvc;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb {
+    <li>
+        <a href="@Url.Action("landing", "Home")"><span id="lblInicio"></span></a>
+    </li>
+    
+    <li class="active">
+        <a href="@Url.Action("ObtenerReportes", "Reportes")"><span id="Reportes"></span></a>
+    </li>
+}
+
+<style>
+
+    #ReportViewer1_ctl04_ctl00 { 
+
+        background-color: green !important;
+        border: none;
+        color: white; 
+
+    }
+
+</style>
+
+<div id="mipatron">
+    
+    @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer, new { scrolling = "yes", width = "100%" , height="auto" }))
+
+</div>
+
+<script>
+ 
+       /* $("#reportViewerReportes")
+
+        var elementos = document.getElementById("mipatron");
+        var iframe = elementos[0];   */
+
+    function xdxd() {
+
+        var obtid = $('#mipatron').children().attr("id");
+      
+
+        $("#" + obtid + "").contents().find("#ReportViewer1_ctl04_ctl00").attr("style", "color:white;background:orange;border:none;");
+
+    }
+
+    var obtid = $('#mipatron').children().attr("id");
+
+    $('#'+obtid+'').load(function () {
+        xdxd();
+    });
+     
+    
+
+    $('#ReportViewer1_ctl04_ctl00').click(function (e) {
+        xdxd();
+    }); 
+
+
+
+
+
+</script>
