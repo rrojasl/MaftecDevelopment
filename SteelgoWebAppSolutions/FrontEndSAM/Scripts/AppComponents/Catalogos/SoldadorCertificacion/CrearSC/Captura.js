@@ -31,18 +31,31 @@ function AsignarEncabezados() {
 
 function limpiarCaptura() {
     
-    $("#inputSoldador").data("kendoComboBox").select(0);
-    $("#inputNombreWPS").data("kendoComboBox").select(0);
+    
+    $("#inputSoldador").data("kendoComboBox").value("");
+
+    
+    $("#inputSoldador").data("kendoComboBox").value("");
+
+    
+    $("#inputNombreWPS").data("kendoComboBox").value("");
+
     $("#inputPasosSoldadura").data("kendoNumericTextBox").value('');
-    $("#inputCedulaTuboPQR").data("kendoComboBox").select(0);
+    
+    $("#inputCedulaTuboPQR").data("kendoComboBox").value("");
+
     $("#inputFechaInicioCertificado").val('');
     $("#inputFechaFinCertificado").val('');
     $("#inputEspesorMinimo").data("kendoNumericTextBox").value('');
     $("#inputEspesorMaximo").data("kendoNumericTextBox").value('');
     $("#inputDiametroCalificado").data("kendoNumericTextBox").value('');
-    $("#inputTipoPrueba").data("kendoComboBox").select(0);
+    
+    $("#inputTipoPrueba").data("kendoComboBox").value("");
+
     $("#inputPosicionPQR").val('');
-    $("#inputProcesoSol").data("kendoComboBox").select(0);
+    
+    $("#inputProcesoSol").data("kendoComboBox").value("");
+
     $("#inputFechaInicioCertificado").val('');
     $("#inputFechaFinCertificado").val('');
     $("#inputPosicionPQR").data("kendoNumericTextBox").value('');
@@ -161,7 +174,7 @@ function HabilitarCapturaNuevoSoldadorCertificacioon(valor, name)
         $("#inputDiametroCalificado").data("kendoNumericTextBox").wrapper.find(".k-numeric-wrap").find(".k-select").show();
         $("#inputPasosSoldadura").data("kendoNumericTextBox").enable(true);
         $("#inputEspesorMinimo").data("kendoNumericTextBox").enable(true);
-        $("#inputEspesorMaximo").data("kendoNumericTextBox").enable(true);
+        
         $("#inputPosicionPQR").data("kendoNumericTextBox").enable(true);
         $("#inputDiametroCalificado").data("kendoNumericTextBox").enable(true);
         

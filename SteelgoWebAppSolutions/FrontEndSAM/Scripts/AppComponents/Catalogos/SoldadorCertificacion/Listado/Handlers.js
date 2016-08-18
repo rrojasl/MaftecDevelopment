@@ -22,7 +22,6 @@ function suscribirEventoGuardar() {
 
 
 function opcionHabilitarView(valor, name) {
-
     if (valor) {
         $('#FieldSetView').find('*').attr('disabled', true);
         $('#Guardar1').text(_dictionary.textoEditar[$("#language").data("kendoDropDownList").value()]);

@@ -218,6 +218,7 @@ function SuscribirEventoNompreWPS() {
         dataTextField: "Nombre",
         dataValueField: "WPSID",
         suggest: true,
+        
         delay: 10,
         filter: "contains",
         index: 3,
@@ -230,7 +231,6 @@ function SuscribirEventoNompreWPS() {
             else {
                 $("#inputProcesoSol").data("kendoComboBox").select(0);
             }
-
         }
     });
 

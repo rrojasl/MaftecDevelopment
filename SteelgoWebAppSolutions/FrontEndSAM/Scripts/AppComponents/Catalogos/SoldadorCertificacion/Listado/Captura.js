@@ -238,11 +238,11 @@ function ValidarInformacionEnviada() {
             }
             else if (arregloCaptura[index].EspesorMinimo == "" || arregloCaptura[index].EspesorMinimo <= 0) { //Pasos soladura
                 desplegadoEspesor = true;
-                displayNotify("CapturaSoldadorEspesorMsg", "", '1');
+                displayNotify("",  "El Espesor C para el WPS " + arregloCaptura[index].NombreWPS + " tiene que ser mayor a cero", '1');
             }
             else if (arregloCaptura[index].DiametroCalificado == "" || arregloCaptura[index].DiametroCalificado <= 0) { //Pasos soladura
                 desplegadoDiametro = true;
-                displayNotify("CapturaSoldadorCertificacionDiametroMsg", "", '1');
+                displayNotify("", "El Diametro C para el WPS " + arregloCaptura[index].NombreWPS + " tiene que ser mayor a cero", '1');
             }
             else if (arregloCaptura[index].Posicion == "" || arregloCaptura[index].Posicion <= 0) { //Pasos soladura
                 desplegadoPosicion = true;
