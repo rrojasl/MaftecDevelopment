@@ -8980,6 +8980,10 @@ _dictionary = {
         "es-MX": "Prueba",
         "en-US": "Test"
     },
+    "GenerarRequisicionCedula": {
+        "es-MX": "Cédula",
+        "en-US": "Chart"
+    },
     //#endregion
     //#region ListadoRequisicion
     "ListaRequisicionFolio": {
