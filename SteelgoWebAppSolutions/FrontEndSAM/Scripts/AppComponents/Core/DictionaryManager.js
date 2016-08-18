@@ -8921,16 +8921,20 @@ _dictionary = {
         "en-US": "You must select at least 1 item"
     },
     "GenerarRequisicionClasificacion": {
-        "es-MX": "CLSF",
-        "en-US": "CLSF"
+        "es-MX": "Clsf",
+        "en-US": "Clsf"
     },
+    "GenerarRequisicionDiam": {
+        "es-MX": "Diam",
+        "en-US": "Diam"
+        },
     "GenerarRequisicionCuadrante": {
-        "es-MX": "CUAD",
-        "en-US": "QUAD"
-    },
+        "es-MX": "Cuadrante",
+        "en-US": "Quadrant"
+},
     "GenerarRequisicionPrioridad": {
-        "es-MX": "PRIOR",
-        "en-US": "PRIOR"
+        "es-MX": "Prior",
+        "en-US": "Prior"
     },
     "GenerarRequisicionProyecto": {
         "es-MX": "Proyecto",
@@ -10285,8 +10289,8 @@ _dictionary = {
         "en-US": "Car"
     },
     "PinturaCargaBackLogOrdenImportancia": {
-        "es-MX": "Orden Impt",
-        "en-US": "Impt Order"
+        "es-MX": "Prior",
+        "en-US": "Prior"
     },
     "PinturaCargaBackLogSpool": {
         "es-MX": "Spool",
