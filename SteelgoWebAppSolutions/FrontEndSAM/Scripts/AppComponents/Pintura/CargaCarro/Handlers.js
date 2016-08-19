@@ -114,7 +114,7 @@ function SuscribirEventoProyecto() {
                     $("#chkCerrar2").attr("checked", false);
                     $("#InputOrdenTrabajo").val("");
                     $("#InputID").data("kendoComboBox").dataSource.data([]);
-                    $("#InputID").val('');
+                    $("#InputID").data("kendoComboBox").value("");
 
                     AjaxPinturaCargaMedioTransporte();
 
@@ -329,7 +329,7 @@ function SuscribirEventoSpoolID() {
 
     $("#InputOrdenTrabajo").focus(function (e) {
         $("#InputOrdenTrabajo").val('');
-        $("#InputID").val('');
+        $("#InputID").data("kendoComboBox").value();
         $("#InputID").data("kendoComboBox").setDataSource();
     });
 
@@ -365,7 +365,7 @@ function SuscribirEventoChangeRadioTipoListado() {
         $("#divCodigo").show();
         $("#InputOrdenTrabajo").val('');
         $("#InputID").data("kendoComboBox").dataSource.data([]);
-        $("#InputID").value('');
+        $("#InputID").data("kendoComboBox").value("");
     });
 }
 
@@ -414,10 +414,10 @@ function SuscribirEventoCarro() {
                 $("#chkCerrar2").attr("checked", false);
                 $("#InputOrdenTrabajo").val('');
                 $("#InputID").data("kendoComboBox").dataSource.data([]);
-                $("#InputID").val('');
+                $("#InputID").data("kendoComboBox").value("");
             }
             else {
-                $("#inputCarro").val('');
+                $("#inputCarro").data("kendoComboBox").value("");
             }
         }
     });
@@ -463,9 +463,9 @@ function suscribirEventoCarroBacklog() {
                 $("#chkCerrar").attr("checked", false);
                 $("#InputOrdenTrabajo").val('');
                 $("#InputID").data("kendoComboBox").dataSource.data([]);
-                $("#InputID").val('');
+                $("#InputID").data("kendoComboBox").value("");
             } else {
-                $("#inputCarroBacklog").val('');
+                $("#inputCarroBacklog").data("kendoComboBox").value("");
             }
         }
     });
@@ -644,11 +644,11 @@ function SuscribirEventoCheckCerrarCarro() {
 }
 
 function Limpiar() {
-    $("#inputProyecto").val('');
+    $("#inputProyecto").data("kendoComboBox").value("");
     $("#inputCarro").data("kendoComboBox").dataSource.data([]);
-    $("#inputCarro").val('');
+    $("#inputCarro").data("kendoComboBox").value("");
     $("#inputCarroBacklog").data("kendoComboBox").dataSource.data([]);
-    $("#inputCarroBacklog").val('');
+    $("#inputCarroBacklog").data("kendoComboBox").value("");
     $("#labelM2").text("");
     $("#labelM22").text("");
     $("#labelToneladas").text("");
