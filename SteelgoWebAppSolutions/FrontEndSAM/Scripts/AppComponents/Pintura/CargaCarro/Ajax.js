@@ -21,10 +21,10 @@
         if (!ValidarDatosNuevoCarro(ListaDetalles[index])) {
             Captura[0].Detalles = ListaDetalles;
             $MedioTransporte.MedioTransporte.create(Captura[0], { token: Cookies.get("token") }).done(function (data) {
-                if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {
-                    windowNewCarriage.close();
+                if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] == "Ok") {                    
                     setTimeout(function () { AjaxPinturaCargaMedioTransporte(); }, 1100);
-                   displayNotify("PinturaGuardarNuevoCarro", "", '0');
+                    displayNotify("PinturaGuardarNuevoCarro", "", '0');
+                    windowNewCarriage.close();
                 }
                 else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                     displayNotify("PinturaErrorGuardarNuevoCarro", "", '2');
@@ -51,8 +51,7 @@ function AjaxPinturaCargaMedioTransporte() {
             
             data.splice(1, 0, { MedioTransporteID: -1, NombreMedioTransporte: _dictionary.PinturaCargaAgregarNuevoCarro[$("#language").data("kendoDropDownList").value()] });
             $("#inputCarro").data("kendoComboBox").dataSource.data(data);
-            $("#inputCarroBacklog").data("kendoComboBox").dataSource.data(data);
-            
+            $("#inputCarroBacklog").data("kendoComboBox").dataSource.data(data);         
 
             if ($("#InputNombre").val() != "") {
                 var newCar;
@@ -60,17 +59,14 @@ function AjaxPinturaCargaMedioTransporte() {
                     if (data[i].NombreMedioTransporte == $("#InputNombre").val()) {
                         newCar = data[i];
                     }
-                }
-                
+                }                
                 if ($("#styleEscritorio").hasClass("active")) {
                     $("#inputCarroBacklog").data("kendoComboBox").value(newCar.MedioTransporteID);
                     $("#inputCarroBacklog").data("kendoComboBox").trigger("change");
-                    AjaxCargarSpoolBacklog(false, newCar.MedioTransporteID);
                 } else {
                     $("#inputCarro").data("kendoComboBox").value(newCar.MedioTransporteID);
                     $("#inputCarro").data("kendoComboBox").trigger("change");
                 }                
-                $("#InputNombre").val("");
             }
         }
                 

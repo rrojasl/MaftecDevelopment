@@ -79,10 +79,7 @@ function SuscribirEventoGuardarCrearMedioTransporte() {
 
 function SuscribirEventoCerrarCrearMedioTransporte() {
     $('#btnCerrarVentanaCrearMedioTransporte').click(function (e) {
-
-        $("#inputCarro").data("kendoComboBox").value("");
-        $("#inputCarroBacklog").data("kendoComboBox").value("");
-        $("#InputNombre").val("");
+        //$("#inputCarroBacklog").data("kendoComboBox").value("");
         windowNewCarriage.close();
     });
 }
@@ -388,6 +385,7 @@ function SuscribirEventoCarro() {
                 $("#grid").data('kendoGrid').dataSource.data([]);
                 if (dataItem.MedioTransporteID != "0") {
                     if (dataItem.MedioTransporteID == "-1") {
+                        $("#InputNombre").val("");
                         windowNewCarriage = $("#divNuevoMedioTransporte").kendoWindow({
                             modal: true,
                             resizable: false,
@@ -402,8 +400,7 @@ function SuscribirEventoCarro() {
                                 "Close"
                             ],
                             close: function () {
-                                $("#inputCarro").val('');
-                                $("#InputNombre").val("");
+                                $("#inputCarro").data("kendoComboBox").value("");
                             }
                         }).data("kendoWindow");
                         $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
@@ -453,8 +450,7 @@ function suscribirEventoCarroBacklog() {
                             "Close"
                         ],
                         close: function () {
-                            $("#inputCarroBacklog").val('');
-                            $("#InputNombre").val("");
+                            $("#inputCarroBacklog").data("kendoComboBox").value("");
                         }
                     }).data("kendoWindow");
                     $("#divNuevoMedioTransporte").data("kendoWindow").title(_dictionary.CrearNuevoCarro[$("#language").data("kendoDropDownList").value()]);
