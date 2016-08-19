@@ -407,7 +407,7 @@ function SuscribirEventoCarro() {
                         $("#divNuevoMedioTransporte").data("kendoWindow").center().open();
                     }
                     else {
-                        AjaxObtenerDetalleCarroCargado(dataItem.MedioTransporteCargaID);
+                        AjaxObtenerDetalleCarroCargado(dataItem.MedioTransporteID);
                     }
                  }
 
