@@ -535,7 +535,7 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                                         if (!guardarYNuevo) {
                                             opcionHabilitarViewBacklog(true, "FieldSetView");
 
-                                            $("#inputCarroBacklog").data("kendoComboBox").value(newCar.MedioTransporteID);
+                                            $("#inputCarroBacklog").data("kendoComboBox").value(medioTransporteID);
                                             $("#inputCarroBacklog").data("kendoComboBox").trigger("change");
 
                                             if(disponible == 0){
