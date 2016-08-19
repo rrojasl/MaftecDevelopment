@@ -447,9 +447,7 @@ function ajaxGuardar(arregloCaptura, guardarYNuevo) {
                                 if (!guardarYNuevo) {
                                     opcionHabilitarView(true, "FieldSetView");
 
-                                    $("#inputCarro").data("kendoComboBox").value(medioTransporteID);
-                                    $("#inputCarro").data("kendoComboBox").trigger("change");
-
+                                    AjaxObtenerDetalleCarroCargado(medioTransporteID);
                                    if(disponible=0){
                                        displayNotify("PinturaCerrarCarro", "", '0');
                                    } else {
@@ -534,9 +532,7 @@ function AjaxSubirSpool(listaSpool, guardarYNuevo) {
                                    
                                         if (!guardarYNuevo) {
                                             opcionHabilitarViewBacklog(true, "FieldSetView");
-
-                                            $("#inputCarroBacklog").data("kendoComboBox").value(medioTransporteID);
-                                            $("#inputCarroBacklog").data("kendoComboBox").trigger("change");
+                                            AjaxCargarSpoolBacklog(true, medioTransporteID);
 
                                             if(disponible == 0){
                                                 displayNotify("PinturaCerrarCarro", "", '0');
