@@ -30,6 +30,7 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
         public int Accion { get; set; }
         public int RequisicionAsignacionID { get; set; }
         public string Nombre { get; set; }
+        public int TipoPruebaID { get; set; }
         public string Clave { get; set; }
         public string Observacion { get; set; }
         public string Fecha { get; set; }
@@ -38,14 +39,16 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
         public string Requisicion { get; set; }
         public int CantidadJuntas { get; set; }
         public int ProveedorID { get; set; }
+        public int ProveedorOriginalID { get; set; }
         public string Proveedor { get; set; }
         public string Capacidad { get; set; }
         public List<Proveedor> ListaProveedor { get; set; }
         public int HerramientadePruebaID { get; set; }
         public string HerramientadePrueba { get; set; }
         public List<HerramientaPrueba> ListaHerramientaPrueba { get; set; }
-        public List<HerramientaPrueba> ListaHerramientaPruebaProveedorPrueba { get; set; }
+        public List<HerramientaPrueba> ListaHerramientaPruebaTotal { get; set; }
         public int TurnoLaboralID { get; set; }
+        public int TurnoLaboralOriginalID { get; set; }
         public string TurnoLaboral { get; set; }
         public List<TurnoLaboral> ListaTurnoLaboral { get; set; }
         public List<TurnoLaboral> ListaTurnoLaboralTotal { get; set; }
@@ -61,12 +64,14 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
             HerramientadePrueba = "";
             DescHerramientaPrueba = "";
             Modelo = "";
+            ProveedorID = 0;
         }
 
         public int HerramientadePruebaID { get; set; }
         public string HerramientadePrueba { get; set; }
         public string DescHerramientaPrueba { get; set; }
         public string Modelo { get; set; }
+        public int ProveedorID { get; set; }
     }
 
     public class TurnoLaboral
@@ -78,13 +83,17 @@ namespace BackEndSAM.Models.ServiciosTecnicos.AsignarRequisicion
             ProveedorID = 0;
             Capacidad = 0;
             JuntasAsignadas = 0;
-        }
+            HerramientaDePruebaID = 0;
+            TipoPruebaID = 0;
+    }
 
         public int TurnoLaboralID { get; set; }
         public string Turno { get; set; }
         public int ProveedorID { get; set; }
         public int Capacidad { get; set; }
         public int JuntasAsignadas { get; set; }
+        public int HerramientaDePruebaID { get; set; }
+        public int TipoPruebaID { get; set; }
     }
 
     public class GuardarRequisicionAsignacion

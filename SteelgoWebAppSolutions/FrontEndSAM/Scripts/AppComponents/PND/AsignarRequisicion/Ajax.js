@@ -2,24 +2,24 @@
 
 
 function AjaxObtenerProyectos() {
+    loadingStart();
     $AsignarRequisicion.AsignarRequisicion.read({ token: Cookies.get("token") }).done(function (data) {
         $("#inputProyecto").data("kendoComboBox").value("");
         $("#inputProyecto").data("kendoComboBox").dataSource.data(data);
+        loadingStop();
     });
 }
 
 
 
 function AjaxPruebas() {
-    loadingStart();
     $Pruebas.Pruebas.read({ token: Cookies.get("token"), proyectoID: 0, lenguaje: $("#language").val() }).done(function (data) {
         if (Error(data)) {
             $("#inputPrueba").data("kendoComboBox").value("");
             $("#inputPrueba").data("kendoComboBox").dataSource.data(data);
             //$("#inputPrueba").data("kendoComboBox").trigger("change");
+            AjaxCargarRequisicionAsignacion();
         }
-        loadingStop();
-
     });
 
 };
@@ -49,34 +49,30 @@ function ObtenerDato(fecha, tipoDatoObtener) {
 }
 
 function AjaxCargarRequisicionAsignacion() {
-    loadingStart();
+    
     if ($("#inputProyecto").data("kendoComboBox").value() != "") {
+        loadingStart();
         $AsignarRequisicion.AsignarRequisicion.read({ lenguaje: $("#language").val(), token: Cookies.get("token"), mostrar: $('input:radio[name=Muestra]:checked').val(), idPrueba: $("#inputPrueba").val() == "" ? 0 : $("#inputPrueba").val(), proyectoID: $("#inputProyecto").data("kendoComboBox").value() }).done(function (data) {
             if (Error(data)) {
                 $("#grid").data("kendoGrid").dataSource.data([]);
                 //$("#grid").data("kendoGrid").dataSource.data(data);
-
                 var ds = $("#grid").data("kendoGrid").dataSource;
                 var array = data;
-
                 for (var i = 0; i < array.length; i++) {
-
                     array[i].Fecha = new Date(ObtenerDato(array[i].Fecha, 1), ObtenerDato(array[i].Fecha, 2), ObtenerDato(array[i].Fecha, 3));//año, mes, dia
                     ds.add(array[i]);
                 }
 
-
-                if ($("#inputProveedor").val() == "")
-                    AjaxProveedor(0);
             }
             loadingStop();
-
         });
+        
     }
+    
 }
 
 function AjaxCargarCamposPredeterminados() {
-
+    loadingStart();
     $ListadoCamposPredeterminados.ListadoCamposPredeterminados.read({ token: Cookies.get("token"), lenguaje: $("#language").val(), id: CampoMuestra }).done(function (data) {
         if (Error(data)) {
             if (data == "sin captura") {
@@ -93,6 +89,7 @@ function AjaxCargarCamposPredeterminados() {
             }
             // AjaxCargarRequisicionAsignacion();
         }
+        loadingStop();
     });
 
 }
@@ -161,11 +158,11 @@ function AjaxGuardarCaptura(arregloCaptura, tipoGuardar) {
                                 opcionHabilitarView(true, "FieldSetView");
 
                             }
-                            displayNotify("CapturaMensajeGuardadoExitoso", "", '1');
+                            displayNotify("CapturaMensajeGuardadoExitoso", "", '0');
                         }
                         else if (data.ReturnMessage.length > 0 && data.ReturnMessage[0] != "Ok") {
                             mensaje = "No se guardo la informacion el error es: " + data.ReturnMessage[0] + "-2"
-                            displayNotify("CapturaMensajeGuardadoErroneo", "", '1');
+                            displayNotify("CapturaMensajeGuardadoErroneo", "", '2');
                         }
                     }
                 });

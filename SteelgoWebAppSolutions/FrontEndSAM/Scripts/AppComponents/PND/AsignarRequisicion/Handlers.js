@@ -73,7 +73,6 @@ function SuscribirEventoComboProyecto() {
         change: function (e) {
             dataItem = this.dataItem(e.sender.selectedIndex);
             if (dataItem != undefined) {
-                AjaxCargarRequisicionAsignacion();
                 AjaxPruebas();
             }
             else {
@@ -89,7 +88,7 @@ function SuscribirEventoComboProyecto() {
 function Limpiar() {
     $("#inputProveedor").data("kendoComboBox").value("")
     AjaxCargarCamposPredeterminados();
-    AjaxPruebas()
+    //AjaxPruebas();
   
     $("#grid").data('kendoGrid').dataSource.data([]);
 }

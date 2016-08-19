@@ -5,6 +5,16 @@ _languageOrder = {
 }
 
 _dictionary = {
+    "FotoIncidencia":
+{
+    "es-MX": "FotoIncidencia",
+    "en-US": "Fotoincidence"
+},
+    "Inventario":
+  {
+      "es-MX": "Inventario",
+      "en-US": "Inventory"
+  },
     "InventarioXNU":
   {
       "es-MX": "InventarioXNU",

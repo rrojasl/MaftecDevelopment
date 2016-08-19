@@ -32,9 +32,8 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                                 ProveedorID = item.ProveedorID,
                                 Nombre = item.Nombre,
                                 Capacidad = item.Capacidad,
-                                
-                                ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, idPrueba, item.ProveedorID),
-                                ListaTurnoLaboral = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje,item.ProveedorID)
+                                //ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, idPrueba, item.ProveedorID),
+                                //ListaTurnoLaboral =  (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje,item.ProveedorID)
                             });
                         }
                     }
@@ -122,7 +121,8 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                     List<Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result> result = ctx.Sam3_ServiciosTecnicos_Get_RequisicionAsignacion(lenguaje, tipoVista,idPrueba,proyectoID).ToList();
                     List<RequisicionAsignacion> ListadoRequisicionAsignacion = new List<RequisicionAsignacion>();
 
-
+                    List<TurnoLaboral> listaTurnoLaboralAll = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, 0, 0, 0, 0);
+                    List<HerramientaPrueba> listaHerramientaPruebaAll = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, 0);
 
                     foreach (Sam3_ServiciosTecnicos_Get_RequisicionAsignacion_Result item in result)
                     {
@@ -131,13 +131,15 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             Accion = item.RequisicionAsignacionID == 0 ? 1 : 2,
                             RequisicionAsignacionID = item.RequisicionAsignacionID,
                             Nombre = item.Nombre,
+                            TipoPruebaID = item.TipoPruebaID.GetValueOrDefault(),
                             Clave = item.Clave,
                             Observacion = item.Observacion,
                             Fecha = item.Fecha,
                             CantidadJuntas = item.CantidadJuntas,
                             Capacidad = item.Capacidad == 0 ? "" : item.Capacidad.ToString(),
-                            JuntasAsignadas = item.JuntasAsignadas.GetValueOrDefault() == 0 ? "" : item.JuntasAsignadas.GetValueOrDefault().ToString(),
+                            JuntasAsignadas = item.JuntasAsignadas.ToString(),
                             ProveedorID = item.ProveedorID.GetValueOrDefault(),
+                            ProveedorOriginalID = item.ProveedorID.GetValueOrDefault(),
                             Proveedor = item.Proveedor == null ? "" : item.Proveedor,
                             RequisicionID = item.RequisicionID,
                             Requisicion = item.Requisicion,
@@ -147,10 +149,11 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             HerramientadePruebaID = item.HerramientaDePruebaID.GetValueOrDefault(),
                             TurnoLaboral = item.TurnoLaboral,
                             TurnoLaboralID = item.TurnoLaboralID.GetValueOrDefault(),
-                            ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID.GetValueOrDefault(), item.ProveedorID.GetValueOrDefault()),
-                            ListaHerramientaPruebaProveedorPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID.GetValueOrDefault(), item.ProveedorID.GetValueOrDefault()),
-                            ListaTurnoLaboral =  (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, item.ProveedorID.GetValueOrDefault()),
-                            ListaTurnoLaboralTotal = (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, 0),
+                            TurnoLaboralOriginalID = item.TurnoLaboralID.GetValueOrDefault(),
+                            ListaHerramientaPrueba = (List<HerramientaPrueba>)ObtenerListaHerramientaPruebas(lenguaje, item.TipoPruebaID.GetValueOrDefault()),
+                            ListaHerramientaPruebaTotal = listaHerramientaPruebaAll,
+                            ListaTurnoLaboral =  (List<TurnoLaboral>)ObtenerListaTurnoLaboral(lenguaje, item.ProveedorID.GetValueOrDefault(),item.HerramientaDePruebaID.GetValueOrDefault(),item.TipoPruebaID.GetValueOrDefault(),item.TurnoLaboralID.GetValueOrDefault()),
+                            ListaTurnoLaboralTotal = listaTurnoLaboralAll,
                             ListadoDetalleJuntasRequisicion = (List<JsonRequisicion>)getDetalleJuntas(item.ProyectoID.GetValueOrDefault(),1,item.RequisicionID,lenguaje)
                         });
                     }
@@ -169,17 +172,17 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                 return result;
             }
         }
-        public object ObtenerListaHerramientaPruebas(string lenguaje, int idPrueba, int idProveedor)
+        public object ObtenerListaHerramientaPruebas(string lenguaje, int proveedorID)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_SteelGo_Get_HerramientasDePrueba_Result> result = ctx.Sam3_SteelGo_Get_HerramientasDePrueba(lenguaje, idPrueba).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_HerramientasDePrueba_Result> result = ctx.Sam3_ServiciosTecnicos_Get_HerramientasDePrueba(lenguaje, proveedorID).ToList();
 
                     List<HerramientaPrueba> ListadoHerramientaPrueba = new List<HerramientaPrueba>();
                     ListadoHerramientaPrueba.Add(new HerramientaPrueba());
-                    foreach (Sam3_SteelGo_Get_HerramientasDePrueba_Result item in result)
+                    foreach (Sam3_ServiciosTecnicos_Get_HerramientasDePrueba_Result item in result)
                     {
                         ListadoHerramientaPrueba.Add(new HerramientaPrueba
                         {
@@ -204,15 +207,15 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                 return result;
             }
         }
-        public object ObtenerListaTurnoLaboral(string lenguaje, int ProveedorID)
+        public object ObtenerListaTurnoLaboral(string lenguaje, int ProveedorID, int herramientaDePruebaID, int tipoPruebaID, int turnoLaboralID)
         {
             try
             {
                 using (SamContext ctx = new SamContext())
                 {
-                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje,ProveedorID).ToList();
+                    List<Sam3_ServiciosTecnicos_Get_TurnoLaboral_Result> result = ctx.Sam3_ServiciosTecnicos_Get_TurnoLaboral(lenguaje,ProveedorID,herramientaDePruebaID,tipoPruebaID,turnoLaboralID).ToList();
 
-                    List<TurnoLaboral> ListadoTurnoLaboral = new List<TurnoLaboral>();
+                    List<TurnoLaboral> ListadoTurnoLaboral = new List<TurnoLaboral>();  
                     if(ProveedorID != 0)
                     {
                         ListadoTurnoLaboral.Add(new TurnoLaboral());
@@ -226,7 +229,9 @@ namespace BackEndSAM.DataAcces.ServiciosTecnicosBD.AsignarRequisicionBD
                             TurnoLaboralID = item.TurnoLaboralID,
                             ProveedorID = item.ProveedorID,
                             Capacidad = item.Capacidad.GetValueOrDefault(),
-                            JuntasAsignadas = item.JuntasAsignadas
+                            JuntasAsignadas = item.JuntasAsignadas.GetValueOrDefault(),
+                            HerramientaDePruebaID = item.HerramientaDePruebaID,
+                            TipoPruebaID = item.TipoPruebaID.GetValueOrDefault()
                         });
                     }
                     return ListadoTurnoLaboral;

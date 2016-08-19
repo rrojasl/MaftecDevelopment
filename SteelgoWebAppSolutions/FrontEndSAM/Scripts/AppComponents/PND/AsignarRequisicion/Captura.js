@@ -95,7 +95,7 @@ function CargarGrid() {
         filterable: getGridFilterableMaftec(),
         columns: [
             { field: "Nombre", title: _dictionary.ServiciosTecnicosTipoPrueba[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
-            { field: "Requisicion", title: _dictionary.ServiciosTecnicosRequisicion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px" },
+            { field: "Requisicion", title: _dictionary.ServiciosTecnicosRequisicion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "130px" },
             { field: "Observacion", title: _dictionary.ServiciosTecnicosObservacion[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px" },
             { field: "Fecha", title: _dictionary.ListaRequisicionFecha[$("#language").data("kendoDropDownList").value()], filterable: { cell: { showOperators: false } }, format: _dictionary.FormatoFecha[$("#language").data("kendoDropDownList").value()], width: "110px" },
             { field: "CantidadJuntas", title: _dictionary.AsignarRequisicionHeaderCantidadJuntas[$("#language").data("kendoDropDownList").value()], template: "<div class='EnlaceDetalleJuntas' style='text-align:center;'><a href='\\#'  > <span>#=CantidadJuntas#</span></a></div>", filterable: getGridFilterableCellNumberMaftec(), width: "80px" },
@@ -388,3 +388,52 @@ function replaceAll(str, find, replace) {
 function escapeRegExp(str) {
     return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
+
+
+
+function JuntasAsignadasMayor(ProveedorID,TurnoLaboralID,JuntasAsignadas) {
+    var ds = $("#grid").data("kendoGrid").dataSource._data;
+    var maxJuntasAsignadas = 0;
+    for (var i = 0; i < ds.length; i++) {
+        if (ds[i].ProveedorID == ProveedorID && ds[i].TurnoLaboralID == TurnoLaboralID) {
+            if (ds[i].JuntasAsignadas != "") {
+                if (parseInt(ds[i].JuntasAsignadas) > parseInt(JuntasAsignadas))
+                    maxJuntasAsignadas = ds[i].JuntasAsignadas;
+                else
+                    maxJuntasAsignadas = JuntasAsignadas;
+            }
+        }
+    }
+    return maxJuntasAsignadas;
+}
+
+
+function setJuntasAsignadas(JuntasAsignadas) {
+    var ds = $("#grid").data("kendoGrid").dataSource._data;
+    
+    for (var i = 0; i < ds.length; i++) {
+        if (ds[i].JuntasAsignadas != "") {
+            ds[i].JuntasAsignadas = JuntasAsignadas;
+        }
+    }
+}
+
+function setListadojuntasAsignadar(ProveedorID, TurnoLaboralID, JuntasAsignadas) {
+    var ds = $("#grid").data("kendoGrid").dataSource._data;
+    
+    for (var i = 0; i < ds.length; i++) {
+        for (var j = 0; j < ds[i].ListaTurnoLaboral.length; j++) {
+            if (ds[i].ListaTurnoLaboral[j].ProveedorID == ProveedorID && ds[i].ListaTurnoLaboral[j].TurnoLaboralID == TurnoLaboralID) {
+                ds[i].ListaTurnoLaboral[j].JuntasAsignadas = JuntasAsignadas;
+            }
+        }
+        for (var k = 0; k < ds[i].ListaTurnoLaboralTotal.length; k++) {
+            if (ds[i].ListaTurnoLaboralTotal[k].ProveedorID == ProveedorID && ds[i].ListaTurnoLaboralTotal[k].TurnoLaboralID == TurnoLaboralID) {
+                ds[i].ListaTurnoLaboralTotal[k].JuntasAsignadas = JuntasAsignadas;
+            }
+        }
+        
+    }
+    $("#grid").data("kendoGrid").dataSource.sync();
+}
+
