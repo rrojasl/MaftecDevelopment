@@ -2,12 +2,27 @@
     suscribirEventoGuardar();
     suscribirEventoAgregar();
     suscribirEventoFolio();
+    suscribirEventoChangeRadio();
     suscribirEventoCancelar();
     suscribirEventoTipoPrueba();
     suscribirEventoProyecto();
     SuscribirEventoSpoolID();
     SuscribirEventosJunta();
     SuscribirEventoOcultarDivJunta();
+}
+
+function suscribirEventoChangeRadio() {
+    $('input:radio[name=Muestra]:nth(0)').change(function () {
+        if ($("#Proyecto").data("kendoComboBox").value() != "" && $("#Proyecto").data("kendoComboBox").value() != 0) {
+            ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
+        }
+    });
+    $('input:radio[name=Muestra]:nth(1)').change(function () {
+        if ($("#Proyecto").data("kendoComboBox").value() != "" && $("#Proyecto").data("kendoComboBox").value() != 0) {
+            ajaxObtenerJuntasSoldadas($("#Proyecto").data("kendoComboBox").value());
+        }
+    });
+
 }
 
 function SuscribirEventoOcultarDivJunta() {
@@ -20,10 +35,15 @@ function suscribirEventoGuardar() {
         if ($('#botonGuardar').text() == "Guardar") {
             //if ($("#Fecha").val() != "" && ValidaFormatoFecha($("#Fecha").val(), $("#language").val())) {
             //opcionHabilitarView(true, "FieldSetView");
-            if ($("#tipoPrueba").data("kendoComboBox").value() != 0)
-                AjaxGuardarCaptura(ds._data, 0);
-            else
-                displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            if ($("#Proyecto").data("kendoComboBox").value() != 0 && $("#Proyecto").data("kendoComboBox").value() != "") {
+                if ($("#tipoPrueba").data("kendoComboBox").value() != 0 && $("#tipoPrueba").data("kendoComboBox").value() != "")
+                    AjaxGuardarCaptura(ds._data, 0);
+                else
+                    displayNotify("", "Favor de seleccionar un tipo de prueba", '1');
+            }
+            else {
+                displayNotify("", "Favor de seleccionar un proyecto", '1');
+            }
             //}
             //else
             //    displayNotify("Mensajes_error", "El campo fecha no puede estar vacio", '1');
@@ -164,6 +184,7 @@ function suscribirEventoProyecto() {
                 $("#listaFolio").data("kendoComboBox").value("");
                 $("#tipoPrueba").data("kendoComboBox").value("");
                 $("#Proyecto").data("kendoComboBox").value("");
+                $("#grid").data('kendoGrid').dataSource.data([]);
                 AjaxListaRequisiciones(0);
             }
         }
@@ -189,7 +210,7 @@ function suscribirEventoTipoPrueba() {
             }
             else {
                 $("#listaFolio").data("kendoComboBox").value("");
-                $("#tipoPrueba").data("kendoComboBox").select(0);
+                $("#tipoPrueba").data("kendoComboBox").value("");
                 AjaxListaRequisiciones($("#Proyecto").data("kendoComboBox").value());
                 //$("#tipoPrueba").data("kendoComboBox").value("");
             }
