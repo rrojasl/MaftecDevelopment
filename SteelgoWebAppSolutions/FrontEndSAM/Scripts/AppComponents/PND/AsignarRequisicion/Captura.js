@@ -104,7 +104,7 @@ function CargarGrid() {
             { field: "TurnoLaboral", title: _dictionary.AsignarRequisicionHeaderTurnoLaboral[$("#language").data("kendoDropDownList").value()], editor: RenderComboBoxTurnoLaboral, filterable: getGridFilterableCellMaftec(), width: "120px" },
             { field: "Capacidad", title: _dictionary.AsignarRequisicionHeaderCapacidad[$("#language").data("kendoDropDownList").value()], editor: RenderComboBoxTurnoLaboral, filterable: getGridFilterableCellMaftec(), width: "80px" },
             { field: "JuntasAsignadas", title: _dictionary.AsignarRequisicionHeaderJuntasAsignadas[$("#language").data("kendoDropDownList").value()], editor: RenderComboBoxTurnoLaboral, filterable: getGridFilterableCellMaftec(), width: "100px" },
-        { command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
+        //{ command: { text: _dictionary.botonCancelar[$("#language").data("kendoDropDownList").value()], click: cancelarCaptura }, title: _dictionary.tituloEliminar[$("#language").data("kendoDropDownList").value()], width: "50px" },
 { command: { text: _dictionary.botonLimpiar[$("#language").data("kendoDropDownList").value()], click: limpiarRenglon }, title: _dictionary.tituloLimpiar[$("#language").data("kendoDropDownList").value()], width: "50px" }
         ],
         beforeEdit: function (e) {
@@ -234,7 +234,8 @@ function limpiarRenglon(e) {
         itemToClean.HerramientadePruebaID = 0;
         itemToClean.TurnoLaboral = "";
         itemToClean.TurnoLaboralID = 0;
-        
+        itemToClean.JuntasAsignadas = "";
+        itemToClean.Capacidad = "";
         if (itemToClean.Accion == 2)
             itemToClean.Accion = 4;
 
@@ -408,11 +409,11 @@ function JuntasAsignadasMayor(ProveedorID,TurnoLaboralID,JuntasAsignadas) {
 }
 
 
-function setJuntasAsignadas(JuntasAsignadas) {
+function setJuntasAsignatdas(JuntasAsignadas, ProveedorID, TurnoLaboralID, HerramientaDePruebaID) {
     var ds = $("#grid").data("kendoGrid").dataSource._data;
     
     for (var i = 0; i < ds.length; i++) {
-        if (ds[i].JuntasAsignadas != "") {
+        if (ds[i].JuntasAsignadas != "" && ds[i].ProveedorID == ProveedorID && ds[i].TurnoLaboralID == TurnoLaboralID && ds[i].HerramientadePruebaID == HerramientaDePruebaID) {
             ds[i].JuntasAsignadas = JuntasAsignadas;
         }
     }

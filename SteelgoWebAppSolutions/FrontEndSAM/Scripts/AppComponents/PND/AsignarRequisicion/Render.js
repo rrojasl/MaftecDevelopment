@@ -19,15 +19,28 @@
                     options.model.ProveedorID = dataItem.ProveedorID;
                     options.model.Proveedor = dataItem.Nombre;
                     options.model.ListaTurnoLaboral = [];
-                    if (dataItem.Nombre != "")
-                        options.model.ListaTurnoLaboral = obtenerTurnoLaboralProveedor(options.model, dataItem.ProveedorID);
+                    if (dataItem.Nombre != "") {
+                        if (options.model.Nombre.indexOf('RT') < 0) {
+                            options.model.ListaTurnoLaboral = obtenerTurnoLaboralProveedor(options.model, dataItem.ProveedorID);
+                        }
+                        else {
+                            options.model.ListaHerramientaPrueba = obtenerHerramientaPruebaProveedor(options.model, dataItem.ProveedorID);
+                        }
+                        var JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
+                        setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
+                        setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, options.model.HerramientadePruebaOriginalID);
 
+                    }
                     options.model.TurnoLaboralID = 0;
                     options.model.TurnoLaboral = "";
                     options.model.Capacidad = "";
                     options.model.JuntasAsignadas = "";
                     if (options.model.Accion == 4)
                         options.model.Accion = 2;
+
+                    var JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
+                    setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
+                    setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, options.model.HerramientadePruebaOriginalID);
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
@@ -85,6 +98,29 @@ function obtenerTurnoLaboralProveedor(model, ProveedorID) {
 }
 
 
+function obtenerHerramientaPruebaProveedor(model, ProveedorID) {
+    var lista = model.ListaHerramientaPruebaTotal;
+    var listaFinalherramientaPrueba = [];
+    listaFinalherramientaPrueba[0] = { HerramientadePruebaID: "", HerramientadePrueba: "", DescHerramientaPrueba: "", Modelo: "", ProveedorID: "" };
+    var cont = 1;
+    listaFinalherramientaPrueba[0].HerramientadePruebaID = 0;
+    listaFinalherramientaPrueba[0].ProveedorID = 0;
+    listaFinalherramientaPrueba[0].HerramientadePrueba = "";
+    listaFinalherramientaPrueba[0].DescHerramientaPrueba = 0;
+    listaFinalherramientaPrueba[0].Modelo = "";
+
+    for (var i = 0; i < lista.length; i++) {
+        if (lista[i].ProveedorID == ProveedorID ) {
+            listaFinalherramientaPrueba[cont] = lista[i];
+            cont++;
+        }
+    }
+
+    return listaFinalherramientaPrueba;
+}
+
+
+
 function RenderComboBoxHerramientaPrueba(container, options) {
     //container  contiene las propiedades de la celda
     //options contiene el modelo del datasource ejemplo options.model.Junta
@@ -102,13 +138,28 @@ function RenderComboBoxHerramientaPrueba(container, options) {
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
 
-                if (dataItem != undefined) {
+                if (dataItem != undefined && dataItem.HerramientadePrueba != "") {
                     options.model.HerramientadePruebaID = dataItem.HerramientadePruebaID;
                     options.model.HerramientadePrueba = dataItem.HerramientadePrueba;
+
+                    var JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
+                    setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
+                    setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, options.model.HerramientadePruebaOriginalID);
                 }
                 else {
+
                     options.model.HerramientadePruebaID = 0;
                     options.model.HerramientadePrueba = "";
+                    options.model.TurnoLaboralID = 0;
+                    options.model.TurnoLaboral = "";
+                    options.model.Capacidad = "";
+                    options.model.JuntasAsignadas = "";
+
+                    var JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
+                    setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
+                    setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, options.model.HerramientadePruebaOriginalID);
+
+                    $("#grid").data("kendoGrid").dataSource.sync();
                 }
 
             },
@@ -152,30 +203,37 @@ function RenderComboBoxTurnoLaboral(container, options) {
             change: function (e) {
                 dataItem = this.dataItem(e.sender.selectedIndex);
 
-                 if (dataItem != undefined) {
+                if (dataItem != undefined) {
                     if (dataItem.Turno != "") {
-                        options.model.TurnoLaboralID = dataItem.TurnoLaboralID;
+                        
                         options.model.TurnoLaboral = dataItem.Turno;
+                        options.model.TurnoLaboralID = dataItem.TurnoLaboralID;
                         options.model.Capacidad = dataItem.Capacidad;
+                        var JuntasAsignadasFinal = dataItem.JuntasAsignadas;
+                        JuntasAsignadasFinal = parseInt(JuntasAsignadasFinal) + parseInt(options.model.CantidadJuntas);
+                        setListadojuntasAsignadar(options.model.ProveedorID, options.model.TurnoLaboralID, JuntasAsignadasFinal);
 
-                        var JuntasAsignadasFinal = parseInt(JuntasAsignadasMayor(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, 0));
-                        if (JuntasAsignadasFinal > 0) {
-                            JuntasAsignadasFinal = JuntasAsignadasFinal - parseInt(options.model.CantidadJuntas);
-                        }
+                        setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorID, options.model.TurnoLaboralID, options.model.HerramientadePruebaID);
+
+                        JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
                         setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
 
-                        JuntasAsignadasFinal = parseInt(JuntasAsignadasMayor(dataItem.ProveedorID, dataItem.TurnoLaboralID, dataItem.JuntasAsignadas)) + parseInt(options.model.CantidadJuntas);
-                        options.model.JuntasAsignadas = JuntasAsignadasFinal;
-                        setJuntasAsignadas(JuntasAsignadasFinal);
                         
+                        options.model.JuntasAsignadas = parseInt(dataItem.JuntasAsignadas); 
+
+                        
+
                         options.model.TurnoLaboralOriginalID = dataItem.TurnoLaboralID;
                         options.model.ProveedorOriginalID = dataItem.ProveedorID;
+                        options.model.HerramientadePruebaOriginalID = dataItem.HerramientaDePruebaID;
+                        options.model.JuntasAsignadasOriginal = dataItem.JuntasAsignadas;
                     }
                     else {
-                        
-                        var JuntasAsignadasFinal = parseInt(JuntasAsignadasMayor(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, 0)) - parseInt(options.model.CantidadJuntas);
+
+                        var JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
                         setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
-                        setJuntasAsignadas(JuntasAsignadasFinal);
+
+                        setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, options.model.HerramientadePruebaOriginalID);
                         options.model.TurnoLaboralID = 0;
                         options.model.TurnoLaboralOriginalID = 0;
                         options.model.ProveedorOriginalID = 0;
