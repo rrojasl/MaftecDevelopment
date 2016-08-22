@@ -13,6 +13,7 @@ var $CargaCarroModel = {
         InputCarro: {
             visible: "#InputCarroDiv",
             editable: "#inputCarro",
+            required: "#inputCarro",
         },
         InputID: {
             visible: "#InputIDDiv",
@@ -24,32 +25,16 @@ var $CargaCarroModel = {
             editable: "#InputNombre",
             required: "#InputNombre",
         },
-        InputClasificacion: {
-            visible: "#inputClasificacionDiv",
-            editable: "#inputClasificacion",
-            required: "#inputClasificacion",
+        InputCarroBacklog: {
+            visible: "#InputCarroBackDiv",
+            editable: "#inputCarroBacklog",
+            required: "#inputCarroBacklog",
         },
-        InputPersistencia: {
-            visible: "#inputPersistenciaDiv",
-            editable: "#inputPersistencia",
-            required: "#inputPersistencia",
-        },
-        InputPeso: {
-            visible: "#inputPesoMaximoDiv",
-            editable: "#inputPesoMaximo",
-            required: "#inputPesoMaximo",
-        },
-        InputArea: {
-            visible: "#inputAreaDiv",
-            editable: "#inputArea",
-            required: "#inputArea",
-        },
-        InputNoUsos: {
-            visible: "#divNumeroVeces",
-            editable: "#inputNumeroVeces",
-            required: "#inputNumeroVeces",
-        },
-
+        InputProyecto: {
+            visible: "#InputProyectoDiv",
+            editable: "#inputProyecto",
+            required: "#inputProyecto",
+        }
 
     }
 };

@@ -10392,6 +10392,10 @@ _dictionary = {
         "en-US": "The spool is unavailable, this in the process of painting"
 
     },
+    "PinturaCargaCuadrante": {
+        "es-MX": "Por favor seleccione el cuadrante de descarga",
+        "en-US": "Please select the quadrant from discharge"
+    },
     //#endregion
     //#region PinturaDescargaCarro
 

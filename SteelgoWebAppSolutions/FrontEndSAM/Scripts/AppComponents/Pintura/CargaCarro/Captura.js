@@ -17,6 +17,13 @@ function IniciarBacklog() {
 }
 
 function CargarGrid() {
+    //var options = {
+    //    cell_height: 80,
+    //    vertical_margin: 10
+    //};
+
+    //$('.grid-stack').gridstack(options);
+
     $("#grid").kendoGrid({
         edit: function (e) { 
             this.closeCell(); 
@@ -64,9 +71,9 @@ function CargarGrid() {
             numeric: true,
         },
         columns: [
-            { field: "SpoolJunta", title: _dictionary.PinturaCargaSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", footerTemplate: "<div style='text-align:right;width:150px;'></div>" },
-            { field: "SistemaPintura", title: _dictionary.PinturaCargaBackLogSistemaPintura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", footerTemplate: "<div style='text-align:right;width:150px; '></div>" },
-            { field: "ColorPintura", title: _dictionary.PinturaCargaBackLogColor[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", footerTemplate: "<div style='text-align:right;width: 120px;'></div>" },
+            { field: "SpoolJunta", title: _dictionary.PinturaCargaSpool[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px"},
+            { field: "SistemaPintura", title: _dictionary.PinturaCargaBackLogSistemaPintura[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px"},
+            { field: "ColorPintura", title: _dictionary.PinturaCargaBackLogColor[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px"},
             { field: "CuadranteMedioTransporte", title: _dictionary.PinturaCargaBackLogQuadrant[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "120px", footerTemplate: "<div style='text-align:right; width:120px;'></div>" },
             { field: "Area", type: 'number', title: _dictionary.PinturaCargaBackLogM2[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", format: "{0:n2}", attributes: { style: "text-align:right;" }, aggregates: ["sum"], footerTemplate: "<div style='text-align:right;'>SUM: #= kendo.toString(sum, 'n') #</div>" },
             { field: "Peso", type: 'number', title: _dictionary.PinturaCargaBackLogPeso[$("#language").data("kendoDropDownList").value()], filterable: getGridFilterableCellMaftec(), width: "150px", format: "{0:n2}", attributes: { style: "text-align:right;" }, aggregates: ["sum"], footerTemplate: "<div style='text-align:right;'>SUM: #= kendo.toString(sum, 'n') #</div>" },
@@ -108,18 +115,21 @@ function eliminarCaptura(e) {
 
             $("#btnDescargar").click(function (handler) {
                 var dataSource = $("#grid").data("kendoGrid").dataSource;
+                if ($("#inputCuadrantePopup").data("kendoComboBox").value() != "") {
+                    if (dataItem.Accion === 1)
+                    { dataSource.remove(dataItem); }
+                    else {
+                        dataItem.CuadranteID = $("#inputCuadrantePopup").data("kendoComboBox").value();
+                        dataItem.Accion = 3;
+                    }
 
-                if (dataItem.Accion === 1)
-                { dataSource.remove(dataItem); }
-                else {
-                    dataItem.CuadranteID = $("#inputCuadrantePopup").data("kendoComboBox").value();
-                    dataItem.Accion = 3;
+                    dataSource.sync();
+
+                    ImprimirAreaTonelada();
+                    windowDownload.close();
+                } else {
+                    displayNotify("PinturaCargaCuadrante", '', '1');
                 }
-
-                dataSource.sync();
-
-                ImprimirAreaTonelada();
-                windowDownload.close();
             });
 
             $("#btnCerrarPopup").click(function () {
@@ -284,7 +294,7 @@ function eliminarCapturaBack(e) {
             windowDownload.open().center();
 
             $("#btnDescargar").click(function (handler) {
-                var dataSource = $("#grid").data("kendoGrid").dataSource;
+                var dataSource = $("#grid[nombre='grid-backlog']").data("kendoGrid").dataSource;
                 if ($("#inputCuadrantePopup").data("kendoComboBox").value() != "") {
                     if (dataItem.Accion === 1)
                     {
@@ -296,11 +306,11 @@ function eliminarCapturaBack(e) {
                     }
 
                     windowDownload.close();
-                    ImprimirAreaTonelada();
+                    ImprimirAreaToneladaBackLog();
                     dataSource.sync();
 
                 } else {
-                    displayNotify("", "Favor de Seleccionar cuadrante",1);
+                    displayNotify("PinturaCargaCuadrante", '', '1');
                 }
                 
             });
