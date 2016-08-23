@@ -7330,7 +7330,7 @@ _dictionary = {
         "en-US": "Report Capture"
     },
     "menuServiciosTecnicosEntregaResultados": {
-        "es-MX": "Entrega de Placas-Graficas",
+        "es-MX": "Entrega de Placas-Gráficas",
         "en-US": "Delivering Plate-Graphics"
     },
     "menuServiciosTecnicosGenerarRequisicion": {
@@ -9051,9 +9051,9 @@ _dictionary = {
         "es-MX": "Todos",
         "en-US": "All"
     },
-    "EntregaResultadosHeader": {
-        "es-MX": "Entrega de Resultados",
-        "en-US": "Delivering Results"
+    "EntregaPlacasGraficasHeader": {
+        "es-MX": "Entrega de Placas-Gráficas",
+        "en-US": "Delivering Plate-Graphics"
     },
     "AsignarRequisicionEntregaResultados": {
         "es-MX": "Entrega de Resultados",
