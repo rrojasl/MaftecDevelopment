@@ -35,12 +35,14 @@
                     options.model.TurnoLaboral = "";
                     options.model.Capacidad = "";
                     options.model.JuntasAsignadas = "";
+
                     if (options.model.Accion == 4)
                         options.model.Accion = 2;
 
                     var JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
                     setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
                     setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, options.model.HerramientadePruebaOriginalID);
+                    options.model.JuntasAsignadasOriginal = 0;
                     $("#grid").data("kendoGrid").dataSource.sync();
 
                 }
@@ -53,6 +55,7 @@
                     options.model.TurnoLaboral = "";
                     options.model.Capacidad = "";
                     options.model.JuntasAsignadas = "";
+                    options.model.JuntasAsignadasOriginal = 0;
                 }
                 //options.model.Proveedor = ObtenerDescCorrectaProveedor(options.model.ListaProveedor, options.model.ProveedorID);
 
@@ -154,7 +157,7 @@ function RenderComboBoxHerramientaPrueba(container, options) {
                     options.model.TurnoLaboral = "";
                     options.model.Capacidad = "";
                     options.model.JuntasAsignadas = "";
-
+                    options.model.JuntasAsignadasOriginal = 0;
                     var JuntasAsignadasFinal = parseInt(options.model.JuntasAsignadasOriginal) - parseInt(options.model.CantidadJuntas);
                     setListadojuntasAsignadar(options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, JuntasAsignadasFinal);
                     setJuntasAsignatdas(JuntasAsignadasFinal, options.model.ProveedorOriginalID, options.model.TurnoLaboralOriginalID, options.model.HerramientadePruebaOriginalID);
@@ -240,6 +243,7 @@ function RenderComboBoxTurnoLaboral(container, options) {
                         options.model.TurnoLaboral = "";
                         options.model.Capacidad = "";
                         options.model.JuntasAsignadas = "";
+                        options.model.JuntasAsignadasOriginal = 0;
                     }
                 }
                 else {
