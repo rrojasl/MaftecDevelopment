@@ -16,10 +16,13 @@
     </li>
 }
 
-@Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer, new
+<div id="miPatron" style="overflow: visible;">
+    @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer, new
 {
     scrolling = "yes",
     width = "100%",
     height = "auto",
-    style = "border: 0px; margin: 0px; padding: 0px;"
+    style = "border: 0px; margin: 0px; padding: 0px; "
+
 })
+</div>

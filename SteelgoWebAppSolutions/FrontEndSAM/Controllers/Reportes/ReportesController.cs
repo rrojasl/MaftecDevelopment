@@ -21,13 +21,15 @@ namespace FrontEndSAM.Controllers.Reportes
                 if (path != null)
                 {
                     ReportViewer reportViewer = new ReportViewer();
-                    reportViewer.Width = new System.Web.UI.WebControls.Unit("100%");
-                    reportViewer.Height = new System.Web.UI.WebControls.Unit("100%");
+                    reportViewer.SizeToReportContent = true;
+                    //reportViewer.Width = new System.Web.UI.WebControls.Unit("100%");
+                    //reportViewer.Height = new System.Web.UI.WebControls.Unit("100%");
                     reportViewer.BackColor = System.Drawing.ColorTranslator.FromHtml("#305E8E");
                     reportViewer.ForeColor = System.Drawing.Color.White;
                     reportViewer.ID = "reportViewerReportes";
 
                     reportViewer.ProcessingMode = ProcessingMode.Remote;
+                    
                     IReportServerCredentials irsc = new CustomReportCredentials("Sam3", "Steelgo2016", "STEELGO-DB01");
                     reportViewer.ServerReport.ReportServerCredentials = irsc;
                     reportViewer.ServerReport.ReportServerUrl = new Uri("http://www.samaltamira.net/ReportServer");
