@@ -7330,8 +7330,8 @@ _dictionary = {
         "en-US": "Report Capture"
     },
     "menuServiciosTecnicosEntregaResultados": {
-        "es-MX": "Entrega de Resultados",
-        "en-US": "Delivering Results"
+        "es-MX": "Entrega de Placas-Graficas",
+        "en-US": "Delivering Plate-Graphics"
     },
     "menuServiciosTecnicosGenerarRequisicion": {
         "es-MX": "Requisición PND",
